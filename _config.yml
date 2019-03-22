@@ -103,7 +103,7 @@ sitemap:
 theme: next
 
 baidu_url_submit:
-  count: 1 ## 提交最新的一个链接
+  count: 15 ## 提交最新的一个链接
   host: www.xingjiehu.com ## 在百度站长平台中注册的域名
   token: A4WTBcIlVAkGPB5p ## 请注意这是您的秘钥， 所以请不要把博客源代码发布在公众仓库里!
   path: baidu_urls.txt ## 文本文档的地址， 新链接会保存在此文本文档里
@@ -112,7 +112,7 @@ baidu_url_submit:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
 - type: git   # 类型填git
-  repo: https://git.coding.net/shooke/xingjiehu.com.git # 你的Github仓库地址
+  repo: https://git.dev.tencent.com/shooke/xingjiehu.com.git # https://git.coding.net/shooke/xingjiehu.com.git 你的Github仓库地址
   branch: master  # 分支名称。默认填写 master 如果您使用的是 GitHub ，程序会尝试自动检测。
   message:  # 提交信息可以自定义，不填的话默认为提交时间
 - type: baidu_url_submitter ## 这是新加的
