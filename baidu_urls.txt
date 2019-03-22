@@ -1,1 +1,1 @@
-http://www.xingjiehu.com/2019/03/15/elasticsearch学习笔记 - 集群相关术语/
+https://www.xingjiehu.com/2019/03/15/elasticsearch学习笔记 - 集群相关术语/
