@@ -21,7 +21,8 @@
   <title>{% block title %}{% endblock %}</title>
   {% include '_third-party/analytics/index.swig' %}
   {{ partial('_scripts/noscript.swig', {}, {cache: theme.cache.enable}) }}
-  
+  <!-- google 验证 -->
+  <meta name="google-site-verification" content="9Y6X9yptaHlOdppRk7mld_uHsSibf3lPB8c_60zPyF0" />
   <!-- baidu 验证和收录推送 -->
   <meta name="baidu-site-verification" content="lCJxAeYryx" />
   <script>
