@@ -41,4 +41,9 @@ export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
 ```
 source ~/.profile
 ```
-运行`java --version`看是否生效
+运行`java --version`看是否生效，如果出现java版本信息标示生效了
+```
+java version "1.8.0_201"
+Java(TM) SE Runtime Environment (build 1.8.0_201-b09)
+Java HotSpot(TM) 64-Bit Server VM (build 25.201-b09, mixed mode)
+```
