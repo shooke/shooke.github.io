@@ -22,8 +22,8 @@ wget https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bc
 mv jdk-8u201-linux-x64.tar.gz?AuthParam=1554274626_8750d27ae1e72e03c48aa9f516d713c3 jdk-8u201-linux-x64.tar.gz
 # 解压
 tar zxvf jdk-8u201-linux-x64.tar.gz
-# 移动到/opt目录
-sudo mv jdk-8u201-linux-x64 /opt
+# 解压后会出现jdk1.8.0_201文件夹，将其移动到/opt目录
+sudo mv jdk1.8.0_201 /opt
 ```
 ## 设置环境变量
 ```
@@ -32,7 +32,7 @@ vi ~/.profile
 在最后加入
 ```
 #java
-export JAVA_HOME=/opt/jdk-8u201-linux-x64 #jdk的存放目录
+export JAVA_HOME=/opt/jdk1.8.0_201 #jdk的存放目录
 export JRE_HOME=$JAVA_HOME/jre
 export PATH=$PATH:$JAVA_HOME/bin
 export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
