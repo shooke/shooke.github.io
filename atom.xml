@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2019-04-02T06:05:03.160Z</updated>
+  <updated>2019-04-03T07:16:59.197Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>linux安装java环境</title>
+    <link href="https://www.xingjiehu.com/2019/04/03/linux%E5%AE%89%E8%A3%85java%E7%8E%AF%E5%A2%83/"/>
+    <id>https://www.xingjiehu.com/2019/04/03/linux安装java环境/</id>
+    <published>2019-04-03T07:04:54.000Z</published>
+    <updated>2019-04-03T07:16:59.197Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="下载jdk"><a href="#下载jdk" class="headerlink" title="下载jdk"></a>下载jdk</h2><p>可以到<a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html下载" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html下载</a><br>JDK 8u201 是稳定版本<br>JDK 8u202 是开发版本，包含了8u21的功能和一些其他功能，有可能会有bug<br>找到<code>Java SE Development Kit 8u201</code>点击该栏目下的<code>Accept License Agreement</code>单选项<br>在下面的列表中找到需要的版本，右键复制链接，在terminal里面用<code>wget</code>命令下载，下面用的是<code>jdk-8u201-linux-x64</code>包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz?AuthParam=1554274626_8750d27ae1e72e03c48aa9f516d713c3</span><br></pre></td></tr></table></figure></p><h2 id="解压程序包并移动到-opt目录"><a href="#解压程序包并移动到-opt目录" class="headerlink" title="解压程序包并移动到/opt目录"></a>解压程序包并移动到/opt目录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf jdk-8u201-linux-x64.tar.gz</span><br><span class="line">sudo mv jdk-8u201-linux-x64 /opt</span><br></pre></td></tr></table></figure><h2 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.profile</span><br></pre></td></tr></table></figure><p>在最后加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#java</span><br><span class="line">export JAVA_HOME=/opt/jdk-8u201-linux-x64 #jdk的存放目录</span><br><span class="line">export JRE_HOME=$JAVA_HOME/jre</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br></pre></td></tr></table></figure></p><p>最后让配置生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.profile</span><br></pre></td></tr></table></figure></p><p>运行<code>java --version</code>看是否生效</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;下载jdk&quot;&gt;&lt;a href=&quot;#下载jdk&quot; class=&quot;headerlink&quot; title=&quot;下载jdk&quot;&gt;&lt;/a&gt;下载jdk&lt;/h2&gt;&lt;p&gt;可以到&lt;a href=&quot;https://www.oracle.com/technetwork/java/javase
+      
+    
+    </summary>
+    
+      <category term="系统运维" scheme="https://www.xingjiehu.com/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="java" scheme="https://www.xingjiehu.com/tags/java/"/>
+    
+      <category term="jdk" scheme="https://www.xingjiehu.com/tags/jdk/"/>
+    
+  </entry>
   
   <entry>
     <title>VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式</title>
@@ -144,9 +171,9 @@
       <category term="elasticsearch" scheme="https://www.xingjiehu.com/categories/elasticsearch/"/>
     
     
-      <category term="elasticsearch学习笔记" scheme="https://www.xingjiehu.com/tags/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="elasticsearch" scheme="https://www.xingjiehu.com/tags/elasticsearch/"/>
+    
+      <category term="elasticsearch学习笔记" scheme="https://www.xingjiehu.com/tags/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
       <category term="es" scheme="https://www.xingjiehu.com/tags/es/"/>
     
@@ -199,9 +226,9 @@
       <category term="elasticsearch" scheme="https://www.xingjiehu.com/categories/elasticsearch/"/>
     
     
-      <category term="elasticsearch学习笔记" scheme="https://www.xingjiehu.com/tags/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
       <category term="elasticsearch" scheme="https://www.xingjiehu.com/tags/elasticsearch/"/>
+    
+      <category term="elasticsearch学习笔记" scheme="https://www.xingjiehu.com/tags/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
     
       <category term="es" scheme="https://www.xingjiehu.com/tags/es/"/>
     
@@ -443,11 +470,11 @@
       <category term="网络相关" scheme="https://www.xingjiehu.com/categories/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/"/>
     
     
-      <category term="php" scheme="https://www.xingjiehu.com/tags/php/"/>
+      <category term="vue" scheme="https://www.xingjiehu.com/tags/vue/"/>
     
       <category term="axios" scheme="https://www.xingjiehu.com/tags/axios/"/>
     
-      <category term="vue" scheme="https://www.xingjiehu.com/tags/vue/"/>
+      <category term="php" scheme="https://www.xingjiehu.com/tags/php/"/>
     
       <category term="session" scheme="https://www.xingjiehu.com/tags/session/"/>
     
@@ -541,13 +568,13 @@
       <category term="网络相关" scheme="https://www.xingjiehu.com/categories/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/"/>
     
     
-      <category term="http" scheme="https://www.xingjiehu.com/tags/http/"/>
-    
-      <category term="post" scheme="https://www.xingjiehu.com/tags/post/"/>
+      <category term="axios" scheme="https://www.xingjiehu.com/tags/axios/"/>
     
       <category term="php" scheme="https://www.xingjiehu.com/tags/php/"/>
     
-      <category term="axios" scheme="https://www.xingjiehu.com/tags/axios/"/>
+      <category term="http" scheme="https://www.xingjiehu.com/tags/http/"/>
+    
+      <category term="post" scheme="https://www.xingjiehu.com/tags/post/"/>
     
   </entry>
   
