@@ -18,7 +18,11 @@ wget https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bc
 ```
 ## 解压程序包并移动到/opt目录
 ```
+# 先改个名字，要不然看着别扭
+mv jdk-8u201-linux-x64.tar.gz?AuthParam=1554274626_8750d27ae1e72e03c48aa9f516d713c3 jdk-8u201-linux-x64.tar.gz
+# 解压
 tar zxvf jdk-8u201-linux-x64.tar.gz
+# 移动到/opt目录
 sudo mv jdk-8u201-linux-x64 /opt
 ```
 ## 设置环境变量
