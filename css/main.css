@@ -1251,7 +1251,7 @@ pre .javascript .function {
 .menu .menu-item a,
 .menu .menu-item span.exturl {
   display: block;
-  font-size: 13px;
+  font-size: 16px;
   line-height: inherit;
   border-bottom: 1px solid transparent;
   transition-property: border-color;
@@ -2007,7 +2007,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #b1c681;
+  background: #ff417c;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2787,7 +2787,7 @@ hr {
 }
 .menu .menu-item a,
 .menu .menu-item span.exturl {
-  padding: 0 10px;
+  padding: 10px;
   border: none;
   border-radius: 2px;
   transition-property: background;
