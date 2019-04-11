@@ -498,11 +498,11 @@
       <category term="网络相关" scheme="https://www.xingjiehu.com/categories/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/"/>
     
     
-      <category term="vue" scheme="https://www.xingjiehu.com/tags/vue/"/>
-    
       <category term="php" scheme="https://www.xingjiehu.com/tags/php/"/>
     
       <category term="axios" scheme="https://www.xingjiehu.com/tags/axios/"/>
+    
+      <category term="vue" scheme="https://www.xingjiehu.com/tags/vue/"/>
     
       <category term="session" scheme="https://www.xingjiehu.com/tags/session/"/>
     
