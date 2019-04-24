@@ -1,5 +1,5 @@
+https://www.xingjiehu.com/2019/04/24/su-与-su-的区别/
 https://www.xingjiehu.com/2019/04/11/使用阿里云ecs主机打造shadowsocks服务器-实现科学上网/
 https://www.xingjiehu.com/2019/04/03/linux安装java环境/
 https://www.xingjiehu.com/2019/04/02/VirtualBox-v5-2-12-Ubuntu18-04-宿主机和虚拟主机互通，都可上网配置方式/
 https://www.xingjiehu.com/2019/04/01/设计模式基本原则大白话/
-https://www.xingjiehu.com/2019/03/27/vscode-保存自动按eslint格式化/

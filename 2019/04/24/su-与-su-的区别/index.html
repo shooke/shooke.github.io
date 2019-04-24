@@ -96,17 +96,18 @@
 
 
 
-  <meta name="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-<meta name="keywords" content="python,php,mysql,前端">
-<meta property="og:type" content="website">
-<meta property="og:title" content="shooke&#39;s blog">
-<meta property="og:url" content="https://www.xingjiehu.com/tags/python/index.html">
+  <meta name="description" content="12su rootsu - root 两条命令输入密码后（这里输入的是 root 的密码而不是当前用户的密码），会切换到 root。 su root只会切换账号，但 shell 还是原有用户的，目录不会切换，环境变量也不会还，与使用 sudo 执行命令差不多。 su - root会彻底切换账户，目录会切换到/root 目录，并且环境变量也是 root 的。相当于使用 root 做了登录">
+<meta name="keywords" content="linux,su">
+<meta property="og:type" content="article">
+<meta property="og:title" content="su 与 su - 的区别">
+<meta property="og:url" content="https://www.xingjiehu.com/2019/04/24/su-与-su-的区别/index.html">
 <meta property="og:site_name" content="shooke&#39;s blog">
-<meta property="og:description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+<meta property="og:description" content="12su rootsu - root 两条命令输入密码后（这里输入的是 root 的密码而不是当前用户的密码），会切换到 root。 su root只会切换账号，但 shell 还是原有用户的，目录不会切换，环境变量也不会还，与使用 sudo 执行命令差不多。 su - root会彻底切换账户，目录会切换到/root 目录，并且环境变量也是 root 的。相当于使用 root 做了登录">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-04-24T14:20:45.850Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shooke&#39;s blog">
-<meta name="twitter:description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+<meta name="twitter:title" content="su 与 su - 的区别">
+<meta name="twitter:description" content="12su rootsu - root 两条命令输入密码后（这里输入的是 root 的密码而不是当前用户的密码），会切换到 root。 su root只会切换账号，但 shell 还是原有用户的，目录不会切换，环境变量也不会还，与使用 sudo 执行命令差不多。 su - root会彻底切换账户，目录会切换到/root 目录，并且环境变量也是 root 的。相当于使用 root 做了登录">
 
 
 
@@ -115,7 +116,7 @@
 
 
 
-  <link rel="canonical" href="https://www.xingjiehu.com/tags/python/">
+  <link rel="canonical" href="https://www.xingjiehu.com/2019/04/24/su-与-su-的区别/">
 
 
 
@@ -125,7 +126,7 @@
   };
 </script>
 
-  <title>标签: python | shooke's blog</title>
+  <title>su 与 su - 的区别 | shooke's blog</title>
   
 
 
@@ -191,7 +192,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -246,7 +247,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
 
     
     
@@ -319,28 +320,6 @@
   
     
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
   
 
   
@@ -365,56 +344,223 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>python<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/24/su-与-su-的区别/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2019/03/06/python字节和字符串相互转换/" itemprop="url">
-            
-              <span itemprop="name">python字节和字符串相互转换</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">su 与 su - 的区别
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-06T17:43:39+08:00" content="2019-03-06">
-          03-06
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
+          <span class="post-time">
 
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-24 22:14:49 / 修改时间：22:20:45" itemprop="dateCreated datePublished" datetime="2019-04-24T22:14:49+08:00">2019-04-24</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/linux笔记/" itemprop="url" rel="index"><span itemprop="name">linux笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">su root</span><br><span class="line">su - root</span><br></pre></td></tr></table></figure>
+<p>两条命令输入密码后（这里输入的是 root 的密码而不是当前用户的密码），会切换到 root。</p>
+<h2 id="su-root"><a href="#su-root" class="headerlink" title="su root"></a>su root</h2><p>只会切换账号，但 shell 还是原有用户的，目录不会切换，环境变量也不会还，与使用 sudo 执行命令差不多。</p>
+<h2 id="su-root-1"><a href="#su-root-1" class="headerlink" title="su - root"></a>su - root</h2><p>会彻底切换账户，目录会切换到/root 目录，并且环境变量也是 root 的。相当于使用 root 做了登录</p>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <!--
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>领红包</span>
+  </button>
+  -->
+  <div id="QR" style="display: block;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/images/alipay_redpack.png" alt="shooke 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+            <a href="/tags/su/" rel="tag"># su</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/11/使用阿里云ecs主机打造shadowsocks服务器-实现科学上网/" rel="next" title="使用阿里云ecs主机打造shadowsocks服务器,实现科学上网">
+                <i class="fa fa-chevron-left"></i> 使用阿里云ecs主机打造shadowsocks服务器,实现科学上网
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -435,8 +581,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -632,6 +787,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#su-root"><span class="nav-number">1.</span> <span class="nav-text">su root</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#su-root-1"><span class="nav-number">2.</span> <span class="nav-text">su - root</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
 
@@ -771,6 +943,10 @@ var _hmt = _hmt || [];
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
@@ -781,6 +957,8 @@ var _hmt = _hmt || [];
 
   
 
+
+  
 
 
   
