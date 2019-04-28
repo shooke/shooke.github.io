@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2019-04-25T05:40:47.479Z</updated>
+  <updated>2019-04-28T10:17:42.765Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Supervisord管理进程常用命令</title>
+    <link href="https://www.xingjiehu.com/2019/04/28/Supervisord%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/"/>
+    <id>https://www.xingjiehu.com/2019/04/28/Supervisord管理进程常用命令/</id>
+    <published>2019-04-28T10:13:49.000Z</published>
+    <updated>2019-04-28T10:17:42.765Z</updated>
+    
+    <content type="html"><![CDATA[<p>Supervisord安装完成后有两个可用的命令行supervisor和supervisorctl，命令使用解释如下：</p><p><strong>supervisord</strong>: 初始启动Supervisord，启动、管理配置中设置的进程。<br><strong>supervisorctl stop programxxx</strong>: 停止某一个进程(programxxx)，programxxx为[program:chatdemon]里配置的值，这个示例就是chatdemon。<br><strong>supervisorctl start programxxx</strong>: 启动某个进程<br><strong>supervisorctl restart programxxx</strong>: 重启某个进程<br><strong>supervisorctl stop groupworker</strong>: 重启所有属于名为groupworker这个分组的进程(start,restart同理)<br><strong>supervisorctl stop all</strong>: 停止全部进程，注：start、restart、stop都不会载入最新的配置文件。<br><strong>supervisorctl reload</strong>: 载入最新的配置文件，停止原有进程并按新的配置启动、管理所有进程。<br><strong>supervisorctl update</strong>: 根据最新的配置文件，启动新配置或有改动的进程，配置没有改动的进程不会受影响而重启。</p><blockquote><p>注意：显示用stop停止掉的进程，用reload或者update都不会自动重启。</p></blockquote><p>原文<a href="https://feilong.me/2011/03/monitor-processes-with-supervisord" target="_blank" rel="noopener">https://feilong.me/2011/03/monitor-processes-with-supervisord</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Supervisord安装完成后有两个可用的命令行supervisor和supervisorctl，命令使用解释如下：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;supervisord&lt;/strong&gt;: 初始启动Supervisord，启动、管理配置中设置的进程。&lt;br&gt;&lt;stron
+      
+    
+    </summary>
+    
+      <category term="系统运维" scheme="https://www.xingjiehu.com/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="supervisord" scheme="https://www.xingjiehu.com/tags/supervisord/"/>
+    
+  </entry>
   
   <entry>
     <title>省略sudo使用docker</title>
@@ -253,9 +279,9 @@
       <category term="elasticsearch" scheme="https://www.xingjiehu.com/categories/elasticsearch/"/>
     
     
-      <category term="elasticsearch" scheme="https://www.xingjiehu.com/tags/elasticsearch/"/>
-    
       <category term="elasticsearch学习笔记" scheme="https://www.xingjiehu.com/tags/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="elasticsearch" scheme="https://www.xingjiehu.com/tags/elasticsearch/"/>
     
       <category term="es" scheme="https://www.xingjiehu.com/tags/es/"/>
     
@@ -308,9 +334,9 @@
       <category term="elasticsearch" scheme="https://www.xingjiehu.com/categories/elasticsearch/"/>
     
     
-      <category term="elasticsearch" scheme="https://www.xingjiehu.com/tags/elasticsearch/"/>
-    
       <category term="elasticsearch学习笔记" scheme="https://www.xingjiehu.com/tags/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+      <category term="elasticsearch" scheme="https://www.xingjiehu.com/tags/elasticsearch/"/>
     
       <category term="es" scheme="https://www.xingjiehu.com/tags/es/"/>
     
@@ -581,29 +607,6 @@
     
     
       <category term="git" scheme="https://www.xingjiehu.com/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>crontab使用详解</title>
-    <link href="https://www.xingjiehu.com/2019/01/24/crontab%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/"/>
-    <id>https://www.xingjiehu.com/2019/01/24/crontab使用详解/</id>
-    <published>2019-01-24T01:20:47.000Z</published>
-    <updated>2019-04-01T01:20:17.298Z</updated>
-    
-    <content type="html"><![CDATA[<p>网上有很多关于crontab的介绍，但是没有一份很全面的，例子也不少，但是没有详细解释具体的意义。看下面的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#每隔1个小时执行一次  ls</span><br><span class="line">0 */1 * * * ls</span><br><span class="line"></span><br><span class="line">#每隔2个小时执行一次 ls</span><br><span class="line">0 */2 * * * ls</span><br><span class="line"></span><br><span class="line">#每隔3个小时执行一次 ls</span><br><span class="line">0 */3 * * * ls</span><br><span class="line"></span><br><span class="line">#每隔4个小时执行一次 ls</span><br><span class="line">0 */4 * * * ls</span><br><span class="line"></span><br><span class="line">#每隔10天执行一次 ls</span><br><span class="line">0 0 */10 * * ls</span><br><span class="line"></span><br><span class="line">#每天1点执行 ls</span><br><span class="line">0 1 * * * ls</span><br></pre></td></tr></table></figure></p><p>接下来就详细说明一下crontab的使用，和每个参数的意义<br><a id="more"></a></p><h2 id="使用crontab"><a href="#使用crontab" class="headerlink" title="使用crontab"></a>使用crontab</h2><p>修改计划任务可以用<code>crontab -e</code>命令</p><blockquote><p>crontab -e</p></blockquote><p>查看已有计划任务可以使用<code>crontab -l</code>命令</p><blockquote><p>crontab -l</p></blockquote><h2 id="参数的含义"><a href="#参数的含义" class="headerlink" title="参数的含义"></a>参数的含义</h2><p><img src="/assets/images/posts/crontab.png" alt="crontab示意图"></p><p>每个参数我们可以使用 *  、1 、*/1 、1,2、1-3这四种形式</p><blockquote><p>星号（ * ）：代表所有可能的值，例如month字段如果是星号，则表示在满足其它字段的制约条件后每月都执行该命令操作。<br>逗号（ , ）：可以用逗号隔开的值指定一个列表范围，例如，“1,2,5,7,8,9”<br>中杠（ - ）：可以用整数之间的中杠表示一个整数范围，例如“2-6”表示“2,3,4,5,6”<br>正斜线（ / ）：可以用正斜线指定时间的间隔频率，例如“0-23/2”表示每两小时执行一次。同时正斜线可以和星号一起使用，例如*/10，如果用在minute字段，表示每十分钟执行一次。</p></blockquote><h2 id="实例和纠错"><a href="#实例和纠错" class="headerlink" title="实例和纠错"></a>实例和纠错</h2><p>网上流传着许多的实例但其中一些是错误的，比如：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 每一小时重启smb </span><br><span class="line">* */1 * * * /etc/init.d/smb restart</span><br></pre></td></tr></table></figure><p>表面上看起来是正确的，第二个参数采用了 <em>/1 表示每小时一次，但是看前面的分钟参数却是 </em> ，那就表示每分钟一次。整个任务的意义就成了，每隔小时每分钟一次，都每分钟一次了，小时还有什么意义呢？正确的写法应该是什么呢？应该是这样的：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 每小时的第0分钟重启</span><br><span class="line">0 */1 * * * /etc/init.d/smb restart</span><br></pre></td></tr></table></figure></p><p>差别就在于指定了分钟，但是这样会有一个新的问题，比如当前时间是09:01，那这个任务会在10:00的时候被执行，要等将近一小时啊，好痛苦。如果我们希望立刻执行应该怎么做呢？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 每小时重启一次</span><br><span class="line">*/60 * * * * /etc/init.d/smb restart</span><br></pre></td></tr></table></figure></p><p>这才是正确的写法，每隔60分钟执行一次命令，并且是立刻执行。</p><h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 每星期六的晚上11:00 pm重启smb </span><br><span class="line">0 23 * * 6 /etc/init.d/smb restart</span><br><span class="line"></span><br><span class="line"># 晚上11点到早上7点之间，每隔一小时重启smb</span><br><span class="line">*/60 23-7 * * * /etc/init.d/smb restart</span><br><span class="line"></span><br><span class="line"># 每月的4号与每周一到周三的11点重启smb </span><br><span class="line">0 11 4 * mon-wed /etc/init.d/smb restart</span><br><span class="line"></span><br><span class="line"># 一月一号的4点重启smb</span><br><span class="line">0 4 1 jan * /etc/init.d/smb restart</span><br></pre></td></tr></table></figure><h2 id="crond服务"><a href="#crond服务" class="headerlink" title="crond服务"></a>crond服务</h2><p>设置了crontab为什么没有立刻执行呢？如果想立刻生效，最好是重启一下cron服务，常用命令如下</p><blockquote><p>service cron start    //启动服务<br>service cron stop     //关闭服务<br>service cron restart  //重启服务<br>service cron reload   //重新载入配置</p></blockquote><p>参考资料<br><a href="http://man.linuxde.net/crontab" target="_blank" rel="noopener">http://man.linuxde.net/crontab</a><br><a href="https://blog.csdn.net/liu0808/article/details/80668705" target="_blank" rel="noopener">https://blog.csdn.net/liu0808/article/details/80668705</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;网上有很多关于crontab的介绍，但是没有一份很全面的，例子也不少，但是没有详细解释具体的意义。看下面的例子：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;17&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;#每隔1个小时执行一次  ls&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;0 */1 * * * ls&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#每隔2个小时执行一次 ls&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;0 */2 * * * ls&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#每隔3个小时执行一次 ls&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;0 */3 * * * ls&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#每隔4个小时执行一次 ls&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;0 */4 * * * ls&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#每隔10天执行一次 ls&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;0 0 */10 * * ls&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;#每天1点执行 ls&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;0 1 * * * ls&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;接下来就详细说明一下crontab的使用，和每个参数的意义&lt;br&gt;
-    
-    </summary>
-    
-      <category term="系统运维" scheme="https://www.xingjiehu.com/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/"/>
-    
-    
-      <category term="crontab" scheme="https://www.xingjiehu.com/tags/crontab/"/>
     
   </entry>
   
