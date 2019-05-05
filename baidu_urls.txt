@@ -1,5 +1,5 @@
-https://www.xingjiehu.com/2019/04/28/Supervisord管理进程常用命令/
-https://www.xingjiehu.com/2019/04/25/省略sudo使用docker/
-https://www.xingjiehu.com/2019/04/24/su-与-su-的区别/
-https://www.xingjiehu.com/2019/04/11/使用阿里云ecs主机打造shadowsocks服务器-实现科学上网/
-https://www.xingjiehu.com/2019/04/03/linux安装java环境/
+https://www.xingjiehu.com/2019/04/28/cjv0s5q0q000006om9qbcycim/
+https://www.xingjiehu.com/2019/04/25/cjv0s5q9s004j06om1dfsggw5/
+https://www.xingjiehu.com/2019/04/24/cjv0s5q1p001606omtp5yngo4/
+https://www.xingjiehu.com/2019/04/11/cjv0s5q1t001d06oml91z9b2w/
+https://www.xingjiehu.com/2019/04/03/cjv0s5q1h000t06omx60s9id5/
