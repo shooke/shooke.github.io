@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2019-04-28T10:17:42.765Z</updated>
+  <updated>2019-05-09T06:45:41.963Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,9 +17,37 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>vue组件之插槽</title>
+    <link href="https://www.xingjiehu.com/2019/05/09/cjvg7udmc0014afom4e08a83j/"/>
+    <id>https://www.xingjiehu.com/2019/05/09/cjvg7udmc0014afom4e08a83j/</id>
+    <published>2019-05-09T01:26:11.000Z</published>
+    <updated>2019-05-09T06:45:41.963Z</updated>
+    
+    <content type="html"><![CDATA[<p>这篇文章的写作时间是 vue2.6 发布后，因此适用于 2.6 以后的版本<br>插槽是 vue 组件中很重要的一环，他解决了组件内容自定义的问题。以及父子组件变量传递的问题（作用域插槽）。<br>在 2.6 以后的版本中，具名插槽和作用域插槽引入了一个新的统一的语法 (即 v-slot 指令)，它取代了 slot 和 slot-scope 。这两个老的已经进入废弃期，为了保持平滑升级，目前还可以使用，但是不推荐使用。后期会被移除。</p><a id="more"></a><h2 id="简单插槽使用"><a href="#简单插槽使用" class="headerlink" title="简单插槽使用"></a>简单插槽使用</h2><p><code>v-slot.vue</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;v-slot&quot;&gt;</span><br><span class="line">    &lt;span&gt;我是简单v-solt：&lt;/span&gt;</span><br><span class="line">    &lt;slot&gt;你现在看到的是默认内容&lt;/slot&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;v-slot&quot;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure><p>在其他组件中使用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;v-slot&gt;&lt;/v-slot&gt;</span><br><span class="line">&lt;v-slot&gt;现在看到的是自定义内容&lt;/v-slot&gt;</span><br></pre></td></tr></table></figure><h2 id="具名插槽使用"><a href="#具名插槽使用" class="headerlink" title="具名插槽使用"></a>具名插槽使用</h2><p><code>v-slot-name.vue</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;v-slot&quot;&gt;</span><br><span class="line">    &lt;span&gt;我是具名v-solt-name：&lt;/span&gt;</span><br><span class="line">    &lt;header&gt;</span><br><span class="line">      &lt;slot name=&quot;header&quot;&gt;header默认&lt;/slot&gt;</span><br><span class="line">    &lt;/header&gt;</span><br><span class="line">    &lt;main&gt;</span><br><span class="line">      &lt;slot&gt;默认main&lt;/slot&gt;</span><br><span class="line">    &lt;/main&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;v-slot-name&quot;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure><p>在其他模块中使用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;h2&gt;新的使用方式 使用v-slot:插槽名称&lt;/h2&gt;</span><br><span class="line">    &lt;v-slot-name&gt;</span><br><span class="line">      &lt;template v-slot:header&gt;</span><br><span class="line">        自定义header</span><br><span class="line">      &lt;/template&gt;</span><br><span class="line">      &lt;p&gt;没有指定v-slot名称，自定义main&lt;/p&gt;</span><br><span class="line">    &lt;/v-slot-name&gt;</span><br><span class="line"></span><br><span class="line">    &lt;h2&gt;老的使用方式 使用slot=&quot;插槽名称&quot;&lt;/h2&gt;</span><br><span class="line">    &lt;v-slot-name&gt;</span><br><span class="line">      &lt;template slot=&quot;header&quot;&gt;</span><br><span class="line">        自定义header</span><br><span class="line">      &lt;/template&gt;</span><br><span class="line">      &lt;p&gt;没有指定v-slot名称，自定义main&lt;/p&gt;</span><br><span class="line">    &lt;/v-slot-name&gt;</span><br><span class="line"></span><br><span class="line">    &lt;v-slot-name&gt;</span><br><span class="line">      &lt;template v-slot:header&gt;</span><br><span class="line">        自定义header</span><br><span class="line">      &lt;/template&gt;</span><br><span class="line">      &lt;template v-slot:default&gt;</span><br><span class="line">        指定了default，看到自定义的main</span><br><span class="line">      &lt;/template&gt;</span><br><span class="line">    &lt;/v-slot-name&gt;</span><br></pre></td></tr></table></figure><h2 id="作用于插槽使用"><a href="#作用于插槽使用" class="headerlink" title="作用于插槽使用"></a>作用于插槽使用</h2><p><code>v-slot-scope.vue</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;v-slot&quot;&gt;</span><br><span class="line">    &lt;p&gt;我是作用域插槽&lt;/p&gt;</span><br><span class="line">    &lt;slot v-bind:user=&quot;user&quot;&gt;</span><br><span class="line">      &#123;&#123; user.name &#125;&#125;</span><br><span class="line">    &lt;/slot&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;v-slot&quot;,</span><br><span class="line">  props: [&quot;user&quot;]</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure><p>在其他模块中调用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;作用域插槽&lt;/h1&gt;</span><br><span class="line">    &lt;h2&gt;新的使用方式 使用v-slot:插槽名称=&quot;组件全局变量&quot;&lt;/h2&gt;</span><br><span class="line">    &lt;v-slot-scope :user=&quot;user&quot;&gt;</span><br><span class="line">      &lt;template v-slot:default=&quot;slotProps&quot;&gt;</span><br><span class="line">        这是指定插槽名称的写法</span><br><span class="line">        &#123;&#123; slotProps.user.name &#125;&#125;</span><br><span class="line">      &lt;/template&gt;</span><br><span class="line">    &lt;/v-slot-scope&gt;</span><br><span class="line"></span><br><span class="line">    &lt;h2&gt;老的使用方式 使用slot=&quot;插槽名称&quot; slot-scope=&quot;组件全局变量&quot;&lt;/h2&gt;</span><br><span class="line">    &lt;v-slot-scope :user=&quot;user&quot;&gt;</span><br><span class="line">      &lt;template slot=&quot;default&quot; slot-scope=&quot;slotProps&quot;&gt;</span><br><span class="line">        这是指定插槽名称的写法</span><br><span class="line">        &#123;&#123; slotProps.user.name &#125;&#125;</span><br><span class="line">      &lt;/template&gt;</span><br><span class="line">    &lt;/v-slot-scope&gt;</span><br><span class="line"></span><br><span class="line">    &lt;v-slot-scope :user=&quot;user&quot; v-slot=&quot;slotProps&quot;&gt;</span><br><span class="line">      这是新语法中的，独占插槽的写法，省去了default插槽名称，和template标签</span><br><span class="line">      &#123;&#123; slotProps.user.name &#125;&#125;</span><br><span class="line">    &lt;/v-slot-scope&gt;</span><br></pre></td></tr></table></figure><h2 id="实例代码"><a href="#实例代码" class="headerlink" title="实例代码"></a>实例代码</h2><p><a href="https://gitee.com/shooke/vuetool/tree/master" target="_blank" rel="noopener">https://gitee.com/shooke/vuetool/tree/master</a><br>vuedome文件夹是本文章用到的源码<br>具体参考文件如下<br>vuedemo/src/views/slot.vue 使用组件的视图文件<br>vuedemo/src/components/v-slot-name.vue 具名插槽组件<br>vuedemo/src/components/v-slot-scope.vue 作用域插槽组件<br>vuedemo/src/components/v-slot.vue 普通域插槽组件</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这篇文章的写作时间是 vue2.6 发布后，因此适用于 2.6 以后的版本&lt;br&gt;插槽是 vue 组件中很重要的一环，他解决了组件内容自定义的问题。以及父子组件变量传递的问题（作用域插槽）。&lt;br&gt;在 2.6 以后的版本中，具名插槽和作用域插槽引入了一个新的统一的语法 (即 v-slot 指令)，它取代了 slot 和 slot-scope 。这两个老的已经进入废弃期，为了保持平滑升级，目前还可以使用，但是不推荐使用。后期会被移除。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="vue" scheme="https://www.xingjiehu.com/categories/vue/"/>
+    
+    
+      <category term="vue" scheme="https://www.xingjiehu.com/tags/vue/"/>
+    
+      <category term="组件" scheme="https://www.xingjiehu.com/tags/%E7%BB%84%E4%BB%B6/"/>
+    
+      <category term="插槽" scheme="https://www.xingjiehu.com/tags/%E6%8F%92%E6%A7%BD/"/>
+    
+      <category term="Slots" scheme="https://www.xingjiehu.com/tags/Slots/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Supervisord管理进程常用命令</title>
-    <link href="https://www.xingjiehu.com/2019/04/28/cjv0s5q0q000006om9qbcycim/"/>
-    <id>https://www.xingjiehu.com/2019/04/28/cjv0s5q0q000006om9qbcycim/</id>
+    <link href="https://www.xingjiehu.com/2019/04/28/cjvg7udlr0006afom1d5rcrv1/"/>
+    <id>https://www.xingjiehu.com/2019/04/28/cjvg7udlr0006afom1d5rcrv1/</id>
     <published>2019-04-28T10:13:49.000Z</published>
     <updated>2019-04-28T10:17:42.765Z</updated>
     
@@ -44,8 +72,8 @@
   
   <entry>
     <title>省略sudo使用docker</title>
-    <link href="https://www.xingjiehu.com/2019/04/25/cjv0s5q9s004j06om1dfsggw5/"/>
-    <id>https://www.xingjiehu.com/2019/04/25/cjv0s5q9s004j06om1dfsggw5/</id>
+    <link href="https://www.xingjiehu.com/2019/04/25/cjvg7udmk001iafomi4if5rva/"/>
+    <id>https://www.xingjiehu.com/2019/04/25/cjvg7udmk001iafomi4if5rva/</id>
     <published>2019-04-25T05:31:43.000Z</published>
     <updated>2019-04-25T05:40:47.479Z</updated>
     
@@ -71,8 +99,8 @@
   
   <entry>
     <title>su 与 su - 的区别</title>
-    <link href="https://www.xingjiehu.com/2019/04/24/cjv0s5q1p001606omtp5yngo4/"/>
-    <id>https://www.xingjiehu.com/2019/04/24/cjv0s5q1p001606omtp5yngo4/</id>
+    <link href="https://www.xingjiehu.com/2019/04/24/cjvg7udmf0019afomre2owpas/"/>
+    <id>https://www.xingjiehu.com/2019/04/24/cjvg7udmf0019afomre2owpas/</id>
     <published>2019-04-24T14:14:49.000Z</published>
     <updated>2019-04-24T14:20:45.850Z</updated>
     
@@ -98,8 +126,8 @@
   
   <entry>
     <title>使用阿里云ecs主机打造shadowsocks服务器,实现科学上网</title>
-    <link href="https://www.xingjiehu.com/2019/04/11/cjv0s5q1t001d06oml91z9b2w/"/>
-    <id>https://www.xingjiehu.com/2019/04/11/cjv0s5q1t001d06oml91z9b2w/</id>
+    <link href="https://www.xingjiehu.com/2019/04/11/cjvg7udml001kafomodxwq1vt/"/>
+    <id>https://www.xingjiehu.com/2019/04/11/cjvg7udml001kafomodxwq1vt/</id>
     <published>2019-04-11T07:10:46.000Z</published>
     <updated>2019-04-11T08:26:55.912Z</updated>
     
@@ -126,8 +154,8 @@
   
   <entry>
     <title>linux安装java环境</title>
-    <link href="https://www.xingjiehu.com/2019/04/03/cjv0s5q1h000t06omx60s9id5/"/>
-    <id>https://www.xingjiehu.com/2019/04/03/cjv0s5q1h000t06omx60s9id5/</id>
+    <link href="https://www.xingjiehu.com/2019/04/03/cjvg7udm8000wafomx4dn124c/"/>
+    <id>https://www.xingjiehu.com/2019/04/03/cjvg7udm8000wafomx4dn124c/</id>
     <published>2019-04-03T07:04:54.000Z</published>
     <updated>2019-04-03T07:49:28.231Z</updated>
     
@@ -153,8 +181,8 @@
   
   <entry>
     <title>VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式</title>
-    <link href="https://www.xingjiehu.com/2019/04/02/cjv0s5q0v000206om8gr0m8gs/"/>
-    <id>https://www.xingjiehu.com/2019/04/02/cjv0s5q0v000206om8gr0m8gs/</id>
+    <link href="https://www.xingjiehu.com/2019/04/02/cjvg7udlk0002afom0wfkegg0/"/>
+    <id>https://www.xingjiehu.com/2019/04/02/cjvg7udlk0002afom0wfkegg0/</id>
     <published>2019-04-02T05:29:28.000Z</published>
     <updated>2019-04-02T06:05:03.160Z</updated>
     
@@ -179,8 +207,8 @@
   
   <entry>
     <title>设计模式基本原则大白话</title>
-    <link href="https://www.xingjiehu.com/2019/04/01/cjv0s5q1x001o06omriv7xn2m/"/>
-    <id>https://www.xingjiehu.com/2019/04/01/cjv0s5q1x001o06omriv7xn2m/</id>
+    <link href="https://www.xingjiehu.com/2019/04/01/cjvg7udmr001wafomjlmlohki/"/>
+    <id>https://www.xingjiehu.com/2019/04/01/cjvg7udmr001wafomjlmlohki/</id>
     <published>2019-04-01T14:35:47.000Z</published>
     <updated>2019-04-01T15:26:15.530Z</updated>
     
@@ -223,8 +251,8 @@
   
   <entry>
     <title>vscode 保存自动按eslint格式化</title>
-    <link href="https://www.xingjiehu.com/2019/03/27/cjv0s5q1r001c06om3v5ehe37/"/>
-    <id>https://www.xingjiehu.com/2019/03/27/cjv0s5q1r001c06om3v5ehe37/</id>
+    <link href="https://www.xingjiehu.com/2019/03/27/cjvg7udmh001dafom3uws9ik2/"/>
+    <id>https://www.xingjiehu.com/2019/03/27/cjvg7udmh001dafom3uws9ik2/</id>
     <published>2019-03-27T06:26:43.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -244,9 +272,9 @@
       <category term="开发工具" scheme="https://www.xingjiehu.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
     
     
-      <category term="vscode" scheme="https://www.xingjiehu.com/tags/vscode/"/>
-    
       <category term="vue" scheme="https://www.xingjiehu.com/tags/vue/"/>
+    
+      <category term="vscode" scheme="https://www.xingjiehu.com/tags/vscode/"/>
     
       <category term="eslint" scheme="https://www.xingjiehu.com/tags/eslint/"/>
     
@@ -254,8 +282,8 @@
   
   <entry>
     <title>elasticsearch学习笔记 - 集群相关术语</title>
-    <link href="https://www.xingjiehu.com/2019/03/15/cjv0s5q13000806omp4he33lx/"/>
-    <id>https://www.xingjiehu.com/2019/03/15/cjv0s5q13000806omp4he33lx/</id>
+    <link href="https://www.xingjiehu.com/2019/03/15/cjvg7udlx000dafomb4vt5m5r/"/>
+    <id>https://www.xingjiehu.com/2019/03/15/cjvg7udlx000dafomb4vt5m5r/</id>
     <published>2019-03-15T01:33:28.000Z</published>
     <updated>2019-04-01T01:20:17.298Z</updated>
     
@@ -291,8 +319,8 @@
   
   <entry>
     <title>elasticsearch学习笔记 - 安装</title>
-    <link href="https://www.xingjiehu.com/2019/03/14/cjv0s5q11000706om00i50vhp/"/>
-    <id>https://www.xingjiehu.com/2019/03/14/cjv0s5q11000706om00i50vhp/</id>
+    <link href="https://www.xingjiehu.com/2019/03/14/cjvg7udlt0008afomb7mqb1vu/"/>
+    <id>https://www.xingjiehu.com/2019/03/14/cjvg7udlt0008afomb7mqb1vu/</id>
     <published>2019-03-14T05:30:16.000Z</published>
     <updated>2019-04-01T01:20:17.298Z</updated>
     
@@ -346,8 +374,8 @@
   
   <entry>
     <title>linux使用apt方式安装mysql5.7</title>
-    <link href="https://www.xingjiehu.com/2019/03/13/cjv0s5q1f000o06ome0y6cs6c/"/>
-    <id>https://www.xingjiehu.com/2019/03/13/cjv0s5q1f000o06ome0y6cs6c/</id>
+    <link href="https://www.xingjiehu.com/2019/03/13/cjvg7udm7000uafom94i9qwtw/"/>
+    <id>https://www.xingjiehu.com/2019/03/13/cjvg7udm7000uafom94i9qwtw/</id>
     <published>2019-03-13T15:13:33.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -373,8 +401,8 @@
   
   <entry>
     <title>python字节和字符串相互转换</title>
-    <link href="https://www.xingjiehu.com/2019/03/06/cjv0s5q1q001806omutkfzcrn/"/>
-    <id>https://www.xingjiehu.com/2019/03/06/cjv0s5q1q001806omutkfzcrn/</id>
+    <link href="https://www.xingjiehu.com/2019/03/06/cjvg7udme0017afomi1einraf/"/>
+    <id>https://www.xingjiehu.com/2019/03/06/cjvg7udme0017afomi1einraf/</id>
     <published>2019-03-06T09:43:39.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -403,8 +431,8 @@
   
   <entry>
     <title>nohup命令说明</title>
-    <link href="https://www.xingjiehu.com/2019/03/06/cjv0s5q1l001006omycjcoak3/"/>
-    <id>https://www.xingjiehu.com/2019/03/06/cjv0s5q1l001006omycjcoak3/</id>
+    <link href="https://www.xingjiehu.com/2019/03/06/cjvg7udmb0011afoma2kbe661/"/>
+    <id>https://www.xingjiehu.com/2019/03/06/cjvg7udmb0011afoma2kbe661/</id>
     <published>2019-03-06T09:21:00.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -427,8 +455,8 @@
   
   <entry>
     <title>git reset命令详解</title>
-    <link href="https://www.xingjiehu.com/2019/03/06/cjv0s5q16000d06omiue5w15c/"/>
-    <id>https://www.xingjiehu.com/2019/03/06/cjv0s5q16000d06omiue5w15c/</id>
+    <link href="https://www.xingjiehu.com/2019/03/06/cjvg7udm2000iafoml30altmk/"/>
+    <id>https://www.xingjiehu.com/2019/03/06/cjvg7udm2000iafoml30altmk/</id>
     <published>2019-03-06T06:06:21.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -460,8 +488,8 @@
   
   <entry>
     <title>mysql权限说明</title>
-    <link href="https://www.xingjiehu.com/2019/03/06/cjv0s5q1i000v06om031hvve2/"/>
-    <id>https://www.xingjiehu.com/2019/03/06/cjv0s5q1i000v06om031hvve2/</id>
+    <link href="https://www.xingjiehu.com/2019/03/06/cjvg7udm9000zafom6tf6m3cd/"/>
+    <id>https://www.xingjiehu.com/2019/03/06/cjvg7udm9000zafom6tf6m3cd/</id>
     <published>2019-03-06T05:23:15.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -485,8 +513,8 @@
   
   <entry>
     <title>git保存密码</title>
-    <link href="https://www.xingjiehu.com/2019/03/06/cjv0s5q1a000h06om2f0li4sb/"/>
-    <id>https://www.xingjiehu.com/2019/03/06/cjv0s5q1a000h06om2f0li4sb/</id>
+    <link href="https://www.xingjiehu.com/2019/03/06/cjvg7udlz000eafomc8cjal2e/"/>
+    <id>https://www.xingjiehu.com/2019/03/06/cjvg7udlz000eafomc8cjal2e/</id>
     <published>2019-03-06T02:29:01.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -507,8 +535,8 @@
   
   <entry>
     <title>mysql主从配置</title>
-    <link href="https://www.xingjiehu.com/2019/02/21/cjv0s5q1j000y06om2vfr5ssd/"/>
-    <id>https://www.xingjiehu.com/2019/02/21/cjv0s5q1j000y06om2vfr5ssd/</id>
+    <link href="https://www.xingjiehu.com/2019/02/21/cjvg7udm6000pafom3jft149n/"/>
+    <id>https://www.xingjiehu.com/2019/02/21/cjvg7udm6000pafom3jft149n/</id>
     <published>2019-02-21T07:44:58.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -535,8 +563,8 @@
   
   <entry>
     <title>团队开发中如何使用git分支</title>
-    <link href="https://www.xingjiehu.com/2019/02/15/cjv0s5q1v001j06ommf3dgwch/"/>
-    <id>https://www.xingjiehu.com/2019/02/15/cjv0s5q1v001j06ommf3dgwch/</id>
+    <link href="https://www.xingjiehu.com/2019/02/15/cjvg7udmo001pafomwt0n9nja/"/>
+    <id>https://www.xingjiehu.com/2019/02/15/cjvg7udmo001pafomwt0n9nja/</id>
     <published>2019-02-15T08:57:50.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -561,8 +589,8 @@
   
   <entry>
     <title>前后端分离session跨域解决方案</title>
-    <link href="https://www.xingjiehu.com/2019/02/01/cjv0s5q1u001h06omwshlezph/"/>
-    <id>https://www.xingjiehu.com/2019/02/01/cjv0s5q1u001h06omwshlezph/</id>
+    <link href="https://www.xingjiehu.com/2019/02/01/cjvg7udmp001rafom1dizoriu/"/>
+    <id>https://www.xingjiehu.com/2019/02/01/cjvg7udmp001rafom1dizoriu/</id>
     <published>2019-02-01T07:06:27.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -578,35 +606,13 @@
       <category term="网络相关" scheme="https://www.xingjiehu.com/categories/%E7%BD%91%E7%BB%9C%E7%9B%B8%E5%85%B3/"/>
     
     
+      <category term="vue" scheme="https://www.xingjiehu.com/tags/vue/"/>
+    
       <category term="php" scheme="https://www.xingjiehu.com/tags/php/"/>
     
       <category term="axios" scheme="https://www.xingjiehu.com/tags/axios/"/>
     
-      <category term="vue" scheme="https://www.xingjiehu.com/tags/vue/"/>
-    
       <category term="session" scheme="https://www.xingjiehu.com/tags/session/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git远程删除分支后，本地git branch -a 依然能看到的解决办法</title>
-    <link href="https://www.xingjiehu.com/2019/01/29/cjv0s5q1c000i06omlxxf76eh/"/>
-    <id>https://www.xingjiehu.com/2019/01/29/cjv0s5q1c000i06omlxxf76eh/</id>
-    <published>2019-01-29T06:28:10.000Z</published>
-    <updated>2019-04-01T01:20:17.302Z</updated>
-    
-    <content type="html"><![CDATA[<p>git远程删除分支后，本地<code>git branch -a</code> 依然能看到的解决办法很简单，使用<code>git remote prune origin</code>就可以解决了。下面详细说明<br><a id="more"></a><br>使用<code>git branch -a</code>命令可以查看所有本地分支和远程分支（<code>git branch -r</code> 可以只查看远程分支）<br>发现很多在远程仓库已经删除的分支在本地依然可以看到。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  dev</span><br><span class="line">  master</span><br><span class="line">* tb</span><br><span class="line">  remotes/origin/HEAD -&gt; origin/master</span><br><span class="line">  remotes/origin/my-feature #已经被远程删除的分支</span><br></pre></td></tr></table></figure></p><p>但是如果使用git push -d origin my-feature,就会报错<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error: unable to delete &apos;my-feature&apos;: remote ref does not exist</span><br></pre></td></tr></table></figure></p><p>使用命令 <code>git remote show origin</code>，可以查看remote地址，远程分支，还有本地分支与之相对应关系等信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">* 远程 origin</span><br><span class="line">  获取地址：http://gitee.com/dm/dmp-api.git</span><br><span class="line">  推送地址：http://gitee.com/dm/dmp-api.git</span><br><span class="line">  HEAD 分支：master</span><br><span class="line">  远程分支：</span><br><span class="line">    dev                                      已跟踪</span><br><span class="line">    master                                   已跟踪</span><br><span class="line">    tb                                       已跟踪</span><br><span class="line">    refs/remotes/origin/my-feature           过时（使用 &apos;git remote prune&apos; 来移除）</span><br></pre></td></tr></table></figure></p><p>此时我们可以看到那些远程仓库已经不存在的分支，根据提示，使用 <code>git remote prune origin</code> 命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">修剪 origin</span><br><span class="line">URL：http://gitee.com/dm/dmp-api.git</span><br><span class="line"> * [已删除] origin/my-feature</span><br></pre></td></tr></table></figure></p><p>这时我们运行<code>git branch -a</code>就不会看到远程已经别删除的分支了</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;git远程删除分支后，本地&lt;code&gt;git branch -a&lt;/code&gt; 依然能看到的解决办法很简单，使用&lt;code&gt;git remote prune origin&lt;/code&gt;就可以解决了。下面详细说明&lt;br&gt;
-    
-    </summary>
-    
-      <category term="开发工具" scheme="https://www.xingjiehu.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
-    
-    
-      <category term="git" scheme="https://www.xingjiehu.com/tags/git/"/>
     
   </entry>
   
