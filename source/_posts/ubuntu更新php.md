@@ -28,10 +28,12 @@ sudo apt-get update
 
 ## 升级 php
 ```
-sudo apt-get upgrade php7.2
-```
-注意这个命令会连系统一起升级，比较危险建议，先删除程序然后用`apt install php7.2`安装新版
-```
 sudo apt remove php7.0
 sudo apt-get install php7.2
 ```
+这样php7.2就安装上了。如果你希望保留老的版本，可以不执行`sudo apt remove php7.0`。
+如果希望连同系统一起升级可以执行下面的命令，会连同系统和其他软件一起升级到最新版，只有php会升级到指定的7.2版本。（不建议使用下面的命令）
+```
+sudo apt-get upgrade php7.2
+```
+
