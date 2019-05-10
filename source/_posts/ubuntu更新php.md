@@ -37,3 +37,9 @@ sudo apt-get install php7.2
 sudo apt-get upgrade php7.2
 ```
 
+## 扩展处理
+升级了`php7.2`，还需要安装一下7.2的扩展比如mbstring，gd等执行如下命令安装就可以了
+```
+sudo apt-get install php7.2-gd
+```
+
