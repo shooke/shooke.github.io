@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="shooke&#39;s blog">
 <meta property="og:description" content="sublime相比其他编辑器最大的优点就是占用内存小。一直用idea和vscode。好久没用sublime了，今天安装了一下新版本3.2.1，想要用它开发vue。安装插件的过程中踩了几个小坑。 安装package control使用网上说的，控制台安装方式，按ctrl + \ `，输入下面的命令1import urllib.request,os; pf = &amp;apos;Package Contro">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-17T04:08:35.321Z">
+<meta property="og:updated_time" content="2019-05-17T05:29:57.122Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="sublime text 3安装插件">
 <meta name="twitter:description" content="sublime相比其他编辑器最大的优点就是占用内存小。一直用idea和vscode。好久没用sublime了，今天安装了一下新版本3.2.1，想要用它开发vue。安装插件的过程中踩了几个小坑。 安装package control使用网上说的，控制台安装方式，按ctrl + \ `，输入下面的命令1import urllib.request,os; pf = &amp;apos;Package Contro">
@@ -403,7 +403,7 @@
                 
               
 
-              <time title="创建时间：2019-05-17 11:26:28 / 修改时间：12:08:35" itemprop="dateCreated datePublished" datetime="2019-05-17T11:26:28+08:00">2019-05-17</time>
+              <time title="创建时间：2019-05-17 11:26:28 / 修改时间：13:29:57" itemprop="dateCreated datePublished" datetime="2019-05-17T11:26:28+08:00">2019-05-17</time>
             
 
             
@@ -474,6 +474,12 @@
 <blockquote>
 <p>注意去github下载插件一定要选择稳定版，第一次下载了最新的测试版居然报了这个错误：<code>plugin_host has exited unexpectedly,plugin functionality won&#39;t be available until Sublime Text has been restaarted</code></p>
 </blockquote>
+<h2 id="解决被墙问题"><a href="#解决被墙问题" class="headerlink" title="解决被墙问题"></a>解决被墙问题</h2><p>我在使用的过程中发现无法获取package列表，估计是被墙了，解决方法是<br>Preferences-&gt;Packges Settings-&gt;Package Control-&gt;Setting User<br>在里面加入一下配置就可以了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;channels&quot;: [</span><br><span class="line">		&quot;http://cst.stu.126.net/u/json/cms/channel_v3.json&quot;</span><br><span class="line">	],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>注意，如果文件已经有了配置，去掉外围的<code>{}</code>即可</p>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>使用快捷键 <code>Ctl+Shift+P</code>，再选择 <code>Package Control: Install Package</code>。sublime会加载插件列表，左下角有提示，等待加载完毕，回填出新的输入框，搜索需要的插件下载即可。<br>安装过程也会在左下角显示，耐心等等插件安装完毕，一般很快就能安装完</p>
+<h3 id="安装vue高亮插件"><a href="#安装vue高亮插件" class="headerlink" title="安装vue高亮插件"></a>安装vue高亮插件</h3><p>使用快捷键 <code>Ctl+Shift+P</code>，再选择 <code>Package Control: Install Package</code>。<br>等一会sublime下载完插件列表，会出现一个新的输入框，这时候输入<code>Vue Syntax Highlight</code>敲回车。就安装上了。</p>
+<h3 id="安装eslint插件"><a href="#安装eslint插件" class="headerlink" title="安装eslint插件"></a>安装eslint插件</h3><p>使用快捷键 <code>Ctl+Shift+P</code>，再选择 <code>Package Control: Install Package</code>。<br>等一会sublime下载完插件列表，会出现一个新的输入框，这时候输入<code>SublimeLinter-contrib-eslint</code>敲回车。就安装上了。</p>
+<h3 id="安装代码格式化插件CodeFormatter"><a href="#安装代码格式化插件CodeFormatter" class="headerlink" title="安装代码格式化插件CodeFormatter"></a>安装代码格式化插件CodeFormatter</h3><p>使用快捷键 <code>Ctl+Shift+P</code>，再选择 <code>Package Control: Install Package</code>。<br>等一会sublime下载完插件列表，会出现一个新的输入框，这时候输入<code>CodeFormatter</code>敲回车。就安装上了。</p>
 
       
     </div>
@@ -835,7 +841,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装package-control"><span class="nav-number">1.</span> <span class="nav-text">安装package control</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手动安装package-control"><span class="nav-number">2.</span> <span class="nav-text">手动安装package control</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装package-control"><span class="nav-number">1.</span> <span class="nav-text">安装package control</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#手动安装package-control"><span class="nav-number">2.</span> <span class="nav-text">手动安装package control</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决被墙问题"><span class="nav-number">3.</span> <span class="nav-text">解决被墙问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装插件"><span class="nav-number">4.</span> <span class="nav-text">安装插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装vue高亮插件"><span class="nav-number">4.1.</span> <span class="nav-text">安装vue高亮插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装eslint插件"><span class="nav-number">4.2.</span> <span class="nav-text">安装eslint插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装代码格式化插件CodeFormatter"><span class="nav-number">4.3.</span> <span class="nav-text">安装代码格式化插件CodeFormatter</span></a></li></ol></li></ol></div>
             
 
           </div>
