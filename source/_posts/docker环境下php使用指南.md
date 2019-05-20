@@ -78,4 +78,4 @@ docker run -p 9000:9000 -d --name myphp -v /var/www/html/:/var/www/html/ --privi
 这样就实现了和docker通信的过程
 
 2. -v 宿主机路径:docker工作路径
-注意这里一定要用绝对地址，配置好了卷映射，docker才可以读取宿主机的文件。
+注意这里一定要用绝对地址，配置好了卷映射，宿主机路径一定要和nginx虚拟主机root的配置一致。docker才可以读取宿主机的文件。
