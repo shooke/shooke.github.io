@@ -3,6 +3,7 @@ title: vuex getters不更新的奇怪现象解决方案
 categories:
   - vue
 tags:
+  - vue
   - vuex
   - getters
 date: 2019-05-23 00:19:41
