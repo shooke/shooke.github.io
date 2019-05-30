@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2019-05-30T08:47:17.828Z</updated>
+  <updated>2019-05-30T08:57:11.515Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>批量删除远程标签</title>
+    <title>GIT批量删除远程标签</title>
     <link href="https://www.xingjiehu.com/2019/05/30/cjwaeycu5001vwuomhe7u4tfd/"/>
     <id>https://www.xingjiehu.com/2019/05/30/cjwaeycu5001vwuomhe7u4tfd/</id>
     <published>2019-05-30T08:39:29.000Z</published>
-    <updated>2019-05-30T08:47:17.828Z</updated>
+    <updated>2019-05-30T08:57:11.515Z</updated>
     
     <content type="html"><![CDATA[<h2 id="查看远程所有标签"><a href="#查看远程所有标签" class="headerlink" title="查看远程所有标签"></a>查看远程所有标签</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git ls-remote --tags</span><br><span class="line">From git@github0123:jeremy0123/fetch.git</span><br><span class="line">30f4e5cdfef2539b5e156a607f365fb457f309a4        refs/tags/v0.1</span><br><span class="line">0efbfd03ed4b09647ef8a32db9c0a075f7d7dbeb        refs/tags/v0.2</span><br><span class="line">6944954ffa18df994365e53e96d3826a3953890b        refs/tags/v0.2^&#123;&#125;</span><br></pre></td></tr></table></figure><p><code>注意：refs/tags/v0.2^{}表示v0.2是含附注的标签。</code><br>另外，参数–tags可以简化为-t；–heads会获取远程仓库的分支信息。如果没有任何参数，将获取所有的分支和标签信息。</p><a id="more"></a><h2 id="删除远程标签"><a href="#删除远程标签" class="headerlink" title="删除远程标签"></a>删除远程标签</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin --delete tag v0.1</span><br></pre></td></tr></table></figure><p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin :refs/tags/v0.1</span><br></pre></td></tr></table></figure></p><h2 id="删除远程所有标签"><a href="#删除远程所有标签" class="headerlink" title="删除远程所有标签"></a>删除远程所有标签</h2><p>先获取远程所有标签，然后用<code>awk</code>获取所有标签名，再用<code>sed</code>去掉带有<code>^{}</code>的标签，最后执行用<code>git push</code>删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git ls-remote --tags | awk &apos;/(.*)(\s+)(.*)$/ &#123;print &quot;:&quot; $2&#125;&apos; | sed &apos;/&#125;$/&apos;d |xargs git push origin</span><br></pre></td></tr></table></figure></p>]]></content>
     
