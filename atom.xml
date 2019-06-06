@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2019-05-30T08:58:55.055Z</updated>
+  <updated>2019-06-06T05:48:47.142Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,9 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ssh使用详解</title>
+    <link href="https://www.xingjiehu.com/2019/06/06/cjwk8isrp001bzsomiaz8ad0l/"/>
+    <id>https://www.xingjiehu.com/2019/06/06/cjwk8isrp001bzsomiaz8ad0l/</id>
+    <published>2019-06-06T03:06:28.000Z</published>
+    <updated>2019-06-06T05:48:47.142Z</updated>
+    
+    <content type="html"><![CDATA[<p>ssh命令非常强大，除了登录，还可以实现端口转发，达到代理的作用。</p><a id="more"></a><h2 id="简单使用"><a href="#简单使用" class="headerlink" title="简单使用"></a>简单使用</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -p 22 root@192.168.56.102</span><br></pre></td></tr></table></figure><p>上面的功能是登录一台服务器，<code>-p</code>参数指定端口，ssh默认端口是22，所以上面的命令可以简化为<code>ssh root@192.168.56.102</code></p><h2 id="远程操作"><a href="#远程操作" class="headerlink" title="远程操作"></a>远程操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd &amp;&amp; tar czv src | ssh user@host &apos;tar xz&apos;</span><br></pre></td></tr></table></figure><p>将本地目录打包后，在远程主机解压。相当于将本地目录复制到远程主机。也可以是用<code>scp</code>命令去实现<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh user@host &apos;tar cz src&apos; | tar xzv</span><br></pre></td></tr></table></figure></p><p>将远程主机目录打包后，在本地解压。相当于将远程主机目录下载到本地。也可以使用<code>scp</code>命令去实现</p><h2 id="绑定本地端口"><a href="#绑定本地端口" class="headerlink" title="绑定本地端口"></a>绑定本地端口</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -D 8080 user@host</span><br></pre></td></tr></table></figure><p>上面的命令可以，让本地8080端口的数据，发送到远程服务器。</p><h2 id="端口转发"><a href="#端口转发" class="headerlink" title="端口转发"></a>端口转发</h2><p>上面是个最简单的转发，把本地的请求发往指定服务器，但很多时候网络比较复杂。我们可以使用本地端口转发，或者远程端口转发的方式。</p><h3 id="1-本地端口转发"><a href="#1-本地端口转发" class="headerlink" title="1. 本地端口转发"></a>1. 本地端口转发</h3><p>将本地的某个端口绑定，将通过该端口的数据发送到指定的远程主机。<br>命令格式为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 本地端口:目标主机:目标主机端口 中转主机</span><br></pre></td></tr></table></figure></p><p>如host1是本地主机，host2是远程主机。由于种种原因，这两台主机之间无法连通。但是，另外还有一台host3，可以同时连通前面两台主机。因此，很自然的想法就是，通过host3，将host1连上host2。<br>在host1执行一下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 2121:host2:21 host3</span><br></pre></td></tr></table></figure></p><p>命令分为3部分</p><ol><li>ssh:指令名称</li><li>-L 2121:host2:21: <code>-L</code>是命令参数，它接收3个值，分别是”本地端口:目标主机:目标主机端口”，它们之间用冒号分隔。这条命令的意思，就是指定SSH绑定本地端口2121，然后指定host3将所有的数据，转发到目标主机host2的21端口（假定host2运行FTP，默认端口为21）。</li><li>host3：中转主机，host1中发生在2121端口的数据，都会发送到host3，然后由host3进行转发</li></ol><blockquote><p>数据流向：host1:2121-&gt;host3-&gt;host2:21</p></blockquote><p>经过上面的设置，只要链接host1的2121端口，就等于链接到了host2的21端口。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># host1</span><br><span class="line">ftp localhost:2121</span><br></pre></td></tr></table></figure></p><p>“本地端口转发”使得host1和host3之间仿佛形成一个数据传输的秘密隧道，因此又被称为”SSH隧道”</p><p>思考一个问题如果执行下面的命令，会是什么效果呢<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 5900:localhost:5900 host3</span><br></pre></td></tr></table></figure></p><p>答案是，访问本机5900端口，会被转发到host3的5900端口。这里的<code>localhost</code>是已<code>中转主机</code>host3的身份来确定的，host3的localhost当然还是host3了。</p><h3 id="2-远程端口转发"><a href="#2-远程端口转发" class="headerlink" title="2. 远程端口转发"></a>2. 远程端口转发</h3><p>远程端口转发，和本地端口转发正好相反，他会把远程主机的端口绑定，将通过该端口的数据发送到指定主机。</p><blockquote><p>远程端口转发和本地端口转发的区别：<br>远程端口转发是让自己接管远程主机的数据，好比，小明给小芳打电话说，以后你上班做我的车，我送你去。<br>本地端口转发是主动将自己的数据发送给中转主机，好比，小芳给小明打电话，以后我做你的车去上班。</p></blockquote><p>命令的使用基本一致，只是参数不同，原来的<code>-L</code>换成了<code>-R</code>。<br>命令格式为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -R 远程主机端口:目标主机:目标主机端口 远程主机</span><br></pre></td></tr></table></figure></p><p>还是接着看上面那个例子，host1与host2之间无法连通，必须借助host3转发。但是，特殊情况出现了，host3是一台内网机器，它可以连接外网的host1，但是反过来就不行，外网的host1连不上内网的host3。这时，”本地端口转发”就不能用了，怎么办？</p><p>解决办法是，既然host3可以连host1，那么就从host3上建立与host1的SSH连接，然后在host1上使用这条连接就可以了。</p><p>我们在host3执行下面的命令：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># host3</span><br><span class="line">ssh -R 2121:host2:21 host1</span><br></pre></td></tr></table></figure><p>命令分为3部分</p><ol><li>ssh:指令名称</li><li>-R 2121:host2:21: <code>-R</code>是命令参数，它接收3个值，分别是”远程主机端口:目标主机:目标主机端口”。这条命令的意思，就是让host1监听它自己的2121端口，然后将所有数据经由host3，转发到host2的21端口。由于对于host3来说，host1是远程主机，所以这种情况就被称为”远程端口绑定”。</li></ol><blockquote><p>数据流向：host1:2121-&gt;host3-&gt;host2:21</p></blockquote><p>在host1上执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#host1</span><br><span class="line">ftp localhost:2121</span><br></pre></td></tr></table></figure></p><p>这样host1就可以链接host2了，因为host3将host1的数据转发给了host2.</p><h2 id="ssh参数介绍"><a href="#ssh参数介绍" class="headerlink" title="ssh参数介绍"></a>ssh参数介绍</h2><p>常用命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ssh -C -f -N -g -L listen_port:DST_Host:DST_port user@Tunnel_Host</span><br><span class="line">ssh -C -f -N -g -R listen_port:DST_Host:DST_port user@Tunnel_Host</span><br><span class="line">ssh -C -f -N -g -D listen_port user@Tunnel_Host</span><br></pre></td></tr></table></figure></p><ol><li><p>-f Fork into background after authentication.<br>后台认证用户/密码，通常和-N连用，不用登录到远程主机。</p></li><li><p>-L port:host:hostport<br>将本地机(客户机)的某个端口转发到远端指定机器的指定端口. 工作原理是这样的, 本地机器上分配了一个 socket 侦听 port 端口, 一旦这个端口上有了连接, 该连接就经过安全通道转发出去, 同时远程主机和 host 的 hostport 端口建立连接. 可以在配置文件中指定端口的转发. 只有 root 才能转发特权端口. IPv6 地址用另一种格式说明: port/host/hostport</p></li><li><p>-R port:host:hostport<br>将远程主机(服务器)的某个端口转发到本地端指定机器的指定端口. 工作原理是这样的, 远程主机上分配了一个 socket 侦听 port 端口, 一旦这个端口上有了连接, 该连接就经过安全通道转向出去, 同时本地主机和 host 的 hostport 端口建立连接. 可以在配置文件中指定端口的转发. 只有用 root 登录远程主机才能转发特权端口. IPv6 地址用另一种格式说明: port/host/hostport</p></li><li><p>-D port<br>指定一个本地机器 “动态的’’ 应用程序端口转发. 工作原理是这样的, 本地机器上分配了一个 socket 侦听 port 端口, 一旦这个端口上有了连接, 该连接就经过安全通道转发出去, 根据应用程序的协议可以判断出远程主机将和哪里连接. 目前支持 SOCKS4 协议, 将充当 SOCKS4 服务器. 只有 root 才能转发特权端口. 可以在配置文件中指定动态端口的转发.</p></li><li><p>-C Enable compression.<br>压缩数据传输。</p></li><li><p>-N Do not execute a shell or command.<br>不执行脚本或命令，通常与-f连用。</p></li><li><p>-g Allow remote hosts to connect to forwarded ports.<br>在-L/-R/-D参数中，允许远程主机连接到建立的转发的端口，如果不加这个参数，只允许本地主机建立连接。注：这个参数我在实践中似乎始终不起作用。</p></li></ol><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2011/12/ssh_remote_login.html</a><br><a href="http://www.ruanyifeng.com/blog/2011/12/ssh_port_forwarding.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2011/12/ssh_port_forwarding.html</a><br><a href="http://chenweiguang.blogspot.com/2009/03/ssh.html" target="_blank" rel="noopener">http://chenweiguang.blogspot.com/2009/03/ssh.html</a><br><a href="https://blog.csdn.net/left_la/article/details/41519843" target="_blank" rel="noopener">https://blog.csdn.net/left_la/article/details/41519843</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;ssh命令非常强大，除了登录，还可以实现端口转发，达到代理的作用。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="系统运维" scheme="https://www.xingjiehu.com/categories/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/"/>
+    
+    
+      <category term="ssh" scheme="https://www.xingjiehu.com/tags/ssh/"/>
+    
+      <category term="端口转发" scheme="https://www.xingjiehu.com/tags/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
     <title>GIT批量删除远程标签</title>
-    <link href="https://www.xingjiehu.com/2019/05/30/cjwaffqvg0000akomq8a2s6do/"/>
-    <id>https://www.xingjiehu.com/2019/05/30/cjwaffqvg0000akomq8a2s6do/</id>
+    <link href="https://www.xingjiehu.com/2019/05/30/cjwk8isqb0000zsom4ofrva1e/"/>
+    <id>https://www.xingjiehu.com/2019/05/30/cjwk8isqb0000zsom4ofrva1e/</id>
     <published>2019-05-30T08:39:29.000Z</published>
     <updated>2019-05-30T08:58:55.055Z</updated>
     
@@ -43,8 +67,8 @@
   
   <entry>
     <title>vuex getters不更新的奇怪现象解决方案</title>
-    <link href="https://www.xingjiehu.com/2019/05/23/cjwaeycty001ewuomtlkuos8q/"/>
-    <id>https://www.xingjiehu.com/2019/05/23/cjwaeycty001ewuomtlkuos8q/</id>
+    <link href="https://www.xingjiehu.com/2019/05/23/cjwk8iss3001rzsom7u3uk9os/"/>
+    <id>https://www.xingjiehu.com/2019/05/23/cjwk8iss3001rzsom7u3uk9os/</id>
     <published>2019-05-22T16:19:41.000Z</published>
     <updated>2019-05-22T16:52:33.799Z</updated>
     
@@ -69,8 +93,8 @@
   
   <entry>
     <title>sublime text 3安装插件</title>
-    <link href="https://www.xingjiehu.com/2019/05/17/cjwaeycu0001iwuomhwep3n70/"/>
-    <id>https://www.xingjiehu.com/2019/05/17/cjwaeycu0001iwuomhwep3n70/</id>
+    <link href="https://www.xingjiehu.com/2019/05/17/cjwk8isrx001mzsomb7jnkh78/"/>
+    <id>https://www.xingjiehu.com/2019/05/17/cjwk8isrx001mzsomb7jnkh78/</id>
     <published>2019-05-17T03:26:28.000Z</published>
     <updated>2019-05-17T05:29:57.122Z</updated>
     
@@ -96,8 +120,8 @@
   
   <entry>
     <title>docker环境下php使用指南</title>
-    <link href="https://www.xingjiehu.com/2019/05/15/cjwaeycta0008wuomdzlnlug0/"/>
-    <id>https://www.xingjiehu.com/2019/05/15/cjwaeycta0008wuomdzlnlug0/</id>
+    <link href="https://www.xingjiehu.com/2019/05/15/cjwk8isqw0008zsomsksusfm3/"/>
+    <id>https://www.xingjiehu.com/2019/05/15/cjwk8isqw0008zsomsksusfm3/</id>
     <published>2019-05-15T10:09:53.000Z</published>
     <updated>2019-05-20T15:36:48.109Z</updated>
     
@@ -130,8 +154,8 @@
   
   <entry>
     <title>ubuntu更新php</title>
-    <link href="https://www.xingjiehu.com/2019/05/10/cjwaeycu1001kwuomn22ntx20/"/>
-    <id>https://www.xingjiehu.com/2019/05/10/cjwaeycu1001kwuomn22ntx20/</id>
+    <link href="https://www.xingjiehu.com/2019/05/10/cjwk8iss5001vzsom6buw82of/"/>
+    <id>https://www.xingjiehu.com/2019/05/10/cjwk8iss5001vzsom6buw82of/</id>
     <published>2019-05-10T02:03:38.000Z</published>
     <updated>2019-05-10T05:50:57.186Z</updated>
     
@@ -158,8 +182,8 @@
   
   <entry>
     <title>vue组件之插槽</title>
-    <link href="https://www.xingjiehu.com/2019/05/09/cjwaeycuc002cwuom1ro40two/"/>
-    <id>https://www.xingjiehu.com/2019/05/09/cjwaeycuc002cwuom1ro40two/</id>
+    <link href="https://www.xingjiehu.com/2019/05/09/cjwk8iss80023zsomjnvjzx93/"/>
+    <id>https://www.xingjiehu.com/2019/05/09/cjwk8iss80023zsomjnvjzx93/</id>
     <published>2019-05-09T01:26:11.000Z</published>
     <updated>2019-05-09T06:45:41.963Z</updated>
     
@@ -186,8 +210,8 @@
   
   <entry>
     <title>Supervisord管理进程常用命令</title>
-    <link href="https://www.xingjiehu.com/2019/04/28/cjwaeyct70006wuom66ytimk2/"/>
-    <id>https://www.xingjiehu.com/2019/04/28/cjwaeyct70006wuom66ytimk2/</id>
+    <link href="https://www.xingjiehu.com/2019/04/28/cjwk8isr4000dzsomvy44qib4/"/>
+    <id>https://www.xingjiehu.com/2019/04/28/cjwk8isr4000dzsomvy44qib4/</id>
     <published>2019-04-28T10:13:49.000Z</published>
     <updated>2019-04-28T10:17:42.765Z</updated>
     
@@ -212,8 +236,8 @@
   
   <entry>
     <title>省略sudo使用docker</title>
-    <link href="https://www.xingjiehu.com/2019/04/25/cjwaeycu80023wuomdxs0ifys/"/>
-    <id>https://www.xingjiehu.com/2019/04/25/cjwaeycu80023wuomdxs0ifys/</id>
+    <link href="https://www.xingjiehu.com/2019/04/25/cjwk8issd002bzsomcb20hcf6/"/>
+    <id>https://www.xingjiehu.com/2019/04/25/cjwk8issd002bzsomcb20hcf6/</id>
     <published>2019-04-25T05:31:43.000Z</published>
     <updated>2019-04-25T05:40:47.479Z</updated>
     
@@ -239,8 +263,8 @@
   
   <entry>
     <title>su 与 su - 的区别</title>
-    <link href="https://www.xingjiehu.com/2019/04/24/cjwaeyctx001cwuoml8gpqdrq/"/>
-    <id>https://www.xingjiehu.com/2019/04/24/cjwaeyctx001cwuoml8gpqdrq/</id>
+    <link href="https://www.xingjiehu.com/2019/04/24/cjwk8iss0001ozsomg97fnvvu/"/>
+    <id>https://www.xingjiehu.com/2019/04/24/cjwk8iss0001ozsomg97fnvvu/</id>
     <published>2019-04-24T14:14:49.000Z</published>
     <updated>2019-04-24T14:20:45.850Z</updated>
     
@@ -266,8 +290,8 @@
   
   <entry>
     <title>使用阿里云ecs主机打造shadowsocks服务器,实现科学上网</title>
-    <link href="https://www.xingjiehu.com/2019/04/11/cjwaeycu4001rwuomfxar004u/"/>
-    <id>https://www.xingjiehu.com/2019/04/11/cjwaeycu4001rwuomfxar004u/</id>
+    <link href="https://www.xingjiehu.com/2019/04/11/cjwk8issa0026zsomismvbhhp/"/>
+    <id>https://www.xingjiehu.com/2019/04/11/cjwk8issa0026zsomismvbhhp/</id>
     <published>2019-04-11T07:10:46.000Z</published>
     <updated>2019-04-11T08:26:55.912Z</updated>
     
@@ -294,8 +318,8 @@
   
   <entry>
     <title>linux安装java环境</title>
-    <link href="https://www.xingjiehu.com/2019/04/03/cjwaeyctn000qwuomdzft6fl4/"/>
-    <id>https://www.xingjiehu.com/2019/04/03/cjwaeyctn000qwuomdzft6fl4/</id>
+    <link href="https://www.xingjiehu.com/2019/04/03/cjwk8isrl0017zsomvm3jr43y/"/>
+    <id>https://www.xingjiehu.com/2019/04/03/cjwk8isrl0017zsomvm3jr43y/</id>
     <published>2019-04-03T07:04:54.000Z</published>
     <updated>2019-04-03T07:49:28.231Z</updated>
     
@@ -321,8 +345,8 @@
   
   <entry>
     <title>VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式</title>
-    <link href="https://www.xingjiehu.com/2019/04/02/cjwaeycss0000wuomeqcsud6h/"/>
-    <id>https://www.xingjiehu.com/2019/04/02/cjwaeycss0000wuomeqcsud6h/</id>
+    <link href="https://www.xingjiehu.com/2019/04/02/cjwk8isqj0002zsom5y1cklrs/"/>
+    <id>https://www.xingjiehu.com/2019/04/02/cjwk8isqj0002zsom5y1cklrs/</id>
     <published>2019-04-02T05:29:28.000Z</published>
     <updated>2019-04-02T06:05:03.160Z</updated>
     
@@ -347,8 +371,8 @@
   
   <entry>
     <title>设计模式基本原则大白话</title>
-    <link href="https://www.xingjiehu.com/2019/04/01/cjwaeycua0028wuom0abea9cr/"/>
-    <id>https://www.xingjiehu.com/2019/04/01/cjwaeycua0028wuom0abea9cr/</id>
+    <link href="https://www.xingjiehu.com/2019/04/01/cjwk8issh002jzsomgl3393xp/"/>
+    <id>https://www.xingjiehu.com/2019/04/01/cjwk8issh002jzsomgl3393xp/</id>
     <published>2019-04-01T14:35:47.000Z</published>
     <updated>2019-04-01T15:26:15.530Z</updated>
     
@@ -391,8 +415,8 @@
   
   <entry>
     <title>vscode 保存自动按eslint格式化</title>
-    <link href="https://www.xingjiehu.com/2019/03/27/cjwaeycu3001owuom76rt3d35/"/>
-    <id>https://www.xingjiehu.com/2019/03/27/cjwaeycu3001owuom76rt3d35/</id>
+    <link href="https://www.xingjiehu.com/2019/03/27/cjwk8iss7001zzsom81933hbj/"/>
+    <id>https://www.xingjiehu.com/2019/03/27/cjwk8iss7001zzsom81933hbj/</id>
     <published>2019-03-27T06:26:43.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -422,8 +446,8 @@
   
   <entry>
     <title>elasticsearch学习笔记 - 集群相关术语</title>
-    <link href="https://www.xingjiehu.com/2019/03/15/cjwaeyctf000dwuomwjj8y99c/"/>
-    <id>https://www.xingjiehu.com/2019/03/15/cjwaeyctf000dwuomwjj8y99c/</id>
+    <link href="https://www.xingjiehu.com/2019/03/15/cjwk8isqy0009zsomf74e5qms/"/>
+    <id>https://www.xingjiehu.com/2019/03/15/cjwk8isqy0009zsomf74e5qms/</id>
     <published>2019-03-15T01:33:28.000Z</published>
     <updated>2019-04-01T01:20:17.298Z</updated>
     
@@ -459,8 +483,8 @@
   
   <entry>
     <title>elasticsearch学习笔记 - 安装</title>
-    <link href="https://www.xingjiehu.com/2019/03/14/cjwaeyctb0009wuom4vi8khmf/"/>
-    <id>https://www.xingjiehu.com/2019/03/14/cjwaeyctb0009wuom4vi8khmf/</id>
+    <link href="https://www.xingjiehu.com/2019/03/14/cjwk8isr6000hzsomwvthud67/"/>
+    <id>https://www.xingjiehu.com/2019/03/14/cjwk8isr6000hzsomwvthud67/</id>
     <published>2019-03-14T05:30:16.000Z</published>
     <updated>2019-04-01T01:20:17.298Z</updated>
     
@@ -514,8 +538,8 @@
   
   <entry>
     <title>linux使用apt方式安装mysql5.7</title>
-    <link href="https://www.xingjiehu.com/2019/03/13/cjwaeyctp000wwuomkp5vltyy/"/>
-    <id>https://www.xingjiehu.com/2019/03/13/cjwaeyctp000wwuomkp5vltyy/</id>
+    <link href="https://www.xingjiehu.com/2019/03/13/cjwk8isrg000xzsombfrspgxn/"/>
+    <id>https://www.xingjiehu.com/2019/03/13/cjwk8isrg000xzsombfrspgxn/</id>
     <published>2019-03-13T15:13:33.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -541,8 +565,8 @@
   
   <entry>
     <title>python字节和字符串相互转换</title>
-    <link href="https://www.xingjiehu.com/2019/03/06/cjwaeyctv0018wuomwvcy3job/"/>
-    <id>https://www.xingjiehu.com/2019/03/06/cjwaeyctv0018wuomwvcy3job/</id>
+    <link href="https://www.xingjiehu.com/2019/03/06/cjwk8isrv001izsom35kjhnjp/"/>
+    <id>https://www.xingjiehu.com/2019/03/06/cjwk8isrv001izsom35kjhnjp/</id>
     <published>2019-03-06T09:43:39.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -571,8 +595,8 @@
   
   <entry>
     <title>nohup命令说明</title>
-    <link href="https://www.xingjiehu.com/2019/03/06/cjwaeyctt0014wuomqj6xrk5e/"/>
-    <id>https://www.xingjiehu.com/2019/03/06/cjwaeyctt0014wuomqj6xrk5e/</id>
+    <link href="https://www.xingjiehu.com/2019/03/06/cjwk8isrk0015zsom9f2n92s6/"/>
+    <id>https://www.xingjiehu.com/2019/03/06/cjwk8isrk0015zsom9f2n92s6/</id>
     <published>2019-03-06T09:21:00.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -590,39 +614,6 @@
     
     
       <category term="nohup" scheme="https://www.xingjiehu.com/tags/nohup/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>git reset命令详解</title>
-    <link href="https://www.xingjiehu.com/2019/03/06/cjwaeycti000hwuomvl16resz/"/>
-    <id>https://www.xingjiehu.com/2019/03/06/cjwaeycti000hwuomvl16resz/</id>
-    <published>2019-03-06T06:06:21.000Z</published>
-    <updated>2019-04-01T01:20:17.302Z</updated>
-    
-    <content type="html"><![CDATA[<p>git reset命令，非常牛的一个命令，这个命令可以让你时光穿梭回到过去。用在自己分支上很好用，但是千万不要在公共分支上使用。以免造成历史混乱，破坏历史可是重罪，别看那些穿越小说混的风生水起，那都是骗人的。</p><p>用git reset之前先要了解几个概念</p><ul><li><p>HEAD<br>这是当前分支版本顶端的别名，也就是在当前分支你最近的一个提交，也就是本地仓库，即你的commit记录</p></li><li><p>Index<br>index也被称为staging area，即add的记录</p></li><li><p>Working Copy<br>working copy代表你正在工作的那个文件</p></li></ul><a id="more"></a><h2 id="操作实例"><a href="#操作实例" class="headerlink" title="操作实例"></a>操作实例</h2><p>先执行git log查看当前的记录，这里是我预先做了几次commit</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">commit fd9b11185a41cf5cfe187be61dc43c06dd7b5420</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Fri Feb 24 15:23:55 2017 +0800</span><br><span class="line"></span><br><span class="line">    3</span><br><span class="line"></span><br><span class="line">commit 0aa75d4355211a8b1943d1c8d5b4904e18053bcf</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Fri Feb 24 15:23:37 2017 +0800</span><br><span class="line"></span><br><span class="line">    2</span><br><span class="line"></span><br><span class="line">commit 2bdd42d126d269688be33759f96e4015a85e720b</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Fri Feb 24 15:23:04 2017 +0800</span><br><span class="line"></span><br><span class="line">    1</span><br></pre></td></tr></table></figure><p>当前工作区是干净的，下面执行以下命令</p><h3 id="–soft"><a href="#–soft" class="headerlink" title="–soft"></a>–soft</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">shooke@shooke-pc:/var/www/gittest$ git status</span><br><span class="line">位于分支 master</span><br><span class="line">无文件要提交，干净的工作区</span><br><span class="line">shooke@shooke-pc:/var/www/gittest$ git reset --soft HEAD~1</span><br><span class="line">shooke@shooke-pc:/var/www/gittest$ git log</span><br><span class="line">commit 0aa75d4355211a8b1943d1c8d5b4904e18053bcf</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Fri Feb 24 15:23:37 2017 +0800</span><br><span class="line"></span><br><span class="line">    2</span><br><span class="line"></span><br><span class="line">commit 2bdd42d126d269688be33759f96e4015a85e720b</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Fri Feb 24 15:23:04 2017 +0800</span><br><span class="line"></span><br><span class="line">    1</span><br><span class="line">shooke@shooke-pc:/var/www/gittest$ git status</span><br><span class="line">位于分支 master</span><br><span class="line">要提交的变更：</span><br><span class="line">  （使用 &quot;git reset HEAD &lt;文件&gt;...&quot; 以取消暂存）</span><br><span class="line"></span><br><span class="line">修改：     a.txt</span><br></pre></td></tr></table></figure><p>我们发现使用git reset –soft后我们的commit少了一条，a.txt是已经add过的状态<br>也就是说–soft只是撤销了commit。<strong>但是a.txt的内容是没有改变的。</strong>我们用公式标示一下</p><blockquote><p><code>HEAD</code> != <code>index</code> = <code>Working Copy</code><br><strong>只撤销了commit ，保留了index（add过）和工作区</strong></p></blockquote><h3 id="–mixed"><a href="#–mixed" class="headerlink" title="–mixed"></a>–mixed</h3><p>我们恢复到3条记录的状态，继续看下面的操作</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">shooke@shooke-pc:/var/www/gittest$ git reset --mixed HEAD~1</span><br><span class="line">重置后取消暂存的变更：</span><br><span class="line">Ma.txt</span><br><span class="line">shooke@shooke-pc:/var/www/gittest$ git log</span><br><span class="line">commit 0aa75d4355211a8b1943d1c8d5b4904e18053bcf</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Fri Feb 24 15:23:37 2017 +0800</span><br><span class="line"></span><br><span class="line">    2</span><br><span class="line"></span><br><span class="line">commit 2bdd42d126d269688be33759f96e4015a85e720b</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Fri Feb 24 15:23:04 2017 +0800</span><br><span class="line"></span><br><span class="line">    1</span><br><span class="line">shooke@shooke-pc:/var/www/gittest$ git status</span><br><span class="line">位于分支 master</span><br><span class="line">尚未暂存以备提交的变更：</span><br><span class="line">  （使用 &quot;git add &lt;文件&gt;...&quot; 更新要提交的内容）</span><br><span class="line">  （使用 &quot;git checkout -- &lt;文件&gt;...&quot; 丢弃工作区的改动）</span><br><span class="line"></span><br><span class="line">修改：     a.txt</span><br><span class="line"></span><br><span class="line">修改尚未加入提交（使用 &quot;git add&quot; 和/或 &quot;git commit -a&quot;）</span><br></pre></td></tr></table></figure><p>我们发现git提示我们需要add，也就是说暂存区发生了修改，<strong>但是a.txt 的内容没有改变</strong><br>我们再用公式标示一下</p><blockquote><p><code>HEAD</code> = <code>index</code> ！= <code>Working Copy</code><br><strong>撤销了commit 、index，工作区不变</strong></p></blockquote><h3 id="–hard"><a href="#–hard" class="headerlink" title="–hard"></a>–hard</h3><p>我们恢复到3条记录的状态，继续看下面的操作</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">shooke@shooke-pc:/var/www/gittest$ git reset --hard HEAD~1</span><br><span class="line">HEAD 现在位于 0aa75d4 2</span><br><span class="line">shooke@shooke-pc:/var/www/gittest$ git log</span><br><span class="line">commit 0aa75d4355211a8b1943d1c8d5b4904e18053bcf</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Fri Feb 24 15:23:37 2017 +0800</span><br><span class="line"></span><br><span class="line">    2</span><br><span class="line"></span><br><span class="line">commit 2bdd42d126d269688be33759f96e4015a85e720b</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Fri Feb 24 15:23:04 2017 +0800</span><br><span class="line"></span><br><span class="line">    1</span><br><span class="line">shooke@shooke-pc:/var/www/gittest$ git status</span><br><span class="line">位于分支 master</span><br><span class="line">无文件要提交，干净的工作区</span><br></pre></td></tr></table></figure><p>这一次没有a.txt有修改。也就是说工作区的文件与暂存去、本地仓库是一致的。打开a.txt发现里面的内容变成了2，也就是说<strong>a.txt内容也跟着回退到了上次commit时的代码</strong>。用公式表示</p><blockquote><p><code>HEAD</code> = <code>index</code> = <code>Working Copy</code><br><strong>commit 、index和工作区文件都回退改变</strong></p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;git reset命令，非常牛的一个命令，这个命令可以让你时光穿梭回到过去。用在自己分支上很好用，但是千万不要在公共分支上使用。以免造成历史混乱，破坏历史可是重罪，别看那些穿越小说混的风生水起，那都是骗人的。&lt;/p&gt;
-&lt;p&gt;用git reset之前先要了解几个概念&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;HEAD&lt;br&gt;这是当前分支版本顶端的别名，也就是在当前分支你最近的一个提交，也就是本地仓库，即你的commit记录&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Index&lt;br&gt;index也被称为staging area，即add的记录&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Working Copy&lt;br&gt;working copy代表你正在工作的那个文件&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="git" scheme="https://www.xingjiehu.com/categories/git/"/>
-    
-    
-      <category term="git" scheme="https://www.xingjiehu.com/tags/git/"/>
-    
-      <category term="git reset" scheme="https://www.xingjiehu.com/tags/git-reset/"/>
     
   </entry>
   
