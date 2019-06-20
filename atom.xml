@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2019-06-20T03:29:26.159Z</updated>
+  <updated>2019-06-20T09:35:20.883Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,9 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>vscode打造php开发环境</title>
+    <link href="https://www.xingjiehu.com/2019/06/20/cjx4gzeys001q52om3xvtb8eq/"/>
+    <id>https://www.xingjiehu.com/2019/06/20/cjx4gzeys001q52om3xvtb8eq/</id>
+    <published>2019-06-20T09:27:42.000Z</published>
+    <updated>2019-06-20T09:35:20.883Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="文档注释"><a href="#文档注释" class="headerlink" title="文档注释"></a>文档注释</h2><p>借助于 PHP DocBlocker 插件，可以快速地在类名、变量名、方法/函数名 上方添加注释。</p><h2 id="自动补全"><a href="#自动补全" class="headerlink" title="自动补全"></a>自动补全</h2><p>借助于 PHP Intelephense 插件，可以实现代码智能提示。<br>安装后选择 file-&gt;preferences-&gt;settings 选择右上角<code>{}</code>进入配置模式，添加<code>&quot;php.executablePath&quot;: &quot;/usr/bin/php&quot;</code>，配置上php的路径</p><h2 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h2><p>借助于 php-cs-fixer 插件，可以方便地按照某一规则格式化代码，让你时刻保持代码可读性和风格统一。</p><a id="more"></a><h2 id="代码调试"><a href="#代码调试" class="headerlink" title="代码调试"></a>代码调试</h2><p>借助于 XDebug 插件，可以实现代码调试。</p><h2 id="修改历史"><a href="#修改历史" class="headerlink" title="修改历史"></a>修改历史</h2><p>借助于 Git Lens 插件，可以方便地查看每行代码的修改历史。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;文档注释&quot;&gt;&lt;a href=&quot;#文档注释&quot; class=&quot;headerlink&quot; title=&quot;文档注释&quot;&gt;&lt;/a&gt;文档注释&lt;/h2&gt;&lt;p&gt;借助于 PHP DocBlocker 插件，可以快速地在类名、变量名、方法/函数名 上方添加注释。&lt;/p&gt;
+&lt;h2 id=&quot;自动补全&quot;&gt;&lt;a href=&quot;#自动补全&quot; class=&quot;headerlink&quot; title=&quot;自动补全&quot;&gt;&lt;/a&gt;自动补全&lt;/h2&gt;&lt;p&gt;借助于 PHP Intelephense 插件，可以实现代码智能提示。&lt;br&gt;安装后选择 file-&amp;gt;preferences-&amp;gt;settings 选择右上角&lt;code&gt;{}&lt;/code&gt;进入配置模式，添加&lt;code&gt;&amp;quot;php.executablePath&amp;quot;: &amp;quot;/usr/bin/php&amp;quot;&lt;/code&gt;，配置上php的路径&lt;/p&gt;
+&lt;h2 id=&quot;代码格式化&quot;&gt;&lt;a href=&quot;#代码格式化&quot; class=&quot;headerlink&quot; title=&quot;代码格式化&quot;&gt;&lt;/a&gt;代码格式化&lt;/h2&gt;&lt;p&gt;借助于 php-cs-fixer 插件，可以方便地按照某一规则格式化代码，让你时刻保持代码可读性和风格统一。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="开发工具" scheme="https://www.xingjiehu.com/categories/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="php" scheme="https://www.xingjiehu.com/tags/php/"/>
+    
+      <category term="vscode" scheme="https://www.xingjiehu.com/tags/vscode/"/>
+    
+  </entry>
+  
+  <entry>
     <title>pipenv与pyenv、pyenv-virtualenv的关系和使用</title>
-    <link href="https://www.xingjiehu.com/2019/06/20/cjx41h8hw0011kkom65dvdipk/"/>
-    <id>https://www.xingjiehu.com/2019/06/20/cjx41h8hw0011kkom65dvdipk/</id>
+    <link href="https://www.xingjiehu.com/2019/06/20/cjx4gzeye001452omz9mqkyg1/"/>
+    <id>https://www.xingjiehu.com/2019/06/20/cjx4gzeye001452omz9mqkyg1/</id>
     <published>2019-06-20T01:20:23.000Z</published>
     <updated>2019-06-20T03:29:26.159Z</updated>
     
@@ -58,8 +84,8 @@
   
   <entry>
     <title>ssh使用详解</title>
-    <link href="https://www.xingjiehu.com/2019/06/06/cjx41h8ip001mkkomoxjwszvz/"/>
-    <id>https://www.xingjiehu.com/2019/06/06/cjx41h8ip001mkkomoxjwszvz/</id>
+    <link href="https://www.xingjiehu.com/2019/06/06/cjx4gzeyo001l52omfi5kfn1k/"/>
+    <id>https://www.xingjiehu.com/2019/06/06/cjx4gzeyo001l52omfi5kfn1k/</id>
     <published>2019-06-06T03:06:28.000Z</published>
     <updated>2019-06-06T05:48:47.142Z</updated>
     
@@ -82,8 +108,8 @@
   
   <entry>
     <title>GIT批量删除远程标签</title>
-    <link href="https://www.xingjiehu.com/2019/05/30/cjx41h8g00000kkomlxoqhgvm/"/>
-    <id>https://www.xingjiehu.com/2019/05/30/cjx41h8g00000kkomlxoqhgvm/</id>
+    <link href="https://www.xingjiehu.com/2019/05/30/cjx4gzexm000652omka0tk6wc/"/>
+    <id>https://www.xingjiehu.com/2019/05/30/cjx4gzexm000652omka0tk6wc/</id>
     <published>2019-05-30T08:39:29.000Z</published>
     <updated>2019-05-30T08:58:55.055Z</updated>
     
@@ -107,8 +133,8 @@
   
   <entry>
     <title>vuex getters不更新的奇怪现象解决方案</title>
-    <link href="https://www.xingjiehu.com/2019/05/23/cjx41h8j2001vkkom26tf814r/"/>
-    <id>https://www.xingjiehu.com/2019/05/23/cjx41h8j2001vkkom26tf814r/</id>
+    <link href="https://www.xingjiehu.com/2019/05/23/cjx4gzeyx002152ommvz9x93q/"/>
+    <id>https://www.xingjiehu.com/2019/05/23/cjx4gzeyx002152ommvz9x93q/</id>
     <published>2019-05-22T16:19:41.000Z</published>
     <updated>2019-05-22T16:52:33.799Z</updated>
     
@@ -133,8 +159,8 @@
   
   <entry>
     <title>sublime text 3安装插件</title>
-    <link href="https://www.xingjiehu.com/2019/05/17/cjx41h8is001okkommvjx2r8g/"/>
-    <id>https://www.xingjiehu.com/2019/05/17/cjx41h8is001okkommvjx2r8g/</id>
+    <link href="https://www.xingjiehu.com/2019/05/17/cjx4gzeyu001t52omvpq5m58f/"/>
+    <id>https://www.xingjiehu.com/2019/05/17/cjx4gzeyu001t52omvpq5m58f/</id>
     <published>2019-05-17T03:26:28.000Z</published>
     <updated>2019-05-17T05:29:57.122Z</updated>
     
@@ -160,8 +186,8 @@
   
   <entry>
     <title>docker环境下php使用指南</title>
-    <link href="https://www.xingjiehu.com/2019/05/15/cjx41h8gw0009kkomlakocl3b/"/>
-    <id>https://www.xingjiehu.com/2019/05/15/cjx41h8gw0009kkomlakocl3b/</id>
+    <link href="https://www.xingjiehu.com/2019/05/15/cjx4gzexq000852omf7x209v8/"/>
+    <id>https://www.xingjiehu.com/2019/05/15/cjx4gzexq000852omf7x209v8/</id>
     <published>2019-05-15T10:09:53.000Z</published>
     <updated>2019-05-20T15:36:48.109Z</updated>
     
@@ -194,8 +220,8 @@
   
   <entry>
     <title>ubuntu更新php</title>
-    <link href="https://www.xingjiehu.com/2019/05/10/cjx41h8im001ikkomcshqcj4q/"/>
-    <id>https://www.xingjiehu.com/2019/05/10/cjx41h8im001ikkomcshqcj4q/</id>
+    <link href="https://www.xingjiehu.com/2019/05/10/cjx4gzeyz002452om6t1xj07x/"/>
+    <id>https://www.xingjiehu.com/2019/05/10/cjx4gzeyz002452om6t1xj07x/</id>
     <published>2019-05-10T02:03:38.000Z</published>
     <updated>2019-05-10T05:50:57.186Z</updated>
     
@@ -222,8 +248,8 @@
   
   <entry>
     <title>vue组件之插槽</title>
-    <link href="https://www.xingjiehu.com/2019/05/09/cjx41h8jd0026kkomd01gyt7j/"/>
-    <id>https://www.xingjiehu.com/2019/05/09/cjx41h8jd0026kkomd01gyt7j/</id>
+    <link href="https://www.xingjiehu.com/2019/05/09/cjx4gzez1002952om0m6iona1/"/>
+    <id>https://www.xingjiehu.com/2019/05/09/cjx4gzez1002952om0m6iona1/</id>
     <published>2019-05-09T01:26:11.000Z</published>
     <updated>2019-05-09T06:45:41.963Z</updated>
     
@@ -250,8 +276,8 @@
   
   <entry>
     <title>Supervisord管理进程常用命令</title>
-    <link href="https://www.xingjiehu.com/2019/04/28/cjx41h8ja0023kkom7s5hg3wk/"/>
-    <id>https://www.xingjiehu.com/2019/04/28/cjx41h8ja0023kkom7s5hg3wk/</id>
+    <link href="https://www.xingjiehu.com/2019/04/28/cjx4gzexb000252om1m9w74bp/"/>
+    <id>https://www.xingjiehu.com/2019/04/28/cjx4gzexb000252om1m9w74bp/</id>
     <published>2019-04-28T10:13:49.000Z</published>
     <updated>2019-04-28T10:17:42.765Z</updated>
     
@@ -276,8 +302,8 @@
   
   <entry>
     <title>省略sudo使用docker</title>
-    <link href="https://www.xingjiehu.com/2019/04/25/cjx41h8jm002ckkomqswcptgt/"/>
-    <id>https://www.xingjiehu.com/2019/04/25/cjx41h8jm002ckkomqswcptgt/</id>
+    <link href="https://www.xingjiehu.com/2019/04/25/cjx4gzezg002p52om6ykqqzqu/"/>
+    <id>https://www.xingjiehu.com/2019/04/25/cjx4gzezg002p52om6ykqqzqu/</id>
     <published>2019-04-25T05:31:43.000Z</published>
     <updated>2019-04-25T05:40:47.479Z</updated>
     
@@ -303,8 +329,8 @@
   
   <entry>
     <title>su 与 su - 的区别</title>
-    <link href="https://www.xingjiehu.com/2019/04/24/cjx41h8j5001ykkom2ktwxtw2/"/>
-    <id>https://www.xingjiehu.com/2019/04/24/cjx41h8j5001ykkom2ktwxtw2/</id>
+    <link href="https://www.xingjiehu.com/2019/04/24/cjx4gzeyq001n52omb2dtfy7o/"/>
+    <id>https://www.xingjiehu.com/2019/04/24/cjx4gzeyq001n52omb2dtfy7o/</id>
     <published>2019-04-24T14:14:49.000Z</published>
     <updated>2019-04-24T14:20:45.850Z</updated>
     
@@ -330,8 +356,8 @@
   
   <entry>
     <title>使用阿里云ecs主机打造shadowsocks服务器,实现科学上网</title>
-    <link href="https://www.xingjiehu.com/2019/04/11/cjx41h8jj002akkom7vlw4ab4/"/>
-    <id>https://www.xingjiehu.com/2019/04/11/cjx41h8jj002akkom7vlw4ab4/</id>
+    <link href="https://www.xingjiehu.com/2019/04/11/cjx4gzez3002c52ombsy4sw7z/"/>
+    <id>https://www.xingjiehu.com/2019/04/11/cjx4gzez3002c52ombsy4sw7z/</id>
     <published>2019-04-11T07:10:46.000Z</published>
     <updated>2019-04-11T08:26:55.912Z</updated>
     
@@ -358,8 +384,8 @@
   
   <entry>
     <title>linux安装java环境</title>
-    <link href="https://www.xingjiehu.com/2019/04/03/cjx41h8i20016kkom05cvnxms/"/>
-    <id>https://www.xingjiehu.com/2019/04/03/cjx41h8i20016kkom05cvnxms/</id>
+    <link href="https://www.xingjiehu.com/2019/04/03/cjx4gzeya000x52om9xf17z2e/"/>
+    <id>https://www.xingjiehu.com/2019/04/03/cjx4gzeya000x52om9xf17z2e/</id>
     <published>2019-04-03T07:04:54.000Z</published>
     <updated>2019-04-03T07:49:28.231Z</updated>
     
@@ -385,8 +411,8 @@
   
   <entry>
     <title>VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式</title>
-    <link href="https://www.xingjiehu.com/2019/04/02/cjx41h8gb0002kkomitmek9ym/"/>
-    <id>https://www.xingjiehu.com/2019/04/02/cjx41h8gb0002kkomitmek9ym/</id>
+    <link href="https://www.xingjiehu.com/2019/04/02/cjx4gzex3000052om6ylxx9yh/"/>
+    <id>https://www.xingjiehu.com/2019/04/02/cjx4gzex3000052om6ylxx9yh/</id>
     <published>2019-04-02T05:29:28.000Z</published>
     <updated>2019-04-02T06:05:03.160Z</updated>
     
@@ -411,8 +437,8 @@
   
   <entry>
     <title>设计模式基本原则大白话</title>
-    <link href="https://www.xingjiehu.com/2019/04/01/cjx41h8k2002lkkomhubb3sa7/"/>
-    <id>https://www.xingjiehu.com/2019/04/01/cjx41h8k2002lkkomhubb3sa7/</id>
+    <link href="https://www.xingjiehu.com/2019/04/01/cjx4gzezd002m52omgj6fnekj/"/>
+    <id>https://www.xingjiehu.com/2019/04/01/cjx4gzezd002m52omgj6fnekj/</id>
     <published>2019-04-01T14:35:47.000Z</published>
     <updated>2019-04-01T15:26:15.530Z</updated>
     
@@ -455,8 +481,8 @@
   
   <entry>
     <title>vscode 保存自动按eslint格式化</title>
-    <link href="https://www.xingjiehu.com/2019/03/27/cjx41h8ix001rkkomc85glq2e/"/>
-    <id>https://www.xingjiehu.com/2019/03/27/cjx41h8ix001rkkomc85glq2e/</id>
+    <link href="https://www.xingjiehu.com/2019/03/27/cjx4gzeyw001x52omzmferfh2/"/>
+    <id>https://www.xingjiehu.com/2019/03/27/cjx4gzeyw001x52omzmferfh2/</id>
     <published>2019-03-27T06:26:43.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -486,8 +512,8 @@
   
   <entry>
     <title>elasticsearch学习笔记 - 集群相关术语</title>
-    <link href="https://www.xingjiehu.com/2019/03/15/cjx41h8gu0008kkommygm8uks/"/>
-    <id>https://www.xingjiehu.com/2019/03/15/cjx41h8gu0008kkommygm8uks/</id>
+    <link href="https://www.xingjiehu.com/2019/03/15/cjx4gzexw000d52omonb1mbas/"/>
+    <id>https://www.xingjiehu.com/2019/03/15/cjx4gzexw000d52omonb1mbas/</id>
     <published>2019-03-15T01:33:28.000Z</published>
     <updated>2019-04-01T01:20:17.298Z</updated>
     
@@ -523,8 +549,8 @@
   
   <entry>
     <title>elasticsearch学习笔记 - 安装</title>
-    <link href="https://www.xingjiehu.com/2019/03/14/cjx41h8h2000ckkomh9wnia6r/"/>
-    <id>https://www.xingjiehu.com/2019/03/14/cjx41h8h2000ckkomh9wnia6r/</id>
+    <link href="https://www.xingjiehu.com/2019/03/14/cjx4gzexu000c52om3lqd69wb/"/>
+    <id>https://www.xingjiehu.com/2019/03/14/cjx4gzexu000c52om3lqd69wb/</id>
     <published>2019-03-14T05:30:16.000Z</published>
     <updated>2019-04-01T01:20:17.298Z</updated>
     
@@ -578,8 +604,8 @@
   
   <entry>
     <title>linux使用apt方式安装mysql5.7</title>
-    <link href="https://www.xingjiehu.com/2019/03/13/cjx41h8ht000ykkomdun0yyck/"/>
-    <id>https://www.xingjiehu.com/2019/03/13/cjx41h8ht000ykkomdun0yyck/</id>
+    <link href="https://www.xingjiehu.com/2019/03/13/cjx4gzeyb001052omu1kgt1bx/"/>
+    <id>https://www.xingjiehu.com/2019/03/13/cjx4gzeyb001052omu1kgt1bx/</id>
     <published>2019-03-13T15:13:33.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -600,36 +626,6 @@
     
     
       <category term="mysql" scheme="https://www.xingjiehu.com/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python字节和字符串相互转换</title>
-    <link href="https://www.xingjiehu.com/2019/03/06/cjx41h8ii001gkkom9qqlyvgz/"/>
-    <id>https://www.xingjiehu.com/2019/03/06/cjx41h8ii001gkkom9qqlyvgz/</id>
-    <published>2019-03-06T09:43:39.000Z</published>
-    <updated>2019-04-01T01:20:17.302Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h2><ul><li><p>byte 字符串<br>byte_str = b”byte example”</p></li><li><p>str 字符串<br>str_str = “str example”</p></li></ul><h2 id="str-to-bytes-字符串转字节"><a href="#str-to-bytes-字符串转字节" class="headerlink" title="str to bytes 字符串转字节"></a>str to bytes 字符串转字节</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bytes(str_str, encoding=&quot;utf-8&quot;)</span><br></pre></td></tr></table></figure><p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str_str.encode()</span><br></pre></td></tr></table></figure></p><h2 id="bytes-to-str-字节转字符串"><a href="#bytes-to-str-字节转字符串" class="headerlink" title="bytes to str  字节转字符串"></a>bytes to str  字节转字符串</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str(byte_str, encoding=&quot;utf-8&quot;)</span><br></pre></td></tr></table></figure><p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">byte_str.decode()</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;字符串类型&quot;&gt;&lt;a href=&quot;#字符串类型&quot; class=&quot;headerlink&quot; title=&quot;字符串类型&quot;&gt;&lt;/a&gt;字符串类型&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;byte 字符串&lt;br&gt;byte_str = b”byte example”&lt;/p&gt;
-&lt;/li&gt;
-
-      
-    
-    </summary>
-    
-      <category term="python" scheme="https://www.xingjiehu.com/categories/python/"/>
-    
-    
-      <category term="python" scheme="https://www.xingjiehu.com/tags/python/"/>
-    
-      <category term="python 字符串" scheme="https://www.xingjiehu.com/tags/python-%E5%AD%97%E7%AC%A6%E4%B8%B2/"/>
     
   </entry>
   
