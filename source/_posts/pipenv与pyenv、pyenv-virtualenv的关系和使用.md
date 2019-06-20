@@ -120,3 +120,4 @@ https://github.com/pyenv/pyenv
 https://github.com/pyenv/pyenv-installer
 https://github.com/pypa/pipenv
 https://segmentfault.com/a/1190000015389565
+https://www.xncoding.com/2016/05/09/python/pyenv.html
