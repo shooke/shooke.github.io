@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2019-06-20T09:35:20.883Z</updated>
+  <updated>2019-06-24T03:03:34.600Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,11 +17,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>shadowsocks-deepin pac模式失效问题解决方案</title>
+    <link href="https://www.xingjiehu.com/2019/06/24/cjx9s7pka001f02omio3bxjf6/"/>
+    <id>https://www.xingjiehu.com/2019/06/24/cjx9s7pka001f02omio3bxjf6/</id>
+    <published>2019-06-24T02:37:50.000Z</published>
+    <updated>2019-06-24T03:03:34.600Z</updated>
+    
+    <content type="html"><![CDATA[<p>今天发现无法访问google了，登上服务器看了下没有链接。查看了下本机shadowsocks-deepin是正常启动的。<br>再看代理模式是pac。改成全局模式居然可以正常访问google了。问题原因就发生在pac上了。<br>试着访问了一下<code>http://file.lolimay.cn/autoproxy.pac</code>果然无法访问了。<br>在网上找了一个新的pac配置修改上，真的可以了。目前有效地址<code>https://prudent-travels.000webhostapp.com/pac.php?a=SOCKS5&amp;b=127.0.0.1:1080</code>。</p><p>我用的<code>deepin</code>系统其他系统的修改方式可能有差别。具体操作如下：</p><a id="more"></a><ol><li>找到<code>shadowsocks-deepin</code>的配置文件<code>/home/shooke/.config/pikachu/shadowsocks-deepin/gui-config.json</code></li><li>将<code>&quot;pacUrl&quot;: &quot;http://file.lolimay.cn/autoproxy.pac&quot;</code>修改为<code>&quot;pacUrl&quot;: &quot;https://prudent-travels.000webhostapp.com/pac.php?a=SOCKS5&amp;b=127.0.0.1:1080&quot;</code></li><li>右键小飞机图标-》系统代理模式-》pac模式</li></ol><p>如果你的小飞机没有bug，应该可以正常访问google了，我的有问题，不知道为什么每次设置，都会编程<code>http://file.lolimay.cn/autoproxy.pac</code>，可能是作者忘了读取配置，将pac写死到了代码里。代码是没法改了，自己再配置一下代理就可以了。<br><strong>每次重启都需要执行下面的步骤</strong></p><ol start="4"><li>打开控制中心-》网络-》系统代理-》自动，将配置URL改为<code>https://prudent-travels.000webhostapp.com/pac.php?a=SOCKS5&amp;b=127.0.0.1:1080</code></li></ol><p>这样就可以正常访问google了。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天发现无法访问google了，登上服务器看了下没有链接。查看了下本机shadowsocks-deepin是正常启动的。&lt;br&gt;再看代理模式是pac。改成全局模式居然可以正常访问google了。问题原因就发生在pac上了。&lt;br&gt;试着访问了一下&lt;code&gt;http://file.lolimay.cn/autoproxy.pac&lt;/code&gt;果然无法访问了。&lt;br&gt;在网上找了一个新的pac配置修改上，真的可以了。目前有效地址&lt;code&gt;https://prudent-travels.000webhostapp.com/pac.php?a=SOCKS5&amp;amp;b=127.0.0.1:1080&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;我用的&lt;code&gt;deepin&lt;/code&gt;系统其他系统的修改方式可能有差别。具体操作如下：&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="科学上网" scheme="https://www.xingjiehu.com/categories/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/"/>
+    
+    
+      <category term="shadowsocks-deepin" scheme="https://www.xingjiehu.com/tags/shadowsocks-deepin/"/>
+    
+      <category term="pac" scheme="https://www.xingjiehu.com/tags/pac/"/>
+    
+      <category term="shadowsocks" scheme="https://www.xingjiehu.com/tags/shadowsocks/"/>
+    
+  </entry>
+  
+  <entry>
     <title>vscode打造php开发环境</title>
-    <link href="https://www.xingjiehu.com/2019/06/20/cjx4gzeys001q52om3xvtb8eq/"/>
-    <id>https://www.xingjiehu.com/2019/06/20/cjx4gzeys001q52om3xvtb8eq/</id>
+    <link href="https://www.xingjiehu.com/2019/06/20/cjx9s7pkk001x02omzxc3ouzp/"/>
+    <id>https://www.xingjiehu.com/2019/06/20/cjx9s7pkk001x02omzxc3ouzp/</id>
     <published>2019-06-20T09:27:42.000Z</published>
-    <updated>2019-06-20T09:35:20.883Z</updated>
+    <updated>2019-06-20T10:18:37.558Z</updated>
     
     <content type="html"><![CDATA[<h2 id="文档注释"><a href="#文档注释" class="headerlink" title="文档注释"></a>文档注释</h2><p>借助于 PHP DocBlocker 插件，可以快速地在类名、变量名、方法/函数名 上方添加注释。</p><h2 id="自动补全"><a href="#自动补全" class="headerlink" title="自动补全"></a>自动补全</h2><p>借助于 PHP Intelephense 插件，可以实现代码智能提示。<br>安装后选择 file-&gt;preferences-&gt;settings 选择右上角<code>{}</code>进入配置模式，添加<code>&quot;php.executablePath&quot;: &quot;/usr/bin/php&quot;</code>，配置上php的路径</p><h2 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h2><p>借助于 php-cs-fixer 插件，可以方便地按照某一规则格式化代码，让你时刻保持代码可读性和风格统一。</p><a id="more"></a><h2 id="代码调试"><a href="#代码调试" class="headerlink" title="代码调试"></a>代码调试</h2><p>借助于 XDebug 插件，可以实现代码调试。</p><h2 id="修改历史"><a href="#修改历史" class="headerlink" title="修改历史"></a>修改历史</h2><p>借助于 Git Lens 插件，可以方便地查看每行代码的修改历史。</p>]]></content>
     
@@ -44,8 +71,8 @@
   
   <entry>
     <title>pipenv与pyenv、pyenv-virtualenv的关系和使用</title>
-    <link href="https://www.xingjiehu.com/2019/06/20/cjx4gzeye001452omz9mqkyg1/"/>
-    <id>https://www.xingjiehu.com/2019/06/20/cjx4gzeye001452omz9mqkyg1/</id>
+    <link href="https://www.xingjiehu.com/2019/06/20/cjx9s7pkb001j02om5i6hluvy/"/>
+    <id>https://www.xingjiehu.com/2019/06/20/cjx9s7pkb001j02om5i6hluvy/</id>
     <published>2019-06-20T01:20:23.000Z</published>
     <updated>2019-06-20T03:29:26.159Z</updated>
     
@@ -84,8 +111,8 @@
   
   <entry>
     <title>ssh使用详解</title>
-    <link href="https://www.xingjiehu.com/2019/06/06/cjx4gzeyo001l52omfi5kfn1k/"/>
-    <id>https://www.xingjiehu.com/2019/06/06/cjx4gzeyo001l52omfi5kfn1k/</id>
+    <link href="https://www.xingjiehu.com/2019/06/06/cjx9s7pkf001q02ome5himgms/"/>
+    <id>https://www.xingjiehu.com/2019/06/06/cjx9s7pkf001q02ome5himgms/</id>
     <published>2019-06-06T03:06:28.000Z</published>
     <updated>2019-06-06T05:48:47.142Z</updated>
     
@@ -108,8 +135,8 @@
   
   <entry>
     <title>GIT批量删除远程标签</title>
-    <link href="https://www.xingjiehu.com/2019/05/30/cjx4gzexm000652omka0tk6wc/"/>
-    <id>https://www.xingjiehu.com/2019/05/30/cjx4gzexm000652omka0tk6wc/</id>
+    <link href="https://www.xingjiehu.com/2019/05/30/cjx9s7pjc000202omt4s02qgk/"/>
+    <id>https://www.xingjiehu.com/2019/05/30/cjx9s7pjc000202omt4s02qgk/</id>
     <published>2019-05-30T08:39:29.000Z</published>
     <updated>2019-05-30T08:58:55.055Z</updated>
     
@@ -133,8 +160,8 @@
   
   <entry>
     <title>vuex getters不更新的奇怪现象解决方案</title>
-    <link href="https://www.xingjiehu.com/2019/05/23/cjx4gzeyx002152ommvz9x93q/"/>
-    <id>https://www.xingjiehu.com/2019/05/23/cjx4gzeyx002152ommvz9x93q/</id>
+    <link href="https://www.xingjiehu.com/2019/05/23/cjx9s7pkn002302om6ecso40h/"/>
+    <id>https://www.xingjiehu.com/2019/05/23/cjx9s7pkn002302om6ecso40h/</id>
     <published>2019-05-22T16:19:41.000Z</published>
     <updated>2019-05-22T16:52:33.799Z</updated>
     
@@ -159,8 +186,8 @@
   
   <entry>
     <title>sublime text 3安装插件</title>
-    <link href="https://www.xingjiehu.com/2019/05/17/cjx4gzeyu001t52omvpq5m58f/"/>
-    <id>https://www.xingjiehu.com/2019/05/17/cjx4gzeyu001t52omvpq5m58f/</id>
+    <link href="https://www.xingjiehu.com/2019/05/17/cjx9s7pkj001v02omuvow2hwm/"/>
+    <id>https://www.xingjiehu.com/2019/05/17/cjx9s7pkj001v02omuvow2hwm/</id>
     <published>2019-05-17T03:26:28.000Z</published>
     <updated>2019-05-17T05:29:57.122Z</updated>
     
@@ -186,8 +213,8 @@
   
   <entry>
     <title>docker环境下php使用指南</title>
-    <link href="https://www.xingjiehu.com/2019/05/15/cjx4gzexq000852omf7x209v8/"/>
-    <id>https://www.xingjiehu.com/2019/05/15/cjx4gzexq000852omf7x209v8/</id>
+    <link href="https://www.xingjiehu.com/2019/05/15/cjx9s7pjn000902omjkxkdbfj/"/>
+    <id>https://www.xingjiehu.com/2019/05/15/cjx9s7pjn000902omjkxkdbfj/</id>
     <published>2019-05-15T10:09:53.000Z</published>
     <updated>2019-05-20T15:36:48.109Z</updated>
     
@@ -220,8 +247,8 @@
   
   <entry>
     <title>ubuntu更新php</title>
-    <link href="https://www.xingjiehu.com/2019/05/10/cjx4gzeyz002452om6t1xj07x/"/>
-    <id>https://www.xingjiehu.com/2019/05/10/cjx4gzeyz002452om6t1xj07x/</id>
+    <link href="https://www.xingjiehu.com/2019/05/10/cjx9s7pkm002102omwomtj7o7/"/>
+    <id>https://www.xingjiehu.com/2019/05/10/cjx9s7pkm002102omwomtj7o7/</id>
     <published>2019-05-10T02:03:38.000Z</published>
     <updated>2019-05-10T05:50:57.186Z</updated>
     
@@ -248,8 +275,8 @@
   
   <entry>
     <title>vue组件之插槽</title>
-    <link href="https://www.xingjiehu.com/2019/05/09/cjx4gzez1002952om0m6iona1/"/>
-    <id>https://www.xingjiehu.com/2019/05/09/cjx4gzez1002952om0m6iona1/</id>
+    <link href="https://www.xingjiehu.com/2019/05/09/cjx9s7pkq002b02omazkh64r6/"/>
+    <id>https://www.xingjiehu.com/2019/05/09/cjx9s7pkq002b02omazkh64r6/</id>
     <published>2019-05-09T01:26:11.000Z</published>
     <updated>2019-05-09T06:45:41.963Z</updated>
     
@@ -276,8 +303,8 @@
   
   <entry>
     <title>Supervisord管理进程常用命令</title>
-    <link href="https://www.xingjiehu.com/2019/04/28/cjx4gzexb000252om1m9w74bp/"/>
-    <id>https://www.xingjiehu.com/2019/04/28/cjx4gzexb000252om1m9w74bp/</id>
+    <link href="https://www.xingjiehu.com/2019/04/28/cjx9s7pj6000002ompmtkohzx/"/>
+    <id>https://www.xingjiehu.com/2019/04/28/cjx9s7pj6000002ompmtkohzx/</id>
     <published>2019-04-28T10:13:49.000Z</published>
     <updated>2019-04-28T10:17:42.765Z</updated>
     
@@ -302,8 +329,8 @@
   
   <entry>
     <title>省略sudo使用docker</title>
-    <link href="https://www.xingjiehu.com/2019/04/25/cjx4gzezg002p52om6ykqqzqu/"/>
-    <id>https://www.xingjiehu.com/2019/04/25/cjx4gzezg002p52om6ykqqzqu/</id>
+    <link href="https://www.xingjiehu.com/2019/04/25/cjx9s7pkx002n02ome8666ehj/"/>
+    <id>https://www.xingjiehu.com/2019/04/25/cjx9s7pkx002n02ome8666ehj/</id>
     <published>2019-04-25T05:31:43.000Z</published>
     <updated>2019-04-25T05:40:47.479Z</updated>
     
@@ -329,8 +356,8 @@
   
   <entry>
     <title>su 与 su - 的区别</title>
-    <link href="https://www.xingjiehu.com/2019/04/24/cjx4gzeyq001n52omb2dtfy7o/"/>
-    <id>https://www.xingjiehu.com/2019/04/24/cjx4gzeyq001n52omb2dtfy7o/</id>
+    <link href="https://www.xingjiehu.com/2019/04/24/cjx9s7pki001t02om95jdyr1e/"/>
+    <id>https://www.xingjiehu.com/2019/04/24/cjx9s7pki001t02om95jdyr1e/</id>
     <published>2019-04-24T14:14:49.000Z</published>
     <updated>2019-04-24T14:20:45.850Z</updated>
     
@@ -356,8 +383,8 @@
   
   <entry>
     <title>使用阿里云ecs主机打造shadowsocks服务器,实现科学上网</title>
-    <link href="https://www.xingjiehu.com/2019/04/11/cjx4gzez3002c52ombsy4sw7z/"/>
-    <id>https://www.xingjiehu.com/2019/04/11/cjx4gzez3002c52ombsy4sw7z/</id>
+    <link href="https://www.xingjiehu.com/2019/04/11/cjx9s7pks002g02omvbrm4toj/"/>
+    <id>https://www.xingjiehu.com/2019/04/11/cjx9s7pks002g02omvbrm4toj/</id>
     <published>2019-04-11T07:10:46.000Z</published>
     <updated>2019-04-11T08:26:55.912Z</updated>
     
@@ -384,8 +411,8 @@
   
   <entry>
     <title>linux安装java环境</title>
-    <link href="https://www.xingjiehu.com/2019/04/03/cjx4gzeya000x52om9xf17z2e/"/>
-    <id>https://www.xingjiehu.com/2019/04/03/cjx4gzeya000x52om9xf17z2e/</id>
+    <link href="https://www.xingjiehu.com/2019/04/03/cjx9s7pk3001102om2zk2k96v/"/>
+    <id>https://www.xingjiehu.com/2019/04/03/cjx9s7pk3001102om2zk2k96v/</id>
     <published>2019-04-03T07:04:54.000Z</published>
     <updated>2019-04-03T07:49:28.231Z</updated>
     
@@ -411,8 +438,8 @@
   
   <entry>
     <title>VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式</title>
-    <link href="https://www.xingjiehu.com/2019/04/02/cjx4gzex3000052om6ylxx9yh/"/>
-    <id>https://www.xingjiehu.com/2019/04/02/cjx4gzex3000052om6ylxx9yh/</id>
+    <link href="https://www.xingjiehu.com/2019/04/02/cjx9s7pjj000602om1w4pu2le/"/>
+    <id>https://www.xingjiehu.com/2019/04/02/cjx9s7pjj000602om1w4pu2le/</id>
     <published>2019-04-02T05:29:28.000Z</published>
     <updated>2019-04-02T06:05:03.160Z</updated>
     
@@ -437,8 +464,8 @@
   
   <entry>
     <title>设计模式基本原则大白话</title>
-    <link href="https://www.xingjiehu.com/2019/04/01/cjx4gzezd002m52omgj6fnekj/"/>
-    <id>https://www.xingjiehu.com/2019/04/01/cjx4gzezd002m52omgj6fnekj/</id>
+    <link href="https://www.xingjiehu.com/2019/04/01/cjx9s7pl0002t02om7mgdm50y/"/>
+    <id>https://www.xingjiehu.com/2019/04/01/cjx9s7pl0002t02om7mgdm50y/</id>
     <published>2019-04-01T14:35:47.000Z</published>
     <updated>2019-04-01T15:26:15.530Z</updated>
     
@@ -481,8 +508,8 @@
   
   <entry>
     <title>vscode 保存自动按eslint格式化</title>
-    <link href="https://www.xingjiehu.com/2019/03/27/cjx4gzeyw001x52omzmferfh2/"/>
-    <id>https://www.xingjiehu.com/2019/03/27/cjx4gzeyw001x52omzmferfh2/</id>
+    <link href="https://www.xingjiehu.com/2019/03/27/cjx9s7pkp002802om2kbzp1oa/"/>
+    <id>https://www.xingjiehu.com/2019/03/27/cjx9s7pkp002802om2kbzp1oa/</id>
     <published>2019-03-27T06:26:43.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -512,8 +539,8 @@
   
   <entry>
     <title>elasticsearch学习笔记 - 集群相关术语</title>
-    <link href="https://www.xingjiehu.com/2019/03/15/cjx4gzexw000d52omonb1mbas/"/>
-    <id>https://www.xingjiehu.com/2019/03/15/cjx4gzexw000d52omonb1mbas/</id>
+    <link href="https://www.xingjiehu.com/2019/03/15/cjx9s7pjs000e02omvdosw84z/"/>
+    <id>https://www.xingjiehu.com/2019/03/15/cjx9s7pjs000e02omvdosw84z/</id>
     <published>2019-03-15T01:33:28.000Z</published>
     <updated>2019-04-01T01:20:17.298Z</updated>
     
@@ -549,8 +576,8 @@
   
   <entry>
     <title>elasticsearch学习笔记 - 安装</title>
-    <link href="https://www.xingjiehu.com/2019/03/14/cjx4gzexu000c52om3lqd69wb/"/>
-    <id>https://www.xingjiehu.com/2019/03/14/cjx4gzexu000c52om3lqd69wb/</id>
+    <link href="https://www.xingjiehu.com/2019/03/14/cjx9s7pjp000d02omy1krms39/"/>
+    <id>https://www.xingjiehu.com/2019/03/14/cjx9s7pjp000d02omy1krms39/</id>
     <published>2019-03-14T05:30:16.000Z</published>
     <updated>2019-04-01T01:20:17.298Z</updated>
     
@@ -599,33 +626,6 @@
       <category term="es" scheme="https://www.xingjiehu.com/tags/es/"/>
     
       <category term="安装es" scheme="https://www.xingjiehu.com/tags/%E5%AE%89%E8%A3%85es/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>linux使用apt方式安装mysql5.7</title>
-    <link href="https://www.xingjiehu.com/2019/03/13/cjx4gzeyb001052omu1kgt1bx/"/>
-    <id>https://www.xingjiehu.com/2019/03/13/cjx4gzeyb001052omu1kgt1bx/</id>
-    <published>2019-03-13T15:13:33.000Z</published>
-    <updated>2019-04-01T01:20:17.302Z</updated>
-    
-    <content type="html"><![CDATA[<p>安装3步曲：</p><ol><li>使用apt-get安装</li><li>设置root密码和验证方式</li><li>重启服务</li></ol><a id="more"></a><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>废话少说，开始安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server</span><br><span class="line">sudo apt-get install mysql-client</span><br></pre></td></tr></table></figure></p><h2 id="设置root密码和验证方式"><a href="#设置root密码和验证方式" class="headerlink" title="设置root密码和验证方式"></a>设置root密码和验证方式</h2><p>查看下/etc/mysql/debain.cnf，内容如下</p><blockquote><h1 id="Automatically-generated-for-Debian-scripts-DO-NOT-TOUCH"><a href="#Automatically-generated-for-Debian-scripts-DO-NOT-TOUCH" class="headerlink" title="Automatically generated for Debian scripts. DO NOT TOUCH!"></a>Automatically generated for Debian scripts. DO NOT TOUCH!</h1><p>[client]<br>host     = localhost<br>user     = debian-sys-maint<br>password = bqDQ42VIUk9zTFFR<br>socket   = /var/run/mysqld/mysqld.sock<br>[mysql_upgrade]<br>host     = localhost<br>user     = debian-sys-maint<br>password = bqDQ42VIUk9zTFFR<br>socket   = /var/run/mysqld/mysqld.sock</p></blockquote><p>用里面的debian-sys-maint用户登录数据库，密码就是password对应的bqDQ42VIUk9zTFFR<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u debian-sys-maint -p</span><br></pre></td></tr></table></figure></p><p>输入密码，进入mysql，执行一下命令设置root密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update mysql.user set authentication_string=PASSWORD(&apos;newPwd&apos;), plugin=&apos;mysql_native_password&apos; where user=&apos;root&apos;;</span><br></pre></td></tr></table></figure></p><p><code>注意，authentication_string是密码 ，plugin是验证方式，这两个一定要同时改。从mysql5.7开始root的默认验证方式是auth_socket</code></p><h2 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysql restart</span><br></pre></td></tr></table></figure><p>可以用mysql -uroot -p登录了</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;安装3步曲：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;使用apt-get安装&lt;/li&gt;
-&lt;li&gt;设置root密码和验证方式&lt;/li&gt;
-&lt;li&gt;重启服务&lt;/li&gt;
-&lt;/ol&gt;
-    
-    </summary>
-    
-      <category term="数据库" scheme="https://www.xingjiehu.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-    
-      <category term="mysql" scheme="https://www.xingjiehu.com/tags/mysql/"/>
     
   </entry>
   
