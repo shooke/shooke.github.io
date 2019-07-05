@@ -360,7 +360,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/24/cjx9s7pka001f02omio3bxjf6/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/05/cjxpsmsyh001d8momy11f7302/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -380,7 +380,175 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/24/cjx9s7pka001f02omio3bxjf6/" class="post-title-link" itemprop="url">shadowsocks-deepin pac模式失效问题解决方案</a>
+                <a href="/2019/07/05/cjxpsmsyh001d8momy11f7302/" class="post-title-link" itemprop="url">require.context使用说明</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-05 15:21:32 / 修改时间：15:42:44" itemprop="dateCreated datePublished" datetime="2019-07-05T15:21:32+08:00">2019-07-05</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/前端开发/" itemprop="url" rel="index"><span itemprop="name">前端开发</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>require.context是Webpack中用来管理依赖的一个函数，使用方式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require.context(directory, useSubdirectories = false, regExp = /^\.\//)</span><br></pre></td></tr></table></figure></p>
+<p>第一个参数表示相对的文件目录，<br>第二个参数表示是否包括子目录中的文件，<br>第三个参数表示引入的文件匹配的正则表达式。</p>
+<h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><p>require.context的返回值是一个函数对象，他提供了一个<code>keys()</code>方法，用来返回遍历到的文件或目录。<br>它自身可以作为函数使用，接收一个文件路径（必须是require.context遍历过的），用来获取文件返回的对象。</p>
+<h2 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h2><p>目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">├── routes</span><br><span class="line">│   ├── overview.js</span><br><span class="line">│   └── settings.js</span><br><span class="line">└── index.js</span><br></pre></td></tr></table></figure></p>
+<p><code>routes/overview.js</code>代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">    path: &apos;/overview&apos;,</span><br><span class="line">    name: &apos;/overview&apos;,</span><br><span class="line">    meta: &#123;</span><br><span class="line">      title: &apos;查看列表&apos;,</span><br><span class="line">      auth: true</span><br><span class="line">    &#125;,</span><br><span class="line">    component: _import(&apos;overview&apos;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>routes/settings.js</code>代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">    path: &apos;/settings&apos;,</span><br><span class="line">    name: &apos;/settings&apos;,</span><br><span class="line">    meta: &#123;</span><br><span class="line">      title: &apos;配置&apos;,</span><br><span class="line">      auth: true</span><br><span class="line">    &#125;,</span><br><span class="line">    component: _import(&apos;settings&apos;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>index.js</code>代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 返回的files是个函数对象</span><br><span class="line">const files = require.context(&apos;./routes&apos;, false, /\.js$/)</span><br><span class="line">let routes = []</span><br><span class="line">// 使用keys()方法获取文件，循环处理每个文件</span><br><span class="line">files.keys().forEach(key =&gt; &#123;  </span><br><span class="line">    // 使用files(key)获取文件对象</span><br><span class="line">    for (let r of files(key)) &#123;</span><br><span class="line">      routes.push(r)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export &#123;</span><br><span class="line">  routes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://asyncoder.com/2018/07/07/Webpack%E4%B8%AD%E7%9A%84require.context%E5%A6%99%E7%94%A8/" target="_blank" rel="noopener">https://asyncoder.com/2018/07/07/Webpack%E4%B8%AD%E7%9A%84require.context%E5%A6%99%E7%94%A8/</a><br><a href="https://www.jianshu.com/p/78f7b19932cb" target="_blank" rel="noopener">https://www.jianshu.com/p/78f7b19932cb</a><br><a href="https://segmentfault.com/a/1190000017160862" target="_blank" rel="noopener">https://segmentfault.com/a/1190000017160862</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/24/cjxpsmsyk001j8momw74nv478/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/06/24/cjxpsmsyk001j8momw74nv478/" class="post-title-link" itemprop="url">shadowsocks-deepin pac模式失效问题解决方案</a>
               
             
           </h1>
@@ -468,7 +636,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/06/24/cjx9s7pka001f02omio3bxjf6/#more" rel="contents">
+              <a class="btn" href="/2019/06/24/cjxpsmsyk001j8momw74nv478/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -528,7 +696,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/20/cjx9s7pkk001x02omzxc3ouzp/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/20/cjxpsmsz0002a8momy3ye479r/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -548,7 +716,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/20/cjx9s7pkk001x02omzxc3ouzp/" class="post-title-link" itemprop="url">vscode打造php开发环境</a>
+                <a href="/2019/06/20/cjxpsmsz0002a8momy3ye479r/" class="post-title-link" itemprop="url">vscode打造php开发环境</a>
               
             
           </h1>
@@ -637,7 +805,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/06/20/cjx9s7pkk001x02omzxc3ouzp/#more" rel="contents">
+              <a class="btn" href="/2019/06/20/cjxpsmsz0002a8momy3ye479r/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -697,7 +865,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/20/cjx9s7pkb001j02om5i6hluvy/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/20/cjxpsmsyd00158mom667oyav9/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -717,7 +885,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/20/cjx9s7pkb001j02om5i6hluvy/" class="post-title-link" itemprop="url">pipenv与pyenv、pyenv-virtualenv的关系和使用</a>
+                <a href="/2019/06/20/cjxpsmsyd00158mom667oyav9/" class="post-title-link" itemprop="url">pipenv与pyenv、pyenv-virtualenv的关系和使用</a>
               
             
           </h1>
@@ -816,7 +984,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/06/20/cjx9s7pkb001j02om5i6hluvy/#more" rel="contents">
+              <a class="btn" href="/2019/06/20/cjxpsmsyd00158mom667oyav9/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -876,7 +1044,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/06/cjx9s7pkf001q02ome5himgms/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/06/cjxpsmsyp001r8mom1t1pshsj/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -896,7 +1064,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/06/cjx9s7pkf001q02ome5himgms/" class="post-title-link" itemprop="url">ssh使用详解</a>
+                <a href="/2019/06/06/cjxpsmsyp001r8mom1t1pshsj/" class="post-title-link" itemprop="url">ssh使用详解</a>
               
             
           </h1>
@@ -983,7 +1151,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/06/06/cjx9s7pkf001q02ome5himgms/#more" rel="contents">
+              <a class="btn" href="/2019/06/06/cjxpsmsyp001r8mom1t1pshsj/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1043,7 +1211,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/30/cjx9s7pjc000202omt4s02qgk/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/30/cjxpsmsxb00008mompgchv8my/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1063,7 +1231,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/30/cjx9s7pjc000202omt4s02qgk/" class="post-title-link" itemprop="url">GIT批量删除远程标签</a>
+                <a href="/2019/05/30/cjxpsmsxb00008mompgchv8my/" class="post-title-link" itemprop="url">GIT批量删除远程标签</a>
               
             
           </h1>
@@ -1151,7 +1319,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/05/30/cjx9s7pjc000202omt4s02qgk/#more" rel="contents">
+              <a class="btn" href="/2019/05/30/cjxpsmsxb00008mompgchv8my/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1211,7 +1379,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/23/cjx9s7pkn002302om6ecso40h/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/23/cjxpsmsyz00278momg55fnyyt/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1231,7 +1399,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/23/cjx9s7pkn002302om6ecso40h/" class="post-title-link" itemprop="url">vuex getters不更新的奇怪现象解决方案</a>
+                <a href="/2019/05/23/cjxpsmsyz00278momg55fnyyt/" class="post-title-link" itemprop="url">vuex getters不更新的奇怪现象解决方案</a>
               
             
           </h1>
@@ -1318,7 +1486,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/05/23/cjx9s7pkn002302om6ecso40h/#more" rel="contents">
+              <a class="btn" href="/2019/05/23/cjxpsmsyz00278momg55fnyyt/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1378,7 +1546,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/17/cjx9s7pkj001v02omuvow2hwm/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/17/cjxpsmsyt001x8momrawb0ncz/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1398,7 +1566,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/17/cjx9s7pkj001v02omuvow2hwm/" class="post-title-link" itemprop="url">sublime text 3安装插件</a>
+                <a href="/2019/05/17/cjxpsmsyt001x8momrawb0ncz/" class="post-title-link" itemprop="url">sublime text 3安装插件</a>
               
             
           </h1>
@@ -1486,7 +1654,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/05/17/cjx9s7pkj001v02omuvow2hwm/#more" rel="contents">
+              <a class="btn" href="/2019/05/17/cjxpsmsyt001x8momrawb0ncz/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1546,7 +1714,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/15/cjx9s7pjn000902omjkxkdbfj/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/15/cjxpsmsxt00098mom0f0pruz2/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1566,7 +1734,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/15/cjx9s7pjn000902omjkxkdbfj/" class="post-title-link" itemprop="url">docker环境下php使用指南</a>
+                <a href="/2019/05/15/cjxpsmsxt00098mom0f0pruz2/" class="post-title-link" itemprop="url">docker环境下php使用指南</a>
               
             
           </h1>
@@ -1671,7 +1839,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/05/15/cjx9s7pjn000902omjkxkdbfj/#more" rel="contents">
+              <a class="btn" href="/2019/05/15/cjxpsmsxt00098mom0f0pruz2/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1731,7 +1899,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/10/cjx9s7pkm002102omwomtj7o7/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/10/cjxpsmsyv001z8moma1k24fr5/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1751,7 +1919,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/10/cjx9s7pkm002102omwomtj7o7/" class="post-title-link" itemprop="url">ubuntu更新php</a>
+                <a href="/2019/05/10/cjxpsmsyv001z8moma1k24fr5/" class="post-title-link" itemprop="url">ubuntu更新php</a>
               
             
           </h1>
@@ -1883,173 +2051,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/09/cjx9s7pkq002b02omazkh64r6/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/09/cjx9s7pkq002b02omazkh64r6/" class="post-title-link" itemprop="url">vue组件之插槽</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-09 09:26:11 / 修改时间：14:45:41" itemprop="dateCreated datePublished" datetime="2019-05-09T09:26:11+08:00">2019-05-09</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/vue/" itemprop="url" rel="index"><span itemprop="name">vue</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>这篇文章的写作时间是 vue2.6 发布后，因此适用于 2.6 以后的版本<br>插槽是 vue 组件中很重要的一环，他解决了组件内容自定义的问题。以及父子组件变量传递的问题（作用域插槽）。<br>在 2.6 以后的版本中，具名插槽和作用域插槽引入了一个新的统一的语法 (即 v-slot 指令)，它取代了 slot 和 slot-scope 。这两个老的已经进入废弃期，为了保持平滑升级，目前还可以使用，但是不推荐使用。后期会被移除。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/09/cjx9s7pkq002b02omazkh64r6/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2097,7 +2098,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">34</span>
+                    <span class="site-state-item-count">35</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2142,7 +2143,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">16</span>
+                      
+                    
+                    <span class="site-state-item-count">17</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2265,7 +2268,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">55</span>
+                      
+                    
+                    <span class="site-state-item-count">56</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

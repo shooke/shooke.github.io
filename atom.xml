@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2019-06-24T03:03:34.600Z</updated>
+  <updated>2019-07-05T07:42:44.496Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,9 +17,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>require.context使用说明</title>
+    <link href="https://www.xingjiehu.com/2019/07/05/cjxpsmsyh001d8momy11f7302/"/>
+    <id>https://www.xingjiehu.com/2019/07/05/cjxpsmsyh001d8momy11f7302/</id>
+    <published>2019-07-05T07:21:32.000Z</published>
+    <updated>2019-07-05T07:42:44.496Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>require.context是Webpack中用来管理依赖的一个函数，使用方式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require.context(directory, useSubdirectories = false, regExp = /^\.\//)</span><br></pre></td></tr></table></figure></p><p>第一个参数表示相对的文件目录，<br>第二个参数表示是否包括子目录中的文件，<br>第三个参数表示引入的文件匹配的正则表达式。</p><h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><p>require.context的返回值是一个函数对象，他提供了一个<code>keys()</code>方法，用来返回遍历到的文件或目录。<br>它自身可以作为函数使用，接收一个文件路径（必须是require.context遍历过的），用来获取文件返回的对象。</p><h2 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h2><p>目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">├── routes</span><br><span class="line">│   ├── overview.js</span><br><span class="line">│   └── settings.js</span><br><span class="line">└── index.js</span><br></pre></td></tr></table></figure></p><p><code>routes/overview.js</code>代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">    path: &apos;/overview&apos;,</span><br><span class="line">    name: &apos;/overview&apos;,</span><br><span class="line">    meta: &#123;</span><br><span class="line">      title: &apos;查看列表&apos;,</span><br><span class="line">      auth: true</span><br><span class="line">    &#125;,</span><br><span class="line">    component: _import(&apos;overview&apos;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p><p><code>routes/settings.js</code>代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">    path: &apos;/settings&apos;,</span><br><span class="line">    name: &apos;/settings&apos;,</span><br><span class="line">    meta: &#123;</span><br><span class="line">      title: &apos;配置&apos;,</span><br><span class="line">      auth: true</span><br><span class="line">    &#125;,</span><br><span class="line">    component: _import(&apos;settings&apos;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p><p><code>index.js</code>代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 返回的files是个函数对象</span><br><span class="line">const files = require.context(&apos;./routes&apos;, false, /\.js$/)</span><br><span class="line">let routes = []</span><br><span class="line">// 使用keys()方法获取文件，循环处理每个文件</span><br><span class="line">files.keys().forEach(key =&gt; &#123;  </span><br><span class="line">    // 使用files(key)获取文件对象</span><br><span class="line">    for (let r of files(key)) &#123;</span><br><span class="line">      routes.push(r)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export &#123;</span><br><span class="line">  routes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://asyncoder.com/2018/07/07/Webpack%E4%B8%AD%E7%9A%84require.context%E5%A6%99%E7%94%A8/" target="_blank" rel="noopener">https://asyncoder.com/2018/07/07/Webpack%E4%B8%AD%E7%9A%84require.context%E5%A6%99%E7%94%A8/</a><br><a href="https://www.jianshu.com/p/78f7b19932cb" target="_blank" rel="noopener">https://www.jianshu.com/p/78f7b19932cb</a><br><a href="https://segmentfault.com/a/1190000017160862" target="_blank" rel="noopener">https://segmentfault.com/a/1190000017160862</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;require.context是Webpack中用来管理依赖的一个函数，使用方式如下：&lt;br&gt;&lt;figure class=&quot;highligh
+      
+    
+    </summary>
+    
+      <category term="前端开发" scheme="https://www.xingjiehu.com/categories/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    
+    
+      <category term="webpack" scheme="https://www.xingjiehu.com/tags/webpack/"/>
+    
+  </entry>
+  
+  <entry>
     <title>shadowsocks-deepin pac模式失效问题解决方案</title>
-    <link href="https://www.xingjiehu.com/2019/06/24/cjx9s7pka001f02omio3bxjf6/"/>
-    <id>https://www.xingjiehu.com/2019/06/24/cjx9s7pka001f02omio3bxjf6/</id>
+    <link href="https://www.xingjiehu.com/2019/06/24/cjxpsmsyk001j8momw74nv478/"/>
+    <id>https://www.xingjiehu.com/2019/06/24/cjxpsmsyk001j8momw74nv478/</id>
     <published>2019-06-24T02:37:50.000Z</published>
     <updated>2019-06-24T03:03:34.600Z</updated>
     
@@ -45,8 +70,8 @@
   
   <entry>
     <title>vscode打造php开发环境</title>
-    <link href="https://www.xingjiehu.com/2019/06/20/cjx9s7pkk001x02omzxc3ouzp/"/>
-    <id>https://www.xingjiehu.com/2019/06/20/cjx9s7pkk001x02omzxc3ouzp/</id>
+    <link href="https://www.xingjiehu.com/2019/06/20/cjxpsmsz0002a8momy3ye479r/"/>
+    <id>https://www.xingjiehu.com/2019/06/20/cjxpsmsz0002a8momy3ye479r/</id>
     <published>2019-06-20T09:27:42.000Z</published>
     <updated>2019-06-20T10:18:37.558Z</updated>
     
@@ -71,8 +96,8 @@
   
   <entry>
     <title>pipenv与pyenv、pyenv-virtualenv的关系和使用</title>
-    <link href="https://www.xingjiehu.com/2019/06/20/cjx9s7pkb001j02om5i6hluvy/"/>
-    <id>https://www.xingjiehu.com/2019/06/20/cjx9s7pkb001j02om5i6hluvy/</id>
+    <link href="https://www.xingjiehu.com/2019/06/20/cjxpsmsyd00158mom667oyav9/"/>
+    <id>https://www.xingjiehu.com/2019/06/20/cjxpsmsyd00158mom667oyav9/</id>
     <published>2019-06-20T01:20:23.000Z</published>
     <updated>2019-06-20T03:29:26.159Z</updated>
     
@@ -111,8 +136,8 @@
   
   <entry>
     <title>ssh使用详解</title>
-    <link href="https://www.xingjiehu.com/2019/06/06/cjx9s7pkf001q02ome5himgms/"/>
-    <id>https://www.xingjiehu.com/2019/06/06/cjx9s7pkf001q02ome5himgms/</id>
+    <link href="https://www.xingjiehu.com/2019/06/06/cjxpsmsyp001r8mom1t1pshsj/"/>
+    <id>https://www.xingjiehu.com/2019/06/06/cjxpsmsyp001r8mom1t1pshsj/</id>
     <published>2019-06-06T03:06:28.000Z</published>
     <updated>2019-06-06T05:48:47.142Z</updated>
     
@@ -135,8 +160,8 @@
   
   <entry>
     <title>GIT批量删除远程标签</title>
-    <link href="https://www.xingjiehu.com/2019/05/30/cjx9s7pjc000202omt4s02qgk/"/>
-    <id>https://www.xingjiehu.com/2019/05/30/cjx9s7pjc000202omt4s02qgk/</id>
+    <link href="https://www.xingjiehu.com/2019/05/30/cjxpsmsxb00008mompgchv8my/"/>
+    <id>https://www.xingjiehu.com/2019/05/30/cjxpsmsxb00008mompgchv8my/</id>
     <published>2019-05-30T08:39:29.000Z</published>
     <updated>2019-05-30T08:58:55.055Z</updated>
     
@@ -160,8 +185,8 @@
   
   <entry>
     <title>vuex getters不更新的奇怪现象解决方案</title>
-    <link href="https://www.xingjiehu.com/2019/05/23/cjx9s7pkn002302om6ecso40h/"/>
-    <id>https://www.xingjiehu.com/2019/05/23/cjx9s7pkn002302om6ecso40h/</id>
+    <link href="https://www.xingjiehu.com/2019/05/23/cjxpsmsyz00278momg55fnyyt/"/>
+    <id>https://www.xingjiehu.com/2019/05/23/cjxpsmsyz00278momg55fnyyt/</id>
     <published>2019-05-22T16:19:41.000Z</published>
     <updated>2019-05-22T16:52:33.799Z</updated>
     
@@ -186,8 +211,8 @@
   
   <entry>
     <title>sublime text 3安装插件</title>
-    <link href="https://www.xingjiehu.com/2019/05/17/cjx9s7pkj001v02omuvow2hwm/"/>
-    <id>https://www.xingjiehu.com/2019/05/17/cjx9s7pkj001v02omuvow2hwm/</id>
+    <link href="https://www.xingjiehu.com/2019/05/17/cjxpsmsyt001x8momrawb0ncz/"/>
+    <id>https://www.xingjiehu.com/2019/05/17/cjxpsmsyt001x8momrawb0ncz/</id>
     <published>2019-05-17T03:26:28.000Z</published>
     <updated>2019-05-17T05:29:57.122Z</updated>
     
@@ -213,8 +238,8 @@
   
   <entry>
     <title>docker环境下php使用指南</title>
-    <link href="https://www.xingjiehu.com/2019/05/15/cjx9s7pjn000902omjkxkdbfj/"/>
-    <id>https://www.xingjiehu.com/2019/05/15/cjx9s7pjn000902omjkxkdbfj/</id>
+    <link href="https://www.xingjiehu.com/2019/05/15/cjxpsmsxt00098mom0f0pruz2/"/>
+    <id>https://www.xingjiehu.com/2019/05/15/cjxpsmsxt00098mom0f0pruz2/</id>
     <published>2019-05-15T10:09:53.000Z</published>
     <updated>2019-05-20T15:36:48.109Z</updated>
     
@@ -247,8 +272,8 @@
   
   <entry>
     <title>ubuntu更新php</title>
-    <link href="https://www.xingjiehu.com/2019/05/10/cjx9s7pkm002102omwomtj7o7/"/>
-    <id>https://www.xingjiehu.com/2019/05/10/cjx9s7pkm002102omwomtj7o7/</id>
+    <link href="https://www.xingjiehu.com/2019/05/10/cjxpsmsyv001z8moma1k24fr5/"/>
+    <id>https://www.xingjiehu.com/2019/05/10/cjxpsmsyv001z8moma1k24fr5/</id>
     <published>2019-05-10T02:03:38.000Z</published>
     <updated>2019-05-10T05:50:57.186Z</updated>
     
@@ -275,8 +300,8 @@
   
   <entry>
     <title>vue组件之插槽</title>
-    <link href="https://www.xingjiehu.com/2019/05/09/cjx9s7pkq002b02omazkh64r6/"/>
-    <id>https://www.xingjiehu.com/2019/05/09/cjx9s7pkq002b02omazkh64r6/</id>
+    <link href="https://www.xingjiehu.com/2019/05/09/cjxpsmsz2002f8mom77z79z9p/"/>
+    <id>https://www.xingjiehu.com/2019/05/09/cjxpsmsz2002f8mom77z79z9p/</id>
     <published>2019-05-09T01:26:11.000Z</published>
     <updated>2019-05-09T06:45:41.963Z</updated>
     
@@ -303,8 +328,8 @@
   
   <entry>
     <title>Supervisord管理进程常用命令</title>
-    <link href="https://www.xingjiehu.com/2019/04/28/cjx9s7pj6000002ompmtkohzx/"/>
-    <id>https://www.xingjiehu.com/2019/04/28/cjx9s7pj6000002ompmtkohzx/</id>
+    <link href="https://www.xingjiehu.com/2019/04/28/cjxpsmsxi00028mom8i1n75hi/"/>
+    <id>https://www.xingjiehu.com/2019/04/28/cjxpsmsxi00028mom8i1n75hi/</id>
     <published>2019-04-28T10:13:49.000Z</published>
     <updated>2019-04-28T10:17:42.765Z</updated>
     
@@ -329,8 +354,8 @@
   
   <entry>
     <title>省略sudo使用docker</title>
-    <link href="https://www.xingjiehu.com/2019/04/25/cjx9s7pkx002n02ome8666ehj/"/>
-    <id>https://www.xingjiehu.com/2019/04/25/cjx9s7pkx002n02ome8666ehj/</id>
+    <link href="https://www.xingjiehu.com/2019/04/25/cjxpsmsz5002m8momohqtbs2g/"/>
+    <id>https://www.xingjiehu.com/2019/04/25/cjxpsmsz5002m8momohqtbs2g/</id>
     <published>2019-04-25T05:31:43.000Z</published>
     <updated>2019-04-25T05:40:47.479Z</updated>
     
@@ -356,8 +381,8 @@
   
   <entry>
     <title>su 与 su - 的区别</title>
-    <link href="https://www.xingjiehu.com/2019/04/24/cjx9s7pki001t02om95jdyr1e/"/>
-    <id>https://www.xingjiehu.com/2019/04/24/cjx9s7pki001t02om95jdyr1e/</id>
+    <link href="https://www.xingjiehu.com/2019/04/24/cjxpsmsyr001u8mom9h5nflfk/"/>
+    <id>https://www.xingjiehu.com/2019/04/24/cjxpsmsyr001u8mom9h5nflfk/</id>
     <published>2019-04-24T14:14:49.000Z</published>
     <updated>2019-04-24T14:20:45.850Z</updated>
     
@@ -383,8 +408,8 @@
   
   <entry>
     <title>使用阿里云ecs主机打造shadowsocks服务器,实现科学上网</title>
-    <link href="https://www.xingjiehu.com/2019/04/11/cjx9s7pks002g02omvbrm4toj/"/>
-    <id>https://www.xingjiehu.com/2019/04/11/cjx9s7pks002g02omvbrm4toj/</id>
+    <link href="https://www.xingjiehu.com/2019/04/11/cjxpsmsz3002i8mom0okzl054/"/>
+    <id>https://www.xingjiehu.com/2019/04/11/cjxpsmsz3002i8mom0okzl054/</id>
     <published>2019-04-11T07:10:46.000Z</published>
     <updated>2019-04-11T08:26:55.912Z</updated>
     
@@ -411,8 +436,8 @@
   
   <entry>
     <title>linux安装java环境</title>
-    <link href="https://www.xingjiehu.com/2019/04/03/cjx9s7pk3001102om2zk2k96v/"/>
-    <id>https://www.xingjiehu.com/2019/04/03/cjx9s7pk3001102om2zk2k96v/</id>
+    <link href="https://www.xingjiehu.com/2019/04/03/cjxpsmsyf00188momp9l403h2/"/>
+    <id>https://www.xingjiehu.com/2019/04/03/cjxpsmsyf00188momp9l403h2/</id>
     <published>2019-04-03T07:04:54.000Z</published>
     <updated>2019-04-03T07:49:28.231Z</updated>
     
@@ -438,8 +463,8 @@
   
   <entry>
     <title>VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式</title>
-    <link href="https://www.xingjiehu.com/2019/04/02/cjx9s7pjj000602om1w4pu2le/"/>
-    <id>https://www.xingjiehu.com/2019/04/02/cjx9s7pjj000602om1w4pu2le/</id>
+    <link href="https://www.xingjiehu.com/2019/04/02/cjxpsmsxp00068mompv0ex3xj/"/>
+    <id>https://www.xingjiehu.com/2019/04/02/cjxpsmsxp00068mompv0ex3xj/</id>
     <published>2019-04-02T05:29:28.000Z</published>
     <updated>2019-04-02T06:05:03.160Z</updated>
     
@@ -464,8 +489,8 @@
   
   <entry>
     <title>设计模式基本原则大白话</title>
-    <link href="https://www.xingjiehu.com/2019/04/01/cjx9s7pl0002t02om7mgdm50y/"/>
-    <id>https://www.xingjiehu.com/2019/04/01/cjx9s7pl0002t02om7mgdm50y/</id>
+    <link href="https://www.xingjiehu.com/2019/04/01/cjxpsmsz9002v8momzcjrxlqp/"/>
+    <id>https://www.xingjiehu.com/2019/04/01/cjxpsmsz9002v8momzcjrxlqp/</id>
     <published>2019-04-01T14:35:47.000Z</published>
     <updated>2019-04-01T15:26:15.530Z</updated>
     
@@ -508,8 +533,8 @@
   
   <entry>
     <title>vscode 保存自动按eslint格式化</title>
-    <link href="https://www.xingjiehu.com/2019/03/27/cjx9s7pkp002802om2kbzp1oa/"/>
-    <id>https://www.xingjiehu.com/2019/03/27/cjx9s7pkp002802om2kbzp1oa/</id>
+    <link href="https://www.xingjiehu.com/2019/03/27/cjxpsmsyx00228mom74qfb0rh/"/>
+    <id>https://www.xingjiehu.com/2019/03/27/cjxpsmsyx00228mom74qfb0rh/</id>
     <published>2019-03-27T06:26:43.000Z</published>
     <updated>2019-04-01T01:20:17.302Z</updated>
     
@@ -539,8 +564,8 @@
   
   <entry>
     <title>elasticsearch学习笔记 - 集群相关术语</title>
-    <link href="https://www.xingjiehu.com/2019/03/15/cjx9s7pjs000e02omvdosw84z/"/>
-    <id>https://www.xingjiehu.com/2019/03/15/cjx9s7pjs000e02omvdosw84z/</id>
+    <link href="https://www.xingjiehu.com/2019/03/15/cjxpsmsxy000d8momkdtttm93/"/>
+    <id>https://www.xingjiehu.com/2019/03/15/cjxpsmsxy000d8momkdtttm93/</id>
     <published>2019-03-15T01:33:28.000Z</published>
     <updated>2019-04-01T01:20:17.298Z</updated>
     
@@ -571,61 +596,6 @@
       <category term="es" scheme="https://www.xingjiehu.com/tags/es/"/>
     
       <category term="elasticsearch集群" scheme="https://www.xingjiehu.com/tags/elasticsearch%E9%9B%86%E7%BE%A4/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>elasticsearch学习笔记 - 安装</title>
-    <link href="https://www.xingjiehu.com/2019/03/14/cjx9s7pjp000d02omy1krms39/"/>
-    <id>https://www.xingjiehu.com/2019/03/14/cjx9s7pjp000d02omy1krms39/</id>
-    <published>2019-03-14T05:30:16.000Z</published>
-    <updated>2019-04-01T01:20:17.298Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近用到了es，于是从网上找资料，但是好多都过时了，比如type在elasticsearch 6.0开始已经不推荐使用了。联合查询6.x使用的是join类型的字段，也不在支持type之间的联合查询。问什么要取消type呢？官方给出的理由是</p><blockquote><p>①，而在我们elasticsearch中同一 Index 下，同名 Field 类型必须相同，即使不同的 Type；<br>②， 同一 Index 下，TypeA 的 Field 会占用 TypeB 的资源（互相消耗资源），会形成一种稀疏存储的情况。尤其是 doc value ，为什么这么说呢？doc value为了性能考虑会保留一部分的磁盘空间，这意味着 TypeB 可能不需要这个字段的 doc_value 而 TypeA 需要，那么 TypeB 就被白白占用了一部分没有半点用处的资源；<br>③，Score 评分机制是 index-wide 的，不同的type之间评分也会造成干扰。<br>④，索引元数据本身是放在主节点中维护的，CP 设计。意味着涉及到大量字段变更及元数据变更的操作，都会导致该 Index 被堵塞或假死。我们应该对这样的 Index 做隔离，避免影响到其他 Index 正常的增删改查。甚至当涉及到字段变更十分频繁且无法预定义 schema 的场景时，是否要使用 ES 都应该慎思熟虑了！</p></blockquote><p>出现这种情况主要是在elasticsearch早期时候提出的一些概念，当时为了便于推广，跟关系型数据库作了如下比喻：</p><table><thead><tr><th>myql</th><th>elasticsearch</th></tr></thead><tbody><tr><td>database</td><td>index</td></tr><tr><td>table</td><td>type</td></tr><tr><td>column</td><td>field</td></tr></tbody></table><p>很多学习elasticsearch的人估计都看过这个比喻，但其实这是错误的。elasticsearch是基于 Lucene开发的，而在 Lucene中是没有table概念的，有的只是文档和字段。</p><a id="more"></a><p>言归正传开始今天的正题，如何安装elasticsearch。</p><h2 id="安装java环境"><a href="#安装java环境" class="headerlink" title="安装java环境"></a>安装java环境</h2><p>elasticsearch是使用java语言开发的，所以运行需要安装jdk。</p><ol><li>下载<br>先到 <a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a> 下载jdk然后安装。<br>我用的压缩包安装，下载<code>dk-8u201-linux-x64.tar.gz</code></li><li>安装<br>将下载的压缩包上传到服务器的<code>/opt</code>目录下，然后执行一下命令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># tar zxvf dk-8u201-linux-x64.tar.gz</span><br></pre></td></tr></table></figure></li></ol><p>解压后，会出现<code>dk-8u201-linux-x64</code>文件夹，至于压缩包，如果不想要了可以删除</p><ol start="3"><li>设置环境变量<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/profile</span><br></pre></td></tr></table></figure></li></ol><p>在底部添加以下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#java</span><br><span class="line">JAVA_HOME=/opt/jdk-10.0.2</span><br><span class="line">JRE_HOME=$JAVA_HOME/jre</span><br><span class="line">PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line">export JAVA_HOME</span><br><span class="line">export JRE_HOME</span><br><span class="line">export PATH</span><br><span class="line">export CLASSPATH</span><br></pre></td></tr></table></figure></p><p>让配置立刻生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source /etc/profile</span><br></pre></td></tr></table></figure></p><p>执行 <code>java -version</code> 如果看到java版本提示，表示安装成功了。</p><blockquote><p>注意，这里有个坑，ubuntu服务器切换用户后环境变量会丢失。如果你是服务器环境，请参考<a href="https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-debian-8" target="_blank" rel="noopener">https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-debian-8</a> 进行安装</p></blockquote><h2 id="安装elasticsearch"><a href="#安装elasticsearch" class="headerlink" title="安装elasticsearch"></a>安装elasticsearch</h2><p>安装非常简单，执行一下命令就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.4.3.tar.gz</span><br><span class="line">tar -xvf elasticsearch-6.4.3.tar.gz</span><br><span class="line">cd elasticsearch-6.4.3/bin</span><br><span class="line">./elasticsearch</span><br></pre></td></tr></table></figure></p><p>这样elasticsearch就安装完成并且运行起来了</p><blockquote><p>注意，elasticsearch要去不能用root用户运行，如果你是root，可以用如下方法解决</p><ol><li>在执行elasticSearch时加上参数-Des.insecure.allow.root=true。</li><li>用vi打开elasicsearch执行文件，在变量ES_JAVA_OPTS使用前添加以下命令 ES_JAVA_OPTS=”-Des.insecure.allow.root=true”</li><li>su 切换到其他账号，运行elasticsearch</li></ol></blockquote><p>参考资料<br><a href="https://www.elastic.co/guide/en/elasticsearch/reference/6.4/getting-started-install.html" target="_blank" rel="noopener">elasticsearch官方安装说明</a><br><a href="https://blog.csdn.net/lahand/article/details/78954112" target="_blank" rel="noopener">root运行elasticsearch</a><br><a href="http://www.ruanyifeng.com/blog/2017/08/elasticsearch.html" target="_blank" rel="noopener">阮老师elasticsearch笔记</a><br><a href="https://www.digitalocean.com/community/tutorials/how-to-install-java-with-apt-get-on-debian-8" target="_blank" rel="noopener">jdk安装</a><br><a href="https://elasticsearch.cn/article/337" target="_blank" rel="noopener">elasticsearch6.0只允许一个type</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近用到了es，于是从网上找资料，但是好多都过时了，比如type在elasticsearch 6.0开始已经不推荐使用了。联合查询6.x使用的是join类型的字段，也不在支持type之间的联合查询。问什么要取消type呢？官方给出的理由是&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;①，而在我们elasticsearch中同一 Index 下，同名 Field 类型必须相同，即使不同的 Type；&lt;br&gt;②， 同一 Index 下，TypeA 的 Field 会占用 TypeB 的资源（互相消耗资源），会形成一种稀疏存储的情况。尤其是 doc value ，为什么这么说呢？doc value为了性能考虑会保留一部分的磁盘空间，这意味着 TypeB 可能不需要这个字段的 doc_value 而 TypeA 需要，那么 TypeB 就被白白占用了一部分没有半点用处的资源；&lt;br&gt;③，Score 评分机制是 index-wide 的，不同的type之间评分也会造成干扰。&lt;br&gt;④，索引元数据本身是放在主节点中维护的，CP 设计。意味着涉及到大量字段变更及元数据变更的操作，都会导致该 Index 被堵塞或假死。我们应该对这样的 Index 做隔离，避免影响到其他 Index 正常的增删改查。甚至当涉及到字段变更十分频繁且无法预定义 schema 的场景时，是否要使用 ES 都应该慎思熟虑了！&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;出现这种情况主要是在elasticsearch早期时候提出的一些概念，当时为了便于推广，跟关系型数据库作了如下比喻：&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;myql&lt;/th&gt;
-&lt;th&gt;elasticsearch&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;database&lt;/td&gt;
-&lt;td&gt;index&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;table&lt;/td&gt;
-&lt;td&gt;type&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;column&lt;/td&gt;
-&lt;td&gt;field&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;很多学习elasticsearch的人估计都看过这个比喻，但其实这是错误的。elasticsearch是基于 Lucene开发的，而在 Lucene中是没有table概念的，有的只是文档和字段。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="elasticsearch" scheme="https://www.xingjiehu.com/categories/elasticsearch/"/>
-    
-    
-      <category term="elasticsearch学习笔记" scheme="https://www.xingjiehu.com/tags/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-      <category term="elasticsearch" scheme="https://www.xingjiehu.com/tags/elasticsearch/"/>
-    
-      <category term="es" scheme="https://www.xingjiehu.com/tags/es/"/>
-    
-      <category term="安装es" scheme="https://www.xingjiehu.com/tags/%E5%AE%89%E8%A3%85es/"/>
     
   </entry>
   
