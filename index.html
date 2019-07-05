@@ -405,7 +405,7 @@
                 
               
 
-              <time title="创建时间：2019-07-05 15:21:32 / 修改时间：15:42:44" itemprop="dateCreated datePublished" datetime="2019-07-05T15:21:32+08:00">2019-07-05</time>
+              <time title="创建时间：2019-07-05 15:21:32 / 修改时间：15:45:56" itemprop="dateCreated datePublished" datetime="2019-07-05T15:21:32+08:00">2019-07-05</time>
             
 
             
@@ -463,17 +463,17 @@
 
       
         
-          
-            <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>require.context是Webpack中用来管理依赖的一个函数，使用方式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require.context(directory, useSubdirectories = false, regExp = /^\.\//)</span><br></pre></td></tr></table></figure></p>
+          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>require.context是Webpack中用来管理依赖的一个函数，使用方式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require.context(directory, useSubdirectories = false, regExp = /^\.\//)</span><br></pre></td></tr></table></figure></p>
 <p>第一个参数表示相对的文件目录，<br>第二个参数表示是否包括子目录中的文件，<br>第三个参数表示引入的文件匹配的正则表达式。</p>
-<h2 id="返回值"><a href="#返回值" class="headerlink" title="返回值"></a>返回值</h2><p>require.context的返回值是一个函数对象，他提供了一个<code>keys()</code>方法，用来返回遍历到的文件或目录。<br>它自身可以作为函数使用，接收一个文件路径（必须是require.context遍历过的），用来获取文件返回的对象。</p>
-<h2 id="使用实例"><a href="#使用实例" class="headerlink" title="使用实例"></a>使用实例</h2><p>目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">├── routes</span><br><span class="line">│   ├── overview.js</span><br><span class="line">│   └── settings.js</span><br><span class="line">└── index.js</span><br></pre></td></tr></table></figure></p>
-<p><code>routes/overview.js</code>代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">    path: &apos;/overview&apos;,</span><br><span class="line">    name: &apos;/overview&apos;,</span><br><span class="line">    meta: &#123;</span><br><span class="line">      title: &apos;查看列表&apos;,</span><br><span class="line">      auth: true</span><br><span class="line">    &#125;,</span><br><span class="line">    component: _import(&apos;overview&apos;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<p><code>routes/settings.js</code>代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">    path: &apos;/settings&apos;,</span><br><span class="line">    name: &apos;/settings&apos;,</span><br><span class="line">    meta: &#123;</span><br><span class="line">      title: &apos;配置&apos;,</span><br><span class="line">      auth: true</span><br><span class="line">    &#125;,</span><br><span class="line">    component: _import(&apos;settings&apos;)</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure></p>
-<p><code>index.js</code>代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">// 返回的files是个函数对象</span><br><span class="line">const files = require.context(&apos;./routes&apos;, false, /\.js$/)</span><br><span class="line">let routes = []</span><br><span class="line">// 使用keys()方法获取文件，循环处理每个文件</span><br><span class="line">files.keys().forEach(key =&gt; &#123;  </span><br><span class="line">    // 使用files(key)获取文件对象</span><br><span class="line">    for (let r of files(key)) &#123;</span><br><span class="line">      routes.push(r)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export &#123;</span><br><span class="line">  routes</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://asyncoder.com/2018/07/07/Webpack%E4%B8%AD%E7%9A%84require.context%E5%A6%99%E7%94%A8/" target="_blank" rel="noopener">https://asyncoder.com/2018/07/07/Webpack%E4%B8%AD%E7%9A%84require.context%E5%A6%99%E7%94%A8/</a><br><a href="https://www.jianshu.com/p/78f7b19932cb" target="_blank" rel="noopener">https://www.jianshu.com/p/78f7b19932cb</a><br><a href="https://segmentfault.com/a/1190000017160862" target="_blank" rel="noopener">https://segmentfault.com/a/1190000017160862</a></p>
-
+          <!--noindex-->
           
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/05/cjxpsmsyh001d8momy11f7302/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
         
       
     </div>
