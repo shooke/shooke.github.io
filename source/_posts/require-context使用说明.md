@@ -15,6 +15,8 @@ require.context(directory, useSubdirectories = false, regExp = /^\.\//)
 第二个参数表示是否包括子目录中的文件，
 第三个参数表示引入的文件匹配的正则表达式。
 
+<!-- more -->
+
 ## 返回值
 require.context的返回值是一个函数对象，他提供了一个`keys()`方法，用来返回遍历到的文件或目录。
 它自身可以作为函数使用，接收一个文件路径（必须是require.context遍历过的），用来获取文件返回的对象。
