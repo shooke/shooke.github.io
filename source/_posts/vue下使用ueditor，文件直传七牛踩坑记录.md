@@ -57,3 +57,9 @@ header('Access-Control-Allow-Origin:*');
 header('Access-Control-Allow-Methods:*');  
 header('Access-Control-Allow-Headers:*'); 
 ```
+
+## 参考资料
+https://github.com/widuu/qiniu_ueditor_1.4.3
+https://doc.d2admin.fairyever.com/zh/sys-components/ueditor.html
+https://github.com/d2-projects/d2-admin
+https://github.com/HaoChuan9421/vue-ueditor-wrap
