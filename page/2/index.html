@@ -360,7 +360,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/10/cjxuf99y5001xh0omrwz6noop/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/15/cjy0xajri000h8fom1mn14e32/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -380,7 +380,192 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/10/cjxuf99y5001xh0omrwz6noop/" class="post-title-link" itemprop="url">ubuntu更新php</a>
+                <a href="/2019/05/15/cjy0xajri000h8fom1mn14e32/" class="post-title-link" itemprop="url">docker环境下php使用指南</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-15 18:09:53" itemprop="dateCreated datePublished" datetime="2019-05-15T18:09:53+08:00">2019-05-15</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-20 23:36:48" itemprop="dateModified" datetime="2019-05-20T23:36:48+08:00">2019-05-20</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/docker/" itemprop="url" rel="index"><span itemprop="name">docker</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>最近由于业务原因，需要将 php7.0 升级到 7.2。升级要考虑一下几点<br>要满足以下需求</p>
+<ol>
+<li>php7.0 和 7.2 要共存，以免升级 7.2 以后出现问题，及时切换回来。</li>
+<li>升级操作要简单，服务器数量比较多，原生方式安装太过复杂，操作步骤太多，就算携程 shell 脚本，维护起来也比较麻烦</li>
+<li>nginx 保持原样，只对项目相关的配置文件做简单调整即可。如果 nginx 变更日志处理等模块都收到牵连。</li>
+</ol>
+<p>考虑到上面的因素，用 docker 显然是非常符合的。于是就开启了踩坑之旅。<br>主要遇到了两个问题，一个是<code>502</code>，还有一个是<code>File not found</code>。下面进行分析</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/05/15/cjy0xajri000h8fom1mn14e32/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/10/cjy0xajsx00288fomd00equ2k/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/05/10/cjy0xajsx00288fomd00equ2k/" class="post-title-link" itemprop="url">ubuntu更新php</a>
               
             
           </h1>
@@ -527,7 +712,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/09/cjxuf99ye002fh0ombp3w6983/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/09/cjy0xajtb002n8fomt0zul44g/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -547,7 +732,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/09/cjxuf99ye002fh0ombp3w6983/" class="post-title-link" itemprop="url">vue组件之插槽</a>
+                <a href="/2019/05/09/cjy0xajtb002n8fomt0zul44g/" class="post-title-link" itemprop="url">vue组件之插槽</a>
               
             
           </h1>
@@ -572,12 +757,24 @@
                 
               
 
-              <time title="创建时间：2019-05-09 09:26:11 / 修改时间：14:45:41" itemprop="dateCreated datePublished" datetime="2019-05-09T09:26:11+08:00">2019-05-09</time>
+              <time title="创建时间：2019-05-09 09:26:11" itemprop="dateCreated datePublished" datetime="2019-05-09T09:26:11+08:00">2019-05-09</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-07-13 10:52:38" itemprop="dateModified" datetime="2019-07-13T10:52:38+08:00">2019-07-13</time>
               
             
           </span>
@@ -634,7 +831,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/05/09/cjxuf99ye002fh0ombp3w6983/#more" rel="contents">
+              <a class="btn" href="/2019/05/09/cjy0xajtb002n8fomt0zul44g/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -694,7 +891,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/28/cjxuf99xh000nh0omt4fqz8km/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/28/cjy0xajqt00028fom8unpu0cl/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -714,7 +911,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/28/cjxuf99xh000nh0omt4fqz8km/" class="post-title-link" itemprop="url">Supervisord管理进程常用命令</a>
+                <a href="/2019/04/28/cjy0xajqt00028fom8unpu0cl/" class="post-title-link" itemprop="url">Supervisord管理进程常用命令</a>
               
             
           </h1>
@@ -860,7 +1057,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/25/cjxuf99yg002kh0omi7sviw7k/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/25/cjy0xajtm00318fompyjsc13e/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -880,7 +1077,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/25/cjxuf99yg002kh0omi7sviw7k/" class="post-title-link" itemprop="url">省略sudo使用docker</a>
+                <a href="/2019/04/25/cjy0xajtm00318fompyjsc13e/" class="post-title-link" itemprop="url">省略sudo使用docker</a>
               
             
           </h1>
@@ -970,7 +1167,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/04/25/cjxuf99yg002kh0omi7sviw7k/#more" rel="contents">
+              <a class="btn" href="/2019/04/25/cjy0xajtm00318fompyjsc13e/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1030,7 +1227,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/24/cjxuf99y4001vh0omlkqb478k/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/24/cjy0xajse001n8fomafpkncmw/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1050,7 +1247,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/24/cjxuf99y4001vh0omlkqb478k/" class="post-title-link" itemprop="url">su 与 su - 的区别</a>
+                <a href="/2019/04/24/cjy0xajse001n8fomafpkncmw/" class="post-title-link" itemprop="url">su 与 su - 的区别</a>
               
             
           </h1>
@@ -1194,7 +1391,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/11/cjxuf99yk002th0om4chvas6g/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/11/cjy0xajt9002l8fomltwdsxjj/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1214,7 +1411,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/11/cjxuf99yk002th0om4chvas6g/" class="post-title-link" itemprop="url">使用阿里云ecs主机打造shadowsocks服务器,实现科学上网</a>
+                <a href="/2019/04/11/cjy0xajt9002l8fomltwdsxjj/" class="post-title-link" itemprop="url">使用阿里云ecs主机打造shadowsocks服务器,实现科学上网</a>
               
             
           </h1>
@@ -1305,7 +1502,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/04/11/cjxuf99yk002th0om4chvas6g/#more" rel="contents">
+              <a class="btn" href="/2019/04/11/cjy0xajt9002l8fomltwdsxjj/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1365,7 +1562,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/03/cjxuf99xm000wh0om4k4kznqy/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/03/cjy0xajs000158fomsud0aceu/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1385,7 +1582,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/03/cjxuf99xm000wh0om4k4kznqy/" class="post-title-link" itemprop="url">linux安装java环境</a>
+                <a href="/2019/04/03/cjy0xajs000158fomsud0aceu/" class="post-title-link" itemprop="url">linux安装java环境</a>
               
             
           </h1>
@@ -1531,7 +1728,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/02/cjxuf99x40006h0om6sy0rahb/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/02/cjy0xajr400088fom9wuf9ocn/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1551,7 +1748,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/02/cjxuf99x40006h0om6sy0rahb/" class="post-title-link" itemprop="url">VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式</a>
+                <a href="/2019/04/02/cjy0xajr400088fom9wuf9ocn/" class="post-title-link" itemprop="url">VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式</a>
               
             
           </h1>
@@ -1640,7 +1837,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/04/02/cjxuf99x40006h0om6sy0rahb/#more" rel="contents">
+              <a class="btn" href="/2019/04/02/cjy0xajr400088fom9wuf9ocn/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1700,7 +1897,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/01/cjxuf99yl002xh0omfnvnbhyo/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/01/cjy0xajti002z8fomjcngyq18/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1720,7 +1917,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/04/01/cjxuf99yl002xh0omfnvnbhyo/" class="post-title-link" itemprop="url">设计模式基本原则大白话</a>
+                <a href="/2019/04/01/cjy0xajti002z8fomjcngyq18/" class="post-title-link" itemprop="url">设计模式基本原则大白话</a>
               
             
           </h1>
@@ -1827,191 +2024,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/04/01/cjxuf99yl002xh0omfnvnbhyo/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/27/cjxuf99y70020h0omukk745ss/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/27/cjxuf99y70020h0omukk745ss/" class="post-title-link" itemprop="url">vscode 保存自动按eslint格式化</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-27 14:26:43" itemprop="dateCreated datePublished" datetime="2019-03-27T14:26:43+08:00">2019-03-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-01 09:20:17" itemprop="dateModified" datetime="2019-04-01T09:20:17+08:00">2019-04-01</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/开发工具/" itemprop="url" rel="index"><span itemprop="name">开发工具</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>三步走：</p>
-<ol>
-<li>安装 vuter，eslint，Prettier-code fromatter<br>vuter 是 vue 高高亮插件，安装后 vscode 就可以识别<code>.vue</code>文件了</li>
-<li>配置 vscode 首选项<br>选择 file 》Preferences 》Settings 打开配置。然后选择 User Settings，点击右上角的<code>{}</code>按钮，进入文本编辑状态</li>
-<li>配置内容</li>
-</ol>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/27/cjxuf99y70020h0omukk745ss/#more" rel="contents">
+              <a class="btn" href="/2019/04/01/cjy0xajti002z8fomjcngyq18/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2103,7 +2116,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">36</span>
+                    <span class="site-state-item-count">37</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2281,7 +2294,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">59</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">61</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
