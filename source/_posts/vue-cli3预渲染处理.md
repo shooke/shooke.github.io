@@ -67,7 +67,7 @@ new Vue({
 4. 执行`npm run build`进行编译。在编译的过程中会弹出一个浏览器窗口对每个预编译的页面进行展示，不要关闭它，等渲染完毕，它会自动关闭的。
 
 ## 项目源码
-https://gitee.com/shooke/vuetool/tree/master/vue-demo-prerender
+https://gitee.com/shooke/vue-demo/tree/master/vue-demo-prerender
 
 ## 相关资料
 vue-cli2预渲染请看https://juejin.im/post/5b8ba25751882542f25a6cc8

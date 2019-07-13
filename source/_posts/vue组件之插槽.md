@@ -143,7 +143,7 @@ export default {
     </v-slot-scope>
 ```
 ## 实例代码
-https://gitee.com/shooke/vuetool/tree/master/vue-demo-slot
+https://gitee.com/shooke/vue-demo/tree/master/vue-demo-slot
 
 具体参考文件如下
 vuedemo/src/views/slot.vue 使用组件的视图文件
