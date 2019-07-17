@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2019-07-13T02:59:12.290Z</updated>
+  <updated>2019-07-17T03:19:43.932Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,9 +17,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>url添加参数</title>
+    <link href="https://www.xingjiehu.com/2019/07/17/cjy6oedrw001ua6omu152bwlf/"/>
+    <id>https://www.xingjiehu.com/2019/07/17/cjy6oedrw001ua6omu152bwlf/</id>
+    <published>2019-07-17T03:16:16.000Z</published>
+    <updated>2019-07-17T03:19:43.932Z</updated>
+    
+    <content type="html"><![CDATA[<p>微信开发过程中经常用到获取openid后地址跳转，但是要保持原地址的所有参数，再添加上openid参数。函数很简单，也很实用，记录一下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function urlAddParam($url, $params)</span><br><span class="line">    &#123;</span><br><span class="line">        $urlParse = parse_url($url);</span><br><span class="line"></span><br><span class="line">        // url协议</span><br><span class="line">        $scheme = empty($urlParse[&apos;scheme&apos;]) ? &apos;&apos; : $urlParse[&apos;scheme&apos;] . &apos;://&apos;;</span><br><span class="line">        // host</span><br><span class="line">        $host = empty($urlParse[&apos;host&apos;]) ? &apos;&apos; : $urlParse[&apos;host&apos;];</span><br><span class="line">        // 端口</span><br><span class="line">        $port = empty($urlParse[&apos;port&apos;]) ? &apos;&apos; : &apos;:&apos; . $urlParse[&apos;port&apos;];</span><br><span class="line">        // 执行文件</span><br><span class="line">        $path = empty($urlParse[&apos;path&apos;]) ? &apos;&apos; : $urlParse[&apos;path&apos;];</span><br><span class="line">        // 请求参数</span><br><span class="line">        $queryStr = $urlParse[&apos;query&apos;] ?? &apos;&apos;;</span><br><span class="line">        parse_str($queryStr, $queryArr);</span><br><span class="line">        $queryArr = array_merge($queryArr, $params);</span><br><span class="line">        $query = http_build_query($queryArr);</span><br><span class="line">        $query = empty($query) ? &apos;&apos; : &apos;?&apos; . $query;</span><br><span class="line">        // 锚点链接</span><br><span class="line">        $fragment = empty($urlParse[&apos;fragment&apos;]) ? &apos;&apos; : &apos;#&apos; . $urlParse[&apos;fragment&apos;];</span><br><span class="line"></span><br><span class="line">        return $scheme . $host . $port . $path . $query . $fragment;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    echo urlAddParam(&apos;https://gitee.com/shooke/codes/new&apos;, [&apos;openid&apos;=&gt;&apos;sdfsdfoihnwoixchow==&apos;]);</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;微信开发过程中经常用到获取openid后地址跳转，但是要保持原地址的所有参数，再添加上openid参数。函数很简单，也很实用，记录一下。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pr
+      
+    
+    </summary>
+    
+      <category term="代码块" scheme="https://www.xingjiehu.com/categories/%E4%BB%A3%E7%A0%81%E5%9D%97/"/>
+    
+    
+      <category term="php" scheme="https://www.xingjiehu.com/tags/php/"/>
+    
+      <category term="url" scheme="https://www.xingjiehu.com/tags/url/"/>
+    
+  </entry>
+  
+  <entry>
     <title>vue-cli3预渲染处理</title>
-    <link href="https://www.xingjiehu.com/2019/07/13/cjy0xajss00208fom7q12nat2/"/>
-    <id>https://www.xingjiehu.com/2019/07/13/cjy0xajss00208fom7q12nat2/</id>
+    <link href="https://www.xingjiehu.com/2019/07/13/cjy6oeds30022a6omv98apmr5/"/>
+    <id>https://www.xingjiehu.com/2019/07/13/cjy6oeds30022a6omv98apmr5/</id>
     <published>2019-07-13T02:29:01.000Z</published>
     <updated>2019-07-13T02:59:12.290Z</updated>
     
@@ -44,8 +71,8 @@
   
   <entry>
     <title>vue下使用ueditor，文件直传七牛踩坑记录</title>
-    <link href="https://www.xingjiehu.com/2019/07/08/cjy0xajt3002f8fomqsd5pt20/"/>
-    <id>https://www.xingjiehu.com/2019/07/08/cjy0xajt3002f8fomqsd5pt20/</id>
+    <link href="https://www.xingjiehu.com/2019/07/08/cjy6oedsi002ja6om91csrdsj/"/>
+    <id>https://www.xingjiehu.com/2019/07/08/cjy6oedsi002ja6om91csrdsj/</id>
     <published>2019-07-08T12:18:04.000Z</published>
     <updated>2019-07-08T13:36:21.646Z</updated>
     
@@ -72,8 +99,8 @@
   
   <entry>
     <title>require.context使用说明</title>
-    <link href="https://www.xingjiehu.com/2019/07/05/cjy0xajsk001s8fomx65hlwhh/"/>
-    <id>https://www.xingjiehu.com/2019/07/05/cjy0xajsk001s8fomx65hlwhh/</id>
+    <link href="https://www.xingjiehu.com/2019/07/05/cjy6oedrn001ja6omfsp1vii6/"/>
+    <id>https://www.xingjiehu.com/2019/07/05/cjy6oedrn001ja6omfsp1vii6/</id>
     <published>2019-07-05T07:21:32.000Z</published>
     <updated>2019-07-05T07:45:56.925Z</updated>
     
@@ -95,8 +122,8 @@
   
   <entry>
     <title>shadowsocks-deepin pac模式失效问题解决方案</title>
-    <link href="https://www.xingjiehu.com/2019/06/24/cjy0xajsp001x8fom2pkzlffw/"/>
-    <id>https://www.xingjiehu.com/2019/06/24/cjy0xajsp001x8fom2pkzlffw/</id>
+    <link href="https://www.xingjiehu.com/2019/06/24/cjy6oedrr001pa6omw8ezr2cs/"/>
+    <id>https://www.xingjiehu.com/2019/06/24/cjy6oedrr001pa6omw8ezr2cs/</id>
     <published>2019-06-24T02:37:50.000Z</published>
     <updated>2019-06-24T03:03:34.600Z</updated>
     
@@ -122,8 +149,8 @@
   
   <entry>
     <title>vscode打造php开发环境</title>
-    <link href="https://www.xingjiehu.com/2019/06/20/cjy0xajt0002a8fomyqs23hah/"/>
-    <id>https://www.xingjiehu.com/2019/06/20/cjy0xajt0002a8fomyqs23hah/</id>
+    <link href="https://www.xingjiehu.com/2019/06/20/cjy6oeds80029a6om4sggnnqu/"/>
+    <id>https://www.xingjiehu.com/2019/06/20/cjy6oeds80029a6om4sggnnqu/</id>
     <published>2019-06-20T09:27:42.000Z</published>
     <updated>2019-06-20T10:18:37.558Z</updated>
     
@@ -148,8 +175,8 @@
   
   <entry>
     <title>pipenv与pyenv、pyenv-virtualenv的关系和使用</title>
-    <link href="https://www.xingjiehu.com/2019/06/20/cjy0xajs200188fom6x2k2biz/"/>
-    <id>https://www.xingjiehu.com/2019/06/20/cjy0xajs200188fom6x2k2biz/</id>
+    <link href="https://www.xingjiehu.com/2019/06/20/cjy6oedri001ca6omfjcx55zg/"/>
+    <id>https://www.xingjiehu.com/2019/06/20/cjy6oedri001ca6omfjcx55zg/</id>
     <published>2019-06-20T01:20:23.000Z</published>
     <updated>2019-06-20T03:29:26.159Z</updated>
     
@@ -188,8 +215,8 @@
   
   <entry>
     <title>ssh使用详解</title>
-    <link href="https://www.xingjiehu.com/2019/06/06/cjy0xajsg001p8fom2vuxsxp8/"/>
-    <id>https://www.xingjiehu.com/2019/06/06/cjy0xajsg001p8fom2vuxsxp8/</id>
+    <link href="https://www.xingjiehu.com/2019/06/06/cjy6oedsf002ga6omb6wam5fe/"/>
+    <id>https://www.xingjiehu.com/2019/06/06/cjy6oedsf002ga6omb6wam5fe/</id>
     <published>2019-06-06T03:06:28.000Z</published>
     <updated>2019-06-06T05:48:47.142Z</updated>
     
@@ -212,8 +239,8 @@
   
   <entry>
     <title>GIT批量删除远程标签</title>
-    <link href="https://www.xingjiehu.com/2019/05/30/cjy0xajql00008fomeg7nyn8t/"/>
-    <id>https://www.xingjiehu.com/2019/05/30/cjy0xajql00008fomeg7nyn8t/</id>
+    <link href="https://www.xingjiehu.com/2019/05/30/cjy6oedpu0000a6omlxlsbhir/"/>
+    <id>https://www.xingjiehu.com/2019/05/30/cjy6oedpu0000a6omlxlsbhir/</id>
     <published>2019-05-30T08:39:29.000Z</published>
     <updated>2019-05-30T08:58:55.055Z</updated>
     
@@ -237,8 +264,8 @@
   
   <entry>
     <title>vuex getters不更新的奇怪现象解决方案</title>
-    <link href="https://www.xingjiehu.com/2019/05/23/cjy0xajt6002h8fomjux3p92i/"/>
-    <id>https://www.xingjiehu.com/2019/05/23/cjy0xajt6002h8fomjux3p92i/</id>
+    <link href="https://www.xingjiehu.com/2019/05/23/cjy6oedsc002ea6omx7bny0g9/"/>
+    <id>https://www.xingjiehu.com/2019/05/23/cjy6oedsc002ea6omx7bny0g9/</id>
     <published>2019-05-22T16:19:41.000Z</published>
     <updated>2019-05-22T16:52:33.799Z</updated>
     
@@ -263,8 +290,8 @@
   
   <entry>
     <title>sublime text 3安装插件</title>
-    <link href="https://www.xingjiehu.com/2019/05/17/cjy0xajsu00238fomf5xs5t8a/"/>
-    <id>https://www.xingjiehu.com/2019/05/17/cjy0xajsu00238fomf5xs5t8a/</id>
+    <link href="https://www.xingjiehu.com/2019/05/17/cjy6oeds60026a6omzrcw3tr9/"/>
+    <id>https://www.xingjiehu.com/2019/05/17/cjy6oeds60026a6omzrcw3tr9/</id>
     <published>2019-05-17T03:26:28.000Z</published>
     <updated>2019-05-17T05:29:57.122Z</updated>
     
@@ -290,8 +317,8 @@
   
   <entry>
     <title>docker环境下php使用指南</title>
-    <link href="https://www.xingjiehu.com/2019/05/15/cjy0xajri000h8fom1mn14e32/"/>
-    <id>https://www.xingjiehu.com/2019/05/15/cjy0xajri000h8fom1mn14e32/</id>
+    <link href="https://www.xingjiehu.com/2019/05/15/cjy6oedqr000ca6omz8fvelcv/"/>
+    <id>https://www.xingjiehu.com/2019/05/15/cjy6oedqr000ca6omz8fvelcv/</id>
     <published>2019-05-15T10:09:53.000Z</published>
     <updated>2019-05-20T15:36:48.109Z</updated>
     
@@ -324,8 +351,8 @@
   
   <entry>
     <title>ubuntu更新php</title>
-    <link href="https://www.xingjiehu.com/2019/05/10/cjy0xajsx00288fomd00equ2k/"/>
-    <id>https://www.xingjiehu.com/2019/05/10/cjy0xajsx00288fomd00equ2k/</id>
+    <link href="https://www.xingjiehu.com/2019/05/10/cjy6oedry001xa6om4svm3d5g/"/>
+    <id>https://www.xingjiehu.com/2019/05/10/cjy6oedry001xa6om4svm3d5g/</id>
     <published>2019-05-10T02:03:38.000Z</published>
     <updated>2019-05-10T05:50:57.186Z</updated>
     
@@ -352,8 +379,8 @@
   
   <entry>
     <title>vue组件之插槽</title>
-    <link href="https://www.xingjiehu.com/2019/05/09/cjy0xajtb002n8fomt0zul44g/"/>
-    <id>https://www.xingjiehu.com/2019/05/09/cjy0xajtb002n8fomt0zul44g/</id>
+    <link href="https://www.xingjiehu.com/2019/05/09/cjy6oedsk002ma6omp08qcdlp/"/>
+    <id>https://www.xingjiehu.com/2019/05/09/cjy6oedsk002ma6omp08qcdlp/</id>
     <published>2019-05-09T01:26:11.000Z</published>
     <updated>2019-07-13T02:59:21.010Z</updated>
     
@@ -380,8 +407,8 @@
   
   <entry>
     <title>Supervisord管理进程常用命令</title>
-    <link href="https://www.xingjiehu.com/2019/04/28/cjy0xajqt00028fom8unpu0cl/"/>
-    <id>https://www.xingjiehu.com/2019/04/28/cjy0xajqt00028fom8unpu0cl/</id>
+    <link href="https://www.xingjiehu.com/2019/04/28/cjy6oedq40002a6omanvi926o/"/>
+    <id>https://www.xingjiehu.com/2019/04/28/cjy6oedq40002a6omanvi926o/</id>
     <published>2019-04-28T10:13:49.000Z</published>
     <updated>2019-04-28T10:17:42.765Z</updated>
     
@@ -406,8 +433,8 @@
   
   <entry>
     <title>省略sudo使用docker</title>
-    <link href="https://www.xingjiehu.com/2019/04/25/cjy0xajtm00318fompyjsc13e/"/>
-    <id>https://www.xingjiehu.com/2019/04/25/cjy0xajtm00318fompyjsc13e/</id>
+    <link href="https://www.xingjiehu.com/2019/04/25/cjy6oedsq002wa6omjcq19s4b/"/>
+    <id>https://www.xingjiehu.com/2019/04/25/cjy6oedsq002wa6omjcq19s4b/</id>
     <published>2019-04-25T05:31:43.000Z</published>
     <updated>2019-04-25T05:40:47.479Z</updated>
     
@@ -433,8 +460,8 @@
   
   <entry>
     <title>su 与 su - 的区别</title>
-    <link href="https://www.xingjiehu.com/2019/04/24/cjy0xajse001n8fomafpkncmw/"/>
-    <id>https://www.xingjiehu.com/2019/04/24/cjy0xajse001n8fomafpkncmw/</id>
+    <link href="https://www.xingjiehu.com/2019/04/24/cjy6oedru001sa6om3nvo8rs0/"/>
+    <id>https://www.xingjiehu.com/2019/04/24/cjy6oedru001sa6om3nvo8rs0/</id>
     <published>2019-04-24T14:14:49.000Z</published>
     <updated>2019-04-24T14:20:45.850Z</updated>
     
@@ -460,8 +487,8 @@
   
   <entry>
     <title>使用阿里云ecs主机打造shadowsocks服务器,实现科学上网</title>
-    <link href="https://www.xingjiehu.com/2019/04/11/cjy0xajt9002l8fomltwdsxjj/"/>
-    <id>https://www.xingjiehu.com/2019/04/11/cjy0xajt9002l8fomltwdsxjj/</id>
+    <link href="https://www.xingjiehu.com/2019/04/11/cjy6oedsm002pa6omcc7sjq00/"/>
+    <id>https://www.xingjiehu.com/2019/04/11/cjy6oedsm002pa6omcc7sjq00/</id>
     <published>2019-04-11T07:10:46.000Z</published>
     <updated>2019-04-11T08:26:55.912Z</updated>
     
@@ -488,8 +515,8 @@
   
   <entry>
     <title>linux安装java环境</title>
-    <link href="https://www.xingjiehu.com/2019/04/03/cjy0xajs000158fomsud0aceu/"/>
-    <id>https://www.xingjiehu.com/2019/04/03/cjy0xajs000158fomsud0aceu/</id>
+    <link href="https://www.xingjiehu.com/2019/04/03/cjy6oedrg001aa6omj5sy9buk/"/>
+    <id>https://www.xingjiehu.com/2019/04/03/cjy6oedrg001aa6omj5sy9buk/</id>
     <published>2019-04-03T07:04:54.000Z</published>
     <updated>2019-04-03T07:49:28.231Z</updated>
     
@@ -515,8 +542,8 @@
   
   <entry>
     <title>VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式</title>
-    <link href="https://www.xingjiehu.com/2019/04/02/cjy0xajr400088fom9wuf9ocn/"/>
-    <id>https://www.xingjiehu.com/2019/04/02/cjy0xajr400088fom9wuf9ocn/</id>
+    <link href="https://www.xingjiehu.com/2019/04/02/cjy6oedqk0008a6ommdl9wos6/"/>
+    <id>https://www.xingjiehu.com/2019/04/02/cjy6oedqk0008a6ommdl9wos6/</id>
     <published>2019-04-02T05:29:28.000Z</published>
     <updated>2019-04-02T06:05:03.160Z</updated>
     
@@ -536,50 +563,6 @@
       <category term="VirtualBox" scheme="https://www.xingjiehu.com/tags/VirtualBox/"/>
     
       <category term="ubuntu" scheme="https://www.xingjiehu.com/tags/ubuntu/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>设计模式基本原则大白话</title>
-    <link href="https://www.xingjiehu.com/2019/04/01/cjy0xajti002z8fomjcngyq18/"/>
-    <id>https://www.xingjiehu.com/2019/04/01/cjy0xajti002z8fomjcngyq18/</id>
-    <published>2019-04-01T14:35:47.000Z</published>
-    <updated>2019-04-01T15:26:15.530Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p>   简单点说就是最小化封装，一个方法只负责一个功能，一个类只负责一类功能。如果一个功能比较复杂，那就差分成多个小功能，然后去实现。<br>   这样做的好处是</p><ul><li>可以降低类的复杂度，一个类只负责一项职责，其逻辑肯定要比负责多项职责简单的多；</li><li>提高类的可读性，提高系统的可维护性；</li><li>变更引起的风险降低，变更是必然的，如果单一职责原则遵守的好，当修改一个功能时，可以显著降低对其他功能的影响。</li></ul><h2 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h2><p>   简单点说就是子类可以扩展父类的功能，但不能改变父类原有的功能。<br>   注意一下几点即可</p><ul><li>子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法。</li><li>子类中可以增加自己特有的方法。</li><li>当子类的方法重载父类的方法时，方法的前置条件（即方法的形参）要比父类方法的输入参数更宽松。</li><li>当子类的方法实现父类的抽象方法时，方法的后置条件（即方法的返回值）要比父类更严格。</li></ul><p>这样做可以有效避免，功能耦合度太高，改一个小功能影响到其他功能的情况</p><h2 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h2><p>   依赖倒置就是控制翻转，又名 IOC，简单点说，就是将需要的外部对象，通过构造函数参数传递或属性赋值的方式，让当前对象可以使用注入的外部对象。<br>   注意一下几点即可</p><ul><li>低层模块尽量都要有抽象类或接口，或者两者都有。</li><li>变量的声明类型尽量是抽象类或接口。</li><li>使用继承时遵循里氏替换原则</li></ul><p>这样做可以有效解耦，功能发生改变时，只需要替换外部的依赖对象，而不必修改主体功能代码。</p><a id="more"></a><h2 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h2><p>   简单点说就是将接口功能进行拆分，拆分成多个小一点的接口。在实现时只实现需要的功能即可。<br>   注意一下几点即可</p><ul><li>接口要尽量小，但要保持一个最小化的完成功能，拆分过细，容易造成接口过多，设计太过复杂。先对功能进行思考后，适度的进行拆分。</li><li>实现时只实现必要的接口</li><li>提高完整性，避免过多的外部依赖</li></ul><p>其实这根单一原则很相似，不过单一原则针对的是类和函数，接口隔离原则针对的是接口，对接口进行拆分可以有效避免不必要的代码实现，避免代码臃肿。</p><h2 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h2><p>   简单点说就是降低耦合度，尽可能的实现解耦。这是很核心的原则，其实上面的四个原则很大程度上都为这个原则服务。不过上面的几个原则只针对代码层面。这个原则还有另一侧含义。<br>   迪米特法则又叫最少知道原则，这么说就更容易理解了吧。代码方面要注意属性、方法的保密性和安全性，这也是为什么属性一般使用 private 的原因。</p><h2 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h2><p>   简单点说就是开放扩展，关闭修改。意思是设计时要有扩展性，遇到问题，尽量不修改已有功能，而是通过扩展新功能的方式去解决问题。</p><blockquote><p>小节：单一职责原则告诉我们实现类要职责单一；里氏替换原则告诉我们不要破坏继承体系；依赖倒置原则告诉我们要面向接口编程；接口隔离原则告诉我们在设计接口的时候要精简单一；迪米特法则告诉我们要降低耦合。而开闭原则是总纲，他告诉我们要对扩展开放，对修改关闭。</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;单一职责原则&quot;&gt;&lt;a href=&quot;#单一职责原则&quot; class=&quot;headerlink&quot; title=&quot;单一职责原则&quot;&gt;&lt;/a&gt;单一职责原则&lt;/h2&gt;&lt;p&gt;   简单点说就是最小化封装，一个方法只负责一个功能，一个类只负责一类功能。如果一个功能比较复杂，那就差分成多个小功能，然后去实现。&lt;br&gt;   这样做的好处是&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;可以降低类的复杂度，一个类只负责一项职责，其逻辑肯定要比负责多项职责简单的多；&lt;/li&gt;
-&lt;li&gt;提高类的可读性，提高系统的可维护性；&lt;/li&gt;
-&lt;li&gt;变更引起的风险降低，变更是必然的，如果单一职责原则遵守的好，当修改一个功能时，可以显著降低对其他功能的影响。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;里氏替换原则&quot;&gt;&lt;a href=&quot;#里氏替换原则&quot; class=&quot;headerlink&quot; title=&quot;里氏替换原则&quot;&gt;&lt;/a&gt;里氏替换原则&lt;/h2&gt;&lt;p&gt;   简单点说就是子类可以扩展父类的功能，但不能改变父类原有的功能。&lt;br&gt;   注意一下几点即可&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法。&lt;/li&gt;
-&lt;li&gt;子类中可以增加自己特有的方法。&lt;/li&gt;
-&lt;li&gt;当子类的方法重载父类的方法时，方法的前置条件（即方法的形参）要比父类方法的输入参数更宽松。&lt;/li&gt;
-&lt;li&gt;当子类的方法实现父类的抽象方法时，方法的后置条件（即方法的返回值）要比父类更严格。&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;这样做可以有效避免，功能耦合度太高，改一个小功能影响到其他功能的情况&lt;/p&gt;
-&lt;h2 id=&quot;依赖倒置原则&quot;&gt;&lt;a href=&quot;#依赖倒置原则&quot; class=&quot;headerlink&quot; title=&quot;依赖倒置原则&quot;&gt;&lt;/a&gt;依赖倒置原则&lt;/h2&gt;&lt;p&gt;   依赖倒置就是控制翻转，又名 IOC，简单点说，就是将需要的外部对象，通过构造函数参数传递或属性赋值的方式，让当前对象可以使用注入的外部对象。&lt;br&gt;   注意一下几点即可&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;低层模块尽量都要有抽象类或接口，或者两者都有。&lt;/li&gt;
-&lt;li&gt;变量的声明类型尽量是抽象类或接口。&lt;/li&gt;
-&lt;li&gt;使用继承时遵循里氏替换原则&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;这样做可以有效解耦，功能发生改变时，只需要替换外部的依赖对象，而不必修改主体功能代码。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="设计模式" scheme="https://www.xingjiehu.com/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-    
-      <category term="设计模式" scheme="https://www.xingjiehu.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-      <category term="设计模式基本原则" scheme="https://www.xingjiehu.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99/"/>
     
   </entry>
   
