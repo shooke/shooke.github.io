@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="shooke&#39;s blog">
 <meta property="og:description" content="代码父组件调用1&amp;lt;list v-model=&amp;quot;data&amp;quot; :multiple=&amp;quot;true&amp;quot;&amp;gt;&amp;lt;/list&amp;gt; 子组件list.vue代码12345678910111213141516171819202122232425262728293031323334353637383940&amp;lt;template&amp;gt;  &amp;lt;el-selec">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-19T02:52:07.139Z">
+<meta property="og:updated_time" content="2019-07-19T02:56:36.933Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vue自定义组件v-model绑定数据的实现方法">
 <meta name="twitter:description" content="代码父组件调用1&amp;lt;list v-model=&amp;quot;data&amp;quot; :multiple=&amp;quot;true&amp;quot;&amp;gt;&amp;lt;/list&amp;gt; 子组件list.vue代码12345678910111213141516171819202122232425262728293031323334353637383940&amp;lt;template&amp;gt;  &amp;lt;el-selec">
@@ -403,7 +403,7 @@
                 
               
 
-              <time title="创建时间：2019-07-19 10:02:32 / 修改时间：10:52:07" itemprop="dateCreated datePublished" datetime="2019-07-19T10:02:32+08:00">2019-07-19</time>
+              <time title="创建时间：2019-07-19 10:02:32 / 修改时间：10:56:36" itemprop="dateCreated datePublished" datetime="2019-07-19T10:02:32+08:00">2019-07-19</time>
             
 
             
@@ -470,7 +470,7 @@
 </ol>
 <p>注意以上两点就可以了，至于什么时机把值传递给父组件，取决于什么时候用<code>$emit</code>触发<code>model.event</code>设置的事件。比如上面使用了计算属性的方法。当<code>val</code>发生改变时，就把新的值返回。当然了，除了使用计算属性，也可以使用<code>watch</code>实现。</p>
 <h2 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h2><p><code>inheritAttrs</code>是默认值<code>true</code>时，所有的属性都会绑定到组件的<code>props</code>中，这为我们的组件开发提供了方便，但是有时候我们希望属性继续往下传递，就比较麻烦，这时候用<code>inheritAttrs: false</code>就方便多了。</p>
-<p><code>inheritAttrs: false</code>配合<code>$attrs</code>可以实现灵活的属性处理。<code>inheritAttrs: false</code>可以让父组件传递进来的属性收集到<code>$attrs</code>中，使用<code>v-bind=&quot;$attrs&quot;</code>就可以将这些属性绑定到特定的组件或html元素上了。</p>
+<p><code>inheritAttrs: false</code>配合<code>$attrs</code>可以实现灵活的属性处理。<code>inheritAttrs: false</code>可以让父组件传递进来的(props之外的)属性收集到<code>$attrs</code>中，使用<code>v-bind=&quot;$attrs&quot;</code>就可以将这些属性绑定到特定的组件或html元素上了。</p>
 
       
     </div>
