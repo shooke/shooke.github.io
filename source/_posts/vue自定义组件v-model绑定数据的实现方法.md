@@ -70,4 +70,4 @@ export default {
 
 `inheritAttrs`是默认值`true`时，所有的属性都会绑定到组件的`props`中，这为我们的组件开发提供了方便，但是有时候我们希望属性继续往下传递，就比较麻烦，这时候用`inheritAttrs: false`就方便多了。
 
-`inheritAttrs: false`配合`$attrs`可以实现灵活的属性处理。`inheritAttrs: false`可以让父组件传递进来的属性收集到`$attrs`中，使用` v-bind="$attrs" `就可以将这些属性绑定到特定的组件或html元素上了。
+`inheritAttrs: false`配合`$attrs`可以实现灵活的属性处理。`inheritAttrs: false`可以让父组件传递进来的(props之外的)属性收集到`$attrs`中，使用` v-bind="$attrs" `就可以将这些属性绑定到特定的组件或html元素上了。
