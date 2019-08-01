@@ -6,15 +6,8 @@ tags:
   - telnet
 date: 2019-07-31 22:01:23
 ---
-## 端口不通
-```
-telnet 192.168.1.100 62715
-Trying 192.168.1.100...
-telnet: connect to address 192.168.1.100: Connection refused
-```
-无法接通，自动退出
 
-## 端口开通
+## 端口开通,链接正常
 ```
 telnet 192.168.1.100 62715
 Trying 192.168.1.100...
@@ -34,7 +27,14 @@ Escape character is 'p'.
 
 <!-- more -->
 
-## 自动退出
+## 端口不通，无法链接
+```
+telnet 192.168.1.100 62715
+Trying 192.168.1.100...
+telnet: connect to address 192.168.1.100: Connection refused
+```
+
+## 链接后，自动退出
 ```
 echo "" | telnet 192.168.1.100 62715
 ```
@@ -51,7 +51,7 @@ Trying 192.168.1.100...
 telnet: connect to address 192.168.1.100: Connection refused
 ```
 
-## 延时退出
+## 连接后，延时退出
 ```
 sleep 2 | telnet 192.168.1.100 62715
 ```
