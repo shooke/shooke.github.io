@@ -1,7 +1,7 @@
 ---
 title: mysql主从配置
 categories:
-  - 数据库
+  - 笔记
 tags:
   - mysql
 date: 2019-02-21 15:44:58

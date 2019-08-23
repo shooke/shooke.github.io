@@ -1,8 +1,9 @@
 ---
 title: sublime text 3安装插件
 categories:
-  - 开发工具
+  - 笔记
 tags:
+  - 开发工具
   - sublime
   - sublime text 3
   - package_control

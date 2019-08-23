@@ -1,7 +1,7 @@
 ---
 title: docker环境下php使用指南
 categories:
-  - docker
+  - 笔记
 tags:
   - php
   - php-fpm

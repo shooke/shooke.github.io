@@ -2,7 +2,7 @@
 title: crontab使用详解
 date: 2019-01-24 09:20:47
 categories:
-- 系统运维
+- 笔记
 tags:
 - crontab
 ---

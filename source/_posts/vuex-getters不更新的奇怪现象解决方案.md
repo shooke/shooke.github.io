@@ -1,7 +1,7 @@
 ---
 title: vuex getters不更新的奇怪现象解决方案
 categories:
-  - vue
+  - 笔记
 tags:
   - vue
   - vuex

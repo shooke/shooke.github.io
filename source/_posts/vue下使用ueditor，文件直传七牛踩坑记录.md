@@ -1,8 +1,9 @@
 ---
 title: vue下使用ueditor，文件直传七牛踩坑记录
 categories:
-  - 前端开发
+  - 笔记
 tags:
+  - 前端开发
   - vue
   - d2admin
   - ueditor

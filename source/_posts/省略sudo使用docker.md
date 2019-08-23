@@ -1,7 +1,7 @@
 ---
 title: 省略sudo使用docker
 categories:
-  - docker
+  - 笔记
 tags:
   - docker
   - sudo

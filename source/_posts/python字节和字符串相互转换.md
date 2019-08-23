@@ -1,7 +1,7 @@
 ---
 title: python字节和字符串相互转换
 categories:
-  - python
+  - 笔记
 tags:
   - python
   - python 字符串

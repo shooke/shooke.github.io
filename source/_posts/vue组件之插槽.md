@@ -1,7 +1,7 @@
 ---
 title: vue组件之插槽
 categories:
-  - vue
+  - 笔记
 tags:
   - vue
   - 组件

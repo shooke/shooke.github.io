@@ -1,11 +1,12 @@
 ---
 title: shadowsocks-deepin pac模式失效问题解决方案
 categories:
-  - 科学上网
+  - 笔记
 tags:
   - shadowsocks-deepin
   - pac
   - shadowsocks
+  - 科学上网
 date: 2019-06-24 10:37:50
 ---
 

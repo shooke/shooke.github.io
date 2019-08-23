@@ -1,8 +1,9 @@
 ---
 title: vscode打造php开发环境
 categories:
-  - 开发工具
+  - 笔记
 tags:
+  - 开发工具
   - vscode
   - php
 date: 2019-06-20 17:27:42

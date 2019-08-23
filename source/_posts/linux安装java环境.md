@@ -1,10 +1,11 @@
 ---
 title: linux安装java环境
 categories:
-  - 系统运维
+  - 笔记
 tags:
   - java
   - jdk
+  - linux
 date: 2019-04-03 15:04:54
 ---
 ## 下载jdk

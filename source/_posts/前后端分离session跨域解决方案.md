@@ -1,7 +1,7 @@
 ---
 title: 前后端分离session跨域解决方案
 categories:
-  - 网络相关
+  - 笔记
 tags:
   - axios
   - vue

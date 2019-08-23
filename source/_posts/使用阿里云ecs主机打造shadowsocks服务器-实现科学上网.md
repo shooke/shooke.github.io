@@ -1,8 +1,9 @@
 ---
 title: '使用阿里云ecs主机打造shadowsocks服务器,实现科学上网'
 categories:
-  - 科学上网
+  - 笔记
 tags:
+  - 科学上网
   - shadowsocks
   - shadowsocksR
 date: 2019-04-11 15:10:46

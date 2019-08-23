@@ -1,8 +1,9 @@
 ---
 title: nohup命令说明
 categories:
-  - 系统运维
+  - 笔记
 tags:
+  - 系统运维
   - nohup
 date: 2019-03-06 17:21:00
 ---

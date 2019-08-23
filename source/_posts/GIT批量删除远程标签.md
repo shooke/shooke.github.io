@@ -1,7 +1,7 @@
 ---
 title: GIT批量删除远程标签
 categories:
-  - git
+  - 笔记
 tags:
   - git
   - tag

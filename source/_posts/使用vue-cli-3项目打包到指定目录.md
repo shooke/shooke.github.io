@@ -1,7 +1,7 @@
 ---
 title: 使用vue cli 3项目打包到指定目录
 categories:
-  - 分类
+  - 笔记
 tags:
   - vue
   - vue cli

@@ -2,7 +2,7 @@
 title: post传输详解以及axios、php代码实例
 date: 2019-01-22 16:15:36
 categories:
-- 网络相关
+- 笔记
 tags:
 - http
 - post

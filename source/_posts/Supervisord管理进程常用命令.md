@@ -1,8 +1,9 @@
 ---
 title: Supervisord管理进程常用命令
 categories:
-  - 系统运维
+  - 笔记
 tags:
+  - 系统运维
   - supervisord
 date: 2019-04-28 18:13:49
 ---

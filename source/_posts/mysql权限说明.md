@@ -1,7 +1,7 @@
 ---
 title: mysql权限说明
 categories:
-  - mysql
+  - 笔记
 tags:
   - mysql
   - 权限

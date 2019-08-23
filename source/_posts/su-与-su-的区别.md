@@ -1,7 +1,7 @@
 ---
 title: su 与 su - 的区别
 categories:
-  - linux笔记
+  - 笔记
 tags:
   - linux
   - su

@@ -2,7 +2,7 @@
 title: git远程删除分支后，本地git branch -a 依然能看到的解决办法
 date: 2019-01-29 14:28:10
 categories:
-- 开发工具
+- 笔记
 tags:
 - git
 ---

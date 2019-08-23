@@ -2,7 +2,7 @@
 title: elasticsearch模糊查询
 date: 2019-01-23 12:15:36
 categories:
-- 数据存储
+- 笔记
 tags:
 - elasticsearch
 ---

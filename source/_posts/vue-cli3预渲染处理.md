@@ -1,8 +1,9 @@
 ---
 title: vue-cli3预渲染处理
 categories:
-  - 前端开发
+  - 笔记
 tags:
+  - 前端开发
   - vue
   - vue-cli
   - 预渲染

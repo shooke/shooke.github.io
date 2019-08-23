@@ -1,8 +1,9 @@
 ---
 title: VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式
 categories:
-  - VirtualBox
+  - 笔记
 tags:
+  - 互通
   - VirtualBox
   - ubuntu
 date: 2019-04-02 13:29:28

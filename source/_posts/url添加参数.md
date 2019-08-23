@@ -1,8 +1,9 @@
 ---
 title: url添加参数
 categories:
-  - 代码块
+  - 笔记
 tags:
+  - 代码块
   - php
   - url
 date: 2019-07-17 11:16:16

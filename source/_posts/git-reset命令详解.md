@@ -1,7 +1,7 @@
 ---
 title: git reset命令详解
 categories:
-  - git
+  - 笔记
 tags:
   - git
   - git reset

@@ -1,8 +1,9 @@
 ---
 title: telnet使用简介
 categories:
-  - 
+  - 笔记
 tags:
+  - 系统运维
   - telnet
 date: 2019-07-31 22:01:23
 ---

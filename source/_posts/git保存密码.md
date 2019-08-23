@@ -1,7 +1,7 @@
 ---
 title: git保存密码
 categories:
-  - git
+  - 笔记
 tags:
   - git
 date: 2019-03-06 10:29:01

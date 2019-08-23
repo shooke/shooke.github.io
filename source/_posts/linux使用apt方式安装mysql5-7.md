@@ -1,9 +1,10 @@
 ---
 title: linux使用apt方式安装mysql5.7
 categories:
-  - 数据库
+  - 笔记
 tags:
   - mysql
+  - linux
 date: 2019-03-13 23:13:33
 ---
 安装3步曲：

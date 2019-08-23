@@ -1,8 +1,9 @@
 ---
 title: vscode 保存自动按eslint格式化
 categories:
-  - 开发工具
+  - 笔记
 tags:
+  - 开发工具
   - vscode
   - vue
   - eslint

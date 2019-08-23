@@ -1,8 +1,9 @@
 ---
 title: ubuntu更新php
 categories:
-  - 系统运维
+  - 笔记
 tags:
+  - 系统运维
   - php
   - ubuntu
 date: 2019-05-10 10:03:38

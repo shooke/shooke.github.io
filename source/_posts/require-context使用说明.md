@@ -1,8 +1,9 @@
 ---
 title: require.context使用说明
 categories:
-  - 前端开发
+  - 笔记
 tags:
+  - 前端开发
   - webpack
 date: 2019-07-05 15:21:32
 ---

@@ -1,8 +1,9 @@
 ---
 title: vue自定义组件v-model绑定数据的实现方法
 categories:
-  - 前端开发
+  - 笔记
 tags:
+  - 前端开发
   - vue
   - 自定义组件
   - v-model

@@ -1,7 +1,7 @@
 ---
 title: 团队开发中如何使用git分支
 categories:
-  - git
+  - 笔记
 tags:
   - git
   - 分支
