@@ -1,7 +1,7 @@
 ---
 title: vue中使用neditor
 categories:
-  - 杂记
+  - 笔记
 tags:
   - vue
   - neditor
