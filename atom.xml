@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2019-09-04T01:22:15.780Z</updated>
+  <updated>2019-09-25T07:35:24.469Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,9 +17,32 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>解决element ui el-select控件多选时option设置为disabled，但可以删除标签，造成无法恢复的bug</title>
+    <link href="https://www.xingjiehu.com/2019/09/25/ck0yyaq67002w62ommglxhofc/"/>
+    <id>https://www.xingjiehu.com/2019/09/25/ck0yyaq67002w62ommglxhofc/</id>
+    <published>2019-09-25T07:13:05.000Z</published>
+    <updated>2019-09-25T07:35:24.469Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="问题起因"><a href="#问题起因" class="headerlink" title="问题起因"></a>问题起因</h2><p>今天遇到一个问题，需求是，客户选择栏目时，不属于自己的栏目不可修改。但需要显示出来。实现需求使用了element ui的el-select组件。<br>对于已选栏目的显示，和对栏目的选项取消都比较好。不属于自己的栏目使用了option的<code>disabled</code>属性。列表中的选项控制正常，对于<code>disabled</code>属性为<code>true</code>的元素不可选。<br>但是在展示已选则的栏目时，option中禁用的选项依然有删除的小叉号。而且还是可以使用的，点击后就被删除了。在列表中的选中状态也取消了。这可闹大了，没法恢复啊。</p><h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>思路很简单，在对选项进行移除时做个判断。如果选项是禁用的，就不操作。<br>实现中用到了<code>value</code>属性，用于显示备选项。<code>change</code>事件用于处理选中的值，<code>remove-tag</code>事件处理移除选项时的判断<br>有几个问题需要注意，事件的执行顺序是先出发<code>change</code>后出发<code>remove-tag</code>所以要让数据返回变为异步，保证<code>remove-tag</code>事件完成后在返回数据</p><a id="more"></a><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>为了方便项目中使用，封装了个小组件,使用时直接载入组,件用<code>v-model</code>绑定数据就可以了很方便<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-select filterable</span><br><span class="line">             :value=&quot;value&quot;</span><br><span class="line">             @change=&quot;changeHandle&quot;</span><br><span class="line">             @remove-tag=&quot;removeHandle&quot;</span><br><span class="line">             v-bind=&quot;$attrs&quot;</span><br><span class="line">             placeholder=&quot;请选择&quot;&gt;</span><br><span class="line">    &lt;el-option v-for=&quot;item in list&quot;</span><br><span class="line">               :key=&quot;item.id&quot;</span><br><span class="line">               :label=&quot;item.name&quot;</span><br><span class="line">               :value=&quot;item.id&quot;</span><br><span class="line">               :disabled=&quot;item.disabled&quot;&gt;</span><br><span class="line">    &lt;/el-option&gt;</span><br><span class="line">  &lt;/el-select&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  inheritAttrs: false,</span><br><span class="line">  model: &#123;</span><br><span class="line">    prop: &apos;value&apos;,</span><br><span class="line">    event: &apos;input&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    value: null</span><br><span class="line">  &#125;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      selected: [],</span><br><span class="line">      list: [</span><br><span class="line">        &#123;id:1,name:&apos;a&apos;,disabled:false&#125;&#125;,</span><br><span class="line">        &#123;id:2,name:&apos;b&apos;,disabled:false&#125;&#125;,</span><br><span class="line">        &#123;id:3,name:&apos;c&apos;,disabled:true&#125;&#125;,</span><br><span class="line">      ],</span><br><span class="line">      draftId: null</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    changeHandle (val) &#123;</span><br><span class="line">      this.selected = val</span><br><span class="line">      // 延时返回数据，主要是因为element会先执行change然后在执行remove，为了恢复不可删除的栏目，所以延时返回数据</span><br><span class="line">      setTimeout(() =&gt; &#123;</span><br><span class="line">        this.$emit(&apos;input&apos;, this.selected)</span><br><span class="line">      &#125;, 10)</span><br><span class="line">    &#125;,</span><br><span class="line">    removeHandle (val) &#123;</span><br><span class="line">      // 检查选项是否可用</span><br><span class="line">      let removeItem = this.list.find((item) =&gt; &#123;</span><br><span class="line">        return item.id === val &amp;&amp; item.disabled === false</span><br><span class="line">      &#125;)</span><br><span class="line">      console.log(val, removeItem)</span><br><span class="line">      // 如果找不到表示不可删除</span><br><span class="line">      if (typeof removeItem === &apos;undefined&apos;) &#123;</span><br><span class="line">        this.selected = this.value</span><br><span class="line">      &#125; else &#123;        </span><br><span class="line">        // 如果找到可删除，则过滤</span><br><span class="line">        this.selected = this.value.filter((item) =&gt; &#123;</span><br><span class="line">          return item !== val</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;问题起因&quot;&gt;&lt;a href=&quot;#问题起因&quot; class=&quot;headerlink&quot; title=&quot;问题起因&quot;&gt;&lt;/a&gt;问题起因&lt;/h2&gt;&lt;p&gt;今天遇到一个问题，需求是，客户选择栏目时，不属于自己的栏目不可修改。但需要显示出来。实现需求使用了element ui的el-select组件。&lt;br&gt;对于已选栏目的显示，和对栏目的选项取消都比较好。不属于自己的栏目使用了option的&lt;code&gt;disabled&lt;/code&gt;属性。列表中的选项控制正常，对于&lt;code&gt;disabled&lt;/code&gt;属性为&lt;code&gt;true&lt;/code&gt;的元素不可选。&lt;br&gt;但是在展示已选则的栏目时，option中禁用的选项依然有删除的小叉号。而且还是可以使用的，点击后就被删除了。在列表中的选中状态也取消了。这可闹大了，没法恢复啊。&lt;/p&gt;
+&lt;h2 id=&quot;解决思路&quot;&gt;&lt;a href=&quot;#解决思路&quot; class=&quot;headerlink&quot; title=&quot;解决思路&quot;&gt;&lt;/a&gt;解决思路&lt;/h2&gt;&lt;p&gt;思路很简单，在对选项进行移除时做个判断。如果选项是禁用的，就不操作。&lt;br&gt;实现中用到了&lt;code&gt;value&lt;/code&gt;属性，用于显示备选项。&lt;code&gt;change&lt;/code&gt;事件用于处理选中的值，&lt;code&gt;remove-tag&lt;/code&gt;事件处理移除选项时的判断&lt;br&gt;有几个问题需要注意，事件的执行顺序是先出发&lt;code&gt;change&lt;/code&gt;后出发&lt;code&gt;remove-tag&lt;/code&gt;所以要让数据返回变为异步，保证&lt;code&gt;remove-tag&lt;/code&gt;事件完成后在返回数据&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="element ui" scheme="https://www.xingjiehu.com/tags/element-ui/"/>
+    
+  </entry>
+  
+  <entry>
     <title>vue中使用neditor</title>
-    <link href="https://www.xingjiehu.com/2019/09/03/ck03n2y3m002czpomlta5hbb8/"/>
-    <id>https://www.xingjiehu.com/2019/09/03/ck03n2y3m002czpomlta5hbb8/</id>
+    <link href="https://www.xingjiehu.com/2019/09/03/ck0yyaq6d003662om5hiaj46g/"/>
+    <id>https://www.xingjiehu.com/2019/09/03/ck0yyaq6d003662om5hiaj46g/</id>
     <published>2019-09-03T08:48:11.000Z</published>
     <updated>2019-09-04T01:22:15.780Z</updated>
     
@@ -36,16 +59,16 @@
     
       <category term="vue" scheme="https://www.xingjiehu.com/tags/vue/"/>
     
-      <category term="neditor" scheme="https://www.xingjiehu.com/tags/neditor/"/>
-    
       <category term="ueditor" scheme="https://www.xingjiehu.com/tags/ueditor/"/>
+    
+      <category term="neditor" scheme="https://www.xingjiehu.com/tags/neditor/"/>
     
   </entry>
   
   <entry>
     <title>使用vue cli 3项目打包到指定目录</title>
-    <link href="https://www.xingjiehu.com/2019/08/22/ck03n2y3s002rzpom9ftu60lx/"/>
-    <id>https://www.xingjiehu.com/2019/08/22/ck03n2y3s002rzpom9ftu60lx/</id>
+    <link href="https://www.xingjiehu.com/2019/08/22/ck0yyaq6j003c62omz6h78i5i/"/>
+    <id>https://www.xingjiehu.com/2019/08/22/ck0yyaq6j003c62omz6h78i5i/</id>
     <published>2019-08-22T13:16:33.000Z</published>
     <updated>2019-08-23T01:34:23.348Z</updated>
     
@@ -68,8 +91,8 @@
   
   <entry>
     <title>telnet使用简介</title>
-    <link href="https://www.xingjiehu.com/2019/07/31/ck03n2y3q002kzpomk0ipyssl/"/>
-    <id>https://www.xingjiehu.com/2019/07/31/ck03n2y3q002kzpomk0ipyssl/</id>
+    <link href="https://www.xingjiehu.com/2019/07/31/ck0yyaq5b001m62omhqeuffvt/"/>
+    <id>https://www.xingjiehu.com/2019/07/31/ck0yyaq5b001m62omhqeuffvt/</id>
     <published>2019-07-31T14:01:23.000Z</published>
     <updated>2019-08-23T01:46:26.709Z</updated>
     
@@ -94,10 +117,10 @@
   
   <entry>
     <title>vue自定义组件v-model绑定数据的实现方法</title>
-    <link href="https://www.xingjiehu.com/2019/07/19/ck03n2y3r002nzpomxzyrxyru/"/>
-    <id>https://www.xingjiehu.com/2019/07/19/ck03n2y3r002nzpomxzyrxyru/</id>
+    <link href="https://www.xingjiehu.com/2019/07/19/ck0yyaq5y002i62omy1alualy/"/>
+    <id>https://www.xingjiehu.com/2019/07/19/ck0yyaq5y002i62omy1alualy/</id>
     <published>2019-07-19T02:02:32.000Z</published>
-    <updated>2019-08-23T01:48:38.049Z</updated>
+    <updated>2019-09-20T03:04:46.717Z</updated>
     
     <content type="html"><![CDATA[<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>父组件调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;list v-model=&quot;data&quot; :multiple=&quot;true&quot;&gt;&lt;/list&gt;</span><br></pre></td></tr></table></figure></p><p>子组件<code>list.vue</code>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-select v-model=&quot;val&quot; v-bind=&quot;$attrs&quot; placeholder=&quot;请选择&quot;&gt;</span><br><span class="line">    &lt;el-option</span><br><span class="line">      v-for=&quot;item in list&quot;</span><br><span class="line">      :key=&quot;item.id&quot;</span><br><span class="line">      :label=&quot;item.name&quot;</span><br><span class="line">      :value=&quot;item.id&quot;&gt;</span><br><span class="line">    &lt;/el-option&gt;</span><br><span class="line">  &lt;/el-select&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; getColumnList &#125; from &apos;@/api/column.js&apos;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  inheritAttrs: false,</span><br><span class="line">  model: &#123;</span><br><span class="line">    prop: &apos;value&apos;,</span><br><span class="line">    event: &apos;change&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    value: null</span><br><span class="line">  &#125;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      list: [&#123;id:&apos;1&apos;,name:&apos;张三&apos;&#125;,&#123;id:&apos;2&apos;,name:&apos;李四&apos;&#125;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    val: &#123;</span><br><span class="line">      get () &#123;</span><br><span class="line">        return this.value</span><br><span class="line">      &#125;,</span><br><span class="line">      set (newval) &#123;</span><br><span class="line">        this.$emit(&apos;change&apos;, newval)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p><a id="more"></a><p>实现v-model注意一下几点即可</p><ol><li>model.event定义的事件名称是什么，$emit的时候出发的名称要一致。比如上面的事件名称叫<code>change</code>，这个可以随便取名字</li><li>model.props的值是什么，父组件使用v-model时，值就会给谁。上面的例子中值会传给<code>value</code></li></ol><p>注意以上两点就可以了，至于什么时机把值传递给父组件，取决于什么时候用<code>$emit</code>触发<code>model.event</code>设置的事件。比如上面使用了计算属性的方法。当<code>val</code>发生改变时，就把新的值返回。当然了，除了使用计算属性，也可以使用<code>watch</code>实现。</p><h2 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h2><p><code>inheritAttrs</code>是默认值<code>true</code>时，所有的属性都会绑定到组件的<code>props</code>中，这为我们的组件开发提供了方便，但是有时候我们希望属性继续往下传递，就比较麻烦，这时候用<code>inheritAttrs: false</code>就方便多了。</p><p><code>inheritAttrs: false</code>配合<code>$attrs</code>可以实现灵活的属性处理。<code>inheritAttrs: false</code>可以让父组件传递进来的(props之外的)属性收集到<code>$attrs</code>中，使用<code>v-bind=&quot;$attrs&quot;</code>就可以将这些属性绑定到特定的组件或html元素上了。</p>]]></content>
     
@@ -123,8 +146,8 @@
   
   <entry>
     <title>url添加参数</title>
-    <link href="https://www.xingjiehu.com/2019/07/17/ck03n2y3b001rzpomv5d02lal/"/>
-    <id>https://www.xingjiehu.com/2019/07/17/ck03n2y3b001rzpomv5d02lal/</id>
+    <link href="https://www.xingjiehu.com/2019/07/17/ck0yyaq5i001z62omsbddc2i3/"/>
+    <id>https://www.xingjiehu.com/2019/07/17/ck0yyaq5i001z62omsbddc2i3/</id>
     <published>2019-07-17T03:16:16.000Z</published>
     <updated>2019-08-23T01:46:59.532Z</updated>
     
@@ -152,8 +175,8 @@
   
   <entry>
     <title>vue-cli3预渲染处理</title>
-    <link href="https://www.xingjiehu.com/2019/07/13/ck03n2y3i0022zpomshveldf6/"/>
-    <id>https://www.xingjiehu.com/2019/07/13/ck03n2y3i0022zpomshveldf6/</id>
+    <link href="https://www.xingjiehu.com/2019/07/13/ck0yyaq5v002f62om7ozstj4h/"/>
+    <id>https://www.xingjiehu.com/2019/07/13/ck0yyaq5v002f62om7ozstj4h/</id>
     <published>2019-07-13T02:29:01.000Z</published>
     <updated>2019-08-23T01:48:15.084Z</updated>
     
@@ -180,8 +203,8 @@
   
   <entry>
     <title>vue下使用ueditor，文件直传七牛踩坑记录</title>
-    <link href="https://www.xingjiehu.com/2019/07/08/ck03n2y3o002fzpom7g5b4c45/"/>
-    <id>https://www.xingjiehu.com/2019/07/08/ck03n2y3o002fzpom7g5b4c45/</id>
+    <link href="https://www.xingjiehu.com/2019/07/08/ck0yyaq61002m62omy5l5bktx/"/>
+    <id>https://www.xingjiehu.com/2019/07/08/ck0yyaq61002m62omy5l5bktx/</id>
     <published>2019-07-08T12:18:04.000Z</published>
     <updated>2019-08-23T01:48:25.850Z</updated>
     
@@ -200,9 +223,9 @@
     
       <category term="前端开发" scheme="https://www.xingjiehu.com/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
     
-      <category term="ueditor" scheme="https://www.xingjiehu.com/tags/ueditor/"/>
-    
       <category term="d2admin" scheme="https://www.xingjiehu.com/tags/d2admin/"/>
+    
+      <category term="ueditor" scheme="https://www.xingjiehu.com/tags/ueditor/"/>
     
       <category term="七牛" scheme="https://www.xingjiehu.com/tags/%E4%B8%83%E7%89%9B/"/>
     
@@ -210,8 +233,8 @@
   
   <entry>
     <title>require.context使用说明</title>
-    <link href="https://www.xingjiehu.com/2019/07/05/ck03n2y3h001zzpom16kl0v4x/"/>
-    <id>https://www.xingjiehu.com/2019/07/05/ck03n2y3h001zzpom16kl0v4x/</id>
+    <link href="https://www.xingjiehu.com/2019/07/05/ck0yyaq5l002462om4e1nvauq/"/>
+    <id>https://www.xingjiehu.com/2019/07/05/ck0yyaq5l002462om4e1nvauq/</id>
     <published>2019-07-05T07:21:32.000Z</published>
     <updated>2019-08-23T01:38:14.223Z</updated>
     
@@ -235,8 +258,8 @@
   
   <entry>
     <title>shadowsocks-deepin pac模式失效问题解决方案</title>
-    <link href="https://www.xingjiehu.com/2019/06/24/ck03n2y3u002uzpomjpo24vyq/"/>
-    <id>https://www.xingjiehu.com/2019/06/24/ck03n2y3u002uzpomjpo24vyq/</id>
+    <link href="https://www.xingjiehu.com/2019/06/24/ck0yyaq5d001q62omos0pkcmm/"/>
+    <id>https://www.xingjiehu.com/2019/06/24/ck0yyaq5d001q62omos0pkcmm/</id>
     <published>2019-06-24T02:37:50.000Z</published>
     <updated>2019-08-23T01:39:07.368Z</updated>
     
@@ -264,8 +287,8 @@
   
   <entry>
     <title>vscode打造php开发环境</title>
-    <link href="https://www.xingjiehu.com/2019/06/20/ck03n2y3l0029zpom5xd3r2ar/"/>
-    <id>https://www.xingjiehu.com/2019/06/20/ck03n2y3l0029zpom5xd3r2ar/</id>
+    <link href="https://www.xingjiehu.com/2019/06/20/ck0yyaq5p002962omlihcy2go/"/>
+    <id>https://www.xingjiehu.com/2019/06/20/ck0yyaq5p002962omlihcy2go/</id>
     <published>2019-06-20T09:27:42.000Z</published>
     <updated>2019-08-23T01:48:02.982Z</updated>
     
@@ -292,8 +315,8 @@
   
   <entry>
     <title>pipenv与pyenv、pyenv-virtualenv的关系和使用</title>
-    <link href="https://www.xingjiehu.com/2019/06/20/ck03n2y310017zpom4y8ohqr9/"/>
-    <id>https://www.xingjiehu.com/2019/06/20/ck03n2y310017zpom4y8ohqr9/</id>
+    <link href="https://www.xingjiehu.com/2019/06/20/ck0yyaq59001j62omvmfncgw2/"/>
+    <id>https://www.xingjiehu.com/2019/06/20/ck0yyaq59001j62omvmfncgw2/</id>
     <published>2019-06-20T01:20:23.000Z</published>
     <updated>2019-06-20T03:29:26.159Z</updated>
     
@@ -332,8 +355,8 @@
   
   <entry>
     <title>ssh使用详解</title>
-    <link href="https://www.xingjiehu.com/2019/06/06/ck03n2y37001kzpom04c2ljvu/"/>
-    <id>https://www.xingjiehu.com/2019/06/06/ck03n2y37001kzpom04c2ljvu/</id>
+    <link href="https://www.xingjiehu.com/2019/06/06/ck0yyaq5f001t62omj163ac87/"/>
+    <id>https://www.xingjiehu.com/2019/06/06/ck0yyaq5f001t62omj163ac87/</id>
     <published>2019-06-06T03:06:28.000Z</published>
     <updated>2019-08-23T01:39:23.513Z</updated>
     
@@ -358,8 +381,8 @@
   
   <entry>
     <title>GIT批量删除远程标签</title>
-    <link href="https://www.xingjiehu.com/2019/05/30/ck03n2y1u0000zpom7u5m5gch/"/>
-    <id>https://www.xingjiehu.com/2019/05/30/ck03n2y1u0000zpom7u5m5gch/</id>
+    <link href="https://www.xingjiehu.com/2019/05/30/ck0yyaq3j000062omxikvy5ga/"/>
+    <id>https://www.xingjiehu.com/2019/05/30/ck0yyaq3j000062omxikvy5ga/</id>
     <published>2019-05-30T08:39:29.000Z</published>
     <updated>2019-08-23T01:36:04.159Z</updated>
     
@@ -383,8 +406,8 @@
   
   <entry>
     <title>vuex getters不更新的奇怪现象解决方案</title>
-    <link href="https://www.xingjiehu.com/2019/05/23/ck03n2y3j0024zpomjhkid6dg/"/>
-    <id>https://www.xingjiehu.com/2019/05/23/ck03n2y3j0024zpomjhkid6dg/</id>
+    <link href="https://www.xingjiehu.com/2019/05/23/ck0yyaq5t002c62omyy9rdz5d/"/>
+    <id>https://www.xingjiehu.com/2019/05/23/ck0yyaq5t002c62omyy9rdz5d/</id>
     <published>2019-05-22T16:19:41.000Z</published>
     <updated>2019-08-23T01:48:53.394Z</updated>
     
@@ -409,8 +432,8 @@
   
   <entry>
     <title>sublime text 3安装插件</title>
-    <link href="https://www.xingjiehu.com/2019/05/17/ck03n2y3k0027zpomk0b20wem/"/>
-    <id>https://www.xingjiehu.com/2019/05/17/ck03n2y3k0027zpomk0b20wem/</id>
+    <link href="https://www.xingjiehu.com/2019/05/17/ck0yyaq5j002262om5fir7blw/"/>
+    <id>https://www.xingjiehu.com/2019/05/17/ck0yyaq5j002262om5fir7blw/</id>
     <published>2019-05-17T03:26:28.000Z</published>
     <updated>2019-08-23T01:39:46.998Z</updated>
     
@@ -438,8 +461,8 @@
   
   <entry>
     <title>docker环境下php使用指南</title>
-    <link href="https://www.xingjiehu.com/2019/05/15/ck03n2y2t000szpom0x1m6eb5/"/>
-    <id>https://www.xingjiehu.com/2019/05/15/ck03n2y2t000szpom0x1m6eb5/</id>
+    <link href="https://www.xingjiehu.com/2019/05/15/ck0yyaq4y000z62ommjm3e4vg/"/>
+    <id>https://www.xingjiehu.com/2019/05/15/ck0yyaq4y000z62ommjm3e4vg/</id>
     <published>2019-05-15T10:09:53.000Z</published>
     <updated>2019-08-23T01:35:13.977Z</updated>
     
@@ -472,8 +495,8 @@
   
   <entry>
     <title>ubuntu更新php</title>
-    <link href="https://www.xingjiehu.com/2019/05/10/ck03n2y3d001uzpomtqt36d4v/"/>
-    <id>https://www.xingjiehu.com/2019/05/10/ck03n2y3d001uzpomtqt36d4v/</id>
+    <link href="https://www.xingjiehu.com/2019/05/10/ck0yyaq5n002762omapo4vloa/"/>
+    <id>https://www.xingjiehu.com/2019/05/10/ck0yyaq5n002762omapo4vloa/</id>
     <published>2019-05-10T02:03:38.000Z</published>
     <updated>2019-08-23T01:46:43.797Z</updated>
     
@@ -502,8 +525,8 @@
   
   <entry>
     <title>vue组件之插槽</title>
-    <link href="https://www.xingjiehu.com/2019/05/09/ck03n2y3v002xzpomluen5zd9/"/>
-    <id>https://www.xingjiehu.com/2019/05/09/ck03n2y3v002xzpomluen5zd9/</id>
+    <link href="https://www.xingjiehu.com/2019/05/09/ck0yyaq62002p62om1ihrib5s/"/>
+    <id>https://www.xingjiehu.com/2019/05/09/ck0yyaq62002p62om1ihrib5s/</id>
     <published>2019-05-09T01:26:11.000Z</published>
     <updated>2019-08-23T01:48:46.415Z</updated>
     
@@ -530,8 +553,8 @@
   
   <entry>
     <title>Supervisord管理进程常用命令</title>
-    <link href="https://www.xingjiehu.com/2019/04/28/ck03n2y220002zpombqhwd82e/"/>
-    <id>https://www.xingjiehu.com/2019/04/28/ck03n2y220002zpombqhwd82e/</id>
+    <link href="https://www.xingjiehu.com/2019/04/28/ck0yyaq3r000262ombajehwyg/"/>
+    <id>https://www.xingjiehu.com/2019/04/28/ck0yyaq3r000262ombajehwyg/</id>
     <published>2019-04-28T10:13:49.000Z</published>
     <updated>2019-08-23T01:45:56.016Z</updated>
     
@@ -553,33 +576,6 @@
       <category term="系统运维" scheme="https://www.xingjiehu.com/tags/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/"/>
     
       <category term="supervisord" scheme="https://www.xingjiehu.com/tags/supervisord/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>省略sudo使用docker</title>
-    <link href="https://www.xingjiehu.com/2019/04/25/ck03n2y42003azpomwnp7gzop/"/>
-    <id>https://www.xingjiehu.com/2019/04/25/ck03n2y42003azpomwnp7gzop/</id>
-    <published>2019-04-25T05:31:43.000Z</published>
-    <updated>2019-08-23T01:33:52.143Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="安装-docker"><a href="#安装-docker" class="headerlink" title="安装 docker"></a>安装 docker</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- https://get.docker.com/ | sh</span><br></pre></td></tr></table></figure><p>或</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install docker</span><br></pre></td></tr></table></figure><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>为什么需要创建 docker 用户组？<br>Docker 守候进程绑定的是一个 unix socket，而不是 TCP 端口。这个套接字默认的属主是 root，其他是用户可以使用 sudo 命令来访问这个套接字文件。因为这个原因，docker 服务进程都是以 root 帐号的身份运行的。</p><a id="more"></a><p>为了避免每次运行 docker 命令的时候都需要输入 sudo，可以创建一个 docker 用户组，并把相应的用户添加到这个分组里面。当 docker 进程启动的时候，会设置该套接字可以被 docker 这个分组的用户读写。这样只要是在 docker 这个组里面的用户就可以直接执行 docker 命令了。<br>因为该 dockergroup 等同于 root 帐号</p><h2 id="具体操作"><a href="#具体操作" class="headerlink" title="具体操作"></a>具体操作</h2><ol><li>执行以下命令</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo usermod -aG docker your_username</span><br></pre></td></tr></table></figure><ol start="2"><li>退出重新登录，这个很重要。</li><li>执行 docker 命令测试以下</li></ol><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run hello-world</span><br></pre></td></tr></table></figure><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://www.runoob.com/docker/ubuntu-docker-install.html" target="_blank" rel="noopener">http://www.runoob.com/docker/ubuntu-docker-install.html</a><br><a href="http://www.docker.org.cn/book/install/run-docker-without-sudo-30.html" target="_blank" rel="noopener">http://www.docker.org.cn/book/install/run-docker-without-sudo-30.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;安装-docker&quot;&gt;&lt;a href=&quot;#安装-docker&quot; class=&quot;headerlink&quot; title=&quot;安装 docker&quot;&gt;&lt;/a&gt;安装 docker&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;wget -qO- https://get.docker.com/ | sh&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;或&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo apt install docker&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;h2 id=&quot;原理&quot;&gt;&lt;a href=&quot;#原理&quot; class=&quot;headerlink&quot; title=&quot;原理&quot;&gt;&lt;/a&gt;原理&lt;/h2&gt;&lt;p&gt;为什么需要创建 docker 用户组？&lt;br&gt;Docker 守候进程绑定的是一个 unix socket，而不是 TCP 端口。这个套接字默认的属主是 root，其他是用户可以使用 sudo 命令来访问这个套接字文件。因为这个原因，docker 服务进程都是以 root 帐号的身份运行的。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="docker" scheme="https://www.xingjiehu.com/tags/docker/"/>
-    
-      <category term="sudo" scheme="https://www.xingjiehu.com/tags/sudo/"/>
     
   </entry>
   
