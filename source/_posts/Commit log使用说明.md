@@ -119,3 +119,8 @@ conventional-changelog -p angular -i CHANGELOG.md -w -r 0
 }
 ```
 以后，直接运行`npm run changelog`命令即可。
+
+## 参考资料
+http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html
+https://github.com/conventional-changelog-archived-repos/validate-commit-msg
+https://github.com/conventional-changelog-archived-repos/conventional-changelog-cli
