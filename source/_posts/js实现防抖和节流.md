@@ -20,6 +20,8 @@ date: 2019-11-15 10:32:50
 理想的方式应该是当用户不在输入时，在发送请求。怎么确定用户停止输入呢？我们定义一个等待时间，比如500ms。当用户停止输入500ms后发送一个请求。
 500ms内如果在不停的输入内容，那我们就重新重新计时。
 
+<!-- more -->
+
 简单例子
 
 ```
@@ -111,3 +113,4 @@ function handle() {
 https://juejin.im/entry/5b1d2d54f265da6e2545bfa4
 https://juejin.im/post/5dccb36de51d45105d563105?utm_source=gold_browser_extension#heading-4
 https://juejin.im/post/5b8de829f265da43623c4261#heading-4
+https://juejin.im/entry/5937cc8cb123db0064496405
