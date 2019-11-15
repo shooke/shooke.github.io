@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2019-10-11T09:16:26.546Z</updated>
+  <updated>2019-11-15T08:21:39.480Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,9 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>js实现防抖和节流</title>
+    <link href="https://www.xingjiehu.com/2019/11/15/ck2zvjtxp000po3ompcc029i4/"/>
+    <id>https://www.xingjiehu.com/2019/11/15/ck2zvjtxp000po3ompcc029i4/</id>
+    <published>2019-11-15T02:32:50.000Z</published>
+    <updated>2019-11-15T08:21:39.480Z</updated>
+    
+    <content type="html"><![CDATA[<p>防抖和节流是避免过度处理的有效手段。目的就是为了解决一些事件频繁的触发问题。</p><h2 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h2><p>先说一下防抖，当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，如果设定的时间到来之前，又一次触发了事件，就重新开始延时。</p><blockquote><p>通俗易懂点就是，领导安排任务，你得等领导全部说完了再去做，不能说一个就跑去做了，你得等领导说完。</p></blockquote><p>举个很典型的例子，搜索提示是个很典型的使用场景。每次输入框的内容发生更改就会发送一个请求，这其实是没有必要的。<br>理想的方式应该是当用户不在输入时，在发送请求。怎么确定用户停止输入呢？我们定义一个等待时间，比如500ms。当用户停止输入500ms后发送一个请求。<br>500ms内如果在不停的输入内容，那我们就重新重新计时。</p><p>简单例子</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 防抖  定时器</span><br><span class="line">let timer;</span><br><span class="line"></span><br><span class="line">// 监听input事件</span><br><span class="line">this.$refs.search.$el.addEventListener(&quot;input&quot;, e =&gt; &#123;</span><br><span class="line">  console.log(&apos;不防抖&apos;)</span><br><span class="line">if (timer) &#123;</span><br><span class="line">//清空timer</span><br><span class="line">clearTimeout(timer);</span><br><span class="line">&#125;</span><br><span class="line">timer = setTimeout(() =&gt; &#123;</span><br><span class="line">console.log(&apos;防抖&apos;)//使用防抖</span><br><span class="line">&#125;, 75);//75mm为最佳</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p>进行一下封装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function debounce(func, wait, immediate) &#123;</span><br><span class="line"></span><br><span class="line">    var timeout, result;</span><br><span class="line"></span><br><span class="line">    var debounced = function () &#123;</span><br><span class="line">        var context = this;</span><br><span class="line">        var args = arguments;</span><br><span class="line"></span><br><span class="line">        if (timeout) clearTimeout(timeout);</span><br><span class="line">        if (immediate) &#123;</span><br><span class="line">            // 如果已经执行过，不再执行</span><br><span class="line">            var callNow = !timeout;</span><br><span class="line">            timeout = setTimeout(function()&#123;</span><br><span class="line">                timeout = null;</span><br><span class="line">            &#125;, wait)</span><br><span class="line">            if (callNow) result = func.apply(context, args)</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            timeout = setTimeout(function()&#123;</span><br><span class="line">                result = func.apply(context, args)</span><br><span class="line">            &#125;, wait);</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    debounced.cancel = function() &#123;</span><br><span class="line">        clearTimeout(timeout);</span><br><span class="line">        timeout = null;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    return debounced;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>这里的借用了<code>冯羽</code>的代码<a href="https://juejin.im/post/5931561fa22b9d0058c5b87d#heading-3" target="_blank" rel="noopener">https://juejin.im/post/5931561fa22b9d0058c5b87d#heading-3</a></p><h2 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h2><p>与防抖不同，节流是用来控制节奏的，他不会象防抖那样，一直无限期的后延。而是执行一个时间段内的最后一次指令。</p><blockquote><p>通俗易懂点就是，老板给你安排任务，要求一周完成。但是在做的过程中需求老是变化，你就不行抛弃以前的工作，只按最新需求做，到了交付日期，按照最终需求交付。</p></blockquote><p>比如滚动事件，持续触发scroll事件时，并不立即执行handle函数，每隔1000毫秒才会执行一次handle函数。</p><p>代码实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var throttle = function(func, delay) &#123;</span><br><span class="line">     var timer = null;</span><br><span class="line">     var startTime = Date.now();</span><br><span class="line">     return function() &#123;</span><br><span class="line">             var curTime = Date.now();</span><br><span class="line">             var remaining = delay - (curTime - startTime);</span><br><span class="line">             var context = this;</span><br><span class="line">             var args = arguments;</span><br><span class="line">             clearTimeout(timer);</span><br><span class="line">              if (remaining &lt;= 0) &#123;</span><br><span class="line">                    func.apply(context, args);</span><br><span class="line">                    startTime = Date.now();</span><br><span class="line">              &#125; else &#123;</span><br><span class="line">                    timer = setTimeout(func, remaining);</span><br><span class="line">              &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line">function handle() &#123;</span><br><span class="line">      console.log(Math.random());</span><br><span class="line">&#125;</span><br><span class="line"> window.addEventListener(&apos;scroll&apos;, throttle(handle, 1000));</span><br></pre></td></tr></table></figure></p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://juejin.im/entry/5b1d2d54f265da6e2545bfa4" target="_blank" rel="noopener">https://juejin.im/entry/5b1d2d54f265da6e2545bfa4</a><br><a href="https://juejin.im/post/5dccb36de51d45105d563105?utm_source=gold_browser_extension#heading-4" target="_blank" rel="noopener">https://juejin.im/post/5dccb36de51d45105d563105?utm_source=gold_browser_extension#heading-4</a><br><a href="https://juejin.im/post/5b8de829f265da43623c4261#heading-4" target="_blank" rel="noopener">https://juejin.im/post/5b8de829f265da43623c4261#heading-4</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;防抖和节流是避免过度处理的有效手段。目的就是为了解决一些事件频繁的触发问题。&lt;/p&gt;
+&lt;h2 id=&quot;防抖&quot;&gt;&lt;a href=&quot;#防抖&quot; class=&quot;headerlink&quot; title=&quot;防抖&quot;&gt;&lt;/a&gt;防抖&lt;/h2&gt;&lt;p&gt;先说一下防抖，当持续触发事件时，一定时间段内没有
+      
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="javascript" scheme="https://www.xingjiehu.com/tags/javascript/"/>
+    
+      <category term="防抖" scheme="https://www.xingjiehu.com/tags/%E9%98%B2%E6%8A%96/"/>
+    
+      <category term="节流" scheme="https://www.xingjiehu.com/tags/%E8%8A%82%E6%B5%81/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Commit log 使用说明</title>
-    <link href="https://www.xingjiehu.com/2019/10/11/ck1lwng570002gjome0p5bzr1/"/>
-    <id>https://www.xingjiehu.com/2019/10/11/ck1lwng570002gjome0p5bzr1/</id>
+    <link href="https://www.xingjiehu.com/2019/10/11/ck2zvjtwy0000o3ompk2ox97i/"/>
+    <id>https://www.xingjiehu.com/2019/10/11/ck2zvjtwy0000o3ompk2ox97i/</id>
     <published>2019-10-11T08:20:38.000Z</published>
     <updated>2019-10-11T09:16:26.546Z</updated>
     
@@ -42,8 +72,8 @@
   
   <entry>
     <title>解决element ui el-select控件多选时option设置为disabled，但可以删除标签，造成无法恢复的bug</title>
-    <link href="https://www.xingjiehu.com/2019/09/25/ck1lwng6w0035gjomc60sj9dj/"/>
-    <id>https://www.xingjiehu.com/2019/09/25/ck1lwng6w0035gjomc60sj9dj/</id>
+    <link href="https://www.xingjiehu.com/2019/09/25/ck2zvjtz50039o3ompiy0qui1/"/>
+    <id>https://www.xingjiehu.com/2019/09/25/ck2zvjtz50039o3ompiy0qui1/</id>
     <published>2019-09-25T07:13:05.000Z</published>
     <updated>2019-09-25T07:35:24.469Z</updated>
     
@@ -65,8 +95,8 @@
   
   <entry>
     <title>vue中使用neditor</title>
-    <link href="https://www.xingjiehu.com/2019/09/03/ck1lwng6s002ugjomcqil61q9/"/>
-    <id>https://www.xingjiehu.com/2019/09/03/ck1lwng6s002ugjomcqil61q9/</id>
+    <link href="https://www.xingjiehu.com/2019/09/03/ck2zvjtza003ho3omtjaolwo5/"/>
+    <id>https://www.xingjiehu.com/2019/09/03/ck2zvjtza003ho3omtjaolwo5/</id>
     <published>2019-09-03T08:48:11.000Z</published>
     <updated>2019-09-04T01:22:15.780Z</updated>
     
@@ -91,8 +121,8 @@
   
   <entry>
     <title>使用vue cli 3项目打包到指定目录</title>
-    <link href="https://www.xingjiehu.com/2019/08/22/ck1lwng6u0031gjomex8x64jo/"/>
-    <id>https://www.xingjiehu.com/2019/08/22/ck1lwng6u0031gjomex8x64jo/</id>
+    <link href="https://www.xingjiehu.com/2019/08/22/ck2zvjtz6003bo3omrw3ggqra/"/>
+    <id>https://www.xingjiehu.com/2019/08/22/ck2zvjtz6003bo3omrw3ggqra/</id>
     <published>2019-08-22T13:16:33.000Z</published>
     <updated>2019-08-23T01:34:23.348Z</updated>
     
@@ -115,8 +145,8 @@
   
   <entry>
     <title>telnet使用简介</title>
-    <link href="https://www.xingjiehu.com/2019/07/31/ck1lwng6d0021gjomqi8gdngn/"/>
-    <id>https://www.xingjiehu.com/2019/07/31/ck1lwng6d0021gjomqi8gdngn/</id>
+    <link href="https://www.xingjiehu.com/2019/07/31/ck2zvjty9001wo3omkwul6xwl/"/>
+    <id>https://www.xingjiehu.com/2019/07/31/ck2zvjty9001wo3omkwul6xwl/</id>
     <published>2019-07-31T14:01:23.000Z</published>
     <updated>2019-08-23T01:46:26.709Z</updated>
     
@@ -141,8 +171,8 @@
   
   <entry>
     <title>vue自定义组件v-model绑定数据的实现方法</title>
-    <link href="https://www.xingjiehu.com/2019/07/19/ck1lwng6t002ygjommzx3l0vo/"/>
-    <id>https://www.xingjiehu.com/2019/07/19/ck1lwng6t002ygjommzx3l0vo/</id>
+    <link href="https://www.xingjiehu.com/2019/07/19/ck2zvjtyw002vo3ommrfnjhy6/"/>
+    <id>https://www.xingjiehu.com/2019/07/19/ck2zvjtyw002vo3ommrfnjhy6/</id>
     <published>2019-07-19T02:02:32.000Z</published>
     <updated>2019-09-20T03:04:46.717Z</updated>
     
@@ -170,8 +200,8 @@
   
   <entry>
     <title>url添加参数</title>
-    <link href="https://www.xingjiehu.com/2019/07/17/ck1lwng6g0027gjomiovwnxk8/"/>
-    <id>https://www.xingjiehu.com/2019/07/17/ck1lwng6g0027gjomiovwnxk8/</id>
+    <link href="https://www.xingjiehu.com/2019/07/17/ck2zvjtye0028o3omn5ro3hlo/"/>
+    <id>https://www.xingjiehu.com/2019/07/17/ck2zvjtye0028o3omn5ro3hlo/</id>
     <published>2019-07-17T03:16:16.000Z</published>
     <updated>2019-08-23T01:46:59.532Z</updated>
     
@@ -199,8 +229,8 @@
   
   <entry>
     <title>vue-cli3预渲染处理</title>
-    <link href="https://www.xingjiehu.com/2019/07/13/ck1lwng6k002hgjomlo9tmrhl/"/>
-    <id>https://www.xingjiehu.com/2019/07/13/ck1lwng6k002hgjomlo9tmrhl/</id>
+    <link href="https://www.xingjiehu.com/2019/07/13/ck2zvjtyl002ho3om1lqkoz5d/"/>
+    <id>https://www.xingjiehu.com/2019/07/13/ck2zvjtyl002ho3om1lqkoz5d/</id>
     <published>2019-07-13T02:29:01.000Z</published>
     <updated>2019-08-23T01:48:15.084Z</updated>
     
@@ -227,8 +257,8 @@
   
   <entry>
     <title>vue下使用ueditor，文件直传七牛踩坑记录</title>
-    <link href="https://www.xingjiehu.com/2019/07/08/ck1lwng6n002mgjom2w8ll8ix/"/>
-    <id>https://www.xingjiehu.com/2019/07/08/ck1lwng6n002mgjom2w8ll8ix/</id>
+    <link href="https://www.xingjiehu.com/2019/07/08/ck2zvjtys002oo3ommwtzyvor/"/>
+    <id>https://www.xingjiehu.com/2019/07/08/ck2zvjtys002oo3ommwtzyvor/</id>
     <published>2019-07-08T12:18:04.000Z</published>
     <updated>2019-08-23T01:48:25.850Z</updated>
     
@@ -257,8 +287,8 @@
   
   <entry>
     <title>require.context使用说明</title>
-    <link href="https://www.xingjiehu.com/2019/07/05/ck1lwng66001igjomvmg9joaa/"/>
-    <id>https://www.xingjiehu.com/2019/07/05/ck1lwng66001igjomvmg9joaa/</id>
+    <link href="https://www.xingjiehu.com/2019/07/05/ck2zvjtyc0023o3om7m4y7lbt/"/>
+    <id>https://www.xingjiehu.com/2019/07/05/ck2zvjtyc0023o3om7m4y7lbt/</id>
     <published>2019-07-05T07:21:32.000Z</published>
     <updated>2019-08-23T01:38:14.223Z</updated>
     
@@ -282,8 +312,8 @@
   
   <entry>
     <title>shadowsocks-deepin pac模式失效问题解决方案</title>
-    <link href="https://www.xingjiehu.com/2019/06/24/ck1lwng68001ngjomhfw9v9co/"/>
-    <id>https://www.xingjiehu.com/2019/06/24/ck1lwng68001ngjomhfw9v9co/</id>
+    <link href="https://www.xingjiehu.com/2019/06/24/ck2zvjtyh002do3ompru43vs3/"/>
+    <id>https://www.xingjiehu.com/2019/06/24/ck2zvjtyh002do3ompru43vs3/</id>
     <published>2019-06-24T02:37:50.000Z</published>
     <updated>2019-08-23T01:39:07.368Z</updated>
     
@@ -311,8 +341,8 @@
   
   <entry>
     <title>vscode打造php开发环境</title>
-    <link href="https://www.xingjiehu.com/2019/06/20/ck1lwng6j002egjomuqnw4sp3/"/>
-    <id>https://www.xingjiehu.com/2019/06/20/ck1lwng6j002egjomuqnw4sp3/</id>
+    <link href="https://www.xingjiehu.com/2019/06/20/ck2zvjtyj002fo3omqq1icjyc/"/>
+    <id>https://www.xingjiehu.com/2019/06/20/ck2zvjtyj002fo3omqq1icjyc/</id>
     <published>2019-06-20T09:27:42.000Z</published>
     <updated>2019-08-23T01:48:02.982Z</updated>
     
@@ -339,8 +369,8 @@
   
   <entry>
     <title>pipenv与pyenv、pyenv-virtualenv的关系和使用</title>
-    <link href="https://www.xingjiehu.com/2019/06/20/ck1lwng67001lgjombbbovkby/"/>
-    <id>https://www.xingjiehu.com/2019/06/20/ck1lwng67001lgjombbbovkby/</id>
+    <link href="https://www.xingjiehu.com/2019/06/20/ck2zvjty0001eo3omeyml7fcv/"/>
+    <id>https://www.xingjiehu.com/2019/06/20/ck2zvjty0001eo3omeyml7fcv/</id>
     <published>2019-06-20T01:20:23.000Z</published>
     <updated>2019-06-20T03:29:26.159Z</updated>
     
@@ -379,8 +409,8 @@
   
   <entry>
     <title>ssh使用详解</title>
-    <link href="https://www.xingjiehu.com/2019/06/06/ck1lwng6a001qgjomioeb2qrg/"/>
-    <id>https://www.xingjiehu.com/2019/06/06/ck1lwng6a001qgjomioeb2qrg/</id>
+    <link href="https://www.xingjiehu.com/2019/06/06/ck2zvjty6001qo3om5g3jp9dy/"/>
+    <id>https://www.xingjiehu.com/2019/06/06/ck2zvjty6001qo3om5g3jp9dy/</id>
     <published>2019-06-06T03:06:28.000Z</published>
     <updated>2019-08-23T01:39:23.513Z</updated>
     
@@ -405,8 +435,8 @@
   
   <entry>
     <title>GIT批量删除远程标签</title>
-    <link href="https://www.xingjiehu.com/2019/05/30/ck1lwng5c0006gjomygr2la44/"/>
-    <id>https://www.xingjiehu.com/2019/05/30/ck1lwng5c0006gjomygr2la44/</id>
+    <link href="https://www.xingjiehu.com/2019/05/30/ck2zvjtx40002o3omrtbu63jd/"/>
+    <id>https://www.xingjiehu.com/2019/05/30/ck2zvjtx40002o3omrtbu63jd/</id>
     <published>2019-05-30T08:39:29.000Z</published>
     <updated>2019-08-23T01:36:04.159Z</updated>
     
@@ -430,8 +460,8 @@
   
   <entry>
     <title>vuex getters不更新的奇怪现象解决方案</title>
-    <link href="https://www.xingjiehu.com/2019/05/23/ck1lwng6m002jgjompxlt8hpu/"/>
-    <id>https://www.xingjiehu.com/2019/05/23/ck1lwng6m002jgjompxlt8hpu/</id>
+    <link href="https://www.xingjiehu.com/2019/05/23/ck2zvjtyo002lo3om5bh7evhe/"/>
+    <id>https://www.xingjiehu.com/2019/05/23/ck2zvjtyo002lo3om5bh7evhe/</id>
     <published>2019-05-22T16:19:41.000Z</published>
     <updated>2019-08-23T01:48:53.394Z</updated>
     
@@ -456,8 +486,8 @@
   
   <entry>
     <title>sublime text 3安装插件</title>
-    <link href="https://www.xingjiehu.com/2019/05/17/ck1lwng6b001ugjomh37m2a8d/"/>
-    <id>https://www.xingjiehu.com/2019/05/17/ck1lwng6b001ugjomh37m2a8d/</id>
+    <link href="https://www.xingjiehu.com/2019/05/17/ck2zvjtya001zo3omzfmved88/"/>
+    <id>https://www.xingjiehu.com/2019/05/17/ck2zvjtya001zo3omzfmved88/</id>
     <published>2019-05-17T03:26:28.000Z</published>
     <updated>2019-08-23T01:39:46.998Z</updated>
     
@@ -485,8 +515,8 @@
   
   <entry>
     <title>docker环境下php使用指南</title>
-    <link href="https://www.xingjiehu.com/2019/05/15/ck1lwng5j000cgjomqghjh63h/"/>
-    <id>https://www.xingjiehu.com/2019/05/15/ck1lwng5j000cgjomqghjh63h/</id>
+    <link href="https://www.xingjiehu.com/2019/05/15/ck2zvjty1001io3omiv02gc01/"/>
+    <id>https://www.xingjiehu.com/2019/05/15/ck2zvjty1001io3omiv02gc01/</id>
     <published>2019-05-15T10:09:53.000Z</published>
     <updated>2019-08-23T01:35:13.977Z</updated>
     
@@ -519,8 +549,8 @@
   
   <entry>
     <title>ubuntu更新php</title>
-    <link href="https://www.xingjiehu.com/2019/05/10/ck1lwng6f0024gjom8r5d73jk/"/>
-    <id>https://www.xingjiehu.com/2019/05/10/ck1lwng6f0024gjom8r5d73jk/</id>
+    <link href="https://www.xingjiehu.com/2019/05/10/ck2zvjtyd0025o3omh43sgty2/"/>
+    <id>https://www.xingjiehu.com/2019/05/10/ck2zvjtyd0025o3omh43sgty2/</id>
     <published>2019-05-10T02:03:38.000Z</published>
     <updated>2019-08-23T01:46:43.797Z</updated>
     
@@ -544,34 +574,6 @@
       <category term="ubuntu" scheme="https://www.xingjiehu.com/tags/ubuntu/"/>
     
       <category term="php" scheme="https://www.xingjiehu.com/tags/php/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>vue组件之插槽</title>
-    <link href="https://www.xingjiehu.com/2019/05/09/ck1lwng6p002ogjomd9ly3asy/"/>
-    <id>https://www.xingjiehu.com/2019/05/09/ck1lwng6p002ogjomd9ly3asy/</id>
-    <published>2019-05-09T01:26:11.000Z</published>
-    <updated>2019-08-23T01:48:46.415Z</updated>
-    
-    <content type="html"><![CDATA[<p>这篇文章的写作时间是 vue2.6 发布后，因此适用于 2.6 以后的版本<br>插槽是 vue 组件中很重要的一环，他解决了组件内容自定义的问题。以及父子组件变量传递的问题（作用域插槽）。<br>在 2.6 以后的版本中，具名插槽和作用域插槽引入了一个新的统一的语法 (即 v-slot 指令)，它取代了 slot 和 slot-scope 。这两个老的已经进入废弃期，为了保持平滑升级，目前还可以使用，但是不推荐使用。后期会被移除。</p><a id="more"></a><h2 id="简单插槽使用"><a href="#简单插槽使用" class="headerlink" title="简单插槽使用"></a>简单插槽使用</h2><p><code>v-slot.vue</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;v-slot&quot;&gt;</span><br><span class="line">    &lt;span&gt;我是简单v-solt：&lt;/span&gt;</span><br><span class="line">    &lt;slot&gt;你现在看到的是默认内容&lt;/slot&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;v-slot&quot;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure><p>在其他组件中使用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;v-slot&gt;&lt;/v-slot&gt;</span><br><span class="line">&lt;v-slot&gt;现在看到的是自定义内容&lt;/v-slot&gt;</span><br></pre></td></tr></table></figure><h2 id="具名插槽使用"><a href="#具名插槽使用" class="headerlink" title="具名插槽使用"></a>具名插槽使用</h2><p><code>v-slot-name.vue</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;v-slot&quot;&gt;</span><br><span class="line">    &lt;span&gt;我是具名v-solt-name：&lt;/span&gt;</span><br><span class="line">    &lt;header&gt;</span><br><span class="line">      &lt;slot name=&quot;header&quot;&gt;header默认&lt;/slot&gt;</span><br><span class="line">    &lt;/header&gt;</span><br><span class="line">    &lt;main&gt;</span><br><span class="line">      &lt;slot&gt;默认main&lt;/slot&gt;</span><br><span class="line">    &lt;/main&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;v-slot-name&quot;</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure><p>在其他模块中使用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;h2&gt;新的使用方式 使用v-slot:插槽名称&lt;/h2&gt;</span><br><span class="line">    &lt;v-slot-name&gt;</span><br><span class="line">      &lt;template v-slot:header&gt;</span><br><span class="line">        自定义header</span><br><span class="line">      &lt;/template&gt;</span><br><span class="line">      &lt;p&gt;没有指定v-slot名称，自定义main&lt;/p&gt;</span><br><span class="line">    &lt;/v-slot-name&gt;</span><br><span class="line"></span><br><span class="line">    &lt;h2&gt;老的使用方式 使用slot=&quot;插槽名称&quot;&lt;/h2&gt;</span><br><span class="line">    &lt;v-slot-name&gt;</span><br><span class="line">      &lt;template slot=&quot;header&quot;&gt;</span><br><span class="line">        自定义header</span><br><span class="line">      &lt;/template&gt;</span><br><span class="line">      &lt;p&gt;没有指定v-slot名称，自定义main&lt;/p&gt;</span><br><span class="line">    &lt;/v-slot-name&gt;</span><br><span class="line"></span><br><span class="line">    &lt;v-slot-name&gt;</span><br><span class="line">      &lt;template v-slot:header&gt;</span><br><span class="line">        自定义header</span><br><span class="line">      &lt;/template&gt;</span><br><span class="line">      &lt;template v-slot:default&gt;</span><br><span class="line">        指定了default，看到自定义的main</span><br><span class="line">      &lt;/template&gt;</span><br><span class="line">    &lt;/v-slot-name&gt;</span><br></pre></td></tr></table></figure><h2 id="作用于插槽使用"><a href="#作用于插槽使用" class="headerlink" title="作用于插槽使用"></a>作用于插槽使用</h2><p><code>v-slot-scope.vue</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;v-slot&quot;&gt;</span><br><span class="line">    &lt;p&gt;我是作用域插槽&lt;/p&gt;</span><br><span class="line">    &lt;slot v-bind:user=&quot;user&quot;&gt;</span><br><span class="line">      &#123;&#123; user.name &#125;&#125;</span><br><span class="line">    &lt;/slot&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;v-slot&quot;,</span><br><span class="line">  props: [&quot;user&quot;]</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure><p>在其他模块中调用</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;h1&gt;作用域插槽&lt;/h1&gt;</span><br><span class="line">    &lt;h2&gt;新的使用方式 使用v-slot:插槽名称=&quot;组件全局变量&quot;&lt;/h2&gt;</span><br><span class="line">    &lt;v-slot-scope :user=&quot;user&quot;&gt;</span><br><span class="line">      &lt;template v-slot:default=&quot;slotProps&quot;&gt;</span><br><span class="line">        这是指定插槽名称的写法</span><br><span class="line">        &#123;&#123; slotProps.user.name &#125;&#125;</span><br><span class="line">      &lt;/template&gt;</span><br><span class="line">    &lt;/v-slot-scope&gt;</span><br><span class="line"></span><br><span class="line">    &lt;h2&gt;老的使用方式 使用slot=&quot;插槽名称&quot; slot-scope=&quot;组件全局变量&quot;&lt;/h2&gt;</span><br><span class="line">    &lt;v-slot-scope :user=&quot;user&quot;&gt;</span><br><span class="line">      &lt;template slot=&quot;default&quot; slot-scope=&quot;slotProps&quot;&gt;</span><br><span class="line">        这是指定插槽名称的写法</span><br><span class="line">        &#123;&#123; slotProps.user.name &#125;&#125;</span><br><span class="line">      &lt;/template&gt;</span><br><span class="line">    &lt;/v-slot-scope&gt;</span><br><span class="line"></span><br><span class="line">    &lt;v-slot-scope :user=&quot;user&quot; v-slot=&quot;slotProps&quot;&gt;</span><br><span class="line">      这是新语法中的，独占插槽的写法，省去了default插槽名称，和template标签</span><br><span class="line">      &#123;&#123; slotProps.user.name &#125;&#125;</span><br><span class="line">    &lt;/v-slot-scope&gt;</span><br></pre></td></tr></table></figure><h2 id="实例代码"><a href="#实例代码" class="headerlink" title="实例代码"></a>实例代码</h2><p><a href="https://gitee.com/shooke/vue-demo/tree/master/vue-demo-slot" target="_blank" rel="noopener">https://gitee.com/shooke/vue-demo/tree/master/vue-demo-slot</a></p><p>具体参考文件如下<br>vuedemo/src/views/slot.vue 使用组件的视图文件<br>vuedemo/src/components/v-slot-name.vue 具名插槽组件<br>vuedemo/src/components/v-slot-scope.vue 作用域插槽组件<br>vuedemo/src/components/v-slot.vue 普通域插槽组件</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这篇文章的写作时间是 vue2.6 发布后，因此适用于 2.6 以后的版本&lt;br&gt;插槽是 vue 组件中很重要的一环，他解决了组件内容自定义的问题。以及父子组件变量传递的问题（作用域插槽）。&lt;br&gt;在 2.6 以后的版本中，具名插槽和作用域插槽引入了一个新的统一的语法 (即 v-slot 指令)，它取代了 slot 和 slot-scope 。这两个老的已经进入废弃期，为了保持平滑升级，目前还可以使用，但是不推荐使用。后期会被移除。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="vue" scheme="https://www.xingjiehu.com/tags/vue/"/>
-    
-      <category term="组件" scheme="https://www.xingjiehu.com/tags/%E7%BB%84%E4%BB%B6/"/>
-    
-      <category term="插槽" scheme="https://www.xingjiehu.com/tags/%E6%8F%92%E6%A7%BD/"/>
-    
-      <category term="Slots" scheme="https://www.xingjiehu.com/tags/Slots/"/>
     
   </entry>
   

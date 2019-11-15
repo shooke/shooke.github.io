@@ -360,7 +360,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/10/11/ck1lwng570002gjome0p5bzr1/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/11/15/ck2zvjtxp000po3ompcc029i4/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -380,7 +380,184 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/10/11/ck1lwng570002gjome0p5bzr1/" class="post-title-link" itemprop="url">Commit log 使用说明</a>
+                <a href="/2019/11/15/ck2zvjtxp000po3ompcc029i4/" class="post-title-link" itemprop="url">js实现防抖和节流</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-15 10:32:50 / 修改时间：16:21:39" itemprop="dateCreated datePublished" datetime="2019-11-15T10:32:50+08:00">2019-11-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>防抖和节流是避免过度处理的有效手段。目的就是为了解决一些事件频繁的触发问题。</p>
+<h2 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h2><p>先说一下防抖，当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，如果设定的时间到来之前，又一次触发了事件，就重新开始延时。</p>
+<blockquote>
+<p>通俗易懂点就是，领导安排任务，你得等领导全部说完了再去做，不能说一个就跑去做了，你得等领导说完。</p>
+</blockquote>
+<p>举个很典型的例子，搜索提示是个很典型的使用场景。每次输入框的内容发生更改就会发送一个请求，这其实是没有必要的。<br>理想的方式应该是当用户不在输入时，在发送请求。怎么确定用户停止输入呢？我们定义一个等待时间，比如500ms。当用户停止输入500ms后发送一个请求。<br>500ms内如果在不停的输入内容，那我们就重新重新计时。</p>
+<p>简单例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 防抖  定时器</span><br><span class="line">let timer;</span><br><span class="line"></span><br><span class="line">// 监听input事件</span><br><span class="line">this.$refs.search.$el.addEventListener(&quot;input&quot;, e =&gt; &#123;</span><br><span class="line">  console.log(&apos;不防抖&apos;)</span><br><span class="line">	if (timer) &#123;</span><br><span class="line">		//清空timer</span><br><span class="line">		clearTimeout(timer);</span><br><span class="line">	&#125;</span><br><span class="line">	timer = setTimeout(() =&gt; &#123;</span><br><span class="line">		console.log(&apos;防抖&apos;)	//使用防抖	</span><br><span class="line">	&#125;, 75);		//75mm为最佳</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>进行一下封装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function debounce(func, wait, immediate) &#123;</span><br><span class="line"></span><br><span class="line">    var timeout, result;</span><br><span class="line"></span><br><span class="line">    var debounced = function () &#123;</span><br><span class="line">        var context = this;</span><br><span class="line">        var args = arguments;</span><br><span class="line"></span><br><span class="line">        if (timeout) clearTimeout(timeout);</span><br><span class="line">        if (immediate) &#123;</span><br><span class="line">            // 如果已经执行过，不再执行</span><br><span class="line">            var callNow = !timeout;</span><br><span class="line">            timeout = setTimeout(function()&#123;</span><br><span class="line">                timeout = null;</span><br><span class="line">            &#125;, wait)</span><br><span class="line">            if (callNow) result = func.apply(context, args)</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123;</span><br><span class="line">            timeout = setTimeout(function()&#123;</span><br><span class="line">                result = func.apply(context, args)</span><br><span class="line">            &#125;, wait);</span><br><span class="line">        &#125;</span><br><span class="line">        return result;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    debounced.cancel = function() &#123;</span><br><span class="line">        clearTimeout(timeout);</span><br><span class="line">        timeout = null;</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    return debounced;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这里的借用了<code>冯羽</code>的代码<a href="https://juejin.im/post/5931561fa22b9d0058c5b87d#heading-3" target="_blank" rel="noopener">https://juejin.im/post/5931561fa22b9d0058c5b87d#heading-3</a></p>
+<h2 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h2><p>与防抖不同，节流是用来控制节奏的，他不会象防抖那样，一直无限期的后延。而是执行一个时间段内的最后一次指令。</p>
+<blockquote>
+<p>通俗易懂点就是，老板给你安排任务，要求一周完成。但是在做的过程中需求老是变化，你就不行抛弃以前的工作，只按最新需求做，到了交付日期，按照最终需求交付。</p>
+</blockquote>
+<p>比如滚动事件，持续触发scroll事件时，并不立即执行handle函数，每隔1000毫秒才会执行一次handle函数。</p>
+<p>代码实例<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">var throttle = function(func, delay) &#123;</span><br><span class="line">     var timer = null;</span><br><span class="line">     var startTime = Date.now();</span><br><span class="line">     return function() &#123;</span><br><span class="line">             var curTime = Date.now();</span><br><span class="line">             var remaining = delay - (curTime - startTime);</span><br><span class="line">             var context = this;</span><br><span class="line">             var args = arguments;</span><br><span class="line">             clearTimeout(timer);</span><br><span class="line">              if (remaining &lt;= 0) &#123;</span><br><span class="line">                    func.apply(context, args);</span><br><span class="line">                    startTime = Date.now();</span><br><span class="line">              &#125; else &#123;</span><br><span class="line">                    timer = setTimeout(func, remaining);</span><br><span class="line">              &#125;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br><span class="line">function handle() &#123;</span><br><span class="line">      console.log(Math.random());</span><br><span class="line">&#125;</span><br><span class="line"> window.addEventListener(&apos;scroll&apos;, throttle(handle, 1000));</span><br></pre></td></tr></table></figure></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://juejin.im/entry/5b1d2d54f265da6e2545bfa4" target="_blank" rel="noopener">https://juejin.im/entry/5b1d2d54f265da6e2545bfa4</a><br><a href="https://juejin.im/post/5dccb36de51d45105d563105?utm_source=gold_browser_extension#heading-4" target="_blank" rel="noopener">https://juejin.im/post/5dccb36de51d45105d563105?utm_source=gold_browser_extension#heading-4</a><br><a href="https://juejin.im/post/5b8de829f265da43623c4261#heading-4" target="_blank" rel="noopener">https://juejin.im/post/5b8de829f265da43623c4261#heading-4</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/10/11/ck2zvjtwy0000o3ompk2ox97i/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/10/11/ck2zvjtwy0000o3ompk2ox97i/" class="post-title-link" itemprop="url">Commit log 使用说明</a>
               
             
           </h1>
@@ -467,7 +644,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/10/11/ck1lwng570002gjome0p5bzr1/#more" rel="contents">
+              <a class="btn" href="/2019/10/11/ck2zvjtwy0000o3ompk2ox97i/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -527,7 +704,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/09/25/ck1lwng6w0035gjomc60sj9dj/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/09/25/ck2zvjtz50039o3ompiy0qui1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -547,7 +724,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/09/25/ck1lwng6w0035gjomc60sj9dj/" class="post-title-link" itemprop="url">解决element ui el-select控件多选时option设置为disabled，但可以删除标签，造成无法恢复的bug</a>
+                <a href="/2019/09/25/ck2zvjtz50039o3ompiy0qui1/" class="post-title-link" itemprop="url">解决element ui el-select控件多选时option设置为disabled，但可以删除标签，造成无法恢复的bug</a>
               
             
           </h1>
@@ -635,7 +812,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/09/25/ck1lwng6w0035gjomc60sj9dj/#more" rel="contents">
+              <a class="btn" href="/2019/09/25/ck2zvjtz50039o3ompiy0qui1/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -695,7 +872,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/09/03/ck1lwng6s002ugjomcqil61q9/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/09/03/ck2zvjtza003ho3omtjaolwo5/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -715,7 +892,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/09/03/ck1lwng6s002ugjomcqil61q9/" class="post-title-link" itemprop="url">vue中使用neditor</a>
+                <a href="/2019/09/03/ck2zvjtza003ho3omtjaolwo5/" class="post-title-link" itemprop="url">vue中使用neditor</a>
               
             
           </h1>
@@ -814,7 +991,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/09/03/ck1lwng6s002ugjomcqil61q9/#more" rel="contents">
+              <a class="btn" href="/2019/09/03/ck2zvjtza003ho3omtjaolwo5/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -874,7 +1051,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/08/22/ck1lwng6u0031gjomex8x64jo/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/08/22/ck2zvjtz6003bo3omrw3ggqra/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -894,7 +1071,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/22/ck1lwng6u0031gjomex8x64jo/" class="post-title-link" itemprop="url">使用vue cli 3项目打包到指定目录</a>
+                <a href="/2019/08/22/ck2zvjtz6003bo3omrw3ggqra/" class="post-title-link" itemprop="url">使用vue cli 3项目打包到指定目录</a>
               
             
           </h1>
@@ -993,7 +1170,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/08/22/ck1lwng6u0031gjomex8x64jo/#more" rel="contents">
+              <a class="btn" href="/2019/08/22/ck2zvjtz6003bo3omrw3ggqra/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1053,7 +1230,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/31/ck1lwng6d0021gjomqi8gdngn/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/31/ck2zvjty9001wo3omkwul6xwl/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1073,7 +1250,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/31/ck1lwng6d0021gjomqi8gdngn/" class="post-title-link" itemprop="url">telnet使用简介</a>
+                <a href="/2019/07/31/ck2zvjty9001wo3omkwul6xwl/" class="post-title-link" itemprop="url">telnet使用简介</a>
               
             
           </h1>
@@ -1174,7 +1351,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/31/ck1lwng6d0021gjomqi8gdngn/#more" rel="contents">
+              <a class="btn" href="/2019/07/31/ck2zvjty9001wo3omkwul6xwl/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1234,7 +1411,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/19/ck1lwng6t002ygjommzx3l0vo/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/19/ck2zvjtyw002vo3ommrfnjhy6/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1254,7 +1431,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/19/ck1lwng6t002ygjommzx3l0vo/" class="post-title-link" itemprop="url">vue自定义组件v-model绑定数据的实现方法</a>
+                <a href="/2019/07/19/ck2zvjtyw002vo3ommrfnjhy6/" class="post-title-link" itemprop="url">vue自定义组件v-model绑定数据的实现方法</a>
               
             
           </h1>
@@ -1354,7 +1531,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/19/ck1lwng6t002ygjommzx3l0vo/#more" rel="contents">
+              <a class="btn" href="/2019/07/19/ck2zvjtyw002vo3ommrfnjhy6/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1414,7 +1591,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/17/ck1lwng6g0027gjomiovwnxk8/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/17/ck2zvjtye0028o3omn5ro3hlo/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1434,7 +1611,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/17/ck1lwng6g0027gjomiovwnxk8/" class="post-title-link" itemprop="url">url添加参数</a>
+                <a href="/2019/07/17/ck2zvjtye0028o3omn5ro3hlo/" class="post-title-link" itemprop="url">url添加参数</a>
               
             
           </h1>
@@ -1587,7 +1764,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/13/ck1lwng6k002hgjomlo9tmrhl/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/13/ck2zvjtyl002ho3om1lqkoz5d/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1607,7 +1784,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/13/ck1lwng6k002hgjomlo9tmrhl/" class="post-title-link" itemprop="url">vue-cli3预渲染处理</a>
+                <a href="/2019/07/13/ck2zvjtyl002ho3om1lqkoz5d/" class="post-title-link" itemprop="url">vue-cli3预渲染处理</a>
               
             
           </h1>
@@ -1706,7 +1883,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/13/ck1lwng6k002hgjomlo9tmrhl/#more" rel="contents">
+              <a class="btn" href="/2019/07/13/ck2zvjtyl002ho3om1lqkoz5d/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1766,7 +1943,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/08/ck1lwng6n002mgjom2w8ll8ix/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/08/ck2zvjtys002oo3ommwtzyvor/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1786,7 +1963,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/08/ck1lwng6n002mgjom2w8ll8ix/" class="post-title-link" itemprop="url">vue下使用ueditor，文件直传七牛踩坑记录</a>
+                <a href="/2019/07/08/ck2zvjtys002oo3ommwtzyvor/" class="post-title-link" itemprop="url">vue下使用ueditor，文件直传七牛踩坑记录</a>
               
             
           </h1>
@@ -1885,7 +2062,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/08/ck1lwng6n002mgjom2w8ll8ix/#more" rel="contents">
+              <a class="btn" href="/2019/07/08/ck2zvjtys002oo3ommwtzyvor/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1894,186 +2071,6 @@
         
       
     </p></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/05/ck1lwng66001igjomvmg9joaa/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/05/ck1lwng66001igjomvmg9joaa/" class="post-title-link" itemprop="url">require.context使用说明</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-05 15:21:32" itemprop="dateCreated datePublished" datetime="2019-07-05T15:21:32+08:00">2019-07-05</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-08-23 09:38:14" itemprop="dateModified" datetime="2019-08-23T09:38:14+08:00">2019-08-23</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>require.context是Webpack中用来管理依赖的一个函数，使用方式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require.context(directory, useSubdirectories = false, regExp = /^\.\//)</span><br></pre></td></tr></table></figure></p>
-<p>第一个参数表示相对的文件目录，<br>第二个参数表示是否包括子目录中的文件，<br>第三个参数表示引入的文件匹配的正则表达式。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/07/05/ck1lwng66001igjomvmg9joaa/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
 
     
 
@@ -2157,7 +2154,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-count">44</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2339,7 +2336,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">75</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">78</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
