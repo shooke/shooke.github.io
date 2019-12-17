@@ -37,7 +37,7 @@ git commit -m "init"
 
 ## 小结
 `git init`可以初始化项目
-`git add .`或`git add readme.md`可以将文件暂存，`.`是当前目录的意思，可以将目录下所有文件进行暂存，如果要针对某个文件可以加上文件名如`readme.md`
+`git add .`可以将文件加入到暂存区，`.`是当前目录的意思，可以将目录下所有文件进行暂存，如果要针对某个文件可以加上文件名如`git add readme.md`
 `git commit -m "init"`将文件加入到git代码仓库，并生成一条`init`的log记录
 
 
