@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2019-11-15T09:00:08.200Z</updated>
+  <updated>2019-12-28T09:37:13.222Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,9 +17,84 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>ssh提速</title>
+    <link href="https://www.xingjiehu.com/2019/12/28/ck4pe8iuo001t4xomhffblnnv/"/>
+    <id>https://www.xingjiehu.com/2019/12/28/ck4pe8iuo001t4xomhffblnnv/</id>
+    <published>2019-12-28T09:31:20.000Z</published>
+    <updated>2019-12-28T09:37:13.222Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近ssh链接超慢，但是ping发现网速还是很快的。记录一下解决方法<br>修改<code>/etc/ssh/sshd_config</code>两个参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UseDNS no</span><br><span class="line">GSSAPIAuthentication no</span><br></pre></td></tr></table></figure></p><p>保存后重启ssh服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart sshd</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近ssh链接超慢，但是ping发现网速还是很快的。记录一下解决方法&lt;br&gt;修改&lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt;两个参数&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gu
+      
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="ssh" scheme="https://www.xingjiehu.com/tags/ssh/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git中文文件名乱码解决方法</title>
+    <link href="https://www.xingjiehu.com/2019/12/17/ck4pe8itt000r4xomwd4y8srg/"/>
+    <id>https://www.xingjiehu.com/2019/12/17/ck4pe8itt000r4xomwd4y8srg/</id>
+    <published>2019-12-17T03:23:37.000Z</published>
+    <updated>2019-12-17T03:27:26.241Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">Untitled-1</span><br><span class="line">&quot;git\347\256\200\344\273\213&quot;</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span><br></pre></td></tr></table></figure><p>其实<code>&quot;git\347\256\200\344\273\213&quot;</code>是个中文名的文件<code>git简介</code>,中文部分成了乱码，解决方法很简单<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.quotepath false</span><br></pre></td></tr></table></figure></p><p>这样，不对0x80以上的字符进行quote，解决git status/commit时中文文件名乱码</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+      
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="git中文乱码" scheme="https://www.xingjiehu.com/tags/git%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>deepin修改git提示语言</title>
+    <link href="https://www.xingjiehu.com/2019/12/17/ck4pe8iw4003b4xomnbyb0prp/"/>
+    <id>https://www.xingjiehu.com/2019/12/17/ck4pe8iw4003b4xomnbyb0prp/</id>
+    <published>2019-12-17T03:13:17.000Z</published>
+    <updated>2019-12-17T05:27:41.064Z</updated>
+    
+    <content type="html"><![CDATA[<p>deepin系统很好用，汉化也很彻底，安装git后。提示都是中文。不过不太习惯。还是改成英文比较顺眼。<br>修改<code>~/.bashrc</code>文件加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># Set Git language to English</span><br><span class="line">#alias git=&apos;LANG=en_US git&apos;</span><br><span class="line">alias git=&apos;LANG=en_GB git&apos;</span><br></pre></td></tr></table></figure></p><p>关闭命令行，重新打开，如如git命令就会提示英文了</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;deepin系统很好用，汉化也很彻底，安装git后。提示都是中文。不过不太习惯。还是改成英文比较顺眼。&lt;br&gt;修改&lt;code&gt;~/.bashrc&lt;/code&gt;文件加入&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td cla
+      
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="git语言" scheme="https://www.xingjiehu.com/tags/git%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
     <title>js实现防抖和节流</title>
-    <link href="https://www.xingjiehu.com/2019/11/15/ck3xuheda0012pdom7mmyabir/"/>
-    <id>https://www.xingjiehu.com/2019/11/15/ck3xuheda0012pdom7mmyabir/</id>
+    <link href="https://www.xingjiehu.com/2019/11/15/ck4pe8iu700184xomyib41561/"/>
+    <id>https://www.xingjiehu.com/2019/11/15/ck4pe8iu700184xomyib41561/</id>
     <published>2019-11-15T02:32:50.000Z</published>
     <updated>2019-11-15T09:00:08.200Z</updated>
     
@@ -49,8 +124,8 @@
   
   <entry>
     <title>Commit log 使用说明</title>
-    <link href="https://www.xingjiehu.com/2019/10/11/ck3xuheck0002pdomaz3alr14/"/>
-    <id>https://www.xingjiehu.com/2019/10/11/ck3xuheck0002pdomaz3alr14/</id>
+    <link href="https://www.xingjiehu.com/2019/10/11/ck4pe8isc00024xomzpdde0xv/"/>
+    <id>https://www.xingjiehu.com/2019/10/11/ck4pe8isc00024xomzpdde0xv/</id>
     <published>2019-10-11T08:20:38.000Z</published>
     <updated>2019-10-11T09:16:26.546Z</updated>
     
@@ -73,8 +148,8 @@
   
   <entry>
     <title>解决element ui el-select控件多选时option设置为disabled，但可以删除标签，造成无法恢复的bug</title>
-    <link href="https://www.xingjiehu.com/2019/09/25/ck3xuheeh003dpdomj1ju4akd/"/>
-    <id>https://www.xingjiehu.com/2019/09/25/ck3xuheeh003dpdomj1ju4akd/</id>
+    <link href="https://www.xingjiehu.com/2019/09/25/ck4pe8iwl003t4xomljqzade8/"/>
+    <id>https://www.xingjiehu.com/2019/09/25/ck4pe8iwl003t4xomljqzade8/</id>
     <published>2019-09-25T07:13:05.000Z</published>
     <updated>2019-09-25T07:35:24.469Z</updated>
     
@@ -96,8 +171,8 @@
   
   <entry>
     <title>vue中使用neditor</title>
-    <link href="https://www.xingjiehu.com/2019/09/03/ck3xuheek003ipdom988qzqa7/"/>
-    <id>https://www.xingjiehu.com/2019/09/03/ck3xuheek003ipdom988qzqa7/</id>
+    <link href="https://www.xingjiehu.com/2019/09/03/ck4pe8ivn00314xomqm1tgbf2/"/>
+    <id>https://www.xingjiehu.com/2019/09/03/ck4pe8ivn00314xomqm1tgbf2/</id>
     <published>2019-09-03T08:48:11.000Z</published>
     <updated>2019-09-04T01:22:15.780Z</updated>
     
@@ -122,8 +197,8 @@
   
   <entry>
     <title>使用vue cli 3项目打包到指定目录</title>
-    <link href="https://www.xingjiehu.com/2019/08/22/ck3xuheec0033pdom6nu40lz6/"/>
-    <id>https://www.xingjiehu.com/2019/08/22/ck3xuheec0033pdom6nu40lz6/</id>
+    <link href="https://www.xingjiehu.com/2019/08/22/ck4pe8ivz00374xomodgtxphf/"/>
+    <id>https://www.xingjiehu.com/2019/08/22/ck4pe8ivz00374xomodgtxphf/</id>
     <published>2019-08-22T13:16:33.000Z</published>
     <updated>2019-08-23T01:34:23.348Z</updated>
     
@@ -146,8 +221,8 @@
   
   <entry>
     <title>telnet使用简介</title>
-    <link href="https://www.xingjiehu.com/2019/07/31/ck3xuheds0023pdomzh0l5umg/"/>
-    <id>https://www.xingjiehu.com/2019/07/31/ck3xuheds0023pdomzh0l5umg/</id>
+    <link href="https://www.xingjiehu.com/2019/07/31/ck4pe8ivm002x4xom1t6073mw/"/>
+    <id>https://www.xingjiehu.com/2019/07/31/ck4pe8ivm002x4xom1t6073mw/</id>
     <published>2019-07-31T14:01:23.000Z</published>
     <updated>2019-08-23T01:46:26.709Z</updated>
     
@@ -172,8 +247,8 @@
   
   <entry>
     <title>vue自定义组件v-model绑定数据的实现方法</title>
-    <link href="https://www.xingjiehu.com/2019/07/19/ck3xuhee7002tpdom4d9m317a/"/>
-    <id>https://www.xingjiehu.com/2019/07/19/ck3xuhee7002tpdom4d9m317a/</id>
+    <link href="https://www.xingjiehu.com/2019/07/19/ck4pe8iw200394xomd68p5evn/"/>
+    <id>https://www.xingjiehu.com/2019/07/19/ck4pe8iw200394xomd68p5evn/</id>
     <published>2019-07-19T02:02:32.000Z</published>
     <updated>2019-09-20T03:04:46.717Z</updated>
     
@@ -201,8 +276,8 @@
   
   <entry>
     <title>url添加参数</title>
-    <link href="https://www.xingjiehu.com/2019/07/17/ck3xuhedw002epdomnb0tdgh3/"/>
-    <id>https://www.xingjiehu.com/2019/07/17/ck3xuhedw002epdomnb0tdgh3/</id>
+    <link href="https://www.xingjiehu.com/2019/07/17/ck4pe8iv6002d4xomcmxee2lx/"/>
+    <id>https://www.xingjiehu.com/2019/07/17/ck4pe8iv6002d4xomcmxee2lx/</id>
     <published>2019-07-17T03:16:16.000Z</published>
     <updated>2019-08-23T01:46:59.532Z</updated>
     
@@ -230,8 +305,8 @@
   
   <entry>
     <title>vue-cli3预渲染处理</title>
-    <link href="https://www.xingjiehu.com/2019/07/13/ck3xuhee1002jpdomyw0ms2vh/"/>
-    <id>https://www.xingjiehu.com/2019/07/13/ck3xuhee1002jpdomyw0ms2vh/</id>
+    <link href="https://www.xingjiehu.com/2019/07/13/ck4pe8ivh002n4xom2tmpryoc/"/>
+    <id>https://www.xingjiehu.com/2019/07/13/ck4pe8ivh002n4xom2tmpryoc/</id>
     <published>2019-07-13T02:29:01.000Z</published>
     <updated>2019-08-23T01:48:15.084Z</updated>
     
@@ -258,8 +333,8 @@
   
   <entry>
     <title>vue下使用ueditor，文件直传七牛踩坑记录</title>
-    <link href="https://www.xingjiehu.com/2019/07/08/ck3xuhee3002opdomrz6lc1k1/"/>
-    <id>https://www.xingjiehu.com/2019/07/08/ck3xuhee3002opdomrz6lc1k1/</id>
+    <link href="https://www.xingjiehu.com/2019/07/08/ck4pe8ivk002u4xomsp0t2wjj/"/>
+    <id>https://www.xingjiehu.com/2019/07/08/ck4pe8ivk002u4xomsp0t2wjj/</id>
     <published>2019-07-08T12:18:04.000Z</published>
     <updated>2019-08-23T01:48:25.850Z</updated>
     
@@ -288,8 +363,8 @@
   
   <entry>
     <title>require.context使用说明</title>
-    <link href="https://www.xingjiehu.com/2019/07/05/ck3xuhedm001updom636iro0z/"/>
-    <id>https://www.xingjiehu.com/2019/07/05/ck3xuhedm001updom636iro0z/</id>
+    <link href="https://www.xingjiehu.com/2019/07/05/ck4pe8iuq001x4xomf2k5nyhf/"/>
+    <id>https://www.xingjiehu.com/2019/07/05/ck4pe8iuq001x4xomf2k5nyhf/</id>
     <published>2019-07-05T07:21:32.000Z</published>
     <updated>2019-08-23T01:38:14.223Z</updated>
     
@@ -313,8 +388,8 @@
   
   <entry>
     <title>shadowsocks-deepin pac模式失效问题解决方案</title>
-    <link href="https://www.xingjiehu.com/2019/06/24/ck3xuhedl001rpdom6swm5wau/"/>
-    <id>https://www.xingjiehu.com/2019/06/24/ck3xuhedl001rpdom6swm5wau/</id>
+    <link href="https://www.xingjiehu.com/2019/06/24/ck4pe8iun001r4xomhf2jzil7/"/>
+    <id>https://www.xingjiehu.com/2019/06/24/ck4pe8iun001r4xomhf2jzil7/</id>
     <published>2019-06-24T02:37:50.000Z</published>
     <updated>2019-08-23T01:39:07.368Z</updated>
     
@@ -342,8 +417,8 @@
   
   <entry>
     <title>vscode打造php开发环境</title>
-    <link href="https://www.xingjiehu.com/2019/06/20/ck3xuhee2002mpdomurb7yw6a/"/>
-    <id>https://www.xingjiehu.com/2019/06/20/ck3xuhee2002mpdomurb7yw6a/</id>
+    <link href="https://www.xingjiehu.com/2019/06/20/ck4pe8ivd002j4xomb6bm52ah/"/>
+    <id>https://www.xingjiehu.com/2019/06/20/ck4pe8ivd002j4xomb6bm52ah/</id>
     <published>2019-06-20T09:27:42.000Z</published>
     <updated>2019-08-23T01:48:02.982Z</updated>
     
@@ -370,8 +445,8 @@
   
   <entry>
     <title>pipenv与pyenv、pyenv-virtualenv的关系和使用</title>
-    <link href="https://www.xingjiehu.com/2019/06/20/ck3xuhedo001wpdomstfmhrqi/"/>
-    <id>https://www.xingjiehu.com/2019/06/20/ck3xuhedo001wpdomstfmhrqi/</id>
+    <link href="https://www.xingjiehu.com/2019/06/20/ck4pe8iuc001d4xombim0p46k/"/>
+    <id>https://www.xingjiehu.com/2019/06/20/ck4pe8iuc001d4xombim0p46k/</id>
     <published>2019-06-20T01:20:23.000Z</published>
     <updated>2019-06-20T03:29:26.159Z</updated>
     
@@ -410,8 +485,8 @@
   
   <entry>
     <title>ssh使用详解</title>
-    <link href="https://www.xingjiehu.com/2019/06/06/ck3xuhedi001npdommi8qza40/"/>
-    <id>https://www.xingjiehu.com/2019/06/06/ck3xuhedi001npdommi8qza40/</id>
+    <link href="https://www.xingjiehu.com/2019/06/06/ck4pe8iuv00204xomy89yi9vh/"/>
+    <id>https://www.xingjiehu.com/2019/06/06/ck4pe8iuv00204xomy89yi9vh/</id>
     <published>2019-06-06T03:06:28.000Z</published>
     <updated>2019-08-23T01:39:23.513Z</updated>
     
@@ -436,8 +511,8 @@
   
   <entry>
     <title>GIT批量删除远程标签</title>
-    <link href="https://www.xingjiehu.com/2019/05/30/ck3xuhece0000pdomz9lj35bd/"/>
-    <id>https://www.xingjiehu.com/2019/05/30/ck3xuhece0000pdomz9lj35bd/</id>
+    <link href="https://www.xingjiehu.com/2019/05/30/ck4pe8is100004xom0tmcn5j0/"/>
+    <id>https://www.xingjiehu.com/2019/05/30/ck4pe8is100004xom0tmcn5j0/</id>
     <published>2019-05-30T08:39:29.000Z</published>
     <updated>2019-08-23T01:36:04.159Z</updated>
     
@@ -461,8 +536,8 @@
   
   <entry>
     <title>vuex getters不更新的奇怪现象解决方案</title>
-    <link href="https://www.xingjiehu.com/2019/05/23/ck3xuhedz002hpdomz5fxexbz/"/>
-    <id>https://www.xingjiehu.com/2019/05/23/ck3xuhedz002hpdomz5fxexbz/</id>
+    <link href="https://www.xingjiehu.com/2019/05/23/ck4pe8ivj002q4xompl302erk/"/>
+    <id>https://www.xingjiehu.com/2019/05/23/ck4pe8ivj002q4xompl302erk/</id>
     <published>2019-05-22T16:19:41.000Z</published>
     <updated>2019-08-23T01:48:53.394Z</updated>
     
@@ -482,99 +557,6 @@
       <category term="vuex" scheme="https://www.xingjiehu.com/tags/vuex/"/>
     
       <category term="getters" scheme="https://www.xingjiehu.com/tags/getters/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>sublime text 3安装插件</title>
-    <link href="https://www.xingjiehu.com/2019/05/17/ck3xuhedq001zpdompx7lqhks/"/>
-    <id>https://www.xingjiehu.com/2019/05/17/ck3xuhedq001zpdompx7lqhks/</id>
-    <published>2019-05-17T03:26:28.000Z</published>
-    <updated>2019-08-23T01:39:46.998Z</updated>
-    
-    <content type="html"><![CDATA[<p>sublime相比其他编辑器最大的优点就是占用内存小。一直用idea和vscode。好久没用sublime了，今天安装了一下新版本3.2.1，想要用它开发vue。安装插件的过程中踩了几个小坑。</p><h2 id="安装package-control"><a href="#安装package-control" class="headerlink" title="安装package control"></a>安装package control</h2><p>使用网上说的，控制台安装方式，按<code>ctrl + \</code> `，输入下面的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &apos;wb&apos;).write(urllib.request.urlopen( &apos;http://sublime.wbond.net/&apos; + pf.replace(&apos; &apos;,&apos;%20&apos;)).read())</span><br></pre></td></tr></table></figure></p><a id="more"></a><p>结果发现由于网络问题，根本无法安装。于是手动下载插件包。</p><h2 id="手动安装package-control"><a href="#手动安装package-control" class="headerlink" title="手动安装package control"></a>手动安装package control</h2><ol><li>去<a href="https://github.com/wbond/package_control/tree/3.3.0下载插件" target="_blank" rel="noopener">https://github.com/wbond/package_control/tree/3.3.0下载插件</a></li><li>把下载好的zip包解压，重命名为Package Control</li><li>打开Sublime3，菜单-&gt;Preferences-&gt;Browse Packages…然后复制Package Control文件夹到该目录</li><li>重启Sublime3,如果菜单-&gt;Preferences有Package Setting和Package Control就说明安装成功。</li><li>Ctrl+Shift+p输入install选中Install Package回车就可以安装插件。</li></ol><blockquote><p>注意去github下载插件一定要选择稳定版，第一次下载了最新的测试版居然报了这个错误：<code>plugin_host has exited unexpectedly,plugin functionality won&#39;t be available until Sublime Text has been restaarted</code></p></blockquote><h2 id="解决被墙问题"><a href="#解决被墙问题" class="headerlink" title="解决被墙问题"></a>解决被墙问题</h2><p>我在使用的过程中发现无法获取package列表，估计是被墙了，解决方法是<br>Preferences-&gt;Packges Settings-&gt;Package Control-&gt;Setting User<br>在里面加入一下配置就可以了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;channels&quot;: [</span><br><span class="line">&quot;http://cst.stu.126.net/u/json/cms/channel_v3.json&quot;</span><br><span class="line">],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>注意，如果文件已经有了配置，去掉外围的<code>{}</code>即可</p><h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>使用快捷键 <code>Ctl+Shift+P</code>，再选择 <code>Package Control: Install Package</code>。sublime会加载插件列表，左下角有提示，等待加载完毕，回填出新的输入框，搜索需要的插件下载即可。<br>安装过程也会在左下角显示，耐心等等插件安装完毕，一般很快就能安装完</p><h3 id="安装vue高亮插件"><a href="#安装vue高亮插件" class="headerlink" title="安装vue高亮插件"></a>安装vue高亮插件</h3><p>使用快捷键 <code>Ctl+Shift+P</code>，再选择 <code>Package Control: Install Package</code>。<br>等一会sublime下载完插件列表，会出现一个新的输入框，这时候输入<code>Vue Syntax Highlight</code>敲回车。就安装上了。</p><h3 id="安装eslint插件"><a href="#安装eslint插件" class="headerlink" title="安装eslint插件"></a>安装eslint插件</h3><p>使用快捷键 <code>Ctl+Shift+P</code>，再选择 <code>Package Control: Install Package</code>。<br>等一会sublime下载完插件列表，会出现一个新的输入框，这时候输入<code>SublimeLinter-contrib-eslint</code>敲回车。就安装上了。</p><h3 id="安装代码格式化插件CodeFormatter"><a href="#安装代码格式化插件CodeFormatter" class="headerlink" title="安装代码格式化插件CodeFormatter"></a>安装代码格式化插件CodeFormatter</h3><p>使用快捷键 <code>Ctl+Shift+P</code>，再选择 <code>Package Control: Install Package</code>。<br>等一会sublime下载完插件列表，会出现一个新的输入框，这时候输入<code>CodeFormatter</code>敲回车。就安装上了。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;sublime相比其他编辑器最大的优点就是占用内存小。一直用idea和vscode。好久没用sublime了，今天安装了一下新版本3.2.1，想要用它开发vue。安装插件的过程中踩了几个小坑。&lt;/p&gt;
-&lt;h2 id=&quot;安装package-control&quot;&gt;&lt;a href=&quot;#安装package-control&quot; class=&quot;headerlink&quot; title=&quot;安装package control&quot;&gt;&lt;/a&gt;安装package control&lt;/h2&gt;&lt;p&gt;使用网上说的，控制台安装方式，按&lt;code&gt;ctrl + \&lt;/code&gt; `，输入下面的命令&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;import urllib.request,os; pf = &amp;apos;Package Control.sublime-package&amp;apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &amp;apos;wb&amp;apos;).write(urllib.request.urlopen( &amp;apos;http://sublime.wbond.net/&amp;apos; + pf.replace(&amp;apos; &amp;apos;,&amp;apos;%20&amp;apos;)).read())&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="开发工具" scheme="https://www.xingjiehu.com/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/"/>
-    
-      <category term="sublime" scheme="https://www.xingjiehu.com/tags/sublime/"/>
-    
-      <category term="sublime text 3" scheme="https://www.xingjiehu.com/tags/sublime-text-3/"/>
-    
-      <category term="package_control" scheme="https://www.xingjiehu.com/tags/package-control/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>docker环境下php使用指南</title>
-    <link href="https://www.xingjiehu.com/2019/05/15/ck3xuhecy000cpdom82naouxn/"/>
-    <id>https://www.xingjiehu.com/2019/05/15/ck3xuhecy000cpdom82naouxn/</id>
-    <published>2019-05-15T10:09:53.000Z</published>
-    <updated>2019-08-23T01:35:13.977Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近由于业务原因，需要将 php7.0 升级到 7.2。升级要考虑一下几点<br>要满足以下需求</p><ol><li>php7.0 和 7.2 要共存，以免升级 7.2 以后出现问题，及时切换回来。</li><li>升级操作要简单，服务器数量比较多，原生方式安装太过复杂，操作步骤太多，就算携程 shell 脚本，维护起来也比较麻烦</li><li>nginx 保持原样，只对项目相关的配置文件做简单调整即可。如果 nginx 变更日志处理等模块都收到牵连。</li></ol><p>考虑到上面的因素，用 docker 显然是非常符合的。于是就开启了踩坑之旅。<br>主要遇到了两个问题，一个是<code>502</code>，还有一个是<code>File not found</code>。下面进行分析</p><a id="more"></a><h2 id="502问题解决"><a href="#502问题解决" class="headerlink" title="502问题解决"></a>502问题解决</h2><p>502一看就是nginx跟php的通讯出现了问题。检查原因</p><ol><li>docker是否正常启动</li><li>是都对端口做了映射<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#docker启动命令</span><br><span class="line">docker run -p 9000:9000 -d --name myphp -v /var/www/html/:/var/www/html/ --privileged=true -d php:7.2-fpm</span><br></pre></td></tr></table></figure></li></ol><p>先用<code>docker container ls</code>查看是否已经启动容器，如果列表中没有，说明启动失败了<br>如果容器正常启动，则检查一下端口是否正确。命令中<code>-p 9000:9000</code>说明本地端口已经映射到了docker的9000端口。检查nginx中的配置。<br>原来是代理错了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location ~ \.php$ &#123;</span><br><span class="line">  include snippets/fastcgi-php.conf;</span><br><span class="line">  fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>修改<code>fastcgi_pass</code>为端口形式，改为如下配置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location ~ \.php$ &#123;</span><br><span class="line">  include snippets/fastcgi-php.conf;</span><br><span class="line">  fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>运行<code>nginx -s reload</code>重启成功。这回502问题消失了。</p><h2 id="File-not-found-问题解决"><a href="#File-not-found-问题解决" class="headerlink" title="File not found 问题解决"></a>File not found 问题解决</h2><p>出现File not found 返回码是404，分析原因</p><ol><li>文件路径不对</li><li>文件没有权限</li></ol><p>首先检查nginx中<code>root</code>的配置发现目录是对的，这就排除了nginx报404的可能。然后分析文件权限，发现也是可读的。文件权限正常。<br>那就只有一种可能了，php-fpm没有找到文件。<br>nginx和php的组合，是现在很普遍的方式，他的执行过程是这样的</p><ol><li>nginx接到请求，转发到php-fpm</li><li>php-fpm接收到数据，启动php，执行php代码</li></ol><p>既然nginx设置和权限都没问题，那就说明这个file not found是php报的错，查看docker的log发现真的有错误。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">project3-php_1     | 172.17.0.5 -  29/Mar/2016:13:29:12 +0000 &quot;GET /index.php&quot; 404</span><br></pre></td></tr></table></figure></p><p>php居然找的是根目录下的index.php。这说明docker的卷映射的不对。修改执行命令的<code>-v</code>参数，重新启动镜像。重启nginx果然问题解决了。</p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 9000:9000 -d --name myphp -v /var/www/html/:/var/www/html/ --privileged=true -d php:7.2-fpm</span><br></pre></td></tr></table></figure><p>其中<code>-p 9000:9000</code>和<code>-v /var/www/html/:/var/www/html/</code>是关键，这两个一定要注意。</p><ol><li><p>-p 宿主机端口:docker端口<br>因为nginx是在宿主机上的程序，并不能直接访问docker中的端口，只能发送给宿主机9000端口。<br><code>-p 9000:9000</code>参数会让宿主机把来自9000端口的数据，发送给docker的9000端口。<br>这样就实现了和docker通信的过程</p></li><li><p>-v 宿主机路径:docker工作路径<br>注意这里一定要用绝对地址，配置好了卷映射，宿主机路径一定要和nginx虚拟主机root的配置一致。docker才可以读取宿主机的文件。</p></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近由于业务原因，需要将 php7.0 升级到 7.2。升级要考虑一下几点&lt;br&gt;要满足以下需求&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;php7.0 和 7.2 要共存，以免升级 7.2 以后出现问题，及时切换回来。&lt;/li&gt;
-&lt;li&gt;升级操作要简单，服务器数量比较多，原生方式安装太过复杂，操作步骤太多，就算携程 shell 脚本，维护起来也比较麻烦&lt;/li&gt;
-&lt;li&gt;nginx 保持原样，只对项目相关的配置文件做简单调整即可。如果 nginx 变更日志处理等模块都收到牵连。&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;考虑到上面的因素，用 docker 显然是非常符合的。于是就开启了踩坑之旅。&lt;br&gt;主要遇到了两个问题，一个是&lt;code&gt;502&lt;/code&gt;，还有一个是&lt;code&gt;File not found&lt;/code&gt;。下面进行分析&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="php" scheme="https://www.xingjiehu.com/tags/php/"/>
-    
-      <category term="php-fpm" scheme="https://www.xingjiehu.com/tags/php-fpm/"/>
-    
-      <category term="php-cli" scheme="https://www.xingjiehu.com/tags/php-cli/"/>
-    
-      <category term="docker" scheme="https://www.xingjiehu.com/tags/docker/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ubuntu更新php</title>
-    <link href="https://www.xingjiehu.com/2019/05/10/ck3xuhedt0027pdomltp4oz3t/"/>
-    <id>https://www.xingjiehu.com/2019/05/10/ck3xuhedt0027pdomltp4oz3t/</id>
-    <published>2019-05-10T02:03:38.000Z</published>
-    <updated>2019-08-23T01:46:43.797Z</updated>
-    
-    <content type="html"><![CDATA[<p>服务器以前安装的 php7.0，最近开发任务中有部分插件，从 composer 安装提示需要 php7.2 的版本，才可以安装。<br>但是服务器的源里面没有 php7.2，最新的也就 7.0。添加 ppa 搞了一下。记录下步骤</p><h2 id="安装-ppa-管理器"><a href="#安装-ppa-管理器" class="headerlink" title="安装 ppa 管理器"></a>安装 ppa 管理器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install software-properties-common</span><br></pre></td></tr></table></figure><p>如果已经安装了，可以省略这一步，如果不安装，在执行<code>add-apt-repository</code>命令时会提示<code>sudo: add-apt-repository: command not found</code></p><h2 id="添加-ppa-源，并更新源"><a href="#添加-ppa-源，并更新源" class="headerlink" title="添加 ppa 源，并更新源"></a>添加 ppa 源，并更新源</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:ondrej/php</span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure><h2 id="升级-php"><a href="#升级-php" class="headerlink" title="升级 php"></a>升级 php</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt remove php7.0</span><br><span class="line">sudo apt-get install php7.2</span><br></pre></td></tr></table></figure><p>这样php7.2就安装上了。如果你希望保留老的版本，可以不执行<code>sudo apt remove php7.0</code>。<br>如果希望连同系统一起升级可以执行下面的命令，会连同系统和其他软件一起升级到最新版，只有php会升级到指定的7.2版本。（不建议使用下面的命令）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get upgrade php7.2</span><br></pre></td></tr></table></figure></p><h2 id="扩展处理"><a href="#扩展处理" class="headerlink" title="扩展处理"></a>扩展处理</h2><p>升级了<code>php7.2</code>，还需要安装一下7.2的扩展比如mbstring，gd等执行如下命令安装就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install php7.2-gd</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;服务器以前安装的 php7.0，最近开发任务中有部分插件，从 composer 安装提示需要 php7.2 的版本，才可以安装。&lt;br&gt;但是服务器的源里面没有 php7.2，最新的也就 7.0。添加 ppa 搞了一下。记录下步骤&lt;/p&gt;
-&lt;h2 id=&quot;安装-ppa-管理器
-      
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="系统运维" scheme="https://www.xingjiehu.com/tags/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/"/>
-    
-      <category term="php" scheme="https://www.xingjiehu.com/tags/php/"/>
-    
-      <category term="ubuntu" scheme="https://www.xingjiehu.com/tags/ubuntu/"/>
     
   </entry>
   
