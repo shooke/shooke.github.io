@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2020-01-03T10:58:40.286Z</updated>
+  <updated>2020-01-10T06:52:12.417Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,9 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>nginx配置结构说明</title>
+    <link href="https://www.xingjiehu.com/2020/01/10/ck57szz0j0016f4omrxhnd1qz/"/>
+    <id>https://www.xingjiehu.com/2020/01/10/ck57szz0j0016f4omrxhnd1qz/</id>
+    <published>2020-01-10T06:20:08.000Z</published>
+    <updated>2020-01-10T06:52:12.417Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近做项目发现服务器上nginx的配置很混乱，主要原因就是配置的人不太了解nginx的配置。从网上查了资料之后就复制了。</p><h2 id="配置结构"><a href="#配置结构" class="headerlink" title="配置结构"></a>配置结构</h2><p>nginx的配置其实很简单，总共也就分为4部分：main（全局设置）、server（主机设置）、upstream（负载均衡服务器设置）和 location（URL匹配特定位置的设置）<br>他们的关系是，server继承main，location继承server，upstream既不会继承其他设置也不会被继承。<br>所以配置的优先级就是 location &gt; server &gt; main</p><p>一级指的是nginx的入口配置文件<code>nginx.conf</code>,这个文件的存放位置根据安装环境有所差异。比如使用源码包安装nginx到<code>/usr/local</code>。nginx.conf就会在<code>/usr/local/nginx/conf/nginx.conf</code>。</p><p>nginx.conf中一般是这样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">user nobody nobody;</span><br><span class="line">worker_processes 2;</span><br><span class="line">error_log logs/error.log notice;</span><br><span class="line">pid logs/nginx.pid;</span><br><span class="line">worker_rlimit_nofile 65535;</span><br><span class="line"> </span><br><span class="line">events&#123;</span><br><span class="line">use epoll;</span><br><span class="line">worker_connections 65536;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span><br><span class="line">                      &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</span><br><span class="line">                      &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">            listen       80;</span><br><span class="line">            server_name  localhost;</span><br><span class="line"></span><br><span class="line">            #charset koi8-r;</span><br><span class="line"></span><br><span class="line">            #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">            location / &#123;</span><br><span class="line">                root   html;</span><br><span class="line">                index  index.html index.htm;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">            # redirect server error pages to the static page /50x.html</span><br><span class="line">            #</span><br><span class="line">            error_page   500 502 503 504  /50x.html;</span><br><span class="line">            location = /50x.html &#123;</span><br><span class="line">                root   html;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">            #</span><br><span class="line">            #location ~ \.php$ &#123;</span><br><span class="line">            #    proxy_pass   http://127.0.0.1;</span><br><span class="line">            #&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="http配置"><a href="#http配置" class="headerlink" title="http配置"></a>http配置</h2><p>http里面主要做一些server中会用到的通用配置，比如mime，日志格式log_format，负载均衡等。<br>http里面放多个server，一般为了方便管理，我们会把server放到一个叫vhost的文件夹内。然后用<code>include vhost/*.conf;</code>的方式加载进来。</p><h2 id="server配置"><a href="#server配置" class="headerlink" title="server配置"></a>server配置</h2><p>http中的配置项，server中也可以使用，如果某个站点需要个性化配置，可以自行配置。<br>相同的配置项，server中的配置优先级高于http。</p><h2 id="location配置"><a href="#location配置" class="headerlink" title="location配置"></a>location配置</h2><p>主要用于请求转发，或者针对某个路由进行特殊处理。经常用到的场景是为了节省域名，前端和后端都部署在一个域名下。接口用XXX.com/api去访问，这时候可以通过location做转发</p><h2 id="upstream配置"><a href="#upstream配置" class="headerlink" title="upstream配置"></a>upstream配置</h2><p>负载均衡可以放在http内部，也可以放在http的外层。这就方便了灵活配置。如果只有一个负载配置多server公用，可以在<code>nginx.conf</code>中配置，在各个server中使用。<br>如果每个server有自己的负载配置。就可以把配置放在自己的配置文件<code>vhost/server1.conf</code>中。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近做项目发现服务器上nginx的配置很混乱，主要原因就是配置的人不太了解nginx的配置。从网上查了资料之后就复制了。&lt;/p&gt;
+&lt;h2 id=&quot;配置结构&quot;&gt;&lt;a href=&quot;#配置结构&quot; class=&quot;headerlink&quot; title=&quot;配置结构&quot;&gt;&lt;/a&gt;配置结构&lt;/
+      
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="nginx" scheme="https://www.xingjiehu.com/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
     <title>limits.conf配置说明</title>
-    <link href="https://www.xingjiehu.com/2020/01/03/ck4y1okm7000ycmom74jd25iy/"/>
-    <id>https://www.xingjiehu.com/2020/01/03/ck4y1okm7000ycmom74jd25iy/</id>
+    <link href="https://www.xingjiehu.com/2020/01/03/ck57szz0b000rf4omiyh17j92/"/>
+    <id>https://www.xingjiehu.com/2020/01/03/ck57szz0b000rf4omiyh17j92/</id>
     <published>2020-01-03T09:30:52.000Z</published>
     <updated>2020-01-03T10:58:40.286Z</updated>
     
@@ -42,8 +68,8 @@
   
   <entry>
     <title>ssh提速</title>
-    <link href="https://www.xingjiehu.com/2019/12/28/ck4y1okmj001ucmomhwbuoxf3/"/>
-    <id>https://www.xingjiehu.com/2019/12/28/ck4y1okmj001ucmomhwbuoxf3/</id>
+    <link href="https://www.xingjiehu.com/2019/12/28/ck57szz0x001wf4omrj3f69wo/"/>
+    <id>https://www.xingjiehu.com/2019/12/28/ck57szz0x001wf4omrj3f69wo/</id>
     <published>2019-12-28T09:31:20.000Z</published>
     <updated>2019-12-28T09:37:13.222Z</updated>
     
@@ -67,8 +93,8 @@
   
   <entry>
     <title>git中文文件名乱码解决方法</title>
-    <link href="https://www.xingjiehu.com/2019/12/17/ck4y1okm2000mcmom2xhz8g7j/"/>
-    <id>https://www.xingjiehu.com/2019/12/17/ck4y1okm2000mcmom2xhz8g7j/</id>
+    <link href="https://www.xingjiehu.com/2019/12/17/ck57szz0n001cf4omide2ctrm/"/>
+    <id>https://www.xingjiehu.com/2019/12/17/ck57szz0n001cf4omide2ctrm/</id>
     <published>2019-12-17T03:23:37.000Z</published>
     <updated>2019-12-17T03:27:26.241Z</updated>
     
@@ -92,8 +118,8 @@
   
   <entry>
     <title>deepin修改git提示语言</title>
-    <link href="https://www.xingjiehu.com/2019/12/17/ck4y1okol006qcmomrw1b7nqi/"/>
-    <id>https://www.xingjiehu.com/2019/12/17/ck4y1okol006qcmomrw1b7nqi/</id>
+    <link href="https://www.xingjiehu.com/2019/12/17/ck57szz1q0036f4om0scyzdt7/"/>
+    <id>https://www.xingjiehu.com/2019/12/17/ck57szz1q0036f4om0scyzdt7/</id>
     <published>2019-12-17T03:13:17.000Z</published>
     <updated>2019-12-17T05:27:41.064Z</updated>
     
@@ -117,8 +143,8 @@
   
   <entry>
     <title>js实现防抖和节流</title>
-    <link href="https://www.xingjiehu.com/2019/11/15/ck4y1okm80012cmomk8cabc2x/"/>
-    <id>https://www.xingjiehu.com/2019/11/15/ck4y1okm80012cmomk8cabc2x/</id>
+    <link href="https://www.xingjiehu.com/2019/11/15/ck57szz0d000vf4omsg0puzdh/"/>
+    <id>https://www.xingjiehu.com/2019/11/15/ck57szz0d000vf4omsg0puzdh/</id>
     <published>2019-11-15T02:32:50.000Z</published>
     <updated>2019-11-15T09:00:08.200Z</updated>
     
@@ -148,8 +174,8 @@
   
   <entry>
     <title>Commit log 使用说明</title>
-    <link href="https://www.xingjiehu.com/2019/10/11/ck4y1oklq0005cmomh8cd8ybg/"/>
-    <id>https://www.xingjiehu.com/2019/10/11/ck4y1oklq0005cmomh8cd8ybg/</id>
+    <link href="https://www.xingjiehu.com/2019/10/11/ck57szyzw0009f4om23ljeuj9/"/>
+    <id>https://www.xingjiehu.com/2019/10/11/ck57szyzw0009f4om23ljeuj9/</id>
     <published>2019-10-11T08:20:38.000Z</published>
     <updated>2019-10-11T09:16:26.546Z</updated>
     
@@ -172,8 +198,8 @@
   
   <entry>
     <title>解决element ui el-select控件多选时option设置为disabled，但可以删除标签，造成无法恢复的bug</title>
-    <link href="https://www.xingjiehu.com/2019/09/25/ck4y1okot0076cmomcsxv5506/"/>
-    <id>https://www.xingjiehu.com/2019/09/25/ck4y1okot0076cmomcsxv5506/</id>
+    <link href="https://www.xingjiehu.com/2019/09/25/ck57szz1w003gf4om78s62fu6/"/>
+    <id>https://www.xingjiehu.com/2019/09/25/ck57szz1w003gf4om78s62fu6/</id>
     <published>2019-09-25T07:13:05.000Z</published>
     <updated>2019-09-25T07:35:24.469Z</updated>
     
@@ -195,8 +221,8 @@
   
   <entry>
     <title>vue中使用neditor</title>
-    <link href="https://www.xingjiehu.com/2019/09/03/ck4y1okow0079cmomlx1u15l9/"/>
-    <id>https://www.xingjiehu.com/2019/09/03/ck4y1okow0079cmomlx1u15l9/</id>
+    <link href="https://www.xingjiehu.com/2019/09/03/ck57szz20003nf4omx5pq9swm/"/>
+    <id>https://www.xingjiehu.com/2019/09/03/ck57szz20003nf4omx5pq9swm/</id>
     <published>2019-09-03T08:48:11.000Z</published>
     <updated>2019-09-04T01:22:15.780Z</updated>
     
@@ -221,8 +247,8 @@
   
   <entry>
     <title>使用vue cli 3项目打包到指定目录</title>
-    <link href="https://www.xingjiehu.com/2019/08/22/ck4y1okoi006kcmoml8w0e1vm/"/>
-    <id>https://www.xingjiehu.com/2019/08/22/ck4y1okoi006kcmoml8w0e1vm/</id>
+    <link href="https://www.xingjiehu.com/2019/08/22/ck57szz1u003df4omzj054r1l/"/>
+    <id>https://www.xingjiehu.com/2019/08/22/ck57szz1u003df4omzj054r1l/</id>
     <published>2019-08-22T13:16:33.000Z</published>
     <updated>2019-08-23T01:34:23.348Z</updated>
     
@@ -245,8 +271,8 @@
   
   <entry>
     <title>telnet使用简介</title>
-    <link href="https://www.xingjiehu.com/2019/07/31/ck4y1okmp0025cmomao24ny4x/"/>
-    <id>https://www.xingjiehu.com/2019/07/31/ck4y1okmp0025cmomao24ny4x/</id>
+    <link href="https://www.xingjiehu.com/2019/07/31/ck57szz110024f4omgxbu2jrz/"/>
+    <id>https://www.xingjiehu.com/2019/07/31/ck57szz110024f4omgxbu2jrz/</id>
     <published>2019-07-31T14:01:23.000Z</published>
     <updated>2019-08-23T01:46:26.709Z</updated>
     
@@ -271,8 +297,8 @@
   
   <entry>
     <title>vue自定义组件v-model绑定数据的实现方法</title>
-    <link href="https://www.xingjiehu.com/2019/07/19/ck4y1okoh006icmom5mtoq3mp/"/>
-    <id>https://www.xingjiehu.com/2019/07/19/ck4y1okoh006icmom5mtoq3mp/</id>
+    <link href="https://www.xingjiehu.com/2019/07/19/ck57szz1m002yf4omixjo74sb/"/>
+    <id>https://www.xingjiehu.com/2019/07/19/ck57szz1m002yf4omixjo74sb/</id>
     <published>2019-07-19T02:02:32.000Z</published>
     <updated>2019-09-20T03:04:46.717Z</updated>
     
@@ -300,8 +326,8 @@
   
   <entry>
     <title>url添加参数</title>
-    <link href="https://www.xingjiehu.com/2019/07/17/ck4y1okmv002icmom6x1xn0xf/"/>
-    <id>https://www.xingjiehu.com/2019/07/17/ck4y1okmv002icmom6x1xn0xf/</id>
+    <link href="https://www.xingjiehu.com/2019/07/17/ck57szz1h002rf4om92w9g6pg/"/>
+    <id>https://www.xingjiehu.com/2019/07/17/ck57szz1h002rf4om92w9g6pg/</id>
     <published>2019-07-17T03:16:16.000Z</published>
     <updated>2019-08-23T01:46:59.532Z</updated>
     
@@ -329,8 +355,8 @@
   
   <entry>
     <title>vue-cli3预渲染处理</title>
-    <link href="https://www.xingjiehu.com/2019/07/13/ck4y1okoa006acmompfhz80aa/"/>
-    <id>https://www.xingjiehu.com/2019/07/13/ck4y1okoa006acmompfhz80aa/</id>
+    <link href="https://www.xingjiehu.com/2019/07/13/ck57szz1j002tf4omvpdln6qf/"/>
+    <id>https://www.xingjiehu.com/2019/07/13/ck57szz1j002tf4omvpdln6qf/</id>
     <published>2019-07-13T02:29:01.000Z</published>
     <updated>2019-08-23T01:48:15.084Z</updated>
     
@@ -357,8 +383,8 @@
   
   <entry>
     <title>vue下使用ueditor，文件直传七牛踩坑记录</title>
-    <link href="https://www.xingjiehu.com/2019/07/08/ck4y1okoc006ccmomqnkxv2vq/"/>
-    <id>https://www.xingjiehu.com/2019/07/08/ck4y1okoc006ccmomqnkxv2vq/</id>
+    <link href="https://www.xingjiehu.com/2019/07/08/ck57szz1p0033f4omuhf77y4r/"/>
+    <id>https://www.xingjiehu.com/2019/07/08/ck57szz1p0033f4omuhf77y4r/</id>
     <published>2019-07-08T12:18:04.000Z</published>
     <updated>2019-08-23T01:48:25.850Z</updated>
     
@@ -387,8 +413,8 @@
   
   <entry>
     <title>require.context使用说明</title>
-    <link href="https://www.xingjiehu.com/2019/07/05/ck4y1okmo0022cmom0uqapfby/"/>
-    <id>https://www.xingjiehu.com/2019/07/05/ck4y1okmo0022cmom0uqapfby/</id>
+    <link href="https://www.xingjiehu.com/2019/07/05/ck57szz0z0021f4omywb6wuvv/"/>
+    <id>https://www.xingjiehu.com/2019/07/05/ck57szz0z0021f4omywb6wuvv/</id>
     <published>2019-07-05T07:21:32.000Z</published>
     <updated>2019-08-23T01:38:14.223Z</updated>
     
@@ -412,8 +438,8 @@
   
   <entry>
     <title>shadowsocks-deepin pac模式失效问题解决方案</title>
-    <link href="https://www.xingjiehu.com/2019/06/24/ck4y1okmn0020cmom9ehaw3jq/"/>
-    <id>https://www.xingjiehu.com/2019/06/24/ck4y1okmn0020cmom9ehaw3jq/</id>
+    <link href="https://www.xingjiehu.com/2019/06/24/ck57szz18002hf4om8plrteoo/"/>
+    <id>https://www.xingjiehu.com/2019/06/24/ck57szz18002hf4om8plrteoo/</id>
     <published>2019-06-24T02:37:50.000Z</published>
     <updated>2019-08-23T01:39:07.368Z</updated>
     
@@ -441,8 +467,8 @@
   
   <entry>
     <title>vscode打造php开发环境</title>
-    <link href="https://www.xingjiehu.com/2019/06/20/ck4y1okmt002ecmom8hbn6gzb/"/>
-    <id>https://www.xingjiehu.com/2019/06/20/ck4y1okmt002ecmom8hbn6gzb/</id>
+    <link href="https://www.xingjiehu.com/2019/06/20/ck57szz14002bf4omz1vfegrv/"/>
+    <id>https://www.xingjiehu.com/2019/06/20/ck57szz14002bf4omz1vfegrv/</id>
     <published>2019-06-20T09:27:42.000Z</published>
     <updated>2019-08-23T01:48:02.982Z</updated>
     
@@ -469,8 +495,8 @@
   
   <entry>
     <title>pipenv与pyenv、pyenv-virtualenv的关系和使用</title>
-    <link href="https://www.xingjiehu.com/2019/06/20/ck4y1okmf001gcmomshhdk1dt/"/>
-    <id>https://www.xingjiehu.com/2019/06/20/ck4y1okmf001gcmomshhdk1dt/</id>
+    <link href="https://www.xingjiehu.com/2019/06/20/ck57szz0r001mf4omn0r4tkzh/"/>
+    <id>https://www.xingjiehu.com/2019/06/20/ck57szz0r001mf4omn0r4tkzh/</id>
     <published>2019-06-20T01:20:23.000Z</published>
     <updated>2019-06-20T03:29:26.159Z</updated>
     
@@ -509,8 +535,8 @@
   
   <entry>
     <title>ssh使用详解</title>
-    <link href="https://www.xingjiehu.com/2019/06/06/ck4y1okml001xcmomy0596tld/"/>
-    <id>https://www.xingjiehu.com/2019/06/06/ck4y1okml001xcmomy0596tld/</id>
+    <link href="https://www.xingjiehu.com/2019/06/06/ck57szz15002ef4omwo988me0/"/>
+    <id>https://www.xingjiehu.com/2019/06/06/ck57szz15002ef4omwo988me0/</id>
     <published>2019-06-06T03:06:28.000Z</published>
     <updated>2019-08-23T01:39:23.513Z</updated>
     
@@ -530,31 +556,6 @@
       <category term="ssh" scheme="https://www.xingjiehu.com/tags/ssh/"/>
     
       <category term="端口转发" scheme="https://www.xingjiehu.com/tags/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>GIT批量删除远程标签</title>
-    <link href="https://www.xingjiehu.com/2019/05/30/ck4y1oklf0000cmomi2xpg1ao/"/>
-    <id>https://www.xingjiehu.com/2019/05/30/ck4y1oklf0000cmomi2xpg1ao/</id>
-    <published>2019-05-30T08:39:29.000Z</published>
-    <updated>2019-08-23T01:36:04.159Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="查看远程所有标签"><a href="#查看远程所有标签" class="headerlink" title="查看远程所有标签"></a>查看远程所有标签</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git ls-remote --tags</span><br><span class="line">From git@github0123:jeremy0123/fetch.git</span><br><span class="line">30f4e5cdfef2539b5e156a607f365fb457f309a4        refs/tags/v0.1</span><br><span class="line">0efbfd03ed4b09647ef8a32db9c0a075f7d7dbeb        refs/tags/v0.2</span><br><span class="line">6944954ffa18df994365e53e96d3826a3953890b        refs/tags/v0.2^&#123;&#125;</span><br></pre></td></tr></table></figure><p><code>注意：refs/tags/v0.2^{}表示v0.2是含附注的标签。</code><br>另外，参数–tags可以简化为-t；–heads会获取远程仓库的分支信息。如果没有任何参数，将获取所有的分支和标签信息。</p><a id="more"></a><h2 id="删除远程标签"><a href="#删除远程标签" class="headerlink" title="删除远程标签"></a>删除远程标签</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git push origin --delete tag v0.1</span><br></pre></td></tr></table></figure><p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin :refs/tags/v0.1</span><br></pre></td></tr></table></figure></p><h2 id="删除远程所有标签"><a href="#删除远程所有标签" class="headerlink" title="删除远程所有标签"></a>删除远程所有标签</h2><p>先获取远程所有标签，然后用<code>awk</code>获取所有标签名，再用<code>sed</code>去掉带有<code>^{}</code>的标签，最后执行用<code>git push</code>删除<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git ls-remote --tags | awk &apos;/(.*)(\s+)(.*)$/ &#123;print &quot;:&quot; $2&#125;&apos; | sed &apos;/&#125;$/&apos;d |xargs git push origin</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;查看远程所有标签&quot;&gt;&lt;a href=&quot;#查看远程所有标签&quot; class=&quot;headerlink&quot; title=&quot;查看远程所有标签&quot;&gt;&lt;/a&gt;查看远程所有标签&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;$ git ls-remote --tags&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;From git@github0123:jeremy0123/fetch.git&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;30f4e5cdfef2539b5e156a607f365fb457f309a4        refs/tags/v0.1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;0efbfd03ed4b09647ef8a32db9c0a075f7d7dbeb        refs/tags/v0.2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6944954ffa18df994365e53e96d3826a3953890b        refs/tags/v0.2^&amp;#123;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;&lt;code&gt;注意：refs/tags/v0.2^{}表示v0.2是含附注的标签。&lt;/code&gt;&lt;br&gt;另外，参数–tags可以简化为-t；–heads会获取远程仓库的分支信息。如果没有任何参数，将获取所有的分支和标签信息。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="git" scheme="https://www.xingjiehu.com/tags/git/"/>
-    
-      <category term="tag" scheme="https://www.xingjiehu.com/tags/tag/"/>
     
   </entry>
   
