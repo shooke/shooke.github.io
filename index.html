@@ -360,7 +360,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/12/ck6j1bky3003so3omajtgdjwk/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/12/ck6j9txmq000ypjomdtqufdml/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -380,7 +380,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/02/12/ck6j1bky3003so3omajtgdjwk/" class="post-title-link" itemprop="url">解决深度终端链接远程后假死问题</a>
+                <a href="/2020/02/12/ck6j9txmq000ypjomdtqufdml/" class="post-title-link" itemprop="url">linux 为php7.0安装redis扩展</a>
               
             
           </h1>
@@ -405,7 +405,182 @@
                 
               
 
-              <time title="创建时间：2020-02-12 15:47:55 / 修改时间：16:10:20" itemprop="dateCreated datePublished" datetime="2020-02-12T15:47:55+08:00">2020-02-12</time>
+              <time title="创建时间：2020-02-12 19:52:59 / 修改时间：20:08:14" itemprop="dateCreated datePublished" datetime="2020-02-12T19:52:59+08:00">2020-02-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="先决条件"><a href="#先决条件" class="headerlink" title="先决条件"></a>先决条件</h2><p>php一定要有phpzise组件，如果是编译安装一般是有的，如果是apt或yum不一定有。也很简单，安装个php-dev就可以了。<br>另外gcc等必备的包，安装过程中缺什么就按什么。<br>笔记以apt安装php环境为基础做记录</p>
+<h2 id="开始安装"><a href="#开始安装" class="headerlink" title="开始安装"></a>开始安装</h2><ol>
+<li>安装扩展<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/phpredis/phpredis/archive/4.0.2.tar.gz</span><br><span class="line">tar -zxvf 4.0.2.tar.gz</span><br><span class="line">cd phpredis-4.0.2</span><br><span class="line">./configure --with-php-config=/usr/bin/php-config7.0</span><br><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>php-config是一个获取php配置的程序，一般在php安装目录的bin目录下。多版本共存的情况下安装扩展可以让扩展准确知道，这是给哪个版本安装。<br>如果是apt安装的php，可以使用<code>whereis php-config</code>查看该文件所在目录。如果是自己编译安装更容易找，到安装目录下的bin目录就找到了。</p>
+<ol start="2">
+<li><p>启用扩展<br>找到<code>vi /etc/php/7.0/fpm/php.ini</code> 在里面添加 <code>extension=redis.so</code> 就可以了。<br>如果想在命令行模式下也使用这个扩展，可以在<code>/etc/php/7.0/cli/php.ini</code>里也添加 <code>extension=redis.so</code> 。</p>
+</li>
+<li><p>重启php-fpm和nginx</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service php-fpm7.0 restart</span><br><span class="line">systemctl restart nginx</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>经过这些处理redis扩展就可以正常使用了。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.cnblogs.com/eeds-wangwei/p/11016160.html" target="_blank" rel="noopener">https://www.cnblogs.com/eeds-wangwei/p/11016160.html</a><br><a href="https://github.com/phpredis/phpredis" target="_blank" rel="noopener">https://github.com/phpredis/phpredis</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/12/ck6j9txo2003spjome714zq6g/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/02/12/ck6j9txo2003spjome714zq6g/" class="post-title-link" itemprop="url">解决深度终端链接远程后假死问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-12 15:47:55 / 修改时间：19:52:20" itemprop="dateCreated datePublished" datetime="2020-02-12T15:47:55+08:00">2020-02-12</time>
             
 
             
@@ -471,7 +646,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/02/12/ck6j1bky3003so3omajtgdjwk/#more" rel="contents">
+              <a class="btn" href="/2020/02/12/ck6j9txo2003spjome714zq6g/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -531,7 +706,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/11/ck6j1bkx60027o3omunwiy77m/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/11/ck6j9txnb0028pjomc0i5ma3n/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -551,7 +726,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/02/11/ck6j1bkx60027o3omunwiy77m/" class="post-title-link" itemprop="url">shadowsocks客户端启动报错问题</a>
+                <a href="/2020/02/11/ck6j9txnb0028pjomc0i5ma3n/" class="post-title-link" itemprop="url">shadowsocks客户端启动报错问题</a>
               
             
           </h1>
@@ -639,7 +814,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/02/11/ck6j1bkx60027o3omunwiy77m/#more" rel="contents">
+              <a class="btn" href="/2020/02/11/ck6j9txnb0028pjomc0i5ma3n/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -699,7 +874,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/01/10/ck6j1bkwt001jo3omj2y7hbxq/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/01/10/ck6j9txmz001jpjom0s2kfxrx/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -719,7 +894,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/01/10/ck6j1bkwt001jo3omj2y7hbxq/" class="post-title-link" itemprop="url">nginx配置结构说明</a>
+                <a href="/2020/01/10/ck6j9txmz001jpjom0s2kfxrx/" class="post-title-link" itemprop="url">nginx配置结构说明</a>
               
             
           </h1>
@@ -807,7 +982,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/01/10/ck6j1bkwt001jo3omj2y7hbxq/#more" rel="contents">
+              <a class="btn" href="/2020/01/10/ck6j9txmz001jpjom0s2kfxrx/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -867,7 +1042,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/01/03/ck6j1bkwp001ao3omzkq064co/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/01/03/ck6j9txmv001apjomsg6qg8ph/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -887,7 +1062,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/01/03/ck6j1bkwp001ao3omzkq064co/" class="post-title-link" itemprop="url">limits.conf配置说明</a>
+                <a href="/2020/01/03/ck6j9txmv001apjomsg6qg8ph/" class="post-title-link" itemprop="url">limits.conf配置说明</a>
               
             
           </h1>
@@ -974,7 +1149,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/01/03/ck6j1bkwp001ao3omzkq064co/#more" rel="contents">
+              <a class="btn" href="/2020/01/03/ck6j9txmv001apjomsg6qg8ph/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1034,7 +1209,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/28/ck6j1bkx70029o3om69stqu9l/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/28/ck6j9txnc002apjom64zt9lj8/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1054,7 +1229,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/28/ck6j1bkx70029o3om69stqu9l/" class="post-title-link" itemprop="url">ssh提速</a>
+                <a href="/2019/12/28/ck6j9txnc002apjom64zt9lj8/" class="post-title-link" itemprop="url">ssh提速</a>
               
             
           </h1>
@@ -1196,7 +1371,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ck6j1bkwe000ko3omttbyjamp/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ck6j9txml000ppjomyjy6ze6k/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1216,7 +1391,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/17/ck6j1bkwe000ko3omttbyjamp/" class="post-title-link" itemprop="url">git中文文件名乱码解决方法</a>
+                <a href="/2019/12/17/ck6j9txml000ppjomyjy6ze6k/" class="post-title-link" itemprop="url">git中文文件名乱码解决方法</a>
               
             
           </h1>
@@ -1359,7 +1534,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ck6j1bkxx003ho3omu83cjiup/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ck6j9txnz003lpjomucza6hye/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1379,7 +1554,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/17/ck6j1bkxx003ho3omu83cjiup/" class="post-title-link" itemprop="url">deepin修改git提示语言</a>
+                <a href="/2019/12/17/ck6j9txnz003lpjomucza6hye/" class="post-title-link" itemprop="url">deepin修改git提示语言</a>
               
             
           </h1>
@@ -1521,7 +1696,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/11/15/ck6j1bkws001ho3omafze6vg8/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/11/15/ck6j9txmt0014pjomdlicwiii/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1541,7 +1716,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/11/15/ck6j1bkws001ho3omafze6vg8/" class="post-title-link" itemprop="url">js实现防抖和节流</a>
+                <a href="/2019/11/15/ck6j9txmt0014pjomdlicwiii/" class="post-title-link" itemprop="url">js实现防抖和节流</a>
               
             
           </h1>
@@ -1633,7 +1808,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/11/15/ck6j1bkws001ho3omafze6vg8/#more" rel="contents">
+              <a class="btn" href="/2019/11/15/ck6j9txmt0014pjomdlicwiii/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1693,7 +1868,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/10/11/ck6j1bkvs0002o3omk5on5cvs/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/10/11/ck6j9txm00002pjomtwcyfbeu/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1713,7 +1888,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/10/11/ck6j1bkvs0002o3omk5on5cvs/" class="post-title-link" itemprop="url">Commit log 使用说明</a>
+                <a href="/2019/10/11/ck6j9txm00002pjomtwcyfbeu/" class="post-title-link" itemprop="url">Commit log 使用说明</a>
               
             
           </h1>
@@ -1800,175 +1975,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/10/11/ck6j1bkvs0002o3omk5on5cvs/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/09/25/ck6j1bky6003yo3omlq9pkf8q/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/09/25/ck6j1bky6003yo3omlq9pkf8q/" class="post-title-link" itemprop="url">解决element ui el-select控件多选时option设置为disabled，但可以删除标签，造成无法恢复的bug</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-25 15:13:05 / 修改时间：15:35:24" itemprop="dateCreated datePublished" datetime="2019-09-25T15:13:05+08:00">2019-09-25</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="问题起因"><a href="#问题起因" class="headerlink" title="问题起因"></a>问题起因</h2><p>今天遇到一个问题，需求是，客户选择栏目时，不属于自己的栏目不可修改。但需要显示出来。实现需求使用了element ui的el-select组件。<br>对于已选栏目的显示，和对栏目的选项取消都比较好。不属于自己的栏目使用了option的<code>disabled</code>属性。列表中的选项控制正常，对于<code>disabled</code>属性为<code>true</code>的元素不可选。<br>但是在展示已选则的栏目时，option中禁用的选项依然有删除的小叉号。而且还是可以使用的，点击后就被删除了。在列表中的选中状态也取消了。这可闹大了，没法恢复啊。</p>
-<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>思路很简单，在对选项进行移除时做个判断。如果选项是禁用的，就不操作。<br>实现中用到了<code>value</code>属性，用于显示备选项。<code>change</code>事件用于处理选中的值，<code>remove-tag</code>事件处理移除选项时的判断<br>有几个问题需要注意，事件的执行顺序是先出发<code>change</code>后出发<code>remove-tag</code>所以要让数据返回变为异步，保证<code>remove-tag</code>事件完成后在返回数据</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/09/25/ck6j1bky6003yo3omlq9pkf8q/#more" rel="contents">
+              <a class="btn" href="/2019/10/11/ck6j9txm00002pjomtwcyfbeu/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2060,7 +2067,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-count">52</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2258,7 +2265,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">83</span>
+                      
+                    
+                    <span class="site-state-item-count">84</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
