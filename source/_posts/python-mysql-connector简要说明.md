@@ -53,6 +53,9 @@ finally:
     cursor.close()
     cnn.close()
 ```
+
+<!-- more -->
+
 ### 获取全部数据
 ```
 cmd = conn.cursor()
