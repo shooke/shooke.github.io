@@ -360,7 +360,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/14/ck7071dt3001qjwomr7k3ccdi/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/26/ck73fg1fw001pqzomtknc1q1j/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -380,7 +380,196 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/02/14/ck7071dt3001qjwomr7k3ccdi/" class="post-title-link" itemprop="url">python mysql-connector简要说明</a>
+                <a href="/2020/02/26/ck73fg1fw001pqzomtknc1q1j/" class="post-title-link" itemprop="url">openresty+lua+kafka部署</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-26 17:59:07 / 修改时间：22:40:33" itemprop="dateCreated datePublished" datetime="2020-02-26T17:59:07+08:00">2020-02-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ol>
+<li>使用kafka作为消息队列，将信息收集起来</li>
+<li>已有程序无需修改，改起来成本太高了<br>满足这两个条件，首先想到的就是用nginx把数据转发出去，这样程序不用改动，只改变运维环境就可以了。</li>
+</ol>
+<h2 id="安装openresty"><a href="#安装openresty" class="headerlink" title="安装openresty"></a>安装openresty</h2><p>openresty源码安装的过程中，与服务器上的包依赖有冲突。所以改用apt方式安装。很简单。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 安装导入 GPG 公钥时所需的几个依赖包（整个安装过程完成后可以随时删除它们）：</span><br><span class="line">sudo apt-get -y install --no-install-recommends wget gnupg ca-certificates</span><br><span class="line"></span><br><span class="line"># 导入我们的 GPG 密钥：</span><br><span class="line">wget -O - https://openresty.org/package/pubkey.gpg | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"># 安装 add-apt-repository 命令</span><br><span class="line"># （之后你可以删除这个包以及对应的关联包）</span><br><span class="line">sudo apt-get -y install --no-install-recommends software-properties-common</span><br><span class="line"></span><br><span class="line"># 添加我们官方 official APT 仓库：</span><br><span class="line">sudo add-apt-repository -y &quot;deb http://openresty.org/package/ubuntu $(lsb_release -sc) main&quot;</span><br><span class="line"></span><br><span class="line"># 更新 APT 索引：</span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"># 安装openresty</span><br><span class="line">sudo apt-get -y install openresty</span><br></pre></td></tr></table></figure></p>
+<h2 id="安装kafka"><a href="#安装kafka" class="headerlink" title="安装kafka"></a>安装kafka</h2><ol>
+<li>下载kafka<br>进入Apache官网<a href="http://kafka.apache.org/downloads.html" target="_blank" rel="noopener">http://kafka.apache.org/downloads.html</a></li>
+</ol>
+<p>找到<code>Binary downloads</code>，选择版本进行下载。</p>
+<p>也可以复制下载链接，然后用<code>wget</code>下载<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://apache.01link.hk/kafka/2.0.0/kafka_2.11-2.0.0.tgz</span><br></pre></td></tr></table></figure></p>
+<ol start="2">
+<li>解压程序包<br>压缩包下载后先移动到<code>/opt</code>目录，这是我的习惯，自己安装的放到<code>/opt</code>目录下建一个软件目录，比如<code>/opt/kafka</code>,这样方便管理<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv kafka_2.11-2.0.0.tgz /opt</span><br><span class="line">cd /opt</span><br><span class="line">tar -xzf kafka_2.11-2.0.0.tgz</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这样kafka就安装完了，安装目录就是<code>/opt/kafka_2.11-2.0.0</code></p>
+<ol start="3">
+<li>启动kafka服务</li>
+</ol>
+<p>启动zookeeper<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/kafka_2.11-2.0.0/bin/zookeeper-server-start.sh  /opt/kafka_2.11-2.0.0/config/zookeeper.properties</span><br></pre></td></tr></table></figure></p>
+<p>kafka依赖zookeeper的，如果有自己的zookeeper服务，可以不启动这个。</p>
+<p>启动kafka<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/kafka_2.11-2.0.0/bin/kafka-server-start.sh  /opt/kafka_2.11-2.0.0/config/server.properties</span><br></pre></td></tr></table></figure></p>
+<p>这样kafka服务就启动了。</p>
+<blockquote>
+<p>如果希望后台运行可以加<code>-daemon</code>参数，或用<code>nohup</code>去实现效果</p>
+</blockquote>
+<h2 id="安装lua-resty-kafka"><a href="#安装lua-resty-kafka" class="headerlink" title="安装lua-resty-kafka"></a>安装lua-resty-kafka</h2><p><code>lua-resty-kafka</code>是<code>openresty</code>和<code>kafka</code>的桥梁。安装了这个插件就可以让<code>openresty</code>吧数据转发到<code>kafka</code>了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 下载插件</span><br><span class="line">wget https://github.com/doujiang24/lua-resty-kafka/archive/master.zip</span><br><span class="line"># 解压</span><br><span class="line">unzip master.zip</span><br><span class="line"># 老规矩自己装的软件放到/opt目录</span><br><span class="line">mv lua-resty-kafka-master /opt/lua-resty-kafka</span><br></pre></td></tr></table></figure></p>
+<h2 id="让openresty和kafka建立联系"><a href="#让openresty和kafka建立联系" class="headerlink" title="让openresty和kafka建立联系"></a>让openresty和kafka建立联系</h2><p>接下来配置openresty的nginx，让nginx和kafka联系起来<br>修改<code>/etc/openresty/nginx.conf</code> 在http节点内添加如下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    # 配置个负载均衡方便测试</span><br><span class="line">    upstream apps &#123;</span><br><span class="line">        keepalive 80;</span><br><span class="line">        server 127.0.0.1:8078;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # `lua-resty-kafka`路径</span><br><span class="line">    lua_package_path &quot;/opt/lua-resty-kafka/lib/?.lua;/opt/lua-resty-http/lib/?.lua;&quot;;</span><br><span class="line">  </span><br><span class="line">    server &#123;</span><br><span class="line">        listen       8077;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line"></span><br><span class="line">            proxy_next_upstream http_502 http_504 http_404 error invalid_header;</span><br><span class="line">            # 负载均衡</span><br><span class="line">            proxy_pass http://apps;</span><br><span class="line">            proxy_http_version 1.1;</span><br><span class="line">            proxy_redirect off;</span><br><span class="line">            proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">            proxy_set_header Connection &quot;upgrade&quot;;</span><br><span class="line">            proxy_set_header Host $host;</span><br><span class="line">            #proxy_set_header Connection &quot;&quot;;</span><br><span class="line">            proxy_set_header X-real-ip $remote_addr;</span><br><span class="line">            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">            # 编写lua脚本</span><br><span class="line">            log_by_lua &apos;</span><br><span class="line">                local cjson = require &quot;cjson&quot;</span><br><span class="line">                local producer = require &quot;resty.kafka.producer&quot;</span><br><span class="line">                local broker_list = &#123;</span><br><span class="line">                  &#123; host = &quot;127.0.0.1&quot;, port = 9092 &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                local topic = &quot;logs&quot;</span><br><span class="line">                local log_json = &#123;&#125;</span><br><span class="line">                log_json[&quot;uri&quot;]=ngx.var.uri</span><br><span class="line">                log_json[&quot;args&quot;]=ngx.var.args</span><br><span class="line">                log_json[&quot;host&quot;]=ngx.var.host</span><br><span class="line">                log_json[&quot;cookie&quot;]=ngx.var.http_cookie</span><br><span class="line">                log_json[&quot;method&quot;]=ngx.var.request_method</span><br><span class="line">                log_json[&quot;request_body&quot;]=ngx.var.request_body</span><br><span class="line">                log_json[&quot;remote_addr&quot;] = ngx.var.remote_addr</span><br><span class="line">                log_json[&quot;remote_user&quot;] = ngx.var.remote_user</span><br><span class="line">                log_json[&quot;time_local&quot;] = ngx.var.time_local</span><br><span class="line">                log_json[&quot;status&quot;] = ngx.var.status</span><br><span class="line">                log_json[&quot;body_bytes_sent&quot;] = ngx.var.body_bytes_sent</span><br><span class="line">                log_json[&quot;http_referer&quot;] = ngx.var.http_referer</span><br><span class="line">                log_json[&quot;http_user_agent&quot;] = ngx.var.http_user_agent</span><br><span class="line">                log_json[&quot;http_x_forwarded_for&quot;] = ngx.var.http_x_forwarded_for</span><br><span class="line">                log_json[&quot;upstream_response_time&quot;] = ngx.var.upstream_response_time</span><br><span class="line">                log_json[&quot;http_current_user&quot;] = ngx.var.upstream_http_x_current_user</span><br><span class="line">                log_json[&quot;request_time&quot;] = ngx.var.request_time</span><br><span class="line">                local postargs = ngx.req.get_body_data()</span><br><span class="line">		log_json[&quot;post_data&quot;] = postargs</span><br><span class="line">                log_json[&quot;res_body&quot;] = ngx.var</span><br><span class="line">                local message = cjson.encode(log_json);</span><br><span class="line">                local bp = producer:new(broker_list, &#123; producer_type = &quot;async&quot; &#125;)</span><br><span class="line">                local ok, err = bp:send(topic, nil, message)</span><br><span class="line">                if not ok then</span><br><span class="line">                    ngx.log(ngx.ERR, &quot;kafka send err:&quot;, err)</span><br><span class="line">                    return</span><br><span class="line">                end</span><br><span class="line">            &apos;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen    8078;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">          content_by_lua &apos;ngx.say(&quot;hello world&quot;)&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>设置完成后执行<code>systemctl restart openresty</code>重启服务就好了。访问8077端口请求会转发到kafka。<br>让nginx配置生效也可以执行<code>/usr/local/openresty/nginx/sbin/nginx -s reload</code></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.cnblogs.com/expiator/p/9990171.html" target="_blank" rel="noopener">https://www.cnblogs.com/expiator/p/9990171.html</a><br><a href="https://blog.csdn.net/qq_29497387/article/details/101290378" target="_blank" rel="noopener">https://blog.csdn.net/qq_29497387/article/details/101290378</a><br><a href="https://blog.csdn.net/u011239989/article/details/52239785" target="_blank" rel="noopener">https://blog.csdn.net/u011239989/article/details/52239785</a><br><a href="https://blog.csdn.net/qq_29497387/article/details/99745903" target="_blank" rel="noopener">https://blog.csdn.net/qq_29497387/article/details/99745903</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/14/ck73fg1g0001vqzomsz7loxmy/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/02/14/ck73fg1g0001vqzomsz7loxmy/" class="post-title-link" itemprop="url">python mysql-connector简要说明</a>
               
             
           </h1>
@@ -488,7 +677,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/02/14/ck7071dt3001qjwomr7k3ccdi/#more" rel="contents">
+              <a class="btn" href="/2020/02/14/ck73fg1g0001vqzomsz7loxmy/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -548,7 +737,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/12/ck7071dst0015jwom94hu4624/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/12/ck73fg1fm0016qzom2btle1op/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -568,7 +757,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/02/12/ck7071dst0015jwom94hu4624/" class="post-title-link" itemprop="url">linux 为php7.0安装redis扩展</a>
+                <a href="/2020/02/12/ck73fg1fm0016qzom2btle1op/" class="post-title-link" itemprop="url">linux 为php7.0安装redis扩展</a>
               
             
           </h1>
@@ -723,7 +912,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/12/ck7071duf0048jwomxuom2hkq/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/12/ck73fg1h80045qzom7xonjz5c/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -743,7 +932,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/02/12/ck7071duf0048jwomxuom2hkq/" class="post-title-link" itemprop="url">解决深度终端链接远程后假死问题</a>
+                <a href="/2020/02/12/ck73fg1h80045qzom7xonjz5c/" class="post-title-link" itemprop="url">解决深度终端链接远程后假死问题</a>
               
             
           </h1>
@@ -847,7 +1036,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/02/12/ck7071duf0048jwomxuom2hkq/#more" rel="contents">
+              <a class="btn" href="/2020/02/12/ck73fg1h80045qzom7xonjz5c/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -907,7 +1096,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/11/ck7071dtc0029jwomamje4f8g/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/11/ck73fg1g9002fqzom3tzun8u7/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -927,7 +1116,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/02/11/ck7071dtc0029jwomamje4f8g/" class="post-title-link" itemprop="url">shadowsocks客户端启动报错问题</a>
+                <a href="/2020/02/11/ck73fg1g9002fqzom3tzun8u7/" class="post-title-link" itemprop="url">shadowsocks客户端启动报错问题</a>
               
             
           </h1>
@@ -1015,7 +1204,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/02/11/ck7071dtc0029jwomamje4f8g/#more" rel="contents">
+              <a class="btn" href="/2020/02/11/ck73fg1g9002fqzom3tzun8u7/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1075,7 +1264,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/01/10/ck7071dt1001njwom6xnjajhg/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/01/10/ck73fg1g1001yqzom30e3tfkh/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1095,7 +1284,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/01/10/ck7071dt1001njwom6xnjajhg/" class="post-title-link" itemprop="url">nginx配置结构说明</a>
+                <a href="/2020/01/10/ck73fg1g1001yqzom30e3tfkh/" class="post-title-link" itemprop="url">nginx配置结构说明</a>
               
             
           </h1>
@@ -1183,7 +1372,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/01/10/ck7071dt1001njwom6xnjajhg/#more" rel="contents">
+              <a class="btn" href="/2020/01/10/ck73fg1g1001yqzom30e3tfkh/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1243,7 +1432,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/01/03/ck7071dsz001gjwom4hg4lfu4/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/01/03/ck73fg1fr001iqzomvlrvm0yy/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1263,7 +1452,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/01/03/ck7071dsz001gjwom4hg4lfu4/" class="post-title-link" itemprop="url">limits.conf配置说明</a>
+                <a href="/2020/01/03/ck73fg1fr001iqzomvlrvm0yy/" class="post-title-link" itemprop="url">limits.conf配置说明</a>
               
             
           </h1>
@@ -1350,7 +1539,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/01/03/ck7071dsz001gjwom4hg4lfu4/#more" rel="contents">
+              <a class="btn" href="/2020/01/03/ck73fg1fr001iqzomvlrvm0yy/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1410,7 +1599,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/28/ck7071dtf002fjwomzy5onyzb/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/28/ck73fg1gc002lqzomehibk695/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1430,7 +1619,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/28/ck7071dtf002fjwomzy5onyzb/" class="post-title-link" itemprop="url">ssh提速</a>
+                <a href="/2019/12/28/ck73fg1gc002lqzomehibk695/" class="post-title-link" itemprop="url">ssh提速</a>
               
             
           </h1>
@@ -1572,7 +1761,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ck7071dso000vjwomg4giepxi/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ck73fg1fj000zqzomrcdo7u0c/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1592,7 +1781,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/17/ck7071dso000vjwomg4giepxi/" class="post-title-link" itemprop="url">git中文文件名乱码解决方法</a>
+                <a href="/2019/12/17/ck73fg1fj000zqzomrcdo7u0c/" class="post-title-link" itemprop="url">git中文文件名乱码解决方法</a>
               
             
           </h1>
@@ -1735,7 +1924,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ck7071du5003ojwom1pbcdpmj/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ck73fg1h60042qzompjwmquz0/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1755,7 +1944,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/17/ck7071du5003ojwom1pbcdpmj/" class="post-title-link" itemprop="url">deepin修改git提示语言</a>
+                <a href="/2019/12/17/ck73fg1h60042qzompjwmquz0/" class="post-title-link" itemprop="url">deepin修改git提示语言</a>
               
             
           </h1>
@@ -1882,178 +2071,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/11/15/ck7071dsr0011jwomwlz6g00p/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/11/15/ck7071dsr0011jwomwlz6g00p/" class="post-title-link" itemprop="url">js实现防抖和节流</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-11-15 10:32:50 / 修改时间：17:00:08" itemprop="dateCreated datePublished" datetime="2019-11-15T10:32:50+08:00">2019-11-15</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>防抖和节流是避免过度处理的有效手段。目的就是为了解决一些事件频繁的触发问题。</p>
-<h2 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h2><p>先说一下防抖，当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，如果设定的时间到来之前，又一次触发了事件，就重新开始延时。</p>
-<blockquote>
-<p>通俗易懂点就是，领导安排任务，你得等领导全部说完了再去做，不能说一个就跑去做了，你得等领导说完。</p>
-</blockquote>
-<p>举个很典型的例子，搜索提示是个很典型的使用场景。每次输入框的内容发生更改就会发送一个请求，这其实是没有必要的。<br>理想的方式应该是当用户不在输入时，在发送请求。怎么确定用户停止输入呢？我们定义一个等待时间，比如500ms。当用户停止输入500ms后发送一个请求。<br>500ms内如果在不停的输入内容，那我们就重新重新计时。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/11/15/ck7071dsr0011jwomwlz6g00p/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2101,7 +2118,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-count">54</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2303,7 +2320,13 @@
                     
                       
                     
-                    <span class="site-state-item-count">85</span>
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">88</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
