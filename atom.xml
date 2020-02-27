@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2020-02-26T14:40:33.921Z</updated>
+  <updated>2020-02-27T01:23:27.669Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -18,21 +18,19 @@
   
   <entry>
     <title>openresty+lua+kafka部署</title>
-    <link href="https://www.xingjiehu.com/2020/02/26/ck73fg1fw001pqzomtknc1q1j/"/>
-    <id>https://www.xingjiehu.com/2020/02/26/ck73fg1fw001pqzomtknc1q1j/</id>
+    <link href="https://www.xingjiehu.com/2020/02/26/ck742epyj001q7bom4kub79nz/"/>
+    <id>https://www.xingjiehu.com/2020/02/26/ck742epyj001q7bom4kub79nz/</id>
     <published>2020-02-26T09:59:07.000Z</published>
-    <updated>2020-02-26T14:40:33.921Z</updated>
+    <updated>2020-02-27T01:23:27.669Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ol><li>使用kafka作为消息队列，将信息收集起来</li><li>已有程序无需修改，改起来成本太高了<br>满足这两个条件，首先想到的就是用nginx把数据转发出去，这样程序不用改动，只改变运维环境就可以了。</li></ol><h2 id="安装openresty"><a href="#安装openresty" class="headerlink" title="安装openresty"></a>安装openresty</h2><p>openresty源码安装的过程中，与服务器上的包依赖有冲突。所以改用apt方式安装。很简单。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 安装导入 GPG 公钥时所需的几个依赖包（整个安装过程完成后可以随时删除它们）：</span><br><span class="line">sudo apt-get -y install --no-install-recommends wget gnupg ca-certificates</span><br><span class="line"></span><br><span class="line"># 导入我们的 GPG 密钥：</span><br><span class="line">wget -O - https://openresty.org/package/pubkey.gpg | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"># 安装 add-apt-repository 命令</span><br><span class="line"># （之后你可以删除这个包以及对应的关联包）</span><br><span class="line">sudo apt-get -y install --no-install-recommends software-properties-common</span><br><span class="line"></span><br><span class="line"># 添加我们官方 official APT 仓库：</span><br><span class="line">sudo add-apt-repository -y &quot;deb http://openresty.org/package/ubuntu $(lsb_release -sc) main&quot;</span><br><span class="line"></span><br><span class="line"># 更新 APT 索引：</span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"># 安装openresty</span><br><span class="line">sudo apt-get -y install openresty</span><br></pre></td></tr></table></figure></p><h2 id="安装kafka"><a href="#安装kafka" class="headerlink" title="安装kafka"></a>安装kafka</h2><ol><li>下载kafka<br>进入Apache官网<a href="http://kafka.apache.org/downloads.html" target="_blank" rel="noopener">http://kafka.apache.org/downloads.html</a></li></ol><p>找到<code>Binary downloads</code>，选择版本进行下载。</p><p>也可以复制下载链接，然后用<code>wget</code>下载<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://apache.01link.hk/kafka/2.0.0/kafka_2.11-2.0.0.tgz</span><br></pre></td></tr></table></figure></p><ol start="2"><li>解压程序包<br>压缩包下载后先移动到<code>/opt</code>目录，这是我的习惯，自己安装的放到<code>/opt</code>目录下建一个软件目录，比如<code>/opt/kafka</code>,这样方便管理<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv kafka_2.11-2.0.0.tgz /opt</span><br><span class="line">cd /opt</span><br><span class="line">tar -xzf kafka_2.11-2.0.0.tgz</span><br></pre></td></tr></table></figure></li></ol><p>这样kafka就安装完了，安装目录就是<code>/opt/kafka_2.11-2.0.0</code></p><ol start="3"><li>启动kafka服务</li></ol><p>启动zookeeper<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/kafka_2.11-2.0.0/bin/zookeeper-server-start.sh  /opt/kafka_2.11-2.0.0/config/zookeeper.properties</span><br></pre></td></tr></table></figure></p><p>kafka依赖zookeeper的，如果有自己的zookeeper服务，可以不启动这个。</p><p>启动kafka<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/kafka_2.11-2.0.0/bin/kafka-server-start.sh  /opt/kafka_2.11-2.0.0/config/server.properties</span><br></pre></td></tr></table></figure></p><p>这样kafka服务就启动了。</p><blockquote><p>如果希望后台运行可以加<code>-daemon</code>参数，或用<code>nohup</code>去实现效果</p></blockquote><h2 id="安装lua-resty-kafka"><a href="#安装lua-resty-kafka" class="headerlink" title="安装lua-resty-kafka"></a>安装lua-resty-kafka</h2><p><code>lua-resty-kafka</code>是<code>openresty</code>和<code>kafka</code>的桥梁。安装了这个插件就可以让<code>openresty</code>吧数据转发到<code>kafka</code>了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 下载插件</span><br><span class="line">wget https://github.com/doujiang24/lua-resty-kafka/archive/master.zip</span><br><span class="line"># 解压</span><br><span class="line">unzip master.zip</span><br><span class="line"># 老规矩自己装的软件放到/opt目录</span><br><span class="line">mv lua-resty-kafka-master /opt/lua-resty-kafka</span><br></pre></td></tr></table></figure></p><h2 id="让openresty和kafka建立联系"><a href="#让openresty和kafka建立联系" class="headerlink" title="让openresty和kafka建立联系"></a>让openresty和kafka建立联系</h2><p>接下来配置openresty的nginx，让nginx和kafka联系起来<br>修改<code>/etc/openresty/nginx.conf</code> 在http节点内添加如下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    # 配置个负载均衡方便测试</span><br><span class="line">    upstream apps &#123;</span><br><span class="line">        keepalive 80;</span><br><span class="line">        server 127.0.0.1:8078;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # `lua-resty-kafka`路径</span><br><span class="line">    lua_package_path &quot;/opt/lua-resty-kafka/lib/?.lua;/opt/lua-resty-http/lib/?.lua;&quot;;</span><br><span class="line">  </span><br><span class="line">    server &#123;</span><br><span class="line">        listen       8077;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line"></span><br><span class="line">            proxy_next_upstream http_502 http_504 http_404 error invalid_header;</span><br><span class="line">            # 负载均衡</span><br><span class="line">            proxy_pass http://apps;</span><br><span class="line">            proxy_http_version 1.1;</span><br><span class="line">            proxy_redirect off;</span><br><span class="line">            proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">            proxy_set_header Connection &quot;upgrade&quot;;</span><br><span class="line">            proxy_set_header Host $host;</span><br><span class="line">            #proxy_set_header Connection &quot;&quot;;</span><br><span class="line">            proxy_set_header X-real-ip $remote_addr;</span><br><span class="line">            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">            # 编写lua脚本</span><br><span class="line">            log_by_lua &apos;</span><br><span class="line">                local cjson = require &quot;cjson&quot;</span><br><span class="line">                local producer = require &quot;resty.kafka.producer&quot;</span><br><span class="line">                local broker_list = &#123;</span><br><span class="line">                  &#123; host = &quot;127.0.0.1&quot;, port = 9092 &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                local topic = &quot;logs&quot;</span><br><span class="line">                local log_json = &#123;&#125;</span><br><span class="line">                log_json[&quot;uri&quot;]=ngx.var.uri</span><br><span class="line">                log_json[&quot;args&quot;]=ngx.var.args</span><br><span class="line">                log_json[&quot;host&quot;]=ngx.var.host</span><br><span class="line">                log_json[&quot;cookie&quot;]=ngx.var.http_cookie</span><br><span class="line">                log_json[&quot;method&quot;]=ngx.var.request_method</span><br><span class="line">                log_json[&quot;request_body&quot;]=ngx.var.request_body</span><br><span class="line">                log_json[&quot;remote_addr&quot;] = ngx.var.remote_addr</span><br><span class="line">                log_json[&quot;remote_user&quot;] = ngx.var.remote_user</span><br><span class="line">                log_json[&quot;time_local&quot;] = ngx.var.time_local</span><br><span class="line">                log_json[&quot;status&quot;] = ngx.var.status</span><br><span class="line">                log_json[&quot;body_bytes_sent&quot;] = ngx.var.body_bytes_sent</span><br><span class="line">                log_json[&quot;http_referer&quot;] = ngx.var.http_referer</span><br><span class="line">                log_json[&quot;http_user_agent&quot;] = ngx.var.http_user_agent</span><br><span class="line">                log_json[&quot;http_x_forwarded_for&quot;] = ngx.var.http_x_forwarded_for</span><br><span class="line">                log_json[&quot;upstream_response_time&quot;] = ngx.var.upstream_response_time</span><br><span class="line">                log_json[&quot;http_current_user&quot;] = ngx.var.upstream_http_x_current_user</span><br><span class="line">                log_json[&quot;request_time&quot;] = ngx.var.request_time</span><br><span class="line">                local postargs = ngx.req.get_body_data()</span><br><span class="line">log_json[&quot;post_data&quot;] = postargs</span><br><span class="line">                log_json[&quot;res_body&quot;] = ngx.var</span><br><span class="line">                local message = cjson.encode(log_json);</span><br><span class="line">                local bp = producer:new(broker_list, &#123; producer_type = &quot;async&quot; &#125;)</span><br><span class="line">                local ok, err = bp:send(topic, nil, message)</span><br><span class="line">                if not ok then</span><br><span class="line">                    ngx.log(ngx.ERR, &quot;kafka send err:&quot;, err)</span><br><span class="line">                    return</span><br><span class="line">                end</span><br><span class="line">            &apos;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen    8078;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">          content_by_lua &apos;ngx.say(&quot;hello world&quot;)&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>设置完成后执行<code>systemctl restart openresty</code>重启服务就好了。访问8077端口请求会转发到kafka。<br>让nginx配置生效也可以执行<code>/usr/local/openresty/nginx/sbin/nginx -s reload</code></p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.cnblogs.com/expiator/p/9990171.html" target="_blank" rel="noopener">https://www.cnblogs.com/expiator/p/9990171.html</a><br><a href="https://blog.csdn.net/qq_29497387/article/details/101290378" target="_blank" rel="noopener">https://blog.csdn.net/qq_29497387/article/details/101290378</a><br><a href="https://blog.csdn.net/u011239989/article/details/52239785" target="_blank" rel="noopener">https://blog.csdn.net/u011239989/article/details/52239785</a><br><a href="https://blog.csdn.net/qq_29497387/article/details/99745903" target="_blank" rel="noopener">https://blog.csdn.net/qq_29497387/article/details/99745903</a></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ol><li>使用kafka作为消息队列，将信息收集起来</li><li>已有程序无需修改，改起来成本太高了<br>满足这两个条件，首先想到的就是用nginx把数据转发出去，这样程序不用改动，只改变运维环境就可以了。</li></ol><a id="more"></a><h2 id="安装openresty"><a href="#安装openresty" class="headerlink" title="安装openresty"></a>安装openresty</h2><p>openresty源码安装的过程中，与服务器上的包依赖有冲突。所以改用apt方式安装。很简单。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"># 安装导入 GPG 公钥时所需的几个依赖包（整个安装过程完成后可以随时删除它们）：</span><br><span class="line">sudo apt-get -y install --no-install-recommends wget gnupg ca-certificates</span><br><span class="line"></span><br><span class="line"># 导入我们的 GPG 密钥：</span><br><span class="line">wget -O - https://openresty.org/package/pubkey.gpg | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"># 安装 add-apt-repository 命令</span><br><span class="line"># （之后你可以删除这个包以及对应的关联包）</span><br><span class="line">sudo apt-get -y install --no-install-recommends software-properties-common</span><br><span class="line"></span><br><span class="line"># 添加我们官方 official APT 仓库：</span><br><span class="line">sudo add-apt-repository -y &quot;deb http://openresty.org/package/ubuntu $(lsb_release -sc) main&quot;</span><br><span class="line"></span><br><span class="line"># 更新 APT 索引：</span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"># 安装openresty</span><br><span class="line">sudo apt-get -y install openresty</span><br></pre></td></tr></table></figure></p><h2 id="安装kafka"><a href="#安装kafka" class="headerlink" title="安装kafka"></a>安装kafka</h2><ol><li>下载kafka<br>进入Apache官网<a href="http://kafka.apache.org/downloads.html" target="_blank" rel="noopener">http://kafka.apache.org/downloads.html</a></li></ol><p>找到<code>Binary downloads</code>，选择版本进行下载。</p><p>也可以复制下载链接，然后用<code>wget</code>下载<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://apache.01link.hk/kafka/2.0.0/kafka_2.11-2.0.0.tgz</span><br></pre></td></tr></table></figure></p><ol start="2"><li>解压程序包<br>压缩包下载后先移动到<code>/opt</code>目录，这是我的习惯，自己安装的放到<code>/opt</code>目录下建一个软件目录，比如<code>/opt/kafka</code>,这样方便管理<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mv kafka_2.11-2.0.0.tgz /opt</span><br><span class="line">cd /opt</span><br><span class="line">tar -xzf kafka_2.11-2.0.0.tgz</span><br></pre></td></tr></table></figure></li></ol><p>这样kafka就安装完了，安装目录就是<code>/opt/kafka_2.11-2.0.0</code></p><ol start="3"><li>启动kafka服务</li></ol><p>启动zookeeper<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/kafka_2.11-2.0.0/bin/zookeeper-server-start.sh  /opt/kafka_2.11-2.0.0/config/zookeeper.properties</span><br></pre></td></tr></table></figure></p><p>kafka依赖zookeeper的，如果有自己的zookeeper服务，可以不启动这个。</p><p>启动kafka<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/kafka_2.11-2.0.0/bin/kafka-server-start.sh  /opt/kafka_2.11-2.0.0/config/server.properties</span><br></pre></td></tr></table></figure></p><p>这样kafka服务就启动了。</p><blockquote><p>如果希望后台运行可以加<code>-daemon</code>参数，或用<code>nohup</code>去实现效果</p></blockquote><h2 id="安装lua-resty-kafka"><a href="#安装lua-resty-kafka" class="headerlink" title="安装lua-resty-kafka"></a>安装lua-resty-kafka</h2><p><code>lua-resty-kafka</code>是<code>openresty</code>和<code>kafka</code>的桥梁。安装了这个插件就可以让<code>openresty</code>吧数据转发到<code>kafka</code>了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 下载插件</span><br><span class="line">wget https://github.com/doujiang24/lua-resty-kafka/archive/master.zip</span><br><span class="line"># 解压</span><br><span class="line">unzip master.zip</span><br><span class="line"># 老规矩自己装的软件放到/opt目录</span><br><span class="line">mv lua-resty-kafka-master /opt/lua-resty-kafka</span><br></pre></td></tr></table></figure></p><h2 id="让openresty和kafka建立联系"><a href="#让openresty和kafka建立联系" class="headerlink" title="让openresty和kafka建立联系"></a>让openresty和kafka建立联系</h2><p>接下来配置openresty的nginx，让nginx和kafka联系起来<br>修改<code>/etc/openresty/nginx.conf</code> 在http节点内添加如下内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">http &#123;</span><br><span class="line">    # 配置个负载均衡方便测试</span><br><span class="line">    upstream apps &#123;</span><br><span class="line">        keepalive 80;</span><br><span class="line">        server 127.0.0.1:8078;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    # `lua-resty-kafka`路径</span><br><span class="line">    lua_package_path &quot;/opt/lua-resty-kafka/lib/?.lua;/opt/lua-resty-http/lib/?.lua;&quot;;</span><br><span class="line">  </span><br><span class="line">    server &#123;</span><br><span class="line">        listen       8077;</span><br><span class="line">        server_name  localhost;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line"></span><br><span class="line">            proxy_next_upstream http_502 http_504 http_404 error invalid_header;</span><br><span class="line">            # 负载均衡</span><br><span class="line">            proxy_pass http://apps;</span><br><span class="line">            proxy_http_version 1.1;</span><br><span class="line">            proxy_redirect off;</span><br><span class="line">            proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">            proxy_set_header Connection &quot;upgrade&quot;;</span><br><span class="line">            proxy_set_header Host $host;</span><br><span class="line">            #proxy_set_header Connection &quot;&quot;;</span><br><span class="line">            proxy_set_header X-real-ip $remote_addr;</span><br><span class="line">            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">            # 编写lua脚本</span><br><span class="line">            log_by_lua &apos;</span><br><span class="line">                local cjson = require &quot;cjson&quot;</span><br><span class="line">                local producer = require &quot;resty.kafka.producer&quot;</span><br><span class="line">                local broker_list = &#123;</span><br><span class="line">                  &#123; host = &quot;127.0.0.1&quot;, port = 9092 &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                local topic = &quot;logs&quot;</span><br><span class="line">                local log_json = &#123;&#125;</span><br><span class="line">                log_json[&quot;uri&quot;]=ngx.var.uri</span><br><span class="line">                log_json[&quot;args&quot;]=ngx.var.args</span><br><span class="line">                log_json[&quot;host&quot;]=ngx.var.host</span><br><span class="line">                log_json[&quot;cookie&quot;]=ngx.var.http_cookie</span><br><span class="line">                log_json[&quot;method&quot;]=ngx.var.request_method</span><br><span class="line">                log_json[&quot;request_body&quot;]=ngx.var.request_body</span><br><span class="line">                log_json[&quot;remote_addr&quot;] = ngx.var.remote_addr</span><br><span class="line">                log_json[&quot;remote_user&quot;] = ngx.var.remote_user</span><br><span class="line">                log_json[&quot;time_local&quot;] = ngx.var.time_local</span><br><span class="line">                log_json[&quot;status&quot;] = ngx.var.status</span><br><span class="line">                log_json[&quot;body_bytes_sent&quot;] = ngx.var.body_bytes_sent</span><br><span class="line">                log_json[&quot;http_referer&quot;] = ngx.var.http_referer</span><br><span class="line">                log_json[&quot;http_user_agent&quot;] = ngx.var.http_user_agent</span><br><span class="line">                log_json[&quot;http_x_forwarded_for&quot;] = ngx.var.http_x_forwarded_for</span><br><span class="line">                log_json[&quot;upstream_response_time&quot;] = ngx.var.upstream_response_time</span><br><span class="line">                log_json[&quot;http_current_user&quot;] = ngx.var.upstream_http_x_current_user</span><br><span class="line">                log_json[&quot;request_time&quot;] = ngx.var.request_time</span><br><span class="line">                local postargs = ngx.req.get_body_data()</span><br><span class="line">log_json[&quot;post_data&quot;] = postargs</span><br><span class="line">                log_json[&quot;res_body&quot;] = ngx.var</span><br><span class="line">                local message = cjson.encode(log_json);</span><br><span class="line">                local bp = producer:new(broker_list, &#123; producer_type = &quot;async&quot; &#125;)</span><br><span class="line">                local ok, err = bp:send(topic, nil, message)</span><br><span class="line">                if not ok then</span><br><span class="line">                    ngx.log(ngx.ERR, &quot;kafka send err:&quot;, err)</span><br><span class="line">                    return</span><br><span class="line">                end</span><br><span class="line">            &apos;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">        listen    8078;</span><br><span class="line"></span><br><span class="line">        location / &#123;</span><br><span class="line">          content_by_lua &apos;ngx.say(&quot;hello world&quot;)&apos;;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>设置完成后执行<code>systemctl restart openresty</code>重启服务就好了。访问8077端口请求会转发到kafka。<br>让nginx配置生效也可以执行<code>/usr/local/openresty/nginx/sbin/nginx -s reload</code></p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.cnblogs.com/expiator/p/9990171.html" target="_blank" rel="noopener">https://www.cnblogs.com/expiator/p/9990171.html</a><br><a href="https://blog.csdn.net/qq_29497387/article/details/101290378" target="_blank" rel="noopener">https://blog.csdn.net/qq_29497387/article/details/101290378</a><br><a href="https://blog.csdn.net/u011239989/article/details/52239785" target="_blank" rel="noopener">https://blog.csdn.net/u011239989/article/details/52239785</a><br><a href="https://blog.csdn.net/qq_29497387/article/details/99745903" target="_blank" rel="noopener">https://blog.csdn.net/qq_29497387/article/details/99745903</a></p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;ol&gt;
+      &lt;h2 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;使用kafka作为消息队列，将信息收集起来&lt;/li&gt;
-&lt;li&gt;已有程序无需修改，改起来成本太高了&lt;br&gt;满足这两个条件，首先想到
-      
+&lt;li&gt;已有程序无需修改，改起来成本太高了&lt;br&gt;满足这两个条件，首先想到的就是用nginx把数据转发出去，这样程序不用改动，只改变运维环境就可以了。&lt;/li&gt;
+&lt;/ol&gt;
     
     </summary>
     
@@ -49,8 +47,8 @@
   
   <entry>
     <title>python mysql-connector简要说明</title>
-    <link href="https://www.xingjiehu.com/2020/02/14/ck73fg1g0001vqzomsz7loxmy/"/>
-    <id>https://www.xingjiehu.com/2020/02/14/ck73fg1g0001vqzomsz7loxmy/</id>
+    <link href="https://www.xingjiehu.com/2020/02/14/ck742epyn00217bomq17ji59l/"/>
+    <id>https://www.xingjiehu.com/2020/02/14/ck742epyn00217bomq17ji59l/</id>
     <published>2020-02-14T08:38:09.000Z</published>
     <updated>2020-02-24T08:25:39.456Z</updated>
     
@@ -82,8 +80,8 @@
   
   <entry>
     <title>linux 为php7.0安装redis扩展</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/ck73fg1fm0016qzom2btle1op/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/ck73fg1fm0016qzom2btle1op/</id>
+    <link href="https://www.xingjiehu.com/2020/02/12/ck742epy900167bomw83132cc/"/>
+    <id>https://www.xingjiehu.com/2020/02/12/ck742epy900167bomw83132cc/</id>
     <published>2020-02-12T11:52:59.000Z</published>
     <updated>2020-02-12T12:08:14.935Z</updated>
     
@@ -109,8 +107,8 @@
   
   <entry>
     <title>解决深度终端链接远程后假死问题</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/ck73fg1h80045qzom7xonjz5c/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/ck73fg1h80045qzom7xonjz5c/</id>
+    <link href="https://www.xingjiehu.com/2020/02/12/ck742epzr00487bomvb3w2etg/"/>
+    <id>https://www.xingjiehu.com/2020/02/12/ck742epzr00487bomvb3w2etg/</id>
     <published>2020-02-12T07:47:55.000Z</published>
     <updated>2020-02-13T08:17:30.785Z</updated>
     
@@ -136,8 +134,8 @@
   
   <entry>
     <title>shadowsocks客户端启动报错问题</title>
-    <link href="https://www.xingjiehu.com/2020/02/11/ck73fg1g9002fqzom3tzun8u7/"/>
-    <id>https://www.xingjiehu.com/2020/02/11/ck73fg1g9002fqzom3tzun8u7/</id>
+    <link href="https://www.xingjiehu.com/2020/02/11/ck742epys002b7bompldv6jox/"/>
+    <id>https://www.xingjiehu.com/2020/02/11/ck742epys002b7bompldv6jox/</id>
     <published>2020-02-11T03:11:19.000Z</published>
     <updated>2020-02-11T03:26:22.924Z</updated>
     
@@ -159,8 +157,8 @@
   
   <entry>
     <title>nginx配置结构说明</title>
-    <link href="https://www.xingjiehu.com/2020/01/10/ck73fg1g1001yqzom30e3tfkh/"/>
-    <id>https://www.xingjiehu.com/2020/01/10/ck73fg1g1001yqzom30e3tfkh/</id>
+    <link href="https://www.xingjiehu.com/2020/01/10/ck742epyg001m7bom0cvwitrq/"/>
+    <id>https://www.xingjiehu.com/2020/01/10/ck742epyg001m7bom0cvwitrq/</id>
     <published>2020-01-10T06:20:08.000Z</published>
     <updated>2020-01-10T06:53:00.509Z</updated>
     
@@ -182,8 +180,8 @@
   
   <entry>
     <title>limits.conf配置说明</title>
-    <link href="https://www.xingjiehu.com/2020/01/03/ck73fg1fr001iqzomvlrvm0yy/"/>
-    <id>https://www.xingjiehu.com/2020/01/03/ck73fg1fr001iqzomvlrvm0yy/</id>
+    <link href="https://www.xingjiehu.com/2020/01/03/ck742epy800137bomgpr1tedi/"/>
+    <id>https://www.xingjiehu.com/2020/01/03/ck742epy800137bomgpr1tedi/</id>
     <published>2020-01-03T09:30:52.000Z</published>
     <updated>2020-01-03T10:58:40.286Z</updated>
     
@@ -206,8 +204,8 @@
   
   <entry>
     <title>ssh提速</title>
-    <link href="https://www.xingjiehu.com/2019/12/28/ck73fg1gc002lqzomehibk695/"/>
-    <id>https://www.xingjiehu.com/2019/12/28/ck73fg1gc002lqzomehibk695/</id>
+    <link href="https://www.xingjiehu.com/2019/12/28/ck742epyv002f7bomwvfbhhc0/"/>
+    <id>https://www.xingjiehu.com/2019/12/28/ck742epyv002f7bomwvfbhhc0/</id>
     <published>2019-12-28T09:31:20.000Z</published>
     <updated>2019-12-28T09:37:13.222Z</updated>
     
@@ -231,8 +229,8 @@
   
   <entry>
     <title>git中文文件名乱码解决方法</title>
-    <link href="https://www.xingjiehu.com/2019/12/17/ck73fg1fj000zqzomrcdo7u0c/"/>
-    <id>https://www.xingjiehu.com/2019/12/17/ck73fg1fj000zqzomrcdo7u0c/</id>
+    <link href="https://www.xingjiehu.com/2019/12/17/ck742epy3000r7bom02m6qmt4/"/>
+    <id>https://www.xingjiehu.com/2019/12/17/ck742epy3000r7bom02m6qmt4/</id>
     <published>2019-12-17T03:23:37.000Z</published>
     <updated>2019-12-17T03:27:26.241Z</updated>
     
@@ -256,8 +254,8 @@
   
   <entry>
     <title>deepin修改git提示语言</title>
-    <link href="https://www.xingjiehu.com/2019/12/17/ck73fg1h60042qzompjwmquz0/"/>
-    <id>https://www.xingjiehu.com/2019/12/17/ck73fg1h60042qzompjwmquz0/</id>
+    <link href="https://www.xingjiehu.com/2019/12/17/ck742epzk003v7bomjihuwgxk/"/>
+    <id>https://www.xingjiehu.com/2019/12/17/ck742epzk003v7bomjihuwgxk/</id>
     <published>2019-12-17T03:13:17.000Z</published>
     <updated>2019-12-17T05:27:41.064Z</updated>
     
@@ -281,8 +279,8 @@
   
   <entry>
     <title>js实现防抖和节流</title>
-    <link href="https://www.xingjiehu.com/2019/11/15/ck73fg1fn0018qzom5bp46ehm/"/>
-    <id>https://www.xingjiehu.com/2019/11/15/ck73fg1fn0018qzom5bp46ehm/</id>
+    <link href="https://www.xingjiehu.com/2019/11/15/ck742epy5000x7bom5ykti6cv/"/>
+    <id>https://www.xingjiehu.com/2019/11/15/ck742epy5000x7bom5ykti6cv/</id>
     <published>2019-11-15T02:32:50.000Z</published>
     <updated>2019-11-15T09:00:08.200Z</updated>
     
@@ -312,8 +310,8 @@
   
   <entry>
     <title>Commit log 使用说明</title>
-    <link href="https://www.xingjiehu.com/2019/10/11/ck73fg1em0000qzom88xv9639/"/>
-    <id>https://www.xingjiehu.com/2019/10/11/ck73fg1em0000qzom88xv9639/</id>
+    <link href="https://www.xingjiehu.com/2019/10/11/ck742epx800007bomns4zdval/"/>
+    <id>https://www.xingjiehu.com/2019/10/11/ck742epx800007bomns4zdval/</id>
     <published>2019-10-11T08:20:38.000Z</published>
     <updated>2019-10-11T09:16:26.546Z</updated>
     
@@ -336,8 +334,8 @@
   
   <entry>
     <title>解决element ui el-select控件多选时option设置为disabled，但可以删除标签，造成无法恢复的bug</title>
-    <link href="https://www.xingjiehu.com/2019/09/25/ck73fg1h90047qzomtx7qqh5l/"/>
-    <id>https://www.xingjiehu.com/2019/09/25/ck73fg1h90047qzomtx7qqh5l/</id>
+    <link href="https://www.xingjiehu.com/2019/09/25/ck742epzp00457bomhcy1bkkp/"/>
+    <id>https://www.xingjiehu.com/2019/09/25/ck742epzp00457bomhcy1bkkp/</id>
     <published>2019-09-25T07:13:05.000Z</published>
     <updated>2019-09-25T07:35:24.469Z</updated>
     
@@ -359,8 +357,8 @@
   
   <entry>
     <title>vue中使用neditor</title>
-    <link href="https://www.xingjiehu.com/2019/09/03/ck73fg1gz003rqzom9udxax8k/"/>
-    <id>https://www.xingjiehu.com/2019/09/03/ck73fg1gz003rqzom9udxax8k/</id>
+    <link href="https://www.xingjiehu.com/2019/09/03/ck742epza003e7bom1amn36ke/"/>
+    <id>https://www.xingjiehu.com/2019/09/03/ck742epza003e7bom1amn36ke/</id>
     <published>2019-09-03T08:48:11.000Z</published>
     <updated>2019-09-04T01:22:15.780Z</updated>
     
@@ -385,8 +383,8 @@
   
   <entry>
     <title>使用vue cli 3项目打包到指定目录</title>
-    <link href="https://www.xingjiehu.com/2019/08/22/ck73fg1gw003nqzomsvkbs7jt/"/>
-    <id>https://www.xingjiehu.com/2019/08/22/ck73fg1gw003nqzomsvkbs7jt/</id>
+    <link href="https://www.xingjiehu.com/2019/08/22/ck742epzh003o7bomcohhmihz/"/>
+    <id>https://www.xingjiehu.com/2019/08/22/ck742epzh003o7bomcohhmihz/</id>
     <published>2019-08-22T13:16:33.000Z</published>
     <updated>2019-08-23T01:34:23.348Z</updated>
     
@@ -409,8 +407,8 @@
   
   <entry>
     <title>telnet使用简介</title>
-    <link href="https://www.xingjiehu.com/2019/07/31/ck73fg1gf002sqzomozoffmmy/"/>
-    <id>https://www.xingjiehu.com/2019/07/31/ck73fg1gf002sqzomozoffmmy/</id>
+    <link href="https://www.xingjiehu.com/2019/07/31/ck742epyy002q7bomtsvcwd1o/"/>
+    <id>https://www.xingjiehu.com/2019/07/31/ck742epyy002q7bomtsvcwd1o/</id>
     <published>2019-07-31T14:01:23.000Z</published>
     <updated>2019-08-23T01:46:26.709Z</updated>
     
@@ -435,8 +433,8 @@
   
   <entry>
     <title>vue自定义组件v-model绑定数据的实现方法</title>
-    <link href="https://www.xingjiehu.com/2019/07/19/ck73fg1gt003hqzomhb8kpjro/"/>
-    <id>https://www.xingjiehu.com/2019/07/19/ck73fg1gt003hqzomhb8kpjro/</id>
+    <link href="https://www.xingjiehu.com/2019/07/19/ck742epzf003k7bomnimqhx4d/"/>
+    <id>https://www.xingjiehu.com/2019/07/19/ck742epzf003k7bomnimqhx4d/</id>
     <published>2019-07-19T02:02:32.000Z</published>
     <updated>2019-09-20T03:04:46.717Z</updated>
     
@@ -464,8 +462,8 @@
   
   <entry>
     <title>url添加参数</title>
-    <link href="https://www.xingjiehu.com/2019/07/17/ck73fg1gi002zqzombt80j8ca/"/>
-    <id>https://www.xingjiehu.com/2019/07/17/ck73fg1gi002zqzombt80j8ca/</id>
+    <link href="https://www.xingjiehu.com/2019/07/17/ck742epz1002x7bomhna9tlk4/"/>
+    <id>https://www.xingjiehu.com/2019/07/17/ck742epz1002x7bomhna9tlk4/</id>
     <published>2019-07-17T03:16:16.000Z</published>
     <updated>2019-08-23T01:46:59.532Z</updated>
     
@@ -493,8 +491,8 @@
   
   <entry>
     <title>vue-cli3预渲染处理</title>
-    <link href="https://www.xingjiehu.com/2019/07/13/ck73fg1gm0037qzom6kivaa6h/"/>
-    <id>https://www.xingjiehu.com/2019/07/13/ck73fg1gm0037qzom6kivaa6h/</id>
+    <link href="https://www.xingjiehu.com/2019/07/13/ck742epz500377bom6t2m9zpn/"/>
+    <id>https://www.xingjiehu.com/2019/07/13/ck742epz500377bom6t2m9zpn/</id>
     <published>2019-07-13T02:29:01.000Z</published>
     <updated>2019-08-23T01:48:15.084Z</updated>
     
@@ -521,8 +519,8 @@
   
   <entry>
     <title>vue下使用ueditor，文件直传七牛踩坑记录</title>
-    <link href="https://www.xingjiehu.com/2019/07/08/ck73fg1gp003cqzom95sy1eyk/"/>
-    <id>https://www.xingjiehu.com/2019/07/08/ck73fg1gp003cqzom95sy1eyk/</id>
+    <link href="https://www.xingjiehu.com/2019/07/08/ck742epz9003c7bomqovbrcfh/"/>
+    <id>https://www.xingjiehu.com/2019/07/08/ck742epz9003c7bomqovbrcfh/</id>
     <published>2019-07-08T12:18:04.000Z</published>
     <updated>2019-08-23T01:48:25.850Z</updated>
     
