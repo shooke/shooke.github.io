@@ -59,6 +59,15 @@ tar -xzf kafka_2.11-2.0.0.tgz
 ```
 这样kafka就安装完了，安装目录就是`/opt/kafka_2.11-2.0.0`
 
+3.配置hosts文件
+将本机的局域网ip和127.0.0.1都配置上,否则会造成kafka无法启动。kafka启动过程中会根据当前主机名进行解析，如果不设置会报错
+```
+# shooke-pc是我的主机名，ip和主机名根据具体情况配置
+192.168.99.36 shooke-pc
+127.0.0.1 shooke-pc
+
+```
+
 3. 启动kafka服务
 
 启动zookeeper
@@ -87,6 +96,17 @@ mv lua-resty-kafka-master /opt/lua-resty-kafka
 ```
 
 ## 让openresty和kafka建立联系
+
+1.配置kafka
+
+修改`/opt/kafka_2.11-2.0.0/config/server.properties`，找到`listeners`，根据具体情况修改
+```
+# 这个ip地址是kafka在内网的地址，记住这个ip，下面nginx配置中也会用到，一定要对应
+listeners=PLAINTEXT://192.168.99.36:9092
+
+```
+
+2.配置nginx
 
 接下来配置openresty的nginx，让nginx和kafka联系起来
 修改`/etc/openresty/nginx.conf` 在http节点内添加如下内容
@@ -123,7 +143,7 @@ http {
                 local cjson = require "cjson"
                 local producer = require "resty.kafka.producer"
                 local broker_list = {
-                  { host = "127.0.0.1", port = 9092 }
+                  { host = "192.168.99.36", port = 9092 }
                 }
                 local topic = "logs"
                 local log_json = {}
@@ -145,7 +165,7 @@ http {
                 log_json["http_current_user"] = ngx.var.upstream_http_x_current_user
                 log_json["request_time"] = ngx.var.request_time
                 local postargs = ngx.req.get_body_data()
-		log_json["post_data"] = postargs
+		            log_json["post_data"] = postargs
                 log_json["res_body"] = ngx.var
                 local message = cjson.encode(log_json);
                 local bp = producer:new(broker_list, { producer_type = "async" })
@@ -174,6 +194,9 @@ http {
 设置完成后执行`systemctl restart openresty`重启服务就好了。访问8077端口请求会转发到kafka。
 让nginx配置生效也可以执行`/usr/local/openresty/nginx/sbin/nginx -s reload`
 
+## 注意事项
+1.`/etc/hosts`文件要配置上ip和主机名，否则kafka会无法启动报错找不到
+2.kafka `server.properties`中`listeners`的ip要跟nginx配置的`broker_list`中`host`一致，否则会报错
 
 ## 参考资料
 https://www.cnblogs.com/expiator/p/9990171.html
