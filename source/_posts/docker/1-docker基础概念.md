@@ -66,5 +66,8 @@ sudo apt-get update && sudo apt-get install docker-ce docker-ce-cli containerd.i
 ```
 安装完成后可以运行`sudo docker run hello-world`验证是否安装成功
 
+## 帮助信息
+学习任何软件都要会看官方文档和帮助信息，docker也不例外。获取命令帮助信息可以在命令后面添加`--help`如`docker pull --help`
+
 ## 参考资料
 https://docs.docker.com/install/linux/docker-ce/ubuntu/ 其他系统的安装也可以在这里找到
