@@ -25,20 +25,6 @@
   <meta name="google-site-verification" content="9Y6X9yptaHlOdppRk7mld_uHsSibf3lPB8c_60zPyF0" />
   <!-- baidu 验证和收录推送 -->
   <meta name="baidu-site-verification" content="lCJxAeYryx" />
-  <script>
-  (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      if (curProtocol === 'https'){
-    bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    }
-    else{
-    bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-  })();
-  </script>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="{{ page.lang || page.language || config.language }}">
