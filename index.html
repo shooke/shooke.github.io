@@ -573,12 +573,24 @@
                 
               
 
-              <time title="创建时间：2020-03-03 11:12:37 / 修改时间：13:20:13" itemprop="dateCreated datePublished" datetime="2020-03-03T11:12:37+08:00">2020-03-03</time>
+              <time title="创建时间：2020-03-03 11:12:37" itemprop="dateCreated datePublished" datetime="2020-03-03T11:12:37+08:00">2020-03-03</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-03-20 18:03:01" itemprop="dateModified" datetime="2020-03-20T18:03:01+08:00">2020-03-20</time>
               
             
           </span>
@@ -631,28 +643,16 @@
 
       
         
+          <p>镜像在学习docker的过程中非常重要，创建出一个适用于自己的镜像，才能让业务系统准确运行。</p>
+          <!--noindex-->
           
-            <p>镜像在学习docker的过程中非常重要，创建出一个适用于自己的镜像，才能让业务系统准确运行。</p>
-<!-- moer -->
-<h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><p>拉取镜像使用<code>docker pull</code>命令，格式如下：</p>
-<blockquote>
-<p>docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]</p>
-</blockquote>
-<p>具体的选项可以通过 <code>docker pull --help</code> 命令看到，这里我们说一下镜像名称的格式。</p>
-<ul>
-<li>Docker 镜像仓库地址：地址的格式一般是 &lt;域名/IP&gt;[:端口号]。默认地址是 Docker Hub。</li>
-<li>仓库名：<code>（叫镜像名更容易理解一些，毕竟pull下来在本地就是镜像）</code> 这里的仓库名是两段式名称，即 &lt;用户名&gt;/&lt;软件名&gt;。对于 Docker Hub，如果不给出用户名，则默认为<code>library</code>，也就是官方镜像。</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure>
-<p>这样就从官方镜像仓库中拉取了<code>ubuntu 18.04</code>版本的镜像。本地生成的镜像名称是<code>ubuntu</code> tag是<code>18.04</code></p>
-<h2 id="列出本地镜像列表"><a href="#列出本地镜像列表" class="headerlink" title="列出本地镜像列表"></a>列出本地镜像列表</h2><p><code>docker images</code>或<code>docker image ls</code>命令可以查看本地所有镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure></p>
-<p>可以看到本地所有镜像的列表，列表中有:仓库名(REPOSITORY)、标签(TAG)、镜像id(IMAGE ID)，创建时间(CREATED)，以及镜像大小(SIZE)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">ubuntu              14.04               90d5884b1ee0        5 days ago          188 MB</span><br><span class="line">php                 5.6                 f40e9e0f10c8        9 days ago          444.8 MB</span><br><span class="line">nginx               latest              6f8d099c3adc        12 days ago         182.7 MB</span><br><span class="line">mysql               5.6                 f2e8d6c772c0        3 weeks ago         324.6 MB</span><br><span class="line">httpd               latest              02ef73cf1bc0        3 weeks ago         194.4 MB</span><br><span class="line">ubuntu              15.10               4e3b13c8a266        4 weeks ago         136.3 MB</span><br><span class="line">hello-world         latest              690ed74de00f        6 months ago        960 B</span><br><span class="line">training/webapp     latest              6fae60ef3446        11 months ago       348.8 MB</span><br></pre></td></tr></table></figure></p>
-<h2 id="推送镜像"><a href="#推送镜像" class="headerlink" title="推送镜像"></a>推送镜像</h2><p>有拉取就有推送，用户登录后可以通过<code>docker push</code>命令将自己的额镜像推送到<code>Docker Hub</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag ubuntu:18.04 username/ubuntu:18.04</span><br></pre></td></tr></table></figure></p>
-<p>这样就把<code>ubuntu:18.04</code>推送到了<code>Docker Hub</code>上，自己的仓库空间下。其他人拉取的时候通过<code>username</code>来区分，就可以拉取你的镜像了。</p>
-<h2 id="使用镜像"><a href="#使用镜像" class="headerlink" title="使用镜像"></a>使用镜像</h2><p>执行<code>docker run</code>命令就可以启动本地镜像，生成容器了。详细内容看《4.docker容器》</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.runoob.com/docker/docker-image-usage.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-image-usage.html</a><br><a href="https://yeasy.gitbooks.io/docker_practice/content/image/pull.html" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/content/image/pull.html</a><br><a href="https://yeasy.gitbooks.io/docker_practice/content/image/list.html" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/content/image/list.html</a></p>
-
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/03/03/ck7bcu7ev00afe3omi944ne2g/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
           
+          <!--/noindex-->
         
       
     </div>
