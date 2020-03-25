@@ -22,6 +22,8 @@ $ make && make install
 ## 对已安装的nginx，添加模块
 如果已经安装过nginx，比如使用apt或yum安装过了。该怎么办呢？
 
+<!-- more -->
+
 ### 1. 首先去nginx官网下载一个相同版本的nginx源码包
 
 ```
@@ -93,3 +95,7 @@ server {
 } 
 
 ```
+
+## 参考资料
+https://blog.csdn.net/zan110120/article/details/95178449
+https://blog.csdn.net/smallnetvisitor/article/details/84714952
