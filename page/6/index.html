@@ -346,7 +346,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/06/ck81fbhjn000v32omcn1l0b8c/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/03/ck8745mda001bcjomw0pso28s/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -366,7 +366,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/06/ck81fbhjn000v32omcn1l0b8c/" class="post-title-link" itemprop="url">git保存密码</a>
+                <a href="/2019/04/03/ck8745mda001bcjomw0pso28s/" class="post-title-link" itemprop="url">linux安装java环境</a>
               
             
           </h1>
@@ -391,7 +391,7 @@
                 
               
 
-              <time title="创建时间：2019-03-06 10:29:01" itemprop="dateCreated datePublished" datetime="2019-03-06T10:29:01+08:00">2019-03-06</time>
+              <time title="创建时间：2019-04-03 15:04:54" itemprop="dateCreated datePublished" datetime="2019-04-03T15:04:54+08:00">2019-04-03</time>
             
 
             
@@ -461,11 +461,191 @@
 
       
         
-          <p>git每次提交都输入密码，非常麻烦，让它记住密码就好了。一劳永逸的做法是永久保存，这样每次都不用输入密码。但是，这样会有安全问题，如果电脑忘了关机，任何人都可以对其进行操作。最好是让密码有个时效性，当超过了指定时间，密码自动失效。</p>
+          
+            <h2 id="下载jdk"><a href="#下载jdk" class="headerlink" title="下载jdk"></a>下载jdk</h2><p>可以到<a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html下载" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html下载</a><br>JDK 8u201 是稳定版本<br>JDK 8u202 是开发版本，包含了8u21的功能和一些其他功能，有可能会有bug<br>找到<code>Java SE Development Kit 8u201</code>点击该栏目下的<code>Accept License Agreement</code>单选项<br>在下面的列表中找到需要的版本，右键复制链接，在terminal里面用<code>wget</code>命令下载，下面用的是<code>jdk-8u201-linux-x64</code>包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz?AuthParam=1554274626_8750d27ae1e72e03c48aa9f516d713c3</span><br></pre></td></tr></table></figure></p>
+<h2 id="解压程序包并移动到-opt目录"><a href="#解压程序包并移动到-opt目录" class="headerlink" title="解压程序包并移动到/opt目录"></a>解压程序包并移动到/opt目录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 先改个名字，要不然看着别扭</span><br><span class="line">mv jdk-8u201-linux-x64.tar.gz?AuthParam=1554274626_8750d27ae1e72e03c48aa9f516d713c3 jdk-8u201-linux-x64.tar.gz</span><br><span class="line"># 解压</span><br><span class="line">tar zxvf jdk-8u201-linux-x64.tar.gz</span><br><span class="line"># 解压后会出现jdk1.8.0_201文件夹，将其移动到/opt目录</span><br><span class="line">sudo mv jdk1.8.0_201 /opt</span><br></pre></td></tr></table></figure>
+<h2 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.profile</span><br></pre></td></tr></table></figure>
+<p>在最后加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#java</span><br><span class="line">export JAVA_HOME=/opt/jdk1.8.0_201 #jdk的存放目录</span><br><span class="line">export JRE_HOME=$JAVA_HOME/jre</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br></pre></td></tr></table></figure></p>
+<p>最后让配置生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.profile</span><br></pre></td></tr></table></figure></p>
+<p>运行<code>java --version</code>看是否生效，如果出现java版本信息标示生效了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java version &quot;1.8.0_201&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_201-b09)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.201-b09, mixed mode)</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/02/ck8745mcl0008cjom0haj90at/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/02/ck8745mcl0008cjom0haj90at/" class="post-title-link" itemprop="url">VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-02 13:29:28" itemprop="dateCreated datePublished" datetime="2019-04-02T13:29:28+08:00">2019-04-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-03-21 17:28:32" itemprop="dateModified" datetime="2020-03-21T17:28:32+08:00">2020-03-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="全局设置"><a href="#全局设置" class="headerlink" title="全局设置"></a>全局设置</h2><p>点击管理，全局设置；<br>选择网络，里面只有 NAT 网络；<br>点击添加，列表新增 NatNetwork，点击确定。</p>
+<h2 id="虚拟机配置"><a href="#虚拟机配置" class="headerlink" title="虚拟机配置"></a>虚拟机配置</h2><p>点击管理，选择主机网络管理；<br>选择创建，列表新增 vboxnet0，只要这一个就够了；<br>选中点击 vboxnet0，点击手动配置网卡；<br>点击 IPv4 地址，输入配置的网关 IP，如：192.168.56.1；<br>如果不想使用 DHCP，取消启用 DHCP，点击应用。</p>
+<h2 id="给虚拟机添加网卡"><a href="#给虚拟机添加网卡" class="headerlink" title="给虚拟机添加网卡"></a>给虚拟机添加网卡</h2><p>右键点击一个虚拟主机，选择设置；<br>选择网络；<br>选中点击网卡 1，勾选启用网络连接；<br>连接方式选择网络地址转换(NAT)，界面可以空着；<br>选中点击网卡 2，勾选启用网络连接；<br>连接方式选择仅主机(Host-Only)网络，界面名称为 vboxnet0，点击确认。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/03/06/ck81fbhjn000v32omcn1l0b8c/#more" rel="contents">
+              <a class="btn" href="/2019/04/02/ck8745mcl0008cjom0haj90at/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -525,7 +705,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/02/21/ck81fbhjy001k32omi1sp7zml/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/01/ck8745mez004gcjom8p6ccbg7/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -545,7 +725,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/02/21/ck81fbhjy001k32omi1sp7zml/" class="post-title-link" itemprop="url">mysql主从配置</a>
+                <a href="/2019/04/01/ck8745mez004gcjom8p6ccbg7/" class="post-title-link" itemprop="url">设计模式基本原则大白话</a>
               
             
           </h1>
@@ -570,7 +750,7 @@
                 
               
 
-              <time title="创建时间：2019-02-21 15:44:58" itemprop="dateCreated datePublished" datetime="2019-02-21T15:44:58+08:00">2019-02-21</time>
+              <time title="创建时间：2019-04-01 22:35:47" itemprop="dateCreated datePublished" datetime="2019-04-01T22:35:47+08:00">2019-04-01</time>
             
 
             
@@ -640,17 +820,31 @@
 
       
         
-          <p>本教程配置是mysql5.7 不同的版本配置方式有差异，仅供参考</p>
-<h2 id="Master的配置"><a href="#Master的配置" class="headerlink" title="Master的配置"></a>Master的配置</h2><h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>修改/etc/mysql/mysql.conf.d/mysqld.cnf（配置文件具体位置根据）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log-bin=mysql-bin</span><br><span class="line">server-id=2</span><br><span class="line">binlog-ignore-db=information_schema</span><br><span class="line">binlog-ignore-db=cluster</span><br><span class="line">binlog-ignore-db=mysql</span><br><span class="line">binlog-do-db=test</span><br></pre></td></tr></table></figure>
-<p>这里的server-id用于标识唯一的数据库，在从库必须设置为不同的值。</p>
-<p>binlog-ignore-db：表示同步的时候忽略的数据库</p>
-<p>binlog-do-db：指定需要同步的数据库</p>
-<p>配置完成后重启mysql服务</p>
+          <h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p>   简单点说就是最小化封装，一个方法只负责一个功能，一个类只负责一类功能。如果一个功能比较复杂，那就差分成多个小功能，然后去实现。<br>   这样做的好处是</p>
+<ul>
+<li>可以降低类的复杂度，一个类只负责一项职责，其逻辑肯定要比负责多项职责简单的多；</li>
+<li>提高类的可读性，提高系统的可维护性；</li>
+<li>变更引起的风险降低，变更是必然的，如果单一职责原则遵守的好，当修改一个功能时，可以显著降低对其他功能的影响。</li>
+</ul>
+<h2 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h2><p>   简单点说就是子类可以扩展父类的功能，但不能改变父类原有的功能。<br>   注意一下几点即可</p>
+<ul>
+<li>子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法。</li>
+<li>子类中可以增加自己特有的方法。</li>
+<li>当子类的方法重载父类的方法时，方法的前置条件（即方法的形参）要比父类方法的输入参数更宽松。</li>
+<li>当子类的方法实现父类的抽象方法时，方法的后置条件（即方法的返回值）要比父类更严格。</li>
+</ul>
+<p>这样做可以有效避免，功能耦合度太高，改一个小功能影响到其他功能的情况</p>
+<h2 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h2><p>   依赖倒置就是控制翻转，又名 IOC，简单点说，就是将需要的外部对象，通过构造函数参数传递或属性赋值的方式，让当前对象可以使用注入的外部对象。<br>   注意一下几点即可</p>
+<ul>
+<li>低层模块尽量都要有抽象类或接口，或者两者都有。</li>
+<li>变量的声明类型尽量是抽象类或接口。</li>
+<li>使用继承时遵循里氏替换原则</li>
+</ul>
+<p>这样做可以有效解耦，功能发生改变时，只需要替换外部的依赖对象，而不必修改主体功能代码。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/02/21/ck81fbhjy001k32omi1sp7zml/#more" rel="contents">
+              <a class="btn" href="/2019/04/01/ck8745mez004gcjom8p6ccbg7/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -710,7 +904,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/02/15/ck81fbhl8004432omgom2ied9/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/27/ck8745me30030cjom1di4wzbn/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -730,7 +924,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/02/15/ck81fbhl8004432omgom2ied9/" class="post-title-link" itemprop="url">团队开发中如何使用git分支</a>
+                <a href="/2019/03/27/ck8745me30030cjom1di4wzbn/" class="post-title-link" itemprop="url">vscode 保存自动按eslint格式化</a>
               
             
           </h1>
@@ -755,7 +949,7 @@
                 
               
 
-              <time title="创建时间：2019-02-15 16:57:50" itemprop="dateCreated datePublished" datetime="2019-02-15T16:57:50+08:00">2019-02-15</time>
+              <time title="创建时间：2019-03-27 14:26:43" itemprop="dateCreated datePublished" datetime="2019-03-27T14:26:43+08:00">2019-03-27</time>
             
 
             
@@ -825,11 +1019,16 @@
 
       
         
-          <p>git已经成为团队代码管理的标配，合理的使用git分支进行开发，可以大大提高开发效率，降低管理成本。好多人听过git fllow，但都是一知半解，其实并不神秘，也很简单。这是很多研发团队总结出来的一种分支策略而已。</p>
+          <p>三步走：</p>
+<ol>
+<li>安装 vuter，eslint，Prettier-code fromatter<br>vuter 是 vue 高高亮插件，安装后 vscode 就可以识别<code>.vue</code>文件了</li>
+<li>配置 vscode 首选项<br>选择 file 》Preferences 》Settings 打开配置。然后选择 User Settings，点击右上角的<code>{}</code>按钮，进入文本编辑状态</li>
+<li>配置内容</li>
+</ol>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/02/15/ck81fbhl8004432omgom2ied9/#more" rel="contents">
+              <a class="btn" href="/2019/03/27/ck8745me30030cjom1di4wzbn/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -889,7 +1088,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/02/01/ck81fbhl6003z32om37lstyq5/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/15/ck8745mcy000kcjom09qczrg6/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -909,7 +1108,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/02/01/ck81fbhl6003z32om37lstyq5/" class="post-title-link" itemprop="url">前后端分离session跨域解决方案</a>
+                <a href="/2019/03/15/ck8745mcy000kcjom09qczrg6/" class="post-title-link" itemprop="url">elasticsearch学习笔记 - 集群相关术语</a>
               
             
           </h1>
@@ -934,7 +1133,7 @@
                 
               
 
-              <time title="创建时间：2019-02-01 15:06:27" itemprop="dateCreated datePublished" datetime="2019-02-01T15:06:27+08:00">2019-02-01</time>
+              <time title="创建时间：2019-03-15 09:33:28" itemprop="dateCreated datePublished" datetime="2019-03-15T09:33:28+08:00">2019-03-15</time>
             
 
             
@@ -968,7 +1167,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/elasticsearch/" itemprop="url" rel="index"><span itemprop="name">elasticsearch</span></a></span>
 
                 
                 
@@ -1004,12 +1203,20 @@
 
       
         
-          <h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p>php的session比cookie安全，这是好多人知道的常识。session的数据是存放在服务端的，那么程序是如何取到对应的session呢？<br>那是因为每一个session都有一个身份证号，那就是session id。这个东西一般情况下，服务器会发送给客户端，客户端将它放在cookie里。<br>cookie是存在跨域问题的，什么叫跨域呢？a.domain.com下创建的cookie,在b.domain.com下是无法使用的，我们需要进行跨域设置。</p>
-<h2 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h2><p>用过vue开发前后端分离程序的人对axios相比都不陌生了，js前后端分离，如果前后端用两个域名，也存在跨域问题。<br>
+          <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+<li><p>Cluster：集群。<br>顾名思义就是好多es服务器，拜了把子成了兄弟，在一起搞事情，他们讲义气不背叛，一个有难八方支援。比如你有8台服务器，其中一台挂了，剩余的兄弟会立刻顶上。客户让然可以正常使用你的服务，从而实现<code>高可用性</code>。</p>
+</li>
+<li><p>Node：节点。<br>集群中的每台服务器称之为一个节点。每个节点都是一个兄弟。既然拜了把子，那就有个长幼顺序（节点类型），这个看下面的节点类型小节，先看分片。</p>
+</li>
+<li><p>Shard：分片。<br>一只烤全羊，一个人肯定吃不了，怎么办呢？大家分着吃啊。所以就有了分片，大量的数据汇聚过来，一个节点可能由于内存或磁盘处理能力不足，那就把数据切成一小块一小块的（这就是分片），好几个兄弟一起处理。每个分片放到不同的服务器上。 这样处理起来就快了。<br>有肉一起吃，敌人来了当然也要一起扛。当有查询过来的时候，ES会把查询发送给每个相关的分片，并将结果组合在一起，然后返回给用户。</p>
+</li>
+<li><p>Replia：副本。<br>分着吃羊肉，羊是吃完了，但每个人分到的不一样啊，有人吃羊腿，有人吃羊尾巴，显然这样长期下去也是不行的。怎么办呢，再来一只，吃羊腿的再吃羊尾巴，吃羊尾巴的再吃羊腿，这样就公平了。每个人都能说出整只羊各个部位是什么味道。<br>同样的道理，数据分片，放在了不同的节点上，如果一台服务器挂掉了，那岂不是数据就丢失了，这种事是不允许发生的，因此就有了副本。每个切片复制一份，发送给其他节点。这样保证每个节点有完整的数据。集群中有一台宕机了也不影响使用。</p>
+</li>
+</ol>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/02/01/ck81fbhl6003z32om37lstyq5/#more" rel="contents">
+              <a class="btn" href="/2019/03/15/ck8745mcy000kcjom09qczrg6/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1017,7 +1224,7 @@
           <!--/noindex-->
         
       
-    </p></div>
+    </div>
 
     
 
@@ -1069,7 +1276,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/01/29/ck81fbhjo000y32omp8q7gt4c/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/14/ck8745mct000dcjomwqkhla86/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1089,7 +1296,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/01/29/ck81fbhjo000y32omp8q7gt4c/" class="post-title-link" itemprop="url">git远程删除分支后，本地git branch -a 依然能看到的解决办法</a>
+                <a href="/2019/03/14/ck8745mct000dcjomwqkhla86/" class="post-title-link" itemprop="url">elasticsearch学习笔记 - 安装</a>
               
             
           </h1>
@@ -1114,7 +1321,7 @@
                 
               
 
-              <time title="创建时间：2019-01-29 14:28:10" itemprop="dateCreated datePublished" datetime="2019-01-29T14:28:10+08:00">2019-01-29</time>
+              <time title="创建时间：2019-03-14 13:30:16" itemprop="dateCreated datePublished" datetime="2019-03-14T13:30:16+08:00">2019-03-14</time>
             
 
             
@@ -1148,7 +1355,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/elasticsearch/" itemprop="url" rel="index"><span itemprop="name">elasticsearch</span></a></span>
 
                 
                 
@@ -1184,11 +1391,38 @@
 
       
         
-          <p>git远程删除分支后，本地<code>git branch -a</code> 依然能看到的解决办法很简单，使用<code>git remote prune origin</code>就可以解决了。下面详细说明<br>
+          <p>最近用到了es，于是从网上找资料，但是好多都过时了，比如type在elasticsearch 6.0开始已经不推荐使用了。联合查询6.x使用的是join类型的字段，也不在支持type之间的联合查询。问什么要取消type呢？官方给出的理由是</p>
+<blockquote>
+<p>①，而在我们elasticsearch中同一 Index 下，同名 Field 类型必须相同，即使不同的 Type；<br>②， 同一 Index 下，TypeA 的 Field 会占用 TypeB 的资源（互相消耗资源），会形成一种稀疏存储的情况。尤其是 doc value ，为什么这么说呢？doc value为了性能考虑会保留一部分的磁盘空间，这意味着 TypeB 可能不需要这个字段的 doc_value 而 TypeA 需要，那么 TypeB 就被白白占用了一部分没有半点用处的资源；<br>③，Score 评分机制是 index-wide 的，不同的type之间评分也会造成干扰。<br>④，索引元数据本身是放在主节点中维护的，CP 设计。意味着涉及到大量字段变更及元数据变更的操作，都会导致该 Index 被堵塞或假死。我们应该对这样的 Index 做隔离，避免影响到其他 Index 正常的增删改查。甚至当涉及到字段变更十分频繁且无法预定义 schema 的场景时，是否要使用 ES 都应该慎思熟虑了！</p>
+</blockquote>
+<p>出现这种情况主要是在elasticsearch早期时候提出的一些概念，当时为了便于推广，跟关系型数据库作了如下比喻：</p>
+<table>
+<thead>
+<tr>
+<th>myql</th>
+<th>elasticsearch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>database</td>
+<td>index</td>
+</tr>
+<tr>
+<td>table</td>
+<td>type</td>
+</tr>
+<tr>
+<td>column</td>
+<td>field</td>
+</tr>
+</tbody>
+</table>
+<p>很多学习elasticsearch的人估计都看过这个比喻，但其实这是错误的。elasticsearch是基于 Lucene开发的，而在 Lucene中是没有table概念的，有的只是文档和字段。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/01/29/ck81fbhjo000y32omp8q7gt4c/#more" rel="contents">
+              <a class="btn" href="/2019/03/14/ck8745mct000dcjomwqkhla86/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1196,7 +1430,7 @@
           <!--/noindex-->
         
       
-    </p></div>
+    </div>
 
     
 
@@ -1248,7 +1482,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/01/24/ck81fbhjc000c32omnks8izux/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/13/ck8745mdb001ecjoms7iapt1y/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1268,7 +1502,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/01/24/ck81fbhjc000c32omnks8izux/" class="post-title-link" itemprop="url">crontab使用详解</a>
+                <a href="/2019/03/13/ck8745mdb001ecjoms7iapt1y/" class="post-title-link" itemprop="url">linux使用apt方式安装mysql5.7</a>
               
             
           </h1>
@@ -1293,7 +1527,7 @@
                 
               
 
-              <time title="创建时间：2019-01-24 09:20:47" itemprop="dateCreated datePublished" datetime="2019-01-24T09:20:47+08:00">2019-01-24</time>
+              <time title="创建时间：2019-03-13 23:13:33" itemprop="dateCreated datePublished" datetime="2019-03-13T23:13:33+08:00">2019-03-13</time>
             
 
             
@@ -1363,12 +1597,16 @@
 
       
         
-          <p>网上有很多关于crontab的介绍，但是没有一份很全面的，例子也不少，但是没有详细解释具体的意义。看下面的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#每隔1个小时执行一次  ls</span><br><span class="line">0 */1 * * * ls</span><br><span class="line"></span><br><span class="line">#每隔2个小时执行一次 ls</span><br><span class="line">0 */2 * * * ls</span><br><span class="line"></span><br><span class="line">#每隔3个小时执行一次 ls</span><br><span class="line">0 */3 * * * ls</span><br><span class="line"></span><br><span class="line">#每隔4个小时执行一次 ls</span><br><span class="line">0 */4 * * * ls</span><br><span class="line"></span><br><span class="line">#每隔10天执行一次 ls</span><br><span class="line">0 0 */10 * * ls</span><br><span class="line"></span><br><span class="line">#每天1点执行 ls</span><br><span class="line">0 1 * * * ls</span><br></pre></td></tr></table></figure></p>
-<p>接下来就详细说明一下crontab的使用，和每个参数的意义<br>
+          <p>安装3步曲：</p>
+<ol>
+<li>使用apt-get安装</li>
+<li>设置root密码和验证方式</li>
+<li>重启服务</li>
+</ol>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/01/24/ck81fbhjc000c32omnks8izux/#more" rel="contents">
+              <a class="btn" href="/2019/03/13/ck8745mdb001ecjoms7iapt1y/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1376,7 +1614,7 @@
           <!--/noindex-->
         
       
-    </p></div>
+    </div>
 
     
 
@@ -1428,7 +1666,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/01/23/ck81fbhjj000k32omkf044smc/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/06/ck8745mdl0023cjomym4uoaow/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1448,7 +1686,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/01/23/ck81fbhjj000k32omkf044smc/" class="post-title-link" itemprop="url">elasticsearch模糊查询</a>
+                <a href="/2019/03/06/ck8745mdl0023cjomym4uoaow/" class="post-title-link" itemprop="url">python字节和字符串相互转换</a>
               
             
           </h1>
@@ -1473,7 +1711,7 @@
                 
               
 
-              <time title="创建时间：2019-01-23 12:15:36" itemprop="dateCreated datePublished" datetime="2019-01-23T12:15:36+08:00">2019-01-23</time>
+              <time title="创建时间：2019-03-06 17:43:39" itemprop="dateCreated datePublished" datetime="2019-03-06T17:43:39+08:00">2019-03-06</time>
             
 
             
@@ -1544,8 +1782,16 @@
       
         
           
-            <p>like %李四% 可以使用以下语法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;match_phrase&quot;: &#123;</span><br><span class="line">        &quot;nickname&quot;: &#123;&quot;query&quot;:&quot;李明&quot;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;wildcard&quot;: &#123;</span><br><span class="line">        &quot;nickname.keyword&quot;: &quot;*李明*&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+            <h2 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h2><ul>
+<li><p>byte 字符串<br>byte_str = b”byte example”</p>
+</li>
+<li><p>str 字符串<br>str_str = “str example”</p>
+</li>
+</ul>
+<h2 id="str-to-bytes-字符串转字节"><a href="#str-to-bytes-字符串转字节" class="headerlink" title="str to bytes 字符串转字节"></a>str to bytes 字符串转字节</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bytes(str_str, encoding=&quot;utf-8&quot;)</span><br></pre></td></tr></table></figure>
+<p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str_str.encode()</span><br></pre></td></tr></table></figure></p>
+<h2 id="bytes-to-str-字节转字符串"><a href="#bytes-to-str-字节转字符串" class="headerlink" title="bytes to str  字节转字符串"></a>bytes to str  字节转字符串</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str(byte_str, encoding=&quot;utf-8&quot;)</span><br></pre></td></tr></table></figure>
+<p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">byte_str.decode()</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1602,7 +1848,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/01/22/ck81fbhk5001w32om5debedld/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/06/ck8745mdi001rcjom07y6s09b/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1622,7 +1868,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/01/22/ck81fbhk5001w32om5debedld/" class="post-title-link" itemprop="url">post传输详解以及axios、php代码实例</a>
+                <a href="/2019/03/06/ck8745mdi001rcjom07y6s09b/" class="post-title-link" itemprop="url">nohup命令说明</a>
               
             
           </h1>
@@ -1647,7 +1893,7 @@
                 
               
 
-              <time title="创建时间：2019-01-22 16:15:36" itemprop="dateCreated datePublished" datetime="2019-01-22T16:15:36+08:00">2019-01-22</time>
+              <time title="创建时间：2019-03-06 17:21:00" itemprop="dateCreated datePublished" datetime="2019-03-06T17:21:00+08:00">2019-03-06</time>
             
 
             
@@ -1717,11 +1963,201 @@
 
       
         
-          <p>HTTP/1.1 协议规定的 HTTP 请求方法有 OPTIONS、GET、HEAD、POST、PUT、DELETE、TRACE、CONNECT 这几种。其中 POST 一般用来向服务端提交数据，本文主要讨论 POST 提交数据的几种方式。</p>
+          <p>nohup是Linux的一个常用命令，当你想要在退出账户或者关闭终端后进程仍在运行时，就可以使用nohup命令。nohup就是不挂断的意思（no hang up）。</p>
+<p>nohup的一般形式为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup command &gt;&gt; file 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure></p>
+<p>如果不将 nohup 命令的输出重定向，输出将附加到当前目录的 nohup.out 文件中，否则就是自己指定的文件。</p>
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/01/22/ck81fbhk5001w32om5debedld/#more" rel="contents">
+              <a class="btn" href="/2019/03/06/ck8745mdi001rcjom07y6s09b/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/06/ck8745md1000rcjomuqbl631s/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/06/ck8745md1000rcjomuqbl631s/" class="post-title-link" itemprop="url">git reset命令详解</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-06 14:06:21" itemprop="dateCreated datePublished" datetime="2019-03-06T14:06:21+08:00">2019-03-06</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-03-21 17:28:32" itemprop="dateModified" datetime="2020-03-21T17:28:32+08:00">2020-03-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>git reset命令，非常牛的一个命令，这个命令可以让你时光穿梭回到过去。用在自己分支上很好用，但是千万不要在公共分支上使用。以免造成历史混乱，破坏历史可是重罪，别看那些穿越小说混的风生水起，那都是骗人的。</p>
+<p>用git reset之前先要了解几个概念</p>
+<ul>
+<li><p>HEAD<br>这是当前分支版本顶端的别名，也就是在当前分支你最近的一个提交，也就是本地仓库，即你的commit记录</p>
+</li>
+<li><p>Index<br>index也被称为staging area，即add的记录</p>
+</li>
+<li><p>Working Copy<br>working copy代表你正在工作的那个文件</p>
+</li>
+</ul>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/06/ck8745md1000rcjomuqbl631s/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1770,7 +2206,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -1813,7 +2249,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-count">69</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1834,7 +2270,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">4</span>
+                      
+                    
+                    <span class="site-state-item-count">5</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2029,7 +2467,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">91</span>
+                      
+                    
+                    <span class="site-state-item-count">92</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
