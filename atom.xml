@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2020-03-25T09:18:11.624Z</updated>
+  <updated>2020-04-23T09:33:13.466Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>10.克隆远程仓库</title>
+    <link href="https://www.xingjiehu.com/2020/04/22/ck9ckdn840000qyom07q6dtft/"/>
+    <id>https://www.xingjiehu.com/2020/04/22/ck9ckdn840000qyom07q6dtft/</id>
+    <published>2020-04-22T12:32:20.000Z</published>
+    <updated>2020-04-23T09:33:13.466Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote><p>本故事纯属虚构，如有雷同，^0^那可太巧了</p></blockquote><p>吃过早饭，早早来到办公室。今天办公室和往常好像不一样。小白的工位旁边做了个人。好面生啊。</p><p>“你好”，小白主动上前打招呼。<br>“你好，我是新来的。老大说让我跟你一组，以后我就跟你混了。”，新同事回答<br>“我叫小白，你叫什么啊？”，小白问道<br>“我叫小菜” 新同事回答<br>…<br>小白和小菜聊得很投缘。<br>上班时间到了，第一件事就是带领小菜熟悉项目。<br>“这是我u盘，把项目拷贝给我一份吧，我熟悉一下项目”，小菜说道，把u盘递给了小白</p><p>“不需要拷贝，现在都用git了，直接用git clone一份就可以了”，小白说着把u盘还给小菜</p><p>“这样啊，好高端”，小菜呵呵一笑</p><p>小白做到小菜的电脑前，打开git bash工具敲下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/shooke/learngit.git</span><br></pre></td></tr></table></figure></p><p>一会电脑上出现了 learngit的文件夹。</p><p>“这样项目就下来了”小白说道，心里美滋滋的。</p><p>小菜一脸崇拜的看着小白。</p><p>“这是我的学习笔记，你也好好学习一下git吧。”小白发给小菜一个文档。</p><p>就这样两人开始了组团升级的道路</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul><li><code>git clone &lt;版本库的网址&gt;</code> 可以克隆项目到本地，生成一个与项目同名的文件夹，版本库网址可以是https也可以是ssh类型的，这取决于服务器支持那种协议</li><li><code>git clone &lt;版本库的网址&gt; &lt;本地目录名&gt;</code> 如果想保存的时候换一个名字，可以在版本库地址后面增加一个目录名如<code>git clone https://github.com/shooke/learngit.git git_learn</code></li><li>git可以支持多种协议，比如下面的协议<ul><li>$ git clone http[s]://example.com/path/to/repo.git/</li><li>$ git clone ssh://example.com/path/to/repo.git/</li><li>$ git clone git://example.com/path/to/repo.git/</li><li>$ git clone /opt/git/project.git </li><li>$ git clone file:///opt/git/project.git</li><li>$ git clone ftp[s]://example.com/path/to/repo.git/</li><li>$ git clone rsync://example.com/path/to/repo.git/</li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;小白的故事&quot;&gt;&lt;a href=&quot;#小白的故事&quot; class=&quot;headerlink&quot; title=&quot;小白的故事&quot;&gt;&lt;/a&gt;小白的故事&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;本故事纯属虚构，如有雷同，^0^那可太巧了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;吃过
+      
+    
+    </summary>
+    
+      <category term="一点一点了解git" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3git/"/>
+    
+    
+      <category term="git" scheme="https://www.xingjiehu.com/tags/git/"/>
+    
+  </entry>
   
   <entry>
     <title>让nginx支持flv文件播放</title>
@@ -350,34 +378,6 @@
     
     
       <category term="ssh" scheme="https://www.xingjiehu.com/tags/ssh/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>10.克隆远程仓库</title>
-    <link href="https://www.xingjiehu.com/2019/12/27/ck9ckdn840000qyom07q6dtft/"/>
-    <id>https://www.xingjiehu.com/2019/12/27/ck9ckdn840000qyom07q6dtft/</id>
-    <published>2019-12-27T12:32:20.000Z</published>
-    <updated>2020-04-23T09:15:37.574Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote><p>本故事纯属虚构，如有雷同，^0^那可太巧了</p></blockquote><p>吃过早饭，早早来到办公室。今天办公室和往常好像不一样。小白的工位旁边做了个人。好面生啊。</p><p>“你好”，小白主动上前打招呼。<br>“你好，我是新来的。老大说让我跟你一组，以后我就跟你混了。”，新同事回答<br>“我叫小白，你叫什么啊？”，小白问道<br>“我叫小菜” 新同事回答<br>…<br>小白和小菜聊得很投缘。<br>上班时间到了，第一件事就是带领小菜熟悉项目。<br>“这是我u盘，把项目拷贝给我一份吧，我熟悉一下项目”，小菜说道，把u盘递给了小白</p><p>“不需要拷贝，现在都用git了，直接用git clone一份就可以了”，小白说着把u盘还给小菜</p><p>“这样啊，好高端”，小菜呵呵一笑</p><p>小白做到小菜的电脑前，打开git bash工具敲下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/shooke/learngit.git</span><br></pre></td></tr></table></figure></p><p>一会电脑上出现了 learngit的文件夹。</p><p>“这样项目就下来了”小白说道，心里美滋滋的。</p><p>小菜一脸崇拜的看着小白。</p><p>“这是我的学习笔记，你也好好学习一下git吧。”小白发给小菜一个文档。</p><p>就这样两人开始了组团升级的道路</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul><li><code>git clone &lt;版本库的网址&gt;</code> 可以克隆项目到本地，生成一个与项目同名的文件夹，版本库网址可以是https也可以是ssh类型的，这取决于服务器支持那种协议</li><li><code>git clone &lt;版本库的网址&gt; &lt;本地目录名&gt;</code> 如果想保存的时候换一个名字，可以在版本库地址后面增加一个目录名如<code>git clone https://github.com/shooke/learngit.git git_learn</code></li><li>git可以支持多种协议，比如下面的协议<ul><li>$ git clone http[s]://example.com/path/to/repo.git/</li><li>$ git clone ssh://example.com/path/to/repo.git/</li><li>$ git clone git://example.com/path/to/repo.git/</li><li>$ git clone /opt/git/project.git </li><li>$ git clone file:///opt/git/project.git</li><li>$ git clone ftp[s]://example.com/path/to/repo.git/</li><li>$ git clone rsync://example.com/path/to/repo.git/</li></ul></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;小白的故事&quot;&gt;&lt;a href=&quot;#小白的故事&quot; class=&quot;headerlink&quot; title=&quot;小白的故事&quot;&gt;&lt;/a&gt;小白的故事&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;本故事纯属虚构，如有雷同，^0^那可太巧了&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;吃过
-      
-    
-    </summary>
-    
-      <category term="一点一点了解git" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3git/"/>
-    
-    
-      <category term="git" scheme="https://www.xingjiehu.com/tags/git/"/>
     
   </entry>
   
