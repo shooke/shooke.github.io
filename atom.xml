@@ -44,18 +44,17 @@
   </entry>
   
   <entry>
-    <title>docker容器(Container)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ck8745mj000apcjomw4ceh7n0/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ck8745mj000apcjomw4ceh7n0/</id>
+    <title>docker仓库(Repository)</title>
+    <link href="https://www.xingjiehu.com/2020/03/03/ck8745mis00akcjom5xm732ar/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ck8745mis00akcjom5xm732ar/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
-    <content type="html"><![CDATA[<p>容器就是独立运行起来的程序,一个容器就好比你在虚拟机里装好的一个系统。</p><p>我们可以创建、启动、停止、删除它。同时也可以将容器需要的数据放在容器之外。比如有一个数据库容器，里面有mysql服务，但数据不能放在容器里。我们可以把数据放在主机里，通过映射的方式让容器访问。</p><a id="more"></a><h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><p>启动容器有两种方式，一种是基于镜像新建一个容器并启动，另外一个是将在终止状态（stopped）的容器重新启动。</p><p>新建并启动容器使用<code>docker run</code>命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run ubuntu:18.04 /bin/echo &apos;Hello world&apos;</span><br></pre></td></tr></table></figure><p>启动后会看到<code>Hello world</code>，本本地使用<code>echo &#39;hello world&#39;</code>没什么两样。但这个hello world是容器输出的。不是主机输出的。容器启动后自己就终止了，所以会误认为主机输出的。</p><blockquote><p>docker run命令会检查本地是否存在镜像，如果不存在，会自动到官方仓库下载。比如上面的<code>ubuntu:18.04</code></p></blockquote><p>在执行<code>docker run</code>命令时，可以添加<code>-t</code> <code>-i</code>参数，让容器不退出，保持交互。</p><blockquote><p>-t 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上，<br>-i 则让容器的标准输入保持打开</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -t -i ubuntu:18.04 /bin/bash</span><br></pre></td></tr></table></figure><p>这样容器就不会退出了，你会发现shell中出现出现了<code>root@af8bae53bdd3:/</code>这样的提示，这说明你进入了容器，你所执行的命令都是在容器内运行。</p><p><code>root</code> 是容器的用户<br><code>af8bae53bdd3</code> 是容器的id，每个容器启动后后有一个容器id。我们反复启动一个容器，就靠它。</p><blockquote><p>如果在交互模式下，退出容器可以输入<code>exit</code>就退出来了。</p></blockquote><h2 id="启动已终止容器"><a href="#启动已终止容器" class="headerlink" title="启动已终止容器"></a>启动已终止容器</h2><p>就好比，咱们不能每次都在<code>virtualBox</code>里新装一个系统，我们只要运行安装过得系统。<br>当容器退出后，想再次启动已经创建过的容器。这时候可以采用<code>docker container start</code>命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container start af8bae53bdd3</span><br></pre></td></tr></table></figure></p><p>这样就启动了上次生成的容器</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>当利用 <code>docker run</code> 来创建容器时，Docker 在后台运行的标准操作包括：</p><ol><li>检查本地是否存在指定的镜像，不存在就从公有仓库下载</li><li>利用镜像创建并启动一个容器</li><li>分配一个文件系统，并在只读的镜像层外面挂载一层可读写层</li><li>从宿主主机配置的网桥接口中桥接一个虚拟接口到容器中去</li><li>从地址池配置一个 ip 地址给容器</li><li>执行用户指定的应用程序</li><li>执行完毕后容器被终止</li></ol>]]></content>
+    <content type="html"><![CDATA[<p>仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>。<br>大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。</p><a id="more"></a><h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>在 <a href="https://hub.docker.com" target="_blank" rel="noopener">https://hub.docker.com</a> 免费注册一个 Docker 账号。</p><h2 id="登录和退出"><a href="#登录和退出" class="headerlink" title="登录和退出"></a>登录和退出</h2><p>执行<code>docker login</code>命令，会提示输入用户名和密码，输入后就登录了。注意，输入密码时不会有任何显示，windows上一般显示<code>*</code>,但linux不会有显示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker login</span><br><span class="line">Login with your Docker ID to push and pull images from Docker Hub. If you don&apos;t have a Docker ID, head over to https://hub.docker.com to create one.</span><br><span class="line">Username: shooke</span><br><span class="line">Password:</span><br></pre></td></tr></table></figure></p><p>执行<code>docker logout</code>就可以退出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logout</span><br></pre></td></tr></table></figure></p><h2 id="查找镜像"><a href="#查找镜像" class="headerlink" title="查找镜像"></a>查找镜像</h2><p>可以通过<code>docker search</code>命令查找官方仓库中的镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker search ubuntu</span><br><span class="line">NAME                                                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line">ubuntu                                                    Ubuntu is a Debian-based Linux operating sys…   10575               [OK]                </span><br><span class="line">dorowu/ubuntu-desktop-lxde-vnc                            Docker image to provide HTML5 VNC interface …   398                                     [OK]</span><br><span class="line">rastasheep/ubuntu-sshd                                    Dockerized SSH service, built on top of offi…   243                                     [OK]</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p><h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><p>在仓库中找到自己想要的镜像后，就可以下载使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure></p><p>这样就可以从官方仓库下载<code>ubuntu:18.04</code>镜像到本地使用。<br>关于镜像的详细内容看《3.docker镜像》</p><p>#参考资料<br><a href="https://www.runoob.com/docker/docker-repository.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-repository.html</a></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;容器就是独立运行起来的程序,一个容器就好比你在虚拟机里装好的一个系统。&lt;/p&gt;
-&lt;p&gt;我们可以创建、启动、停止、删除它。同时也可以将容器需要的数据放在容器之外。比如有一个数据库容器，里面有mysql服务，但数据不能放在容器里。我们可以把数据放在主机里，通过映射的方式让容器访问。&lt;/p&gt;
+      &lt;p&gt;仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  &lt;a href=&quot;https://hub.docker.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Docker Hub&lt;/a&gt;。&lt;br&gt;大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。&lt;/p&gt;
     
     </summary>
     
@@ -64,7 +63,7 @@
     
       <category term="docker" scheme="https://www.xingjiehu.com/tags/docker/"/>
     
-      <category term="docker Container" scheme="https://www.xingjiehu.com/tags/docker-Container/"/>
+      <category term="docker repository" scheme="https://www.xingjiehu.com/tags/docker-repository/"/>
     
   </entry>
   
@@ -93,17 +92,18 @@
   </entry>
   
   <entry>
-    <title>docker仓库(Repository)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ck8745mis00akcjom5xm732ar/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ck8745mis00akcjom5xm732ar/</id>
+    <title>docker容器(Container)</title>
+    <link href="https://www.xingjiehu.com/2020/03/03/ck8745mj000apcjomw4ceh7n0/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ck8745mj000apcjomw4ceh7n0/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
-    <content type="html"><![CDATA[<p>仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>。<br>大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。</p><a id="more"></a><h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>在 <a href="https://hub.docker.com" target="_blank" rel="noopener">https://hub.docker.com</a> 免费注册一个 Docker 账号。</p><h2 id="登录和退出"><a href="#登录和退出" class="headerlink" title="登录和退出"></a>登录和退出</h2><p>执行<code>docker login</code>命令，会提示输入用户名和密码，输入后就登录了。注意，输入密码时不会有任何显示，windows上一般显示<code>*</code>,但linux不会有显示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker login</span><br><span class="line">Login with your Docker ID to push and pull images from Docker Hub. If you don&apos;t have a Docker ID, head over to https://hub.docker.com to create one.</span><br><span class="line">Username: shooke</span><br><span class="line">Password:</span><br></pre></td></tr></table></figure></p><p>执行<code>docker logout</code>就可以退出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logout</span><br></pre></td></tr></table></figure></p><h2 id="查找镜像"><a href="#查找镜像" class="headerlink" title="查找镜像"></a>查找镜像</h2><p>可以通过<code>docker search</code>命令查找官方仓库中的镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker search ubuntu</span><br><span class="line">NAME                                                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line">ubuntu                                                    Ubuntu is a Debian-based Linux operating sys…   10575               [OK]                </span><br><span class="line">dorowu/ubuntu-desktop-lxde-vnc                            Docker image to provide HTML5 VNC interface …   398                                     [OK]</span><br><span class="line">rastasheep/ubuntu-sshd                                    Dockerized SSH service, built on top of offi…   243                                     [OK]</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p><h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><p>在仓库中找到自己想要的镜像后，就可以下载使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure></p><p>这样就可以从官方仓库下载<code>ubuntu:18.04</code>镜像到本地使用。<br>关于镜像的详细内容看《3.docker镜像》</p><p>#参考资料<br><a href="https://www.runoob.com/docker/docker-repository.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-repository.html</a></p>]]></content>
+    <content type="html"><![CDATA[<p>容器就是独立运行起来的程序,一个容器就好比你在虚拟机里装好的一个系统。</p><p>我们可以创建、启动、停止、删除它。同时也可以将容器需要的数据放在容器之外。比如有一个数据库容器，里面有mysql服务，但数据不能放在容器里。我们可以把数据放在主机里，通过映射的方式让容器访问。</p><a id="more"></a><h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><p>启动容器有两种方式，一种是基于镜像新建一个容器并启动，另外一个是将在终止状态（stopped）的容器重新启动。</p><p>新建并启动容器使用<code>docker run</code>命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run ubuntu:18.04 /bin/echo &apos;Hello world&apos;</span><br></pre></td></tr></table></figure><p>启动后会看到<code>Hello world</code>，本本地使用<code>echo &#39;hello world&#39;</code>没什么两样。但这个hello world是容器输出的。不是主机输出的。容器启动后自己就终止了，所以会误认为主机输出的。</p><blockquote><p>docker run命令会检查本地是否存在镜像，如果不存在，会自动到官方仓库下载。比如上面的<code>ubuntu:18.04</code></p></blockquote><p>在执行<code>docker run</code>命令时，可以添加<code>-t</code> <code>-i</code>参数，让容器不退出，保持交互。</p><blockquote><p>-t 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上，<br>-i 则让容器的标准输入保持打开</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -t -i ubuntu:18.04 /bin/bash</span><br></pre></td></tr></table></figure><p>这样容器就不会退出了，你会发现shell中出现出现了<code>root@af8bae53bdd3:/</code>这样的提示，这说明你进入了容器，你所执行的命令都是在容器内运行。</p><p><code>root</code> 是容器的用户<br><code>af8bae53bdd3</code> 是容器的id，每个容器启动后后有一个容器id。我们反复启动一个容器，就靠它。</p><blockquote><p>如果在交互模式下，退出容器可以输入<code>exit</code>就退出来了。</p></blockquote><h2 id="启动已终止容器"><a href="#启动已终止容器" class="headerlink" title="启动已终止容器"></a>启动已终止容器</h2><p>就好比，咱们不能每次都在<code>virtualBox</code>里新装一个系统，我们只要运行安装过得系统。<br>当容器退出后，想再次启动已经创建过的容器。这时候可以采用<code>docker container start</code>命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container start af8bae53bdd3</span><br></pre></td></tr></table></figure></p><p>这样就启动了上次生成的容器</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>当利用 <code>docker run</code> 来创建容器时，Docker 在后台运行的标准操作包括：</p><ol><li>检查本地是否存在指定的镜像，不存在就从公有仓库下载</li><li>利用镜像创建并启动一个容器</li><li>分配一个文件系统，并在只读的镜像层外面挂载一层可读写层</li><li>从宿主主机配置的网桥接口中桥接一个虚拟接口到容器中去</li><li>从地址池配置一个 ip 地址给容器</li><li>执行用户指定的应用程序</li><li>执行完毕后容器被终止</li></ol>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  &lt;a href=&quot;https://hub.docker.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Docker Hub&lt;/a&gt;。&lt;br&gt;大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。&lt;/p&gt;
+      &lt;p&gt;容器就是独立运行起来的程序,一个容器就好比你在虚拟机里装好的一个系统。&lt;/p&gt;
+&lt;p&gt;我们可以创建、启动、停止、删除它。同时也可以将容器需要的数据放在容器之外。比如有一个数据库容器，里面有mysql服务，但数据不能放在容器里。我们可以把数据放在主机里，通过映射的方式让容器访问。&lt;/p&gt;
     
     </summary>
     
@@ -112,7 +112,7 @@
     
       <category term="docker" scheme="https://www.xingjiehu.com/tags/docker/"/>
     
-      <category term="docker repository" scheme="https://www.xingjiehu.com/tags/docker-repository/"/>
+      <category term="docker Container" scheme="https://www.xingjiehu.com/tags/docker-Container/"/>
     
   </entry>
   
@@ -354,6 +354,34 @@
   </entry>
   
   <entry>
+    <title>10.克隆远程仓库</title>
+    <link href="https://www.xingjiehu.com/2019/12/27/ck9ckdn840000qyom07q6dtft/"/>
+    <id>https://www.xingjiehu.com/2019/12/27/ck9ckdn840000qyom07q6dtft/</id>
+    <published>2019-12-27T12:32:20.000Z</published>
+    <updated>2020-04-23T09:15:37.574Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote><p>本故事纯属虚构，如有雷同，^0^那可太巧了</p></blockquote><p>吃过早饭，早早来到办公室。今天办公室和往常好像不一样。小白的工位旁边做了个人。好面生啊。</p><p>“你好”，小白主动上前打招呼。<br>“你好，我是新来的。老大说让我跟你一组，以后我就跟你混了。”，新同事回答<br>“我叫小白，你叫什么啊？”，小白问道<br>“我叫小菜” 新同事回答<br>…<br>小白和小菜聊得很投缘。<br>上班时间到了，第一件事就是带领小菜熟悉项目。<br>“这是我u盘，把项目拷贝给我一份吧，我熟悉一下项目”，小菜说道，把u盘递给了小白</p><p>“不需要拷贝，现在都用git了，直接用git clone一份就可以了”，小白说着把u盘还给小菜</p><p>“这样啊，好高端”，小菜呵呵一笑</p><p>小白做到小菜的电脑前，打开git bash工具敲下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/shooke/learngit.git</span><br></pre></td></tr></table></figure></p><p>一会电脑上出现了 learngit的文件夹。</p><p>“这样项目就下来了”小白说道，心里美滋滋的。</p><p>小菜一脸崇拜的看着小白。</p><p>“这是我的学习笔记，你也好好学习一下git吧。”小白发给小菜一个文档。</p><p>就这样两人开始了组团升级的道路</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul><li><code>git clone &lt;版本库的网址&gt;</code> 可以克隆项目到本地，生成一个与项目同名的文件夹，版本库网址可以是https也可以是ssh类型的，这取决于服务器支持那种协议</li><li><code>git clone &lt;版本库的网址&gt; &lt;本地目录名&gt;</code> 如果想保存的时候换一个名字，可以在版本库地址后面增加一个目录名如<code>git clone https://github.com/shooke/learngit.git git_learn</code></li><li>git可以支持多种协议，比如下面的协议<ul><li>$ git clone http[s]://example.com/path/to/repo.git/</li><li>$ git clone ssh://example.com/path/to/repo.git/</li><li>$ git clone git://example.com/path/to/repo.git/</li><li>$ git clone /opt/git/project.git </li><li>$ git clone file:///opt/git/project.git</li><li>$ git clone ftp[s]://example.com/path/to/repo.git/</li><li>$ git clone rsync://example.com/path/to/repo.git/</li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;小白的故事&quot;&gt;&lt;a href=&quot;#小白的故事&quot; class=&quot;headerlink&quot; title=&quot;小白的故事&quot;&gt;&lt;/a&gt;小白的故事&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;本故事纯属虚构，如有雷同，^0^那可太巧了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;吃过
+      
+    
+    </summary>
+    
+      <category term="一点一点了解git" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3git/"/>
+    
+    
+      <category term="git" scheme="https://www.xingjiehu.com/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
     <title>9.上传到远程仓库</title>
     <link href="https://www.xingjiehu.com/2019/12/26/ck8745mjc00bdcjom1zd58803/"/>
     <id>https://www.xingjiehu.com/2019/12/26/ck8745mjc00bdcjom1zd58803/</id>
@@ -510,34 +538,6 @@
 &lt;p&gt;本故事纯属虚构，如有雷同，^0^那可太巧了&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;回到
-      
-    
-    </summary>
-    
-      <category term="一点一点了解git" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3git/"/>
-    
-    
-      <category term="git" scheme="https://www.xingjiehu.com/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>3.查看文件状态</title>
-    <link href="https://www.xingjiehu.com/2019/12/20/ck8745mj600azcjomd9e2p1eu/"/>
-    <id>https://www.xingjiehu.com/2019/12/20/ck8745mj600azcjomd9e2p1eu/</id>
-    <published>2019-12-20T12:32:20.000Z</published>
-    <updated>2020-03-24T08:50:50.055Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote><p>本故事纯属虚构，如有雷同，^0^那可太巧了</p></blockquote><p>第二天上班，小白开开心心的打开电脑，准备爽一把。忽然想起来，昨天好像有一个功能还没有做完，临走的时候没有执行<code>add</code>和<code>commit</code>。</p><p>糟糕好像忘记修改过哪几个文件了。这可如何是好啊？</p><p>一盏灯泡从小白的脑袋里亮起，好像我开始使用git了，git应该知道我昨天哪些代码没有<code>commit</code>吧。<br>小白打开百度，果然，git是可以查看文件状态的。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">modified:   readme.md</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure><p><code>modified:   readme.md</code>，哦，原来是<code>readme.md</code>文件昨天修改过。马上<code>git add readme.md</code> <code>git commit -m &quot;readme&quot;</code>添加到仓库。</p><p>ok，继续快乐的工作。</p><p>开始开发新功能，创建一个新文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch 我最帅.txt</span><br></pre></td></tr></table></figure></p><p>不一会功能开发完成。脑袋好乱，刚才出去又忘记改了什么文件。还是用<code>git status</code>吧。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">&quot;\346\210\221\346\234\200\345\270\205.txt&quot;</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span><br></pre></td></tr></table></figure></p><p><code>&quot;\346\210\221\346\234\200\345\270\205.txt&quot;</code>是什么鬼，我们打开万能的百度，是因为git对对0x80以上的字符进行quote，解决方法很简单</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.quotepath false</span><br></pre></td></tr></table></figure><p>没有报错，应该没有问题吧，小白抱着试试看的态度敲下了<code>git status</code>命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">我最帅.txt</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span><br></pre></td></tr></table></figure></p><p>果然正常了。小白那个开心啊。内心YY道：“我就说吗git这么强大，怎么可能弱鸡到中文都不能正常显示，我果然是天才，一下就找到了原因”</p><p>马上开始保存到仓库，咦，不对，好像两次<code>git status</code>出现的提示不一样，这是怎么回事啊。</p><p>时间在小白的思考中慢慢流失，抬头一看，哇，这不8点60了吗。赶紧回家…</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><code>git status</code>可以查看项目的变更情况<br><code>git config --global core.quotepath false</code> 可以解决，git提示信息中文乱码问题</p><h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>为什么小白两次<code>git status</code>出现的提示不一样呢？这就要从git的管理机制，工作区和代码库说起了</p><p>预知后事如何，且看下回分解。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;小白的故事&quot;&gt;&lt;a href=&quot;#小白的故事&quot; class=&quot;headerlink&quot; title=&quot;小白的故事&quot;&gt;&lt;/a&gt;小白的故事&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;本故事纯属虚构，如有雷同，^0^那可太巧了&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;第二
       
     
     </summary>
