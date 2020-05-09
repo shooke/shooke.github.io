@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2020-04-23T09:33:13.466Z</updated>
+  <updated>2020-05-09T06:10:25.138Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,23 +17,50 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>10.克隆远程仓库</title>
-    <link href="https://www.xingjiehu.com/2020/04/22/ck9ckdn840000qyom07q6dtft/"/>
-    <id>https://www.xingjiehu.com/2020/04/22/ck9ckdn840000qyom07q6dtft/</id>
-    <published>2020-04-22T12:32:20.000Z</published>
-    <updated>2020-04-23T09:33:13.466Z</updated>
+    <title>springboot+nginx websocket配置</title>
+    <link href="https://www.xingjiehu.com/2020/05/09/ck9z8enwi002blfompmi8kgd1/"/>
+    <id>https://www.xingjiehu.com/2020/05/09/ck9z8enwi002blfompmi8kgd1/</id>
+    <published>2020-05-09T06:03:26.000Z</published>
+    <updated>2020-05-09T06:10:25.138Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote><p>本故事纯属虚构，如有雷同，^0^那可太巧了</p></blockquote><p>吃过早饭，早早来到办公室。今天办公室和往常好像不一样。小白的工位旁边做了个人。好面生啊。</p><p>“你好”，小白主动上前打招呼。<br>“你好，我是新来的。老大说让我跟你一组，以后我就跟你混了。”，新同事回答<br>“我叫小白，你叫什么啊？”，小白问道<br>“我叫小菜” 新同事回答<br>…<br>小白和小菜聊得很投缘。<br>上班时间到了，第一件事就是带领小菜熟悉项目。<br>“这是我u盘，把项目拷贝给我一份吧，我熟悉一下项目”，小菜说道，把u盘递给了小白</p><p>“不需要拷贝，现在都用git了，直接用git clone一份就可以了”，小白说着把u盘还给小菜</p><p>“这样啊，好高端”，小菜呵呵一笑</p><p>小白做到小菜的电脑前，打开git bash工具敲下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/shooke/learngit.git</span><br></pre></td></tr></table></figure></p><p>一会电脑上出现了 learngit的文件夹。</p><p>“这样项目就下来了”小白说道，心里美滋滋的。</p><p>小菜一脸崇拜的看着小白。</p><p>“这是我的学习笔记，你也好好学习一下git吧。”小白发给小菜一个文档。</p><p>就这样两人开始了组团升级的道路</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul><li><code>git clone &lt;版本库的网址&gt;</code> 可以克隆项目到本地，生成一个与项目同名的文件夹，版本库网址可以是https也可以是ssh类型的，这取决于服务器支持那种协议</li><li><code>git clone &lt;版本库的网址&gt; &lt;本地目录名&gt;</code> 如果想保存的时候换一个名字，可以在版本库地址后面增加一个目录名如<code>git clone https://github.com/shooke/learngit.git git_learn</code></li><li>git可以支持多种协议，比如下面的协议<ul><li>$ git clone http[s]://example.com/path/to/repo.git/</li><li>$ git clone ssh://example.com/path/to/repo.git/</li><li>$ git clone git://example.com/path/to/repo.git/</li><li>$ git clone /opt/git/project.git </li><li>$ git clone file:///opt/git/project.git</li><li>$ git clone ftp[s]://example.com/path/to/repo.git/</li><li>$ git clone rsync://example.com/path/to/repo.git/</li></ul></li></ul>]]></content>
+    <content type="html"><![CDATA[<p>websocket用于聊天类场景再好不过了。平时链接websocket需要指定ip和端口，但如果需要用nginx做转发，将请求发送到websocket服务，这时候就需要升级协议了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location /member-api/websocket &#123;</span><br><span class="line">                proxy_pass http://localhost:7005;</span><br><span class="line">                proxy_http_version 1.1;</span><br><span class="line">                proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">                proxy_set_header Connection &quot;Upgrade&quot;;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p><p>就是这么简单，指定<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">proxy_http_version 1.1;</span><br><span class="line">proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">proxy_set_header Connection &quot;Upgrade&quot;;</span><br></pre></td></tr></table></figure></p><p>让协议升级就可以了</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h2 id=&quot;小白的故事&quot;&gt;&lt;a href=&quot;#小白的故事&quot; class=&quot;headerlink&quot; title=&quot;小白的故事&quot;&gt;&lt;/a&gt;小白的故事&lt;/h2&gt;&lt;blockquote&gt;
+        &lt;p&gt;websocket用于聊天类场景再好不过了。平时链接websocket需要指定ip和端口，但如果需要用nginx做转发，将请求发送到websocket服务，这时候就需要升级协议了。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="nginx" scheme="https://www.xingjiehu.com/tags/nginx/"/>
+    
+      <category term="springboot" scheme="https://www.xingjiehu.com/tags/springboot/"/>
+    
+      <category term="websocket" scheme="https://www.xingjiehu.com/tags/websocket/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>10.克隆远程仓库</title>
+    <link href="https://www.xingjiehu.com/2020/04/22/ck9z8eo1a00avlfom6y2ztxz0/"/>
+    <id>https://www.xingjiehu.com/2020/04/22/ck9z8eo1a00avlfom6y2ztxz0/</id>
+    <published>2020-04-22T12:32:20.000Z</published>
+    <updated>2020-05-09T06:02:34.883Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote><p>本故事纯属虚构，如有雷同，^0^那可太巧了</p></blockquote><p>吃过早饭，早早来到办公室。今天办公室和往常好像不一样。小白的工位旁边做了个人。好面生啊。</p><p>“你好”，小白主动上前打招呼。<br>“你好，我是新来的。老大说让我跟你一组，以后我就跟你混了。”，新同事回答<br>“我叫小白，你叫什么啊？”，小白问道<br>“我叫小菜” 新同事回答<br>…<br>小白和小菜聊得很投缘。<br>上班时间到了，第一件事就是带领小菜熟悉项目。<br>“这是我u盘，把项目拷贝给我一份吧，我熟悉一下项目”，小菜说道，把u盘递给了小白</p><p>“不需要拷贝，现在都用git了，直接用git clone一份就可以了”，小白说着把u盘还给小菜</p><p>“这样啊，好高端”，小菜呵呵一笑</p><a id="more"></a><p>小白做到小菜的电脑前，打开git bash工具敲下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/shooke/learngit.git</span><br></pre></td></tr></table></figure></p><p>一会电脑上出现了 learngit的文件夹。</p><p>“这样项目就下来了”小白说道，心里美滋滋的。</p><p>小菜一脸崇拜的看着小白。</p><p>“这是我的学习笔记，你也好好学习一下git吧。”小白发给小菜一个文档。</p><p>就这样两人开始了组团升级的道路</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul><li><code>git clone &lt;版本库的网址&gt;</code> 可以克隆项目到本地，生成一个与项目同名的文件夹，版本库网址可以是https也可以是ssh类型的，这取决于服务器支持那种协议</li><li><code>git clone &lt;版本库的网址&gt; &lt;本地目录名&gt;</code> 如果想保存的时候换一个名字，可以在版本库地址后面增加一个目录名如<code>git clone https://github.com/shooke/learngit.git git_learn</code></li><li>git可以支持多种协议，比如下面的协议<ul><li>$ git clone http[s]://example.com/path/to/repo.git/</li><li>$ git clone ssh://example.com/path/to/repo.git/</li><li>$ git clone git://example.com/path/to/repo.git/</li><li>$ git clone /opt/git/project.git </li><li>$ git clone file:///opt/git/project.git</li><li>$ git clone ftp[s]://example.com/path/to/repo.git/</li><li>$ git clone rsync://example.com/path/to/repo.git/</li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;小白的故事&quot;&gt;&lt;a href=&quot;#小白的故事&quot; class=&quot;headerlink&quot; title=&quot;小白的故事&quot;&gt;&lt;/a&gt;小白的故事&lt;/h2&gt;&lt;blockquote&gt;
 &lt;p&gt;本故事纯属虚构，如有雷同，^0^那可太巧了&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;吃过
-      
+&lt;p&gt;吃过早饭，早早来到办公室。今天办公室和往常好像不一样。小白的工位旁边做了个人。好面生啊。&lt;/p&gt;
+&lt;p&gt;“你好”，小白主动上前打招呼。&lt;br&gt;“你好，我是新来的。老大说让我跟你一组，以后我就跟你混了。”，新同事回答&lt;br&gt;“我叫小白，你叫什么啊？”，小白问道&lt;br&gt;“我叫小菜” 新同事回答&lt;br&gt;…&lt;br&gt;小白和小菜聊得很投缘。&lt;br&gt;上班时间到了，第一件事就是带领小菜熟悉项目。&lt;br&gt;“这是我u盘，把项目拷贝给我一份吧，我熟悉一下项目”，小菜说道，把u盘递给了小白&lt;/p&gt;
+&lt;p&gt;“不需要拷贝，现在都用git了，直接用git clone一份就可以了”，小白说着把u盘还给小菜&lt;/p&gt;
+&lt;p&gt;“这样啊，好高端”，小菜呵呵一笑&lt;/p&gt;
     
     </summary>
     
@@ -46,8 +73,8 @@
   
   <entry>
     <title>让nginx支持flv文件播放</title>
-    <link href="https://www.xingjiehu.com/2020/03/25/ck8745met0048cjomlb1mh5lf/"/>
-    <id>https://www.xingjiehu.com/2020/03/25/ck8745met0048cjomlb1mh5lf/</id>
+    <link href="https://www.xingjiehu.com/2020/03/25/ck9z8enxo004hlfomqc79sz7r/"/>
+    <id>https://www.xingjiehu.com/2020/03/25/ck9z8enxo004hlfomqc79sz7r/</id>
     <published>2020-03-25T02:51:34.000Z</published>
     <updated>2020-03-25T09:18:11.624Z</updated>
     
@@ -73,8 +100,8 @@
   
   <entry>
     <title>docker仓库(Repository)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ck8745mis00akcjom5xm732ar/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ck8745mis00akcjom5xm732ar/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ck9z8eo1100aqlfomw3mlysaf/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ck9z8eo1100aqlfomw3mlysaf/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -97,8 +124,8 @@
   
   <entry>
     <title>docker镜像(Image)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ck8745miz00ancjomwk4lmdit/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ck8745miz00ancjomwk4lmdit/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ck9z8eo1300arlfomnawxjww0/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ck9z8eo1300arlfomnawxjww0/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -121,8 +148,8 @@
   
   <entry>
     <title>docker容器(Container)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ck8745mj000apcjomw4ceh7n0/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ck8745mj000apcjomw4ceh7n0/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ck9z8eo1b00axlfomz6yw9da8/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ck9z8eo1b00axlfomz6yw9da8/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -146,8 +173,8 @@
   
   <entry>
     <title>1.docker基础概念</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ck8745mir00ajcjomod10rktv/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ck8745mir00ajcjomod10rktv/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ck9z8eo1600aulfomjzlzu8o7/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ck9z8eo1600aulfomjzlzu8o7/</id>
     <published>2020-03-03T01:44:21.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -172,8 +199,8 @@
   
   <entry>
     <title>openresty+lua+kafka部署</title>
-    <link href="https://www.xingjiehu.com/2020/02/26/ck8745mdh001pcjomuwxcq5vu/"/>
-    <id>https://www.xingjiehu.com/2020/02/26/ck8745mdh001pcjomuwxcq5vu/</id>
+    <link href="https://www.xingjiehu.com/2020/02/26/ck9z8enw9001rlfomp7yzp8vd/"/>
+    <id>https://www.xingjiehu.com/2020/02/26/ck9z8enw9001rlfomp7yzp8vd/</id>
     <published>2020-02-26T09:59:07.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -201,8 +228,8 @@
   
   <entry>
     <title>python mysql-connector简要说明</title>
-    <link href="https://www.xingjiehu.com/2020/02/14/ck8745mdn0026cjom3p39c8mo/"/>
-    <id>https://www.xingjiehu.com/2020/02/14/ck8745mdn0026cjom3p39c8mo/</id>
+    <link href="https://www.xingjiehu.com/2020/02/14/ck9z8enwc001ylfom4lxslzhl/"/>
+    <id>https://www.xingjiehu.com/2020/02/14/ck9z8enwc001ylfom4lxslzhl/</id>
     <published>2020-02-14T08:38:09.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -234,8 +261,8 @@
   
   <entry>
     <title>linux 为php7.0安装redis扩展</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/ck8745md80018cjombiyhcyyz/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/ck8745md80018cjombiyhcyyz/</id>
+    <link href="https://www.xingjiehu.com/2020/02/12/ck9z8enw00018lfomozij4lks/"/>
+    <id>https://www.xingjiehu.com/2020/02/12/ck9z8enw00018lfomozij4lks/</id>
     <published>2020-02-12T11:52:59.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -261,8 +288,8 @@
   
   <entry>
     <title>解决深度终端链接远程后假死问题</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/ck8745mex004dcjom4nbhf3h4/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/ck8745mex004dcjom4nbhf3h4/</id>
+    <link href="https://www.xingjiehu.com/2020/02/12/ck9z8enxm004elfomd7o3oxch/"/>
+    <id>https://www.xingjiehu.com/2020/02/12/ck9z8enxm004elfomd7o3oxch/</id>
     <published>2020-02-12T07:47:55.000Z</published>
     <updated>2020-03-21T09:28:32.518Z</updated>
     
@@ -288,8 +315,8 @@
   
   <entry>
     <title>shadowsocks客户端启动报错问题</title>
-    <link href="https://www.xingjiehu.com/2020/02/11/ck8745mds002ecjom983b5ypq/"/>
-    <id>https://www.xingjiehu.com/2020/02/11/ck8745mds002ecjom983b5ypq/</id>
+    <link href="https://www.xingjiehu.com/2020/02/11/ck9z8enwk002glfom0gx6xa12/"/>
+    <id>https://www.xingjiehu.com/2020/02/11/ck9z8enwk002glfom0gx6xa12/</id>
     <published>2020-02-11T03:11:19.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -311,8 +338,8 @@
   
   <entry>
     <title>nginx配置结构说明</title>
-    <link href="https://www.xingjiehu.com/2020/01/10/ck8745mdf001ncjom9v9zuovm/"/>
-    <id>https://www.xingjiehu.com/2020/01/10/ck8745mdf001ncjom9v9zuovm/</id>
+    <link href="https://www.xingjiehu.com/2020/01/10/ck9z8enw5001klfomwzwfuub7/"/>
+    <id>https://www.xingjiehu.com/2020/01/10/ck9z8enw5001klfomwzwfuub7/</id>
     <published>2020-01-10T06:20:08.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -334,8 +361,8 @@
   
   <entry>
     <title>limits.conf配置说明</title>
-    <link href="https://www.xingjiehu.com/2020/01/03/ck8745md70015cjomjcd2bl7j/"/>
-    <id>https://www.xingjiehu.com/2020/01/03/ck8745md70015cjomjcd2bl7j/</id>
+    <link href="https://www.xingjiehu.com/2020/01/03/ck9z8envz0015lfoms2jrcnys/"/>
+    <id>https://www.xingjiehu.com/2020/01/03/ck9z8envz0015lfoms2jrcnys/</id>
     <published>2020-01-03T09:30:52.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -358,8 +385,8 @@
   
   <entry>
     <title>ssh提速</title>
-    <link href="https://www.xingjiehu.com/2019/12/28/ck8745mdt002gcjomfdtok11s/"/>
-    <id>https://www.xingjiehu.com/2019/12/28/ck8745mdt002gcjomfdtok11s/</id>
+    <link href="https://www.xingjiehu.com/2019/12/28/ck9z8enwn002llfomqu2poiwg/"/>
+    <id>https://www.xingjiehu.com/2019/12/28/ck9z8enwn002llfomqu2poiwg/</id>
     <published>2019-12-28T09:31:20.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -383,8 +410,8 @@
   
   <entry>
     <title>9.上传到远程仓库</title>
-    <link href="https://www.xingjiehu.com/2019/12/26/ck8745mjc00bdcjom1zd58803/"/>
-    <id>https://www.xingjiehu.com/2019/12/26/ck8745mjc00bdcjom1zd58803/</id>
+    <link href="https://www.xingjiehu.com/2019/12/26/ck9z8eo1o00bnlfom36n7t3u7/"/>
+    <id>https://www.xingjiehu.com/2019/12/26/ck9z8eo1o00bnlfom36n7t3u7/</id>
     <published>2019-12-26T12:32:20.000Z</published>
     <updated>2020-03-24T08:51:44.141Z</updated>
     
@@ -411,8 +438,8 @@
   
   <entry>
     <title>8.再遇工作区和版本库</title>
-    <link href="https://www.xingjiehu.com/2019/12/25/ck8745mjg00bjcjom4ryko44v/"/>
-    <id>https://www.xingjiehu.com/2019/12/25/ck8745mjg00bjcjom4ryko44v/</id>
+    <link href="https://www.xingjiehu.com/2019/12/25/ck9z8eo1r00bulfomzys6r28g/"/>
+    <id>https://www.xingjiehu.com/2019/12/25/ck9z8eo1r00bulfomzys6r28g/</id>
     <published>2019-12-25T12:32:20.000Z</published>
     <updated>2020-03-24T08:51:29.769Z</updated>
     
@@ -439,8 +466,8 @@
   
   <entry>
     <title>7.时光倒流</title>
-    <link href="https://www.xingjiehu.com/2019/12/24/ck8745mje00bfcjoma102khga/"/>
-    <id>https://www.xingjiehu.com/2019/12/24/ck8745mje00bfcjoma102khga/</id>
+    <link href="https://www.xingjiehu.com/2019/12/24/ck9z8eo1q00brlfomqpgxksi9/"/>
+    <id>https://www.xingjiehu.com/2019/12/24/ck9z8eo1q00brlfomqpgxksi9/</id>
     <published>2019-12-24T12:32:20.000Z</published>
     <updated>2020-03-24T09:17:01.289Z</updated>
     
@@ -467,8 +494,8 @@
   
   <entry>
     <title>6.撤销操作</title>
-    <link href="https://www.xingjiehu.com/2019/12/23/ck8745mj900b7cjomhmrocrcg/"/>
-    <id>https://www.xingjiehu.com/2019/12/23/ck8745mj900b7cjomhmrocrcg/</id>
+    <link href="https://www.xingjiehu.com/2019/12/23/ck9z8eo1n00bllfomvn96yfrk/"/>
+    <id>https://www.xingjiehu.com/2019/12/23/ck9z8eo1n00bllfomvn96yfrk/</id>
     <published>2019-12-23T12:32:20.000Z</published>
     <updated>2020-03-24T08:51:13.340Z</updated>
     
@@ -495,8 +522,8 @@
   
   <entry>
     <title>5.对比文件变化</title>
-    <link href="https://www.xingjiehu.com/2019/12/22/ck8745mjb00b9cjomzu0c8t8n/"/>
-    <id>https://www.xingjiehu.com/2019/12/22/ck8745mjb00b9cjomzu0c8t8n/</id>
+    <link href="https://www.xingjiehu.com/2019/12/22/ck9z8eo1k00bflfomb10t1n0w/"/>
+    <id>https://www.xingjiehu.com/2019/12/22/ck9z8eo1k00bflfomb10t1n0w/</id>
     <published>2019-12-22T12:32:20.000Z</published>
     <updated>2020-03-24T09:22:13.521Z</updated>
     
@@ -510,34 +537,6 @@
 &lt;p&gt;本故事纯属虚构，如有雷同，^0^那可太巧了&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;了解
-      
-    
-    </summary>
-    
-      <category term="一点一点了解git" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3git/"/>
-    
-    
-      <category term="git" scheme="https://www.xingjiehu.com/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>4.啥事工作区、暂存区和版本库</title>
-    <link href="https://www.xingjiehu.com/2019/12/21/ck8745mj700b3cjom7och4gmp/"/>
-    <id>https://www.xingjiehu.com/2019/12/21/ck8745mj700b3cjom7och4gmp/</id>
-    <published>2019-12-21T12:32:20.000Z</published>
-    <updated>2020-03-24T08:50:58.492Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote><p>本故事纯属虚构，如有雷同，^0^那可太巧了</p></blockquote><p>回到家的小白，想着今天发生的事，为什么<code>git status</code>出来的提示信息不一样？为什么<code>git status</code>出来的提示信息不一样？为什么<code>git status</code>出来的提示信息不一样？<br>想着想着他就睡着了，梦里他遇到了linus大神，linus带他来到了一个神秘的机构。在这个房间里有2个人，还有一个大大的大屏幕。<br>每次大屏幕上显示<code>git add</code>，就会有一份文件到达一个人的手里，他会把信息进行整理。当大屏幕上显示<code>git commit</code>。第一个人就会把整理的内容放到第二个人的桌子上，然后回来继续工作。</p><p>小白疑惑的看向linus大神，大神和蔼的告诉他“小白，你不是一直奇怪，为什么<code>git status</code>出来的提示信息不一样？”，这就是你要的答案。</p><p>小白仔细打量着房间里的一切，第一个人的办公桌上有一个牌子，上面写着”stage”。<br>第二个人的办公桌上同样有一个牌子，上面写着”HEAD”。</p><p>小明若有所思，抬起头的时候，发现linus大神已经不见了。他冲出房门，发现街上根本没有大神的踪影，只有房子上高高挂起的牌匾写着”版本库”三个打字。</p><p>他大声的呼喊，这时耳边传来“叮铃铃叮铃铃”的响声。</p><p>小明从梦中醒来一看，哇，还有半小时就八点60了，飞快起身，背上背包冲向公司。</p><p>距离上班还有1秒钟的时候，小白打卡成功。</p><p>打开电脑，想起昨天遇到的情形，好像自己明白了什么，到网上一查，原来如此。</p><blockquote><p>git是分为工作区和版本库的。代码发生更改后，执行<code>git add</code>代码会放到代码库的暂存区(stage),当执行<code>git commit</code>时代码会形成版本记录(HEAD)，并且删除暂存取的记录。</p></blockquote><p>当我们执行<code>git status</code>时，git会将工作区（当前的代码）与暂存区的记录进行比较，如果暂存区没有记录，则会跟做过记录的版本作比较。从而提示你哪个文件发生过修改。</p><p>明白了这些，小白开始反思昨天看到的提示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">我最帅.txt</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span><br></pre></td></tr></table></figure></p><p><code>Untracked files</code>列出的是新建的文件，还没有被add和commit过，所以提示你<code>(use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</code>，这表示需要进行<code>git add</code>操作</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">modified:   readme.md</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure><p><code>Changes not staged for commit</code>列出被修改的文件，这时候文件还没有被add和commit。这时就是比较工作区和HEAD得出的结果。<code>modified:   readme.md</code>意思是这个文件发生了更改。</p><p>了解了不同提示的原因，小白果断<code>git add</code> <code>git commit</code>开始开发新功能。</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>git是分为工作区和版本库的。代码发生更改后，执行<code>git add</code>代码会放到代码库的暂存区(stage),当执行<code>git commit</code>时代码会形成版本记录(HEAD)，并且删除暂存取的记录。工作区可以简单理解为项目目录，每次项目更改都会记录，这些变更记录就是版本库。</p><p>下面是各种状态</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line"># 已经执行过`git add`但没有执行`git commit`</span><br><span class="line">Changes to be committed:</span><br><span class="line">  # 可执行的命令，reset会移除暂存区记录，移除后需要重新进行add</span><br><span class="line">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">renamed:    我最帅.txt -&gt; wo.txt</span><br><span class="line"></span><br><span class="line"># 文件发生修改时提示</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  # 可以执行的命令，文件修改是可以执行add加入到暂存区，也可以checkout进行撤销</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">modified:   readme.md</span><br><span class="line"></span><br><span class="line"># 新增文件时提示</span><br><span class="line">Untracked files:</span><br><span class="line">  # 可以执行的命令，新增文件只要add到</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">我很帅.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;小白的故事&quot;&gt;&lt;a href=&quot;#小白的故事&quot; class=&quot;headerlink&quot; title=&quot;小白的故事&quot;&gt;&lt;/a&gt;小白的故事&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;本故事纯属虚构，如有雷同，^0^那可太巧了&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;回到
       
     
     </summary>
