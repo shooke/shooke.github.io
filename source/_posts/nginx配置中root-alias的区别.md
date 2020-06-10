@@ -46,7 +46,7 @@ location = /market-api/bm {
 带`/`时访问`/market-api/bm/a.txt`实际请求文件是`/var/www/wechat/a.txt`
 
 ```
-location = market-api/bm {
+location = /market-api/bm {
                 root /var/www/wechat;
         }
 ```
