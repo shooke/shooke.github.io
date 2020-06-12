@@ -14,6 +14,8 @@ date: 2020-06-12 13:16:57
 如果只有`application.properties`和`application-dev.properties`这两个文件，是不行的，需要在增加一个文件比如`application-prod.properties`。
 只有配置文件多余2个才会生效
 
+<!-- more -->
+
 ## 配置使用
 application-dev.properties内容如下
 ```
@@ -113,6 +115,6 @@ public class ConfigTestBean {
 ```
 
 ## 代码
-
+https://gitee.com/shooke/springboot/tree/master/springboot-config
 ## 参考资料
 http://tengj.top/2017/02/28/springboot2/
