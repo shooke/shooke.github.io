@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2020-06-10T05:10:22.456Z</updated>
+  <updated>2020-06-12T05:54:52.607Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,9 +17,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>springboot 配置</title>
+    <link href="https://www.xingjiehu.com/2020/06/12/ckbbso6ck00c51uom0faf6q11/"/>
+    <id>https://www.xingjiehu.com/2020/06/12/ckbbso6ck00c51uom0faf6q11/</id>
+    <published>2020-06-12T05:16:57.000Z</published>
+    <updated>2020-06-12T05:54:52.607Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="application-properties配置中文乱码问题"><a href="#application-properties配置中文乱码问题" class="headerlink" title="application.properties配置中文乱码问题"></a>application.properties配置中文乱码问题</h2><p>删除现有的文件，设置idea。setting-&gt;editor-&gt;file encodings 将<code>Global Encoding</code> <code>Project Encoding</code> <code>Default encoding for properties files</code>都设置成<code>utf-8</code>.并且勾选<code>Transparent native-to-ascii conversion</code></p><h2 id="多配置时spring-profiles-active-dev不生效"><a href="#多配置时spring-profiles-active-dev不生效" class="headerlink" title="多配置时spring.profiles.active=dev不生效"></a>多配置时<code>spring.profiles.active=dev</code>不生效</h2><p>如果只有<code>application.properties</code>和<code>application-dev.properties</code>这两个文件，是不行的，需要在增加一个文件比如<code>application-prod.properties</code>。<br>只有配置文件多余2个才会生效</p><a id="more"></a><h2 id="配置使用"><a href="#配置使用" class="headerlink" title="配置使用"></a>配置使用</h2><p>application-dev.properties内容如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">com.dudu.name=&quot;张三&quot;</span><br><span class="line">com.dudu.want=&quot;跑步&quot;</span><br><span class="line">com.dudu.sex=&quot;男&quot;</span><br></pre></td></tr></table></figure></p><h3 id="直接使用配置"><a href="#直接使用配置" class="headerlink" title="直接使用配置"></a>直接使用配置</h3><p>在需要用到的地方使用,在属性上使用<code>@Value</code>注解就可以<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Value(&quot;$&#123;com.dudu.name&#125;&quot;)</span><br><span class="line">private String name;</span><br></pre></td></tr></table></figure></p><h3 id="使用bean对象方式"><a href="#使用bean对象方式" class="headerlink" title="使用bean对象方式"></a>使用bean对象方式</h3><p>config/ConfigBean.java 代码如下，值得注意的是<code>@Configuration</code>注解非常重要，如果没有这个注解是不生效的。<br>其实还有<code>@EnableConfigurationProperties</code>注解方式，但使用起来不如<code>@configuration</code>方便。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">package com.springboot.config.config;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author shooke</span><br><span class="line"> */</span><br><span class="line">@Configuration</span><br><span class="line">@ConfigurationProperties(prefix=&quot;com.dudu&quot;)</span><br><span class="line">public class ConfigBean &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private String sex;</span><br><span class="line">    private String want;</span><br><span class="line"></span><br><span class="line">    public String getWant() &#123; return want;&#125;</span><br><span class="line"></span><br><span class="line">    public void setWant(String want) &#123; this.want = want;&#125;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getSex() &#123;</span><br><span class="line">        return sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setSex(String sex) &#123;</span><br><span class="line">        this.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>在需要用到配置的地方，直接初始化一个ConfigBean的对象就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">ConfigBean conf;</span><br><span class="line"></span><br><span class="line">@RequestMapping(&quot;/dev&quot;)</span><br><span class="line">public String dev()&#123;</span><br><span class="line">    return conf.getName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="使用自定义properties"><a href="#使用自定义properties" class="headerlink" title="使用自定义properties"></a>使用自定义properties</h2><p>有时候配置项太多了，咱们就拆分成不同的文件。拆分的文件使用需要用到<code>@PropertySource</code>注解，指定一下配置文件路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @author shooke</span><br><span class="line"> */</span><br><span class="line">@Configuration</span><br><span class="line">@ConfigurationProperties(prefix = &quot;com.md&quot;)</span><br><span class="line">@PropertySource(&quot;classpath:test.properties&quot;)</span><br><span class="line">public class ConfigTestBean &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private String want;</span><br><span class="line">    // 省略getter和setter</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getWant() &#123;</span><br><span class="line">        return want;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setWant(String want) &#123;</span><br><span class="line">        this.want = want;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p><a href="https://gitee.com/shooke/springboot/tree/master/springboot-config" target="_blank" rel="noopener">https://gitee.com/shooke/springboot/tree/master/springboot-config</a></p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://tengj.top/2017/02/28/springboot2/" target="_blank" rel="noopener">http://tengj.top/2017/02/28/springboot2/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;application-properties配置中文乱码问题&quot;&gt;&lt;a href=&quot;#application-properties配置中文乱码问题&quot; class=&quot;headerlink&quot; title=&quot;application.properties配置中文乱码问题&quot;&gt;&lt;/a&gt;application.properties配置中文乱码问题&lt;/h2&gt;&lt;p&gt;删除现有的文件，设置idea。setting-&amp;gt;editor-&amp;gt;file encodings 将&lt;code&gt;Global Encoding&lt;/code&gt; &lt;code&gt;Project Encoding&lt;/code&gt; &lt;code&gt;Default encoding for properties files&lt;/code&gt;都设置成&lt;code&gt;utf-8&lt;/code&gt;.并且勾选&lt;code&gt;Transparent native-to-ascii conversion&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;多配置时spring-profiles-active-dev不生效&quot;&gt;&lt;a href=&quot;#多配置时spring-profiles-active-dev不生效&quot; class=&quot;headerlink&quot; title=&quot;多配置时spring.profiles.active=dev不生效&quot;&gt;&lt;/a&gt;多配置时&lt;code&gt;spring.profiles.active=dev&lt;/code&gt;不生效&lt;/h2&gt;&lt;p&gt;如果只有&lt;code&gt;application.properties&lt;/code&gt;和&lt;code&gt;application-dev.properties&lt;/code&gt;这两个文件，是不行的，需要在增加一个文件比如&lt;code&gt;application-prod.properties&lt;/code&gt;。&lt;br&gt;只有配置文件多余2个才会生效&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="springboot" scheme="https://www.xingjiehu.com/categories/springboot/"/>
+    
+    
+      <category term="spring boot" scheme="https://www.xingjiehu.com/tags/spring-boot/"/>
+    
+      <category term="spring boot 配置" scheme="https://www.xingjiehu.com/tags/spring-boot-%E9%85%8D%E7%BD%AE/"/>
+    
+  </entry>
+  
+  <entry>
     <title>nginx配置中root alias的区别</title>
-    <link href="https://www.xingjiehu.com/2020/05/15/cka7n2mmf001nc6om6dw7lr9b/"/>
-    <id>https://www.xingjiehu.com/2020/05/15/cka7n2mmf001nc6om6dw7lr9b/</id>
+    <link href="https://www.xingjiehu.com/2020/05/15/ckbbso65z001n1uom0lpi0jlo/"/>
+    <id>https://www.xingjiehu.com/2020/05/15/ckbbso65z001n1uom0lpi0jlo/</id>
     <published>2020-05-15T03:03:07.000Z</published>
     <updated>2020-06-10T05:10:22.456Z</updated>
     
@@ -49,8 +74,8 @@
   
   <entry>
     <title>linux硬盘管理工具baobab</title>
-    <link href="https://www.xingjiehu.com/2020/05/12/cka7n2mme001kc6om0n6h6m2y/"/>
-    <id>https://www.xingjiehu.com/2020/05/12/cka7n2mme001kc6om0n6h6m2y/</id>
+    <link href="https://www.xingjiehu.com/2020/05/12/ckbbso662001r1uombnzdjjs4/"/>
+    <id>https://www.xingjiehu.com/2020/05/12/ckbbso662001r1uombnzdjjs4/</id>
     <published>2020-05-12T02:38:57.000Z</published>
     <updated>2020-05-12T02:44:26.999Z</updated>
     
@@ -79,8 +104,8 @@
   
   <entry>
     <title>springboot+nginx websocket配置</title>
-    <link href="https://www.xingjiehu.com/2020/05/09/cka7n2mn3002xc6ome93lc01w/"/>
-    <id>https://www.xingjiehu.com/2020/05/09/cka7n2mn3002xc6ome93lc01w/</id>
+    <link href="https://www.xingjiehu.com/2020/05/09/ckbbso66o002x1uomkldzn903/"/>
+    <id>https://www.xingjiehu.com/2020/05/09/ckbbso66o002x1uomkldzn903/</id>
     <published>2020-05-09T06:03:26.000Z</published>
     <updated>2020-05-09T06:10:25.138Z</updated>
     
@@ -106,8 +131,8 @@
   
   <entry>
     <title>10.克隆远程仓库</title>
-    <link href="https://www.xingjiehu.com/2020/04/22/cka7n2ms800bec6omxnktpogc/"/>
-    <id>https://www.xingjiehu.com/2020/04/22/cka7n2ms800bec6omxnktpogc/</id>
+    <link href="https://www.xingjiehu.com/2020/04/22/ckbbso6c900bf1uomgyvknx9b/"/>
+    <id>https://www.xingjiehu.com/2020/04/22/ckbbso6c900bf1uomgyvknx9b/</id>
     <published>2020-04-22T12:32:20.000Z</published>
     <updated>2020-05-09T06:02:34.883Z</updated>
     
@@ -134,8 +159,8 @@
   
   <entry>
     <title>让nginx支持flv文件播放</title>
-    <link href="https://www.xingjiehu.com/2020/03/25/cka7n2moc004oc6omqeg3x186/"/>
-    <id>https://www.xingjiehu.com/2020/03/25/cka7n2moc004oc6omqeg3x186/</id>
+    <link href="https://www.xingjiehu.com/2020/03/25/ckbbso67s004q1uom6y5kcmmw/"/>
+    <id>https://www.xingjiehu.com/2020/03/25/ckbbso67s004q1uom6y5kcmmw/</id>
     <published>2020-03-25T02:51:34.000Z</published>
     <updated>2020-03-25T09:18:11.624Z</updated>
     
@@ -161,8 +186,8 @@
   
   <entry>
     <title>docker仓库(Repository)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/cka7n2ms100b6c6omfwyk5po0/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/cka7n2ms100b6c6omfwyk5po0/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckbbso6c300b51uom8rczzoa0/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckbbso6c300b51uom8rczzoa0/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -185,8 +210,8 @@
   
   <entry>
     <title>docker镜像(Image)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/cka7n2ms300b9c6omvspke4fo/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/cka7n2ms300b9c6omvspke4fo/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckbbso6c400b61uom4uvudf7k/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckbbso6c400b61uom4uvudf7k/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -209,8 +234,8 @@
   
   <entry>
     <title>docker容器(Container)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/cka7n2ms500bbc6ompieuqhpy/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/cka7n2ms500bbc6ompieuqhpy/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckbbso6c500b91uomljyi2p4e/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckbbso6c500b91uomljyi2p4e/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -234,8 +259,8 @@
   
   <entry>
     <title>1.docker基础概念</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/cka7n2ms000b5c6omshzy8bi4/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/cka7n2ms000b5c6omshzy8bi4/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckbbso6c600ba1uomhhrajlhp/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckbbso6c600ba1uomhhrajlhp/</id>
     <published>2020-03-03T01:44:21.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -260,8 +285,8 @@
   
   <entry>
     <title>openresty+lua+kafka部署</title>
-    <link href="https://www.xingjiehu.com/2020/02/26/cka7n2mml001yc6omvpqzi5ey/"/>
-    <id>https://www.xingjiehu.com/2020/02/26/cka7n2mml001yc6omvpqzi5ey/</id>
+    <link href="https://www.xingjiehu.com/2020/02/26/ckbbso665001y1uomjqn8qo29/"/>
+    <id>https://www.xingjiehu.com/2020/02/26/ckbbso665001y1uomjqn8qo29/</id>
     <published>2020-02-26T09:59:07.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -289,8 +314,8 @@
   
   <entry>
     <title>python mysql-connector简要说明</title>
-    <link href="https://www.xingjiehu.com/2020/02/14/cka7n2mmo0025c6omakjfu8gd/"/>
-    <id>https://www.xingjiehu.com/2020/02/14/cka7n2mmo0025c6omakjfu8gd/</id>
+    <link href="https://www.xingjiehu.com/2020/02/14/ckbbso66b002b1uomtgkh6ev8/"/>
+    <id>https://www.xingjiehu.com/2020/02/14/ckbbso66b002b1uomtgkh6ev8/</id>
     <published>2020-02-14T08:38:09.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -322,8 +347,8 @@
   
   <entry>
     <title>linux 为php7.0安装redis扩展</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/cka7n2mm30011c6omenptbu81/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/cka7n2mm30011c6omenptbu81/</id>
+    <link href="https://www.xingjiehu.com/2020/02/12/ckbbso65n00181uomp6m8cctj/"/>
+    <id>https://www.xingjiehu.com/2020/02/12/ckbbso65n00181uomp6m8cctj/</id>
     <published>2020-02-12T11:52:59.000Z</published>
     <updated>2020-05-14T11:45:49.391Z</updated>
     
@@ -349,8 +374,8 @@
   
   <entry>
     <title>解决深度终端链接远程后假死问题</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/cka7n2mny004lc6omg78s29ak/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/cka7n2mny004lc6omg78s29ak/</id>
+    <link href="https://www.xingjiehu.com/2020/02/12/ckbbso67m004k1uomginuvjue/"/>
+    <id>https://www.xingjiehu.com/2020/02/12/ckbbso67m004k1uomginuvjue/</id>
     <published>2020-02-12T07:47:55.000Z</published>
     <updated>2020-03-21T09:28:32.518Z</updated>
     
@@ -376,8 +401,8 @@
   
   <entry>
     <title>shadowsocks客户端启动报错问题</title>
-    <link href="https://www.xingjiehu.com/2020/02/11/cka7n2mmw002ic6omo0s27yo2/"/>
-    <id>https://www.xingjiehu.com/2020/02/11/cka7n2mmw002ic6omo0s27yo2/</id>
+    <link href="https://www.xingjiehu.com/2020/02/11/ckbbso66d002g1uom60izeqwu/"/>
+    <id>https://www.xingjiehu.com/2020/02/11/ckbbso66d002g1uom60izeqwu/</id>
     <published>2020-02-11T03:11:19.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -399,8 +424,8 @@
   
   <entry>
     <title>nginx配置结构说明</title>
-    <link href="https://www.xingjiehu.com/2020/01/10/cka7n2mmh001rc6omwn9cr7xg/"/>
-    <id>https://www.xingjiehu.com/2020/01/10/cka7n2mmh001rc6omwn9cr7xg/</id>
+    <link href="https://www.xingjiehu.com/2020/01/10/ckbbso661001p1uomt3dp3udo/"/>
+    <id>https://www.xingjiehu.com/2020/01/10/ckbbso661001p1uomt3dp3udo/</id>
     <published>2020-01-10T06:20:08.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -422,8 +447,8 @@
   
   <entry>
     <title>limits.conf配置说明</title>
-    <link href="https://www.xingjiehu.com/2020/01/03/cka7n2mm80018c6omkh6y2ix6/"/>
-    <id>https://www.xingjiehu.com/2020/01/03/cka7n2mm80018c6omkh6y2ix6/</id>
+    <link href="https://www.xingjiehu.com/2020/01/03/ckbbso65k00151uompl8izc6r/"/>
+    <id>https://www.xingjiehu.com/2020/01/03/ckbbso65k00151uompl8izc6r/</id>
     <published>2020-01-03T09:30:52.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -446,8 +471,8 @@
   
   <entry>
     <title>ssh提速</title>
-    <link href="https://www.xingjiehu.com/2019/12/28/cka7n2mmz002nc6omsh6aa9cd/"/>
-    <id>https://www.xingjiehu.com/2019/12/28/cka7n2mmz002nc6omsh6aa9cd/</id>
+    <link href="https://www.xingjiehu.com/2019/12/28/ckbbso66i002n1uomc0no6yh0/"/>
+    <id>https://www.xingjiehu.com/2019/12/28/ckbbso66i002n1uomc0no6yh0/</id>
     <published>2019-12-28T09:31:20.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -471,8 +496,8 @@
   
   <entry>
     <title>9.上传到远程仓库</title>
-    <link href="https://www.xingjiehu.com/2019/12/26/cka7n2msm00c5c6om76bpn0ac/"/>
-    <id>https://www.xingjiehu.com/2019/12/26/cka7n2msm00c5c6om76bpn0ac/</id>
+    <link href="https://www.xingjiehu.com/2019/12/26/ckbbso6co00cd1uoml0vp7hw9/"/>
+    <id>https://www.xingjiehu.com/2019/12/26/ckbbso6co00cd1uoml0vp7hw9/</id>
     <published>2019-12-26T12:32:20.000Z</published>
     <updated>2020-03-24T08:51:44.141Z</updated>
     
@@ -499,8 +524,8 @@
   
   <entry>
     <title>8.再遇工作区和版本库</title>
-    <link href="https://www.xingjiehu.com/2019/12/25/cka7n2msn00c8c6omllscf78o/"/>
-    <id>https://www.xingjiehu.com/2019/12/25/cka7n2msn00c8c6omllscf78o/</id>
+    <link href="https://www.xingjiehu.com/2019/12/25/ckbbso6cj00c11uomnwekqy4e/"/>
+    <id>https://www.xingjiehu.com/2019/12/25/ckbbso6cj00c11uomnwekqy4e/</id>
     <published>2019-12-25T12:32:20.000Z</published>
     <updated>2020-03-24T08:51:29.769Z</updated>
     
@@ -514,34 +539,6 @@
 &lt;p&gt;本故事纯属虚构，如有雷同，^0^那可太巧了&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;”大
-      
-    
-    </summary>
-    
-      <category term="一点一点了解git" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3git/"/>
-    
-    
-      <category term="git" scheme="https://www.xingjiehu.com/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>7.时光倒流</title>
-    <link href="https://www.xingjiehu.com/2019/12/24/cka7n2msj00c1c6om8tfbw2xb/"/>
-    <id>https://www.xingjiehu.com/2019/12/24/cka7n2msj00c1c6om8tfbw2xb/</id>
-    <published>2019-12-24T12:32:20.000Z</published>
-    <updated>2020-03-24T09:17:01.289Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote><p>本故事纯属虚构，如有雷同，^0^那可太巧了</p></blockquote><p>小白正在开心的写代码，刚刚完成了产品小伙伴的一个需求。还是小有成就感的，正准备起来活动活动喝杯水。谁知产品小伙伴有风风火火的跑过来。<br>“小白，小白，客户还是感觉以前的交互方式用着顺手。让把功能改回去”。产品小伙伴喊道。<br>听到这个消息，小白满脸的黑线。废了半天劲做出来的功能再改回去。这太坑了吧。<br>但是没办法，谁叫客户就是上帝呢，改吧。<br>开始撤销，<code>ctrl z</code>。。。<br>what，没法撤销了？编辑器撤销的步骤有限，这可如何是好啊，难道要手动改代码？这也太悲剧了吧。<br>“对了找大神问一下，看git有没有办法回退”小白灵光一闪想起来老鸟。</p><p>老鸟一听到小白喊他“大神”，瞬间心情舒畅跑过来知道小白。</p><p>“你是要回退以前的版本吗？”老鸟问道。<br>“恩恩”小白点头<br>“回退其实很简单，看我操作，要记住啊”说完，做到小白的坐位上开始了他的神操作。</p><p>“首先用<code>git log</code>看一下你的提交记录”，老鸟说道<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git log</span><br><span class="line"></span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Sat Mar 14 16:45:03 2020 +0800</span><br><span class="line"></span><br><span class="line">    &lt;E7&gt;&lt;8A&gt;&lt;B6&gt;&lt;E6&gt;&lt;80&gt;&lt;81&gt;&lt;E4&gt;&lt;BF&gt;&lt;AE&gt;&lt;E6&gt;&lt;94&gt;&lt;B9&gt;&lt;E5&gt;&lt;92&gt;&lt;8C&gt;&lt;E5&gt;&lt;AF&gt;&lt;B9&gt;&lt;E6&gt;&lt;AF&gt;&lt;94&gt;&lt;E6&gt;&lt;97&gt;&lt;B6&gt;&lt;E9&gt;&lt;97&gt;&lt;B4&gt;</span><br><span class="line"></span><br><span class="line">commit 3e14b6822063c7add663cd79756e77818e821819</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Sat Mar 14 00:30:27 2020 +0800</span><br><span class="line"></span><br><span class="line">    &lt;E5&gt;&lt;AE&gt;&lt;A1&gt;&lt;E6&gt;&lt;A0&gt;&lt;B8&gt;&lt;E7&gt;&lt;8A&gt;&lt;B6&gt;&lt;E6&gt;&lt;80&gt;&lt;81&gt;&lt;E4&gt;&lt;BF&gt;&lt;AE&gt;&lt;E6&gt;&lt;94&gt;&lt;B9&gt;</span><br></pre></td></tr></table></figure></p><p>“咦，你这里git log居然乱码啊”，老鸟说道<br>“这是咋回事啊”，小白疑惑<br>“好办，编码问题解决一下就可以了”。老鸟输入了如下三条命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git config --global i18n.commitencoding utf-8</span><br><span class="line"></span><br><span class="line">git config --global i18n.logoutputencoding utf-8</span><br><span class="line"></span><br><span class="line">export LESSCHARSET=utf-8</span><br></pre></td></tr></table></figure></p><p>再次执行<code>git log</code>果然好了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br><span class="line">commit 6531ff6013dd490f60bcd646ca01df61a1ecc8b1 (HEAD -&gt; dev, origin/master, origin/dev, origin/HEAD, master)</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Sat Mar 14 16:45:03 2020 +0800</span><br><span class="line"></span><br><span class="line">    状态修改和对比时间</span><br><span class="line"></span><br><span class="line">commit 3e14b6822063c7add663cd79756e77818e821819</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Sat Mar 14 00:30:27 2020 +0800</span><br><span class="line"></span><br><span class="line">    审核状态修改</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure></p><p>“log记录有时候很多，你可以不停的按<code>j</code>和<code>k</code>来实现向下或向上查看内容，不行看了，就输入<code>:q</code>退出。就跟vim编辑器使用方式一样”老鸟说。</p><p>“想要退回到那里，用<code>git reset</code>会退到对应的commit id就可以了。比如会退到<code>审核状态修改</code>。老鸟边说变执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 3e14b6822063c</span><br></pre></td></tr></table></figure></p><p>打开编辑器，小白发现，代码真的回到以前了。</p><p>“大神，commit id怎么输入了一部分啊，不需要全部输入吗”，小白激动说道</p><p>“不需要，只要git能够确定唯一的commit就行了，一般也就输入前几位”，老鸟说。</p><p>“每次都要看commit id好麻烦啊，有没有简单的方法？”小白谦虚问道</p><p>“当然有啊，可以用HEAD加上<code>^</code>或者<code>～n</code>回退啊”。老鸟说</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^</span><br></pre></td></tr></table></figure><p>“这样就会回退一条commit,如果退两条，就再加一个^，退几条就加几个^”老鸟说<br>”那退20条，岂不是20个^,多麻烦啊“，小白说<br>”孺子可教啊，这要用~n了，可以这样写“，老鸟说<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~20</span><br></pre></td></tr></table></figure></p><p>“明白了，谢谢大神”小白说道。<br>”你刚才要回退到那条commit啊“老鸟问道<br>”啊，我只需要退一条就行了，咱们刚才退了这么多，怎么办啊“小白说</p><p>”这怕啥，你只要知道历史中的commit id，就不用担心，及时你回退了50条，要回到第二条也没问题“老鸟边说变敲下哦了命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 3e14b6822063c7add663cd79756e77818e821819</span><br></pre></td></tr></table></figure></p><p>”你看这不是回到你第二条命令时的状态了吗，只要你记得回退前的commit id，随时可以穿梭到任何commit“老鸟说道。</p><p>小白豁然开朗，原来历史是可以任意切换的，并不是回退了就抹除了。</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ol><li>解决乱码<br><code>git config --global i18n.commitencoding utf-8</code>  该命令表示提交命令的时候使用utf-8编码集提交</li></ol><p><code>git config --global i18n.logoutputencoding utf-8</code> 该命令表示日志输出时使用utf-8编码集显示</p><p><code>export LESSCHARSET=utf-8</code> 设置LESS字符集为utf-8，为了让配置一直有效，可以把这个设置添加到<code>~/.bashrc</code>,然后执行<code>source ~/.bashrc</code></p><ol start="2"><li><p>查看历史<br><code>git log</code>可以查看历史。但是如果用<code>git reset</code>回退了，是看不到被退回的历史的，如果要保证历史，可以使用<code>git revert</code>，后面会讲这个命令<br><code>git log --stat</code> 显示commit历史，以及每次commit发生变更的文件<br><code>git log -S [keyword]</code> 搜索提交历史，根据关键词<br><code>git log [tag] HEAD --pretty=format:%s</code> 显示某个commit之后的所有变动，每个commit占据一行<br><code>git log [tag] HEAD --grep feature</code> 显示某个commit之后的所有变动，其”提交说明”必须符合搜索条件<br><code>git log --follow [file]</code>或<code>git whatchanged [file]</code> 显示某个文件的版本历史，包括文件改名<br><code>git log -p [file]</code> 显示指定文件相关的每一次diff<br><code>git log -5 --pretty --oneline</code> 显示过去5次提交</p></li><li><p>历史切换<br><code>git reset HEAD^</code>可以向前撤销一次，多个<code>^</code>可以撤销多条历史，或者使用<code>git reset HEAD~5</code>这样可以一次撤销5条历史<br><code>git reset</code>可以任意切换到某个历史，使用<code>git reset --hard commitid</code>即可，commit id不一定要全的，可以只写前几位</p></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;小白的故事&quot;&gt;&lt;a href=&quot;#小白的故事&quot; class=&quot;headerlink&quot; title=&quot;小白的故事&quot;&gt;&lt;/a&gt;小白的故事&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;本故事纯属虚构，如有雷同，^0^那可太巧了&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;小白
       
     
     </summary>
