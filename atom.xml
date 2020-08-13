@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2020-06-12T05:54:52.607Z</updated>
+  <updated>2020-08-13T06:01:23.013Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,9 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>python捕获异常堆栈信息</title>
+    <link href="https://www.xingjiehu.com/2020/08/13/ckdse2t240026swom469hfz5m/"/>
+    <id>https://www.xingjiehu.com/2020/08/13/ckdse2t240026swom469hfz5m/</id>
+    <published>2020-08-13T05:07:32.000Z</published>
+    <updated>2020-08-13T06:01:23.013Z</updated>
+    
+    <content type="html"><![CDATA[<p>python的异常对称相比java或php简单了很多，对象中的信息很少，只有简单的错误输出。这在开发过程中是无法满足使用需求的。我们还需要更多的错误信息，比如错误发生在哪一行，具体的错误信息是什么。这就需要获取错误堆栈信息。下面简单记录一下常用的集中异常处理。</p><a id="more"></a><h2 id="最简单的异常处理"><a href="#最简单的异常处理" class="headerlink" title="最简单的异常处理"></a>最简单的异常处理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">except Exception as e:</span><br><span class="line">    print(e)</span><br></pre></td></tr></table></figure><p>我们得到的信息是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;name&apos;</span><br></pre></td></tr></table></figure></p><p>之所以出现<code>‘name’</code>错误，是因为咱们的字典<code>a</code>中没有<code>name</code>这个key。但这样的异常对我们来说毫无意义。</p><h2 id="repr带点说明的异常处理"><a href="#repr带点说明的异常处理" class="headerlink" title="repr带点说明的异常处理"></a>repr带点说明的异常处理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">except Exception as e:</span><br><span class="line">    print(repr(e))</span><br></pre></td></tr></table></figure><p>我们得到信息是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KeyError(&apos;name&apos;)</span><br></pre></td></tr></table></figure></p><p>这次使用了<code>repr</code>输出的信息总算是有点意义了，他让我们知道错误是因为一个<code>KeyError</code>。但这还不够我们需要知道错误发生在什么地方</p><h2 id="logging-exception显示异常发生位置"><a href="#logging-exception显示异常发生位置" class="headerlink" title="logging.exception显示异常发生位置"></a>logging.exception显示异常发生位置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import logging</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">except Exception as e:</span><br><span class="line">    logging.exception(e)</span><br></pre></td></tr></table></figure><p>使用了<code>logging.exception</code>这次得到的信息就更加的丰富了，不但提示了错误，还指出了发生的所在行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ERROR:root:&apos;name&apos;</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/var/www/gubeichun/gbcdata/test/test.py&quot;, line 8, in &lt;module&gt;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">KeyError: &apos;name&apos;</span><br></pre></td></tr></table></figure></p><h2 id="使用traceback模块处理异常"><a href="#使用traceback模块处理异常" class="headerlink" title="使用traceback模块处理异常"></a>使用traceback模块处理异常</h2><h3 id="直接打印错误信息"><a href="#直接打印错误信息" class="headerlink" title="直接打印错误信息"></a>直接打印错误信息</h3><p>除了使用<code>logging.exception</code>还可以使用<code>traceback</code>模块来处理异常，更加方便<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import traceback</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">except Exception as e:</span><br><span class="line">    traceback.print_exc()</span><br><span class="line">    # msg = traceback.format_exc()</span><br><span class="line">    # print(msg)</span><br></pre></td></tr></table></figure></p><p>这次得到的错误信息是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/var/www/gubeichun/gbcdata/test/test.py&quot;, line 8, in &lt;module&gt;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">KeyError: &apos;name&apos;</span><br></pre></td></tr></table></figure></p><p>这样的错误比起<code>logging.exception</code>清爽了一些。<code>traceback.print_exc()</code>也是直接打印错误。</p><h3 id="获取错误信息，自行处理"><a href="#获取错误信息，自行处理" class="headerlink" title="获取错误信息，自行处理"></a>获取错误信息，自行处理</h3><p>有时候我们不希望错误被打印，而是希望接收错误，自己保存日志，这时候只要把<code>print_exc()</code>换成<code>format_exc()</code>就可以了</p><h2 id="使用sys和traceback模块处理异常"><a href="#使用sys和traceback模块处理异常" class="headerlink" title="使用sys和traceback模块处理异常"></a>使用sys和traceback模块处理异常</h2><h3 id="直接打印错误信息-1"><a href="#直接打印错误信息-1" class="headerlink" title="直接打印错误信息"></a>直接打印错误信息</h3><p><code>traceback</code>输出的错误信息，已经非常好了，但有时候我们希望更加个性话的处理日志，这时候就需要用到<code>sys</code>模块和<code>traceback</code>模块做个配合。<br>其实<code>print_exc()</code>只不过是对<code>print_exception</code>的封装。下面这样写，会得到<code>print_exc</code>一样的错误信息。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import traceback</span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">except Exception as e:</span><br><span class="line">    et, ev, tb = sys.exc_info()</span><br><span class="line">    traceback.print_exception(et, ev, tb)</span><br></pre></td></tr></table></figure><p>错误信息跟<code>print_exc</code>一样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/var/www/gubeichun/gbcdata/test/test.py&quot;, line 8, in &lt;module&gt;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">KeyError: &apos;name&apos;</span><br></pre></td></tr></table></figure></p><p>如果只想输出错误所在行的信息可以使用<code>print_tb</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import traceback</span><br><span class="line">import sys</span><br><span class="line">try:</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">except Exception as e:</span><br><span class="line">    et, ev, tb = sys.exc_info()</span><br><span class="line">    traceback.print_tb(tb)</span><br></pre></td></tr></table></figure></p><p>这样就得到了，更清爽的错误信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">File &quot;/var/www/gubeichun/gbcdata/test/test.py&quot;, line 8, in &lt;module&gt;</span><br><span class="line">   print(a[&quot;name&quot;])</span><br></pre></td></tr></table></figure></p><h3 id="获取错误信息，自行处理-1"><a href="#获取错误信息，自行处理-1" class="headerlink" title="获取错误信息，自行处理"></a>获取错误信息，自行处理</h3><p><code>traceback</code>还提供了一个<code>format_exception</code>方法，他会将错误信息处理成一个可迭代对象，让我们更方便的处理错误信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import traceback</span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">except Exception as e:</span><br><span class="line">    et, ev, tb = sys.exc_info()</span><br><span class="line">    msg = traceback.format_exception(et, ev, tb)</span><br><span class="line">    for m in msg:</span><br><span class="line">        print(m)</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;python的异常对称相比java或php简单了很多，对象中的信息很少，只有简单的错误输出。这在开发过程中是无法满足使用需求的。我们还需要更多的错误信息，比如错误发生在哪一行，具体的错误信息是什么。这就需要获取错误堆栈信息。下面简单记录一下常用的集中异常处理。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="python" scheme="https://www.xingjiehu.com/tags/python/"/>
+    
+      <category term="异常" scheme="https://www.xingjiehu.com/tags/%E5%BC%82%E5%B8%B8/"/>
+    
+  </entry>
+  
+  <entry>
     <title>springboot 配置</title>
-    <link href="https://www.xingjiehu.com/2020/06/12/ckbbso6ck00c51uom0faf6q11/"/>
-    <id>https://www.xingjiehu.com/2020/06/12/ckbbso6ck00c51uom0faf6q11/</id>
+    <link href="https://www.xingjiehu.com/2020/06/12/ckdse2t9g00ckswomtwvepu9m/"/>
+    <id>https://www.xingjiehu.com/2020/06/12/ckdse2t9g00ckswomtwvepu9m/</id>
     <published>2020-06-12T05:16:57.000Z</published>
     <updated>2020-06-12T05:54:52.607Z</updated>
     
@@ -43,8 +67,8 @@
   
   <entry>
     <title>nginx配置中root alias的区别</title>
-    <link href="https://www.xingjiehu.com/2020/05/15/ckbbso65z001n1uom0lpi0jlo/"/>
-    <id>https://www.xingjiehu.com/2020/05/15/ckbbso65z001n1uom0lpi0jlo/</id>
+    <link href="https://www.xingjiehu.com/2020/05/15/ckdse2t2d002lswomoexwoxjt/"/>
+    <id>https://www.xingjiehu.com/2020/05/15/ckdse2t2d002lswomoexwoxjt/</id>
     <published>2020-05-15T03:03:07.000Z</published>
     <updated>2020-06-10T05:10:22.456Z</updated>
     
@@ -74,8 +98,8 @@
   
   <entry>
     <title>linux硬盘管理工具baobab</title>
-    <link href="https://www.xingjiehu.com/2020/05/12/ckbbso662001r1uombnzdjjs4/"/>
-    <id>https://www.xingjiehu.com/2020/05/12/ckbbso662001r1uombnzdjjs4/</id>
+    <link href="https://www.xingjiehu.com/2020/05/12/ckdse2t1v001pswom8uf0r169/"/>
+    <id>https://www.xingjiehu.com/2020/05/12/ckdse2t1v001pswom8uf0r169/</id>
     <published>2020-05-12T02:38:57.000Z</published>
     <updated>2020-05-12T02:44:26.999Z</updated>
     
@@ -104,8 +128,8 @@
   
   <entry>
     <title>springboot+nginx websocket配置</title>
-    <link href="https://www.xingjiehu.com/2020/05/09/ckbbso66o002x1uomkldzn903/"/>
-    <id>https://www.xingjiehu.com/2020/05/09/ckbbso66o002x1uomkldzn903/</id>
+    <link href="https://www.xingjiehu.com/2020/05/09/ckdse2t2u003bswom1o6w0itx/"/>
+    <id>https://www.xingjiehu.com/2020/05/09/ckdse2t2u003bswom1o6w0itx/</id>
     <published>2020-05-09T06:03:26.000Z</published>
     <updated>2020-05-09T06:10:25.138Z</updated>
     
@@ -131,8 +155,8 @@
   
   <entry>
     <title>10.克隆远程仓库</title>
-    <link href="https://www.xingjiehu.com/2020/04/22/ckbbso6c900bf1uomgyvknx9b/"/>
-    <id>https://www.xingjiehu.com/2020/04/22/ckbbso6c900bf1uomgyvknx9b/</id>
+    <link href="https://www.xingjiehu.com/2020/04/22/ckdse2t9500c7swomlic6q74f/"/>
+    <id>https://www.xingjiehu.com/2020/04/22/ckdse2t9500c7swomlic6q74f/</id>
     <published>2020-04-22T12:32:20.000Z</published>
     <updated>2020-05-09T06:02:34.883Z</updated>
     
@@ -159,8 +183,8 @@
   
   <entry>
     <title>让nginx支持flv文件播放</title>
-    <link href="https://www.xingjiehu.com/2020/03/25/ckbbso67s004q1uom6y5kcmmw/"/>
-    <id>https://www.xingjiehu.com/2020/03/25/ckbbso67s004q1uom6y5kcmmw/</id>
+    <link href="https://www.xingjiehu.com/2020/03/25/ckdse2t3t004uswomfv2ed7p7/"/>
+    <id>https://www.xingjiehu.com/2020/03/25/ckdse2t3t004uswomfv2ed7p7/</id>
     <published>2020-03-25T02:51:34.000Z</published>
     <updated>2020-03-25T09:18:11.624Z</updated>
     
@@ -185,33 +209,9 @@
   </entry>
   
   <entry>
-    <title>docker仓库(Repository)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckbbso6c300b51uom8rczzoa0/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckbbso6c300b51uom8rczzoa0/</id>
-    <published>2020-03-03T03:12:37.000Z</published>
-    <updated>2020-03-21T09:28:32.509Z</updated>
-    
-    <content type="html"><![CDATA[<p>仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>。<br>大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。</p><a id="more"></a><h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>在 <a href="https://hub.docker.com" target="_blank" rel="noopener">https://hub.docker.com</a> 免费注册一个 Docker 账号。</p><h2 id="登录和退出"><a href="#登录和退出" class="headerlink" title="登录和退出"></a>登录和退出</h2><p>执行<code>docker login</code>命令，会提示输入用户名和密码，输入后就登录了。注意，输入密码时不会有任何显示，windows上一般显示<code>*</code>,但linux不会有显示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker login</span><br><span class="line">Login with your Docker ID to push and pull images from Docker Hub. If you don&apos;t have a Docker ID, head over to https://hub.docker.com to create one.</span><br><span class="line">Username: shooke</span><br><span class="line">Password:</span><br></pre></td></tr></table></figure></p><p>执行<code>docker logout</code>就可以退出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logout</span><br></pre></td></tr></table></figure></p><h2 id="查找镜像"><a href="#查找镜像" class="headerlink" title="查找镜像"></a>查找镜像</h2><p>可以通过<code>docker search</code>命令查找官方仓库中的镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker search ubuntu</span><br><span class="line">NAME                                                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line">ubuntu                                                    Ubuntu is a Debian-based Linux operating sys…   10575               [OK]                </span><br><span class="line">dorowu/ubuntu-desktop-lxde-vnc                            Docker image to provide HTML5 VNC interface …   398                                     [OK]</span><br><span class="line">rastasheep/ubuntu-sshd                                    Dockerized SSH service, built on top of offi…   243                                     [OK]</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p><h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><p>在仓库中找到自己想要的镜像后，就可以下载使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure></p><p>这样就可以从官方仓库下载<code>ubuntu:18.04</code>镜像到本地使用。<br>关于镜像的详细内容看《3.docker镜像》</p><p>#参考资料<br><a href="https://www.runoob.com/docker/docker-repository.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-repository.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  &lt;a href=&quot;https://hub.docker.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Docker Hub&lt;/a&gt;。&lt;br&gt;大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="一点一点了解docker" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3docker/"/>
-    
-    
-      <category term="docker" scheme="https://www.xingjiehu.com/tags/docker/"/>
-    
-      <category term="docker repository" scheme="https://www.xingjiehu.com/tags/docker-repository/"/>
-    
-  </entry>
-  
-  <entry>
     <title>docker镜像(Image)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckbbso6c400b61uom4uvudf7k/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckbbso6c400b61uom4uvudf7k/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckdse2t8j00bcswom14wlg592/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckdse2t8j00bcswom14wlg592/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -233,9 +233,33 @@
   </entry>
   
   <entry>
+    <title>docker仓库(Repository)</title>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckdse2t8l00bdswompw5l9892/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckdse2t8l00bdswompw5l9892/</id>
+    <published>2020-03-03T03:12:37.000Z</published>
+    <updated>2020-03-21T09:28:32.509Z</updated>
+    
+    <content type="html"><![CDATA[<p>仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>。<br>大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。</p><a id="more"></a><h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>在 <a href="https://hub.docker.com" target="_blank" rel="noopener">https://hub.docker.com</a> 免费注册一个 Docker 账号。</p><h2 id="登录和退出"><a href="#登录和退出" class="headerlink" title="登录和退出"></a>登录和退出</h2><p>执行<code>docker login</code>命令，会提示输入用户名和密码，输入后就登录了。注意，输入密码时不会有任何显示，windows上一般显示<code>*</code>,但linux不会有显示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker login</span><br><span class="line">Login with your Docker ID to push and pull images from Docker Hub. If you don&apos;t have a Docker ID, head over to https://hub.docker.com to create one.</span><br><span class="line">Username: shooke</span><br><span class="line">Password:</span><br></pre></td></tr></table></figure></p><p>执行<code>docker logout</code>就可以退出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logout</span><br></pre></td></tr></table></figure></p><h2 id="查找镜像"><a href="#查找镜像" class="headerlink" title="查找镜像"></a>查找镜像</h2><p>可以通过<code>docker search</code>命令查找官方仓库中的镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker search ubuntu</span><br><span class="line">NAME                                                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line">ubuntu                                                    Ubuntu is a Debian-based Linux operating sys…   10575               [OK]                </span><br><span class="line">dorowu/ubuntu-desktop-lxde-vnc                            Docker image to provide HTML5 VNC interface …   398                                     [OK]</span><br><span class="line">rastasheep/ubuntu-sshd                                    Dockerized SSH service, built on top of offi…   243                                     [OK]</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p><h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><p>在仓库中找到自己想要的镜像后，就可以下载使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure></p><p>这样就可以从官方仓库下载<code>ubuntu:18.04</code>镜像到本地使用。<br>关于镜像的详细内容看《3.docker镜像》</p><p>#参考资料<br><a href="https://www.runoob.com/docker/docker-repository.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-repository.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  &lt;a href=&quot;https://hub.docker.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Docker Hub&lt;/a&gt;。&lt;br&gt;大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="一点一点了解docker" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3docker/"/>
+    
+    
+      <category term="docker" scheme="https://www.xingjiehu.com/tags/docker/"/>
+    
+      <category term="docker repository" scheme="https://www.xingjiehu.com/tags/docker-repository/"/>
+    
+  </entry>
+  
+  <entry>
     <title>docker容器(Container)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckbbso6c500b91uomljyi2p4e/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckbbso6c500b91uomljyi2p4e/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckdse2t8p00bhswomtsvpqkbt/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckdse2t8p00bhswomtsvpqkbt/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -259,8 +283,8 @@
   
   <entry>
     <title>1.docker基础概念</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckbbso6c600ba1uomhhrajlhp/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckbbso6c600ba1uomhhrajlhp/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckdse2t8n00bgswomhf7anv57/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckdse2t8n00bgswomhf7anv57/</id>
     <published>2020-03-03T01:44:21.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -285,8 +309,8 @@
   
   <entry>
     <title>openresty+lua+kafka部署</title>
-    <link href="https://www.xingjiehu.com/2020/02/26/ckbbso665001y1uomjqn8qo29/"/>
-    <id>https://www.xingjiehu.com/2020/02/26/ckbbso665001y1uomjqn8qo29/</id>
+    <link href="https://www.xingjiehu.com/2020/02/26/ckdse2t1x001rswom7goalco6/"/>
+    <id>https://www.xingjiehu.com/2020/02/26/ckdse2t1x001rswom7goalco6/</id>
     <published>2020-02-26T09:59:07.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -314,8 +338,8 @@
   
   <entry>
     <title>python mysql-connector简要说明</title>
-    <link href="https://www.xingjiehu.com/2020/02/14/ckbbso66b002b1uomtgkh6ev8/"/>
-    <id>https://www.xingjiehu.com/2020/02/14/ckbbso66b002b1uomtgkh6ev8/</id>
+    <link href="https://www.xingjiehu.com/2020/02/14/ckdse2t27002bswomc6dpu4lw/"/>
+    <id>https://www.xingjiehu.com/2020/02/14/ckdse2t27002bswomc6dpu4lw/</id>
     <published>2020-02-14T08:38:09.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -347,8 +371,8 @@
   
   <entry>
     <title>linux 为php7.0安装redis扩展</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/ckbbso65n00181uomp6m8cctj/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/ckbbso65n00181uomp6m8cctj/</id>
+    <link href="https://www.xingjiehu.com/2020/02/12/ckdse2t1n0018swomb1kmjnvw/"/>
+    <id>https://www.xingjiehu.com/2020/02/12/ckdse2t1n0018swomb1kmjnvw/</id>
     <published>2020-02-12T11:52:59.000Z</published>
     <updated>2020-05-14T11:45:49.391Z</updated>
     
@@ -374,8 +398,8 @@
   
   <entry>
     <title>解决深度终端链接远程后假死问题</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/ckbbso67m004k1uomginuvjue/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/ckbbso67m004k1uomginuvjue/</id>
+    <link href="https://www.xingjiehu.com/2020/02/12/ckdse2t3n004kswoml98h61rp/"/>
+    <id>https://www.xingjiehu.com/2020/02/12/ckdse2t3n004kswoml98h61rp/</id>
     <published>2020-02-12T07:47:55.000Z</published>
     <updated>2020-03-21T09:28:32.518Z</updated>
     
@@ -401,8 +425,8 @@
   
   <entry>
     <title>shadowsocks客户端启动报错问题</title>
-    <link href="https://www.xingjiehu.com/2020/02/11/ckbbso66d002g1uom60izeqwu/"/>
-    <id>https://www.xingjiehu.com/2020/02/11/ckbbso66d002g1uom60izeqwu/</id>
+    <link href="https://www.xingjiehu.com/2020/02/11/ckdse2t2b002iswom806oqe4r/"/>
+    <id>https://www.xingjiehu.com/2020/02/11/ckdse2t2b002iswom806oqe4r/</id>
     <published>2020-02-11T03:11:19.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -424,8 +448,8 @@
   
   <entry>
     <title>nginx配置结构说明</title>
-    <link href="https://www.xingjiehu.com/2020/01/10/ckbbso661001p1uomt3dp3udo/"/>
-    <id>https://www.xingjiehu.com/2020/01/10/ckbbso661001p1uomt3dp3udo/</id>
+    <link href="https://www.xingjiehu.com/2020/01/10/ckdse2t230023swom17wc0rn7/"/>
+    <id>https://www.xingjiehu.com/2020/01/10/ckdse2t230023swom17wc0rn7/</id>
     <published>2020-01-10T06:20:08.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -447,8 +471,8 @@
   
   <entry>
     <title>limits.conf配置说明</title>
-    <link href="https://www.xingjiehu.com/2020/01/03/ckbbso65k00151uompl8izc6r/"/>
-    <id>https://www.xingjiehu.com/2020/01/03/ckbbso65k00151uompl8izc6r/</id>
+    <link href="https://www.xingjiehu.com/2020/01/03/ckdse2t1l0015swomr9oiqji7/"/>
+    <id>https://www.xingjiehu.com/2020/01/03/ckdse2t1l0015swomr9oiqji7/</id>
     <published>2020-01-03T09:30:52.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -471,8 +495,8 @@
   
   <entry>
     <title>ssh提速</title>
-    <link href="https://www.xingjiehu.com/2019/12/28/ckbbso66i002n1uomc0no6yh0/"/>
-    <id>https://www.xingjiehu.com/2019/12/28/ckbbso66i002n1uomc0no6yh0/</id>
+    <link href="https://www.xingjiehu.com/2019/12/28/ckdse2t2l002xswoma1mcsxko/"/>
+    <id>https://www.xingjiehu.com/2019/12/28/ckdse2t2l002xswoma1mcsxko/</id>
     <published>2019-12-28T09:31:20.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -496,8 +520,8 @@
   
   <entry>
     <title>9.上传到远程仓库</title>
-    <link href="https://www.xingjiehu.com/2019/12/26/ckbbso6co00cd1uoml0vp7hw9/"/>
-    <id>https://www.xingjiehu.com/2019/12/26/ckbbso6co00cd1uoml0vp7hw9/</id>
+    <link href="https://www.xingjiehu.com/2019/12/26/ckdse2t9a00cdswomkd7bt3tp/"/>
+    <id>https://www.xingjiehu.com/2019/12/26/ckdse2t9a00cdswomkd7bt3tp/</id>
     <published>2019-12-26T12:32:20.000Z</published>
     <updated>2020-03-24T08:51:44.141Z</updated>
     
@@ -511,34 +535,6 @@
 &lt;p&gt;本故事纯属虚构，如有雷同，^0^那可太巧了&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;这几
-      
-    
-    </summary>
-    
-      <category term="一点一点了解git" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3git/"/>
-    
-    
-      <category term="git" scheme="https://www.xingjiehu.com/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>8.再遇工作区和版本库</title>
-    <link href="https://www.xingjiehu.com/2019/12/25/ckbbso6cj00c11uomnwekqy4e/"/>
-    <id>https://www.xingjiehu.com/2019/12/25/ckbbso6cj00c11uomnwekqy4e/</id>
-    <published>2019-12-25T12:32:20.000Z</published>
-    <updated>2020-03-24T08:51:29.769Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote><p>本故事纯属虚构，如有雷同，^0^那可太巧了</p></blockquote><p>”大神我看你用使用<code>git reset</code>时使用了<code>--hard</code>参数，是不是还有其他参数啊。“小白虚心问道<br>”小伙很细心啊，不错，还有其余的2个参数，我挨个给你讲吧。刚才用过–hard，咱们从他讲起。咱们先创建个文件，加两条commit，方便讲解“老鸟说到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ echo &quot;1&quot;&gt; test.txt</span><br><span class="line">$ git add test.txt</span><br><span class="line">$ git commit -m &quot;1&quot;</span><br><span class="line">$ echo &quot;2&quot;&gt; test.txt</span><br><span class="line">$ git add test.txt</span><br><span class="line">$ git commit -m &quot;2&quot;</span><br></pre></td></tr></table></figure></p><p>“咱们创建了2条commit记录了，第一条记录<code>test.txt</code>里的内容是<code>1</code>，第二条记录<code>test.txt</code>里的内容是<code>2</code>。先看一下记录” 老鸟说<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git log</span><br><span class="line">commit a609df431578e5061b5d0261bfa38cb0fa01efb1 (HEAD -&gt; master)</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Wed Mar 18 16:42:11 2020 +0800</span><br><span class="line"></span><br><span class="line">    2</span><br><span class="line"></span><br><span class="line">commit b5a6d3a6c4d4f5899645f9469f116b050c9426b5</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Wed Mar 18 16:41:55 2020 +0800</span><br><span class="line"></span><br><span class="line">    1</span><br></pre></td></tr></table></figure></p><p>“接下来，咱们撤销一下看看效果”老鸟继续教导小白<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard HEAD^</span><br><span class="line">HEAD is now at b5a6d3a 1</span><br><span class="line">git log</span><br><span class="line">commit b5a6d3a6c4d4f5899645f9469f116b050c9426b5 (HEAD -&gt; master)</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Wed Mar 18 16:41:55 2020 +0800</span><br><span class="line"></span><br><span class="line">    1</span><br></pre></td></tr></table></figure></p><p>”现在历史被撤回了，咱们看git的状态“ 老鸟说<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">nothing to commit, working tree clean</span><br></pre></td></tr></table></figure></p><p>”你看工作区和暂存区都是空的对吧“老鸟说<br>”恩恩，文件内容应该变成1了“小白说<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat test.txt</span><br><span class="line">1</span><br></pre></td></tr></table></figure></p><p>“回答正确，咱们先把历史还原，然后再来试试另一个参数”老鸟说。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard a609df431578e5061b5d0261bfa38cb0fa01efb1</span><br><span class="line">HEAD is now at a609df4 2</span><br><span class="line">$ git log</span><br><span class="line">commit a609df431578e5061b5d0261bfa38cb0fa01efb1 (HEAD -&gt; master)</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Wed Mar 18 16:42:11 2020 +0800</span><br><span class="line"></span><br><span class="line">    2</span><br><span class="line"></span><br><span class="line">commit b5a6d3a6c4d4f5899645f9469f116b050c9426b5</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Wed Mar 18 16:41:55 2020 +0800</span><br><span class="line"></span><br><span class="line">    1</span><br></pre></td></tr></table></figure></p><p>“接下来试试<code>--mixed</code>,看看会是什么效果”老鸟说<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --mixed HEAD^</span><br><span class="line">Unstaged changes after reset:</span><br><span class="line">Mtest.txt</span><br><span class="line">$ git log</span><br><span class="line">commit b5a6d3a6c4d4f5899645f9469f116b050c9426b5 (HEAD -&gt; master)</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Wed Mar 18 16:41:55 2020 +0800</span><br><span class="line"></span><br><span class="line">    1</span><br></pre></td></tr></table></figure></p><p>“历史回退了”小白说<br>“恩，咱们看看文件状态有什么变化”老鸟说<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">modified:   test.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure></p><p>“这是什么意思啊，这个提示不是文件发生修改的时候才有的吗”，小白疑惑<br>“看一下文件内容你就明白了”老鸟说到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat test.txt </span><br><span class="line">2</span><br></pre></td></tr></table></figure></p><p>”知道什么愿意你了吗“老鸟说<br>”哦，我明白了，历史回退了，按说文件的内容应该是1，但是现在内容是2，所以git以为文件发生了修改“小白说道。<br>”恭喜你答对了，<code>--mixed</code>参数会清空stage缓存区，但是不会直接修改文件的内容，如果需要将文件内容撤回，可以在执行<code>git checkout &lt;file&gt;</code>“老鸟解释道<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout test.txt</span><br><span class="line">$ cat test.txt</span><br><span class="line">1</span><br></pre></td></tr></table></figure></p><p>”你看内容变了吧，接下来你猜一下<code>--soft</code>参数会是什么效果“老鸟说<br>”既然<code>--hard</code>文件工作区和缓存去都清空了，<code>--mixed</code>把缓存区清空了，那<code>--soft</code>是不是会保留缓存区啊“小白说道<br>”不错嘛，这都分析到了，没错，<code>--soft</code>参数只是撤销了记录，缓存区和工作区都不做修改，咱们来看下效果“。老鸟说，”先恢复一下记录方便看效果“<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard a609df431578e5061b5d0261bfa38cb0fa01efb1</span><br><span class="line">HEAD is now at a609df4 2</span><br><span class="line">$ git log</span><br><span class="line">commit a609df431578e5061b5d0261bfa38cb0fa01efb1 (HEAD -&gt; master)</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Wed Mar 18 16:42:11 2020 +0800</span><br><span class="line"></span><br><span class="line">    2</span><br><span class="line"></span><br><span class="line">commit b5a6d3a6c4d4f5899645f9469f116b050c9426b5</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Wed Mar 18 16:41:55 2020 +0800</span><br><span class="line"></span><br><span class="line">    1</span><br></pre></td></tr></table></figure></p><p>”历史回来了，咱们开始看下<code>--soft</code>的作用“老鸟敲下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --soft HEAD^</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">modified:   test.txt</span><br></pre></td></tr></table></figure></p><p>”你看，是不是和你想的一样啊，要想清理缓存区可以按提示执行<code>git reset HEAD &lt;file&gt;</code>，剩下的就不用我说了吧“老鸟说道<br>”恩恩，明白，文件线下的内容应该还是2吧，我清理完缓存区，然后<code>git checkout &lt;file&gt;</code>文件内容就会变回commit对应的内容，对吧“小白问道</p><p>”没错，那你知道为什么会有这三种不同的参数吗“老鸟问<br>”不明白，<code>--hard</code>很方便啊，其他两种还要做其他操作才能回复文件内容，多麻烦。“小白回答</p><p>”你现在只是一个文件，如果你的一个历史记录有很多文件怎么办，如果你只需要撤回其中一个文件呢，用<code>--hard</code>不是自杀吗。使用<code>--mixed</code>或<code>--soft</code>可以保证文件内容不撤销，这样你就可以用<code>git checkout</code>针对你需要撤销的文件进行撤回。多方便 “老鸟说道<br>”哦，明白了，谢谢大神“小白激动的说</p><p>”走了，有问题随时问我“，老鸟再次潇洒离去，留下了激动的小白</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul><li><code>--hard</code> 撤销commit记录，清空tage暂存区，清空工作区内容，文件内容彻底还原</li><li><code>--mixed</code> 撤销commit记录，清空tage暂存区，保留工作区内容，执行<code>git checkout &lt;file&gt;</code>可撤销修改，让文件内容还原</li><li><code>--soft</code> 撤销commit记录，保留stage暂存区，保留工作区内容，如果要撤回需要先执行<code>git reset HEAD &lt;file&gt;</code>撤销暂存区，然后执行<code>git checkout &lt;file&gt;</code> 撤销修改</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;小白的故事&quot;&gt;&lt;a href=&quot;#小白的故事&quot; class=&quot;headerlink&quot; title=&quot;小白的故事&quot;&gt;&lt;/a&gt;小白的故事&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;本故事纯属虚构，如有雷同，^0^那可太巧了&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;”大
       
     
     </summary>
