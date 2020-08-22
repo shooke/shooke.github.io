@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2020-08-13T06:01:23.013Z</updated>
+  <updated>2020-08-22T09:45:57.289Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,9 +17,39 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>聊聊kafka</title>
+    <link href="https://www.xingjiehu.com/2020/08/22/cke5hcp0u0049izomiz7h71xe/"/>
+    <id>https://www.xingjiehu.com/2020/08/22/cke5hcp0u0049izomiz7h71xe/</id>
+    <published>2020-08-22T07:47:12.000Z</published>
+    <updated>2020-08-22T09:45:57.289Z</updated>
+    
+    <content type="html"><![CDATA[<p>为了便于理解kafka，先了解一下消息队列以及通讯模式。首先先了解两个名词</p><ul><li>数据生产者 产生数据的程序或服务</li><li>数据消费者 处理数据的程序或服务</li></ul><h2 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h2><p>简单的说就是个数据集散地，数据生产方把数据放到消息队列，然后消费方从队列中获得数据进行处理。<br>我们把消息队列比作超市，超市的供货商就相当于数据生产者，超市顾客就是数据消费者了。</p><p>使用消息队列可以让我们解决三大问题</p><h3 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h3><p>假设没有超市，我们买菜直接从供货商手里买的话，我们如果要买不同的菜就需要联系好多的供货商。每个供货商又要给很多人供货，这是很麻烦的。超市的出现就解决了这个麻烦，所有的供货商只需要把才运送到超市这一个地方，顾客也只需要去超市这一个地方。就可以买到很多菜。<br>数据也是一样的，不同用户的数据都进入消息队列，然后服务，只需要从队里中获取数据进行处理就可以了。</p><h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h3><p>没有超市的情况下，我们跟供货商买东西，要两个人都有时间才可以，供货商没时间送货，或者消费者没时间在家接货都无法达成交易。但是有了超市，供货商不用等消费者在家，消费者也不用等供货商有时间送货。大家都是随时去超市购买即可。<br>数据也一样，数据生产方随时可以产生数据，而不用担心处理数据的服务是否空闲，服务也不用立即对请求进行应答。如果服务异常退出了，等再次启动后可以消息队列中获取数据进行处理。</p><h3 id="削峰"><a href="#削峰" class="headerlink" title="削峰"></a>削峰</h3><p>没有超市的情况下，如果我们买了10种菜，供货商同时到了，很有可能你拿不了。方路边？万一丢了怎么办呢。有了超市就可以一次买一点多次购买多方便。<br>数据也一样，最容易出现这种情况的就是秒杀，大量的数据同一时间汇入，这时候很容易让服务崩掉。有了消息队列，咱们就可以轻松化解了，所有的数据先进入消息队列。后台服务从队列中获取数据处理。</p><h2 id="通讯模式"><a href="#通讯模式" class="headerlink" title="通讯模式"></a>通讯模式</h2><h3 id="点对点模式"><a href="#点对点模式" class="headerlink" title="点对点模式"></a>点对点模式</h3><p>前面介绍消息队列举的例子中，都是顾客主动去超市购买商品，这种方式，我们称之为点对点方式。这种模式消费者需要主动获取数据，好处是比较灵活。缺点也很明显，数据消费者或许消息不够及时。有可能你去买菜的时候，菜已经卖没了。</p><h3 id="发布订阅模式"><a href="#发布订阅模式" class="headerlink" title="发布订阅模式"></a>发布订阅模式</h3><p>为了让消费者买到好的菜，超市推出了送货上面服务，供货商将菜送来的时候，超市会把菜打包好送到您手里。这样就不会买不到菜了。<br>这种主动送达的方式叫做发布订阅模式，数据发送到消息队列时。消息队列会主动把数据推送给数据消费者。</p><h2 id="kafka"><a href="#kafka" class="headerlink" title="kafka"></a>kafka</h2><p>消息队列软件有很多种，kafka就是其中的一种。它是Linkedin公司开发，现在已经贡献给了apache基金会。kafka的创始人还在kafka的基础上，开发了好多周边软件，用于数据流转处理。如kafka connect等</p><p>kafka启动后默认使用9092端口，想这个端口发送信息，kafka就可以收到了。为了便于操作，kafka自带有Producer和Consumer的命令行工具用于简单测试</p><p>使用kafka必须先了解一下kafka的几个关键术语。</p><h3 id="Producer"><a href="#Producer" class="headerlink" title="Producer"></a>Producer</h3><p>Producer即生产者，消息的产生者，它将消息发送到kafka中。安装包内有命令行工具，在java、python、php等语言也都有响应的sdk。使用Producer对象可以将消息发送到kafka服务。发送服务时会指定Topic。</p><h3 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h3><p>消息即数据，生产者发送一次数据，会产生一条消息。</p><h3 id="Topic"><a href="#Topic" class="headerlink" title="Topic"></a>Topic</h3><p>消息主题，可以理解为消息分类。比如订单业务用order，订单服务就可以只接收order topic下的消息进行处理，这是非常方便的。避免了接收无用的消息。</p><h3 id="Partition"><a href="#Partition" class="headerlink" title="Partition"></a>Partition</h3><p>Topic的分区，可以理解为文件夹，当数据特别多的时候如果把数据再次进行归类存储，可以有效的提高读写效率。比如有一万个文件，放在一个文件夹中查找就比较慢，如果按照哈希分散到a-z的26个文件夹中，那每个文件夹中存储的文件数量就是1/26。当我们发现要查找的文件第一个字母是a，就直接去a文件夹下。这样就提高了查找速度。</p><h3 id="Broker"><a href="#Broker" class="headerlink" title="Broker"></a>Broker</h3><p>kafka实例，可以简单理解为kafka的消息容器。每个kafka集群内的broker都有一个不重复的编号。每台服务器上可以有一到多个kafka实例，为了便于理解，我们假设一台服务器上有一个kafka实例。这样你也可以理解为一个broker等于一台服务器。</p><h3 id="Replication"><a href="#Replication" class="headerlink" title="Replication"></a>Replication</h3><p>topic的副本，他存放在kafka实例（broker）上。注意一下几点</p><ul><li>在kafka中默认副本的最大数量是10个</li><li>副本的数量不能大于Broker的数量</li><li>follower和leader绝对是在不同的机器，同一机器对同一个分区也只可能存放一个副本（包括自己）。<br>这样当主分区(Leader Partition)出现故障挂掉的时候，其中一份副本会转正为主分区，让业务可以正常使用</li></ul><h3 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h3><p>消费者，即消息的消费方，是消息的出口。安装包内有命令行工具，在java、python、php等语言也都有响应的sdk。使用Consumer对象可以接收或获取kafka中的数据。</p><h3 id="Consumer-Group"><a href="#Consumer-Group" class="headerlink" title="Consumer Group"></a>Consumer Group</h3><p>我们可以将多个消费者组成一个消费者组，一个topic可以被多个消费组消费。但是消费组中多人同时消费一个topic时，每个分区只能有一个人消费。消费组中的消费者数量不要超过这个topic的Partition数量</p><h2 id="场景举例"><a href="#场景举例" class="headerlink" title="场景举例"></a>场景举例</h2><p>咱们有5台服务器，每台服务器一个kafka实例（broker）。<br>这时候我们设置副本数量要小于5（1是主分区，剩余4个borker可用作副本），我们设置为4<br>假设咱们设置分区（Partition）数是10</p><p>生产了个order的topic，我们有系统A和系统B都会用到订单数据。</p><p>系统A用 group-A消费者的数量不能超过5，如果超过了，会有一个消费这始终借不到数据。group-A中每个消费者都从各自的分区（Partition）中获取数据，他们每个人的数据是不重复的。<br>系统B如果使用group-A，那么它消费的一些数据，系统A会无法消费。因此如果想要两个系统都获得完整的数据。就需要系统B更换分组，比如使用group-B。这样两个系统互不干扰，都可以拿到消息队列中的全部数据。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;为了便于理解kafka，先了解一下消息队列以及通讯模式。首先先了解两个名词&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据生产者 产生数据的程序或服务&lt;/li&gt;
+&lt;li&gt;数据消费者 处理数据的程序或服务&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;消息队列&quot;&gt;&lt;a href=&quot;#消息队列&quot; cl
+      
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="kafka" scheme="https://www.xingjiehu.com/tags/kafka/"/>
+    
+  </entry>
+  
+  <entry>
     <title>python捕获异常堆栈信息</title>
-    <link href="https://www.xingjiehu.com/2020/08/13/ckdse2t240026swom469hfz5m/"/>
-    <id>https://www.xingjiehu.com/2020/08/13/ckdse2t240026swom469hfz5m/</id>
+    <link href="https://www.xingjiehu.com/2020/08/13/cke5hcoz80028izomohva4ivi/"/>
+    <id>https://www.xingjiehu.com/2020/08/13/cke5hcoz80028izomohva4ivi/</id>
     <published>2020-08-13T05:07:32.000Z</published>
     <updated>2020-08-13T06:01:23.013Z</updated>
     
@@ -42,8 +72,8 @@
   
   <entry>
     <title>springboot 配置</title>
-    <link href="https://www.xingjiehu.com/2020/06/12/ckdse2t9g00ckswomtwvepu9m/"/>
-    <id>https://www.xingjiehu.com/2020/06/12/ckdse2t9g00ckswomtwvepu9m/</id>
+    <link href="https://www.xingjiehu.com/2020/06/12/cke5hcp9600cqizom1ype5amr/"/>
+    <id>https://www.xingjiehu.com/2020/06/12/cke5hcp9600cqizom1ype5amr/</id>
     <published>2020-06-12T05:16:57.000Z</published>
     <updated>2020-06-12T05:54:52.607Z</updated>
     
@@ -67,8 +97,8 @@
   
   <entry>
     <title>nginx配置中root alias的区别</title>
-    <link href="https://www.xingjiehu.com/2020/05/15/ckdse2t2d002lswomoexwoxjt/"/>
-    <id>https://www.xingjiehu.com/2020/05/15/ckdse2t2d002lswomoexwoxjt/</id>
+    <link href="https://www.xingjiehu.com/2020/05/15/cke5hcoza002aizom0tvs0inx/"/>
+    <id>https://www.xingjiehu.com/2020/05/15/cke5hcoza002aizom0tvs0inx/</id>
     <published>2020-05-15T03:03:07.000Z</published>
     <updated>2020-06-10T05:10:22.456Z</updated>
     
@@ -98,8 +128,8 @@
   
   <entry>
     <title>linux硬盘管理工具baobab</title>
-    <link href="https://www.xingjiehu.com/2020/05/12/ckdse2t1v001pswom8uf0r169/"/>
-    <id>https://www.xingjiehu.com/2020/05/12/ckdse2t1v001pswom8uf0r169/</id>
+    <link href="https://www.xingjiehu.com/2020/05/12/cke5hcoyr001hizom426s3d1p/"/>
+    <id>https://www.xingjiehu.com/2020/05/12/cke5hcoyr001hizom426s3d1p/</id>
     <published>2020-05-12T02:38:57.000Z</published>
     <updated>2020-05-12T02:44:26.999Z</updated>
     
@@ -128,8 +158,8 @@
   
   <entry>
     <title>springboot+nginx websocket配置</title>
-    <link href="https://www.xingjiehu.com/2020/05/09/ckdse2t2u003bswom1o6w0itx/"/>
-    <id>https://www.xingjiehu.com/2020/05/09/ckdse2t2u003bswom1o6w0itx/</id>
+    <link href="https://www.xingjiehu.com/2020/05/09/cke5hcp0o0043izomo28em1h0/"/>
+    <id>https://www.xingjiehu.com/2020/05/09/cke5hcp0o0043izomo28em1h0/</id>
     <published>2020-05-09T06:03:26.000Z</published>
     <updated>2020-05-09T06:10:25.138Z</updated>
     
@@ -155,8 +185,8 @@
   
   <entry>
     <title>10.克隆远程仓库</title>
-    <link href="https://www.xingjiehu.com/2020/04/22/ckdse2t9500c7swomlic6q74f/"/>
-    <id>https://www.xingjiehu.com/2020/04/22/ckdse2t9500c7swomlic6q74f/</id>
+    <link href="https://www.xingjiehu.com/2020/04/22/cke5hcp8q00c9izom1m7gog7r/"/>
+    <id>https://www.xingjiehu.com/2020/04/22/cke5hcp8q00c9izom1m7gog7r/</id>
     <published>2020-04-22T12:32:20.000Z</published>
     <updated>2020-05-09T06:02:34.883Z</updated>
     
@@ -183,8 +213,8 @@
   
   <entry>
     <title>让nginx支持flv文件播放</title>
-    <link href="https://www.xingjiehu.com/2020/03/25/ckdse2t3t004uswomfv2ed7p7/"/>
-    <id>https://www.xingjiehu.com/2020/03/25/ckdse2t3t004uswomfv2ed7p7/</id>
+    <link href="https://www.xingjiehu.com/2020/03/25/cke5hcp18004tizomi18mvl6a/"/>
+    <id>https://www.xingjiehu.com/2020/03/25/cke5hcp18004tizomi18mvl6a/</id>
     <published>2020-03-25T02:51:34.000Z</published>
     <updated>2020-03-25T09:18:11.624Z</updated>
     
@@ -209,33 +239,9 @@
   </entry>
   
   <entry>
-    <title>docker镜像(Image)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckdse2t8j00bcswom14wlg592/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckdse2t8j00bcswom14wlg592/</id>
-    <published>2020-03-03T03:12:37.000Z</published>
-    <updated>2020-03-21T09:28:32.509Z</updated>
-    
-    <content type="html"><![CDATA[<p>镜像在学习docker的过程中非常重要，创建出一个适用于自己的镜像，才能让业务系统准确运行。</p><a id="more"></a><h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><p>拉取镜像使用<code>docker pull</code>命令，格式如下：</p><blockquote><p>docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]</p></blockquote><p>具体的选项可以通过 <code>docker pull --help</code> 命令看到，这里我们说一下镜像名称的格式。</p><ul><li>Docker 镜像仓库地址：地址的格式一般是 &lt;域名/IP&gt;[:端口号]。默认地址是 Docker Hub。</li><li>仓库名：<code>（叫镜像名更容易理解一些，毕竟pull下来在本地就是镜像）</code> 这里的仓库名是两段式名称，即 &lt;用户名&gt;/&lt;软件名&gt;。对于 Docker Hub，如果不给出用户名，则默认为<code>library</code>，也就是官方镜像。</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure><p>这样就从官方镜像仓库中拉取了<code>ubuntu 18.04</code>版本的镜像。本地生成的镜像名称是<code>ubuntu</code> tag是<code>18.04</code></p><h2 id="列出本地镜像列表"><a href="#列出本地镜像列表" class="headerlink" title="列出本地镜像列表"></a>列出本地镜像列表</h2><p><code>docker images</code>或<code>docker image ls</code>命令可以查看本地所有镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure></p><p>可以看到本地所有镜像的列表，列表中有:仓库名(REPOSITORY)、标签(TAG)、镜像id(IMAGE ID)，创建时间(CREATED)，以及镜像大小(SIZE)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">ubuntu              14.04               90d5884b1ee0        5 days ago          188 MB</span><br><span class="line">php                 5.6                 f40e9e0f10c8        9 days ago          444.8 MB</span><br><span class="line">nginx               latest              6f8d099c3adc        12 days ago         182.7 MB</span><br><span class="line">mysql               5.6                 f2e8d6c772c0        3 weeks ago         324.6 MB</span><br><span class="line">httpd               latest              02ef73cf1bc0        3 weeks ago         194.4 MB</span><br><span class="line">ubuntu              15.10               4e3b13c8a266        4 weeks ago         136.3 MB</span><br><span class="line">hello-world         latest              690ed74de00f        6 months ago        960 B</span><br><span class="line">training/webapp     latest              6fae60ef3446        11 months ago       348.8 MB</span><br></pre></td></tr></table></figure></p><h2 id="推送镜像"><a href="#推送镜像" class="headerlink" title="推送镜像"></a>推送镜像</h2><p>有拉取就有推送，用户登录后可以通过<code>docker push</code>命令将自己的额镜像推送到<code>Docker Hub</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag ubuntu:18.04 username/ubuntu:18.04</span><br></pre></td></tr></table></figure></p><p>这样就把<code>ubuntu:18.04</code>推送到了<code>Docker Hub</code>上，自己的仓库空间下。其他人拉取的时候通过<code>username</code>来区分，就可以拉取你的镜像了。</p><h2 id="使用镜像"><a href="#使用镜像" class="headerlink" title="使用镜像"></a>使用镜像</h2><p>执行<code>docker run</code>命令就可以启动本地镜像，生成容器了。详细内容看《4.docker容器》</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.runoob.com/docker/docker-image-usage.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-image-usage.html</a><br><a href="https://yeasy.gitbooks.io/docker_practice/content/image/pull.html" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/content/image/pull.html</a><br><a href="https://yeasy.gitbooks.io/docker_practice/content/image/list.html" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/content/image/list.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;镜像在学习docker的过程中非常重要，创建出一个适用于自己的镜像，才能让业务系统准确运行。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="一点一点了解docker" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3docker/"/>
-    
-    
-      <category term="docker" scheme="https://www.xingjiehu.com/tags/docker/"/>
-    
-      <category term="docker image" scheme="https://www.xingjiehu.com/tags/docker-image/"/>
-    
-  </entry>
-  
-  <entry>
     <title>docker仓库(Repository)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckdse2t8l00bdswompw5l9892/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckdse2t8l00bdswompw5l9892/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/cke5hcp8000biizomwnprsqdz/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/cke5hcp8000biizomwnprsqdz/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -257,9 +263,33 @@
   </entry>
   
   <entry>
+    <title>docker镜像(Image)</title>
+    <link href="https://www.xingjiehu.com/2020/03/03/cke5hcp8200bjizom7j1r7xrk/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/cke5hcp8200bjizom7j1r7xrk/</id>
+    <published>2020-03-03T03:12:37.000Z</published>
+    <updated>2020-03-21T09:28:32.509Z</updated>
+    
+    <content type="html"><![CDATA[<p>镜像在学习docker的过程中非常重要，创建出一个适用于自己的镜像，才能让业务系统准确运行。</p><a id="more"></a><h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><p>拉取镜像使用<code>docker pull</code>命令，格式如下：</p><blockquote><p>docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]</p></blockquote><p>具体的选项可以通过 <code>docker pull --help</code> 命令看到，这里我们说一下镜像名称的格式。</p><ul><li>Docker 镜像仓库地址：地址的格式一般是 &lt;域名/IP&gt;[:端口号]。默认地址是 Docker Hub。</li><li>仓库名：<code>（叫镜像名更容易理解一些，毕竟pull下来在本地就是镜像）</code> 这里的仓库名是两段式名称，即 &lt;用户名&gt;/&lt;软件名&gt;。对于 Docker Hub，如果不给出用户名，则默认为<code>library</code>，也就是官方镜像。</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure><p>这样就从官方镜像仓库中拉取了<code>ubuntu 18.04</code>版本的镜像。本地生成的镜像名称是<code>ubuntu</code> tag是<code>18.04</code></p><h2 id="列出本地镜像列表"><a href="#列出本地镜像列表" class="headerlink" title="列出本地镜像列表"></a>列出本地镜像列表</h2><p><code>docker images</code>或<code>docker image ls</code>命令可以查看本地所有镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure></p><p>可以看到本地所有镜像的列表，列表中有:仓库名(REPOSITORY)、标签(TAG)、镜像id(IMAGE ID)，创建时间(CREATED)，以及镜像大小(SIZE)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">ubuntu              14.04               90d5884b1ee0        5 days ago          188 MB</span><br><span class="line">php                 5.6                 f40e9e0f10c8        9 days ago          444.8 MB</span><br><span class="line">nginx               latest              6f8d099c3adc        12 days ago         182.7 MB</span><br><span class="line">mysql               5.6                 f2e8d6c772c0        3 weeks ago         324.6 MB</span><br><span class="line">httpd               latest              02ef73cf1bc0        3 weeks ago         194.4 MB</span><br><span class="line">ubuntu              15.10               4e3b13c8a266        4 weeks ago         136.3 MB</span><br><span class="line">hello-world         latest              690ed74de00f        6 months ago        960 B</span><br><span class="line">training/webapp     latest              6fae60ef3446        11 months ago       348.8 MB</span><br></pre></td></tr></table></figure></p><h2 id="推送镜像"><a href="#推送镜像" class="headerlink" title="推送镜像"></a>推送镜像</h2><p>有拉取就有推送，用户登录后可以通过<code>docker push</code>命令将自己的额镜像推送到<code>Docker Hub</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag ubuntu:18.04 username/ubuntu:18.04</span><br></pre></td></tr></table></figure></p><p>这样就把<code>ubuntu:18.04</code>推送到了<code>Docker Hub</code>上，自己的仓库空间下。其他人拉取的时候通过<code>username</code>来区分，就可以拉取你的镜像了。</p><h2 id="使用镜像"><a href="#使用镜像" class="headerlink" title="使用镜像"></a>使用镜像</h2><p>执行<code>docker run</code>命令就可以启动本地镜像，生成容器了。详细内容看《4.docker容器》</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.runoob.com/docker/docker-image-usage.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-image-usage.html</a><br><a href="https://yeasy.gitbooks.io/docker_practice/content/image/pull.html" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/content/image/pull.html</a><br><a href="https://yeasy.gitbooks.io/docker_practice/content/image/list.html" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/content/image/list.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;镜像在学习docker的过程中非常重要，创建出一个适用于自己的镜像，才能让业务系统准确运行。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="一点一点了解docker" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3docker/"/>
+    
+    
+      <category term="docker" scheme="https://www.xingjiehu.com/tags/docker/"/>
+    
+      <category term="docker image" scheme="https://www.xingjiehu.com/tags/docker-image/"/>
+    
+  </entry>
+  
+  <entry>
     <title>docker容器(Container)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckdse2t8p00bhswomtsvpqkbt/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckdse2t8p00bhswomtsvpqkbt/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/cke5hcp8700bnizomjoujswoa/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/cke5hcp8700bnizomjoujswoa/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -283,8 +313,8 @@
   
   <entry>
     <title>1.docker基础概念</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckdse2t8n00bgswomhf7anv57/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckdse2t8n00bgswomhf7anv57/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/cke5hcp8500bmizom8yoa24cy/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/cke5hcp8500bmizom8yoa24cy/</id>
     <published>2020-03-03T01:44:21.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -309,8 +339,8 @@
   
   <entry>
     <title>openresty+lua+kafka部署</title>
-    <link href="https://www.xingjiehu.com/2020/02/26/ckdse2t1x001rswom7goalco6/"/>
-    <id>https://www.xingjiehu.com/2020/02/26/ckdse2t1x001rswom7goalco6/</id>
+    <link href="https://www.xingjiehu.com/2020/02/26/cke5hcoz1001uizomgqg0zte5/"/>
+    <id>https://www.xingjiehu.com/2020/02/26/cke5hcoz1001uizomgqg0zte5/</id>
     <published>2020-02-26T09:59:07.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -338,8 +368,8 @@
   
   <entry>
     <title>python mysql-connector简要说明</title>
-    <link href="https://www.xingjiehu.com/2020/02/14/ckdse2t27002bswomc6dpu4lw/"/>
-    <id>https://www.xingjiehu.com/2020/02/14/ckdse2t27002bswomc6dpu4lw/</id>
+    <link href="https://www.xingjiehu.com/2020/02/14/cke5hcoz60024izomlldu2i2y/"/>
+    <id>https://www.xingjiehu.com/2020/02/14/cke5hcoz60024izomlldu2i2y/</id>
     <published>2020-02-14T08:38:09.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -371,8 +401,8 @@
   
   <entry>
     <title>linux 为php7.0安装redis扩展</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/ckdse2t1n0018swomb1kmjnvw/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/ckdse2t1n0018swomb1kmjnvw/</id>
+    <link href="https://www.xingjiehu.com/2020/02/12/cke5hcoyl0017izomr3xdp4gb/"/>
+    <id>https://www.xingjiehu.com/2020/02/12/cke5hcoyl0017izomr3xdp4gb/</id>
     <published>2020-02-12T11:52:59.000Z</published>
     <updated>2020-05-14T11:45:49.391Z</updated>
     
@@ -398,8 +428,8 @@
   
   <entry>
     <title>解决深度终端链接远程后假死问题</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/ckdse2t3n004kswoml98h61rp/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/ckdse2t3n004kswoml98h61rp/</id>
+    <link href="https://www.xingjiehu.com/2020/02/12/cke5hcp17004rizommssrtl6q/"/>
+    <id>https://www.xingjiehu.com/2020/02/12/cke5hcp17004rizommssrtl6q/</id>
     <published>2020-02-12T07:47:55.000Z</published>
     <updated>2020-03-21T09:28:32.518Z</updated>
     
@@ -425,8 +455,8 @@
   
   <entry>
     <title>shadowsocks客户端启动报错问题</title>
-    <link href="https://www.xingjiehu.com/2020/02/11/ckdse2t2b002iswom806oqe4r/"/>
-    <id>https://www.xingjiehu.com/2020/02/11/ckdse2t2b002iswom806oqe4r/</id>
+    <link href="https://www.xingjiehu.com/2020/02/11/cke5hcozg002hizomnqux1ah7/"/>
+    <id>https://www.xingjiehu.com/2020/02/11/cke5hcozg002hizomnqux1ah7/</id>
     <published>2020-02-11T03:11:19.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -448,8 +478,8 @@
   
   <entry>
     <title>nginx配置结构说明</title>
-    <link href="https://www.xingjiehu.com/2020/01/10/ckdse2t230023swom17wc0rn7/"/>
-    <id>https://www.xingjiehu.com/2020/01/10/ckdse2t230023swom17wc0rn7/</id>
+    <link href="https://www.xingjiehu.com/2020/01/10/cke5hcoyw001oizomswth7hbq/"/>
+    <id>https://www.xingjiehu.com/2020/01/10/cke5hcoyw001oizomswth7hbq/</id>
     <published>2020-01-10T06:20:08.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -471,8 +501,8 @@
   
   <entry>
     <title>limits.conf配置说明</title>
-    <link href="https://www.xingjiehu.com/2020/01/03/ckdse2t1l0015swomr9oiqji7/"/>
-    <id>https://www.xingjiehu.com/2020/01/03/ckdse2t1l0015swomr9oiqji7/</id>
+    <link href="https://www.xingjiehu.com/2020/01/03/cke5hcoyj0015izomjolnfr6p/"/>
+    <id>https://www.xingjiehu.com/2020/01/03/cke5hcoyj0015izomjolnfr6p/</id>
     <published>2020-01-03T09:30:52.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -495,8 +525,8 @@
   
   <entry>
     <title>ssh提速</title>
-    <link href="https://www.xingjiehu.com/2019/12/28/ckdse2t2l002xswoma1mcsxko/"/>
-    <id>https://www.xingjiehu.com/2019/12/28/ckdse2t2l002xswoma1mcsxko/</id>
+    <link href="https://www.xingjiehu.com/2019/12/28/cke5hcozm002pizomm18cjksy/"/>
+    <id>https://www.xingjiehu.com/2019/12/28/cke5hcozm002pizomm18cjksy/</id>
     <published>2019-12-28T09:31:20.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -515,34 +545,6 @@
     
     
       <category term="ssh" scheme="https://www.xingjiehu.com/tags/ssh/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>9.上传到远程仓库</title>
-    <link href="https://www.xingjiehu.com/2019/12/26/ckdse2t9a00cdswomkd7bt3tp/"/>
-    <id>https://www.xingjiehu.com/2019/12/26/ckdse2t9a00cdswomkd7bt3tp/</id>
-    <published>2019-12-26T12:32:20.000Z</published>
-    <updated>2020-03-24T08:51:44.141Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote><p>本故事纯属虚构，如有雷同，^0^那可太巧了</p></blockquote><p>这几天以来，小白学会了很多git的使用技巧。让他在应对问题的时候可以比较从容。比如需求反复修改。处理一些临时功能，后期要删除等比较繁琐的事情。</p><p>今天是小白负责的第一个项目发布的日子。</p><p>BOSS让小白把代码提交到远程仓库，这样负责发布的小伙伴就可以将代码进行发布了。</p><p>小白询问了老鸟如何将代码上传到github。回来开始操作。</p><ol><li>创建线上仓库</li></ol><p>进入github.com登录自己的账号，点击右上角的加号，选择<code>new repository</code></p><p><img src="/assets/images/posts/git_book/9-1.png" alt="new repository"></p><p>填写仓库名称然后点击绿色的<code>cteate repository</code>按钮</p><p><img src="/assets/images/posts/git_book/9-2.png" alt="create repository"></p><p>创建成功会有如下提示</p><p><img src="/assets/images/posts/git_book/9-3.png" alt="repository"></p><p>这时候说明已经创建成功了。这里会显示项目的远程地址，同时介绍了两种使用情况</p><ul><li>没有项目时可以先创建一个目录，进行<code>git init</code>初始化，然后用<code>git remote add</code>进行关联</li><li>如果已经有了本地项目直接使用<code>git remote add</code>进行关联</li></ul><p>小白一看我属于第二种情况。果断进入项目目录执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin https://github.com/shooke/learngit.git</span><br><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure></p><p>提示让<code>Username for &#39;https://github.com&#39;:</code>让输入git账号，小白果断输入，然后回车<br>再次提示<code>Password for &#39;https://xiaobai@163.com@github.com&#39;:</code>这里让输入密码</p><p>“奇怪怎么没有显示<code>*</code>啊”小白疑惑，这时候正好老鸟走过来<br>“BOSS让你上传代码，搞定了吗”，老鸟说<br>“就差一步了，为啥没法输入密码啊”小白问<br>“傻子，git命令行工具跟windows的cmd不一样的，这里是不会有星号提示的，但其实你的密码已经输入了，不行你可以试试”老鸟回答</p><p>小白重新输入密码，回车。出现了以下提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Counting objects: 26, done.</span><br><span class="line">Delta compression using up to 4 threads.</span><br><span class="line">Compressing objects: 100% (22/22), done.</span><br><span class="line">Writing objects: 100% (26/26), 4.36 KiB | 4.36 MiB/s, done.</span><br><span class="line">Total 26 (delta 7), reused 0 (delta 0)</span><br><span class="line">remote: Resolving deltas: 100% (7/7), done.</span><br><span class="line">To https://github.com/shooke/learngit.git</span><br><span class="line"> * [new branch]      master -&gt; master</span><br><span class="line">Branch &apos;master&apos; set up to track remote branch &apos;master&apos; from &apos;origin&apos;.</span><br></pre></td></tr></table></figure></p><p>“出现<code>[new branch]      master -&gt; master</code>是不是就表示上传成功了”小白问<br>“对啊，这个提示代表你本地的master分支，上传到了远程的master分支”老鸟回答</p><p>“啥事分支啊” 小白好奇的问<br>“分支啊，这可是好东西，多人协作全靠它了，我还有事明天给你讲” 老鸟回去忙自己的事了</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul><li><code>git remote add [shortname] [url]</code>可以让本地仓库和远程仓库建立联系。<code>shortname</code>是仓库名称，方便执行命令时使用，一般情况下都用<code>origin</code>；<code>url</code>就是远程仓库的地址，比如上面例子中的<code>https://github.com/shooke/learngit.git</code></li><li><code>git remote -v</code> 显示所有远程仓库</li><li><code>git remote show [remote]</code> 显示某个远程仓库的信息</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h2 id=&quot;小白的故事&quot;&gt;&lt;a href=&quot;#小白的故事&quot; class=&quot;headerlink&quot; title=&quot;小白的故事&quot;&gt;&lt;/a&gt;小白的故事&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;本故事纯属虚构，如有雷同，^0^那可太巧了&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;这几
-      
-    
-    </summary>
-    
-      <category term="一点一点了解git" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3git/"/>
-    
-    
-      <category term="git" scheme="https://www.xingjiehu.com/tags/git/"/>
     
   </entry>
   
