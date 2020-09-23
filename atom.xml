@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2020-08-22T09:45:57.289Z</updated>
+  <updated>2020-09-23T03:27:06.828Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,9 +17,42 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>微信开发unionid详解</title>
+    <link href="https://www.xingjiehu.com/2020/09/23/ckff3xd76004lt0om9po2l0ct/"/>
+    <id>https://www.xingjiehu.com/2020/09/23/ckff3xd76004lt0om9po2l0ct/</id>
+    <published>2020-09-23T02:26:11.000Z</published>
+    <updated>2020-09-23T03:27:06.828Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="unionid概况"><a href="#unionid概况" class="headerlink" title="unionid概况"></a>unionid概况</h2><p>微信开发过程中，经常会遇到，一个企业有多个小程序和公众号，在不同的小程序和公众号中，会有不同的openid。如果想要确定是同一个人，就需要用到unionid机制。</p><p>官方关于unionid的说明是这样的</p><p>公众号文档的描述</p><blockquote><p>开发者可通过OpenID来获取用户基本信息。特别需要注意的是，如果开发者拥有多个移动应用、网站应用和公众帐号，可通过获取用户基本信息中的unionid来区分用户的唯一性，因为只要是同一个微信开放平台帐号下的移动应用、网站应用和公众帐号，用户的unionid是唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，unionid是相同的。</p></blockquote><p>小程序文档的描述</p><blockquote><p>如果开发者拥有多个移动应用、网站应用、和公众帐号（包括小程序），可通过 UnionID 来区分用户的唯一性，因为只要是同一个微信开放平台帐号下的移动应用、网站应用和公众帐号（包括小程序），用户的 UnionID 是唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，UnionID是相同的。</p></blockquote><a id="more"></a><h2 id="开放平台"><a href="#开放平台" class="headerlink" title="开放平台"></a>开放平台</h2><p>提到unionid就不得不提微信开放平台了。</p><p><a href="https://open.weixin.qq.com" target="_blank" rel="noopener">https://open.weixin.qq.com</a> 微信开放平台，刚开始是为了让开发商，可以支持很多的公众号，而产生的。原因是使用appid和appsecret的方式对于。小程序或公众号的所有者来说太危险，相当于暴露了用户名和秘密。为了安全，出现了开放平台，授权时可以灵活的控制授予哪些权限。开放平台相比appid和appsecret方式还有很多特权。对于开发者是很好的。</p><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>官方的说明比较简单，开发过程中会遇到不少的坑。下面说一下注意事项</p><ol><li>公众号开发时只有用户关注了公众号，才可以获取到unionid</li></ol><p>如果用户不关注或取消关注公众号，是无法获取unionid的。</p><ol start="2"><li>必须将公众号或小程序绑定到开放平台才可以获取unionid</li></ol><p>进入开放平台，点管理中心。可以看到移动应用、网站应用、公众账号、小程序、第三方平台这些菜单。</p><p>如果要绑定公众号就，点击<code>公众账号</code>菜单，然后点击<code>绑定公众号</code>，填写公众账号、密码、验证码，点下一步，然后需要管理员扫码。之后就绑定了。</p><p>小程序的流程也差不多。</p><ol start="3"><li>一个公众号或小程序只能绑定一个开放平台</li></ol><p>这与unionid的生成机制有关，unionid是用户与开放平台之间的对应关系，如果绑定多个会造成混乱。</p><h3 id="unionid的值为什么不同"><a href="#unionid的值为什么不同" class="headerlink" title="unionid的值为什么不同"></a>unionid的值为什么不同</h3><p>第三方开放平台，开发过程中会遇到，同一个用户，在两个公众号下，获取到的unionid不同的情况。这种情况发送的原因是，两个公众号绑定到了不同的开放平台账号造成的。</p><p>不管是小程序还是公众号，一个开放平台的是有绑定限制的。比如小程序<code>相同主体：上限50个，绑定次数不限。不同主体：上限5个，本月还可以绑定5次。</code>，公众号<code>相同主体：上限50个，绑定次数不限。不同主体：上限5个，本月还可以绑定5次。</code><br>所以一般情况下，会让客户自己注册一个开放平台，然后把客户的公众号和小程序绑定上去。</p><p>比如<code>客户A</code>注册开放平台是<code>平台A</code>，注册小程序是<code>小程序A</code>，注册公众号是<code>公众号A</code>；<code>客户B</code>注册开放平台是<code>平台B</code>，注册小程序是<code>小程序B</code>，注册公众号是<code>公众号B</code>。</p><p>他们各自绑定各自的开放平台。<code>小程序A</code>和<code>公众号A</code>绑定<code>平台A</code>，<code>小程序B</code>和<code>公众号B</code>绑定<code>平台B</code>。</p><p>开发过程中会出现同一个微信用户，在<code>公众号A</code>和<code>小程序A</code>获取到的unionid是一样的比如都是；<code>公众号B</code>和<code>小程序B</code>中获取的unionid也是一样的。但是<code>公众号A</code>和<code>公众号B</code>获取的unionid不一样。</p><p>造成这样的原因是因为绑定的开放平台不用，每个unionid的产生，其实是用户跟开放平台的唯一对应关系。<code>小程序A</code>和<code>公众号A</code>绑定<code>平台A</code>因此他们的unionid一样，<code>公众号A</code>和<code>公众号B</code>绑定在不同的开放平台所以取到的unionid不一样。</p><p>还有一点要注意，开发公司A的开放平台<code>公司A平台</code>，同一个平台下创建多个<code>第三方平台</code>用于开发，这些<code>第三方平台</code>也会取到相同的unionid。</p><p>重要的事情说三遍<code>unionid与绑定的平台有关，unionid与绑定的平台有关，unionid与绑定的平台有关</code>，unionid其实是用户和开放平台账户的对应关系。</p><blockquote><p>有一点值得注意：如果有个开发公司B，在开放平台<code>公司B平台</code>，有公众号A授权的情况下，取到的unionid与<code>公司A平台</code>获取的公众号A的unionid也会一样。这其实也是为了便于微信做大数据 分析，知道一个用户所有行为。</p></blockquote><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://developers.weixin.qq.com/doc/offiaccount/User_Management/Get_users_basic_information_UnionID.html#UinonId" target="_blank" rel="noopener">https://developers.weixin.qq.com/doc/offiaccount/User_Management/Get_users_basic_information_UnionID.html#UinonId</a><br><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/union-id.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/union-id.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;unionid概况&quot;&gt;&lt;a href=&quot;#unionid概况&quot; class=&quot;headerlink&quot; title=&quot;unionid概况&quot;&gt;&lt;/a&gt;unionid概况&lt;/h2&gt;&lt;p&gt;微信开发过程中，经常会遇到，一个企业有多个小程序和公众号，在不同的小程序和公众号中，会有不同的openid。如果想要确定是同一个人，就需要用到unionid机制。&lt;/p&gt;
+&lt;p&gt;官方关于unionid的说明是这样的&lt;/p&gt;
+&lt;p&gt;公众号文档的描述&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;开发者可通过OpenID来获取用户基本信息。特别需要注意的是，如果开发者拥有多个移动应用、网站应用和公众帐号，可通过获取用户基本信息中的unionid来区分用户的唯一性，因为只要是同一个微信开放平台帐号下的移动应用、网站应用和公众帐号，用户的unionid是唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，unionid是相同的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;小程序文档的描述&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果开发者拥有多个移动应用、网站应用、和公众帐号（包括小程序），可通过 UnionID 来区分用户的唯一性，因为只要是同一个微信开放平台帐号下的移动应用、网站应用和公众帐号（包括小程序），用户的 UnionID 是唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，UnionID是相同的。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="微信" scheme="https://www.xingjiehu.com/tags/%E5%BE%AE%E4%BF%A1/"/>
+    
+      <category term="unionid" scheme="https://www.xingjiehu.com/tags/unionid/"/>
+    
+  </entry>
+  
+  <entry>
     <title>聊聊kafka</title>
-    <link href="https://www.xingjiehu.com/2020/08/22/cke5hcp0u0049izomiz7h71xe/"/>
-    <id>https://www.xingjiehu.com/2020/08/22/cke5hcp0u0049izomiz7h71xe/</id>
+    <link href="https://www.xingjiehu.com/2020/08/22/ckff3xd79004ot0omxpwzzj8t/"/>
+    <id>https://www.xingjiehu.com/2020/08/22/ckff3xd79004ot0omxpwzzj8t/</id>
     <published>2020-08-22T07:47:12.000Z</published>
     <updated>2020-08-22T09:45:57.289Z</updated>
     
@@ -48,8 +81,8 @@
   
   <entry>
     <title>python捕获异常堆栈信息</title>
-    <link href="https://www.xingjiehu.com/2020/08/13/cke5hcoz80028izomohva4ivi/"/>
-    <id>https://www.xingjiehu.com/2020/08/13/cke5hcoz80028izomohva4ivi/</id>
+    <link href="https://www.xingjiehu.com/2020/08/13/ckff3xd5s002lt0om2bbgizr1/"/>
+    <id>https://www.xingjiehu.com/2020/08/13/ckff3xd5s002lt0om2bbgizr1/</id>
     <published>2020-08-13T05:07:32.000Z</published>
     <updated>2020-08-13T06:01:23.013Z</updated>
     
@@ -72,8 +105,8 @@
   
   <entry>
     <title>springboot 配置</title>
-    <link href="https://www.xingjiehu.com/2020/06/12/cke5hcp9600cqizom1ype5amr/"/>
-    <id>https://www.xingjiehu.com/2020/06/12/cke5hcp9600cqizom1ype5amr/</id>
+    <link href="https://www.xingjiehu.com/2020/06/12/ckff3xdc900cpt0om5su6pfez/"/>
+    <id>https://www.xingjiehu.com/2020/06/12/ckff3xdc900cpt0om5su6pfez/</id>
     <published>2020-06-12T05:16:57.000Z</published>
     <updated>2020-06-12T05:54:52.607Z</updated>
     
@@ -97,8 +130,8 @@
   
   <entry>
     <title>nginx配置中root alias的区别</title>
-    <link href="https://www.xingjiehu.com/2020/05/15/cke5hcoza002aizom0tvs0inx/"/>
-    <id>https://www.xingjiehu.com/2020/05/15/cke5hcoza002aizom0tvs0inx/</id>
+    <link href="https://www.xingjiehu.com/2020/05/15/ckff3xd5d001yt0om9da46si1/"/>
+    <id>https://www.xingjiehu.com/2020/05/15/ckff3xd5d001yt0om9da46si1/</id>
     <published>2020-05-15T03:03:07.000Z</published>
     <updated>2020-06-10T05:10:22.456Z</updated>
     
@@ -128,8 +161,8 @@
   
   <entry>
     <title>linux硬盘管理工具baobab</title>
-    <link href="https://www.xingjiehu.com/2020/05/12/cke5hcoyr001hizom426s3d1p/"/>
-    <id>https://www.xingjiehu.com/2020/05/12/cke5hcoyr001hizom426s3d1p/</id>
+    <link href="https://www.xingjiehu.com/2020/05/12/ckff3xd57001pt0omqvvbgwt3/"/>
+    <id>https://www.xingjiehu.com/2020/05/12/ckff3xd57001pt0omqvvbgwt3/</id>
     <published>2020-05-12T02:38:57.000Z</published>
     <updated>2020-05-12T02:44:26.999Z</updated>
     
@@ -158,8 +191,8 @@
   
   <entry>
     <title>springboot+nginx websocket配置</title>
-    <link href="https://www.xingjiehu.com/2020/05/09/cke5hcp0o0043izomo28em1h0/"/>
-    <id>https://www.xingjiehu.com/2020/05/09/cke5hcp0o0043izomo28em1h0/</id>
+    <link href="https://www.xingjiehu.com/2020/05/09/ckff3xd5x002tt0omaandttwk/"/>
+    <id>https://www.xingjiehu.com/2020/05/09/ckff3xd5x002tt0omaandttwk/</id>
     <published>2020-05-09T06:03:26.000Z</published>
     <updated>2020-05-09T06:10:25.138Z</updated>
     
@@ -185,8 +218,8 @@
   
   <entry>
     <title>10.克隆远程仓库</title>
-    <link href="https://www.xingjiehu.com/2020/04/22/cke5hcp8q00c9izom1m7gog7r/"/>
-    <id>https://www.xingjiehu.com/2020/04/22/cke5hcp8q00c9izom1m7gog7r/</id>
+    <link href="https://www.xingjiehu.com/2020/04/22/ckff3xdbm00bvt0omshnljxrj/"/>
+    <id>https://www.xingjiehu.com/2020/04/22/ckff3xdbm00bvt0omshnljxrj/</id>
     <published>2020-04-22T12:32:20.000Z</published>
     <updated>2020-05-09T06:02:34.883Z</updated>
     
@@ -213,8 +246,8 @@
   
   <entry>
     <title>让nginx支持flv文件播放</title>
-    <link href="https://www.xingjiehu.com/2020/03/25/cke5hcp18004tizomi18mvl6a/"/>
-    <id>https://www.xingjiehu.com/2020/03/25/cke5hcp18004tizomi18mvl6a/</id>
+    <link href="https://www.xingjiehu.com/2020/03/25/ckff3xd7d004yt0omma2v6j27/"/>
+    <id>https://www.xingjiehu.com/2020/03/25/ckff3xd7d004yt0omma2v6j27/</id>
     <published>2020-03-25T02:51:34.000Z</published>
     <updated>2020-03-25T09:18:11.624Z</updated>
     
@@ -239,33 +272,9 @@
   </entry>
   
   <entry>
-    <title>docker仓库(Repository)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/cke5hcp8000biizomwnprsqdz/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/cke5hcp8000biizomwnprsqdz/</id>
-    <published>2020-03-03T03:12:37.000Z</published>
-    <updated>2020-03-21T09:28:32.509Z</updated>
-    
-    <content type="html"><![CDATA[<p>仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>。<br>大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。</p><a id="more"></a><h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>在 <a href="https://hub.docker.com" target="_blank" rel="noopener">https://hub.docker.com</a> 免费注册一个 Docker 账号。</p><h2 id="登录和退出"><a href="#登录和退出" class="headerlink" title="登录和退出"></a>登录和退出</h2><p>执行<code>docker login</code>命令，会提示输入用户名和密码，输入后就登录了。注意，输入密码时不会有任何显示，windows上一般显示<code>*</code>,但linux不会有显示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker login</span><br><span class="line">Login with your Docker ID to push and pull images from Docker Hub. If you don&apos;t have a Docker ID, head over to https://hub.docker.com to create one.</span><br><span class="line">Username: shooke</span><br><span class="line">Password:</span><br></pre></td></tr></table></figure></p><p>执行<code>docker logout</code>就可以退出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logout</span><br></pre></td></tr></table></figure></p><h2 id="查找镜像"><a href="#查找镜像" class="headerlink" title="查找镜像"></a>查找镜像</h2><p>可以通过<code>docker search</code>命令查找官方仓库中的镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker search ubuntu</span><br><span class="line">NAME                                                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line">ubuntu                                                    Ubuntu is a Debian-based Linux operating sys…   10575               [OK]                </span><br><span class="line">dorowu/ubuntu-desktop-lxde-vnc                            Docker image to provide HTML5 VNC interface …   398                                     [OK]</span><br><span class="line">rastasheep/ubuntu-sshd                                    Dockerized SSH service, built on top of offi…   243                                     [OK]</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p><h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><p>在仓库中找到自己想要的镜像后，就可以下载使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure></p><p>这样就可以从官方仓库下载<code>ubuntu:18.04</code>镜像到本地使用。<br>关于镜像的详细内容看《3.docker镜像》</p><p>#参考资料<br><a href="https://www.runoob.com/docker/docker-repository.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-repository.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  &lt;a href=&quot;https://hub.docker.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Docker Hub&lt;/a&gt;。&lt;br&gt;大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="一点一点了解docker" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3docker/"/>
-    
-    
-      <category term="docker" scheme="https://www.xingjiehu.com/tags/docker/"/>
-    
-      <category term="docker repository" scheme="https://www.xingjiehu.com/tags/docker-repository/"/>
-    
-  </entry>
-  
-  <entry>
     <title>docker镜像(Image)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/cke5hcp8200bjizom7j1r7xrk/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/cke5hcp8200bjizom7j1r7xrk/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckff3xdbf00bnt0om0bqhk24w/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckff3xdbf00bnt0om0bqhk24w/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -287,9 +296,33 @@
   </entry>
   
   <entry>
+    <title>docker仓库(Repository)</title>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckff3xdbg00bqt0om7404x0pb/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckff3xdbg00bqt0om7404x0pb/</id>
+    <published>2020-03-03T03:12:37.000Z</published>
+    <updated>2020-03-21T09:28:32.509Z</updated>
+    
+    <content type="html"><![CDATA[<p>仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>。<br>大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。</p><a id="more"></a><h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>在 <a href="https://hub.docker.com" target="_blank" rel="noopener">https://hub.docker.com</a> 免费注册一个 Docker 账号。</p><h2 id="登录和退出"><a href="#登录和退出" class="headerlink" title="登录和退出"></a>登录和退出</h2><p>执行<code>docker login</code>命令，会提示输入用户名和密码，输入后就登录了。注意，输入密码时不会有任何显示，windows上一般显示<code>*</code>,但linux不会有显示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker login</span><br><span class="line">Login with your Docker ID to push and pull images from Docker Hub. If you don&apos;t have a Docker ID, head over to https://hub.docker.com to create one.</span><br><span class="line">Username: shooke</span><br><span class="line">Password:</span><br></pre></td></tr></table></figure></p><p>执行<code>docker logout</code>就可以退出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logout</span><br></pre></td></tr></table></figure></p><h2 id="查找镜像"><a href="#查找镜像" class="headerlink" title="查找镜像"></a>查找镜像</h2><p>可以通过<code>docker search</code>命令查找官方仓库中的镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker search ubuntu</span><br><span class="line">NAME                                                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line">ubuntu                                                    Ubuntu is a Debian-based Linux operating sys…   10575               [OK]                </span><br><span class="line">dorowu/ubuntu-desktop-lxde-vnc                            Docker image to provide HTML5 VNC interface …   398                                     [OK]</span><br><span class="line">rastasheep/ubuntu-sshd                                    Dockerized SSH service, built on top of offi…   243                                     [OK]</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p><h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><p>在仓库中找到自己想要的镜像后，就可以下载使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure></p><p>这样就可以从官方仓库下载<code>ubuntu:18.04</code>镜像到本地使用。<br>关于镜像的详细内容看《3.docker镜像》</p><p>#参考资料<br><a href="https://www.runoob.com/docker/docker-repository.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-repository.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  &lt;a href=&quot;https://hub.docker.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Docker Hub&lt;/a&gt;。&lt;br&gt;大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="一点一点了解docker" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3docker/"/>
+    
+    
+      <category term="docker" scheme="https://www.xingjiehu.com/tags/docker/"/>
+    
+      <category term="docker repository" scheme="https://www.xingjiehu.com/tags/docker-repository/"/>
+    
+  </entry>
+  
+  <entry>
     <title>docker容器(Container)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/cke5hcp8700bnizomjoujswoa/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/cke5hcp8700bnizomjoujswoa/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckff3xdbj00bst0omucbe1akd/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckff3xdbj00bst0omucbe1akd/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -313,8 +346,8 @@
   
   <entry>
     <title>1.docker基础概念</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/cke5hcp8500bmizom8yoa24cy/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/cke5hcp8500bmizom8yoa24cy/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckff3xdbe00bmt0omsw3xlf41/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckff3xdbe00bmt0omsw3xlf41/</id>
     <published>2020-03-03T01:44:21.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -339,8 +372,8 @@
   
   <entry>
     <title>openresty+lua+kafka部署</title>
-    <link href="https://www.xingjiehu.com/2020/02/26/cke5hcoz1001uizomgqg0zte5/"/>
-    <id>https://www.xingjiehu.com/2020/02/26/cke5hcoz1001uizomgqg0zte5/</id>
+    <link href="https://www.xingjiehu.com/2020/02/26/ckff3xd5e0022t0omszex7c79/"/>
+    <id>https://www.xingjiehu.com/2020/02/26/ckff3xd5e0022t0omszex7c79/</id>
     <published>2020-02-26T09:59:07.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -368,8 +401,8 @@
   
   <entry>
     <title>python mysql-connector简要说明</title>
-    <link href="https://www.xingjiehu.com/2020/02/14/cke5hcoz60024izomlldu2i2y/"/>
-    <id>https://www.xingjiehu.com/2020/02/14/cke5hcoz60024izomlldu2i2y/</id>
+    <link href="https://www.xingjiehu.com/2020/02/14/ckff3xd5f0025t0om9p1trmyx/"/>
+    <id>https://www.xingjiehu.com/2020/02/14/ckff3xd5f0025t0om9p1trmyx/</id>
     <published>2020-02-14T08:38:09.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -401,8 +434,8 @@
   
   <entry>
     <title>linux 为php7.0安装redis扩展</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/cke5hcoyl0017izomr3xdp4gb/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/cke5hcoyl0017izomr3xdp4gb/</id>
+    <link href="https://www.xingjiehu.com/2020/02/12/ckff3xd4x0018t0omfjm53oec/"/>
+    <id>https://www.xingjiehu.com/2020/02/12/ckff3xd4x0018t0omfjm53oec/</id>
     <published>2020-02-12T11:52:59.000Z</published>
     <updated>2020-05-14T11:45:49.391Z</updated>
     
@@ -428,8 +461,8 @@
   
   <entry>
     <title>解决深度终端链接远程后假死问题</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/cke5hcp17004rizommssrtl6q/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/cke5hcp17004rizommssrtl6q/</id>
+    <link href="https://www.xingjiehu.com/2020/02/12/ckff3xd7c004vt0ommigq0qbt/"/>
+    <id>https://www.xingjiehu.com/2020/02/12/ckff3xd7c004vt0ommigq0qbt/</id>
     <published>2020-02-12T07:47:55.000Z</published>
     <updated>2020-03-21T09:28:32.518Z</updated>
     
@@ -455,8 +488,8 @@
   
   <entry>
     <title>shadowsocks客户端启动报错问题</title>
-    <link href="https://www.xingjiehu.com/2020/02/11/cke5hcozg002hizomnqux1ah7/"/>
-    <id>https://www.xingjiehu.com/2020/02/11/cke5hcozg002hizomnqux1ah7/</id>
+    <link href="https://www.xingjiehu.com/2020/02/11/ckff3xd5n002gt0om06rezysy/"/>
+    <id>https://www.xingjiehu.com/2020/02/11/ckff3xd5n002gt0om06rezysy/</id>
     <published>2020-02-11T03:11:19.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -478,8 +511,8 @@
   
   <entry>
     <title>nginx配置结构说明</title>
-    <link href="https://www.xingjiehu.com/2020/01/10/cke5hcoyw001oizomswth7hbq/"/>
-    <id>https://www.xingjiehu.com/2020/01/10/cke5hcoyw001oizomswth7hbq/</id>
+    <link href="https://www.xingjiehu.com/2020/01/10/ckff3xd56001nt0omn02uw2b7/"/>
+    <id>https://www.xingjiehu.com/2020/01/10/ckff3xd56001nt0omn02uw2b7/</id>
     <published>2020-01-10T06:20:08.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -501,8 +534,8 @@
   
   <entry>
     <title>limits.conf配置说明</title>
-    <link href="https://www.xingjiehu.com/2020/01/03/cke5hcoyj0015izomjolnfr6p/"/>
-    <id>https://www.xingjiehu.com/2020/01/03/cke5hcoyj0015izomjolnfr6p/</id>
+    <link href="https://www.xingjiehu.com/2020/01/03/ckff3xd4w0015t0omv5zla7zd/"/>
+    <id>https://www.xingjiehu.com/2020/01/03/ckff3xd4w0015t0omv5zla7zd/</id>
     <published>2020-01-03T09:30:52.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -520,31 +553,6 @@
       <category term="elasticsearch" scheme="https://www.xingjiehu.com/tags/elasticsearch/"/>
     
       <category term="limits.conf" scheme="https://www.xingjiehu.com/tags/limits-conf/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ssh提速</title>
-    <link href="https://www.xingjiehu.com/2019/12/28/cke5hcozm002pizomm18cjksy/"/>
-    <id>https://www.xingjiehu.com/2019/12/28/cke5hcozm002pizomm18cjksy/</id>
-    <published>2019-12-28T09:31:20.000Z</published>
-    <updated>2020-03-21T09:28:32.514Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近ssh链接超慢，但是ping发现网速还是很快的。记录一下解决方法<br>修改<code>/etc/ssh/sshd_config</code>两个参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UseDNS no</span><br><span class="line">GSSAPIAuthentication no</span><br></pre></td></tr></table></figure></p><p>保存后重启ssh服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart sshd</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;最近ssh链接超慢，但是ping发现网速还是很快的。记录一下解决方法&lt;br&gt;修改&lt;code&gt;/etc/ssh/sshd_config&lt;/code&gt;两个参数&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gu
-      
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="ssh" scheme="https://www.xingjiehu.com/tags/ssh/"/>
     
   </entry>
   

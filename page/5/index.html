@@ -346,7 +346,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/13/cke5hcp06003gizomhc5gkk8u/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/17/ckff3xd650038t0omsb3vpmxk/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -366,7 +366,180 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/13/cke5hcp06003gizomhc5gkk8u/" class="post-title-link" itemprop="url">vue-cli3预渲染处理</a>
+                <a href="/2019/07/17/ckff3xd650038t0omsb3vpmxk/" class="post-title-link" itemprop="url">url添加参数</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-17 11:16:16" itemprop="dateCreated datePublished" datetime="2019-07-17T11:16:16+08:00">2019-07-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-03-21 17:28:32" itemprop="dateModified" datetime="2020-03-21T17:28:32+08:00">2020-03-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>微信开发过程中经常用到获取openid后地址跳转，但是要保持原地址的所有参数，再添加上openid参数。函数很简单，也很实用，记录一下。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function urlAddParam($url, $params)</span><br><span class="line">    &#123;</span><br><span class="line">        $urlParse = parse_url($url);</span><br><span class="line"></span><br><span class="line">        // url协议</span><br><span class="line">        $scheme = empty($urlParse[&apos;scheme&apos;]) ? &apos;&apos; : $urlParse[&apos;scheme&apos;] . &apos;://&apos;;</span><br><span class="line">        // host</span><br><span class="line">        $host = empty($urlParse[&apos;host&apos;]) ? &apos;&apos; : $urlParse[&apos;host&apos;];</span><br><span class="line">        // 端口</span><br><span class="line">        $port = empty($urlParse[&apos;port&apos;]) ? &apos;&apos; : &apos;:&apos; . $urlParse[&apos;port&apos;];</span><br><span class="line">        // 执行文件</span><br><span class="line">        $path = empty($urlParse[&apos;path&apos;]) ? &apos;&apos; : $urlParse[&apos;path&apos;];</span><br><span class="line">        // 请求参数</span><br><span class="line">        $queryStr = $urlParse[&apos;query&apos;] ?? &apos;&apos;;</span><br><span class="line">        parse_str($queryStr, $queryArr);</span><br><span class="line">        $queryArr = array_merge($queryArr, $params);</span><br><span class="line">        $query = http_build_query($queryArr);</span><br><span class="line">        $query = empty($query) ? &apos;&apos; : &apos;?&apos; . $query;</span><br><span class="line">        // 锚点链接</span><br><span class="line">        $fragment = empty($urlParse[&apos;fragment&apos;]) ? &apos;&apos; : &apos;#&apos; . $urlParse[&apos;fragment&apos;];</span><br><span class="line"></span><br><span class="line">        return $scheme . $host . $port . $path . $query . $fragment;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    echo urlAddParam(&apos;https://gitee.com/shooke/codes/new&apos;, [&apos;openid&apos;=&gt;&apos;sdfsdfoihnwoixchow==&apos;]);</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/13/ckff3xd6k003xt0om9jg82jv2/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/13/ckff3xd6k003xt0om9jg82jv2/" class="post-title-link" itemprop="url">vue-cli3预渲染处理</a>
               
             
           </h1>
@@ -465,7 +638,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/13/cke5hcp06003gizomhc5gkk8u/#more" rel="contents">
+              <a class="btn" href="/2019/07/13/ckff3xd6k003xt0om9jg82jv2/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -525,7 +698,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/08/cke5hcp03003cizommjbyci1s/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/08/ckff3xd6e003mt0omkivhrq3y/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -545,7 +718,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/08/cke5hcp03003cizommjbyci1s/" class="post-title-link" itemprop="url">vue下使用ueditor，文件直传七牛踩坑记录</a>
+                <a href="/2019/07/08/ckff3xd6e003mt0omkivhrq3y/" class="post-title-link" itemprop="url">vue下使用ueditor，文件直传七牛踩坑记录</a>
               
             
           </h1>
@@ -644,7 +817,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/08/cke5hcp03003cizommjbyci1s/#more" rel="contents">
+              <a class="btn" href="/2019/07/08/ckff3xd6e003mt0omkivhrq3y/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -704,7 +877,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/05/cke5hcozc002dizom4y4qza9y/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/05/ckff3xd5k002et0omgtp3b0xp/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -724,7 +897,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/05/cke5hcozc002dizom4y4qza9y/" class="post-title-link" itemprop="url">require.context使用说明</a>
+                <a href="/2019/07/05/ckff3xd5k002et0omgtp3b0xp/" class="post-title-link" itemprop="url">require.context使用说明</a>
               
             
           </h1>
@@ -824,7 +997,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/05/cke5hcozc002dizom4y4qza9y/#more" rel="contents">
+              <a class="btn" href="/2019/07/05/ckff3xd5k002et0omgtp3b0xp/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -884,7 +1057,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/24/cke5hcoze002fizomn7s33vgh/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/24/ckff3xd5p002it0omnr8h7mwk/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -904,7 +1077,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/24/cke5hcoze002fizomn7s33vgh/" class="post-title-link" itemprop="url">shadowsocks-deepin pac模式失效问题解决方案</a>
+                <a href="/2019/06/24/ckff3xd5p002it0omnr8h7mwk/" class="post-title-link" itemprop="url">shadowsocks-deepin pac模式失效问题解决方案</a>
               
             
           </h1>
@@ -1004,7 +1177,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/06/24/cke5hcoze002fizomn7s33vgh/#more" rel="contents">
+              <a class="btn" href="/2019/06/24/ckff3xd5p002it0omnr8h7mwk/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1064,7 +1237,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/20/cke5hcozz0037izom5wfauzhx/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/20/ckff3xd6a003ft0omr6rbkkka/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1084,7 +1257,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/20/cke5hcozz0037izom5wfauzhx/" class="post-title-link" itemprop="url">vscode打造php开发环境</a>
+                <a href="/2019/06/20/ckff3xd6a003ft0omr6rbkkka/" class="post-title-link" itemprop="url">vscode打造php开发环境</a>
               
             
           </h1>
@@ -1185,7 +1358,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/06/20/cke5hcozz0037izom5wfauzhx/#more" rel="contents">
+              <a class="btn" href="/2019/06/20/ckff3xd6a003ft0omr6rbkkka/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1245,7 +1418,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/20/cke5hcoz40021izomlsqlwnjd/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/20/ckff3xd5h0028t0omn9v37f06/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1265,7 +1438,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/20/cke5hcoz40021izomlsqlwnjd/" class="post-title-link" itemprop="url">pipenv与pyenv、pyenv-virtualenv的关系和使用</a>
+                <a href="/2019/06/20/ckff3xd5h0028t0omn9v37f06/" class="post-title-link" itemprop="url">pipenv与pyenv、pyenv-virtualenv的关系和使用</a>
               
             
           </h1>
@@ -1376,7 +1549,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/06/20/cke5hcoz40021izomlsqlwnjd/#more" rel="contents">
+              <a class="btn" href="/2019/06/20/ckff3xd5h0028t0omn9v37f06/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1436,7 +1609,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/06/cke5hcozl002mizomlxc0ujdy/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/06/ckff3xd5t002nt0oma7754l2i/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1456,7 +1629,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/06/cke5hcozl002mizomlxc0ujdy/" class="post-title-link" itemprop="url">ssh使用详解</a>
+                <a href="/2019/06/06/ckff3xd5t002nt0oma7754l2i/" class="post-title-link" itemprop="url">ssh使用详解</a>
               
             
           </h1>
@@ -1555,7 +1728,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/06/06/cke5hcozl002mizomlxc0ujdy/#more" rel="contents">
+              <a class="btn" href="/2019/06/06/ckff3xd5t002nt0oma7754l2i/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1615,7 +1788,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/30/cke5hcoxo0006izomsux6zke9/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/30/ckff3xd3v0002t0omhb5y7101/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1635,7 +1808,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/30/cke5hcoxo0006izomsux6zke9/" class="post-title-link" itemprop="url">GIT批量删除远程标签</a>
+                <a href="/2019/05/30/ckff3xd3v0002t0omhb5y7101/" class="post-title-link" itemprop="url">GIT批量删除远程标签</a>
               
             
           </h1>
@@ -1735,7 +1908,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/05/30/cke5hcoxo0006izomsux6zke9/#more" rel="contents">
+              <a class="btn" href="/2019/05/30/ckff3xd3v0002t0omhb5y7101/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1795,7 +1968,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/23/cke5hcp08003jizomk319wf8g/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/23/ckff3xd6o003zt0oma1cfy3j2/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1815,7 +1988,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/23/cke5hcp08003jizomk319wf8g/" class="post-title-link" itemprop="url">vuex getters不更新的奇怪现象解决方案</a>
+                <a href="/2019/05/23/ckff3xd6o003zt0oma1cfy3j2/" class="post-title-link" itemprop="url">vuex getters不更新的奇怪现象解决方案</a>
               
             
           </h1>
@@ -1914,7 +2087,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/05/23/cke5hcp08003jizomk319wf8g/#more" rel="contents">
+              <a class="btn" href="/2019/05/23/ckff3xd6o003zt0oma1cfy3j2/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1923,186 +2096,6 @@
         
       
     </p></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/17/cke5hcozq002wizomfk1s3r0v/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/17/cke5hcozq002wizomfk1s3r0v/" class="post-title-link" itemprop="url">sublime text 3安装插件</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-17 11:26:28" itemprop="dateCreated datePublished" datetime="2019-05-17T11:26:28+08:00">2019-05-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-03-21 17:28:32" itemprop="dateModified" datetime="2020-03-21T17:28:32+08:00">2020-03-21</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>sublime相比其他编辑器最大的优点就是占用内存小。一直用idea和vscode。好久没用sublime了，今天安装了一下新版本3.2.1，想要用它开发vue。安装插件的过程中踩了几个小坑。</p>
-<h2 id="安装package-control"><a href="#安装package-control" class="headerlink" title="安装package control"></a>安装package control</h2><p>使用网上说的，控制台安装方式，按<code>ctrl + \</code> `，输入下面的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,os; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &apos;wb&apos;).write(urllib.request.urlopen( &apos;http://sublime.wbond.net/&apos; + pf.replace(&apos; &apos;,&apos;%20&apos;)).read())</span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/17/cke5hcozq002wizomfk1s3r0v/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
 
     
 
@@ -2186,7 +2179,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">76</span>
+                    <span class="site-state-item-count">77</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2428,7 +2421,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">102</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">104</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
