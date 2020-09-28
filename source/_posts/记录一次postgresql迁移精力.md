@@ -8,6 +8,7 @@ date: 2020-09-29 00:24:15
 ---
 数据库服务器硬盘满了，需要将数据迁移到另一台数据库，做一下记录
 
+
 ## 安装
 去postgresql官网https://www.postgresql.org/download/，选择操作系统，我这里选择的是ubuntu。
 然后根据说明进行安装
@@ -28,6 +29,8 @@ sudo apt-get -y install postgresql
 值得注意的是，安装时一定要选择与老数据库相同的版本
 
 安装完成后，就可以会自动添加一个postgres的系统用户，该用户没有密码如果想要密码可以自行设置
+
+<!-- more -->
 
 ## 登录postgresql，配置密码
 刚安装完，一定要使用`postgres`用户才可以登录
