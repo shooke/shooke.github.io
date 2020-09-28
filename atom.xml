@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2020-09-23T03:27:06.828Z</updated>
+  <updated>2020-09-28T16:58:23.080Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,11 +17,36 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>记录一次postgresql迁移精力</title>
+    <link href="https://www.xingjiehu.com/2020/09/29/ckfms0gmi004rusom1owril36/"/>
+    <id>https://www.xingjiehu.com/2020/09/29/ckfms0gmi004rusom1owril36/</id>
+    <published>2020-09-28T16:24:15.000Z</published>
+    <updated>2020-09-28T16:58:23.080Z</updated>
+    
+    <content type="html"><![CDATA[<p>数据库服务器硬盘满了，需要将数据迁移到另一台数据库，做一下记录</p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>去postgresql官网<a href="https://www.postgresql.org/download/，选择操作系统，我这里选择的是ubuntu。" target="_blank" rel="noopener">https://www.postgresql.org/download/，选择操作系统，我这里选择的是ubuntu。</a><br>然后根据说明进行安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Create the file repository configuration:</span><br><span class="line">sudo sh -c &apos;echo &quot;deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&quot; &gt; /etc/apt/sources.list.d/pgdg.list&apos;</span><br><span class="line"></span><br><span class="line"># Import the repository signing key:</span><br><span class="line">wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"># Update the package lists:</span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"># Install the latest version of PostgreSQL.</span><br><span class="line"># If you want a specific version, use &apos;postgresql-12&apos; or similar instead of &apos;postgresql&apos;:</span><br><span class="line">sudo apt-get -y install postgresql</span><br></pre></td></tr></table></figure></p><p>值得注意的是，安装时一定要选择与老数据库相同的版本</p><p>安装完成后，就可以会自动添加一个postgres的系统用户，该用户没有密码如果想要密码可以自行设置</p><a id="more"></a><h2 id="登录postgresql，配置密码"><a href="#登录postgresql，配置密码" class="headerlink" title="登录postgresql，配置密码"></a>登录postgresql，配置密码</h2><p>刚安装完，一定要使用<code>postgres</code>用户才可以登录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo su - postgres</span><br><span class="line">$ psql</span><br><span class="line">psql (9.6.19)</span><br><span class="line">SSL 连接（协议：TLSv1.2，密码：ECDHE-RSA-AES256-GCM-SHA384，密钥位：256，压缩：关闭)</span><br><span class="line">输入 &quot;help&quot; 来获取帮助信息.</span><br><span class="line"></span><br><span class="line">postgres=#</span><br></pre></td></tr></table></figure></p><p>出现<code>postgres=#</code>标示已经登录到数据库了。非常简单。</p><p><code>psql</code>命令其实是相当于<code>psql -U postgres -h localhost</code>，因为<code>psql</code>如果不指定用户会使用与系统账户相同的数据库账号。<br>一定要注意哦，系统中的<code>postgres</code>和数据库的<code>postgres</code>虽然名字一样，但不是一回事一个属于系统，一个数据数据库。<br>接下来给数据库的<code>postgres</code>账号设置密码，这样我们就可以在不切换系统<code>postgres</code>账号的情况下登录了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">postgres=# alter user postgres with password &apos;123456&apos;</span><br></pre></td></tr></table></figure></p><p>这样就设置好了密码。</p><h2 id="配置外网访问"><a href="#配置外网访问" class="headerlink" title="配置外网访问"></a>配置外网访问</h2><p>默认postgresql是不允许外网访问的，我们需要修改两个文件。</p><ol><li>pg_hba.conf：配置数据库的访问权限</li><li>postgresql.conf：配置数据库服务的相关参数</li></ol><p>首先我们退出数据库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">postgres=# \q</span><br></pre></td></tr></table></figure></p><p>然后切换回root账号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su - root</span><br></pre></td></tr></table></figure></p><p>接下来修改配置文件，修改<code>pg_hba.conf</code>，增加一条<code>host  all  all  0.0.0.0/0   md5</code>规则</p><p>修改<code>postgresql.conf</code> 找到<code>#listen_addresses=’localhost’</code>，修改成<code>listen_addresses=’*’</code></p><p>修改完成重启服务</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service postgres restart</span><br></pre></td></tr></table></figure><p>这样我们就可以在其他电脑上用<code>psql -h serverip -U postgres</code>登录数据库管理了</p><h2 id="修改数据存储位置"><a href="#修改数据存储位置" class="headerlink" title="修改数据存储位置"></a>修改数据存储位置</h2><ol><li>首先需要停止服务执行<code>service postgresql stop</code></li><li><p>将原来的数据库目录复制新目录<br>打开<code>postgresql.conf</code>文件找到<code>data_directory</code>看一下当前数据库存放目录</p><p>将目录复制到想保持的地方，不可以使用cp那样会缺少属性，无法启动数据库，需要用<code>rsync</code>命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -av /var/lib/postgresql/9.6/main /mnt/main</span><br></pre></td></tr></table></figure><p><code>/var/lib/postgresql/9.6/main</code>是<code>data_directory</code>中个默认的设置，将其修改为新目录<code>/mnt/main</code></p></li><li>重启服务<code>service postgresql</code></li></ol><p>这样数据存储位置就生效了</p><h2 id="导入老数据"><a href="#导入老数据" class="headerlink" title="导入老数据"></a>导入老数据</h2><p>执行命令<code>psql -h localhost -U postgres 数据库名 &lt; 备份文件</code> 导入数据</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;数据库服务器硬盘满了，需要将数据迁移到另一台数据库，做一下记录&lt;/p&gt;
+&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;p&gt;去postgresql官网&lt;a href=&quot;https://www.postgresql.org/download/，选择操作系统，我这里选择的是ubuntu。&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.postgresql.org/download/，选择操作系统，我这里选择的是ubuntu。&lt;/a&gt;&lt;br&gt;然后根据说明进行安装&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# Create the file repository configuration:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo sh -c &amp;apos;echo &amp;quot;deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&amp;quot; &amp;gt; /etc/apt/sources.list.d/pgdg.list&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# Import the repository signing key:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# Update the package lists:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo apt-get update&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# Install the latest version of PostgreSQL.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# If you want a specific version, use &amp;apos;postgresql-12&amp;apos; or similar instead of &amp;apos;postgresql&amp;apos;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo apt-get -y install postgresql&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;值得注意的是，安装时一定要选择与老数据库相同的版本&lt;/p&gt;
+&lt;p&gt;安装完成后，就可以会自动添加一个postgres的系统用户，该用户没有密码如果想要密码可以自行设置&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="postgresql" scheme="https://www.xingjiehu.com/tags/postgresql/"/>
+    
+  </entry>
+  
+  <entry>
     <title>微信开发unionid详解</title>
-    <link href="https://www.xingjiehu.com/2020/09/23/ckff3xd76004lt0om9po2l0ct/"/>
-    <id>https://www.xingjiehu.com/2020/09/23/ckff3xd76004lt0om9po2l0ct/</id>
+    <link href="https://www.xingjiehu.com/2020/09/23/ckfms0gm6004ausom6b8izm0l/"/>
+    <id>https://www.xingjiehu.com/2020/09/23/ckfms0gm6004ausom6b8izm0l/</id>
     <published>2020-09-23T02:26:11.000Z</published>
-    <updated>2020-09-23T03:27:06.828Z</updated>
+    <updated>2020-09-28T16:23:54.363Z</updated>
     
     <content type="html"><![CDATA[<h2 id="unionid概况"><a href="#unionid概况" class="headerlink" title="unionid概况"></a>unionid概况</h2><p>微信开发过程中，经常会遇到，一个企业有多个小程序和公众号，在不同的小程序和公众号中，会有不同的openid。如果想要确定是同一个人，就需要用到unionid机制。</p><p>官方关于unionid的说明是这样的</p><p>公众号文档的描述</p><blockquote><p>开发者可通过OpenID来获取用户基本信息。特别需要注意的是，如果开发者拥有多个移动应用、网站应用和公众帐号，可通过获取用户基本信息中的unionid来区分用户的唯一性，因为只要是同一个微信开放平台帐号下的移动应用、网站应用和公众帐号，用户的unionid是唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，unionid是相同的。</p></blockquote><p>小程序文档的描述</p><blockquote><p>如果开发者拥有多个移动应用、网站应用、和公众帐号（包括小程序），可通过 UnionID 来区分用户的唯一性，因为只要是同一个微信开放平台帐号下的移动应用、网站应用和公众帐号（包括小程序），用户的 UnionID 是唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，UnionID是相同的。</p></blockquote><a id="more"></a><h2 id="开放平台"><a href="#开放平台" class="headerlink" title="开放平台"></a>开放平台</h2><p>提到unionid就不得不提微信开放平台了。</p><p><a href="https://open.weixin.qq.com" target="_blank" rel="noopener">https://open.weixin.qq.com</a> 微信开放平台，刚开始是为了让开发商，可以支持很多的公众号，而产生的。原因是使用appid和appsecret的方式对于。小程序或公众号的所有者来说太危险，相当于暴露了用户名和秘密。为了安全，出现了开放平台，授权时可以灵活的控制授予哪些权限。开放平台相比appid和appsecret方式还有很多特权。对于开发者是很好的。</p><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>官方的说明比较简单，开发过程中会遇到不少的坑。下面说一下注意事项</p><ol><li>公众号开发时只有用户关注了公众号，才可以获取到unionid</li></ol><p>如果用户不关注或取消关注公众号，是无法获取unionid的。</p><ol start="2"><li>必须将公众号或小程序绑定到开放平台才可以获取unionid</li></ol><p>进入开放平台，点管理中心。可以看到移动应用、网站应用、公众账号、小程序、第三方平台这些菜单。</p><p>如果要绑定公众号就，点击<code>公众账号</code>菜单，然后点击<code>绑定公众号</code>，填写公众账号、密码、验证码，点下一步，然后需要管理员扫码。之后就绑定了。</p><p>小程序的流程也差不多。</p><ol start="3"><li>一个公众号或小程序只能绑定一个开放平台</li></ol><p>这与unionid的生成机制有关，unionid是用户与开放平台之间的对应关系，如果绑定多个会造成混乱。</p><h3 id="unionid的值为什么不同"><a href="#unionid的值为什么不同" class="headerlink" title="unionid的值为什么不同"></a>unionid的值为什么不同</h3><p>第三方开放平台，开发过程中会遇到，同一个用户，在两个公众号下，获取到的unionid不同的情况。这种情况发送的原因是，两个公众号绑定到了不同的开放平台账号造成的。</p><p>不管是小程序还是公众号，一个开放平台的是有绑定限制的。比如小程序<code>相同主体：上限50个，绑定次数不限。不同主体：上限5个，本月还可以绑定5次。</code>，公众号<code>相同主体：上限50个，绑定次数不限。不同主体：上限5个，本月还可以绑定5次。</code><br>所以一般情况下，会让客户自己注册一个开放平台，然后把客户的公众号和小程序绑定上去。</p><p>比如<code>客户A</code>注册开放平台是<code>平台A</code>，注册小程序是<code>小程序A</code>，注册公众号是<code>公众号A</code>；<code>客户B</code>注册开放平台是<code>平台B</code>，注册小程序是<code>小程序B</code>，注册公众号是<code>公众号B</code>。</p><p>他们各自绑定各自的开放平台。<code>小程序A</code>和<code>公众号A</code>绑定<code>平台A</code>，<code>小程序B</code>和<code>公众号B</code>绑定<code>平台B</code>。</p><p>开发过程中会出现同一个微信用户，在<code>公众号A</code>和<code>小程序A</code>获取到的unionid是一样的比如都是；<code>公众号B</code>和<code>小程序B</code>中获取的unionid也是一样的。但是<code>公众号A</code>和<code>公众号B</code>获取的unionid不一样。</p><p>造成这样的原因是因为绑定的开放平台不用，每个unionid的产生，其实是用户跟开放平台的唯一对应关系。<code>小程序A</code>和<code>公众号A</code>绑定<code>平台A</code>因此他们的unionid一样，<code>公众号A</code>和<code>公众号B</code>绑定在不同的开放平台所以取到的unionid不一样。</p><p>还有一点要注意，开发公司A的开放平台<code>公司A平台</code>，同一个平台下创建多个<code>第三方平台</code>用于开发，这些<code>第三方平台</code>也会取到相同的unionid。</p><p>重要的事情说三遍<code>unionid与绑定的平台有关，unionid与绑定的平台有关，unionid与绑定的平台有关</code>，unionid其实是用户和开放平台账户的对应关系。</p><blockquote><p>有一点值得注意：如果有个开发公司B，在开放平台<code>公司B平台</code>，有公众号A授权的情况下，取到的unionid与<code>公司A平台</code>获取的公众号A的unionid也会一样。这其实也是为了便于微信做大数据 分析，知道一个用户所有行为。</p></blockquote><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://developers.weixin.qq.com/doc/offiaccount/User_Management/Get_users_basic_information_UnionID.html#UinonId" target="_blank" rel="noopener">https://developers.weixin.qq.com/doc/offiaccount/User_Management/Get_users_basic_information_UnionID.html#UinonId</a><br><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/union-id.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/union-id.html</a></p>]]></content>
     
@@ -51,8 +76,8 @@
   
   <entry>
     <title>聊聊kafka</title>
-    <link href="https://www.xingjiehu.com/2020/08/22/ckff3xd79004ot0omxpwzzj8t/"/>
-    <id>https://www.xingjiehu.com/2020/08/22/ckff3xd79004ot0omxpwzzj8t/</id>
+    <link href="https://www.xingjiehu.com/2020/08/22/ckfms0gmj004vusomzsp9aik6/"/>
+    <id>https://www.xingjiehu.com/2020/08/22/ckfms0gmj004vusomzsp9aik6/</id>
     <published>2020-08-22T07:47:12.000Z</published>
     <updated>2020-08-22T09:45:57.289Z</updated>
     
@@ -81,8 +106,8 @@
   
   <entry>
     <title>python捕获异常堆栈信息</title>
-    <link href="https://www.xingjiehu.com/2020/08/13/ckff3xd5s002lt0om2bbgizr1/"/>
-    <id>https://www.xingjiehu.com/2020/08/13/ckff3xd5s002lt0om2bbgizr1/</id>
+    <link href="https://www.xingjiehu.com/2020/08/13/ckfms0gld002gusomkpawb4nn/"/>
+    <id>https://www.xingjiehu.com/2020/08/13/ckfms0gld002gusomkpawb4nn/</id>
     <published>2020-08-13T05:07:32.000Z</published>
     <updated>2020-08-13T06:01:23.013Z</updated>
     
@@ -105,8 +130,8 @@
   
   <entry>
     <title>springboot 配置</title>
-    <link href="https://www.xingjiehu.com/2020/06/12/ckff3xdc900cpt0om5su6pfez/"/>
-    <id>https://www.xingjiehu.com/2020/06/12/ckff3xdc900cpt0om5su6pfez/</id>
+    <link href="https://www.xingjiehu.com/2020/06/12/ckfms0gua00cwusom3vcw8wdv/"/>
+    <id>https://www.xingjiehu.com/2020/06/12/ckfms0gua00cwusom3vcw8wdv/</id>
     <published>2020-06-12T05:16:57.000Z</published>
     <updated>2020-06-12T05:54:52.607Z</updated>
     
@@ -130,8 +155,8 @@
   
   <entry>
     <title>nginx配置中root alias的区别</title>
-    <link href="https://www.xingjiehu.com/2020/05/15/ckff3xd5d001yt0om9da46si1/"/>
-    <id>https://www.xingjiehu.com/2020/05/15/ckff3xd5d001yt0om9da46si1/</id>
+    <link href="https://www.xingjiehu.com/2020/05/15/ckfms0gku001nusomdt20v2u6/"/>
+    <id>https://www.xingjiehu.com/2020/05/15/ckfms0gku001nusomdt20v2u6/</id>
     <published>2020-05-15T03:03:07.000Z</published>
     <updated>2020-06-10T05:10:22.456Z</updated>
     
@@ -161,8 +186,8 @@
   
   <entry>
     <title>linux硬盘管理工具baobab</title>
-    <link href="https://www.xingjiehu.com/2020/05/12/ckff3xd57001pt0omqvvbgwt3/"/>
-    <id>https://www.xingjiehu.com/2020/05/12/ckff3xd57001pt0omqvvbgwt3/</id>
+    <link href="https://www.xingjiehu.com/2020/05/12/ckfms0gkt001kusomisgad6u6/"/>
+    <id>https://www.xingjiehu.com/2020/05/12/ckfms0gkt001kusomisgad6u6/</id>
     <published>2020-05-12T02:38:57.000Z</published>
     <updated>2020-05-12T02:44:26.999Z</updated>
     
@@ -191,8 +216,8 @@
   
   <entry>
     <title>springboot+nginx websocket配置</title>
-    <link href="https://www.xingjiehu.com/2020/05/09/ckff3xd5x002tt0omaandttwk/"/>
-    <id>https://www.xingjiehu.com/2020/05/09/ckff3xd5x002tt0omaandttwk/</id>
+    <link href="https://www.xingjiehu.com/2020/05/09/ckfms0glg002nusomxm5n5gpd/"/>
+    <id>https://www.xingjiehu.com/2020/05/09/ckfms0glg002nusomxm5n5gpd/</id>
     <published>2020-05-09T06:03:26.000Z</published>
     <updated>2020-05-09T06:10:25.138Z</updated>
     
@@ -218,8 +243,8 @@
   
   <entry>
     <title>10.克隆远程仓库</title>
-    <link href="https://www.xingjiehu.com/2020/04/22/ckff3xdbm00bvt0omshnljxrj/"/>
-    <id>https://www.xingjiehu.com/2020/04/22/ckff3xdbm00bvt0omshnljxrj/</id>
+    <link href="https://www.xingjiehu.com/2020/04/22/ckfms0gtv00cfusomcopwh3ym/"/>
+    <id>https://www.xingjiehu.com/2020/04/22/ckfms0gtv00cfusomcopwh3ym/</id>
     <published>2020-04-22T12:32:20.000Z</published>
     <updated>2020-05-09T06:02:34.883Z</updated>
     
@@ -246,8 +271,8 @@
   
   <entry>
     <title>让nginx支持flv文件播放</title>
-    <link href="https://www.xingjiehu.com/2020/03/25/ckff3xd7d004yt0omma2v6j27/"/>
-    <id>https://www.xingjiehu.com/2020/03/25/ckff3xd7d004yt0omma2v6j27/</id>
+    <link href="https://www.xingjiehu.com/2020/03/25/ckfms0gmm0051usomraloya4x/"/>
+    <id>https://www.xingjiehu.com/2020/03/25/ckfms0gmm0051usomraloya4x/</id>
     <published>2020-03-25T02:51:34.000Z</published>
     <updated>2020-03-25T09:18:11.624Z</updated>
     
@@ -273,8 +298,8 @@
   
   <entry>
     <title>docker镜像(Image)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckff3xdbf00bnt0om0bqhk24w/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckff3xdbf00bnt0om0bqhk24w/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckfms0gtf00bpusom9ijyvu22/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckfms0gtf00bpusom9ijyvu22/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -297,8 +322,8 @@
   
   <entry>
     <title>docker仓库(Repository)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckff3xdbg00bqt0om7404x0pb/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckff3xdbg00bqt0om7404x0pb/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckfms0gtg00bqusomtlv407wa/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckfms0gtg00bqusomtlv407wa/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -321,8 +346,8 @@
   
   <entry>
     <title>docker容器(Container)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckff3xdbj00bst0omucbe1akd/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckff3xdbj00bst0omucbe1akd/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckfms0gth00btusom5lhj90zs/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckfms0gth00btusom5lhj90zs/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -346,8 +371,8 @@
   
   <entry>
     <title>1.docker基础概念</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckff3xdbe00bmt0omsw3xlf41/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckff3xdbe00bmt0omsw3xlf41/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckfms0gti00buusomjbb6pazt/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckfms0gti00buusomjbb6pazt/</id>
     <published>2020-03-03T01:44:21.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -372,8 +397,8 @@
   
   <entry>
     <title>openresty+lua+kafka部署</title>
-    <link href="https://www.xingjiehu.com/2020/02/26/ckff3xd5e0022t0omszex7c79/"/>
-    <id>https://www.xingjiehu.com/2020/02/26/ckff3xd5e0022t0omszex7c79/</id>
+    <link href="https://www.xingjiehu.com/2020/02/26/ckfms0gl1001yusomklt44mw4/"/>
+    <id>https://www.xingjiehu.com/2020/02/26/ckfms0gl1001yusomklt44mw4/</id>
     <published>2020-02-26T09:59:07.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -401,8 +426,8 @@
   
   <entry>
     <title>python mysql-connector简要说明</title>
-    <link href="https://www.xingjiehu.com/2020/02/14/ckff3xd5f0025t0om9p1trmyx/"/>
-    <id>https://www.xingjiehu.com/2020/02/14/ckff3xd5f0025t0om9p1trmyx/</id>
+    <link href="https://www.xingjiehu.com/2020/02/14/ckfms0gl90028usomunapofpm/"/>
+    <id>https://www.xingjiehu.com/2020/02/14/ckfms0gl90028usomunapofpm/</id>
     <published>2020-02-14T08:38:09.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -434,8 +459,8 @@
   
   <entry>
     <title>linux 为php7.0安装redis扩展</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/ckff3xd4x0018t0omfjm53oec/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/ckff3xd4x0018t0omfjm53oec/</id>
+    <link href="https://www.xingjiehu.com/2020/02/12/ckfms0gko0018usomscgf4x5b/"/>
+    <id>https://www.xingjiehu.com/2020/02/12/ckfms0gko0018usomscgf4x5b/</id>
     <published>2020-02-12T11:52:59.000Z</published>
     <updated>2020-05-14T11:45:49.391Z</updated>
     
@@ -461,8 +486,8 @@
   
   <entry>
     <title>解决深度终端链接远程后假死问题</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/ckff3xd7c004vt0ommigq0qbt/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/ckff3xd7c004vt0ommigq0qbt/</id>
+    <link href="https://www.xingjiehu.com/2020/02/12/ckfms0gmg004ousomx0kbjph0/"/>
+    <id>https://www.xingjiehu.com/2020/02/12/ckfms0gmg004ousomx0kbjph0/</id>
     <published>2020-02-12T07:47:55.000Z</published>
     <updated>2020-03-21T09:28:32.518Z</updated>
     
@@ -488,8 +513,8 @@
   
   <entry>
     <title>shadowsocks客户端启动报错问题</title>
-    <link href="https://www.xingjiehu.com/2020/02/11/ckff3xd5n002gt0om06rezysy/"/>
-    <id>https://www.xingjiehu.com/2020/02/11/ckff3xd5n002gt0om06rezysy/</id>
+    <link href="https://www.xingjiehu.com/2020/02/11/ckfms0glf002lusomx7aef1a4/"/>
+    <id>https://www.xingjiehu.com/2020/02/11/ckfms0glf002lusomx7aef1a4/</id>
     <published>2020-02-11T03:11:19.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -511,8 +536,8 @@
   
   <entry>
     <title>nginx配置结构说明</title>
-    <link href="https://www.xingjiehu.com/2020/01/10/ckff3xd56001nt0omn02uw2b7/"/>
-    <id>https://www.xingjiehu.com/2020/01/10/ckff3xd56001nt0omn02uw2b7/</id>
+    <link href="https://www.xingjiehu.com/2020/01/10/ckfms0gky001rusomamu3nhst/"/>
+    <id>https://www.xingjiehu.com/2020/01/10/ckfms0gky001rusomamu3nhst/</id>
     <published>2020-01-10T06:20:08.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -529,30 +554,6 @@
     
     
       <category term="nginx" scheme="https://www.xingjiehu.com/tags/nginx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>limits.conf配置说明</title>
-    <link href="https://www.xingjiehu.com/2020/01/03/ckff3xd4w0015t0omv5zla7zd/"/>
-    <id>https://www.xingjiehu.com/2020/01/03/ckff3xd4w0015t0omv5zla7zd/</id>
-    <published>2020-01-03T09:30:52.000Z</published>
-    <updated>2020-03-21T09:28:32.514Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近发生了奇怪的事情，mysql总是会连不上，查了半天原因，最后发现进程文件没有生成。es报警“Too many open files”。搜索才发现是，打开文件太多了，超过了限制。解决方法是修改<code>/etc/security/limits.conf</code>。另外还牵扯到了另一个配置<code>file-max</code>。经过调试还是踩了不少坑的。坐下笔记，防止重复踩坑。</p><a id="more"></a><h2 id="limits-conf-和-file-max的关系"><a href="#limits-conf-和-file-max的关系" class="headerlink" title="limits.conf 和 file-max的关系"></a>limits.conf 和 file-max的关系</h2><p>这两个配置都是为了限制系统资源，防止造成资源耗尽。<br>一般如果遇到文件句柄达到上限时，会碰到”Too many open files”或者Socket/File: Can’t open so many files等错误。<br>limits.conf是用户级别的配置，它可以针对每个用户进行限制。<br>file-max是系统级别的配置，它会限制所有用户的打开句柄总数。</p><p>file-max无法限制limits.conf。因为linux是多用户系统。比如 file-max设置100，limits设置是10，如果服务器有11个用户，每个用户设置是10，他们所有人占用的句柄总数加起来有可能超过file-max。</p><h2 id="file-max设置"><a href="#file-max设置" class="headerlink" title="file-max设置"></a>file-max设置</h2><p>查看file-max限制，我们可以查看<code>/proc/sys/fs/file-max</code>文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/fs/file-max</span><br></pre></td></tr></table></figure></p><p>修改file-max限制，需要修改<code>/etc/sysctl.conf</code>，找到file-max配置进行修改就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysctl.conf</span><br></pre></td></tr></table></figure></p><p>末尾加入<code>fs.file-max = 2000000</code>如有了<code>fs.file-max</code>直接修改值即可。</p><blockquote><p>修改后需要重启电脑才会生效，如果要历史修改可以直接修改<code>/proc/sys/fs/file-max</code>文件内的值，如果可以的话。我测试的时候没有修改成功</p></blockquote><h2 id="limits-conf设置"><a href="#limits-conf设置" class="headerlink" title="limits.conf设置"></a>limits.conf设置</h2><p>limits的限制可以分为shell级别和系统级别。shell级别顾名思义，只针对当前会话有效。设置方法很简单</p><h3 id="shell级别配置"><a href="#shell级别配置" class="headerlink" title="shell级别配置"></a>shell级别配置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ulimit -n 901</span><br></pre></td></tr></table></figure><p>查看当前配置也很简单<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ulimit -n</span><br></pre></td></tr></table></figure></p><p>这样就设置好了当前会话的配置。</p><blockquote><p>普通用户设置ulimit，每次设置的值只能小于等于上一次设置的值。比如上面设置了901，再次设置只能小于等于901。没有执行ulimit设置之前，配置是从limits.conf文件内读取。因此，每次设置的值不能超过limits.conf文件设置的范围。<br>。<br>root用户不受限制，可以任意设置每次的值</p></blockquote><p>ulimit有一下可选参数</p><ul><li>ulimit -a   显示当前所有的资源限制</li><li>ulimit -H    设置硬件资源限制</li><li>ulimit -S    设置软件资源限制，该限制不能超过<code>-H</code>的限制</li><li>ulimit -n    设置进程最大打开文件描述符数</li></ul><p>上面的 <code>ulimit -n 901</code>相当于 <code>ulimit -Hn 901</code> + <code>ulimit -Sn 901</code></p><h3 id="系统级别配置"><a href="#系统级别配置" class="headerlink" title="系统级别配置"></a>系统级别配置</h3><p><code>ulimit</code>好处是配置及时生效，只影响当前shell，安全有保障。但是服务器上我们要配置永久有效，针对所有用户或特定用户有效。就需要配置<code>limits.conf</code>文件了。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/security/limits.conf</span><br></pre></td></tr></table></figure><p>内容如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">* soft nofile 655360        # open files  (-n)，不要设置为unlimited</span><br><span class="line">* hard nofile 655360        # 不要超过最大值1048576，不要设置为unlimited</span><br><span class="line"></span><br><span class="line">* soft nproc 655650</span><br><span class="line">* hard nproc 655650         # max user processes   (-u)</span><br><span class="line"></span><br><span class="line">hive   - nofile 655650</span><br><span class="line">hive   - nproc  655650</span><br></pre></td></tr></table></figure></p><p>格式为<code>username|@groupname type resource limit</code></p><ul><li><code>username|@groupname</code> 设置需要被限制的用户名，组名前面加@和用户名区别。也可以用通配符*来做所有用户的限制。</li><li><code>type</code> soft，hard 和 -，soft是一个警告值，而hard则是一个真正意义的阀值，超过就会报错。soft 的限制不能比har 限制高。用 - 就表明同时设置了 soft 和 hard 的值。</li><li><code>resource</code> 配置项，要使 limits.conf 文件配置生效，必须要确保 pam_limits.so 文件被加入到启动文件中。查看 /etc/pam.d/login 文件中有<code>session required /lib/security/pam_limits.so</code><ul><li>core - 限制内核文件的大小</li><li>date - 最大数据大小</li><li>fsize - 最大文件大小</li><li>memlock - 最大锁定内存地址空间</li><li>nofile - 打开文件的最大数目</li><li>rss - 最大持久设置大小</li><li>stack - 最大栈大小</li><li>cpu - 以分钟为单位的最多 CPU 时间</li><li>noproc - 进程的最大数目</li><li>as - 地址空间限制</li><li>maxlogins - 此用户允许登录的最大数目</li></ul></li><li><code>limit</code> 限制的值</li></ul><blockquote><p>limits.conf 文件修改后退出重新登录一下就生效了，如果不生效就重启下系统</p></blockquote><h2 id="常用排查命令"><a href="#常用排查命令" class="headerlink" title="常用排查命令"></a>常用排查命令</h2><p>所有用户创建的进程数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps h -Led -o user | sort | uniq -c | sort -n</span><br></pre></td></tr></table></figure></p><p>查看系统最大打开文件描述符数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/fs/file-max</span><br></pre></td></tr></table></figure></p><p>设置系统最大打开文件描述符数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/sysctl.conf</span><br></pre></td></tr></table></figure></p><p>查看当前系统使用的打开文件描述符数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/fs/file-nr</span><br></pre></td></tr></table></figure></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近发生了奇怪的事情，mysql总是会连不上，查了半天原因，最后发现进程文件没有生成。es报警“Too many open files”。搜索才发现是，打开文件太多了，超过了限制。解决方法是修改&lt;code&gt;/etc/security/limits.conf&lt;/code&gt;。另外还牵扯到了另一个配置&lt;code&gt;file-max&lt;/code&gt;。经过调试还是踩了不少坑的。坐下笔记，防止重复踩坑。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="elasticsearch" scheme="https://www.xingjiehu.com/tags/elasticsearch/"/>
-    
-      <category term="limits.conf" scheme="https://www.xingjiehu.com/tags/limits-conf/"/>
     
   </entry>
   

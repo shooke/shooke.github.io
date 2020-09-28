@@ -346,7 +346,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/17/ckff3xd650038t0omsb3vpmxk/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/19/ckfms0glz003zusomjkwmg4dy/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -366,7 +366,187 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/17/ckff3xd650038t0omsb3vpmxk/" class="post-title-link" itemprop="url">url添加参数</a>
+                <a href="/2019/07/19/ckfms0glz003zusomjkwmg4dy/" class="post-title-link" itemprop="url">vue自定义组件v-model绑定数据的实现方法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-19 10:02:32" itemprop="dateCreated datePublished" datetime="2019-07-19T10:02:32+08:00">2019-07-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-03-21 17:28:32" itemprop="dateModified" datetime="2020-03-21T17:28:32+08:00">2020-03-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>父组件调用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;list v-model=&quot;data&quot; :multiple=&quot;true&quot;&gt;&lt;/list&gt;</span><br></pre></td></tr></table></figure></p>
+<p>子组件<code>list.vue</code>代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-select v-model=&quot;val&quot; v-bind=&quot;$attrs&quot; placeholder=&quot;请选择&quot;&gt;</span><br><span class="line">    &lt;el-option</span><br><span class="line">      v-for=&quot;item in list&quot;</span><br><span class="line">      :key=&quot;item.id&quot;</span><br><span class="line">      :label=&quot;item.name&quot;</span><br><span class="line">      :value=&quot;item.id&quot;&gt;</span><br><span class="line">    &lt;/el-option&gt;</span><br><span class="line">  &lt;/el-select&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; getColumnList &#125; from &apos;@/api/column.js&apos;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  inheritAttrs: false,</span><br><span class="line">  model: &#123;</span><br><span class="line">    prop: &apos;value&apos;,</span><br><span class="line">    event: &apos;change&apos;</span><br><span class="line">  &#125;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    value: null</span><br><span class="line">  &#125;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      list: [&#123;id:&apos;1&apos;,name:&apos;张三&apos;&#125;,&#123;id:&apos;2&apos;,name:&apos;李四&apos;&#125;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    val: &#123;</span><br><span class="line">      get () &#123;</span><br><span class="line">        return this.value</span><br><span class="line">      &#125;,</span><br><span class="line">      set (newval) &#123;</span><br><span class="line">        this.$emit(&apos;change&apos;, newval)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/07/19/ckfms0glz003zusomjkwmg4dy/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/17/ckfms0glo0038usomwjje04nn/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/17/ckfms0glo0038usomwjje04nn/" class="post-title-link" itemprop="url">url添加参数</a>
               
             
           </h1>
@@ -519,7 +699,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/13/ckff3xd6k003xt0om9jg82jv2/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/13/ckfms0glt003jusomeldmrqnr/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -539,7 +719,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/13/ckff3xd6k003xt0om9jg82jv2/" class="post-title-link" itemprop="url">vue-cli3预渲染处理</a>
+                <a href="/2019/07/13/ckfms0glt003jusomeldmrqnr/" class="post-title-link" itemprop="url">vue-cli3预渲染处理</a>
               
             
           </h1>
@@ -638,7 +818,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/13/ckff3xd6k003xt0om9jg82jv2/#more" rel="contents">
+              <a class="btn" href="/2019/07/13/ckfms0glt003jusomeldmrqnr/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -698,7 +878,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/08/ckff3xd6e003mt0omkivhrq3y/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/08/ckfms0glv003qusom5m57i0vf/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -718,7 +898,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/08/ckff3xd6e003mt0omkivhrq3y/" class="post-title-link" itemprop="url">vue下使用ueditor，文件直传七牛踩坑记录</a>
+                <a href="/2019/07/08/ckfms0glv003qusom5m57i0vf/" class="post-title-link" itemprop="url">vue下使用ueditor，文件直传七牛踩坑记录</a>
               
             
           </h1>
@@ -817,7 +997,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/08/ckff3xd6e003mt0omkivhrq3y/#more" rel="contents">
+              <a class="btn" href="/2019/07/08/ckfms0glv003qusom5m57i0vf/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -877,7 +1057,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/05/ckff3xd5k002et0omgtp3b0xp/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/05/ckfms0glc002eusomc6594dq8/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -897,7 +1077,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/07/05/ckff3xd5k002et0omgtp3b0xp/" class="post-title-link" itemprop="url">require.context使用说明</a>
+                <a href="/2019/07/05/ckfms0glc002eusomc6594dq8/" class="post-title-link" itemprop="url">require.context使用说明</a>
               
             
           </h1>
@@ -997,7 +1177,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/07/05/ckff3xd5k002et0omgtp3b0xp/#more" rel="contents">
+              <a class="btn" href="/2019/07/05/ckfms0glc002eusomc6594dq8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1057,7 +1237,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/24/ckff3xd5p002it0omnr8h7mwk/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/24/ckfms0gld002iusomahuyyoon/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1077,7 +1257,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/24/ckff3xd5p002it0omnr8h7mwk/" class="post-title-link" itemprop="url">shadowsocks-deepin pac模式失效问题解决方案</a>
+                <a href="/2019/06/24/ckfms0gld002iusomahuyyoon/" class="post-title-link" itemprop="url">shadowsocks-deepin pac模式失效问题解决方案</a>
               
             
           </h1>
@@ -1177,7 +1357,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/06/24/ckff3xd5p002it0omnr8h7mwk/#more" rel="contents">
+              <a class="btn" href="/2019/06/24/ckfms0gld002iusomahuyyoon/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1237,7 +1417,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/20/ckff3xd6a003ft0omr6rbkkka/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/20/ckfms0glr003fusomss01ankz/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1257,7 +1437,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/20/ckff3xd6a003ft0omr6rbkkka/" class="post-title-link" itemprop="url">vscode打造php开发环境</a>
+                <a href="/2019/06/20/ckfms0glr003fusomss01ankz/" class="post-title-link" itemprop="url">vscode打造php开发环境</a>
               
             
           </h1>
@@ -1358,7 +1538,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/06/20/ckff3xd6a003ft0omr6rbkkka/#more" rel="contents">
+              <a class="btn" href="/2019/06/20/ckfms0glr003fusomss01ankz/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1418,7 +1598,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/20/ckff3xd5h0028t0omn9v37f06/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/20/ckfms0gl80025usomndd0zh16/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1438,7 +1618,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/20/ckff3xd5h0028t0omn9v37f06/" class="post-title-link" itemprop="url">pipenv与pyenv、pyenv-virtualenv的关系和使用</a>
+                <a href="/2019/06/20/ckfms0gl80025usomndd0zh16/" class="post-title-link" itemprop="url">pipenv与pyenv、pyenv-virtualenv的关系和使用</a>
               
             
           </h1>
@@ -1549,7 +1729,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/06/20/ckff3xd5h0028t0omn9v37f06/#more" rel="contents">
+              <a class="btn" href="/2019/06/20/ckfms0gl80025usomndd0zh16/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1609,7 +1789,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/06/ckff3xd5t002nt0oma7754l2i/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/06/ckfms0glh002qusom0gw08m8d/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1629,7 +1809,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/06/06/ckff3xd5t002nt0oma7754l2i/" class="post-title-link" itemprop="url">ssh使用详解</a>
+                <a href="/2019/06/06/ckfms0glh002qusom0gw08m8d/" class="post-title-link" itemprop="url">ssh使用详解</a>
               
             
           </h1>
@@ -1728,7 +1908,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/06/06/ckff3xd5t002nt0oma7754l2i/#more" rel="contents">
+              <a class="btn" href="/2019/06/06/ckfms0glh002qusom0gw08m8d/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1788,7 +1968,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/30/ckff3xd3v0002t0omhb5y7101/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/30/ckfms0gjp0000usomdktr7vw9/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1808,7 +1988,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/05/30/ckff3xd3v0002t0omhb5y7101/" class="post-title-link" itemprop="url">GIT批量删除远程标签</a>
+                <a href="/2019/05/30/ckfms0gjp0000usomdktr7vw9/" class="post-title-link" itemprop="url">GIT批量删除远程标签</a>
               
             
           </h1>
@@ -1908,7 +2088,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/05/30/ckff3xd3v0002t0omhb5y7101/#more" rel="contents">
+              <a class="btn" href="/2019/05/30/ckfms0gjp0000usomdktr7vw9/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1917,185 +2097,6 @@
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/05/23/ckff3xd6o003zt0oma1cfy3j2/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/05/23/ckff3xd6o003zt0oma1cfy3j2/" class="post-title-link" itemprop="url">vuex getters不更新的奇怪现象解决方案</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-05-23 00:19:41" itemprop="dateCreated datePublished" datetime="2019-05-23T00:19:41+08:00">2019-05-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-03-21 17:28:32" itemprop="dateModified" datetime="2020-03-21T17:28:32+08:00">2020-03-21</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>今天写代码的时候遇到一个很奇怪的问题，getter里面取到的值怎么都不是最新的。<br>调用setAuth清空后，从vue开发工具(vue-Devtools)中查看，<code>state.auth</code>已经正常被设置成了空值。但是<code>getters</code>或<code>mapGetters</code>取到的还是更新前的值。<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/05/23/ckff3xd6o003zt0oma1cfy3j2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></div>
 
     
 
@@ -2179,7 +2180,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">77</span>
+                    <span class="site-state-item-count">78</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2425,7 +2426,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">104</span>
+                      
+                    
+                    <span class="site-state-item-count">105</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
