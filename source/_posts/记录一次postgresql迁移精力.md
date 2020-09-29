@@ -1,5 +1,5 @@
 ---
-title: 记录一次postgresql迁移精力
+title: 记录一次postgresql迁移经历
 categories:
   - 笔记
 tags:
