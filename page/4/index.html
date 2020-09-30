@@ -346,7 +346,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/18/ckfms0gtk00bvusomfh07itab/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/19/ckfpk0qad00cb9bom2xaq1skh/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -366,7 +366,194 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/18/ckfms0gtk00bvusomfh07itab/" class="post-title-link" itemprop="url">1.啥是git</a>
+                <a href="/2019/12/19/ckfpk0qad00cb9bom2xaq1skh/" class="post-title-link" itemprop="url">2.把项目交给git</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-19 20:32:20" itemprop="dateCreated datePublished" datetime="2019-12-19T20:32:20+08:00">2019-12-19</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-03-24 16:50:42" itemprop="dateModified" datetime="2020-03-24T16:50:42+08:00">2020-03-24</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/一点一点了解git/" itemprop="url" rel="index"><span itemprop="name">一点一点了解git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
+<p>本故事纯属虚构，如有雷同，^0^那可太巧了</p>
+</blockquote>
+<p>小白接到上级指示，所有的项目代码都要用版本管理工具进行管理。本着对项目负责的态度，小白开始在网上搜索版本管理软件。<br>考察了svn和git后，最后决定使用git进行项目管理。</p>
+<p>对于刚刚不如程序猿行列的小白来说，git好神秘啊，linus大神好神秘啊。</p>
+<p>沐浴更衣，斋戒数天。开始使用git。</p>
+<p>使用git的第一步当然是安装了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt update</span><br><span class="line">$ sudo apt install git</span><br></pre></td></tr></table></figure></p>
+<p>ok,搞定，这样就安装完了。</p>
+<p>打开项目目录，输入神圣的git初始化命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository in /home/shooke/learngit/.git/</span><br></pre></td></tr></table></figure></p>
+<p>完成了？这么简单？没有报错？小白小激动了一下，git初始化就这么简单？检查一下便知道。查看了一下，项目下果然多了个<code>.git</code>文件夹。</p>
+<p>接下来我们把项目加入到git代码仓库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;init&quot;</span><br></pre></td></tr></table></figure></p>
+<p>这样，文件就被git记录下来了。就是这么easy。</p>
+<p>不一会小白写好了一个新功能，然后<code>git add .</code> <code>git commit -m &quot;我有完成了一个牛X的功能&quot;</code>记录下自己的工作。好开心，原来git这么简单，每次做完功能先 <code>add</code>然后<code>commit</code>就好了。</p>
+<p>就这样小白开始了他的git之旅…</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><code>git init</code>可以初始化项目<br><code>git add .</code>可以将文件加入到暂存区，<code>.</code>是当前目录的意思，可以将目录下所有文件进行暂存，如果要针对某个文件可以加上文件名如<code>git add readme.md</code><br><code>git commit -m &quot;init&quot;</code>将文件加入到git代码仓库，并生成一条<code>init</code>的log记录</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/18/ckfpk0qa600c49bomsvh5c1ke/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/18/ckfpk0qa600c49bomsvh5c1ke/" class="post-title-link" itemprop="url">1.啥是git</a>
               
             
           </h1>
@@ -519,7 +706,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ckfms0gtn00bzusomo4a7m49t/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ckfpk0qa400c09bomwe6febmb/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -539,7 +726,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/17/ckfms0gtn00bzusomo4a7m49t/" class="post-title-link" itemprop="url">0.教程介绍</a>
+                <a href="/2019/12/17/ckfpk0qa400c09bomwe6febmb/" class="post-title-link" itemprop="url">0.教程介绍</a>
               
             
           </h1>
@@ -694,7 +881,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ckfms0gkh000rusomdio1qq18/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ckfpk0q4d000r9bom61vphpzo/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -714,7 +901,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/17/ckfms0gkh000rusomdio1qq18/" class="post-title-link" itemprop="url">git中文文件名乱码解决方法</a>
+                <a href="/2019/12/17/ckfpk0q4d000r9bom61vphpzo/" class="post-title-link" itemprop="url">git中文文件名乱码解决方法</a>
               
             
           </h1>
@@ -869,7 +1056,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ckfms0gm30047usomdu1po0d1/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ckfpk0q6100429bomzkfvimmv/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -889,7 +1076,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/17/ckfms0gm30047usomdu1po0d1/" class="post-title-link" itemprop="url">deepin修改git提示语言</a>
+                <a href="/2019/12/17/ckfpk0q6100429bomzkfvimmv/" class="post-title-link" itemprop="url">deepin修改git提示语言</a>
               
             
           </h1>
@@ -1043,7 +1230,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/11/15/ckfms0gkl0011usomjk1dkchi/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/11/15/ckfpk0q4i00119bomvvyr3zkg/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1063,7 +1250,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/11/15/ckfms0gkl0011usomjk1dkchi/" class="post-title-link" itemprop="url">js实现防抖和节流</a>
+                <a href="/2019/11/15/ckfpk0q4i00119bomvvyr3zkg/" class="post-title-link" itemprop="url">js实现防抖和节流</a>
               
             
           </h1>
@@ -1167,7 +1354,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/11/15/ckfms0gkl0011usomjk1dkchi/#more" rel="contents">
+              <a class="btn" href="/2019/11/15/ckfpk0q4i00119bomvvyr3zkg/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1227,7 +1414,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/10/11/ckfms0gk00006usomb1vqyw0y/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/10/11/ckfpk0q3q00029bom5e4x3kao/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1247,7 +1434,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/10/11/ckfms0gk00006usomb1vqyw0y/" class="post-title-link" itemprop="url">Commit log 使用说明</a>
+                <a href="/2019/10/11/ckfpk0q3q00029bom5e4x3kao/" class="post-title-link" itemprop="url">Commit log 使用说明</a>
               
             
           </h1>
@@ -1346,7 +1533,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/10/11/ckfms0gk00006usomb1vqyw0y/#more" rel="contents">
+              <a class="btn" href="/2019/10/11/ckfpk0q3q00029bom5e4x3kao/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1406,7 +1593,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/09/25/ckfms0gmk004yusomp991rndl/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/09/25/ckfpk0q6e004r9bom651k5kgr/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1426,7 +1613,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/09/25/ckfms0gmk004yusomp991rndl/" class="post-title-link" itemprop="url">解决element ui el-select控件多选时option设置为disabled，但可以删除标签，造成无法恢复的bug</a>
+                <a href="/2019/09/25/ckfpk0q6e004r9bom651k5kgr/" class="post-title-link" itemprop="url">解决element ui el-select控件多选时option设置为disabled，但可以删除标签，造成无法恢复的bug</a>
               
             
           </h1>
@@ -1526,7 +1713,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/09/25/ckfms0gmk004yusomp991rndl/#more" rel="contents">
+              <a class="btn" href="/2019/09/25/ckfpk0q6e004r9bom651k5kgr/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1586,7 +1773,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/09/03/ckfms0glx003tusompqd4jjod/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/09/03/ckfpk0q5w003x9bomarg7mvi9/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1606,7 +1793,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/09/03/ckfms0glx003tusompqd4jjod/" class="post-title-link" itemprop="url">vue中使用neditor</a>
+                <a href="/2019/09/03/ckfpk0q5w003x9bomarg7mvi9/" class="post-title-link" itemprop="url">vue中使用neditor</a>
               
             
           </h1>
@@ -1705,7 +1892,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/09/03/ckfms0glx003tusompqd4jjod/#more" rel="contents">
+              <a class="btn" href="/2019/09/03/ckfpk0q5w003x9bomarg7mvi9/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1765,7 +1952,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/08/22/ckfms0gm00042usoma4kxz0zt/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/08/22/ckfpk0q6200449bomm2z3yb5u/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1785,7 +1972,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/08/22/ckfms0gm00042usoma4kxz0zt/" class="post-title-link" itemprop="url">使用vue cli 3项目打包到指定目录</a>
+                <a href="/2019/08/22/ckfpk0q6200449bomm2z3yb5u/" class="post-title-link" itemprop="url">使用vue cli 3项目打包到指定目录</a>
               
             
           </h1>
@@ -1884,7 +2071,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/08/22/ckfms0gm00042usoma4kxz0zt/#more" rel="contents">
+              <a class="btn" href="/2019/08/22/ckfpk0q6200449bomm2z3yb5u/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1893,187 +2080,6 @@
         
       
     </p></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/07/31/ckfms0glm0034usomfm93434c/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/31/ckfms0glm0034usomfm93434c/" class="post-title-link" itemprop="url">telnet使用简介</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-07-31 22:01:23" itemprop="dateCreated datePublished" datetime="2019-07-31T22:01:23+08:00">2019-07-31</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-03-21 17:28:32" itemprop="dateModified" datetime="2020-03-21T17:28:32+08:00">2020-03-21</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="端口开通-链接正常"><a href="#端口开通-链接正常" class="headerlink" title="端口开通,链接正常"></a>端口开通,链接正常</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">telnet 192.168.1.100 62715</span><br><span class="line">Trying 192.168.1.100...</span><br><span class="line">Connected to 192.168.1.100.</span><br><span class="line">Escape character is &apos;^]&apos;.</span><br></pre></td></tr></table></figure>
-<p>链接成功，根据提示<code>Escape character is &#39;^]&#39;</code>.可知退出字符为<code>&#39;^]&#39;</code>（CTRL+]）。此时输入其它字符不能使其退出，CTRL+C都不行。输入CTRL+]后会自动执行，进入命令模式，屏幕上出现<code>telnet&gt;</code>字样。需要输入<code>quit</code>才可退出<br><code>Escape character</code>提示是自定义的，使用参数<code>-e</code>即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">telnet -e p 192.168.1.100 62715   #使用p字符</span><br><span class="line">Telnet escape character is &apos;p&apos;.</span><br><span class="line">Trying 192.168.1.100...</span><br><span class="line">Connected to 192.168.1.100.</span><br><span class="line">Escape character is &apos;p&apos;.</span><br></pre></td></tr></table></figure></p>
-<p>输入<code>p</code>,会出现<code>telnet&gt;</code>字样，输入<code>quit</code>可退出</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/07/31/ckfms0glm0034usomfm93434c/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
 
     
 
@@ -2157,7 +2163,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">78</span>
+                    <span class="site-state-item-count">79</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

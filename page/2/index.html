@@ -346,7 +346,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/03/03/ckfms0gtf00bpusom9ijyvu22/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/03/25/ckfpk0q6l00569bomhosrl82l/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -366,7 +366,177 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/03/03/ckfms0gtf00bpusom9ijyvu22/" class="post-title-link" itemprop="url">docker镜像(Image)</a>
+                <a href="/2020/03/25/ckfpk0q6l00569bomhosrl82l/" class="post-title-link" itemprop="url">让nginx支持flv文件播放</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-25 10:51:34 / 修改时间：17:18:11" itemprop="dateCreated datePublished" datetime="2020-03-25T10:51:34+08:00">2020-03-25</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>最近做小程序直播，为了简单测试需要用到<code>live-player</code>播放一个flv文件。服务器上用的nginx。把flv文件放到目录下访问，居然无法播放。查看了一下配置才发现，nginx不支持flv，需要响应的插件。</p>
+<h2 id="初次安装"><a href="#初次安装" class="headerlink" title="初次安装"></a>初次安装</h2><p>如果是编译安装的非常简单，只需要在<code>configure</code>时添加<code>--with-http_flv_module</code>就可以了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ./configure  --with-http_flv_module </span><br><span class="line">$ make &amp;&amp; make install</span><br></pre></td></tr></table></figure></p>
+<p>专业就安装完成了。</p>
+<h2 id="对已安装的nginx，添加模块"><a href="#对已安装的nginx，添加模块" class="headerlink" title="对已安装的nginx，添加模块"></a>对已安装的nginx，添加模块</h2><p>如果已经安装过nginx，比如使用apt或yum安装过了。该怎么办呢？</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/03/25/ckfpk0q6l00569bomhosrl82l/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/03/03/ckfpk0q9z00bt9bomyhwbs9gl/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/03/03/ckfpk0q9z00bt9bomyhwbs9gl/" class="post-title-link" itemprop="url">docker镜像(Image)</a>
               
             
           </h1>
@@ -465,7 +635,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/03/03/ckfms0gtf00bpusom9ijyvu22/#more" rel="contents">
+              <a class="btn" href="/2020/03/03/ckfpk0q9z00bt9bomyhwbs9gl/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -525,7 +695,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/03/03/ckfms0gtg00bqusomtlv407wa/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/03/03/ckfpk0qa000bu9bomjkydpig8/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -545,7 +715,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/03/03/ckfms0gtg00bqusomtlv407wa/" class="post-title-link" itemprop="url">docker仓库(Repository)</a>
+                <a href="/2020/03/03/ckfpk0qa000bu9bomjkydpig8/" class="post-title-link" itemprop="url">docker仓库(Repository)</a>
               
             
           </h1>
@@ -644,7 +814,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/03/03/ckfms0gtg00bqusomtlv407wa/#more" rel="contents">
+              <a class="btn" href="/2020/03/03/ckfpk0qa000bu9bomjkydpig8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -704,7 +874,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/03/03/ckfms0gth00btusom5lhj90zs/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/03/03/ckfpk0qa300by9bomq7jainm1/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -724,7 +894,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/03/03/ckfms0gth00btusom5lhj90zs/" class="post-title-link" itemprop="url">docker容器(Container)</a>
+                <a href="/2020/03/03/ckfpk0qa300by9bomq7jainm1/" class="post-title-link" itemprop="url">docker容器(Container)</a>
               
             
           </h1>
@@ -824,7 +994,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/03/03/ckfms0gth00btusom5lhj90zs/#more" rel="contents">
+              <a class="btn" href="/2020/03/03/ckfpk0qa300by9bomq7jainm1/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -884,7 +1054,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/03/03/ckfms0gti00buusomjbb6pazt/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/03/03/ckfpk0qa200bx9boml2idpsla/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -904,7 +1074,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/03/03/ckfms0gti00buusomjbb6pazt/" class="post-title-link" itemprop="url">1.docker基础概念</a>
+                <a href="/2020/03/03/ckfpk0qa200bx9boml2idpsla/" class="post-title-link" itemprop="url">1.docker基础概念</a>
               
             
           </h1>
@@ -1007,7 +1177,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/03/03/ckfms0gti00buusomjbb6pazt/#more" rel="contents">
+              <a class="btn" href="/2020/03/03/ckfpk0qa200bx9boml2idpsla/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1067,7 +1237,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/26/ckfms0gl1001yusomklt44mw4/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/26/ckfpk0q4w001y9bommbr4dtaa/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1087,7 +1257,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/02/26/ckfms0gl1001yusomklt44mw4/" class="post-title-link" itemprop="url">openresty+lua+kafka部署</a>
+                <a href="/2020/02/26/ckfpk0q4w001y9bommbr4dtaa/" class="post-title-link" itemprop="url">openresty+lua+kafka部署</a>
               
             
           </h1>
@@ -1189,7 +1359,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/02/26/ckfms0gl1001yusomklt44mw4/#more" rel="contents">
+              <a class="btn" href="/2020/02/26/ckfpk0q4w001y9bommbr4dtaa/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1249,7 +1419,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/14/ckfms0gl90028usomunapofpm/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/14/ckfpk0q5000289bomuxmeqbit/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1269,7 +1439,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/02/14/ckfms0gl90028usomunapofpm/" class="post-title-link" itemprop="url">python mysql-connector简要说明</a>
+                <a href="/2020/02/14/ckfpk0q5000289bomuxmeqbit/" class="post-title-link" itemprop="url">python mysql-connector简要说明</a>
               
             
           </h1>
@@ -1377,7 +1547,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/02/14/ckfms0gl90028usomunapofpm/#more" rel="contents">
+              <a class="btn" href="/2020/02/14/ckfpk0q5000289bomuxmeqbit/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1437,7 +1607,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/12/ckfms0gko0018usomscgf4x5b/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/12/ckfpk0q4l00189bomebzkpuf8/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1457,7 +1627,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/02/12/ckfms0gko0018usomscgf4x5b/" class="post-title-link" itemprop="url">linux 为php7.0安装redis扩展</a>
+                <a href="/2020/02/12/ckfpk0q4l00189bomebzkpuf8/" class="post-title-link" itemprop="url">linux 为php7.0安装redis扩展</a>
               
             
           </h1>
@@ -1624,7 +1794,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/12/ckfms0gmg004ousomx0kbjph0/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/12/ckfpk0q6f004v9bombhkvrsnm/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1644,7 +1814,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/02/12/ckfms0gmg004ousomx0kbjph0/" class="post-title-link" itemprop="url">解决深度终端链接远程后假死问题</a>
+                <a href="/2020/02/12/ckfpk0q6f004v9bombhkvrsnm/" class="post-title-link" itemprop="url">解决深度终端链接远程后假死问题</a>
               
             
           </h1>
@@ -1748,7 +1918,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/02/12/ckfms0gmg004ousomx0kbjph0/#more" rel="contents">
+              <a class="btn" href="/2020/02/12/ckfpk0q6f004v9bombhkvrsnm/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1808,7 +1978,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/11/ckfms0glf002lusomx7aef1a4/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/11/ckfpk0q57002l9bomzmcjs33a/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1828,7 +1998,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/02/11/ckfms0glf002lusomx7aef1a4/" class="post-title-link" itemprop="url">shadowsocks客户端启动报错问题</a>
+                <a href="/2020/02/11/ckfpk0q57002l9bomzmcjs33a/" class="post-title-link" itemprop="url">shadowsocks客户端启动报错问题</a>
               
             
           </h1>
@@ -1928,187 +2098,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/02/11/ckfms0glf002lusomx7aef1a4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/01/10/ckfms0gky001rusomamu3nhst/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/01/10/ckfms0gky001rusomamu3nhst/" class="post-title-link" itemprop="url">nginx配置结构说明</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-01-10 14:20:08" itemprop="dateCreated datePublished" datetime="2020-01-10T14:20:08+08:00">2020-01-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-03-21 17:28:32" itemprop="dateModified" datetime="2020-03-21T17:28:32+08:00">2020-03-21</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>最近做项目发现服务器上nginx的配置很混乱，主要原因就是配置的人不太了解nginx的配置。从网上查了资料之后就复制了。</p>
-<h2 id="配置结构"><a href="#配置结构" class="headerlink" title="配置结构"></a>配置结构</h2><p>nginx的配置其实很简单，总共也就分为4部分：main（全局设置）、server（主机设置）、upstream（负载均衡服务器设置）和 location（URL匹配特定位置的设置）<br>他们的关系是，server继承main，location继承server，upstream既不会继承其他设置也不会被继承。<br>所以配置的优先级就是 location &gt; server &gt; main</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/01/10/ckfms0gky001rusomamu3nhst/#more" rel="contents">
+              <a class="btn" href="/2020/02/11/ckfpk0q57002l9bomzmcjs33a/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2200,7 +2190,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">78</span>
+                    <span class="site-state-item-count">79</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

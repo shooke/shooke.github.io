@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2020-09-29T05:10:27.608Z</updated>
+  <updated>2020-09-30T15:37:35.667Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,9 +17,34 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>解决ssh登录超时问题</title>
+    <link href="https://www.xingjiehu.com/2020/09/30/ckfpk0q6c004o9bom4qo1pfj7/"/>
+    <id>https://www.xingjiehu.com/2020/09/30/ckfpk0q6c004o9bom4qo1pfj7/</id>
+    <published>2020-09-30T15:36:31.000Z</published>
+    <updated>2020-09-30T15:37:35.667Z</updated>
+    
+    <content type="html"><![CDATA[<p>加上<code>-o ServerAliveInterval=60</code>参数就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -o ServerAliveInterval=60 root@192.168.1.1</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;加上&lt;code&gt;-o ServerAliveInterval=60&lt;/code&gt;参数就可以了&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1
+      
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="ssh" scheme="https://www.xingjiehu.com/tags/ssh/"/>
+    
+  </entry>
+  
+  <entry>
     <title>记录一次postgresql迁移经历</title>
-    <link href="https://www.xingjiehu.com/2020/09/29/ckfms0gmi004rusom1owril36/"/>
-    <id>https://www.xingjiehu.com/2020/09/29/ckfms0gmi004rusom1owril36/</id>
+    <link href="https://www.xingjiehu.com/2020/09/29/ckfpk0q6i00519bomxw770j99/"/>
+    <id>https://www.xingjiehu.com/2020/09/29/ckfpk0q6i00519bomxw770j99/</id>
     <published>2020-09-28T16:24:15.000Z</published>
     <updated>2020-09-29T05:10:27.608Z</updated>
     
@@ -43,8 +68,8 @@
   
   <entry>
     <title>微信开发unionid详解</title>
-    <link href="https://www.xingjiehu.com/2020/09/23/ckfms0gm6004ausom6b8izm0l/"/>
-    <id>https://www.xingjiehu.com/2020/09/23/ckfms0gm6004ausom6b8izm0l/</id>
+    <link href="https://www.xingjiehu.com/2020/09/23/ckfpk0q6h004y9bome7fpeaz5/"/>
+    <id>https://www.xingjiehu.com/2020/09/23/ckfpk0q6h004y9bome7fpeaz5/</id>
     <published>2020-09-23T02:26:11.000Z</published>
     <updated>2020-09-28T16:23:54.363Z</updated>
     
@@ -76,8 +101,8 @@
   
   <entry>
     <title>聊聊kafka</title>
-    <link href="https://www.xingjiehu.com/2020/08/22/ckfms0gmj004vusomzsp9aik6/"/>
-    <id>https://www.xingjiehu.com/2020/08/22/ckfms0gmj004vusomzsp9aik6/</id>
+    <link href="https://www.xingjiehu.com/2020/08/22/ckfpk0q68004h9bomzza7ei69/"/>
+    <id>https://www.xingjiehu.com/2020/08/22/ckfpk0q68004h9bomzza7ei69/</id>
     <published>2020-08-22T07:47:12.000Z</published>
     <updated>2020-08-22T09:45:57.289Z</updated>
     
@@ -106,8 +131,8 @@
   
   <entry>
     <title>python捕获异常堆栈信息</title>
-    <link href="https://www.xingjiehu.com/2020/08/13/ckfms0gld002gusomkpawb4nn/"/>
-    <id>https://www.xingjiehu.com/2020/08/13/ckfms0gld002gusomkpawb4nn/</id>
+    <link href="https://www.xingjiehu.com/2020/08/13/ckfpk0q53002e9bom2pso3nya/"/>
+    <id>https://www.xingjiehu.com/2020/08/13/ckfpk0q53002e9bom2pso3nya/</id>
     <published>2020-08-13T05:07:32.000Z</published>
     <updated>2020-08-13T06:01:23.013Z</updated>
     
@@ -130,8 +155,8 @@
   
   <entry>
     <title>springboot 配置</title>
-    <link href="https://www.xingjiehu.com/2020/06/12/ckfms0gua00cwusom3vcw8wdv/"/>
-    <id>https://www.xingjiehu.com/2020/06/12/ckfms0gua00cwusom3vcw8wdv/</id>
+    <link href="https://www.xingjiehu.com/2020/06/12/ckfpk0qau00d19bom7p30b346/"/>
+    <id>https://www.xingjiehu.com/2020/06/12/ckfpk0qau00d19bom7p30b346/</id>
     <published>2020-06-12T05:16:57.000Z</published>
     <updated>2020-06-12T05:54:52.607Z</updated>
     
@@ -155,8 +180,8 @@
   
   <entry>
     <title>nginx配置中root alias的区别</title>
-    <link href="https://www.xingjiehu.com/2020/05/15/ckfms0gku001nusomdt20v2u6/"/>
-    <id>https://www.xingjiehu.com/2020/05/15/ckfms0gku001nusomdt20v2u6/</id>
+    <link href="https://www.xingjiehu.com/2020/05/15/ckfpk0q4s001n9bomga7qkulk/"/>
+    <id>https://www.xingjiehu.com/2020/05/15/ckfpk0q4s001n9bomga7qkulk/</id>
     <published>2020-05-15T03:03:07.000Z</published>
     <updated>2020-06-10T05:10:22.456Z</updated>
     
@@ -186,8 +211,8 @@
   
   <entry>
     <title>linux硬盘管理工具baobab</title>
-    <link href="https://www.xingjiehu.com/2020/05/12/ckfms0gkt001kusomisgad6u6/"/>
-    <id>https://www.xingjiehu.com/2020/05/12/ckfms0gkt001kusomisgad6u6/</id>
+    <link href="https://www.xingjiehu.com/2020/05/12/ckfpk0q4q001k9bomkncmgq8f/"/>
+    <id>https://www.xingjiehu.com/2020/05/12/ckfpk0q4q001k9bomkncmgq8f/</id>
     <published>2020-05-12T02:38:57.000Z</published>
     <updated>2020-05-12T02:44:26.999Z</updated>
     
@@ -216,8 +241,8 @@
   
   <entry>
     <title>springboot+nginx websocket配置</title>
-    <link href="https://www.xingjiehu.com/2020/05/09/ckfms0glg002nusomxm5n5gpd/"/>
-    <id>https://www.xingjiehu.com/2020/05/09/ckfms0glg002nusomxm5n5gpd/</id>
+    <link href="https://www.xingjiehu.com/2020/05/09/ckfpk0q58002n9bomsm9f2bfx/"/>
+    <id>https://www.xingjiehu.com/2020/05/09/ckfpk0q58002n9bomsm9f2bfx/</id>
     <published>2020-05-09T06:03:26.000Z</published>
     <updated>2020-05-09T06:10:25.138Z</updated>
     
@@ -243,8 +268,8 @@
   
   <entry>
     <title>10.克隆远程仓库</title>
-    <link href="https://www.xingjiehu.com/2020/04/22/ckfms0gtv00cfusomcopwh3ym/"/>
-    <id>https://www.xingjiehu.com/2020/04/22/ckfms0gtv00cfusomcopwh3ym/</id>
+    <link href="https://www.xingjiehu.com/2020/04/22/ckfpk0qaf00ce9bomtk6pg6zv/"/>
+    <id>https://www.xingjiehu.com/2020/04/22/ckfpk0qaf00ce9bomtk6pg6zv/</id>
     <published>2020-04-22T12:32:20.000Z</published>
     <updated>2020-05-09T06:02:34.883Z</updated>
     
@@ -271,8 +296,8 @@
   
   <entry>
     <title>让nginx支持flv文件播放</title>
-    <link href="https://www.xingjiehu.com/2020/03/25/ckfms0gmm0051usomraloya4x/"/>
-    <id>https://www.xingjiehu.com/2020/03/25/ckfms0gmm0051usomraloya4x/</id>
+    <link href="https://www.xingjiehu.com/2020/03/25/ckfpk0q6l00569bomhosrl82l/"/>
+    <id>https://www.xingjiehu.com/2020/03/25/ckfpk0q6l00569bomhosrl82l/</id>
     <published>2020-03-25T02:51:34.000Z</published>
     <updated>2020-03-25T09:18:11.624Z</updated>
     
@@ -298,8 +323,8 @@
   
   <entry>
     <title>docker镜像(Image)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckfms0gtf00bpusom9ijyvu22/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckfms0gtf00bpusom9ijyvu22/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckfpk0q9z00bt9bomyhwbs9gl/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckfpk0q9z00bt9bomyhwbs9gl/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -322,8 +347,8 @@
   
   <entry>
     <title>docker仓库(Repository)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckfms0gtg00bqusomtlv407wa/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckfms0gtg00bqusomtlv407wa/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckfpk0qa000bu9bomjkydpig8/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckfpk0qa000bu9bomjkydpig8/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -346,8 +371,8 @@
   
   <entry>
     <title>docker容器(Container)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckfms0gth00btusom5lhj90zs/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckfms0gth00btusom5lhj90zs/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckfpk0qa300by9bomq7jainm1/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckfpk0qa300by9bomq7jainm1/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -371,8 +396,8 @@
   
   <entry>
     <title>1.docker基础概念</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckfms0gti00buusomjbb6pazt/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckfms0gti00buusomjbb6pazt/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckfpk0qa200bx9boml2idpsla/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckfpk0qa200bx9boml2idpsla/</id>
     <published>2020-03-03T01:44:21.000Z</published>
     <updated>2020-03-21T09:28:32.509Z</updated>
     
@@ -397,8 +422,8 @@
   
   <entry>
     <title>openresty+lua+kafka部署</title>
-    <link href="https://www.xingjiehu.com/2020/02/26/ckfms0gl1001yusomklt44mw4/"/>
-    <id>https://www.xingjiehu.com/2020/02/26/ckfms0gl1001yusomklt44mw4/</id>
+    <link href="https://www.xingjiehu.com/2020/02/26/ckfpk0q4w001y9bommbr4dtaa/"/>
+    <id>https://www.xingjiehu.com/2020/02/26/ckfpk0q4w001y9bommbr4dtaa/</id>
     <published>2020-02-26T09:59:07.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -426,8 +451,8 @@
   
   <entry>
     <title>python mysql-connector简要说明</title>
-    <link href="https://www.xingjiehu.com/2020/02/14/ckfms0gl90028usomunapofpm/"/>
-    <id>https://www.xingjiehu.com/2020/02/14/ckfms0gl90028usomunapofpm/</id>
+    <link href="https://www.xingjiehu.com/2020/02/14/ckfpk0q5000289bomuxmeqbit/"/>
+    <id>https://www.xingjiehu.com/2020/02/14/ckfpk0q5000289bomuxmeqbit/</id>
     <published>2020-02-14T08:38:09.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -459,8 +484,8 @@
   
   <entry>
     <title>linux 为php7.0安装redis扩展</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/ckfms0gko0018usomscgf4x5b/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/ckfms0gko0018usomscgf4x5b/</id>
+    <link href="https://www.xingjiehu.com/2020/02/12/ckfpk0q4l00189bomebzkpuf8/"/>
+    <id>https://www.xingjiehu.com/2020/02/12/ckfpk0q4l00189bomebzkpuf8/</id>
     <published>2020-02-12T11:52:59.000Z</published>
     <updated>2020-05-14T11:45:49.391Z</updated>
     
@@ -486,8 +511,8 @@
   
   <entry>
     <title>解决深度终端链接远程后假死问题</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/ckfms0gmg004ousomx0kbjph0/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/ckfms0gmg004ousomx0kbjph0/</id>
+    <link href="https://www.xingjiehu.com/2020/02/12/ckfpk0q6f004v9bombhkvrsnm/"/>
+    <id>https://www.xingjiehu.com/2020/02/12/ckfpk0q6f004v9bombhkvrsnm/</id>
     <published>2020-02-12T07:47:55.000Z</published>
     <updated>2020-03-21T09:28:32.518Z</updated>
     
@@ -513,8 +538,8 @@
   
   <entry>
     <title>shadowsocks客户端启动报错问题</title>
-    <link href="https://www.xingjiehu.com/2020/02/11/ckfms0glf002lusomx7aef1a4/"/>
-    <id>https://www.xingjiehu.com/2020/02/11/ckfms0glf002lusomx7aef1a4/</id>
+    <link href="https://www.xingjiehu.com/2020/02/11/ckfpk0q57002l9bomzmcjs33a/"/>
+    <id>https://www.xingjiehu.com/2020/02/11/ckfpk0q57002l9bomzmcjs33a/</id>
     <published>2020-02-11T03:11:19.000Z</published>
     <updated>2020-03-21T09:28:32.514Z</updated>
     
@@ -531,29 +556,6 @@
     
     
       <category term="shadowsocks" scheme="https://www.xingjiehu.com/tags/shadowsocks/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nginx配置结构说明</title>
-    <link href="https://www.xingjiehu.com/2020/01/10/ckfms0gky001rusomamu3nhst/"/>
-    <id>https://www.xingjiehu.com/2020/01/10/ckfms0gky001rusomamu3nhst/</id>
-    <published>2020-01-10T06:20:08.000Z</published>
-    <updated>2020-03-21T09:28:32.514Z</updated>
-    
-    <content type="html"><![CDATA[<p>最近做项目发现服务器上nginx的配置很混乱，主要原因就是配置的人不太了解nginx的配置。从网上查了资料之后就复制了。</p><h2 id="配置结构"><a href="#配置结构" class="headerlink" title="配置结构"></a>配置结构</h2><p>nginx的配置其实很简单，总共也就分为4部分：main（全局设置）、server（主机设置）、upstream（负载均衡服务器设置）和 location（URL匹配特定位置的设置）<br>他们的关系是，server继承main，location继承server，upstream既不会继承其他设置也不会被继承。<br>所以配置的优先级就是 location &gt; server &gt; main</p><a id="more"></a><p>一级指的是nginx的入口配置文件<code>nginx.conf</code>,这个文件的存放位置根据安装环境有所差异。比如使用源码包安装nginx到<code>/usr/local</code>。nginx.conf就会在<code>/usr/local/nginx/conf/nginx.conf</code>。</p><p>nginx.conf中一般是这样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line">user nobody nobody;</span><br><span class="line">worker_processes 2;</span><br><span class="line">error_log logs/error.log notice;</span><br><span class="line">pid logs/nginx.pid;</span><br><span class="line">worker_rlimit_nofile 65535;</span><br><span class="line"> </span><br><span class="line">events&#123;</span><br><span class="line">use epoll;</span><br><span class="line">worker_connections 65536;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">http &#123;</span><br><span class="line">    include       mime.types;</span><br><span class="line">    default_type  application/octet-stream;</span><br><span class="line"></span><br><span class="line">    log_format  main  &apos;$remote_addr - $remote_user [$time_local] &quot;$request&quot; &apos;</span><br><span class="line">                      &apos;$status $body_bytes_sent &quot;$http_referer&quot; &apos;</span><br><span class="line">                      &apos;&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;&apos;;</span><br><span class="line"></span><br><span class="line">    #access_log  logs/access.log  main;</span><br><span class="line"></span><br><span class="line">    sendfile        on;</span><br><span class="line">    keepalive_timeout  65;</span><br><span class="line"></span><br><span class="line">    #gzip  on;</span><br><span class="line"></span><br><span class="line">    server &#123;</span><br><span class="line">            listen       80;</span><br><span class="line">            server_name  localhost;</span><br><span class="line"></span><br><span class="line">            #charset koi8-r;</span><br><span class="line"></span><br><span class="line">            #access_log  logs/host.access.log  main;</span><br><span class="line"></span><br><span class="line">            location / &#123;</span><br><span class="line">                root   html;</span><br><span class="line">                index  index.html index.htm;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            #error_page  404              /404.html;</span><br><span class="line"></span><br><span class="line">            # redirect server error pages to the static page /50x.html</span><br><span class="line">            #</span><br><span class="line">            error_page   500 502 503 504  /50x.html;</span><br><span class="line">            location = /50x.html &#123;</span><br><span class="line">                root   html;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            # proxy the PHP scripts to Apache listening on 127.0.0.1:80</span><br><span class="line">            #</span><br><span class="line">            #location ~ \.php$ &#123;</span><br><span class="line">            #    proxy_pass   http://127.0.0.1;</span><br><span class="line">            #&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="http配置"><a href="#http配置" class="headerlink" title="http配置"></a>http配置</h2><p>http里面主要做一些server中会用到的通用配置，比如mime，日志格式log_format，负载均衡等。<br>http里面放多个server，一般为了方便管理，我们会把server放到一个叫vhost的文件夹内。然后用<code>include vhost/*.conf;</code>的方式加载进来。</p><h2 id="server配置"><a href="#server配置" class="headerlink" title="server配置"></a>server配置</h2><p>http中的配置项，server中也可以使用，如果某个站点需要个性化配置，可以自行配置。<br>相同的配置项，server中的配置优先级高于http。</p><h2 id="location配置"><a href="#location配置" class="headerlink" title="location配置"></a>location配置</h2><p>主要用于请求转发，或者针对某个路由进行特殊处理。经常用到的场景是为了节省域名，前端和后端都部署在一个域名下。接口用XXX.com/api去访问，这时候可以通过location做转发</p><h2 id="upstream配置"><a href="#upstream配置" class="headerlink" title="upstream配置"></a>upstream配置</h2><p>负载均衡可以放在http内部，也可以放在http的外层。这就方便了灵活配置。如果只有一个负载配置多server公用，可以在<code>nginx.conf</code>中配置，在各个server中使用。<br>如果每个server有自己的负载配置。就可以把配置放在自己的配置文件<code>vhost/server1.conf</code>中。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近做项目发现服务器上nginx的配置很混乱，主要原因就是配置的人不太了解nginx的配置。从网上查了资料之后就复制了。&lt;/p&gt;
-&lt;h2 id=&quot;配置结构&quot;&gt;&lt;a href=&quot;#配置结构&quot; class=&quot;headerlink&quot; title=&quot;配置结构&quot;&gt;&lt;/a&gt;配置结构&lt;/h2&gt;&lt;p&gt;nginx的配置其实很简单，总共也就分为4部分：main（全局设置）、server（主机设置）、upstream（负载均衡服务器设置）和 location（URL匹配特定位置的设置）&lt;br&gt;他们的关系是，server继承main，location继承server，upstream既不会继承其他设置也不会被继承。&lt;br&gt;所以配置的优先级就是 location &amp;gt; server &amp;gt; main&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="nginx" scheme="https://www.xingjiehu.com/tags/nginx/"/>
     
   </entry>
   
