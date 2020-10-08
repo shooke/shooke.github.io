@@ -346,7 +346,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/01/10/ckfpk0q4u001r9bomwdsx9515/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/02/11/ckg0wgfsy002pg0ombihb5hj4/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -366,7 +366,187 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/01/10/ckfpk0q4u001r9bomwdsx9515/" class="post-title-link" itemprop="url">nginx配置结构说明</a>
+                <a href="/2020/02/11/ckg0wgfsy002pg0ombihb5hj4/" class="post-title-link" itemprop="url">shadowsocks客户端启动报错问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-02-11 11:11:19" itemprop="dateCreated datePublished" datetime="2020-02-11T11:11:19+08:00">2020-02-11</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-10-08 22:09:14" itemprop="dateModified" datetime="2020-10-08T22:09:14+08:00">2020-10-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sslocal -c shadowsocks.json</span><br></pre></td></tr></table></figure>
+<p>报如下错误<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">INFO: loading config from shadowsocks.json</span><br><span class="line">2020-02-11 10:50:45 INFO     loading libcrypto from libcrypto.so.1.1</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/usr/local/bin/sslocal&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    sys.exit(main())</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/local.py&quot;, line 39, in main</span><br><span class="line">    config = shell.get_config(True)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/shell.py&quot;, line 262, in get_config</span><br><span class="line">    check_config(config, is_local)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/shell.py&quot;, line 124, in check_config</span><br><span class="line">    encrypt.try_cipher(config[&apos;password&apos;], config[&apos;method&apos;])</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/encrypt.py&quot;, line 44, in try_cipher</span><br><span class="line">    Encryptor(key, method)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/encrypt.py&quot;, line 83, in __init__</span><br><span class="line">    random_string(self._method_info[1]))</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/encrypt.py&quot;, line 109, in get_cipher</span><br><span class="line">    return m[2](method, key, iv, op)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/rc4_md5.py&quot;, line 33, in create_cipher</span><br><span class="line">    return openssl.OpenSSLCrypto(b&apos;rc4&apos;, rc4_key, b&apos;&apos;, op)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/openssl.py&quot;, line 76, in __init__</span><br><span class="line">    load_openssl()</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/openssl.py&quot;, line 52, in load_openssl</span><br><span class="line">    libcrypto.EVP_CIPHER_CTX_cleanup.argtypes = (c_void_p,)</span><br><span class="line">  File &quot;/usr/lib/python2.7/ctypes/__init__.py&quot;, line 379, in __getattr__</span><br><span class="line">    func = self.__getitem__(name)</span><br><span class="line">  File &quot;/usr/lib/python2.7/ctypes/__init__.py&quot;, line 384, in __getitem__</span><br><span class="line">    func = self._FuncPtr((name_or_ordinal, self))</span><br><span class="line">AttributeError: /usr/lib/x86_64-linux-gnu/libcrypto.so.1.1: undefined symbol: EVP_CIPHER_CTX_cleanup</span><br></pre></td></tr></table></figure></p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/02/11/ckg0wgfsy002pg0ombihb5hj4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/01/10/ckg0wgfsj001wg0oms5w4d4kg/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/01/10/ckg0wgfsj001wg0oms5w4d4kg/" class="post-title-link" itemprop="url">nginx配置结构说明</a>
               
             
           </h1>
@@ -408,7 +588,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-21 17:28:32" itemprop="dateModified" datetime="2020-03-21T17:28:32+08:00">2020-03-21</time>
+                <time title="修改时间：2020-10-08 22:09:14" itemprop="dateModified" datetime="2020-10-08T22:09:14+08:00">2020-10-08</time>
               
             
           </span>
@@ -466,7 +646,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/01/10/ckfpk0q4u001r9bomwdsx9515/#more" rel="contents">
+              <a class="btn" href="/2020/01/10/ckg0wgfsj001wg0oms5w4d4kg/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -526,7 +706,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/01/03/ckfpk0q4k00159bomtgtlfzcu/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/01/03/ckg0wgfs60019g0om7qlyiy1k/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -546,7 +726,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2020/01/03/ckfpk0q4k00159bomtgtlfzcu/" class="post-title-link" itemprop="url">limits.conf配置说明</a>
+                <a href="/2020/01/03/ckg0wgfs60019g0om7qlyiy1k/" class="post-title-link" itemprop="url">limits.conf配置说明</a>
               
             
           </h1>
@@ -588,7 +768,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-21 17:28:32" itemprop="dateModified" datetime="2020-03-21T17:28:32+08:00">2020-03-21</time>
+                <time title="修改时间：2020-10-08 22:09:14" itemprop="dateModified" datetime="2020-10-08T22:09:14+08:00">2020-10-08</time>
               
             
           </span>
@@ -645,7 +825,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2020/01/03/ckfpk0q4k00159bomtgtlfzcu/#more" rel="contents">
+              <a class="btn" href="/2020/01/03/ckg0wgfs60019g0om7qlyiy1k/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -705,7 +885,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/28/ckfpk0q5b002t9bomvpvob7rr/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/28/ckg0wgft2002xg0omdhdn1eun/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -725,7 +905,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/28/ckfpk0q5b002t9bomvpvob7rr/" class="post-title-link" itemprop="url">ssh提速</a>
+                <a href="/2019/12/28/ckg0wgft2002xg0omdhdn1eun/" class="post-title-link" itemprop="url">ssh提速</a>
               
             
           </h1>
@@ -767,7 +947,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-21 17:28:32" itemprop="dateModified" datetime="2020-03-21T17:28:32+08:00">2020-03-21</time>
+                <time title="修改时间：2020-10-08 22:09:14" itemprop="dateModified" datetime="2020-10-08T22:09:14+08:00">2020-10-08</time>
               
             
           </span>
@@ -879,7 +1059,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/26/ckfpk0qap00cu9bom0rn4s7tk/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/26/ckg0wgfy100d1g0omltor5rvo/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -899,7 +1079,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/26/ckfpk0qap00cu9bom0rn4s7tk/" class="post-title-link" itemprop="url">9.上传到远程仓库</a>
+                <a href="/2019/12/26/ckg0wgfy100d1g0omltor5rvo/" class="post-title-link" itemprop="url">9.上传到远程仓库</a>
               
             
           </h1>
@@ -941,7 +1121,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-24 16:51:44" itemprop="dateModified" datetime="2020-03-24T16:51:44+08:00">2020-03-24</time>
+                <time title="修改时间：2020-10-08 22:09:14" itemprop="dateModified" datetime="2020-10-08T22:09:14+08:00">2020-10-08</time>
               
             
           </span>
@@ -1083,7 +1263,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/25/ckfpk0qas00cx9bomf74b7oka/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/25/ckg0wgfxz00cyg0omsk27c2ex/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1103,7 +1283,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/25/ckfpk0qas00cx9bomf74b7oka/" class="post-title-link" itemprop="url">8.再遇工作区和版本库</a>
+                <a href="/2019/12/25/ckg0wgfxz00cyg0omsk27c2ex/" class="post-title-link" itemprop="url">8.再遇工作区和版本库</a>
               
             
           </h1>
@@ -1145,7 +1325,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-24 16:51:29" itemprop="dateModified" datetime="2020-03-24T16:51:29+08:00">2020-03-24</time>
+                <time title="修改时间：2020-10-08 22:09:14" itemprop="dateModified" datetime="2020-10-08T22:09:14+08:00">2020-10-08</time>
               
             
           </span>
@@ -1279,7 +1459,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/24/ckfpk0qao00cq9bom1saocro9/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/24/ckg0wgfxu00csg0omzfqm79fr/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1299,7 +1479,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/24/ckfpk0qao00cq9bom1saocro9/" class="post-title-link" itemprop="url">7.时光倒流</a>
+                <a href="/2019/12/24/ckg0wgfxu00csg0omzfqm79fr/" class="post-title-link" itemprop="url">7.时光倒流</a>
               
             
           </h1>
@@ -1341,7 +1521,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-24 17:17:01" itemprop="dateModified" datetime="2020-03-24T17:17:01+08:00">2020-03-24</time>
+                <time title="修改时间：2020-10-08 22:09:14" itemprop="dateModified" datetime="2020-10-08T22:09:14+08:00">2020-10-08</time>
               
             
           </span>
@@ -1484,7 +1664,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/23/ckfpk0qam00co9bomu7n8gdzq/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/23/ckg0wgfxv00cug0om9plxom37/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1504,7 +1684,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/23/ckfpk0qam00co9bomu7n8gdzq/" class="post-title-link" itemprop="url">6.撤销操作</a>
+                <a href="/2019/12/23/ckg0wgfxv00cug0om9plxom37/" class="post-title-link" itemprop="url">6.撤销操作</a>
               
             
           </h1>
@@ -1546,7 +1726,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-24 16:51:13" itemprop="dateModified" datetime="2020-03-24T16:51:13+08:00">2020-03-24</time>
+                <time title="修改时间：2020-10-08 22:09:14" itemprop="dateModified" datetime="2020-10-08T22:09:14+08:00">2020-10-08</time>
               
             
           </span>
@@ -1676,7 +1856,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/22/ckfpk0qaj00ck9bomz1szngpx/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/22/ckg0wgfxs00cog0omf4iyib5w/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1696,7 +1876,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/22/ckfpk0qaj00ck9bomz1szngpx/" class="post-title-link" itemprop="url">5.对比文件变化</a>
+                <a href="/2019/12/22/ckg0wgfxs00cog0omf4iyib5w/" class="post-title-link" itemprop="url">5.对比文件变化</a>
               
             
           </h1>
@@ -1738,7 +1918,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-24 17:22:13" itemprop="dateModified" datetime="2020-03-24T17:22:13+08:00">2020-03-24</time>
+                <time title="修改时间：2020-10-08 22:09:14" itemprop="dateModified" datetime="2020-10-08T22:09:14+08:00">2020-10-08</time>
               
             
           </span>
@@ -1868,7 +2048,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/21/ckfpk0qah00ci9bomxejgusna/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/21/ckg0wgfxr00cmg0ome70ecyzp/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1888,7 +2068,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/21/ckfpk0qah00ci9bomxejgusna/" class="post-title-link" itemprop="url">4.啥事工作区、暂存区和版本库</a>
+                <a href="/2019/12/21/ckg0wgfxr00cmg0ome70ecyzp/" class="post-title-link" itemprop="url">4.啥事工作区、暂存区和版本库</a>
               
             
           </h1>
@@ -1930,7 +2110,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-24 16:50:58" itemprop="dateModified" datetime="2020-03-24T16:50:58+08:00">2020-03-24</time>
+                <time title="修改时间：2020-10-08 22:09:14" itemprop="dateModified" datetime="2020-10-08T22:09:14+08:00">2020-10-08</time>
               
             
           </span>
@@ -2047,198 +2227,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/20/ckfpk0qa800c69bom5005dgpx/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/12/20/ckfpk0qa800c69bom5005dgpx/" class="post-title-link" itemprop="url">3.查看文件状态</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-12-20 20:32:20" itemprop="dateCreated datePublished" datetime="2019-12-20T20:32:20+08:00">2019-12-20</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-03-24 16:50:50" itemprop="dateModified" datetime="2020-03-24T16:50:50+08:00">2020-03-24</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/一点一点了解git/" itemprop="url" rel="index"><span itemprop="name">一点一点了解git</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
-<p>本故事纯属虚构，如有雷同，^0^那可太巧了</p>
-</blockquote>
-<p>第二天上班，小白开开心心的打开电脑，准备爽一把。忽然想起来，昨天好像有一个功能还没有做完，临走的时候没有执行<code>add</code>和<code>commit</code>。</p>
-<p>糟糕好像忘记修改过哪几个文件了。这可如何是好啊？</p>
-<p>一盏灯泡从小白的脑袋里亮起，好像我开始使用git了，git应该知道我昨天哪些代码没有<code>commit</code>吧。<br>小白打开百度，果然，git是可以查看文件状态的。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	modified:   readme.md</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure>
-<p><code>modified:   readme.md</code>，哦，原来是<code>readme.md</code>文件昨天修改过。马上<code>git add readme.md</code> <code>git commit -m &quot;readme&quot;</code>添加到仓库。</p>
-<p>ok，继续快乐的工作。</p>
-<p>开始开发新功能，创建一个新文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch 我最帅.txt</span><br></pre></td></tr></table></figure></p>
-<p>不一会功能开发完成。脑袋好乱，刚才出去又忘记改了什么文件。还是用<code>git status</code>吧。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	&quot;\346\210\221\346\234\200\345\270\205.txt&quot;</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span><br></pre></td></tr></table></figure></p>
-<p><code>&quot;\346\210\221\346\234\200\345\270\205.txt&quot;</code>是什么鬼，我们打开万能的百度，是因为git对对0x80以上的字符进行quote，解决方法很简单</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.quotepath false</span><br></pre></td></tr></table></figure>
-<p>没有报错，应该没有问题吧，小白抱着试试看的态度敲下了<code>git status</code>命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	我最帅.txt</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span><br></pre></td></tr></table></figure></p>
-<p>果然正常了。小白那个开心啊。内心YY道：“我就说吗git这么强大，怎么可能弱鸡到中文都不能正常显示，我果然是天才，一下就找到了原因”</p>
-<p>马上开始保存到仓库，咦，不对，好像两次<code>git status</code>出现的提示不一样，这是怎么回事啊。</p>
-<p>时间在小白的思考中慢慢流失，抬头一看，哇，这不8点60了吗。赶紧回家…</p>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><code>git status</code>可以查看项目的变更情况<br><code>git config --global core.quotepath false</code> 可以解决，git提示信息中文乱码问题</p>
-<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>为什么小白两次<code>git status</code>出现的提示不一样呢？这就要从git的管理机制，工作区和代码库说起了</p>
-<p>预知后事如何，且看下回分解。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2286,7 +2274,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">79</span>
+                    <span class="site-state-item-count">80</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2311,7 +2299,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">6</span>
+                      
+                    
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2534,7 +2524,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">105</span>
+                      
+                    
+                    <span class="site-state-item-count">106</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>

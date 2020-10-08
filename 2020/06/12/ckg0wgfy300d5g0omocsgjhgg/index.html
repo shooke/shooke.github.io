@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="application.properties配置中文乱码问题删除现有的文件，设置idea。setting-&amp;gt;editor-&amp;gt;file encodings 将Global Encoding Project Encoding Default encoding for properties files都设置成utf-8.并且勾选Transparent native-to-ascii conv">
+<meta name="keywords" content="spring boot,spring boot 配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springboot 配置">
+<meta property="og:url" content="https://www.xingjiehu.com/2020/06/12/ckg0wgfy300d5g0omocsgjhgg/index.html">
+<meta property="og:site_name" content="shooke&#39;s blog">
+<meta property="og:description" content="application.properties配置中文乱码问题删除现有的文件，设置idea。setting-&amp;gt;editor-&amp;gt;file encodings 将Global Encoding Project Encoding Default encoding for properties files都设置成utf-8.并且勾选Transparent native-to-ascii conv">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-10-08T14:09:14.049Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="springboot 配置">
+<meta name="twitter:description" content="application.properties配置中文乱码问题删除现有的文件，设置idea。setting-&amp;gt;editor-&amp;gt;file encodings 将Global Encoding Project Encoding Default encoding for properties files都设置成utf-8.并且勾选Transparent native-to-ascii conv">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="shooke's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://www.xingjiehu.com/2020/06/12/ckg0wgfy300d5g0omocsgjhgg/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>springboot 配置 - shooke's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- google 验证 -->
+  <meta name="google-site-verification" content="9Y6X9yptaHlOdppRk7mld_uHsSibf3lPB8c_60zPyF0">
+  <!-- baidu 验证和收录推送 -->
+  <meta name="baidu-site-verification" content="lCJxAeYryx">
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shooke's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/06/12/ckg0wgfy300d5g0omocsgjhgg/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">springboot 配置
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-06-12 13:16:57" itemprop="dateCreated datePublished" datetime="2020-06-12T13:16:57+08:00">2020-06-12</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-10-08 22:09:14" itemprop="dateModified" datetime="2020-10-08T22:09:14+08:00">2020-10-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/springboot/" itemprop="url" rel="index"><span itemprop="name">springboot</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="application-properties配置中文乱码问题"><a href="#application-properties配置中文乱码问题" class="headerlink" title="application.properties配置中文乱码问题"></a>application.properties配置中文乱码问题</h2><p>删除现有的文件，设置idea。setting-&gt;editor-&gt;file encodings 将<code>Global Encoding</code> <code>Project Encoding</code> <code>Default encoding for properties files</code>都设置成<code>utf-8</code>.并且勾选<code>Transparent native-to-ascii conversion</code></p>
+<h2 id="多配置时spring-profiles-active-dev不生效"><a href="#多配置时spring-profiles-active-dev不生效" class="headerlink" title="多配置时spring.profiles.active=dev不生效"></a>多配置时<code>spring.profiles.active=dev</code>不生效</h2><p>如果只有<code>application.properties</code>和<code>application-dev.properties</code>这两个文件，是不行的，需要在增加一个文件比如<code>application-prod.properties</code>。<br>只有配置文件多余2个才会生效</p>
+<a id="more"></a>
+<h2 id="配置使用"><a href="#配置使用" class="headerlink" title="配置使用"></a>配置使用</h2><p>application-dev.properties内容如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">com.dudu.name=&quot;张三&quot;</span><br><span class="line">com.dudu.want=&quot;跑步&quot;</span><br><span class="line">com.dudu.sex=&quot;男&quot;</span><br></pre></td></tr></table></figure></p>
+<h3 id="直接使用配置"><a href="#直接使用配置" class="headerlink" title="直接使用配置"></a>直接使用配置</h3><p>在需要用到的地方使用,在属性上使用<code>@Value</code>注解就可以<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Value(&quot;$&#123;com.dudu.name&#125;&quot;)</span><br><span class="line">private String name;</span><br></pre></td></tr></table></figure></p>
+<h3 id="使用bean对象方式"><a href="#使用bean对象方式" class="headerlink" title="使用bean对象方式"></a>使用bean对象方式</h3><p>config/ConfigBean.java 代码如下，值得注意的是<code>@Configuration</code>注解非常重要，如果没有这个注解是不生效的。<br>其实还有<code>@EnableConfigurationProperties</code>注解方式，但使用起来不如<code>@configuration</code>方便。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">package com.springboot.config.config;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author shooke</span><br><span class="line"> */</span><br><span class="line">@Configuration</span><br><span class="line">@ConfigurationProperties(prefix=&quot;com.dudu&quot;)</span><br><span class="line">public class ConfigBean &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private String sex;</span><br><span class="line">    private String want;</span><br><span class="line"></span><br><span class="line">    public String getWant() &#123; return want;&#125;</span><br><span class="line"></span><br><span class="line">    public void setWant(String want) &#123; this.want = want;&#125;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getSex() &#123;</span><br><span class="line">        return sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setSex(String sex) &#123;</span><br><span class="line">        this.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在需要用到配置的地方，直接初始化一个ConfigBean的对象就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">ConfigBean conf;</span><br><span class="line"></span><br><span class="line">@RequestMapping(&quot;/dev&quot;)</span><br><span class="line">public String dev()&#123;</span><br><span class="line">    return conf.getName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用自定义properties"><a href="#使用自定义properties" class="headerlink" title="使用自定义properties"></a>使用自定义properties</h2><p>有时候配置项太多了，咱们就拆分成不同的文件。拆分的文件使用需要用到<code>@PropertySource</code>注解，指定一下配置文件路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @author shooke</span><br><span class="line"> */</span><br><span class="line">@Configuration</span><br><span class="line">@ConfigurationProperties(prefix = &quot;com.md&quot;)</span><br><span class="line">@PropertySource(&quot;classpath:test.properties&quot;)</span><br><span class="line">public class ConfigTestBean &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private String want;</span><br><span class="line">    // 省略getter和setter</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getWant() &#123;</span><br><span class="line">        return want;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setWant(String want) &#123;</span><br><span class="line">        this.want = want;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p><a href="https://gitee.com/shooke/springboot/tree/master/springboot-config" target="_blank" rel="noopener">https://gitee.com/shooke/springboot/tree/master/springboot-config</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://tengj.top/2017/02/28/springboot2/" target="_blank" rel="noopener">http://tengj.top/2017/02/28/springboot2/</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <!--
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>领红包</span>
+  </button>
+  -->
+  <div id="QR" style="display: block;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/images/alipay_redpack.png" alt="shooke 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/spring-boot/" rel="tag"># spring boot</a>
+          
+            <a href="/tags/spring-boot-配置/" rel="tag"># spring boot 配置</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/15/ckg0wgfsh001sg0omk7wxq8ue/" rel="next" title="nginx配置中root alias的区别">
+                <i class="fa fa-chevron-left"></i> nginx配置中root alias的区别
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/08/13/ckg0wgfss002ig0omrkjmyh7x/" rel="prev" title="python捕获异常堆栈信息">
+                python捕获异常堆栈信息 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">shooke</p>
+              <p class="site-description motion-element" itemprop="description">平时写点技术文章，分享一些经验，予人玫瑰手有余香</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">80</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">106</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/shooke" title="GitHub &rarr; https://github.com/shooke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/shooke" title="Weibo &rarr; https://weibo.com/shooke" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#application-properties配置中文乱码问题"><span class="nav-number">1.</span> <span class="nav-text">application.properties配置中文乱码问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多配置时spring-profiles-active-dev不生效"><span class="nav-number">2.</span> <span class="nav-text">多配置时spring.profiles.active=dev不生效</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置使用"><span class="nav-number">3.</span> <span class="nav-text">配置使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#直接使用配置"><span class="nav-number">3.1.</span> <span class="nav-text">直接使用配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用bean对象方式"><span class="nav-number">3.2.</span> <span class="nav-text">使用bean对象方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用自定义properties"><span class="nav-number">4.</span> <span class="nav-text">使用自定义properties</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码"><span class="nav-number">5.</span> <span class="nav-text">代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shooke</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.7.0</div>
+
+
+
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d6b6833304116ed43a46f8f77b49d030";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
