@@ -21,6 +21,8 @@ sudo apt install mitmproxy
 pip install mitmproxy
 ```
 
+<!-- more -->
+
 ## 常用命令
 要启动 mitmproxy 用 mitmproxy、mitmdump、mitmweb 这三个命令中的任意一个即可，这三个命令功能一致，且都可以加载自定义脚本，唯一的区别是交互界面的不同。
 mitmproxy默认监听端口是8080
@@ -37,7 +39,7 @@ mitmproxy默认监听端口是8080
 电脑执行mitmproxy或mitmweb命令。就可以看到手机的每一次网络请求了。
 
 ## 参考资料
-详细介绍 https://blog.wolfogre.com/posts/usage-of-mitmproxy/
+使用 mitmproxy + python 做拦截代理：https://blog.wolfogre.com/posts/usage-of-mitmproxy/
 mitmproxy 官方文档：https://docs.mitmproxy.org/stable/
 mitmproxy 脚本示例：https://github.com/mitmproxy/mitmproxy/tree/master/examples
 维基百科 - 代理服务器：https://zh.wikipedia.org/wiki/代理服务器
