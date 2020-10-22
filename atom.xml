@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2020-10-08T14:19:12.412Z</updated>
+  <updated>2020-10-22T10:37:48.786Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,9 +17,35 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>超好用的抓包工具mitmproxy</title>
+    <link href="https://www.xingjiehu.com/2020/10/22/ckgkozynz0054vtomsfdmzgdq/"/>
+    <id>https://www.xingjiehu.com/2020/10/22/ckgkozynz0054vtomsfdmzgdq/</id>
+    <published>2020-10-22T10:25:31.000Z</published>
+    <updated>2020-10-22T10:37:48.786Z</updated>
+    
+    <content type="html"><![CDATA[<p>mitmproxy是一个非常好用的代理工具</p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>最快速的安装莫过于执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install mitmproxy</span><br></pre></td></tr></table></figure></p><p>由于mitmproxy是基于python开发的，所以安装mitmproxy的同时，也会自动安装上python3。</p><p>如果本地已经有了python3.6以上的版本，可以用pip进行安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mitmproxy</span><br></pre></td></tr></table></figure></p><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>要启动 mitmproxy 用 mitmproxy、mitmdump、mitmweb 这三个命令中的任意一个即可，这三个命令功能一致，且都可以加载自定义脚本，唯一的区别是交互界面的不同。<br>mitmproxy默认监听端口是8080</p><ul><li><p>mitmproxy 命令启动后，会提供一个命令行界面，用户可以实时看到发生的请求，并通过命令过滤请求，查看请求数据。</p></li><li><p>mitmweb 命令启动后，会提供一个 web 界面，用户可以实时看到发生的请求，并通过 GUI 交互来过滤请求，查看请求数据。</p></li><li><p>mitmdump 命令启动后——你应该猜到了，没有界面，程序默默运行，所以 mitmdump 无法提供过滤请求、查看数据的功能，只能结合自定义脚本，默默工作</p></li></ul><h2 id="场景举例"><a href="#场景举例" class="headerlink" title="场景举例"></a>场景举例</h2><p>比如想要对手机内容进行抓包。<br>要确保电脑和手机在一个wifi网络内，以小米手机为例，长安wifi，进入wifi详情，设置代理，选择手动，主机名设置为电脑的ip，端口号设置为8080（mitmproxy默认监听端口）。点击右上角的对号。保存网络设置就可以了。<br>电脑执行mitmproxy或mitmweb命令。就可以看到手机的每一次网络请求了。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://blog.wolfogre.com/posts/usage-of-mitmproxy/" target="_blank" rel="noopener">https://blog.wolfogre.com/posts/usage-of-mitmproxy/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;mitmproxy是一个非常好用的代理工具&lt;/p&gt;
+&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;p&gt;最快速的安装莫过于执行&lt;br&gt;&lt;figure class=&quot;highlight p
+      
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="mitmproxy" scheme="https://www.xingjiehu.com/tags/mitmproxy/"/>
+    
+  </entry>
+  
+  <entry>
     <title>deepin编译安装nginx问题总结.md</title>
-    <link href="https://www.xingjiehu.com/2020/10/08/ckg0wqg2v0000jeomfkaoew09/"/>
-    <id>https://www.xingjiehu.com/2020/10/08/ckg0wqg2v0000jeomfkaoew09/</id>
+    <link href="https://www.xingjiehu.com/2020/10/08/ckgkozyl8000dvtomgzh3omtj/"/>
+    <id>https://www.xingjiehu.com/2020/10/08/ckgkozyl8000dvtomgzh3omtj/</id>
     <published>2020-10-08T14:10:48.000Z</published>
     <updated>2020-10-08T14:19:12.412Z</updated>
     
@@ -40,8 +66,8 @@
   
   <entry>
     <title>解决ssh登录超时问题</title>
-    <link href="https://www.xingjiehu.com/2020/09/30/ckg0wgfua004yg0om0ioqi7uy/"/>
-    <id>https://www.xingjiehu.com/2020/09/30/ckg0wgfua004yg0om0ioqi7uy/</id>
+    <link href="https://www.xingjiehu.com/2020/09/30/ckgkozyny0051vtomx25txf8g/"/>
+    <id>https://www.xingjiehu.com/2020/09/30/ckgkozyny0051vtomx25txf8g/</id>
     <published>2020-09-30T15:36:31.000Z</published>
     <updated>2020-10-08T14:09:14.057Z</updated>
     
@@ -65,8 +91,8 @@
   
   <entry>
     <title>记录一次postgresql迁移经历</title>
-    <link href="https://www.xingjiehu.com/2020/09/29/ckg0wgfug0058g0omdfrl7p9c/"/>
-    <id>https://www.xingjiehu.com/2020/09/29/ckg0wgfug0058g0omdfrl7p9c/</id>
+    <link href="https://www.xingjiehu.com/2020/09/29/ckgkozyo4005cvtomf06xg0lm/"/>
+    <id>https://www.xingjiehu.com/2020/09/29/ckgkozyo4005cvtomf06xg0lm/</id>
     <published>2020-09-28T16:24:15.000Z</published>
     <updated>2020-10-08T14:09:14.057Z</updated>
     
@@ -90,8 +116,8 @@
   
   <entry>
     <title>微信开发unionid详解</title>
-    <link href="https://www.xingjiehu.com/2020/09/23/ckg0wgftz004lg0omd3u902s9/"/>
-    <id>https://www.xingjiehu.com/2020/09/23/ckg0wgftz004lg0omd3u902s9/</id>
+    <link href="https://www.xingjiehu.com/2020/09/23/ckgkozynr004nvtomd3hggsdt/"/>
+    <id>https://www.xingjiehu.com/2020/09/23/ckgkozynr004nvtomd3hggsdt/</id>
     <published>2020-09-23T02:26:11.000Z</published>
     <updated>2020-10-08T14:09:14.053Z</updated>
     
@@ -123,8 +149,8 @@
   
   <entry>
     <title>聊聊kafka</title>
-    <link href="https://www.xingjiehu.com/2020/08/22/ckg0wgfu3004rg0om94f764df/"/>
-    <id>https://www.xingjiehu.com/2020/08/22/ckg0wgfu3004rg0om94f764df/</id>
+    <link href="https://www.xingjiehu.com/2020/08/22/ckgkozynt004qvtom9hptjux6/"/>
+    <id>https://www.xingjiehu.com/2020/08/22/ckgkozynt004qvtom9hptjux6/</id>
     <published>2020-08-22T07:47:12.000Z</published>
     <updated>2020-10-08T14:09:14.053Z</updated>
     
@@ -153,8 +179,8 @@
   
   <entry>
     <title>python捕获异常堆栈信息</title>
-    <link href="https://www.xingjiehu.com/2020/08/13/ckg0wgfss002ig0omrkjmyh7x/"/>
-    <id>https://www.xingjiehu.com/2020/08/13/ckg0wgfss002ig0omrkjmyh7x/</id>
+    <link href="https://www.xingjiehu.com/2020/08/13/ckgkozymd002gvtomq24f5c0e/"/>
+    <id>https://www.xingjiehu.com/2020/08/13/ckgkozymd002gvtomq24f5c0e/</id>
     <published>2020-08-13T05:07:32.000Z</published>
     <updated>2020-10-08T14:09:14.045Z</updated>
     
@@ -177,8 +203,8 @@
   
   <entry>
     <title>springboot 配置</title>
-    <link href="https://www.xingjiehu.com/2020/06/12/ckg0wgfy300d5g0omocsgjhgg/"/>
-    <id>https://www.xingjiehu.com/2020/06/12/ckg0wgfy300d5g0omocsgjhgg/</id>
+    <link href="https://www.xingjiehu.com/2020/06/12/ckgkozysc00d3vtom9ru03bv4/"/>
+    <id>https://www.xingjiehu.com/2020/06/12/ckgkozysc00d3vtom9ru03bv4/</id>
     <published>2020-06-12T05:16:57.000Z</published>
     <updated>2020-10-08T14:09:14.049Z</updated>
     
@@ -202,8 +228,8 @@
   
   <entry>
     <title>nginx配置中root alias的区别</title>
-    <link href="https://www.xingjiehu.com/2020/05/15/ckg0wgfsh001sg0omk7wxq8ue/"/>
-    <id>https://www.xingjiehu.com/2020/05/15/ckg0wgfsh001sg0omk7wxq8ue/</id>
+    <link href="https://www.xingjiehu.com/2020/05/15/ckgkozym2001rvtom9ikthapa/"/>
+    <id>https://www.xingjiehu.com/2020/05/15/ckgkozym2001rvtom9ikthapa/</id>
     <published>2020-05-15T03:03:07.000Z</published>
     <updated>2020-10-08T14:09:14.045Z</updated>
     
@@ -233,8 +259,8 @@
   
   <entry>
     <title>linux硬盘管理工具baobab</title>
-    <link href="https://www.xingjiehu.com/2020/05/12/ckg0wgfsc001lg0om8fky57bh/"/>
-    <id>https://www.xingjiehu.com/2020/05/12/ckg0wgfsc001lg0om8fky57bh/</id>
+    <link href="https://www.xingjiehu.com/2020/05/12/ckgkozylx001kvtomqamtce4z/"/>
+    <id>https://www.xingjiehu.com/2020/05/12/ckgkozylx001kvtomqamtce4z/</id>
     <published>2020-05-12T02:38:57.000Z</published>
     <updated>2020-10-08T14:09:14.041Z</updated>
     
@@ -263,8 +289,8 @@
   
   <entry>
     <title>springboot+nginx websocket配置</title>
-    <link href="https://www.xingjiehu.com/2020/05/09/ckg0wgfsz002sg0omy7w3svlo/"/>
-    <id>https://www.xingjiehu.com/2020/05/09/ckg0wgfsz002sg0omy7w3svlo/</id>
+    <link href="https://www.xingjiehu.com/2020/05/09/ckgkozymi002qvtom36ztn10o/"/>
+    <id>https://www.xingjiehu.com/2020/05/09/ckgkozymi002qvtom36ztn10o/</id>
     <published>2020-05-09T06:03:26.000Z</published>
     <updated>2020-10-08T14:09:14.049Z</updated>
     
@@ -290,8 +316,8 @@
   
   <entry>
     <title>10.克隆远程仓库</title>
-    <link href="https://www.xingjiehu.com/2020/04/22/ckg0wgfxn00cag0omcwzb6nud/"/>
-    <id>https://www.xingjiehu.com/2020/04/22/ckg0wgfxn00cag0omcwzb6nud/</id>
+    <link href="https://www.xingjiehu.com/2020/04/22/ckgkozyrs00cavtomkd1q9oyy/"/>
+    <id>https://www.xingjiehu.com/2020/04/22/ckgkozyrs00cavtomkd1q9oyy/</id>
     <published>2020-04-22T12:32:20.000Z</published>
     <updated>2020-10-08T14:09:14.037Z</updated>
     
@@ -318,8 +344,8 @@
   
   <entry>
     <title>让nginx支持flv文件播放</title>
-    <link href="https://www.xingjiehu.com/2020/03/25/ckg0wgfue0055g0omkb33dwut/"/>
-    <id>https://www.xingjiehu.com/2020/03/25/ckg0wgfue0055g0omkb33dwut/</id>
+    <link href="https://www.xingjiehu.com/2020/03/25/ckgkozyo10057vtom0ia6vqeb/"/>
+    <id>https://www.xingjiehu.com/2020/03/25/ckgkozyo10057vtom0ia6vqeb/</id>
     <published>2020-03-25T02:51:34.000Z</published>
     <updated>2020-10-08T14:09:14.057Z</updated>
     
@@ -344,33 +370,9 @@
   </entry>
   
   <entry>
-    <title>docker仓库(Repository)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckg0wgfxg00bzg0om58blkqrh/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckg0wgfxg00bzg0om58blkqrh/</id>
-    <published>2020-03-03T03:12:37.000Z</published>
-    <updated>2020-10-08T14:09:14.037Z</updated>
-    
-    <content type="html"><![CDATA[<p>仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>。<br>大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。</p><a id="more"></a><h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>在 <a href="https://hub.docker.com" target="_blank" rel="noopener">https://hub.docker.com</a> 免费注册一个 Docker 账号。</p><h2 id="登录和退出"><a href="#登录和退出" class="headerlink" title="登录和退出"></a>登录和退出</h2><p>执行<code>docker login</code>命令，会提示输入用户名和密码，输入后就登录了。注意，输入密码时不会有任何显示，windows上一般显示<code>*</code>,但linux不会有显示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker login</span><br><span class="line">Login with your Docker ID to push and pull images from Docker Hub. If you don&apos;t have a Docker ID, head over to https://hub.docker.com to create one.</span><br><span class="line">Username: shooke</span><br><span class="line">Password:</span><br></pre></td></tr></table></figure></p><p>执行<code>docker logout</code>就可以退出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logout</span><br></pre></td></tr></table></figure></p><h2 id="查找镜像"><a href="#查找镜像" class="headerlink" title="查找镜像"></a>查找镜像</h2><p>可以通过<code>docker search</code>命令查找官方仓库中的镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker search ubuntu</span><br><span class="line">NAME                                                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line">ubuntu                                                    Ubuntu is a Debian-based Linux operating sys…   10575               [OK]                </span><br><span class="line">dorowu/ubuntu-desktop-lxde-vnc                            Docker image to provide HTML5 VNC interface …   398                                     [OK]</span><br><span class="line">rastasheep/ubuntu-sshd                                    Dockerized SSH service, built on top of offi…   243                                     [OK]</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p><h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><p>在仓库中找到自己想要的镜像后，就可以下载使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure></p><p>这样就可以从官方仓库下载<code>ubuntu:18.04</code>镜像到本地使用。<br>关于镜像的详细内容看《3.docker镜像》</p><p>#参考资料<br><a href="https://www.runoob.com/docker/docker-repository.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-repository.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  &lt;a href=&quot;https://hub.docker.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Docker Hub&lt;/a&gt;。&lt;br&gt;大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="一点一点了解docker" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3docker/"/>
-    
-    
-      <category term="docker" scheme="https://www.xingjiehu.com/tags/docker/"/>
-    
-      <category term="docker repository" scheme="https://www.xingjiehu.com/tags/docker-repository/"/>
-    
-  </entry>
-  
-  <entry>
     <title>docker容器(Container)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckg0wgfxh00c2g0om6vmqyjni/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckg0wgfxh00c2g0om6vmqyjni/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckgkozyrg00bzvtom5erxa0pn/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckgkozyrg00bzvtom5erxa0pn/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-10-08T14:09:14.037Z</updated>
     
@@ -393,9 +395,33 @@
   </entry>
   
   <entry>
+    <title>docker仓库(Repository)</title>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckgkozyrl00c3vtomzqhcv0ca/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckgkozyrl00c3vtomzqhcv0ca/</id>
+    <published>2020-03-03T03:12:37.000Z</published>
+    <updated>2020-10-08T14:09:14.037Z</updated>
+    
+    <content type="html"><![CDATA[<p>仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>。<br>大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。</p><a id="more"></a><h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>在 <a href="https://hub.docker.com" target="_blank" rel="noopener">https://hub.docker.com</a> 免费注册一个 Docker 账号。</p><h2 id="登录和退出"><a href="#登录和退出" class="headerlink" title="登录和退出"></a>登录和退出</h2><p>执行<code>docker login</code>命令，会提示输入用户名和密码，输入后就登录了。注意，输入密码时不会有任何显示，windows上一般显示<code>*</code>,但linux不会有显示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker login</span><br><span class="line">Login with your Docker ID to push and pull images from Docker Hub. If you don&apos;t have a Docker ID, head over to https://hub.docker.com to create one.</span><br><span class="line">Username: shooke</span><br><span class="line">Password:</span><br></pre></td></tr></table></figure></p><p>执行<code>docker logout</code>就可以退出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logout</span><br></pre></td></tr></table></figure></p><h2 id="查找镜像"><a href="#查找镜像" class="headerlink" title="查找镜像"></a>查找镜像</h2><p>可以通过<code>docker search</code>命令查找官方仓库中的镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker search ubuntu</span><br><span class="line">NAME                                                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line">ubuntu                                                    Ubuntu is a Debian-based Linux operating sys…   10575               [OK]                </span><br><span class="line">dorowu/ubuntu-desktop-lxde-vnc                            Docker image to provide HTML5 VNC interface …   398                                     [OK]</span><br><span class="line">rastasheep/ubuntu-sshd                                    Dockerized SSH service, built on top of offi…   243                                     [OK]</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p><h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><p>在仓库中找到自己想要的镜像后，就可以下载使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure></p><p>这样就可以从官方仓库下载<code>ubuntu:18.04</code>镜像到本地使用。<br>关于镜像的详细内容看《3.docker镜像》</p><p>#参考资料<br><a href="https://www.runoob.com/docker/docker-repository.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-repository.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  &lt;a href=&quot;https://hub.docker.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Docker Hub&lt;/a&gt;。&lt;br&gt;大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="一点一点了解docker" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3docker/"/>
+    
+    
+      <category term="docker" scheme="https://www.xingjiehu.com/tags/docker/"/>
+    
+      <category term="docker repository" scheme="https://www.xingjiehu.com/tags/docker-repository/"/>
+    
+  </entry>
+  
+  <entry>
     <title>docker镜像(Image)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckg0wgfxj00c4g0omyq4wikdz/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckg0wgfxj00c4g0omyq4wikdz/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckgkozyrp00c6vtomfsaq3285/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckgkozyrp00c6vtomfsaq3285/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-10-08T14:09:14.037Z</updated>
     
@@ -418,8 +444,8 @@
   
   <entry>
     <title>1.docker基础概念</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckg0wgfxf00byg0omzu7x31vl/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckg0wgfxf00byg0omzu7x31vl/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckgkozyri00c0vtomohqh2ozq/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckgkozyri00c0vtomohqh2ozq/</id>
     <published>2020-03-03T01:44:21.000Z</published>
     <updated>2020-10-08T14:09:14.037Z</updated>
     
@@ -444,8 +470,8 @@
   
   <entry>
     <title>openresty+lua+kafka部署</title>
-    <link href="https://www.xingjiehu.com/2020/02/26/ckg0wgfsl0023g0omni8it9jr/"/>
-    <id>https://www.xingjiehu.com/2020/02/26/ckg0wgfsl0023g0omni8it9jr/</id>
+    <link href="https://www.xingjiehu.com/2020/02/26/ckgkozym60022vtomgvovfr3r/"/>
+    <id>https://www.xingjiehu.com/2020/02/26/ckgkozym60022vtomgvovfr3r/</id>
     <published>2020-02-26T09:59:07.000Z</published>
     <updated>2020-10-08T14:09:14.045Z</updated>
     
@@ -473,8 +499,8 @@
   
   <entry>
     <title>python mysql-connector简要说明</title>
-    <link href="https://www.xingjiehu.com/2020/02/14/ckg0wgfsp002dg0ommuy1pw0p/"/>
-    <id>https://www.xingjiehu.com/2020/02/14/ckg0wgfsp002dg0ommuy1pw0p/</id>
+    <link href="https://www.xingjiehu.com/2020/02/14/ckgkozymb002evtomzoxwrlex/"/>
+    <id>https://www.xingjiehu.com/2020/02/14/ckgkozymb002evtomzoxwrlex/</id>
     <published>2020-02-14T08:38:09.000Z</published>
     <updated>2020-10-08T14:09:14.045Z</updated>
     
@@ -506,8 +532,8 @@
   
   <entry>
     <title>linux 为php7.0安装redis扩展</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/ckg0wgfs8001cg0omgkf7udu1/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/ckg0wgfs8001cg0omgkf7udu1/</id>
+    <link href="https://www.xingjiehu.com/2020/02/12/ckgkozyls001bvtomzvp5b143/"/>
+    <id>https://www.xingjiehu.com/2020/02/12/ckgkozyls001bvtomzvp5b143/</id>
     <published>2020-02-12T11:52:59.000Z</published>
     <updated>2020-10-08T14:09:14.041Z</updated>
     
@@ -528,33 +554,6 @@
       <category term="php" scheme="https://www.xingjiehu.com/tags/php/"/>
     
       <category term="redis" scheme="https://www.xingjiehu.com/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>解决深度终端链接远程后假死问题</title>
-    <link href="https://www.xingjiehu.com/2020/02/12/ckg0wgfud0052g0omf5t89ekt/"/>
-    <id>https://www.xingjiehu.com/2020/02/12/ckg0wgfud0052g0omf5t89ekt/</id>
-    <published>2020-02-12T07:47:55.000Z</published>
-    <updated>2020-10-08T14:09:14.057Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>这是最近才出现的问题，忽然发现，深度终端链接远程服务器后，过一会就假死了。还以为是不小心安了ctrl+s，于是用ctrl+q也无法解开。依然不能输入任何内容。链接状态是保持的，但就是假死了。</p><p>在网上搜索了一下找到了解决办法。</p><h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>可以修改配置文件, 在<code>~/.bash_profile</code> 或者<code>~/.bashrc</code>的配置文件里面加上下面的参数了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stty -ixon</span><br></pre></td></tr></table></figure></p><p>保持退出，执行下面的命令让配置生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source  .bashrc</span><br></pre></td></tr></table></figure></p><p>这样就不会出现假死了。</p><p>还有一种方式，链接ssh之前增加一个<code>-o ServerAliveInterval=60</code>参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -o ServerAliveInterval=60 root@192.168.0.2</span><br></pre></td></tr></table></figure></p><a id="more"></a><h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>出现假死主要是，由于一段时间不活动，终端进行了休眠。但是我们没法唤醒造成的。终端有一个软件流控制(XON/XOFF flow control)的功能，具体就是当client(terminal emulator), 也就是常用的终端模拟器无法接受更多的数据的时, 终端会发送一个 <code>XOFF</code> 信号 告诉发送数据端暂停发送, 直到收到<code>XON</code>信号，其中发送的 <code>XOFF</code> 是告诉内核的 tty 驱动将正在发送数据的进程设置为休眠状态, 直到 tty 驱动发送 <code>XON</code> 告诉内核恢复进程, 就好像它从来没有停过一样。</p><p>这就是为什么增加一个 <code>stty -ixon</code>可以解决问题的原因</p><p>默认情况下，Ctrl-s会启用终端的滚动锁定, 此时禁用终端模拟器的滚动功能 (通过发送 <code>XOFF</code> 信号暂停软件的输出 )，终端软件没有任何输出，造成假死的现象，一般情况都是无意识按下了ctrl+s快捷键而已。相应的，Ctrl-q 会禁用滚动锁定, 恢复终端滚动 (通过发送 <code>XON</code> 信号来恢复软件的输出). </p><p>linux下终端ctrl+z命令会将当前任务切换到后台执行，就无法看到了，可以使用fg命令恢复至前台</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.cnblogs.com/guochaoxxl/p/10428991.html" target="_blank" rel="noopener">https://www.cnblogs.com/guochaoxxl/p/10428991.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h2&gt;&lt;p&gt;这是最近才出现的问题，忽然发现，深度终端链接远程服务器后，过一会就假死了。还以为是不小心安了ctrl+s，于是用ctrl+q也无法解开。依然不能输入任何内容。链接状态是保持的，但就是假死了。&lt;/p&gt;
-&lt;p&gt;在网上搜索了一下找到了解决办法。&lt;/p&gt;
-&lt;h2 id=&quot;解决方法&quot;&gt;&lt;a href=&quot;#解决方法&quot; class=&quot;headerlink&quot; title=&quot;解决方法&quot;&gt;&lt;/a&gt;解决方法&lt;/h2&gt;&lt;p&gt;可以修改配置文件, 在&lt;code&gt;~/.bash_profile&lt;/code&gt; 或者&lt;code&gt;~/.bashrc&lt;/code&gt;的配置文件里面加上下面的参数了：&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;stty -ixon&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;保持退出，执行下面的命令让配置生效&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;source  .bashrc&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-&lt;p&gt;这样就不会出现假死了。&lt;/p&gt;
-&lt;p&gt;还有一种方式，链接ssh之前增加一个&lt;code&gt;-o ServerAliveInterval=60&lt;/code&gt;参数&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;ssh -o ServerAliveInterval=60 root@192.168.0.2&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
-    
-    
-      <category term="terminal" scheme="https://www.xingjiehu.com/tags/terminal/"/>
     
   </entry>
   
