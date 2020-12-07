@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="shooke&#39;s blog">
 <meta property="og:description" content="网络模式VirtualBox的提供了四种网络接入模式，它们分别是：1、NAT 网络地址转换模式(NAT,Network Address Translation)2、Bridged Adapter 桥接模式3、Internal 内部网络模式4、Host-only Adapter 主机模式">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-12-07T10:51:52.442Z">
+<meta property="og:updated_time" content="2020-12-07T10:53:06.962Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="virtualbox网络模式说明">
 <meta name="twitter:description" content="网络模式VirtualBox的提供了四种网络接入模式，它们分别是：1、NAT 网络地址转换模式(NAT,Network Address Translation)2、Bridged Adapter 桥接模式3、Internal 内部网络模式4、Host-only Adapter 主机模式">
@@ -389,7 +389,7 @@
                 
               
 
-              <time title="创建时间：2020-12-07 18:21:28 / 修改时间：18:51:52" itemprop="dateCreated datePublished" datetime="2020-12-07T18:21:28+08:00">2020-12-07</time>
+              <time title="创建时间：2020-12-07 18:21:28 / 修改时间：18:53:06" itemprop="dateCreated datePublished" datetime="2020-12-07T18:21:28+08:00">2020-12-07</time>
             
 
             
@@ -448,7 +448,7 @@
       
         <h2 id="网络模式"><a href="#网络模式" class="headerlink" title="网络模式"></a>网络模式</h2><p>VirtualBox的提供了四种网络接入模式，它们分别是：<br>1、NAT 网络地址转换模式(NAT,Network Address Translation)<br>2、Bridged Adapter 桥接模式<br>3、Internal 内部网络模式<br>4、Host-only Adapter 主机模式 </p>
 <a id="more"></a>
-<h2 id="不同模式的功能"><a href="#不同模式的功能" class="headerlink" title="不同模式的功能"></a>不同模式的功能</h2><h3 id="NAT-网络地址转换模式"><a href="#NAT-网络地址转换模式" class="headerlink" title="NAT 网络地址转换模式"></a>NAT 网络地址转换模式</h3><p>主要用于虚拟机访问外部网络。虚拟机可以访问宿主机，也可以访问外部网络的其他主机。<br>但是，这种模式下虚拟机对外是不可见的。任何主机都无法访问虚拟机，包括宿主机。<br>虚拟机就像一个隐藏在暗处的幽灵，只有他看到你，你看不到他。</p>
+<h2 id="不同模式的功能"><a href="#不同模式的功能" class="headerlink" title="不同模式的功能"></a>不同模式的功能</h2><h3 id="NAT-网络地址转换模式"><a href="#NAT-网络地址转换模式" class="headerlink" title="NAT 网络地址转换模式"></a>NAT 网络地址转换模式</h3><p>主要用于虚拟机访问外部网络。虚拟机可以访问宿主机，也可以访问外部网络的其他主机。<br>但是，这种模式下虚拟机对外是不可见的。任何主机都无法访问虚拟机，包括宿主机。<br>虚拟机就像一个幕后大佬，只有他看到你，你看不到他。</p>
 <h3 id="Bridged-Adapter（网桥模式）"><a href="#Bridged-Adapter（网桥模式）" class="headerlink" title="Bridged Adapter（网桥模式）"></a>Bridged Adapter（网桥模式）</h3><p>这是一种最open的方式，它是通过主机网卡，架设了一条桥，直接连入到网络中了。因此，它使得虚拟机能被分配到一个网络中独立的IP，所有网络功能完全和在网络中的真实机器一样。<br>这种模式让虚拟机对外可见，虚拟机可以访问任何主机，其他主机也可以访问虚拟机。由于虚拟主机可见了，虚拟主机之间也可以相互访问。</p>
 <h3 id="Internal（内网模式）"><a href="#Internal（内网模式）" class="headerlink" title="Internal（内网模式）"></a>Internal（内网模式）</h3><p>这是一种只有虚拟机之间通讯的模式，虚拟机不能访问宿主机，也不能访问外网。宿主机也无法访问虚拟机。<br>当你启动多个虚拟机，并且设置为同一网段时，虚拟机之间可以相互通讯。</p>
 <h3 id="Host-only-Adapter（主机模式）"><a href="#Host-only-Adapter（主机模式）" class="headerlink" title="Host-only Adapter（主机模式）"></a>Host-only Adapter（主机模式）</h3><p>高级diy模式，默认情况下与<code>Internal（内网模式）</code>有点相似，虚拟主机之间可以通讯，不同支出在于，它不限制网段。虚拟机无需设置为同一个网段，即可相互通讯。<br>主机模式，这是一种比较复杂的模式，需要有比较扎实的网络基础知识才能玩转。可以说前面几种模式所实现的功能，在这种模式下，通过虚拟机及网卡的设置都可以被实现。</p>
