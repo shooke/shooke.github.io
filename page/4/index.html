@@ -346,7 +346,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/21/ckgkozys000covtom3vkttifw/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/22/ckiefq2fl00d0voomvkfy0kl0/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -366,7 +366,199 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/21/ckgkozys000covtom3vkttifw/" class="post-title-link" itemprop="url">4.啥事工作区、暂存区和版本库</a>
+                <a href="/2019/12/22/ckiefq2fl00d0voomvkfy0kl0/" class="post-title-link" itemprop="url">5.对比文件变化</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-22 20:32:20" itemprop="dateCreated datePublished" datetime="2019-12-22T20:32:20+08:00">2019-12-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-10-08 22:09:14" itemprop="dateModified" datetime="2020-10-08T22:09:14+08:00">2020-10-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/一点一点了解git/" itemprop="url" rel="index"><span itemprop="name">一点一点了解git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
+<p>本故事纯属虚构，如有雷同，^0^那可太巧了</p>
+</blockquote>
+<p>了解了工作去和版本库的区别，小白开始自己开动脑筋举一反三。既然<code>git status</code>可以查看哪些文件发生的变化。那能不能知道具体的变化是什么呢。</p>
+<p>毕竟作为一个程序猿，临时被唐僧召唤的事情经常发生。小白正在思考着，产品经理就喊上了。有个新需求需要确认排期。小白只好怪怪的跑过去。<br>确认完排期，回到座位上，继续开发今天的功能。<code>add</code> <code>commit</code>已经熟练的飞起。貌似git也很简单嘛。</p>
+<p>中午到了，开饭。吃过午饭回到坐位的小白发现电脑关机了。据说是某个不知名的家伙不小心提到了插座。<br>好吧，重新开机就好了，打开自己熟悉的ide，一切如常。上午的功能还没有commit，看下改过哪些文件吧。<code>git status</code>发现改了十几个文件。<br>好多都已经记不清改的什么了，肿木办？先把自己记忆清除的几个add。然后commit。剩下几个实在想不起来改过什么了。ide也没法回退了，这该如何是好啊。</p>
+<p>正在小白苦恼的时候，老鸟过来了。<br>看着发呆的小白，老鸟关系的问“小猴子，今天怎么发呆了？”。<br>小白如实回答“有几个文件忘记改过什么地方了，电脑关过机，ide也没法撤销操作了”。<br>老鸟熟练的敲下了<code>git diff package.json</code>,这时候所有的改动一目了然的展现在了小白面前。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ git diff package.json</span><br><span class="line">diff --git a/package.json b/package.json</span><br><span class="line">index 00570c9..f06efde 100755</span><br><span class="line">--- a/package.json</span><br><span class="line">+++ b/package.json</span><br><span class="line">@@ -16,7 +16,6 @@</span><br><span class="line">     &quot;@vue/cli-plugin-eslint&quot;: &quot;^4.1.0&quot;,</span><br><span class="line">     &quot;@vue/cli-service&quot;: &quot;^4.1.0&quot;,</span><br><span class="line">     &quot;babel-eslint&quot;: &quot;^10.0.3&quot;,</span><br><span class="line">-    &quot;eslint&quot;: &quot;^5.16.0&quot;,</span><br><span class="line">     &quot;eslint-plugin-vue&quot;: &quot;^5.0.0&quot;,</span><br><span class="line">     &quot;vue-template-compiler&quot;: &quot;^2.6.10&quot;</span><br><span class="line">   &#125;,</span><br><span class="line">@@ -27,7 +26,7 @@</span><br><span class="line">     &#125;,</span><br><span class="line">     &quot;extends&quot;: [</span><br><span class="line">       &quot;plugin:vue/essential&quot;,</span><br><span class="line">-      &quot;eslint:recommended&quot;</span><br><span class="line">+      &quot;eslint:recommendeddd&quot;</span><br><span class="line">     ],</span><br><span class="line">     &quot;rules&quot;: &#123;</span><br><span class="line">       &quot;no-console&quot;: &quot;off&quot;</span><br></pre></td></tr></table></figure></p>
+<p>还不待老鸟解释，小白已经明白减号<code>-</code>代表的是自己删除的行<code>+</code>是产生的新行。</p>
+<p>这下好了，可以看出自己修改过的细节，就可以很清楚的解决问题了。</p>
+<p>看着小白激动的目光，老鸟挥一挥衣袖，不带走一点代码。飘然而去。</p>
+<p>望着老鸟离去的背影，小白激动的追上去，语出惊人“大神，留步！”</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><code>git diff --filename</code> 可以比较文件的变更情况。</p>
+<ul>
+<li>如果文件<code>git add</code>过，会显示工作区和暂存区的差别。</li>
+<li>如果没有<code>git add</code>过，会显示工作区和仓库历史版本的差异。</li>
+</ul>
+<p><code>git diff --cached [file]</code> 显示暂存区和上一个commit的差异</p>
+<p><code>git diff HEAD</code> 显示工作区与当前分支最新commit之间的差异</p>
+<p><code>git diff --shortstat &quot;@{0 day ago}&quot;</code> 显示今天你写了多少行代码</p>
+<p>关于工作区和版本库的介绍，可以看上一篇《4.工作区和版本库》</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/21/ckiefq2f800clvoomlhurhxcg/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/21/ckiefq2f800clvoomlhurhxcg/" class="post-title-link" itemprop="url">4.啥事工作区、暂存区和版本库</a>
               
             
           </h1>
@@ -540,7 +732,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/20/ckgkozyry00ckvtomnhcu3kdm/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/20/ckiefq2fb00cpvoomutag6yfa/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -560,7 +752,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/20/ckgkozyry00ckvtomnhcu3kdm/" class="post-title-link" itemprop="url">3.查看文件状态</a>
+                <a href="/2019/12/20/ckiefq2fb00cpvoomutag6yfa/" class="post-title-link" itemprop="url">3.查看文件状态</a>
               
             
           </h1>
@@ -732,7 +924,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/19/ckgkozyrw00chvtompztqt40j/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/19/ckiefq2fe00ctvoomi2uurcj3/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -752,7 +944,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/19/ckgkozyrw00chvtompztqt40j/" class="post-title-link" itemprop="url">2.把项目交给git</a>
+                <a href="/2019/12/19/ckiefq2fe00ctvoomi2uurcj3/" class="post-title-link" itemprop="url">2.把项目交给git</a>
               
             
           </h1>
@@ -919,7 +1111,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/18/ckgkozyrn00c5vtomr6pozx8u/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/18/ckiefq2f000cevoomudz8w66x/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -939,7 +1131,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/18/ckgkozyrn00c5vtomr6pozx8u/" class="post-title-link" itemprop="url">1.啥是git</a>
+                <a href="/2019/12/18/ckiefq2f000cevoomudz8w66x/" class="post-title-link" itemprop="url">1.啥是git</a>
               
             
           </h1>
@@ -1092,7 +1284,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ckgkozyrt00ccvtom27q5poun/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ckiefq2eo00c8voom4hb0bud2/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1112,7 +1304,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/17/ckgkozyrt00ccvtom27q5poun/" class="post-title-link" itemprop="url">0.教程介绍</a>
+                <a href="/2019/12/17/ckiefq2eo00c8voom4hb0bud2/" class="post-title-link" itemprop="url">0.教程介绍</a>
               
             
           </h1>
@@ -1267,7 +1459,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ckgkozyli000uvtom8iozip5n/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ckiefq22a000uvoomozxc18ky/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1287,7 +1479,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/17/ckgkozyli000uvtom8iozip5n/" class="post-title-link" itemprop="url">git中文文件名乱码解决方法</a>
+                <a href="/2019/12/17/ckiefq22a000uvoomozxc18ky/" class="post-title-link" itemprop="url">git中文文件名乱码解决方法</a>
               
             
           </h1>
@@ -1442,7 +1634,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ckgkozync004avtom3lroccv6/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ckiefq24i0044voom8esdl5uz/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1462,7 +1654,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/17/ckgkozync004avtom3lroccv6/" class="post-title-link" itemprop="url">deepin修改git提示语言</a>
+                <a href="/2019/12/17/ckiefq24i0044voom8esdl5uz/" class="post-title-link" itemprop="url">deepin修改git提示语言</a>
               
             
           </h1>
@@ -1616,7 +1808,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/11/15/ckgkozylp0015vtomgjqa05q5/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/11/15/ckiefq22j001bvoom7sr87u0t/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1636,7 +1828,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/11/15/ckgkozylp0015vtomgjqa05q5/" class="post-title-link" itemprop="url">js实现防抖和节流</a>
+                <a href="/2019/11/15/ckiefq22j001bvoom7sr87u0t/" class="post-title-link" itemprop="url">js实现防抖和节流</a>
               
             
           </h1>
@@ -1740,7 +1932,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/11/15/ckgkozylp0015vtomgjqa05q5/#more" rel="contents">
+              <a class="btn" href="/2019/11/15/ckiefq22j001bvoom7sr87u0t/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1800,7 +1992,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/10/11/ckgkozykk0000vtom4km1cro3/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/10/11/ckiefq21d0002voomwm127g5n/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1820,7 +2012,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/10/11/ckgkozykk0000vtom4km1cro3/" class="post-title-link" itemprop="url">Commit log 使用说明</a>
+                <a href="/2019/10/11/ckiefq21d0002voomwm127g5n/" class="post-title-link" itemprop="url">Commit log 使用说明</a>
               
             
           </h1>
@@ -1919,187 +2111,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/10/11/ckgkozykk0000vtom4km1cro3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/09/25/ckgkozynw004xvtomeqenfjv1/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/09/25/ckgkozynw004xvtomeqenfjv1/" class="post-title-link" itemprop="url">解决element ui el-select控件多选时option设置为disabled，但可以删除标签，造成无法恢复的bug</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-09-25 15:13:05" itemprop="dateCreated datePublished" datetime="2019-09-25T15:13:05+08:00">2019-09-25</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-10-08 22:09:14" itemprop="dateModified" datetime="2020-10-08T22:09:14+08:00">2020-10-08</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h2 id="问题起因"><a href="#问题起因" class="headerlink" title="问题起因"></a>问题起因</h2><p>今天遇到一个问题，需求是，客户选择栏目时，不属于自己的栏目不可修改。但需要显示出来。实现需求使用了element ui的el-select组件。<br>对于已选栏目的显示，和对栏目的选项取消都比较好。不属于自己的栏目使用了option的<code>disabled</code>属性。列表中的选项控制正常，对于<code>disabled</code>属性为<code>true</code>的元素不可选。<br>但是在展示已选则的栏目时，option中禁用的选项依然有删除的小叉号。而且还是可以使用的，点击后就被删除了。在列表中的选中状态也取消了。这可闹大了，没法恢复啊。</p>
-<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><p>思路很简单，在对选项进行移除时做个判断。如果选项是禁用的，就不操作。<br>实现中用到了<code>value</code>属性，用于显示备选项。<code>change</code>事件用于处理选中的值，<code>remove-tag</code>事件处理移除选项时的判断<br>有几个问题需要注意，事件的执行顺序是先出发<code>change</code>后出发<code>remove-tag</code>所以要让数据返回变为异步，保证<code>remove-tag</code>事件完成后在返回数据</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/09/25/ckgkozynw004xvtomeqenfjv1/#more" rel="contents">
+              <a class="btn" href="/2019/10/11/ckiefq21d0002voomwm127g5n/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2191,7 +2203,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">81</span>
+                    <span class="site-state-item-count">82</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2203,6 +2215,8 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
+                    
+                      
                     
                       
                     
@@ -2441,7 +2455,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">106</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">107</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
