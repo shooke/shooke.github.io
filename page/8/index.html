@@ -346,7 +346,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/06/ckiefq239002bvoomijrfqrwu/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/14/ckilyceck000hucom6rzacjkh/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -366,7 +366,397 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/06/ckiefq239002bvoomijrfqrwu/" class="post-title-link" itemprop="url">python字节和字符串相互转换</a>
+                <a href="/2019/03/14/ckilyceck000hucom6rzacjkh/" class="post-title-link" itemprop="url">elasticsearch学习笔记 - 安装</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-14 13:30:16" itemprop="dateCreated datePublished" datetime="2019-03-14T13:30:16+08:00">2019-03-14</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-10-08 22:09:14" itemprop="dateModified" datetime="2020-10-08T22:09:14+08:00">2020-10-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/elasticsearch/" itemprop="url" rel="index"><span itemprop="name">elasticsearch</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>最近用到了es，于是从网上找资料，但是好多都过时了，比如type在elasticsearch 6.0开始已经不推荐使用了。联合查询6.x使用的是join类型的字段，也不在支持type之间的联合查询。问什么要取消type呢？官方给出的理由是</p>
+<blockquote>
+<p>①，而在我们elasticsearch中同一 Index 下，同名 Field 类型必须相同，即使不同的 Type；<br>②， 同一 Index 下，TypeA 的 Field 会占用 TypeB 的资源（互相消耗资源），会形成一种稀疏存储的情况。尤其是 doc value ，为什么这么说呢？doc value为了性能考虑会保留一部分的磁盘空间，这意味着 TypeB 可能不需要这个字段的 doc_value 而 TypeA 需要，那么 TypeB 就被白白占用了一部分没有半点用处的资源；<br>③，Score 评分机制是 index-wide 的，不同的type之间评分也会造成干扰。<br>④，索引元数据本身是放在主节点中维护的，CP 设计。意味着涉及到大量字段变更及元数据变更的操作，都会导致该 Index 被堵塞或假死。我们应该对这样的 Index 做隔离，避免影响到其他 Index 正常的增删改查。甚至当涉及到字段变更十分频繁且无法预定义 schema 的场景时，是否要使用 ES 都应该慎思熟虑了！</p>
+</blockquote>
+<p>出现这种情况主要是在elasticsearch早期时候提出的一些概念，当时为了便于推广，跟关系型数据库作了如下比喻：</p>
+<table>
+<thead>
+<tr>
+<th>myql</th>
+<th>elasticsearch</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>database</td>
+<td>index</td>
+</tr>
+<tr>
+<td>table</td>
+<td>type</td>
+</tr>
+<tr>
+<td>column</td>
+<td>field</td>
+</tr>
+</tbody>
+</table>
+<p>很多学习elasticsearch的人估计都看过这个比喻，但其实这是错误的。elasticsearch是基于 Lucene开发的，而在 Lucene中是没有table概念的，有的只是文档和字段。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/14/ckilyceck000hucom6rzacjkh/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/13/ckilyced4001iucomdaxjq0yr/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/13/ckilyced4001iucomdaxjq0yr/" class="post-title-link" itemprop="url">linux使用apt方式安装mysql5.7</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-03-13 23:13:33" itemprop="dateCreated datePublished" datetime="2019-03-13T23:13:33+08:00">2019-03-13</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-10-08 22:09:14" itemprop="dateModified" datetime="2020-10-08T22:09:14+08:00">2020-10-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>安装3步曲：</p>
+<ol>
+<li>使用apt-get安装</li>
+<li>设置root密码和验证方式</li>
+<li>重启服务</li>
+</ol>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2019/03/13/ckilyced4001iucomdaxjq0yr/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/06/ckilycedl0028ucom9m1xkwj4/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/06/ckilycedl0028ucom9m1xkwj4/" class="post-title-link" itemprop="url">python字节和字符串相互转换</a>
               
             
           </h1>
@@ -528,7 +918,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/06/ckiefq231001vvoom350sfzkn/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/06/ckilycedg001yucomnf74ur5y/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -548,7 +938,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/06/ckiefq231001vvoom350sfzkn/" class="post-title-link" itemprop="url">nohup命令说明</a>
+                <a href="/2019/03/06/ckilycedg001yucomnf74ur5y/" class="post-title-link" itemprop="url">nohup命令说明</a>
               
             
           </h1>
@@ -649,7 +1039,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/03/06/ckiefq231001vvoom350sfzkn/#more" rel="contents">
+              <a class="btn" href="/2019/03/06/ckilycedg001yucomnf74ur5y/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -709,7 +1099,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/06/ckiefq228000rvoom0369m5ex/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/06/ckilycecr000rucommp95xv82/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -729,7 +1119,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/06/ckiefq228000rvoom0369m5ex/" class="post-title-link" itemprop="url">git reset命令详解</a>
+                <a href="/2019/03/06/ckilycecr000rucommp95xv82/" class="post-title-link" itemprop="url">git reset命令详解</a>
               
             
           </h1>
@@ -837,7 +1227,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/03/06/ckiefq228000rvoom0369m5ex/#more" rel="contents">
+              <a class="btn" href="/2019/03/06/ckilycecr000rucommp95xv82/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -897,7 +1287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/06/ckiefq22v001pvoom9gydsldi/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/06/ckilycedb001pucomxxxjzk83/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -917,7 +1307,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/06/ckiefq22v001pvoom9gydsldi/" class="post-title-link" itemprop="url">mysql权限说明</a>
+                <a href="/2019/03/06/ckilycedb001pucomxxxjzk83/" class="post-title-link" itemprop="url">mysql权限说明</a>
               
             
           </h1>
@@ -1017,7 +1407,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/03/06/ckiefq22v001pvoom9gydsldi/#more" rel="contents">
+              <a class="btn" href="/2019/03/06/ckilycedb001pucomxxxjzk83/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1077,7 +1467,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/06/ckiefq22c000yvoomkdhe4ri4/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/06/ckilycecu000yucomadma9saw/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1097,7 +1487,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/06/ckiefq22c000yvoomkdhe4ri4/" class="post-title-link" itemprop="url">git保存密码</a>
+                <a href="/2019/03/06/ckilycecu000yucomadma9saw/" class="post-title-link" itemprop="url">git保存密码</a>
               
             
           </h1>
@@ -1196,7 +1586,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/03/06/ckiefq22c000yvoomkdhe4ri4/#more" rel="contents">
+              <a class="btn" href="/2019/03/06/ckilycecu000yucomadma9saw/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1256,7 +1646,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/02/21/ckiefq22t001nvoomvsn2h41v/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/02/21/ckilyced9001nucom941otffb/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1276,7 +1666,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/02/21/ckiefq22t001nvoomvsn2h41v/" class="post-title-link" itemprop="url">mysql主从配置</a>
+                <a href="/2019/02/21/ckilyced9001nucom941otffb/" class="post-title-link" itemprop="url">mysql主从配置</a>
               
             
           </h1>
@@ -1381,7 +1771,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/02/21/ckiefq22t001nvoomvsn2h41v/#more" rel="contents">
+              <a class="btn" href="/2019/02/21/ckilyced9001nucom941otffb/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1441,7 +1831,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/02/15/ckiefq24w004lvoomirw6l10b/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/02/15/ckilycefb004oucomh3qe3ab0/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1461,7 +1851,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/02/15/ckiefq24w004lvoomirw6l10b/" class="post-title-link" itemprop="url">团队开发中如何使用git分支</a>
+                <a href="/2019/02/15/ckilycefb004oucomh3qe3ab0/" class="post-title-link" itemprop="url">团队开发中如何使用git分支</a>
               
             
           </h1>
@@ -1560,7 +1950,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/02/15/ckiefq24w004lvoomirw6l10b/#more" rel="contents">
+              <a class="btn" href="/2019/02/15/ckilycefb004oucomh3qe3ab0/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1620,7 +2010,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/02/01/ckiefq24r004evoombngtgye4/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/02/01/ckilycefi004vucom0xewkbwh/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1640,7 +2030,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/02/01/ckiefq24r004evoombngtgye4/" class="post-title-link" itemprop="url">前后端分离session跨域解决方案</a>
+                <a href="/2019/02/01/ckilycefi004vucom0xewkbwh/" class="post-title-link" itemprop="url">前后端分离session跨域解决方案</a>
               
             
           </h1>
@@ -1740,366 +2130,7 @@
           <!--noindex-->
           
             <div class="post-button text-center">
-              <a class="btn" href="/2019/02/01/ckiefq24r004evoombngtgye4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/01/29/ckiefq22d0011voomszl6l8oe/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/29/ckiefq22d0011voomszl6l8oe/" class="post-title-link" itemprop="url">git远程删除分支后，本地git branch -a 依然能看到的解决办法</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-29 14:28:10" itemprop="dateCreated datePublished" datetime="2019-01-29T14:28:10+08:00">2019-01-29</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-10-08 22:09:14" itemprop="dateModified" datetime="2020-10-08T22:09:14+08:00">2020-10-08</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>git远程删除分支后，本地<code>git branch -a</code> 依然能看到的解决办法很简单，使用<code>git remote prune origin</code>就可以解决了。下面详细说明<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/01/29/ckiefq22d0011voomszl6l8oe/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </p></div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/01/24/ckiefq21r0009voomww1d5f8l/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/24/ckiefq21r0009voomww1d5f8l/" class="post-title-link" itemprop="url">crontab使用详解</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-01-24 09:20:47" itemprop="dateCreated datePublished" datetime="2019-01-24T09:20:47+08:00">2019-01-24</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-10-08 22:09:14" itemprop="dateModified" datetime="2020-10-08T22:09:14+08:00">2020-10-08</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>网上有很多关于crontab的介绍，但是没有一份很全面的，例子也不少，但是没有详细解释具体的意义。看下面的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#每隔1个小时执行一次  ls</span><br><span class="line">0 */1 * * * ls</span><br><span class="line"></span><br><span class="line">#每隔2个小时执行一次 ls</span><br><span class="line">0 */2 * * * ls</span><br><span class="line"></span><br><span class="line">#每隔3个小时执行一次 ls</span><br><span class="line">0 */3 * * * ls</span><br><span class="line"></span><br><span class="line">#每隔4个小时执行一次 ls</span><br><span class="line">0 */4 * * * ls</span><br><span class="line"></span><br><span class="line">#每隔10天执行一次 ls</span><br><span class="line">0 0 */10 * * ls</span><br><span class="line"></span><br><span class="line">#每天1点执行 ls</span><br><span class="line">0 1 * * * ls</span><br></pre></td></tr></table></figure></p>
-<p>接下来就详细说明一下crontab的使用，和每个参数的意义<br>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/01/24/ckiefq21r0009voomww1d5f8l/#more" rel="contents">
+              <a class="btn" href="/2019/02/01/ckilycefi004vucom0xewkbwh/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2191,7 +2222,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">82</span>
+                    <span class="site-state-item-count">84</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2203,8 +2234,6 @@
                 <div class="site-state-item site-state-categories">
                   <a href="/categories/index.html">
                     
-                    
-                      
                     
                       
                     
@@ -2230,8 +2259,6 @@
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
                     
-                    
-                      
                     
                       
                     
