@@ -27,8 +27,8 @@ sudo apt install libjpeg-dev
 sudo apt install libpng-dev
 sudo apt install libfreetype6-dev
 sudo apt install libzip-dev
-apt-get install libxml2-dev
-apt-get install libcurl4-openssl-dev
+sudo apt install libcurl4-openssl-dev
+sudo apt install libmcrypt-dev
 ```
 下载源码包,为了安全起见，当然要去官网下载`https://www.php.net/releases/`这里有历史版本。
 找到7.0系列的版本用wget下载即可，或者去php的github clone一下项目也可以
