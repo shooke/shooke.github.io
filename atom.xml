@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2020-12-18T08:01:40.957Z</updated>
+  <updated>2021-01-20T12:44:32.825Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,9 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>rust语言字符串笔记</title>
+    <link href="https://www.xingjiehu.com/2021/01/20/ckk5f5kq5002fksomkt45msk3/"/>
+    <id>https://www.xingjiehu.com/2021/01/20/ckk5f5kq5002fksomkt45msk3/</id>
+    <published>2021-01-20T09:55:26.000Z</published>
+    <updated>2021-01-20T12:44:32.825Z</updated>
+    
+    <content type="html"><![CDATA[<p>每种语言都免不了和字符串打交道，rust也不例外。由于rust本身的一些特性，字符串的使用和其他语言有很大的不同。</p><a id="more"></a><h2 id="从最简单的单个字符说起-char"><a href="#从最简单的单个字符说起-char" class="headerlink" title="从最简单的单个字符说起-char"></a>从最简单的单个字符说起-char</h2><p><code>char</code>类型可以简单的定义单字符变量</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let c = &apos;a&apos;;</span><br><span class="line">let d = &apos;好&apos;; //这个将会报错</span><br></pre></td></tr></table></figure><p>这样就简单的定义了一个<code>char</code>类型。为什么不能用中文呢？其实不只是中文，非英文之外的语言都会出现问题。rust采用utf8进行字符编码。<code>好</code>虽然看起来是一个汉字，但对于机器来说其实是3个字符。</p><h2 id="了解一下字符串"><a href="#了解一下字符串" class="headerlink" title="了解一下字符串"></a>了解一下字符串</h2><p>char只能定义一个英文或数字等简单字符显然是不够的，使用过程中字符串比这要复杂的多。于是就有了<code>str</code>类型</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let s = &quot;好&quot;;</span><br><span class="line">let s2 = &quot;hello&quot;;</span><br></pre></td></tr></table></figure><p>这样写其实是建立了一个<code>&amp;str</code>类型。他是一个<code>str</code>类型的引用。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let s1 = String::from(&quot;hello&quot;);</span><br><span class="line">let s2 = &quot;hello&quot;.to_string();</span><br></pre></td></tr></table></figure><p>这样就得到了两个<code>String</code>类型的字符串。</p><p>既然<code>&amp;str</code>可以转换成<code>String</code>，那能不能反过来呢？答案是可以。使用切片(slice)可以做到。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let s1 = String::from(&quot;hello&quot;);</span><br><span class="line">let s2 = &amp;s1[..]</span><br></pre></td></tr></table></figure><p>这样s2就是<code>&amp;str</code>类型的变量了。</p><p>有<code>&amp;str</code>就应该有<code>str</code>类型的数据吧？当然。</p><ul><li><code>str</code> 是 Rust 核心语言类型<ul><li>存放在栈上</li><li>不可变更</li></ul></li><li><code>String</code>类型是rust标准公共库提供的一种数据类型，它的功能更完善——它支持字符串的追加、清空等实用的操作。String 和 str 除了同样拥有一个字符开始位置属性和一个字符串长度属性以外还有一个容量（capacity）属性。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;每种语言都免不了和字符串打交道，rust也不例外。由于rust本身的一些特性，字符串的使用和其他语言有很大的不同。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="rust" scheme="https://www.xingjiehu.com/tags/rust/"/>
+    
+      <category term="String" scheme="https://www.xingjiehu.com/tags/String/"/>
+    
+  </entry>
+  
+  <entry>
     <title>ubuntu18.4 打开文件中文乱码问题解决</title>
-    <link href="https://www.xingjiehu.com/2020/12/18/ckitzjhuv003c8nomkq9lta8n/"/>
-    <id>https://www.xingjiehu.com/2020/12/18/ckitzjhuv003c8nomkq9lta8n/</id>
+    <link href="https://www.xingjiehu.com/2020/12/18/ckk5f5kr2003eksomo778t80i/"/>
+    <id>https://www.xingjiehu.com/2020/12/18/ckk5f5kr2003eksomo778t80i/</id>
     <published>2020-12-18T07:46:40.000Z</published>
     <updated>2020-12-18T08:01:40.957Z</updated>
     
@@ -41,8 +65,8 @@
   
   <entry>
     <title>ubuntu安装php最方便的方式</title>
-    <link href="https://www.xingjiehu.com/2020/12/13/ckitzjhux003f8nomtx0o685j/"/>
-    <id>https://www.xingjiehu.com/2020/12/13/ckitzjhux003f8nomtx0o685j/</id>
+    <link href="https://www.xingjiehu.com/2020/12/13/ckk5f5kr7003kksom1c41fbzd/"/>
+    <id>https://www.xingjiehu.com/2020/12/13/ckk5f5kr7003kksom1c41fbzd/</id>
     <published>2020-12-12T16:45:39.000Z</published>
     <updated>2020-12-18T07:46:14.316Z</updated>
     
@@ -73,8 +97,8 @@
   
   <entry>
     <title>ubuntu18.04编译安装php7.0</title>
-    <link href="https://www.xingjiehu.com/2020/12/12/ckitzjhuu00398nom3c2bcgsj/"/>
-    <id>https://www.xingjiehu.com/2020/12/12/ckitzjhuu00398nom3c2bcgsj/</id>
+    <link href="https://www.xingjiehu.com/2020/12/12/ckk5f5kqy003cksom4inx8rez/"/>
+    <id>https://www.xingjiehu.com/2020/12/12/ckk5f5kqy003cksom4inx8rez/</id>
     <published>2020-12-12T15:10:30.000Z</published>
     <updated>2020-12-18T07:46:14.316Z</updated>
     
@@ -95,8 +119,8 @@
   
   <entry>
     <title>virtualbox网络模式说明</title>
-    <link href="https://www.xingjiehu.com/2020/12/07/ckitzjhv1003p8nomwn7e2ut3/"/>
-    <id>https://www.xingjiehu.com/2020/12/07/ckitzjhv1003p8nomwn7e2ut3/</id>
+    <link href="https://www.xingjiehu.com/2020/12/07/ckk5f5kr5003iksoml8f5b073/"/>
+    <id>https://www.xingjiehu.com/2020/12/07/ckk5f5kr5003iksoml8f5b073/</id>
     <published>2020-12-07T10:21:28.000Z</published>
     <updated>2020-12-18T07:46:14.320Z</updated>
     
@@ -117,8 +141,8 @@
   
   <entry>
     <title>超好用的抓包工具mitmproxy</title>
-    <link href="https://www.xingjiehu.com/2020/10/22/ckitzjhw4005p8nomf7c0f4gj/"/>
-    <id>https://www.xingjiehu.com/2020/10/22/ckitzjhw4005p8nomf7c0f4gj/</id>
+    <link href="https://www.xingjiehu.com/2020/10/22/ckk5f5kt4005pksom2m8a4spe/"/>
+    <id>https://www.xingjiehu.com/2020/10/22/ckk5f5kt4005pksom2m8a4spe/</id>
     <published>2020-10-22T10:25:31.000Z</published>
     <updated>2020-12-18T07:46:14.336Z</updated>
     
@@ -142,8 +166,8 @@
   
   <entry>
     <title>deepin编译安装nginx问题总结.md</title>
-    <link href="https://www.xingjiehu.com/2020/10/08/ckitzjht3000c8nomcuyrnmtr/"/>
-    <id>https://www.xingjiehu.com/2020/10/08/ckitzjht3000c8nomcuyrnmtr/</id>
+    <link href="https://www.xingjiehu.com/2020/10/08/ckk5f5knj000cksomchfz1mm1/"/>
+    <id>https://www.xingjiehu.com/2020/10/08/ckk5f5knj000cksomchfz1mm1/</id>
     <published>2020-10-08T14:10:48.000Z</published>
     <updated>2020-12-18T07:46:14.288Z</updated>
     
@@ -164,8 +188,8 @@
   
   <entry>
     <title>解决ssh登录超时问题</title>
-    <link href="https://www.xingjiehu.com/2020/09/30/ckitzjhvy005b8nomikfy1pw7/"/>
-    <id>https://www.xingjiehu.com/2020/09/30/ckitzjhvy005b8nomikfy1pw7/</id>
+    <link href="https://www.xingjiehu.com/2020/09/30/ckk5f5kss0056ksom4a43qctb/"/>
+    <id>https://www.xingjiehu.com/2020/09/30/ckk5f5kss0056ksom4a43qctb/</id>
     <published>2020-09-30T15:36:31.000Z</published>
     <updated>2020-12-18T07:46:14.332Z</updated>
     
@@ -189,8 +213,8 @@
   
   <entry>
     <title>记录一次postgresql迁移经历</title>
-    <link href="https://www.xingjiehu.com/2020/09/29/ckitzjhw1005i8nomfhbk31g2/"/>
-    <id>https://www.xingjiehu.com/2020/09/29/ckitzjhw1005i8nomfhbk31g2/</id>
+    <link href="https://www.xingjiehu.com/2020/09/29/ckk5f5kt1005iksom1ro6ngsq/"/>
+    <id>https://www.xingjiehu.com/2020/09/29/ckk5f5kt1005iksom1ro6ngsq/</id>
     <published>2020-09-28T16:24:15.000Z</published>
     <updated>2020-12-18T07:46:14.336Z</updated>
     
@@ -214,8 +238,8 @@
   
   <entry>
     <title>微信开发unionid详解</title>
-    <link href="https://www.xingjiehu.com/2020/09/23/ckitzjhvs004z8nomk2kd4bzv/"/>
-    <id>https://www.xingjiehu.com/2020/09/23/ckitzjhvs004z8nomk2kd4bzv/</id>
+    <link href="https://www.xingjiehu.com/2020/09/23/ckk5f5ksp0053ksomvkdj60v0/"/>
+    <id>https://www.xingjiehu.com/2020/09/23/ckk5f5ksp0053ksomvkdj60v0/</id>
     <published>2020-09-23T02:26:11.000Z</published>
     <updated>2020-12-18T07:46:14.328Z</updated>
     
@@ -247,8 +271,8 @@
   
   <entry>
     <title>聊聊kafka</title>
-    <link href="https://www.xingjiehu.com/2020/08/22/ckitzjhvv00568nomv1ooirvl/"/>
-    <id>https://www.xingjiehu.com/2020/08/22/ckitzjhvv00568nomv1ooirvl/</id>
+    <link href="https://www.xingjiehu.com/2020/08/22/ckk5f5ksw005bksom9k2d8its/"/>
+    <id>https://www.xingjiehu.com/2020/08/22/ckk5f5ksw005bksom9k2d8its/</id>
     <published>2020-08-22T07:47:12.000Z</published>
     <updated>2020-12-18T07:46:14.332Z</updated>
     
@@ -277,8 +301,8 @@
   
   <entry>
     <title>python捕获异常堆栈信息</title>
-    <link href="https://www.xingjiehu.com/2020/08/13/ckitzjhud002h8nom2npqaoci/"/>
-    <id>https://www.xingjiehu.com/2020/08/13/ckitzjhud002h8nom2npqaoci/</id>
+    <link href="https://www.xingjiehu.com/2020/08/13/ckk5f5kqc002mksoms72tign2/"/>
+    <id>https://www.xingjiehu.com/2020/08/13/ckk5f5kqc002mksoms72tign2/</id>
     <published>2020-08-13T05:07:32.000Z</published>
     <updated>2020-12-18T07:46:14.312Z</updated>
     
@@ -301,8 +325,8 @@
   
   <entry>
     <title>springboot 配置</title>
-    <link href="https://www.xingjiehu.com/2020/06/12/ckitzji0700dk8nomqun19kbs/"/>
-    <id>https://www.xingjiehu.com/2020/06/12/ckitzji0700dk8nomqun19kbs/</id>
+    <link href="https://www.xingjiehu.com/2020/06/12/ckk5f5l2f00dqksome740f0ne/"/>
+    <id>https://www.xingjiehu.com/2020/06/12/ckk5f5l2f00dqksome740f0ne/</id>
     <published>2020-06-12T05:16:57.000Z</published>
     <updated>2020-12-18T07:46:14.312Z</updated>
     
@@ -326,8 +350,8 @@
   
   <entry>
     <title>nginx配置中root alias的区别</title>
-    <link href="https://www.xingjiehu.com/2020/05/15/ckitzjhu0001r8nomalbdl6wa/"/>
-    <id>https://www.xingjiehu.com/2020/05/15/ckitzjhu0001r8nomalbdl6wa/</id>
+    <link href="https://www.xingjiehu.com/2020/05/15/ckk5f5kpj001rksom7fgif2eq/"/>
+    <id>https://www.xingjiehu.com/2020/05/15/ckk5f5kpj001rksom7fgif2eq/</id>
     <published>2020-05-15T03:03:07.000Z</published>
     <updated>2020-12-18T07:46:14.308Z</updated>
     
@@ -357,8 +381,8 @@
   
   <entry>
     <title>linux硬盘管理工具baobab</title>
-    <link href="https://www.xingjiehu.com/2020/05/12/ckitzjhtr001k8nomhldmr9nk/"/>
-    <id>https://www.xingjiehu.com/2020/05/12/ckitzjhtr001k8nomhldmr9nk/</id>
+    <link href="https://www.xingjiehu.com/2020/05/12/ckk5f5kp8001kksomzd1025s8/"/>
+    <id>https://www.xingjiehu.com/2020/05/12/ckk5f5kp8001kksomzd1025s8/</id>
     <published>2020-05-12T02:38:57.000Z</published>
     <updated>2020-12-18T07:46:14.304Z</updated>
     
@@ -387,8 +411,8 @@
   
   <entry>
     <title>springboot+nginx websocket配置</title>
-    <link href="https://www.xingjiehu.com/2020/05/09/ckitzjhuk002r8nom4f8m88r6/"/>
-    <id>https://www.xingjiehu.com/2020/05/09/ckitzjhuk002r8nom4f8m88r6/</id>
+    <link href="https://www.xingjiehu.com/2020/05/09/ckk5f5kqi002tksomxysvdzly/"/>
+    <id>https://www.xingjiehu.com/2020/05/09/ckk5f5kqi002tksomxysvdzly/</id>
     <published>2020-05-09T06:03:26.000Z</published>
     <updated>2020-12-18T07:46:14.312Z</updated>
     
@@ -414,8 +438,8 @@
   
   <entry>
     <title>10.克隆远程仓库</title>
-    <link href="https://www.xingjiehu.com/2020/04/22/ckitzjhzl00cp8nom8d8s9569/"/>
-    <id>https://www.xingjiehu.com/2020/04/22/ckitzjhzl00cp8nom8d8s9569/</id>
+    <link href="https://www.xingjiehu.com/2020/04/22/ckk5f5l1k00csksompk2inezu/"/>
+    <id>https://www.xingjiehu.com/2020/04/22/ckk5f5l1k00csksompk2inezu/</id>
     <published>2020-04-22T12:32:20.000Z</published>
     <updated>2020-12-18T07:46:14.296Z</updated>
     
@@ -442,8 +466,8 @@
   
   <entry>
     <title>让nginx支持flv文件播放</title>
-    <link href="https://www.xingjiehu.com/2020/03/25/ckitzjhw0005g8nomi7kd38v8/"/>
-    <id>https://www.xingjiehu.com/2020/03/25/ckitzjhw0005g8nomi7kd38v8/</id>
+    <link href="https://www.xingjiehu.com/2020/03/25/ckk5f5kt5005tksomj0g95yiv/"/>
+    <id>https://www.xingjiehu.com/2020/03/25/ckk5f5kt5005tksomj0g95yiv/</id>
     <published>2020-03-25T02:51:34.000Z</published>
     <updated>2020-12-18T07:46:14.336Z</updated>
     
@@ -468,33 +492,9 @@
   </entry>
   
   <entry>
-    <title>docker仓库(Repository)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckitzjhze00ce8nomuprdzofc/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckitzjhze00ce8nomuprdzofc/</id>
-    <published>2020-03-03T03:12:37.000Z</published>
-    <updated>2020-12-18T07:46:14.288Z</updated>
-    
-    <content type="html"><![CDATA[<p>仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>。<br>大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。</p><a id="more"></a><h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>在 <a href="https://hub.docker.com" target="_blank" rel="noopener">https://hub.docker.com</a> 免费注册一个 Docker 账号。</p><h2 id="登录和退出"><a href="#登录和退出" class="headerlink" title="登录和退出"></a>登录和退出</h2><p>执行<code>docker login</code>命令，会提示输入用户名和密码，输入后就登录了。注意，输入密码时不会有任何显示，windows上一般显示<code>*</code>,但linux不会有显示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker login</span><br><span class="line">Login with your Docker ID to push and pull images from Docker Hub. If you don&apos;t have a Docker ID, head over to https://hub.docker.com to create one.</span><br><span class="line">Username: shooke</span><br><span class="line">Password:</span><br></pre></td></tr></table></figure></p><p>执行<code>docker logout</code>就可以退出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logout</span><br></pre></td></tr></table></figure></p><h2 id="查找镜像"><a href="#查找镜像" class="headerlink" title="查找镜像"></a>查找镜像</h2><p>可以通过<code>docker search</code>命令查找官方仓库中的镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker search ubuntu</span><br><span class="line">NAME                                                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line">ubuntu                                                    Ubuntu is a Debian-based Linux operating sys…   10575               [OK]                </span><br><span class="line">dorowu/ubuntu-desktop-lxde-vnc                            Docker image to provide HTML5 VNC interface …   398                                     [OK]</span><br><span class="line">rastasheep/ubuntu-sshd                                    Dockerized SSH service, built on top of offi…   243                                     [OK]</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p><h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><p>在仓库中找到自己想要的镜像后，就可以下载使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure></p><p>这样就可以从官方仓库下载<code>ubuntu:18.04</code>镜像到本地使用。<br>关于镜像的详细内容看《3.docker镜像》</p><p>#参考资料<br><a href="https://www.runoob.com/docker/docker-repository.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-repository.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  &lt;a href=&quot;https://hub.docker.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Docker Hub&lt;/a&gt;。&lt;br&gt;大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="一点一点了解docker" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3docker/"/>
-    
-    
-      <category term="docker" scheme="https://www.xingjiehu.com/tags/docker/"/>
-    
-      <category term="docker repository" scheme="https://www.xingjiehu.com/tags/docker-repository/"/>
-    
-  </entry>
-  
-  <entry>
     <title>docker镜像(Image)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckitzjhzf00ch8noma8u4njni/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckitzjhzf00ch8noma8u4njni/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckk5f5l1b00ckksomgdhctoup/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckk5f5l1b00ckksomgdhctoup/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-12-18T07:46:14.288Z</updated>
     
@@ -516,18 +516,17 @@
   </entry>
   
   <entry>
-    <title>docker容器(Container)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckitzjhzg00cj8nom2njtuj8i/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckitzjhzg00cj8nom2njtuj8i/</id>
+    <title>docker仓库(Repository)</title>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckk5f5l1e00cnksomaqncip12/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckk5f5l1e00cnksomaqncip12/</id>
     <published>2020-03-03T03:12:37.000Z</published>
-    <updated>2020-12-18T07:46:14.292Z</updated>
+    <updated>2020-12-18T07:46:14.288Z</updated>
     
-    <content type="html"><![CDATA[<p>容器就是独立运行起来的程序,一个容器就好比你在虚拟机里装好的一个系统。</p><p>我们可以创建、启动、停止、删除它。同时也可以将容器需要的数据放在容器之外。比如有一个数据库容器，里面有mysql服务，但数据不能放在容器里。我们可以把数据放在主机里，通过映射的方式让容器访问。</p><a id="more"></a><h2 id="启动容器"><a href="#启动容器" class="headerlink" title="启动容器"></a>启动容器</h2><p>启动容器有两种方式，一种是基于镜像新建一个容器并启动，另外一个是将在终止状态（stopped）的容器重新启动。</p><p>新建并启动容器使用<code>docker run</code>命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run ubuntu:18.04 /bin/echo &apos;Hello world&apos;</span><br></pre></td></tr></table></figure><p>启动后会看到<code>Hello world</code>，本本地使用<code>echo &#39;hello world&#39;</code>没什么两样。但这个hello world是容器输出的。不是主机输出的。容器启动后自己就终止了，所以会误认为主机输出的。</p><blockquote><p>docker run命令会检查本地是否存在镜像，如果不存在，会自动到官方仓库下载。比如上面的<code>ubuntu:18.04</code></p></blockquote><p>在执行<code>docker run</code>命令时，可以添加<code>-t</code> <code>-i</code>参数，让容器不退出，保持交互。</p><blockquote><p>-t 选项让Docker分配一个伪终端（pseudo-tty）并绑定到容器的标准输入上，<br>-i 则让容器的标准输入保持打开</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -t -i ubuntu:18.04 /bin/bash</span><br></pre></td></tr></table></figure><p>这样容器就不会退出了，你会发现shell中出现出现了<code>root@af8bae53bdd3:/</code>这样的提示，这说明你进入了容器，你所执行的命令都是在容器内运行。</p><p><code>root</code> 是容器的用户<br><code>af8bae53bdd3</code> 是容器的id，每个容器启动后后有一个容器id。我们反复启动一个容器，就靠它。</p><blockquote><p>如果在交互模式下，退出容器可以输入<code>exit</code>就退出来了。</p></blockquote><h2 id="启动已终止容器"><a href="#启动已终止容器" class="headerlink" title="启动已终止容器"></a>启动已终止容器</h2><p>就好比，咱们不能每次都在<code>virtualBox</code>里新装一个系统，我们只要运行安装过得系统。<br>当容器退出后，想再次启动已经创建过的容器。这时候可以采用<code>docker container start</code>命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker container start af8bae53bdd3</span><br></pre></td></tr></table></figure></p><p>这样就启动了上次生成的容器</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>当利用 <code>docker run</code> 来创建容器时，Docker 在后台运行的标准操作包括：</p><ol><li>检查本地是否存在指定的镜像，不存在就从公有仓库下载</li><li>利用镜像创建并启动一个容器</li><li>分配一个文件系统，并在只读的镜像层外面挂载一层可读写层</li><li>从宿主主机配置的网桥接口中桥接一个虚拟接口到容器中去</li><li>从地址池配置一个 ip 地址给容器</li><li>执行用户指定的应用程序</li><li>执行完毕后容器被终止</li></ol>]]></content>
+    <content type="html"><![CDATA[<p>仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  <a href="https://hub.docker.com/" target="_blank" rel="noopener">Docker Hub</a>。<br>大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。</p><a id="more"></a><h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>在 <a href="https://hub.docker.com" target="_blank" rel="noopener">https://hub.docker.com</a> 免费注册一个 Docker 账号。</p><h2 id="登录和退出"><a href="#登录和退出" class="headerlink" title="登录和退出"></a>登录和退出</h2><p>执行<code>docker login</code>命令，会提示输入用户名和密码，输入后就登录了。注意，输入密码时不会有任何显示，windows上一般显示<code>*</code>,但linux不会有显示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker login</span><br><span class="line">Login with your Docker ID to push and pull images from Docker Hub. If you don&apos;t have a Docker ID, head over to https://hub.docker.com to create one.</span><br><span class="line">Username: shooke</span><br><span class="line">Password:</span><br></pre></td></tr></table></figure></p><p>执行<code>docker logout</code>就可以退出<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker logout</span><br></pre></td></tr></table></figure></p><h2 id="查找镜像"><a href="#查找镜像" class="headerlink" title="查找镜像"></a>查找镜像</h2><p>可以通过<code>docker search</code>命令查找官方仓库中的镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">docker search ubuntu</span><br><span class="line">NAME                                                      DESCRIPTION                                     STARS               OFFICIAL            AUTOMATED</span><br><span class="line">ubuntu                                                    Ubuntu is a Debian-based Linux operating sys…   10575               [OK]                </span><br><span class="line">dorowu/ubuntu-desktop-lxde-vnc                            Docker image to provide HTML5 VNC interface …   398                                     [OK]</span><br><span class="line">rastasheep/ubuntu-sshd                                    Dockerized SSH service, built on top of offi…   243                                     [OK]</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p><h2 id="下载镜像"><a href="#下载镜像" class="headerlink" title="下载镜像"></a>下载镜像</h2><p>在仓库中找到自己想要的镜像后，就可以下载使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure></p><p>这样就可以从官方仓库下载<code>ubuntu:18.04</code>镜像到本地使用。<br>关于镜像的详细内容看《3.docker镜像》</p><p>#参考资料<br><a href="https://www.runoob.com/docker/docker-repository.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-repository.html</a></p>]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;容器就是独立运行起来的程序,一个容器就好比你在虚拟机里装好的一个系统。&lt;/p&gt;
-&lt;p&gt;我们可以创建、启动、停止、删除它。同时也可以将容器需要的数据放在容器之外。比如有一个数据库容器，里面有mysql服务，但数据不能放在容器里。我们可以把数据放在主机里，通过映射的方式让容器访问。&lt;/p&gt;
+      &lt;p&gt;仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  &lt;a href=&quot;https://hub.docker.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Docker Hub&lt;/a&gt;。&lt;br&gt;大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。&lt;/p&gt;
     
     </summary>
     
@@ -536,7 +535,7 @@
     
       <category term="docker" scheme="https://www.xingjiehu.com/tags/docker/"/>
     
-      <category term="docker Container" scheme="https://www.xingjiehu.com/tags/docker-Container/"/>
+      <category term="docker repository" scheme="https://www.xingjiehu.com/tags/docker-repository/"/>
     
   </entry>
   

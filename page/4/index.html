@@ -346,7 +346,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/25/ckitzji0100d98nomd2rjed2x/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/26/ckk5f5l2b00dmksom583o6s50/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -366,7 +366,211 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/25/ckitzji0100d98nomd2rjed2x/" class="post-title-link" itemprop="url">8.再遇工作区和版本库</a>
+                <a href="/2019/12/26/ckk5f5l2b00dmksom583o6s50/" class="post-title-link" itemprop="url">9.上传到远程仓库</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-26 20:32:20" itemprop="dateCreated datePublished" datetime="2019-12-26T20:32:20+08:00">2019-12-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-12-18 15:46:14" itemprop="dateModified" datetime="2020-12-18T15:46:14+08:00">2020-12-18</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/一点一点了解git/" itemprop="url" rel="index"><span itemprop="name">一点一点了解git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
+<p>本故事纯属虚构，如有雷同，^0^那可太巧了</p>
+</blockquote>
+<p>这几天以来，小白学会了很多git的使用技巧。让他在应对问题的时候可以比较从容。比如需求反复修改。处理一些临时功能，后期要删除等比较繁琐的事情。</p>
+<p>今天是小白负责的第一个项目发布的日子。</p>
+<p>BOSS让小白把代码提交到远程仓库，这样负责发布的小伙伴就可以将代码进行发布了。</p>
+<p>小白询问了老鸟如何将代码上传到github。回来开始操作。</p>
+<ol>
+<li>创建线上仓库</li>
+</ol>
+<p>进入github.com登录自己的账号，点击右上角的加号，选择<code>new repository</code></p>
+<p><img src="/assets/images/posts/git_book/9-1.png" alt="new repository"></p>
+<p>填写仓库名称然后点击绿色的<code>cteate repository</code>按钮</p>
+<p><img src="/assets/images/posts/git_book/9-2.png" alt="create repository"></p>
+<p>创建成功会有如下提示</p>
+<p><img src="/assets/images/posts/git_book/9-3.png" alt="repository"></p>
+<p>这时候说明已经创建成功了。这里会显示项目的远程地址，同时介绍了两种使用情况</p>
+<ul>
+<li>没有项目时可以先创建一个目录，进行<code>git init</code>初始化，然后用<code>git remote add</code>进行关联</li>
+<li>如果已经有了本地项目直接使用<code>git remote add</code>进行关联</li>
+</ul>
+<p>小白一看我属于第二种情况。果断进入项目目录执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin https://github.com/shooke/learngit.git</span><br><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure></p>
+<p>提示让<code>Username for &#39;https://github.com&#39;:</code>让输入git账号，小白果断输入，然后回车<br>再次提示<code>Password for &#39;https://xiaobai@163.com@github.com&#39;:</code>这里让输入密码</p>
+<p>“奇怪怎么没有显示<code>*</code>啊”小白疑惑，这时候正好老鸟走过来<br>“BOSS让你上传代码，搞定了吗”，老鸟说<br>“就差一步了，为啥没法输入密码啊”小白问<br>“傻子，git命令行工具跟windows的cmd不一样的，这里是不会有星号提示的，但其实你的密码已经输入了，不行你可以试试”老鸟回答</p>
+<p>小白重新输入密码，回车。出现了以下提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Counting objects: 26, done.</span><br><span class="line">Delta compression using up to 4 threads.</span><br><span class="line">Compressing objects: 100% (22/22), done.</span><br><span class="line">Writing objects: 100% (26/26), 4.36 KiB | 4.36 MiB/s, done.</span><br><span class="line">Total 26 (delta 7), reused 0 (delta 0)</span><br><span class="line">remote: Resolving deltas: 100% (7/7), done.</span><br><span class="line">To https://github.com/shooke/learngit.git</span><br><span class="line"> * [new branch]      master -&gt; master</span><br><span class="line">Branch &apos;master&apos; set up to track remote branch &apos;master&apos; from &apos;origin&apos;.</span><br></pre></td></tr></table></figure></p>
+<p>“出现<code>[new branch]      master -&gt; master</code>是不是就表示上传成功了”小白问<br>“对啊，这个提示代表你本地的master分支，上传到了远程的master分支”老鸟回答</p>
+<p>“啥事分支啊” 小白好奇的问<br>“分支啊，这可是好东西，多人协作全靠它了，我还有事明天给你讲” 老鸟回去忙自己的事了</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><code>git remote add [shortname] [url]</code>可以让本地仓库和远程仓库建立联系。<code>shortname</code>是仓库名称，方便执行命令时使用，一般情况下都用<code>origin</code>；<code>url</code>就是远程仓库的地址，比如上面例子中的<code>https://github.com/shooke/learngit.git</code></li>
+<li><code>git remote -v</code> 显示所有远程仓库</li>
+<li><code>git remote show [remote]</code> 显示某个远程仓库的信息</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/25/ckk5f5l2900djksom5xlg2066/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/25/ckk5f5l2900djksom5xlg2066/" class="post-title-link" itemprop="url">8.再遇工作区和版本库</a>
               
             
           </h1>
@@ -542,7 +746,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/24/ckitzji0400dd8nomrpunc5al/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/24/ckk5f5l2600dfksomztwqc0id/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -562,7 +766,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/24/ckitzji0400dd8nomrpunc5al/" class="post-title-link" itemprop="url">7.时光倒流</a>
+                <a href="/2019/12/24/ckk5f5l2600dfksomztwqc0id/" class="post-title-link" itemprop="url">7.时光倒流</a>
               
             
           </h1>
@@ -747,7 +951,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/23/ckitzjhzz00d78nom5wnyhk9z/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/23/ckk5f5l2200d9ksomf3g71vba/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -767,7 +971,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/23/ckitzjhzz00d78nom5wnyhk9z/" class="post-title-link" itemprop="url">6.撤销操作</a>
+                <a href="/2019/12/23/ckk5f5l2200d9ksomf3g71vba/" class="post-title-link" itemprop="url">6.撤销操作</a>
               
             
           </h1>
@@ -939,7 +1143,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/22/ckitzjhzt00d18nomk26cqtn5/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/22/ckk5f5l2100d7ksomqe7bvrfw/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -959,7 +1163,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/22/ckitzjhzt00d18nomk26cqtn5/" class="post-title-link" itemprop="url">5.对比文件变化</a>
+                <a href="/2019/12/22/ckk5f5l2100d7ksomqe7bvrfw/" class="post-title-link" itemprop="url">5.对比文件变化</a>
               
             
           </h1>
@@ -1131,7 +1335,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/21/ckitzjhzw00d38nomom7sacfq/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/21/ckk5f5l1y00d3ksom18vsa0fx/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1151,7 +1355,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/21/ckitzjhzw00d38nomom7sacfq/" class="post-title-link" itemprop="url">4.啥事工作区、暂存区和版本库</a>
+                <a href="/2019/12/21/ckk5f5l1y00d3ksom18vsa0fx/" class="post-title-link" itemprop="url">4.啥事工作区、暂存区和版本库</a>
               
             
           </h1>
@@ -1325,7 +1529,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/20/ckitzjhzn00ct8nom55f1ux9t/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/20/ckk5f5l1s00czksoma3q41inn/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1345,7 +1549,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/20/ckitzjhzn00ct8nom55f1ux9t/" class="post-title-link" itemprop="url">3.查看文件状态</a>
+                <a href="/2019/12/20/ckk5f5l1s00czksoma3q41inn/" class="post-title-link" itemprop="url">3.查看文件状态</a>
               
             
           </h1>
@@ -1517,7 +1721,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/19/ckitzjhzr00cx8nomd75cu12w/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/19/ckk5f5l1m00cvksomfkdk9gzd/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1537,7 +1741,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/19/ckitzjhzr00cx8nomd75cu12w/" class="post-title-link" itemprop="url">2.把项目交给git</a>
+                <a href="/2019/12/19/ckk5f5l1m00cvksomfkdk9gzd/" class="post-title-link" itemprop="url">2.把项目交给git</a>
               
             
           </h1>
@@ -1704,7 +1908,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/18/ckitzjhzk00cm8nomwygvpq27/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/18/ckk5f5l2400ddksomd0eec1uz/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1724,7 +1928,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/18/ckitzjhzk00cm8nomwygvpq27/" class="post-title-link" itemprop="url">1.啥是git</a>
+                <a href="/2019/12/18/ckk5f5l2400ddksomd0eec1uz/" class="post-title-link" itemprop="url">1.啥是git</a>
               
             
           </h1>
@@ -1877,7 +2081,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ckitzjhzi00ck8nomlpionra3/">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ckk5f5l1i00cqksom54iijdi3/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="shooke">
@@ -1897,7 +2101,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/12/17/ckitzjhzi00ck8nomlpionra3/" class="post-title-link" itemprop="url">0.教程介绍</a>
+                <a href="/2019/12/17/ckk5f5l1i00cqksom54iijdi3/" class="post-title-link" itemprop="url">0.教程介绍</a>
               
             
           </h1>
@@ -2037,181 +2241,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/17/ckitzjhtf000u8nomfp4x2xvm/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/12/17/ckitzjhtf000u8nomfp4x2xvm/" class="post-title-link" itemprop="url">git中文文件名乱码解决方法</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-12-17 11:23:37" itemprop="dateCreated datePublished" datetime="2019-12-17T11:23:37+08:00">2019-12-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2020-12-18 15:46:14" itemprop="dateModified" datetime="2020-12-18T15:46:14+08:00">2020-12-18</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	Untitled-1</span><br><span class="line">	&quot;git\347\256\200\344\273\213&quot;</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span><br></pre></td></tr></table></figure>
-<p>其实<code>&quot;git\347\256\200\344\273\213&quot;</code>是个中文名的文件<code>git简介</code>,中文部分成了乱码，解决方法很简单<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.quotepath false</span><br></pre></td></tr></table></figure></p>
-<p>这样，不对0x80以上的字符进行quote，解决git status/commit时中文文件名乱码</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2259,7 +2288,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">85</span>
+                    <span class="site-state-item-count">86</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2513,7 +2542,11 @@
                     
                       
                     
-                    <span class="site-state-item-count">108</span>
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">110</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -2585,7 +2618,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
