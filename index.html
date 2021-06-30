@@ -395,6 +395,22 @@
             
 
             
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-07-01 00:02:20" itemprop="dateModified" datetime="2021-07-01T00:02:20+08:00">2021-07-01</time>
+              
+            
           </span>
 
           
@@ -409,7 +425,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/分类/" itemprop="url" rel="index"><span itemprop="name">分类</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
 
                 
                 
@@ -446,7 +462,12 @@
       
         
           
-            
+            <h2 id="如何手动安装双内核："><a href="#如何手动安装双内核：" class="headerlink" title="如何手动安装双内核："></a>如何手动安装双内核：</h2><p>深度操作系统内核版本，会以一定周期进行更新，已经安装系统的用户，需要安装最新的内核版本，可通过在[终端]应用中输入命令行操作。</p>
+<h3 id="安装LTS内核"><a href="#安装LTS内核" class="headerlink" title="安装LTS内核"></a>安装LTS内核</h3><p>···<br>sudo apt install linux-image-deepin-amd64 linux-headers-deepin-amd64<br>···</p>
+<h3 id="安装stable内核"><a href="#安装stable内核" class="headerlink" title="安装stable内核"></a>安装stable内核</h3><p>···<br>sudo apt install linux-image-deepin-stable-amd64 linux-headers-deepin-stable-amd64<br>···</p>
+<h3 id="查询当前系统已安装内核并获取完整包名："><a href="#查询当前系统已安装内核并获取完整包名：" class="headerlink" title="查询当前系统已安装内核并获取完整包名："></a>查询当前系统已安装内核并获取完整包名：</h3><p>···<br>dpkg -l | grep “linux-image|linux-headers”<br>···</p>
+<h3 id="卸载其中一个内核"><a href="#卸载其中一个内核" class="headerlink" title="卸载其中一个内核"></a>卸载其中一个内核</h3><p>···<br>sudo apt purge linux-image-5.10.18-amd64-desktop linux-headers-5.10.18-amd64-desktop<br>···</p>
+
           
         
       
@@ -2154,7 +2175,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -2166,6 +2187,8 @@
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
                     
+                    
+                      
                     
                       
                     
