@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2021-06-30T16:02:20.290Z</updated>
+  <updated>2021-06-30T16:09:51.423Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="https://www.xingjiehu.com/2021/06/30/ckqjnz79a000646om7hj3az41/"/>
     <id>https://www.xingjiehu.com/2021/06/30/ckqjnz79a000646om7hj3az41/</id>
     <published>2021-06-30T15:55:44.000Z</published>
-    <updated>2021-06-30T16:02:20.290Z</updated>
+    <updated>2021-06-30T16:09:51.423Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="如何手动安装双内核："><a href="#如何手动安装双内核：" class="headerlink" title="如何手动安装双内核："></a>如何手动安装双内核：</h2><p>深度操作系统内核版本，会以一定周期进行更新，已经安装系统的用户，需要安装最新的内核版本，可通过在[终端]应用中输入命令行操作。</p><h3 id="安装LTS内核"><a href="#安装LTS内核" class="headerlink" title="安装LTS内核"></a>安装LTS内核</h3><p>···<br>sudo apt install linux-image-deepin-amd64 linux-headers-deepin-amd64<br>···</p><h3 id="安装stable内核"><a href="#安装stable内核" class="headerlink" title="安装stable内核"></a>安装stable内核</h3><p>···<br>sudo apt install linux-image-deepin-stable-amd64 linux-headers-deepin-stable-amd64<br>···</p><h3 id="查询当前系统已安装内核并获取完整包名："><a href="#查询当前系统已安装内核并获取完整包名：" class="headerlink" title="查询当前系统已安装内核并获取完整包名："></a>查询当前系统已安装内核并获取完整包名：</h3><p>···<br>dpkg -l | grep “linux-image|linux-headers”<br>···</p><h3 id="卸载其中一个内核"><a href="#卸载其中一个内核" class="headerlink" title="卸载其中一个内核"></a>卸载其中一个内核</h3><p>···<br>sudo apt purge linux-image-5.10.18-amd64-desktop linux-headers-5.10.18-amd64-desktop<br>···</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="如何手动安装双内核："><a href="#如何手动安装双内核：" class="headerlink" title="如何手动安装双内核："></a>如何手动安装双内核：</h2><p>深度操作系统内核版本，会以一定周期进行更新，已经安装系统的用户，需要安装最新的内核版本，可通过在[终端]应用中输入命令行操作。</p><h3 id="安装LTS内核"><a href="#安装LTS内核" class="headerlink" title="安装LTS内核"></a>安装LTS内核</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install linux-image-deepin-amd64 linux-headers-deepin-amd64</span><br></pre></td></tr></table></figure><h3 id="安装stable内核"><a href="#安装stable内核" class="headerlink" title="安装stable内核"></a>安装stable内核</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install linux-image-deepin-stable-amd64 linux-headers-deepin-stable-amd64</span><br></pre></td></tr></table></figure><h3 id="查询当前系统已安装内核并获取完整包名："><a href="#查询当前系统已安装内核并获取完整包名：" class="headerlink" title="查询当前系统已安装内核并获取完整包名："></a>查询当前系统已安装内核并获取完整包名：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -l | grep &quot;linux-image\|linux-headers&quot;</span><br></pre></td></tr></table></figure><h3 id="卸载其中一个内核"><a href="#卸载其中一个内核" class="headerlink" title="卸载其中一个内核"></a>卸载其中一个内核</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt purge linux-image-5.10.18-amd64-desktop linux-headers-5.10.18-amd64-desktop</span><br></pre></td></tr></table></figure>]]></content>
     
     <summary type="html">
     
