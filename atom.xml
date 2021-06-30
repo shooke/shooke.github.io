@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.xingjiehu.com/"/>
-  <updated>2021-01-20T12:44:32.825Z</updated>
+  <updated>2021-06-30T15:55:44.603Z</updated>
   <id>https://www.xingjiehu.com/</id>
   
   <author>
@@ -17,9 +17,27 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>deepin双内核管理</title>
+    <link href="https://www.xingjiehu.com/2021/06/30/ckqjnz79a000646om7hj3az41/"/>
+    <id>https://www.xingjiehu.com/2021/06/30/ckqjnz79a000646om7hj3az41/</id>
+    <published>2021-06-30T15:55:44.000Z</published>
+    <updated>2021-06-30T15:55:44.603Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+      <category term="分类" scheme="https://www.xingjiehu.com/categories/%E5%88%86%E7%B1%BB/"/>
+    
+    
+      <category term="标签" scheme="https://www.xingjiehu.com/tags/%E6%A0%87%E7%AD%BE/"/>
+    
+  </entry>
+  
+  <entry>
     <title>rust语言字符串笔记</title>
-    <link href="https://www.xingjiehu.com/2021/01/20/ckk5f5kq5002fksomkt45msk3/"/>
-    <id>https://www.xingjiehu.com/2021/01/20/ckk5f5kq5002fksomkt45msk3/</id>
+    <link href="https://www.xingjiehu.com/2021/01/20/ckqjnz7am002p46omy49kypq1/"/>
+    <id>https://www.xingjiehu.com/2021/01/20/ckqjnz7am002p46omy49kypq1/</id>
     <published>2021-01-20T09:55:26.000Z</published>
     <updated>2021-01-20T12:44:32.825Z</updated>
     
@@ -42,8 +60,8 @@
   
   <entry>
     <title>ubuntu18.4 打开文件中文乱码问题解决</title>
-    <link href="https://www.xingjiehu.com/2020/12/18/ckk5f5kr2003eksomo778t80i/"/>
-    <id>https://www.xingjiehu.com/2020/12/18/ckk5f5kr2003eksomo778t80i/</id>
+    <link href="https://www.xingjiehu.com/2020/12/18/ckqjnz7b5003l46omdci0wn74/"/>
+    <id>https://www.xingjiehu.com/2020/12/18/ckqjnz7b5003l46omdci0wn74/</id>
     <published>2020-12-18T07:46:40.000Z</published>
     <updated>2020-12-18T08:01:40.957Z</updated>
     
@@ -65,8 +83,8 @@
   
   <entry>
     <title>ubuntu安装php最方便的方式</title>
-    <link href="https://www.xingjiehu.com/2020/12/13/ckk5f5kr7003kksom1c41fbzd/"/>
-    <id>https://www.xingjiehu.com/2020/12/13/ckk5f5kr7003kksom1c41fbzd/</id>
+    <link href="https://www.xingjiehu.com/2020/12/13/ckqjnz7b4003j46om1ha82fbh/"/>
+    <id>https://www.xingjiehu.com/2020/12/13/ckqjnz7b4003j46om1ha82fbh/</id>
     <published>2020-12-12T16:45:39.000Z</published>
     <updated>2020-12-18T07:46:14.316Z</updated>
     
@@ -97,8 +115,8 @@
   
   <entry>
     <title>ubuntu18.04编译安装php7.0</title>
-    <link href="https://www.xingjiehu.com/2020/12/12/ckk5f5kqy003cksom4inx8rez/"/>
-    <id>https://www.xingjiehu.com/2020/12/12/ckk5f5kqy003cksom4inx8rez/</id>
+    <link href="https://www.xingjiehu.com/2020/12/12/ckqjnz7at003546omzn397rbl/"/>
+    <id>https://www.xingjiehu.com/2020/12/12/ckqjnz7at003546omzn397rbl/</id>
     <published>2020-12-12T15:10:30.000Z</published>
     <updated>2020-12-18T07:46:14.316Z</updated>
     
@@ -119,8 +137,8 @@
   
   <entry>
     <title>virtualbox网络模式说明</title>
-    <link href="https://www.xingjiehu.com/2020/12/07/ckk5f5kr5003iksoml8f5b073/"/>
-    <id>https://www.xingjiehu.com/2020/12/07/ckk5f5kr5003iksoml8f5b073/</id>
+    <link href="https://www.xingjiehu.com/2020/12/07/ckqjnz7bd003x46ommdvu77dq/"/>
+    <id>https://www.xingjiehu.com/2020/12/07/ckqjnz7bd003x46ommdvu77dq/</id>
     <published>2020-12-07T10:21:28.000Z</published>
     <updated>2020-12-18T07:46:14.320Z</updated>
     
@@ -141,8 +159,8 @@
   
   <entry>
     <title>超好用的抓包工具mitmproxy</title>
-    <link href="https://www.xingjiehu.com/2020/10/22/ckk5f5kt4005pksom2m8a4spe/"/>
-    <id>https://www.xingjiehu.com/2020/10/22/ckk5f5kt4005pksom2m8a4spe/</id>
+    <link href="https://www.xingjiehu.com/2020/10/22/ckqjnz7c7005u46ommady9wjr/"/>
+    <id>https://www.xingjiehu.com/2020/10/22/ckqjnz7c7005u46ommady9wjr/</id>
     <published>2020-10-22T10:25:31.000Z</published>
     <updated>2020-12-18T07:46:14.336Z</updated>
     
@@ -166,8 +184,8 @@
   
   <entry>
     <title>deepin编译安装nginx问题总结.md</title>
-    <link href="https://www.xingjiehu.com/2020/10/08/ckk5f5knj000cksomchfz1mm1/"/>
-    <id>https://www.xingjiehu.com/2020/10/08/ckk5f5knj000cksomchfz1mm1/</id>
+    <link href="https://www.xingjiehu.com/2020/10/08/ckqjnz79j000d46om1f828981/"/>
+    <id>https://www.xingjiehu.com/2020/10/08/ckqjnz79j000d46om1f828981/</id>
     <published>2020-10-08T14:10:48.000Z</published>
     <updated>2020-12-18T07:46:14.288Z</updated>
     
@@ -188,8 +206,8 @@
   
   <entry>
     <title>解决ssh登录超时问题</title>
-    <link href="https://www.xingjiehu.com/2020/09/30/ckk5f5kss0056ksom4a43qctb/"/>
-    <id>https://www.xingjiehu.com/2020/09/30/ckk5f5kss0056ksom4a43qctb/</id>
+    <link href="https://www.xingjiehu.com/2020/09/30/ckqjnz7c1005h46om50k0hcex/"/>
+    <id>https://www.xingjiehu.com/2020/09/30/ckqjnz7c1005h46om50k0hcex/</id>
     <published>2020-09-30T15:36:31.000Z</published>
     <updated>2020-12-18T07:46:14.332Z</updated>
     
@@ -213,8 +231,8 @@
   
   <entry>
     <title>记录一次postgresql迁移经历</title>
-    <link href="https://www.xingjiehu.com/2020/09/29/ckk5f5kt1005iksom1ro6ngsq/"/>
-    <id>https://www.xingjiehu.com/2020/09/29/ckk5f5kt1005iksom1ro6ngsq/</id>
+    <link href="https://www.xingjiehu.com/2020/09/29/ckqjnz7c4005o46omn888vysu/"/>
+    <id>https://www.xingjiehu.com/2020/09/29/ckqjnz7c4005o46omn888vysu/</id>
     <published>2020-09-28T16:24:15.000Z</published>
     <updated>2020-12-18T07:46:14.336Z</updated>
     
@@ -238,8 +256,8 @@
   
   <entry>
     <title>微信开发unionid详解</title>
-    <link href="https://www.xingjiehu.com/2020/09/23/ckk5f5ksp0053ksomvkdj60v0/"/>
-    <id>https://www.xingjiehu.com/2020/09/23/ckk5f5ksp0053ksomvkdj60v0/</id>
+    <link href="https://www.xingjiehu.com/2020/09/23/ckqjnz7bx005446omj9ugy5ix/"/>
+    <id>https://www.xingjiehu.com/2020/09/23/ckqjnz7bx005446omj9ugy5ix/</id>
     <published>2020-09-23T02:26:11.000Z</published>
     <updated>2020-12-18T07:46:14.328Z</updated>
     
@@ -271,8 +289,8 @@
   
   <entry>
     <title>聊聊kafka</title>
-    <link href="https://www.xingjiehu.com/2020/08/22/ckk5f5ksw005bksom9k2d8its/"/>
-    <id>https://www.xingjiehu.com/2020/08/22/ckk5f5ksw005bksom9k2d8its/</id>
+    <link href="https://www.xingjiehu.com/2020/08/22/ckqjnz7c0005f46oma79a637w/"/>
+    <id>https://www.xingjiehu.com/2020/08/22/ckqjnz7c0005f46oma79a637w/</id>
     <published>2020-08-22T07:47:12.000Z</published>
     <updated>2020-12-18T07:46:14.332Z</updated>
     
@@ -301,8 +319,8 @@
   
   <entry>
     <title>python捕获异常堆栈信息</title>
-    <link href="https://www.xingjiehu.com/2020/08/13/ckk5f5kqc002mksoms72tign2/"/>
-    <id>https://www.xingjiehu.com/2020/08/13/ckk5f5kqc002mksoms72tign2/</id>
+    <link href="https://www.xingjiehu.com/2020/08/13/ckqjnz7ak002k46omfcs9xija/"/>
+    <id>https://www.xingjiehu.com/2020/08/13/ckqjnz7ak002k46omfcs9xija/</id>
     <published>2020-08-13T05:07:32.000Z</published>
     <updated>2020-12-18T07:46:14.312Z</updated>
     
@@ -325,8 +343,8 @@
   
   <entry>
     <title>springboot 配置</title>
-    <link href="https://www.xingjiehu.com/2020/06/12/ckk5f5l2f00dqksome740f0ne/"/>
-    <id>https://www.xingjiehu.com/2020/06/12/ckk5f5l2f00dqksome740f0ne/</id>
+    <link href="https://www.xingjiehu.com/2020/06/12/ckqjnz7fm00dv46om8oivxucq/"/>
+    <id>https://www.xingjiehu.com/2020/06/12/ckqjnz7fm00dv46om8oivxucq/</id>
     <published>2020-06-12T05:16:57.000Z</published>
     <updated>2020-12-18T07:46:14.312Z</updated>
     
@@ -350,8 +368,8 @@
   
   <entry>
     <title>nginx配置中root alias的区别</title>
-    <link href="https://www.xingjiehu.com/2020/05/15/ckk5f5kpj001rksom7fgif2eq/"/>
-    <id>https://www.xingjiehu.com/2020/05/15/ckk5f5kpj001rksom7fgif2eq/</id>
+    <link href="https://www.xingjiehu.com/2020/05/15/ckqjnz7a9001w46omc5vejs32/"/>
+    <id>https://www.xingjiehu.com/2020/05/15/ckqjnz7a9001w46omc5vejs32/</id>
     <published>2020-05-15T03:03:07.000Z</published>
     <updated>2020-12-18T07:46:14.308Z</updated>
     
@@ -381,8 +399,8 @@
   
   <entry>
     <title>linux硬盘管理工具baobab</title>
-    <link href="https://www.xingjiehu.com/2020/05/12/ckk5f5kp8001kksomzd1025s8/"/>
-    <id>https://www.xingjiehu.com/2020/05/12/ckk5f5kp8001kksomzd1025s8/</id>
+    <link href="https://www.xingjiehu.com/2020/05/12/ckqjnz7a5001m46omfqjqtbry/"/>
+    <id>https://www.xingjiehu.com/2020/05/12/ckqjnz7a5001m46omfqjqtbry/</id>
     <published>2020-05-12T02:38:57.000Z</published>
     <updated>2020-12-18T07:46:14.304Z</updated>
     
@@ -411,8 +429,8 @@
   
   <entry>
     <title>springboot+nginx websocket配置</title>
-    <link href="https://www.xingjiehu.com/2020/05/09/ckk5f5kqi002tksomxysvdzly/"/>
-    <id>https://www.xingjiehu.com/2020/05/09/ckk5f5kqi002tksomxysvdzly/</id>
+    <link href="https://www.xingjiehu.com/2020/05/09/ckqjnz7aq002z46omxgfefvdk/"/>
+    <id>https://www.xingjiehu.com/2020/05/09/ckqjnz7aq002z46omxgfefvdk/</id>
     <published>2020-05-09T06:03:26.000Z</published>
     <updated>2020-12-18T07:46:14.312Z</updated>
     
@@ -438,8 +456,8 @@
   
   <entry>
     <title>10.克隆远程仓库</title>
-    <link href="https://www.xingjiehu.com/2020/04/22/ckk5f5l1k00csksompk2inezu/"/>
-    <id>https://www.xingjiehu.com/2020/04/22/ckk5f5l1k00csksompk2inezu/</id>
+    <link href="https://www.xingjiehu.com/2020/04/22/ckqjnz7f300d046om7148h6ei/"/>
+    <id>https://www.xingjiehu.com/2020/04/22/ckqjnz7f300d046om7148h6ei/</id>
     <published>2020-04-22T12:32:20.000Z</published>
     <updated>2020-12-18T07:46:14.296Z</updated>
     
@@ -466,8 +484,8 @@
   
   <entry>
     <title>让nginx支持flv文件播放</title>
-    <link href="https://www.xingjiehu.com/2020/03/25/ckk5f5kt5005tksomj0g95yiv/"/>
-    <id>https://www.xingjiehu.com/2020/03/25/ckk5f5kt5005tksomj0g95yiv/</id>
+    <link href="https://www.xingjiehu.com/2020/03/25/ckqjnz7c3005m46omwmezxqpj/"/>
+    <id>https://www.xingjiehu.com/2020/03/25/ckqjnz7c3005m46omwmezxqpj/</id>
     <published>2020-03-25T02:51:34.000Z</published>
     <updated>2020-12-18T07:46:14.336Z</updated>
     
@@ -492,33 +510,9 @@
   </entry>
   
   <entry>
-    <title>docker镜像(Image)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckk5f5l1b00ckksomgdhctoup/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckk5f5l1b00ckksomgdhctoup/</id>
-    <published>2020-03-03T03:12:37.000Z</published>
-    <updated>2020-12-18T07:46:14.288Z</updated>
-    
-    <content type="html"><![CDATA[<p>镜像在学习docker的过程中非常重要，创建出一个适用于自己的镜像，才能让业务系统准确运行。</p><a id="more"></a><h2 id="拉取镜像"><a href="#拉取镜像" class="headerlink" title="拉取镜像"></a>拉取镜像</h2><p>拉取镜像使用<code>docker pull</code>命令，格式如下：</p><blockquote><p>docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签]</p></blockquote><p>具体的选项可以通过 <code>docker pull --help</code> 命令看到，这里我们说一下镜像名称的格式。</p><ul><li>Docker 镜像仓库地址：地址的格式一般是 &lt;域名/IP&gt;[:端口号]。默认地址是 Docker Hub。</li><li>仓库名：<code>（叫镜像名更容易理解一些，毕竟pull下来在本地就是镜像）</code> 这里的仓库名是两段式名称，即 &lt;用户名&gt;/&lt;软件名&gt;。对于 Docker Hub，如果不给出用户名，则默认为<code>library</code>，也就是官方镜像。</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull ubuntu:18.04</span><br></pre></td></tr></table></figure><p>这样就从官方镜像仓库中拉取了<code>ubuntu 18.04</code>版本的镜像。本地生成的镜像名称是<code>ubuntu</code> tag是<code>18.04</code></p><h2 id="列出本地镜像列表"><a href="#列出本地镜像列表" class="headerlink" title="列出本地镜像列表"></a>列出本地镜像列表</h2><p><code>docker images</code>或<code>docker image ls</code>命令可以查看本地所有镜像<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure></p><p>可以看到本地所有镜像的列表，列表中有:仓库名(REPOSITORY)、标签(TAG)、镜像id(IMAGE ID)，创建时间(CREATED)，以及镜像大小(SIZE)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE</span><br><span class="line">ubuntu              14.04               90d5884b1ee0        5 days ago          188 MB</span><br><span class="line">php                 5.6                 f40e9e0f10c8        9 days ago          444.8 MB</span><br><span class="line">nginx               latest              6f8d099c3adc        12 days ago         182.7 MB</span><br><span class="line">mysql               5.6                 f2e8d6c772c0        3 weeks ago         324.6 MB</span><br><span class="line">httpd               latest              02ef73cf1bc0        3 weeks ago         194.4 MB</span><br><span class="line">ubuntu              15.10               4e3b13c8a266        4 weeks ago         136.3 MB</span><br><span class="line">hello-world         latest              690ed74de00f        6 months ago        960 B</span><br><span class="line">training/webapp     latest              6fae60ef3446        11 months ago       348.8 MB</span><br></pre></td></tr></table></figure></p><h2 id="推送镜像"><a href="#推送镜像" class="headerlink" title="推送镜像"></a>推送镜像</h2><p>有拉取就有推送，用户登录后可以通过<code>docker push</code>命令将自己的额镜像推送到<code>Docker Hub</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag ubuntu:18.04 username/ubuntu:18.04</span><br></pre></td></tr></table></figure></p><p>这样就把<code>ubuntu:18.04</code>推送到了<code>Docker Hub</code>上，自己的仓库空间下。其他人拉取的时候通过<code>username</code>来区分，就可以拉取你的镜像了。</p><h2 id="使用镜像"><a href="#使用镜像" class="headerlink" title="使用镜像"></a>使用镜像</h2><p>执行<code>docker run</code>命令就可以启动本地镜像，生成容器了。详细内容看《4.docker容器》</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.runoob.com/docker/docker-image-usage.html" target="_blank" rel="noopener">https://www.runoob.com/docker/docker-image-usage.html</a><br><a href="https://yeasy.gitbooks.io/docker_practice/content/image/pull.html" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/content/image/pull.html</a><br><a href="https://yeasy.gitbooks.io/docker_practice/content/image/list.html" target="_blank" rel="noopener">https://yeasy.gitbooks.io/docker_practice/content/image/list.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;镜像在学习docker的过程中非常重要，创建出一个适用于自己的镜像，才能让业务系统准确运行。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="一点一点了解docker" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3docker/"/>
-    
-    
-      <category term="docker" scheme="https://www.xingjiehu.com/tags/docker/"/>
-    
-      <category term="docker image" scheme="https://www.xingjiehu.com/tags/docker-image/"/>
-    
-  </entry>
-  
-  <entry>
     <title>docker仓库(Repository)</title>
-    <link href="https://www.xingjiehu.com/2020/03/03/ckk5f5l1e00cnksomaqncip12/"/>
-    <id>https://www.xingjiehu.com/2020/03/03/ckk5f5l1e00cnksomaqncip12/</id>
+    <link href="https://www.xingjiehu.com/2020/03/03/ckqjnz7eu00cp46om3cwe714d/"/>
+    <id>https://www.xingjiehu.com/2020/03/03/ckqjnz7eu00cp46om3cwe714d/</id>
     <published>2020-03-03T03:12:37.000Z</published>
     <updated>2020-12-18T07:46:14.288Z</updated>
     
