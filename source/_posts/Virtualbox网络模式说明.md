@@ -3,7 +3,7 @@ title: virtualbox网络模式说明
 categories:
   - 笔记
 tags:
-  - virtualbox
+  - Virtualbox
 date: 2020-12-07 18:21:28
 ---
 
