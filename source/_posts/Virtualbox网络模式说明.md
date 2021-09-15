@@ -1,5 +1,5 @@
 ---
-title: virtualbox网络模式说明
+title: VirtualBox网络模式说明
 categories:
   - 笔记
 tags:
