@@ -1,0 +1,545 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>shooke&#39;s blog</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://www.xingjiehu.com/"/>
+  <updated>2021-09-17T02:06:14.088Z</updated>
+  <id>https://www.xingjiehu.com/</id>
+  
+  <author>
+    <name>shooke</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ubuntu18.4多版本php安装</title>
+    <link href="https://www.xingjiehu.com/2021/09/17/cktnq12ni003ix0tr0k89pxcr/"/>
+    <id>https://www.xingjiehu.com/2021/09/17/cktnq12ni003ix0tr0k89pxcr/</id>
+    <published>2021-09-17T01:58:13.000Z</published>
+    <updated>2021-09-17T02:06:14.088Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="安装php-ppa源"><a href="#安装php-ppa源" class="headerlink" title="安装php ppa源"></a>安装php ppa源</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install software-properties-common</span><br><span class="line">sudo add-apt-repository ppa:ondrej/php</span><br></pre></td></tr></table></figure><p>老版本的12.4之前的ubuntu用下面的命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python-software-properties</span><br><span class="line">sudo add-apt-repository ppa:ondrej/php</span><br></pre></td></tr></table></figure></p><h2 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure><h2 id="安装对应的版本"><a href="#安装对应的版本" class="headerlink" title="安装对应的版本"></a>安装对应的版本</h2><p>比如安装7.0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y php7.0</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;安装php-ppa源&quot;&gt;&lt;a href=&quot;#安装php-ppa源&quot; class=&quot;headerlink&quot; title=&quot;安装php ppa源&quot;&gt;&lt;/a&gt;安装php ppa源&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;t
+      
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="php" scheme="https://www.xingjiehu.com/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu 18.04 Temporary failure in name resolution DNS解析问题，解决方法</title>
+    <link href="https://www.xingjiehu.com/2021/09/15/cktnq12no003wx0trm4ssamu7/"/>
+    <id>https://www.xingjiehu.com/2021/09/15/cktnq12no003wx0trm4ssamu7/</id>
+    <published>2021-09-15T07:47:12.000Z</published>
+    <updated>2021-09-15T09:37:34.752Z</updated>
+    
+    <content type="html"><![CDATA[<p>在ubuntu18.04 配置环境，发现无法下载网络资源，但是用ip可以访问外网资源。问题应该是dns没有解析。<br>试了好多种方法无效，最后找到了解决方法，记录一下</p><p>修改<code>/etc/systemd/resolved.conf</code>将里面的dns注释去掉，配置上自己的dns就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[Resolve]</span><br><span class="line">DNS=114.114.114.114</span><br></pre></td></tr></table></figure></p><p>注意：修改完成后，需要重启一下服务器</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在ubuntu18.04 配置环境，发现无法下载网络资源，但是用ip可以访问外网资源。问题应该是dns没有解析。&lt;br&gt;试了好多种方法无效，最后找到了解决方法，记录一下&lt;/p&gt;
+&lt;p&gt;修改&lt;code&gt;/etc/systemd/resolved.conf&lt;/code&gt;将里面的
+      
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="ubuntu" scheme="https://www.xingjiehu.com/tags/ubuntu/"/>
+    
+      <category term="dns" scheme="https://www.xingjiehu.com/tags/dns/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>deepin双内核管理</title>
+    <link href="https://www.xingjiehu.com/2021/06/30/cktnq12ls0009x0trebo7vti2/"/>
+    <id>https://www.xingjiehu.com/2021/06/30/cktnq12ls0009x0trebo7vti2/</id>
+    <published>2021-06-30T15:55:44.000Z</published>
+    <updated>2021-09-15T08:59:28.695Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="如何手动安装双内核："><a href="#如何手动安装双内核：" class="headerlink" title="如何手动安装双内核："></a>如何手动安装双内核：</h2><p>深度操作系统内核版本，会以一定周期进行更新，已经安装系统的用户，需要安装最新的内核版本，可通过在[终端]应用中输入命令行操作。</p><h3 id="安装LTS内核"><a href="#安装LTS内核" class="headerlink" title="安装LTS内核"></a>安装LTS内核</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install linux-image-deepin-amd64 linux-headers-deepin-amd64</span><br></pre></td></tr></table></figure><h3 id="安装stable内核"><a href="#安装stable内核" class="headerlink" title="安装stable内核"></a>安装stable内核</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install linux-image-deepin-stable-amd64 linux-headers-deepin-stable-amd64</span><br></pre></td></tr></table></figure><h3 id="查询当前系统已安装内核并获取完整包名："><a href="#查询当前系统已安装内核并获取完整包名：" class="headerlink" title="查询当前系统已安装内核并获取完整包名："></a>查询当前系统已安装内核并获取完整包名：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg -l | grep &quot;linux-image\|linux-headers&quot;</span><br></pre></td></tr></table></figure><h3 id="卸载其中一个内核"><a href="#卸载其中一个内核" class="headerlink" title="卸载其中一个内核"></a>卸载其中一个内核</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt purge linux-image-5.10.18-amd64-desktop linux-headers-5.10.18-amd64-desktop</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;如何手动安装双内核：&quot;&gt;&lt;a href=&quot;#如何手动安装双内核：&quot; class=&quot;headerlink&quot; title=&quot;如何手动安装双内核：&quot;&gt;&lt;/a&gt;如何手动安装双内核：&lt;/h2&gt;&lt;p&gt;深度操作系统内核版本，会以一定周期进行更新，已经安装系统的用户，需要安装最新
+      
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="deepin" scheme="https://www.xingjiehu.com/tags/deepin/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>rust语言字符串笔记</title>
+    <link href="https://www.xingjiehu.com/2021/01/20/cktnq12n1002lx0tr7zomu6ce/"/>
+    <id>https://www.xingjiehu.com/2021/01/20/cktnq12n1002lx0tr7zomu6ce/</id>
+    <published>2021-01-20T09:55:26.000Z</published>
+    <updated>2021-09-15T08:59:28.702Z</updated>
+    
+    <content type="html"><![CDATA[<p>每种语言都免不了和字符串打交道，rust也不例外。由于rust本身的一些特性，字符串的使用和其他语言有很大的不同。</p><a id="more"></a><h2 id="从最简单的单个字符说起-char"><a href="#从最简单的单个字符说起-char" class="headerlink" title="从最简单的单个字符说起-char"></a>从最简单的单个字符说起-char</h2><p><code>char</code>类型可以简单的定义单字符变量</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let c = &apos;a&apos;;</span><br><span class="line">let d = &apos;好&apos;; //这个将会报错</span><br></pre></td></tr></table></figure><p>这样就简单的定义了一个<code>char</code>类型。为什么不能用中文呢？其实不只是中文，非英文之外的语言都会出现问题。rust采用utf8进行字符编码。<code>好</code>虽然看起来是一个汉字，但对于机器来说其实是3个字符。</p><h2 id="了解一下字符串"><a href="#了解一下字符串" class="headerlink" title="了解一下字符串"></a>了解一下字符串</h2><p>char只能定义一个英文或数字等简单字符显然是不够的，使用过程中字符串比这要复杂的多。于是就有了<code>str</code>类型</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let s = &quot;好&quot;;</span><br><span class="line">let s2 = &quot;hello&quot;;</span><br></pre></td></tr></table></figure><p>这样写其实是建立了一个<code>&amp;str</code>类型。他是一个<code>str</code>类型的引用。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let s1 = String::from(&quot;hello&quot;);</span><br><span class="line">let s2 = &quot;hello&quot;.to_string();</span><br></pre></td></tr></table></figure><p>这样就得到了两个<code>String</code>类型的字符串。</p><p>既然<code>&amp;str</code>可以转换成<code>String</code>，那能不能反过来呢？答案是可以。使用切片(slice)可以做到。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">let s1 = String::from(&quot;hello&quot;);</span><br><span class="line">let s2 = &amp;s1[..]</span><br></pre></td></tr></table></figure><p>这样s2就是<code>&amp;str</code>类型的变量了。</p><p>有<code>&amp;str</code>就应该有<code>str</code>类型的数据吧？当然。</p><ul><li><code>str</code> 是 Rust 核心语言类型<ul><li>存放在栈上</li><li>不可变更</li></ul></li><li><code>String</code>类型是rust标准公共库提供的一种数据类型，它的功能更完善——它支持字符串的追加、清空等实用的操作。String 和 str 除了同样拥有一个字符开始位置属性和一个字符串长度属性以外还有一个容量（capacity）属性。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;每种语言都免不了和字符串打交道，rust也不例外。由于rust本身的一些特性，字符串的使用和其他语言有很大的不同。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="rust" scheme="https://www.xingjiehu.com/tags/rust/"/>
+    
+      <category term="String" scheme="https://www.xingjiehu.com/tags/String/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu18.4 打开文件中文乱码问题解决</title>
+    <link href="https://www.xingjiehu.com/2020/12/18/cktnq12nn003sx0tr1golrmpf/"/>
+    <id>https://www.xingjiehu.com/2020/12/18/cktnq12nn003sx0tr1golrmpf/</id>
+    <published>2020-12-18T07:46:40.000Z</published>
+    <updated>2021-09-15T08:59:28.704Z</updated>
+    
+    <content type="html"><![CDATA[<p>本次记录针对ubuntu英文版，打开带有中文字符的文件是，显示乱码问题。不是给ubuntu系统切换到中文版。切换系统语言参考<a href="https://blog.csdn.net/qq_36588424/article/details/109617096" target="_blank" rel="noopener">https://blog.csdn.net/qq_36588424/article/details/109617096</a></p><h2 id="检查语言环境"><a href="#检查语言环境" class="headerlink" title="检查语言环境"></a>检查语言环境</h2><p>出现乱码的原因其实是字符集问题。首先使用<code>locale</code>查看当前语言环境。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"># locale</span><br><span class="line">LANG=en_US</span><br><span class="line">LANGUAGE=</span><br><span class="line">LC_CTYPE=&quot;en_US&quot;</span><br><span class="line">LC_NUMERIC=&quot;en_US&quot;</span><br><span class="line">LC_TIME=&quot;en_US&quot;</span><br><span class="line">LC_COLLATE=&quot;en_US&quot;</span><br><span class="line">LC_MONETARY=&quot;en_US&quot;</span><br><span class="line">LC_MESSAGES=&quot;en_US&quot;</span><br><span class="line">LC_PAPER=&quot;en_US&quot;</span><br><span class="line">LC_NAME=&quot;en_US&quot;</span><br><span class="line">LC_ADDRESS=&quot;en_US&quot;</span><br><span class="line">LC_TELEPHONE=&quot;en_US&quot;</span><br><span class="line">LC_MEASUREMENT=&quot;en_US&quot;</span><br><span class="line">LC_IDENTIFICATION=&quot;en_US&quot;</span><br><span class="line">LC_ALL=</span><br></pre></td></tr></table></figure></p><a id="more"></a><h2 id="安装utf8字符集"><a href="#安装utf8字符集" class="headerlink" title="安装utf8字符集"></a>安装utf8字符集</h2><p>发现没有<code>utf-8</code>的字符集。需要安装一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">locale-gen en_US.UTF-8</span><br></pre></td></tr></table></figure></p><p>查看一下可用字符集，看里面有没有<code>en_US.UTF-8</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># locale -a</span><br><span class="line">C</span><br><span class="line">C.UTF-8</span><br><span class="line">en_US</span><br><span class="line">en_US.iso88591</span><br><span class="line">en_US.utf8</span><br><span class="line">POSIX</span><br></pre></td></tr></table></figure></p><h2 id="修改-etc-profile"><a href="#修改-etc-profile" class="headerlink" title="修改/etc/profile"></a>修改<code>/etc/profile</code></h2><p>用vi打开<code>/etc/profile</code>,最后添加<code>export LC_ALL=en_US.UTF-8</code><br>或者简单点，用下面的命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># echo &quot;export LC_ALL=en_US.UTF-8&quot; &gt;&gt; /etc/profile</span><br><span class="line"># source /etc/profile</span><br></pre></td></tr></table></figure><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.jianshu.com/p/81c1680a583b" target="_blank" rel="noopener">https://www.jianshu.com/p/81c1680a583b</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本次记录针对ubuntu英文版，打开带有中文字符的文件是，显示乱码问题。不是给ubuntu系统切换到中文版。切换系统语言参考&lt;a href=&quot;https://blog.csdn.net/qq_36588424/article/details/109617096&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://blog.csdn.net/qq_36588424/article/details/109617096&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;检查语言环境&quot;&gt;&lt;a href=&quot;#检查语言环境&quot; class=&quot;headerlink&quot; title=&quot;检查语言环境&quot;&gt;&lt;/a&gt;检查语言环境&lt;/h2&gt;&lt;p&gt;出现乱码的原因其实是字符集问题。首先使用&lt;code&gt;locale&lt;/code&gt;查看当前语言环境。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;15&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;16&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# locale&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LANG=en_US&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LANGUAGE=&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LC_CTYPE=&amp;quot;en_US&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LC_NUMERIC=&amp;quot;en_US&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LC_TIME=&amp;quot;en_US&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LC_COLLATE=&amp;quot;en_US&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LC_MONETARY=&amp;quot;en_US&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LC_MESSAGES=&amp;quot;en_US&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LC_PAPER=&amp;quot;en_US&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LC_NAME=&amp;quot;en_US&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LC_ADDRESS=&amp;quot;en_US&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LC_TELEPHONE=&amp;quot;en_US&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LC_MEASUREMENT=&amp;quot;en_US&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LC_IDENTIFICATION=&amp;quot;en_US&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;LC_ALL=&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="中文乱码" scheme="https://www.xingjiehu.com/tags/%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu安装php最方便的方式</title>
+    <link href="https://www.xingjiehu.com/2020/12/13/cktnq12nj003lx0trpqxb358w/"/>
+    <id>https://www.xingjiehu.com/2020/12/13/cktnq12nj003lx0trpqxb358w/</id>
+    <published>2020-12-12T16:45:39.000Z</published>
+    <updated>2021-09-15T08:59:28.704Z</updated>
+    
+    <content type="html"><![CDATA[<ol><li>添加ppa源</li></ol><p>sudo add-apt-repository ppa:ondrej/php</p><ol start="2"><li>升级源</li></ol><p>sudo apt-get update &amp;&amp; sudo apt-get upgrade</p><p>接下来就可以安装各种不同版本了</p><ol start="3"><li>sudo apt-get install php7.0 php7.0-mysql libapache2-mod-php7.0 php7.0-mcrypt php7.0-curl</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;ol&gt;
+&lt;li&gt;添加ppa源&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;sudo add-apt-repository ppa:ondrej/php&lt;/p&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;升级源&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;sudo apt-get update &amp;amp;&amp;amp;
+      
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="php" scheme="https://www.xingjiehu.com/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ubuntu18.04编译安装php7.0</title>
+    <link href="https://www.xingjiehu.com/2020/12/12/cktnq12nm003px0tr9qvor2lb/"/>
+    <id>https://www.xingjiehu.com/2020/12/12/cktnq12nm003px0tr9qvor2lb/</id>
+    <published>2020-12-12T15:10:30.000Z</published>
+    <updated>2021-09-15T08:59:28.704Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>虽然7.0已经停止维护了，但有些老项目也只是过度，后期直接用新项目替换，没有必要在进行升级。所以服务器还是需要用到7.0的运行环境。<br>本来想用apt简单按一下，结果发现apt里面已经没有php7.0了。只能自己源码安装。</p><a id="more"></a><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在安装编译安装前，需要先准备一下编译需要的环境。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install gcc</span><br><span class="line">sudo apt install make</span><br><span class="line">sudo apt install openssl</span><br><span class="line">sudo apt install curl</span><br><span class="line">sudo apt install libbz2-dev</span><br><span class="line">sudo apt install libxml2-dev</span><br><span class="line">sudo apt install libjpeg-dev</span><br><span class="line">sudo apt install libpng-dev</span><br><span class="line">sudo apt install libfreetype6-dev</span><br><span class="line">sudo apt install libzip-dev</span><br><span class="line">sudo apt install libcurl4-openssl-dev</span><br><span class="line">sudo apt install libmcrypt-dev</span><br></pre></td></tr></table></figure></p><p>下载源码包,为了安全起见，当然要去官网下载<code>https://www.php.net/releases/</code>这里有历史版本。<br>找到7.0系列的版本用wget下载即可，或者去php的github clone一下项目也可以<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ cd /usr/local/src</span><br><span class="line">$ wget https://www.php.net/distributions/php-7.0.32.tar.gz</span><br><span class="line"></span><br><span class="line">$ cd php-7.0.32</span><br><span class="line"></span><br><span class="line">$ ./configure --prefix=/usr/local/php7.0 --with-config-file-path=/usr/local/php7.0/etc --enable-fpm --with-fpm-user=www --with-fpm-group=www --with-mysqli --with-pdo-mysql --with-iconv-dir --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib  --enable-xml --disable-rpath --enable-bcmath --enable-shmop --enable-sysvsem --enable-inline-optimization --with-curl --enable-mbregex --enable-mbstring --enable-ftp --with-gd --with-openssl --with-mhash --enable-pcntl --enable-sockets --with-xmlrpc --enable-zip --enable-soap  --with-gettext --disable-fileinfo --enable-maintainer-zts</span><br><span class="line"></span><br><span class="line">$ make</span><br><span class="line"></span><br><span class="line">$ make install</span><br></pre></td></tr></table></figure></p><p>可以根据自己的需求进行<code>./configure</code>，上面的配置是比较全面的，几乎所有用到的扩展都安装了。如果有些扩展不需要可以使用without或disable排除，比如<code>--without-pear</code></p><p>安装完成，需要做一下配置，进入php7.0的安装目录<code>/usr/local/php7.0</code>。复制一下php配置文件.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/php7.0</span><br><span class="line">cd  etc</span><br><span class="line">cp php-fpm.conf.default php-fpm.conf</span><br><span class="line">cp php-fpm.d/www.conf.default php-fpm.d/www.conf</span><br></pre></td></tr></table></figure></p><p>看一下<code>php-fpm.d/www.conf</code> 里面找到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">user = www</span><br><span class="line">group = www</span><br></pre></td></tr></table></figure></p><p>给user和group配置成现有的用户、用户组。或者根据配置创建<code>www</code>账号和用户组也可以<br>查找 <code>listen</code>如果没有<code>listen</code>配置，自己添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">listen = 127.0.0.1:9000</span><br></pre></td></tr></table></figure></p><p>然后讲php-fpm运行起来。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/php7.0/sbin/php-fpm</span><br></pre></td></tr></table></figure></p><h2 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h2><p>因为php listen配置的是监听9000端口，所有nginx配置要是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">location ~ \.php &#123;</span><br><span class="line">                if ($request_method = &apos;OPTIONS&apos;) &#123;</span><br><span class="line">                    add_header &apos;Access-Control-Allow-Origin&apos; &apos;*&apos; always;</span><br><span class="line">                    add_header &apos;Access-Control-Allow-Credentials&apos; &apos;true&apos; always;</span><br><span class="line">                    add_header &apos;Access-Control-Allow-Methods&apos; &apos;GET, POST, PUT, DELETE, OPTIONS&apos; always;</span><br><span class="line">                    add_header &apos;Access-Control-Allow-Headers&apos; &apos;Origin, DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type, Accept, authKey, sessionId, business,shop&apos;;</span><br><span class="line">                    #add_header &apos;Access-Control-Allow-Headers&apos; &apos;*&apos;;</span><br><span class="line">                    add_header &apos;Access-Control-Max-Age&apos; 1728000;</span><br><span class="line">                    add_header &apos;Content-Type&apos; &apos;text/plain charset=UTF-8&apos;;</span><br><span class="line">                    add_header &apos;Content-Length&apos; 0;</span><br><span class="line"></span><br><span class="line">                    return 204;</span><br><span class="line">                &#125;</span><br><span class="line">                include snippets/fastcgi-php.conf;</span><br><span class="line"></span><br><span class="line">                # With php7.0-cgi alone:</span><br><span class="line">                fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">        #       # With php7.0-fpm:</span><br><span class="line">        #       fastcgi_pass unix:/run/php/php7.2-fpm.sock;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p><h2 id="安装其他插件"><a href="#安装其他插件" class="headerlink" title="安装其他插件"></a>安装其他插件</h2><h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><p>redis是常用软件，redis官方为php提供了插件。可以使用pecl安装，也可以自己编译。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/php7.0/bin/pecl install redis</span><br></pre></td></tr></table></figure></p><p>安装完成后会有提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Build process completed successfully</span><br><span class="line">Installing &apos;/usr/local/php7.0/lib/php/extensions/no-debug-zts-20151012/redis.so&apos;</span><br><span class="line">install ok: channel://pecl.php.net/redis-5.3.2</span><br><span class="line">configuration option &quot;php_ini&quot; is not set to php.ini location</span><br><span class="line">You should add &quot;extension=redis.so&quot; to php.ini</span><br></pre></td></tr></table></figure></p><p>这是后需要在php.ini里添加<code>extension=redis.so</code>如果没哟php.ini文件，就在php配置目录创建一个。</p><p>添加配置后需要重启php-fpm，然后<code>nginx -s reload</code>，redis就生效了。</p><h3 id="mcrypt"><a href="#mcrypt" class="headerlink" title="mcrypt"></a>mcrypt</h3><p>这次用编译方式，首先下载源码包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://pecl.php.net/get/mcrypt-1.0.1.tgz</span><br></pre></td></tr></table></figure></p><p>使用phpize处理一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf mcrypt-1.0.1.tgz</span><br><span class="line">cd mcrypt-1.0.1</span><br><span class="line">/usr/local/php7.0/bin/phpize</span><br></pre></td></tr></table></figure></p><p>接下来开始编译，编译需要制定php-config的路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure --with-php-config=/usr/local/php7.0/bin/php-config</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></p><p>安装完成，出现如下信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Installing shared extensions:     /usr/local/php7.0/lib/php/extensions/no-debug-zts-20151012/</span><br></pre></td></tr></table></figure></p><p>在php.ini中加入编译的插件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">extension=mcrypt.so</span><br></pre></td></tr></table></figure></p><p>安装完插件，重启php-fpm和nginx就可以了</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h2&gt;&lt;p&gt;虽然7.0已经停止维护了，但有些老项目也只是过度，后期直接用新项目替换，没有必要在进行升级。所以服务器还是需要用到7.0的运行环境。&lt;br&gt;本来想用apt简单按一下，结果发现apt里面已经没有php7.0了。只能自己源码安装。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="php" scheme="https://www.xingjiehu.com/tags/php/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>VirtualBox网络模式说明</title>
+    <link href="https://www.xingjiehu.com/2020/12/07/cktnq12m1000kx0tr4f14vad4/"/>
+    <id>https://www.xingjiehu.com/2020/12/07/cktnq12m1000kx0tr4f14vad4/</id>
+    <published>2020-12-07T10:21:28.000Z</published>
+    <updated>2021-09-15T08:59:28.695Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="网络模式"><a href="#网络模式" class="headerlink" title="网络模式"></a>网络模式</h2><p>VirtualBox的提供了四种网络接入模式，它们分别是：<br>1、NAT 网络地址转换模式(NAT,Network Address Translation)<br>2、Bridged Adapter 桥接模式<br>3、Internal 内部网络模式<br>4、Host-only Adapter 主机模式 </p><a id="more"></a><h2 id="不同模式的功能"><a href="#不同模式的功能" class="headerlink" title="不同模式的功能"></a>不同模式的功能</h2><h3 id="NAT-网络地址转换模式"><a href="#NAT-网络地址转换模式" class="headerlink" title="NAT 网络地址转换模式"></a>NAT 网络地址转换模式</h3><p>主要用于虚拟机访问外部网络。虚拟机可以访问宿主机，也可以访问外部网络的其他主机。<br>但是，这种模式下虚拟机对外是不可见的。任何主机都无法访问虚拟机，包括宿主机。<br>虚拟机就像一个幕后大佬，只有他看到你，你看不到他。</p><h3 id="Bridged-Adapter（网桥模式）"><a href="#Bridged-Adapter（网桥模式）" class="headerlink" title="Bridged Adapter（网桥模式）"></a>Bridged Adapter（网桥模式）</h3><p>这是一种最open的方式，它是通过主机网卡，架设了一条桥，直接连入到网络中了。因此，它使得虚拟机能被分配到一个网络中独立的IP，所有网络功能完全和在网络中的真实机器一样。<br>这种模式让虚拟机对外可见，虚拟机可以访问任何主机，其他主机也可以访问虚拟机。由于虚拟主机可见了，虚拟主机之间也可以相互访问。</p><h3 id="Internal（内网模式）"><a href="#Internal（内网模式）" class="headerlink" title="Internal（内网模式）"></a>Internal（内网模式）</h3><p>这是一种只有虚拟机之间通讯的模式，虚拟机不能访问宿主机，也不能访问外网。宿主机也无法访问虚拟机。<br>当你启动多个虚拟机，并且设置为同一网段时，虚拟机之间可以相互通讯。</p><h3 id="Host-only-Adapter（主机模式）"><a href="#Host-only-Adapter（主机模式）" class="headerlink" title="Host-only Adapter（主机模式）"></a>Host-only Adapter（主机模式）</h3><p>高级diy模式，默认情况下与<code>Internal（内网模式）</code>有点相似，虚拟主机之间可以通讯，不同支出在于，它不限制网段。虚拟机无需设置为同一个网段，即可相互通讯。<br>主机模式，这是一种比较复杂的模式，需要有比较扎实的网络基础知识才能玩转。可以说前面几种模式所实现的功能，在这种模式下，通过虚拟机及网卡的设置都可以被实现。</p><p>我们可以理解为Guest在主机中模拟出一张专供虚拟机使用的网卡，所有虚拟机都是连接到该网卡上的，我们可以通过设置这张网卡来实现上网及其他很多功能，比如（网卡共享、网卡桥接等）。</p><p>虚拟机与主机的关系：默认不能相互访问，双方不属于同一IP段，host-only网卡默认IP段为192.168.56.X 子网掩码为255.255.255.0，后面的虚拟机被分配到的也都是这个网段。通过网卡共享、网卡桥接等，可以实现虚拟机于主机相互访问。</p><p>虚拟机与网络主机的关系：默认不能相互访问，原因同上，通过设置，可以实现相互访问。</p><p>虚拟机与虚拟机的关系：默认可以相互访问，都是同处于一个网段。</p><h2 id="实战环节"><a href="#实战环节" class="headerlink" title="实战环节"></a>实战环节</h2><h3 id="虚拟主机访问外网"><a href="#虚拟主机访问外网" class="headerlink" title="虚拟主机访问外网"></a>虚拟主机访问外网</h3><p>将网卡设置为NAT模式即可</p><h3 id="虚拟主机与宿主机互通并可以链接外网"><a href="#虚拟主机与宿主机互通并可以链接外网" class="headerlink" title="虚拟主机与宿主机互通并可以链接外网"></a>虚拟主机与宿主机互通并可以链接外网</h3><p>最简单的方式使用桥接模式，一张网卡就足够了<br>还有一种复杂的方式，使用<code>NAT</code>与<code>Host-only Adapter</code>组合实现。网卡一用<code>NAT</code>可以保证虚拟机访问外网。网卡二<code>Host-only Adapter</code>让虚拟机拥有自己的ip，这样宿主机就可以访问到虚拟机了。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://blog.csdn.net/chaishen10000/article/details/82984811" target="_blank" rel="noopener">https://blog.csdn.net/chaishen10000/article/details/82984811</a><br><a href="https://jingyan.baidu.com/article/215817f7cd8d9f5fda1423ce.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/215817f7cd8d9f5fda1423ce.html</a><br><a href="https://blog.csdn.net/dkfajsldfsdfsd/article/details/79441874" target="_blank" rel="noopener">https://blog.csdn.net/dkfajsldfsdfsd/article/details/79441874</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;网络模式&quot;&gt;&lt;a href=&quot;#网络模式&quot; class=&quot;headerlink&quot; title=&quot;网络模式&quot;&gt;&lt;/a&gt;网络模式&lt;/h2&gt;&lt;p&gt;VirtualBox的提供了四种网络接入模式，它们分别是：&lt;br&gt;1、NAT 网络地址转换模式(NAT,Network Address Translation)&lt;br&gt;2、Bridged Adapter 桥接模式&lt;br&gt;3、Internal 内部网络模式&lt;br&gt;4、Host-only Adapter 主机模式 &lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="VirtualBox" scheme="https://www.xingjiehu.com/tags/VirtualBox/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>超好用的抓包工具mitmproxy</title>
+    <link href="https://www.xingjiehu.com/2020/10/22/cktnq12oq0061x0trvo8reapy/"/>
+    <id>https://www.xingjiehu.com/2020/10/22/cktnq12oq0061x0trvo8reapy/</id>
+    <published>2020-10-22T10:25:31.000Z</published>
+    <updated>2021-09-15T08:59:28.708Z</updated>
+    
+    <content type="html"><![CDATA[<p>mitmproxy是一个非常好用的代理工具</p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>最快速的安装莫过于执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install mitmproxy</span><br></pre></td></tr></table></figure></p><p>由于mitmproxy是基于python开发的，所以安装mitmproxy的同时，也会自动安装上python3。</p><p>如果本地已经有了python3.6以上的版本，可以用pip进行安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mitmproxy</span><br></pre></td></tr></table></figure></p><a id="more"></a><h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>要启动 mitmproxy 用 mitmproxy、mitmdump、mitmweb 这三个命令中的任意一个即可，这三个命令功能一致，且都可以加载自定义脚本，唯一的区别是交互界面的不同。<br>mitmproxy默认监听端口是8080</p><ul><li><p>mitmproxy 命令启动后，会提供一个命令行界面，用户可以实时看到发生的请求，并通过命令过滤请求，查看请求数据。</p></li><li><p>mitmweb 命令启动后，会提供一个 web 界面，用户可以实时看到发生的请求，并通过 GUI 交互来过滤请求，查看请求数据。</p></li><li><p>mitmdump 命令启动后——你应该猜到了，没有界面，程序默默运行，所以 mitmdump 无法提供过滤请求、查看数据的功能，只能结合自定义脚本，默默工作</p></li></ul><h2 id="场景举例"><a href="#场景举例" class="headerlink" title="场景举例"></a>场景举例</h2><p>比如想要对手机内容进行抓包。<br>要确保电脑和手机在一个wifi网络内，以小米手机为例，长安wifi，进入wifi详情，设置代理，选择手动，主机名设置为电脑的ip，端口号设置为8080（mitmproxy默认监听端口）。点击右上角的对号。保存网络设置就可以了。<br>电脑执行mitmproxy或mitmweb命令。就可以看到手机的每一次网络请求了。</p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>使用 mitmproxy + python 做拦截代理：<a href="https://blog.wolfogre.com/posts/usage-of-mitmproxy/" target="_blank" rel="noopener">https://blog.wolfogre.com/posts/usage-of-mitmproxy/</a><br>mitmproxy 官方文档：<a href="https://docs.mitmproxy.org/stable/" target="_blank" rel="noopener">https://docs.mitmproxy.org/stable/</a><br>mitmproxy 脚本示例：<a href="https://github.com/mitmproxy/mitmproxy/tree/master/examples" target="_blank" rel="noopener">https://github.com/mitmproxy/mitmproxy/tree/master/examples</a><br>维基百科 - 代理服务器：<a href="https://zh.wikipedia.org/wiki/代理服务器" target="_blank" rel="noopener">https://zh.wikipedia.org/wiki/代理服务器</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;mitmproxy是一个非常好用的代理工具&lt;/p&gt;
+&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;p&gt;最快速的安装莫过于执行&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;sudo apt install mitmproxy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;由于mitmproxy是基于python开发的，所以安装mitmproxy的同时，也会自动安装上python3。&lt;/p&gt;
+&lt;p&gt;如果本地已经有了python3.6以上的版本，可以用pip进行安装&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;pip install mitmproxy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="mitmproxy" scheme="https://www.xingjiehu.com/tags/mitmproxy/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>deepin编译安装nginx问题总结.md</title>
+    <link href="https://www.xingjiehu.com/2020/10/08/cktnq12lv000cx0tr5vvxu4lq/"/>
+    <id>https://www.xingjiehu.com/2020/10/08/cktnq12lv000cx0tr5vvxu4lq/</id>
+    <published>2020-10-08T14:10:48.000Z</published>
+    <updated>2021-09-15T08:59:28.696Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="c-compiler-cc-is-not-found"><a href="#c-compiler-cc-is-not-found" class="headerlink" title="c compiler cc is not found"></a>c compiler cc is not found</h2><p>检查是否一安装gcc如果没有，执行<code>apt install gcc</code>进行安装<br>如果已经安装了gcc，但还是包错误，就需要执行<code>apt install build-essential</code></p><a id="more"></a><h2 id="configure-error-the-HTTP-rewrite-module-requires-the-PCRE-library"><a href="#configure-error-the-HTTP-rewrite-module-requires-the-PCRE-library" class="headerlink" title="./configure: error: the HTTP rewrite module requires the PCRE library"></a>./configure: error: the HTTP rewrite module requires the PCRE library</h2><p>遇到这个问题只需要安装pcre就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install libpcre3 libpcre3-dev</span><br></pre></td></tr></table></figure></p><h2 id="configure-error-the-HTTP-gzip-module-requires-the-zlib-library"><a href="#configure-error-the-HTTP-gzip-module-requires-the-zlib-library" class="headerlink" title="./configure: error: the HTTP gzip module requires the zlib library"></a>./configure: error: the HTTP gzip module requires the zlib library</h2><p>说明缺少zlib，执行下面的命令安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install zlib1g-dev</span><br></pre></td></tr></table></figure></p><p>另外openssl也是常用的所以最好也安装一下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install openssl libssl-dev</span><br></pre></td></tr></table></figure></p><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>编译nginx之前先做好准备工作,这样就可以安心编译了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt install make gcc libpcre3 libpcre3-dev  zlib1g-dev openssl libssl-dev</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;c-compiler-cc-is-not-found&quot;&gt;&lt;a href=&quot;#c-compiler-cc-is-not-found&quot; class=&quot;headerlink&quot; title=&quot;c compiler cc is not found&quot;&gt;&lt;/a&gt;c compiler cc is not found&lt;/h2&gt;&lt;p&gt;检查是否一安装gcc如果没有，执行&lt;code&gt;apt install gcc&lt;/code&gt;进行安装&lt;br&gt;如果已经安装了gcc，但还是包错误，就需要执行&lt;code&gt;apt install build-essential&lt;/code&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="nginx" scheme="https://www.xingjiehu.com/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>解决ssh登录超时问题</title>
+    <link href="https://www.xingjiehu.com/2020/09/30/cktnq12om005ox0tr79h7qims/"/>
+    <id>https://www.xingjiehu.com/2020/09/30/cktnq12om005ox0tr79h7qims/</id>
+    <published>2020-09-30T15:36:31.000Z</published>
+    <updated>2021-09-15T08:59:28.708Z</updated>
+    
+    <content type="html"><![CDATA[<p>加上<code>-o ServerAliveInterval=60</code>参数就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -o ServerAliveInterval=60 root@192.168.1.1</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;加上&lt;code&gt;-o ServerAliveInterval=60&lt;/code&gt;参数就可以了&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1
+      
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="ssh" scheme="https://www.xingjiehu.com/tags/ssh/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记录一次postgresql迁移经历</title>
+    <link href="https://www.xingjiehu.com/2020/09/29/cktnq12oo005vx0tr9sugmzcz/"/>
+    <id>https://www.xingjiehu.com/2020/09/29/cktnq12oo005vx0tr9sugmzcz/</id>
+    <published>2020-09-28T16:24:15.000Z</published>
+    <updated>2021-09-15T08:59:28.708Z</updated>
+    
+    <content type="html"><![CDATA[<p>数据库服务器硬盘满了，需要将数据迁移到另一台数据库，做一下记录</p><h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>去postgresql官网<a href="https://www.postgresql.org/download/，选择操作系统，我这里选择的是ubuntu。" target="_blank" rel="noopener">https://www.postgresql.org/download/，选择操作系统，我这里选择的是ubuntu。</a><br>然后根据说明进行安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Create the file repository configuration:</span><br><span class="line">sudo sh -c &apos;echo &quot;deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&quot; &gt; /etc/apt/sources.list.d/pgdg.list&apos;</span><br><span class="line"></span><br><span class="line"># Import the repository signing key:</span><br><span class="line">wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"># Update the package lists:</span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"># Install the latest version of PostgreSQL.</span><br><span class="line"># If you want a specific version, use &apos;postgresql-12&apos; or similar instead of &apos;postgresql&apos;:</span><br><span class="line">sudo apt-get -y install postgresql</span><br></pre></td></tr></table></figure></p><p>值得注意的是，安装时一定要选择与老数据库相同的版本</p><p>安装完成后，就可以会自动添加一个postgres的系统用户，该用户没有密码如果想要密码可以自行设置</p><a id="more"></a><h2 id="登录postgresql，配置密码"><a href="#登录postgresql，配置密码" class="headerlink" title="登录postgresql，配置密码"></a>登录postgresql，配置密码</h2><p>刚安装完，一定要使用<code>postgres</code>用户才可以登录<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo su - postgres</span><br><span class="line">$ psql</span><br><span class="line">psql (9.6.19)</span><br><span class="line">SSL 连接（协议：TLSv1.2，密码：ECDHE-RSA-AES256-GCM-SHA384，密钥位：256，压缩：关闭)</span><br><span class="line">输入 &quot;help&quot; 来获取帮助信息.</span><br><span class="line"></span><br><span class="line">postgres=#</span><br></pre></td></tr></table></figure></p><p>出现<code>postgres=#</code>标示已经登录到数据库了。非常简单。</p><p><code>psql</code>命令其实是相当于<code>psql -U postgres -h localhost</code>，因为<code>psql</code>如果不指定用户会使用与系统账户相同的数据库账号。<br>一定要注意哦，系统中的<code>postgres</code>和数据库的<code>postgres</code>虽然名字一样，但不是一回事一个属于系统，一个数据数据库。<br>接下来给数据库的<code>postgres</code>账号设置密码，这样我们就可以在不切换系统<code>postgres</code>账号的情况下登录了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">postgres=# alter user postgres with password &apos;123456&apos;</span><br></pre></td></tr></table></figure></p><p>这样就设置好了密码。</p><h2 id="配置外网访问"><a href="#配置外网访问" class="headerlink" title="配置外网访问"></a>配置外网访问</h2><p>默认postgresql是不允许外网访问的，我们需要修改两个文件。</p><ol><li>pg_hba.conf：配置数据库的访问权限</li><li>postgresql.conf：配置数据库服务的相关参数</li></ol><p>首先我们退出数据库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">postgres=# \q</span><br></pre></td></tr></table></figure></p><p>然后切换回root账号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su - root</span><br></pre></td></tr></table></figure></p><p>接下来修改配置文件，修改<code>pg_hba.conf</code>，增加一条<code>host  all  all  0.0.0.0/0   md5</code>规则</p><p>修改<code>postgresql.conf</code> 找到<code>#listen_addresses=’localhost’</code>，修改成<code>listen_addresses=’*’</code></p><p>修改完成重启服务</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service postgres restart</span><br></pre></td></tr></table></figure><p>这样我们就可以在其他电脑上用<code>psql -h serverip -U postgres</code>登录数据库管理了</p><h2 id="修改数据存储位置"><a href="#修改数据存储位置" class="headerlink" title="修改数据存储位置"></a>修改数据存储位置</h2><ol><li>首先需要停止服务执行<code>service postgresql stop</code></li><li><p>将原来的数据库目录复制新目录<br>打开<code>postgresql.conf</code>文件找到<code>data_directory</code>看一下当前数据库存放目录</p><p>将目录复制到想保持的地方，不可以使用cp那样会缺少属性，无法启动数据库，需要用<code>rsync</code>命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -av /var/lib/postgresql/9.6/main /mnt/main</span><br></pre></td></tr></table></figure><p><code>/var/lib/postgresql/9.6/main</code>是<code>data_directory</code>中个默认的设置，将其修改为新目录<code>/mnt/main</code></p></li><li>重启服务<code>service postgresql</code></li></ol><p>这样数据存储位置就生效了</p><h2 id="导入老数据"><a href="#导入老数据" class="headerlink" title="导入老数据"></a>导入老数据</h2><p>执行命令<code>psql -h localhost -U postgres 数据库名 &lt; 备份文件</code> 导入数据</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;数据库服务器硬盘满了，需要将数据迁移到另一台数据库，做一下记录&lt;/p&gt;
+&lt;h2 id=&quot;安装&quot;&gt;&lt;a href=&quot;#安装&quot; class=&quot;headerlink&quot; title=&quot;安装&quot;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;p&gt;去postgresql官网&lt;a href=&quot;https://www.postgresql.org/download/，选择操作系统，我这里选择的是ubuntu。&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.postgresql.org/download/，选择操作系统，我这里选择的是ubuntu。&lt;/a&gt;&lt;br&gt;然后根据说明进行安装&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;12&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;# Create the file repository configuration:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo sh -c &amp;apos;echo &amp;quot;deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&amp;quot; &amp;gt; /etc/apt/sources.list.d/pgdg.list&amp;apos;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# Import the repository signing key:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# Update the package lists:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo apt-get update&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# Install the latest version of PostgreSQL.&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;# If you want a specific version, use &amp;apos;postgresql-12&amp;apos; or similar instead of &amp;apos;postgresql&amp;apos;:&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;sudo apt-get -y install postgresql&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;值得注意的是，安装时一定要选择与老数据库相同的版本&lt;/p&gt;
+&lt;p&gt;安装完成后，就可以会自动添加一个postgres的系统用户，该用户没有密码如果想要密码可以自行设置&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="postgresql" scheme="https://www.xingjiehu.com/tags/postgresql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微信开发unionid详解</title>
+    <link href="https://www.xingjiehu.com/2020/09/23/cktnq12oa0052x0trl5zvobv1/"/>
+    <id>https://www.xingjiehu.com/2020/09/23/cktnq12oa0052x0trl5zvobv1/</id>
+    <published>2020-09-23T02:26:11.000Z</published>
+    <updated>2021-09-15T08:59:28.707Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="unionid概况"><a href="#unionid概况" class="headerlink" title="unionid概况"></a>unionid概况</h2><p>微信开发过程中，经常会遇到，一个企业有多个小程序和公众号，在不同的小程序和公众号中，会有不同的openid。如果想要确定是同一个人，就需要用到unionid机制。</p><p>官方关于unionid的说明是这样的</p><p>公众号文档的描述</p><blockquote><p>开发者可通过OpenID来获取用户基本信息。特别需要注意的是，如果开发者拥有多个移动应用、网站应用和公众帐号，可通过获取用户基本信息中的unionid来区分用户的唯一性，因为只要是同一个微信开放平台帐号下的移动应用、网站应用和公众帐号，用户的unionid是唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，unionid是相同的。</p></blockquote><p>小程序文档的描述</p><blockquote><p>如果开发者拥有多个移动应用、网站应用、和公众帐号（包括小程序），可通过 UnionID 来区分用户的唯一性，因为只要是同一个微信开放平台帐号下的移动应用、网站应用和公众帐号（包括小程序），用户的 UnionID 是唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，UnionID是相同的。</p></blockquote><a id="more"></a><h2 id="开放平台"><a href="#开放平台" class="headerlink" title="开放平台"></a>开放平台</h2><p>提到unionid就不得不提微信开放平台了。</p><p><a href="https://open.weixin.qq.com" target="_blank" rel="noopener">https://open.weixin.qq.com</a> 微信开放平台，刚开始是为了让开发商，可以支持很多的公众号，而产生的。原因是使用appid和appsecret的方式对于。小程序或公众号的所有者来说太危险，相当于暴露了用户名和秘密。为了安全，出现了开放平台，授权时可以灵活的控制授予哪些权限。开放平台相比appid和appsecret方式还有很多特权。对于开发者是很好的。</p><h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>官方的说明比较简单，开发过程中会遇到不少的坑。下面说一下注意事项</p><ol><li>公众号开发时只有用户关注了公众号，才可以获取到unionid</li></ol><p>如果用户不关注或取消关注公众号，是无法获取unionid的。</p><ol start="2"><li>必须将公众号或小程序绑定到开放平台才可以获取unionid</li></ol><p>进入开放平台，点管理中心。可以看到移动应用、网站应用、公众账号、小程序、第三方平台这些菜单。</p><p>如果要绑定公众号就，点击<code>公众账号</code>菜单，然后点击<code>绑定公众号</code>，填写公众账号、密码、验证码，点下一步，然后需要管理员扫码。之后就绑定了。</p><p>小程序的流程也差不多。</p><ol start="3"><li>一个公众号或小程序只能绑定一个开放平台</li></ol><p>这与unionid的生成机制有关，unionid是用户与开放平台之间的对应关系，如果绑定多个会造成混乱。</p><h3 id="unionid的值为什么不同"><a href="#unionid的值为什么不同" class="headerlink" title="unionid的值为什么不同"></a>unionid的值为什么不同</h3><p>第三方开放平台，开发过程中会遇到，同一个用户，在两个公众号下，获取到的unionid不同的情况。这种情况发送的原因是，两个公众号绑定到了不同的开放平台账号造成的。</p><p>不管是小程序还是公众号，一个开放平台的是有绑定限制的。比如小程序<code>相同主体：上限50个，绑定次数不限。不同主体：上限5个，本月还可以绑定5次。</code>，公众号<code>相同主体：上限50个，绑定次数不限。不同主体：上限5个，本月还可以绑定5次。</code><br>所以一般情况下，会让客户自己注册一个开放平台，然后把客户的公众号和小程序绑定上去。</p><p>比如<code>客户A</code>注册开放平台是<code>平台A</code>，注册小程序是<code>小程序A</code>，注册公众号是<code>公众号A</code>；<code>客户B</code>注册开放平台是<code>平台B</code>，注册小程序是<code>小程序B</code>，注册公众号是<code>公众号B</code>。</p><p>他们各自绑定各自的开放平台。<code>小程序A</code>和<code>公众号A</code>绑定<code>平台A</code>，<code>小程序B</code>和<code>公众号B</code>绑定<code>平台B</code>。</p><p>开发过程中会出现同一个微信用户，在<code>公众号A</code>和<code>小程序A</code>获取到的unionid是一样的比如都是；<code>公众号B</code>和<code>小程序B</code>中获取的unionid也是一样的。但是<code>公众号A</code>和<code>公众号B</code>获取的unionid不一样。</p><p>造成这样的原因是因为绑定的开放平台不用，每个unionid的产生，其实是用户跟开放平台的唯一对应关系。<code>小程序A</code>和<code>公众号A</code>绑定<code>平台A</code>因此他们的unionid一样，<code>公众号A</code>和<code>公众号B</code>绑定在不同的开放平台所以取到的unionid不一样。</p><p>还有一点要注意，开发公司A的开放平台<code>公司A平台</code>，同一个平台下创建多个<code>第三方平台</code>用于开发，这些<code>第三方平台</code>也会取到相同的unionid。</p><p>重要的事情说三遍<code>unionid与绑定的平台有关，unionid与绑定的平台有关，unionid与绑定的平台有关</code>，unionid其实是用户和开放平台账户的对应关系。</p><blockquote><p>有一点值得注意：如果有个开发公司B，在开放平台<code>公司B平台</code>，有公众号A授权的情况下，取到的unionid与<code>公司A平台</code>获取的公众号A的unionid也会一样。这其实也是为了便于微信做大数据 分析，知道一个用户所有行为。</p></blockquote><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://developers.weixin.qq.com/doc/offiaccount/User_Management/Get_users_basic_information_UnionID.html#UinonId" target="_blank" rel="noopener">https://developers.weixin.qq.com/doc/offiaccount/User_Management/Get_users_basic_information_UnionID.html#UinonId</a><br><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/union-id.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/union-id.html</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;unionid概况&quot;&gt;&lt;a href=&quot;#unionid概况&quot; class=&quot;headerlink&quot; title=&quot;unionid概况&quot;&gt;&lt;/a&gt;unionid概况&lt;/h2&gt;&lt;p&gt;微信开发过程中，经常会遇到，一个企业有多个小程序和公众号，在不同的小程序和公众号中，会有不同的openid。如果想要确定是同一个人，就需要用到unionid机制。&lt;/p&gt;
+&lt;p&gt;官方关于unionid的说明是这样的&lt;/p&gt;
+&lt;p&gt;公众号文档的描述&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;开发者可通过OpenID来获取用户基本信息。特别需要注意的是，如果开发者拥有多个移动应用、网站应用和公众帐号，可通过获取用户基本信息中的unionid来区分用户的唯一性，因为只要是同一个微信开放平台帐号下的移动应用、网站应用和公众帐号，用户的unionid是唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，unionid是相同的。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;小程序文档的描述&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;如果开发者拥有多个移动应用、网站应用、和公众帐号（包括小程序），可通过 UnionID 来区分用户的唯一性，因为只要是同一个微信开放平台帐号下的移动应用、网站应用和公众帐号（包括小程序），用户的 UnionID 是唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，UnionID是相同的。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="微信" scheme="https://www.xingjiehu.com/tags/%E5%BE%AE%E4%BF%A1/"/>
+    
+      <category term="unionid" scheme="https://www.xingjiehu.com/tags/unionid/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>聊聊kafka</title>
+    <link href="https://www.xingjiehu.com/2020/08/22/cktnq12oj005ex0trlig3n76j/"/>
+    <id>https://www.xingjiehu.com/2020/08/22/cktnq12oj005ex0trlig3n76j/</id>
+    <published>2020-08-22T07:47:12.000Z</published>
+    <updated>2021-09-15T08:59:28.707Z</updated>
+    
+    <content type="html"><![CDATA[<p>为了便于理解kafka，先了解一下消息队列以及通讯模式。首先先了解两个名词</p><ul><li>数据生产者 产生数据的程序或服务</li><li>数据消费者 处理数据的程序或服务</li></ul><h2 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h2><p>简单的说就是个数据集散地，数据生产方把数据放到消息队列，然后消费方从队列中获得数据进行处理。<br>我们把消息队列比作超市，超市的供货商就相当于数据生产者，超市顾客就是数据消费者了。</p><p>使用消息队列可以让我们解决三大问题</p><h3 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h3><p>假设没有超市，我们买菜直接从供货商手里买的话，我们如果要买不同的菜就需要联系好多的供货商。每个供货商又要给很多人供货，这是很麻烦的。超市的出现就解决了这个麻烦，所有的供货商只需要把才运送到超市这一个地方，顾客也只需要去超市这一个地方。就可以买到很多菜。<br>数据也是一样的，不同用户的数据都进入消息队列，然后服务，只需要从队里中获取数据进行处理就可以了。</p><h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h3><p>没有超市的情况下，我们跟供货商买东西，要两个人都有时间才可以，供货商没时间送货，或者消费者没时间在家接货都无法达成交易。但是有了超市，供货商不用等消费者在家，消费者也不用等供货商有时间送货。大家都是随时去超市购买即可。<br>数据也一样，数据生产方随时可以产生数据，而不用担心处理数据的服务是否空闲，服务也不用立即对请求进行应答。如果服务异常退出了，等再次启动后可以消息队列中获取数据进行处理。</p><h3 id="削峰"><a href="#削峰" class="headerlink" title="削峰"></a>削峰</h3><p>没有超市的情况下，如果我们买了10种菜，供货商同时到了，很有可能你拿不了。方路边？万一丢了怎么办呢。有了超市就可以一次买一点多次购买多方便。<br>数据也一样，最容易出现这种情况的就是秒杀，大量的数据同一时间汇入，这时候很容易让服务崩掉。有了消息队列，咱们就可以轻松化解了，所有的数据先进入消息队列。后台服务从队列中获取数据处理。</p><h2 id="通讯模式"><a href="#通讯模式" class="headerlink" title="通讯模式"></a>通讯模式</h2><h3 id="点对点模式"><a href="#点对点模式" class="headerlink" title="点对点模式"></a>点对点模式</h3><p>前面介绍消息队列举的例子中，都是顾客主动去超市购买商品，这种方式，我们称之为点对点方式。这种模式消费者需要主动获取数据，好处是比较灵活。缺点也很明显，数据消费者或许消息不够及时。有可能你去买菜的时候，菜已经卖没了。</p><h3 id="发布订阅模式"><a href="#发布订阅模式" class="headerlink" title="发布订阅模式"></a>发布订阅模式</h3><p>为了让消费者买到好的菜，超市推出了送货上面服务，供货商将菜送来的时候，超市会把菜打包好送到您手里。这样就不会买不到菜了。<br>这种主动送达的方式叫做发布订阅模式，数据发送到消息队列时。消息队列会主动把数据推送给数据消费者。</p><h2 id="kafka"><a href="#kafka" class="headerlink" title="kafka"></a>kafka</h2><p>消息队列软件有很多种，kafka就是其中的一种。它是Linkedin公司开发，现在已经贡献给了apache基金会。kafka的创始人还在kafka的基础上，开发了好多周边软件，用于数据流转处理。如kafka connect等</p><p>kafka启动后默认使用9092端口，想这个端口发送信息，kafka就可以收到了。为了便于操作，kafka自带有Producer和Consumer的命令行工具用于简单测试</p><p>使用kafka必须先了解一下kafka的几个关键术语。</p><h3 id="Producer"><a href="#Producer" class="headerlink" title="Producer"></a>Producer</h3><p>Producer即生产者，消息的产生者，它将消息发送到kafka中。安装包内有命令行工具，在java、python、php等语言也都有响应的sdk。使用Producer对象可以将消息发送到kafka服务。发送服务时会指定Topic。</p><h3 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h3><p>消息即数据，生产者发送一次数据，会产生一条消息。</p><h3 id="Topic"><a href="#Topic" class="headerlink" title="Topic"></a>Topic</h3><p>消息主题，可以理解为消息分类。比如订单业务用order，订单服务就可以只接收order topic下的消息进行处理，这是非常方便的。避免了接收无用的消息。</p><h3 id="Partition"><a href="#Partition" class="headerlink" title="Partition"></a>Partition</h3><p>Topic的分区，可以理解为文件夹，当数据特别多的时候如果把数据再次进行归类存储，可以有效的提高读写效率。比如有一万个文件，放在一个文件夹中查找就比较慢，如果按照哈希分散到a-z的26个文件夹中，那每个文件夹中存储的文件数量就是1/26。当我们发现要查找的文件第一个字母是a，就直接去a文件夹下。这样就提高了查找速度。</p><h3 id="Broker"><a href="#Broker" class="headerlink" title="Broker"></a>Broker</h3><p>kafka实例，可以简单理解为kafka的消息容器。每个kafka集群内的broker都有一个不重复的编号。每台服务器上可以有一到多个kafka实例，为了便于理解，我们假设一台服务器上有一个kafka实例。这样你也可以理解为一个broker等于一台服务器。</p><h3 id="Replication"><a href="#Replication" class="headerlink" title="Replication"></a>Replication</h3><p>topic的副本，他存放在kafka实例（broker）上。注意一下几点</p><ul><li>在kafka中默认副本的最大数量是10个</li><li>副本的数量不能大于Broker的数量</li><li>follower和leader绝对是在不同的机器，同一机器对同一个分区也只可能存放一个副本（包括自己）。<br>这样当主分区(Leader Partition)出现故障挂掉的时候，其中一份副本会转正为主分区，让业务可以正常使用</li></ul><h3 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h3><p>消费者，即消息的消费方，是消息的出口。安装包内有命令行工具，在java、python、php等语言也都有响应的sdk。使用Consumer对象可以接收或获取kafka中的数据。</p><h3 id="Consumer-Group"><a href="#Consumer-Group" class="headerlink" title="Consumer Group"></a>Consumer Group</h3><p>我们可以将多个消费者组成一个消费者组，一个topic可以被多个消费组消费。但是消费组中多人同时消费一个topic时，每个分区只能有一个人消费。消费组中的消费者数量不要超过这个topic的Partition数量</p><h2 id="场景举例"><a href="#场景举例" class="headerlink" title="场景举例"></a>场景举例</h2><p>咱们有5台服务器，每台服务器一个kafka实例（broker）。<br>这时候我们设置副本数量要小于5（1是主分区，剩余4个borker可用作副本），我们设置为4<br>假设咱们设置分区（Partition）数是10</p><p>生产了个order的topic，我们有系统A和系统B都会用到订单数据。</p><p>系统A用 group-A消费者的数量不能超过5，如果超过了，会有一个消费这始终借不到数据。group-A中每个消费者都从各自的分区（Partition）中获取数据，他们每个人的数据是不重复的。<br>系统B如果使用group-A，那么它消费的一些数据，系统A会无法消费。因此如果想要两个系统都获得完整的数据。就需要系统B更换分组，比如使用group-B。这样两个系统互不干扰，都可以拿到消息队列中的全部数据。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;为了便于理解kafka，先了解一下消息队列以及通讯模式。首先先了解两个名词&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据生产者 产生数据的程序或服务&lt;/li&gt;
+&lt;li&gt;数据消费者 处理数据的程序或服务&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;消息队列&quot;&gt;&lt;a href=&quot;#消息队列&quot; cl
+      
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="kafka" scheme="https://www.xingjiehu.com/tags/kafka/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python捕获异常堆栈信息</title>
+    <link href="https://www.xingjiehu.com/2020/08/13/cktnq12n3002px0trfvuaw7pk/"/>
+    <id>https://www.xingjiehu.com/2020/08/13/cktnq12n3002px0trfvuaw7pk/</id>
+    <published>2020-08-13T05:07:32.000Z</published>
+    <updated>2021-09-15T08:59:28.702Z</updated>
+    
+    <content type="html"><![CDATA[<p>python的异常对称相比java或php简单了很多，对象中的信息很少，只有简单的错误输出。这在开发过程中是无法满足使用需求的。我们还需要更多的错误信息，比如错误发生在哪一行，具体的错误信息是什么。这就需要获取错误堆栈信息。下面简单记录一下常用的集中异常处理。</p><a id="more"></a><h2 id="最简单的异常处理"><a href="#最简单的异常处理" class="headerlink" title="最简单的异常处理"></a>最简单的异常处理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">except Exception as e:</span><br><span class="line">    print(e)</span><br></pre></td></tr></table></figure><p>我们得到的信息是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;name&apos;</span><br></pre></td></tr></table></figure></p><p>之所以出现<code>‘name’</code>错误，是因为咱们的字典<code>a</code>中没有<code>name</code>这个key。但这样的异常对我们来说毫无意义。</p><h2 id="repr带点说明的异常处理"><a href="#repr带点说明的异常处理" class="headerlink" title="repr带点说明的异常处理"></a>repr带点说明的异常处理</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">except Exception as e:</span><br><span class="line">    print(repr(e))</span><br></pre></td></tr></table></figure><p>我们得到信息是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KeyError(&apos;name&apos;)</span><br></pre></td></tr></table></figure></p><p>这次使用了<code>repr</code>输出的信息总算是有点意义了，他让我们知道错误是因为一个<code>KeyError</code>。但这还不够我们需要知道错误发生在什么地方</p><h2 id="logging-exception显示异常发生位置"><a href="#logging-exception显示异常发生位置" class="headerlink" title="logging.exception显示异常发生位置"></a>logging.exception显示异常发生位置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import logging</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">except Exception as e:</span><br><span class="line">    logging.exception(e)</span><br></pre></td></tr></table></figure><p>使用了<code>logging.exception</code>这次得到的信息就更加的丰富了，不但提示了错误，还指出了发生的所在行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ERROR:root:&apos;name&apos;</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/var/www/gubeichun/gbcdata/test/test.py&quot;, line 8, in &lt;module&gt;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">KeyError: &apos;name&apos;</span><br></pre></td></tr></table></figure></p><h2 id="使用traceback模块处理异常"><a href="#使用traceback模块处理异常" class="headerlink" title="使用traceback模块处理异常"></a>使用traceback模块处理异常</h2><h3 id="直接打印错误信息"><a href="#直接打印错误信息" class="headerlink" title="直接打印错误信息"></a>直接打印错误信息</h3><p>除了使用<code>logging.exception</code>还可以使用<code>traceback</code>模块来处理异常，更加方便<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import traceback</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">except Exception as e:</span><br><span class="line">    traceback.print_exc()</span><br><span class="line">    # msg = traceback.format_exc()</span><br><span class="line">    # print(msg)</span><br></pre></td></tr></table></figure></p><p>这次得到的错误信息是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/var/www/gubeichun/gbcdata/test/test.py&quot;, line 8, in &lt;module&gt;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">KeyError: &apos;name&apos;</span><br></pre></td></tr></table></figure></p><p>这样的错误比起<code>logging.exception</code>清爽了一些。<code>traceback.print_exc()</code>也是直接打印错误。</p><h3 id="获取错误信息，自行处理"><a href="#获取错误信息，自行处理" class="headerlink" title="获取错误信息，自行处理"></a>获取错误信息，自行处理</h3><p>有时候我们不希望错误被打印，而是希望接收错误，自己保存日志，这时候只要把<code>print_exc()</code>换成<code>format_exc()</code>就可以了</p><h2 id="使用sys和traceback模块处理异常"><a href="#使用sys和traceback模块处理异常" class="headerlink" title="使用sys和traceback模块处理异常"></a>使用sys和traceback模块处理异常</h2><h3 id="直接打印错误信息-1"><a href="#直接打印错误信息-1" class="headerlink" title="直接打印错误信息"></a>直接打印错误信息</h3><p><code>traceback</code>输出的错误信息，已经非常好了，但有时候我们希望更加个性话的处理日志，这时候就需要用到<code>sys</code>模块和<code>traceback</code>模块做个配合。<br>其实<code>print_exc()</code>只不过是对<code>print_exception</code>的封装。下面这样写，会得到<code>print_exc</code>一样的错误信息。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import traceback</span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">except Exception as e:</span><br><span class="line">    et, ev, tb = sys.exc_info()</span><br><span class="line">    traceback.print_exception(et, ev, tb)</span><br></pre></td></tr></table></figure><p>错误信息跟<code>print_exc</code>一样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/var/www/gubeichun/gbcdata/test/test.py&quot;, line 8, in &lt;module&gt;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">KeyError: &apos;name&apos;</span><br></pre></td></tr></table></figure></p><p>如果只想输出错误所在行的信息可以使用<code>print_tb</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import traceback</span><br><span class="line">import sys</span><br><span class="line">try:</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">except Exception as e:</span><br><span class="line">    et, ev, tb = sys.exc_info()</span><br><span class="line">    traceback.print_tb(tb)</span><br></pre></td></tr></table></figure></p><p>这样就得到了，更清爽的错误信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">File &quot;/var/www/gubeichun/gbcdata/test/test.py&quot;, line 8, in &lt;module&gt;</span><br><span class="line">   print(a[&quot;name&quot;])</span><br></pre></td></tr></table></figure></p><h3 id="获取错误信息，自行处理-1"><a href="#获取错误信息，自行处理-1" class="headerlink" title="获取错误信息，自行处理"></a>获取错误信息，自行处理</h3><p><code>traceback</code>还提供了一个<code>format_exception</code>方法，他会将错误信息处理成一个可迭代对象，让我们更方便的处理错误信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import traceback</span><br><span class="line">import sys</span><br><span class="line"></span><br><span class="line">try:</span><br><span class="line">    a = &#123;&#125;</span><br><span class="line">    print(a[&quot;name&quot;])</span><br><span class="line">except Exception as e:</span><br><span class="line">    et, ev, tb = sys.exc_info()</span><br><span class="line">    msg = traceback.format_exception(et, ev, tb)</span><br><span class="line">    for m in msg:</span><br><span class="line">        print(m)</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;python的异常对称相比java或php简单了很多，对象中的信息很少，只有简单的错误输出。这在开发过程中是无法满足使用需求的。我们还需要更多的错误信息，比如错误发生在哪一行，具体的错误信息是什么。这就需要获取错误堆栈信息。下面简单记录一下常用的集中异常处理。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="python" scheme="https://www.xingjiehu.com/tags/python/"/>
+    
+      <category term="异常" scheme="https://www.xingjiehu.com/tags/%E5%BC%82%E5%B8%B8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>springboot 配置</title>
+    <link href="https://www.xingjiehu.com/2020/06/12/cktnq12ub00dzx0trjipa9rc9/"/>
+    <id>https://www.xingjiehu.com/2020/06/12/cktnq12ub00dzx0trjipa9rc9/</id>
+    <published>2020-06-12T05:16:57.000Z</published>
+    <updated>2021-09-15T08:59:28.703Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="application-properties配置中文乱码问题"><a href="#application-properties配置中文乱码问题" class="headerlink" title="application.properties配置中文乱码问题"></a>application.properties配置中文乱码问题</h2><p>删除现有的文件，设置idea。setting-&gt;editor-&gt;file encodings 将<code>Global Encoding</code> <code>Project Encoding</code> <code>Default encoding for properties files</code>都设置成<code>utf-8</code>.并且勾选<code>Transparent native-to-ascii conversion</code></p><h2 id="多配置时spring-profiles-active-dev不生效"><a href="#多配置时spring-profiles-active-dev不生效" class="headerlink" title="多配置时spring.profiles.active=dev不生效"></a>多配置时<code>spring.profiles.active=dev</code>不生效</h2><p>如果只有<code>application.properties</code>和<code>application-dev.properties</code>这两个文件，是不行的，需要在增加一个文件比如<code>application-prod.properties</code>。<br>只有配置文件多余2个才会生效</p><a id="more"></a><h2 id="配置使用"><a href="#配置使用" class="headerlink" title="配置使用"></a>配置使用</h2><p>application-dev.properties内容如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">com.dudu.name=&quot;张三&quot;</span><br><span class="line">com.dudu.want=&quot;跑步&quot;</span><br><span class="line">com.dudu.sex=&quot;男&quot;</span><br></pre></td></tr></table></figure></p><h3 id="直接使用配置"><a href="#直接使用配置" class="headerlink" title="直接使用配置"></a>直接使用配置</h3><p>在需要用到的地方使用,在属性上使用<code>@Value</code>注解就可以<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Value(&quot;$&#123;com.dudu.name&#125;&quot;)</span><br><span class="line">private String name;</span><br></pre></td></tr></table></figure></p><h3 id="使用bean对象方式"><a href="#使用bean对象方式" class="headerlink" title="使用bean对象方式"></a>使用bean对象方式</h3><p>config/ConfigBean.java 代码如下，值得注意的是<code>@Configuration</code>注解非常重要，如果没有这个注解是不生效的。<br>其实还有<code>@EnableConfigurationProperties</code>注解方式，但使用起来不如<code>@configuration</code>方便。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">package com.springboot.config.config;</span><br><span class="line"></span><br><span class="line">import org.springframework.boot.context.properties.ConfigurationProperties;</span><br><span class="line">import org.springframework.context.annotation.Configuration;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author shooke</span><br><span class="line"> */</span><br><span class="line">@Configuration</span><br><span class="line">@ConfigurationProperties(prefix=&quot;com.dudu&quot;)</span><br><span class="line">public class ConfigBean &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private String sex;</span><br><span class="line">    private String want;</span><br><span class="line"></span><br><span class="line">    public String getWant() &#123; return want;&#125;</span><br><span class="line"></span><br><span class="line">    public void setWant(String want) &#123; this.want = want;&#125;</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getSex() &#123;</span><br><span class="line">        return sex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setSex(String sex) &#123;</span><br><span class="line">        this.sex = sex;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>在需要用到配置的地方，直接初始化一个ConfigBean的对象就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@Autowired</span><br><span class="line">ConfigBean conf;</span><br><span class="line"></span><br><span class="line">@RequestMapping(&quot;/dev&quot;)</span><br><span class="line">public String dev()&#123;</span><br><span class="line">    return conf.getName();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="使用自定义properties"><a href="#使用自定义properties" class="headerlink" title="使用自定义properties"></a>使用自定义properties</h2><p>有时候配置项太多了，咱们就拆分成不同的文件。拆分的文件使用需要用到<code>@PropertySource</code>注解，指定一下配置文件路径<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @author shooke</span><br><span class="line"> */</span><br><span class="line">@Configuration</span><br><span class="line">@ConfigurationProperties(prefix = &quot;com.md&quot;)</span><br><span class="line">@PropertySource(&quot;classpath:test.properties&quot;)</span><br><span class="line">public class ConfigTestBean &#123;</span><br><span class="line">    private String name;</span><br><span class="line">    private String want;</span><br><span class="line">    // 省略getter和setter</span><br><span class="line"></span><br><span class="line">    public String getName() &#123;</span><br><span class="line">        return name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getWant() &#123;</span><br><span class="line">        return want;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setWant(String want) &#123;</span><br><span class="line">        this.want = want;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p><a href="https://gitee.com/shooke/springboot/tree/master/springboot-config" target="_blank" rel="noopener">https://gitee.com/shooke/springboot/tree/master/springboot-config</a></p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://tengj.top/2017/02/28/springboot2/" target="_blank" rel="noopener">http://tengj.top/2017/02/28/springboot2/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;application-properties配置中文乱码问题&quot;&gt;&lt;a href=&quot;#application-properties配置中文乱码问题&quot; class=&quot;headerlink&quot; title=&quot;application.properties配置中文乱码问题&quot;&gt;&lt;/a&gt;application.properties配置中文乱码问题&lt;/h2&gt;&lt;p&gt;删除现有的文件，设置idea。setting-&amp;gt;editor-&amp;gt;file encodings 将&lt;code&gt;Global Encoding&lt;/code&gt; &lt;code&gt;Project Encoding&lt;/code&gt; &lt;code&gt;Default encoding for properties files&lt;/code&gt;都设置成&lt;code&gt;utf-8&lt;/code&gt;.并且勾选&lt;code&gt;Transparent native-to-ascii conversion&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;多配置时spring-profiles-active-dev不生效&quot;&gt;&lt;a href=&quot;#多配置时spring-profiles-active-dev不生效&quot; class=&quot;headerlink&quot; title=&quot;多配置时spring.profiles.active=dev不生效&quot;&gt;&lt;/a&gt;多配置时&lt;code&gt;spring.profiles.active=dev&lt;/code&gt;不生效&lt;/h2&gt;&lt;p&gt;如果只有&lt;code&gt;application.properties&lt;/code&gt;和&lt;code&gt;application-dev.properties&lt;/code&gt;这两个文件，是不行的，需要在增加一个文件比如&lt;code&gt;application-prod.properties&lt;/code&gt;。&lt;br&gt;只有配置文件多余2个才会生效&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="springboot" scheme="https://www.xingjiehu.com/categories/springboot/"/>
+    
+    
+      <category term="spring boot" scheme="https://www.xingjiehu.com/tags/spring-boot/"/>
+    
+      <category term="spring boot 配置" scheme="https://www.xingjiehu.com/tags/spring-boot-%E9%85%8D%E7%BD%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nginx配置中root alias的区别</title>
+    <link href="https://www.xingjiehu.com/2020/05/15/cktnq12ms001vx0trsvmeajnk/"/>
+    <id>https://www.xingjiehu.com/2020/05/15/cktnq12ms001vx0trsvmeajnk/</id>
+    <published>2020-05-15T03:03:07.000Z</published>
+    <updated>2021-09-15T08:59:28.701Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="alias用法"><a href="#alias用法" class="headerlink" title="alias用法"></a>alias用法</h2><ul><li>alias只能用在location块中</li><li>可以配置文件</li><li>可以配置目录</li></ul><p>代理特定文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location = /market-api/bm/44O1jrDWhJ.txt &#123;</span><br><span class="line">                alias /var/www/wechat/44O1jrDWhJ.txt;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p><a id="more"></a><p>代理目录，建议最后面的<code>/</code>保留<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location = /market-api/bm/ &#123;</span><br><span class="line">                alias /var/www/wechat/;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p><h2 id="root用法"><a href="#root用法" class="headerlink" title="root用法"></a>root用法</h2><ul><li>可以在http、server、location、if块中</li><li>只可配置目录</li><li>配置目录最后带<code>/</code>会抛弃localtion配置中的目录，不带<code>/</code>则会拼接</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location = /market-api/bm &#123;</span><br><span class="line">                root /var/www/wechat/;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure><p>带<code>/</code>时访问<code>/market-api/bm/a.txt</code>实际请求文件是<code>/var/www/wechat/a.txt</code></p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location = /market-api/bm &#123;</span><br><span class="line">                root /var/www/wechat;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure><p>不加<code>/</code>时访问<code>/market-api/bm/a.txt</code>实际请求文件是<code>/var/www/wechat/market-api/bm/a.txt</code></p><h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://www.jianshu.com/p/57db2c5d0cb9" target="_blank" rel="noopener">https://www.jianshu.com/p/57db2c5d0cb9</a><br><a href="https://segmentfault.com/a/1190000017304865" target="_blank" rel="noopener">https://segmentfault.com/a/1190000017304865</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;alias用法&quot;&gt;&lt;a href=&quot;#alias用法&quot; class=&quot;headerlink&quot; title=&quot;alias用法&quot;&gt;&lt;/a&gt;alias用法&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;alias只能用在location块中&lt;/li&gt;
+&lt;li&gt;可以配置文件&lt;/li&gt;
+&lt;li&gt;可以配置目录&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;代理特定文件&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;location = /market-api/bm/44O1jrDWhJ.txt &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;                alias /var/www/wechat/44O1jrDWhJ.txt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="nginx" scheme="https://www.xingjiehu.com/tags/nginx/"/>
+    
+      <category term="root" scheme="https://www.xingjiehu.com/tags/root/"/>
+    
+      <category term="alias" scheme="https://www.xingjiehu.com/tags/alias/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>linux硬盘管理工具baobab</title>
+    <link href="https://www.xingjiehu.com/2020/05/12/cktnq12mp001px0tr6e3u70uh/"/>
+    <id>https://www.xingjiehu.com/2020/05/12/cktnq12mp001px0tr6e3u70uh/</id>
+    <published>2020-05-12T02:38:57.000Z</published>
+    <updated>2021-09-15T08:59:28.700Z</updated>
+    
+    <content type="html"><![CDATA[<p>baobab是一个非常好用的磁盘分析工具，可以可视化的呈现磁盘的使用情况</p><p><img src="https://wiki.gnome.org/Apps/DiskUsageAnalyzer?action=AttachFile&amp;do=get&amp;target=screenshot.png" alt="Disk Usage Analyzer"></p><p>git地址  <a href="https://gitlab.gnome.org/GNOME/baobab.git" target="_blank" rel="noopener">https://gitlab.gnome.org/GNOME/baobab.git</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;baobab是一个非常好用的磁盘分析工具，可以可视化的呈现磁盘的使用情况&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://wiki.gnome.org/Apps/DiskUsageAnalyzer?action=AttachFile&amp;amp;do=get&amp;amp;targ
+      
+    
+    </summary>
+    
+      <category term="笔记" scheme="https://www.xingjiehu.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="运维工具" scheme="https://www.xingjiehu.com/tags/%E8%BF%90%E7%BB%B4%E5%B7%A5%E5%85%B7/"/>
+    
+      <category term="baobab" scheme="https://www.xingjiehu.com/tags/baobab/"/>
+    
+      <category term="Disk Usage Analyzer" scheme="https://www.xingjiehu.com/tags/Disk-Usage-Analyzer/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>springboot+nginx websocket配置</title>
+    <link href="https://www.xingjiehu.com/2020/05/09/cktnq12n90032x0trse1h07ko/"/>
+    <id>https://www.xingjiehu.com/2020/05/09/cktnq12n90032x0trse1h07ko/</id>
+    <published>2020-05-09T06:03:26.000Z</published>
+    <updated>2021-09-15T08:59:28.703Z</updated>
+    
+    <content type="html"><![CDATA[<p>websocket用于聊天类场景再好不过了。平时链接websocket需要指定ip和端口，但如果需要用nginx做转发，将请求发送到websocket服务，这时候就需要升级协议了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location /member-api/websocket &#123;</span><br><span class="line">                proxy_pass http://localhost:7005;</span><br><span class="line">                proxy_http_version 1.1;</span><br><span class="line">                proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">                proxy_set_header Connection &quot;Upgrade&quot;;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p><p>就是这么简单，指定<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">proxy_http_version 1.1;</span><br><span class="line">proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">proxy_set_header Connection &quot;Upgrade&quot;;</span><br></pre></td></tr></table></figure></p><p>让协议升级就可以了</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;websocket用于聊天类场景再好不过了。平时链接websocket需要指定ip和端口，但如果需要用nginx做转发，将请求发送到websocket服务，这时候就需要升级协议了。&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="nginx" scheme="https://www.xingjiehu.com/tags/nginx/"/>
+    
+      <category term="springboot" scheme="https://www.xingjiehu.com/tags/springboot/"/>
+    
+      <category term="websocket" scheme="https://www.xingjiehu.com/tags/websocket/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>10.克隆远程仓库</title>
+    <link href="https://www.xingjiehu.com/2020/04/22/cktnq12tx00d6x0tr4gmw4nqx/"/>
+    <id>https://www.xingjiehu.com/2020/04/22/cktnq12tx00d6x0tr4gmw4nqx/</id>
+    <published>2020-04-22T12:32:20.000Z</published>
+    <updated>2021-09-15T08:59:28.698Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote><p>本故事纯属虚构，如有雷同，^0^那可太巧了</p></blockquote><p>吃过早饭，早早来到办公室。今天办公室和往常好像不一样。小白的工位旁边做了个人。好面生啊。</p><p>“你好”，小白主动上前打招呼。<br>“你好，我是新来的。老大说让我跟你一组，以后我就跟你混了。”，新同事回答<br>“我叫小白，你叫什么啊？”，小白问道<br>“我叫小菜” 新同事回答<br>…<br>小白和小菜聊得很投缘。<br>上班时间到了，第一件事就是带领小菜熟悉项目。<br>“这是我u盘，把项目拷贝给我一份吧，我熟悉一下项目”，小菜说道，把u盘递给了小白</p><p>“不需要拷贝，现在都用git了，直接用git clone一份就可以了”，小白说着把u盘还给小菜</p><p>“这样啊，好高端”，小菜呵呵一笑</p><a id="more"></a><p>小白做到小菜的电脑前，打开git bash工具敲下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/shooke/learngit.git</span><br></pre></td></tr></table></figure></p><p>一会电脑上出现了 learngit的文件夹。</p><p>“这样项目就下来了”小白说道，心里美滋滋的。</p><p>小菜一脸崇拜的看着小白。</p><p>“这是我的学习笔记，你也好好学习一下git吧。”小白发给小菜一个文档。</p><p>就这样两人开始了组团升级的道路</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul><li><code>git clone &lt;版本库的网址&gt;</code> 可以克隆项目到本地，生成一个与项目同名的文件夹，版本库网址可以是https也可以是ssh类型的，这取决于服务器支持那种协议</li><li><code>git clone &lt;版本库的网址&gt; &lt;本地目录名&gt;</code> 如果想保存的时候换一个名字，可以在版本库地址后面增加一个目录名如<code>git clone https://github.com/shooke/learngit.git git_learn</code></li><li>git可以支持多种协议，比如下面的协议<ul><li>$ git clone http[s]://example.com/path/to/repo.git/</li><li>$ git clone ssh://example.com/path/to/repo.git/</li><li>$ git clone git://example.com/path/to/repo.git/</li><li>$ git clone /opt/git/project.git </li><li>$ git clone file:///opt/git/project.git</li><li>$ git clone ftp[s]://example.com/path/to/repo.git/</li><li>$ git clone rsync://example.com/path/to/repo.git/</li></ul></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;小白的故事&quot;&gt;&lt;a href=&quot;#小白的故事&quot; class=&quot;headerlink&quot; title=&quot;小白的故事&quot;&gt;&lt;/a&gt;小白的故事&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;本故事纯属虚构，如有雷同，^0^那可太巧了&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;吃过早饭，早早来到办公室。今天办公室和往常好像不一样。小白的工位旁边做了个人。好面生啊。&lt;/p&gt;
+&lt;p&gt;“你好”，小白主动上前打招呼。&lt;br&gt;“你好，我是新来的。老大说让我跟你一组，以后我就跟你混了。”，新同事回答&lt;br&gt;“我叫小白，你叫什么啊？”，小白问道&lt;br&gt;“我叫小菜” 新同事回答&lt;br&gt;…&lt;br&gt;小白和小菜聊得很投缘。&lt;br&gt;上班时间到了，第一件事就是带领小菜熟悉项目。&lt;br&gt;“这是我u盘，把项目拷贝给我一份吧，我熟悉一下项目”，小菜说道，把u盘递给了小白&lt;/p&gt;
+&lt;p&gt;“不需要拷贝，现在都用git了，直接用git clone一份就可以了”，小白说着把u盘还给小菜&lt;/p&gt;
+&lt;p&gt;“这样啊，好高端”，小菜呵呵一笑&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="一点一点了解git" scheme="https://www.xingjiehu.com/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3git/"/>
+    
+    
+      <category term="git" scheme="https://www.xingjiehu.com/tags/git/"/>
+    
+  </entry>
+  
+</feed>

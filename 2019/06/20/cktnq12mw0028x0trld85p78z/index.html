@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="为什么要有版本管理我们举个例子：  项目一要求用python 2.x 项目二要去python 3.x  如果服务器上要运行这两个项目，就需要安装两个版本。如果项目更多，需要的版本也越多，我们就需要有版本管理的概念。 为什么要有虚拟版本上面我们看到，版本管理解决了，不同项目对python版本的需求。如果我们服务器上有增加了一个项目，情况如下，如果解决呢  项目一要求用python 2.x 项目二要去">
+<meta name="keywords" content="python,pipenv,pyenv,pyenv-virtualenv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pipenv与pyenv、pyenv-virtualenv的关系和使用">
+<meta property="og:url" content="https://www.xingjiehu.com/2019/06/20/cktnq12mw0028x0trld85p78z/index.html">
+<meta property="og:site_name" content="shooke&#39;s blog">
+<meta property="og:description" content="为什么要有版本管理我们举个例子：  项目一要求用python 2.x 项目二要去python 3.x  如果服务器上要运行这两个项目，就需要安装两个版本。如果项目更多，需要的版本也越多，我们就需要有版本管理的概念。 为什么要有虚拟版本上面我们看到，版本管理解决了，不同项目对python版本的需求。如果我们服务器上有增加了一个项目，情况如下，如果解决呢  项目一要求用python 2.x 项目二要去">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-09-15T08:59:28.701Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="pipenv与pyenv、pyenv-virtualenv的关系和使用">
+<meta name="twitter:description" content="为什么要有版本管理我们举个例子：  项目一要求用python 2.x 项目二要去python 3.x  如果服务器上要运行这两个项目，就需要安装两个版本。如果项目更多，需要的版本也越多，我们就需要有版本管理的概念。 为什么要有虚拟版本上面我们看到，版本管理解决了，不同项目对python版本的需求。如果我们服务器上有增加了一个项目，情况如下，如果解决呢  项目一要求用python 2.x 项目二要去">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="shooke's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://www.xingjiehu.com/2019/06/20/cktnq12mw0028x0trld85p78z/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>pipenv与pyenv、pyenv-virtualenv的关系和使用 - shooke's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- google 验证 -->
+  <meta name="google-site-verification" content="9Y6X9yptaHlOdppRk7mld_uHsSibf3lPB8c_60zPyF0">
+  <!-- baidu 验证和收录推送 -->
+  <meta name="baidu-site-verification" content="lCJxAeYryx">
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shooke's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/06/20/cktnq12mw0028x0trld85p78z/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">pipenv与pyenv、pyenv-virtualenv的关系和使用
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-06-20 09:20:23" itemprop="dateCreated datePublished" datetime="2019-06-20T09:20:23+08:00">2019-06-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="为什么要有版本管理"><a href="#为什么要有版本管理" class="headerlink" title="为什么要有版本管理"></a>为什么要有版本管理</h2><p>我们举个例子：</p>
+<ol>
+<li>项目一要求用python 2.x</li>
+<li>项目二要去python 3.x</li>
+</ol>
+<p>如果服务器上要运行这两个项目，就需要安装两个版本。如果项目更多，需要的版本也越多，我们就需要有版本管理的概念。</p>
+<h2 id="为什么要有虚拟版本"><a href="#为什么要有虚拟版本" class="headerlink" title="为什么要有虚拟版本"></a>为什么要有虚拟版本</h2><p>上面我们看到，版本管理解决了，不同项目对python版本的需求。如果我们服务器上有增加了一个项目，情况如下，如果解决呢</p>
+<ol>
+<li>项目一要求用python 2.x</li>
+<li>项目二要去python 3.x，要求导入的requests包是1.x</li>
+<li>项目三要去python 3.x，要去导入的requests包是2.x</li>
+</ol>
+<p>我们看到项目二和项目三要去的是同样的版本，但是依赖的包是不同版本的，我们无法在一个版本上，同一个包安装不同的版本。这样容易造成混乱。因此就需要虚拟环境了。虚拟环境就是在所需的版本上，创建一个副本，在副本里进行依赖包的管理，这样不同的项目用自己的副本，就不会相互干扰。</p>
+<a id="more"></a>
+<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><ol>
+<li><strong>pyenv</strong> 用来管理python版本，比如系统中有一个2.x的版本，安装pyenv后可以，使用pyenv安装其他版本的python，让系统可以同时支持多个版本。而且不影响系统版本。</li>
+<li><strong>pyenv-virtualenv</strong> 用来创建虚拟环境，让不同的项目拥有自己独立的运行环境，避免相互干扰。</li>
+<li><strong>pipenv</strong> 它有两个功能，一个是管理依赖（替代pip管理工具）。二是可以创建虚拟环境(使用方式与pyenv-virtualenv有所差别)。</li>
+</ol>
+<p>简单点说就是，安装<code>pyenv</code>后，再安装<code>pipenv</code>。就可以满足日常的开发需求。如果对于虚拟环境的要求比较高，可以安装一下<code>pyenv-virtualenv</code>。后面具体讲解一下他们的功能。根据实际需求做出选择即可。</p>
+<h2 id="使用策略"><a href="#使用策略" class="headerlink" title="使用策略"></a>使用策略</h2><ol>
+<li>安装pyenv和pipenv，基本可以满足日常开发需求，可以使用pipenv去管理依赖包，和虚拟环境</li>
+<li>安装pyenv、pipenv和pyenv-virtualenv，三个都安装的情况下，我们可以使用pipenv管理依赖包，用pyenv-virtualenv来管理虚拟环境，pyenv配合pyenv-virtualenv切换版本，使用起来比单独使用pipenv或pyenv-virtualenv，都方便许多。</li>
+</ol>
+<h2 id="pyenv使用"><a href="#pyenv使用" class="headerlink" title="pyenv使用"></a>pyenv使用</h2><h3 id="pyenv安装"><a href="#pyenv安装" class="headerlink" title="pyenv安装"></a>pyenv安装</h3><p>pyenv不支持windows，只支持mac和linux。官方提供了一个安装脚本，安装起来非常简单，它会自动安装<code>pyenv</code>和<code>pyenv-virtualenv</code></p>
+<ol>
+<li><p>执行以下命令开始安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装完成后需要配置环境变量，根据提示处理即可。<br>一般情况是在 ~/.bashrc 里添加如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export PATH=&quot;$HOME/.pyenv/bin:$PATH&quot;</span><br><span class="line">eval &quot;$(pyenv init -)&quot;</span><br><span class="line">eval &quot;$(pyenv virtualenv-init -)&quot;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="pyenv卸载"><a href="#pyenv卸载" class="headerlink" title="pyenv卸载"></a>pyenv卸载</h3><p>pyenv安装后会在用户家目录创建一个<code>.pyenv</code>的文件夹。如果要卸载，直接删除这个文件夹，然后将<code>~/.bashrc</code>中，安装时添加的3行代码删除，就可以了。<br>删除<code>.pyenv</code><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">rm -rf $(pyenv root)</span><br><span class="line"># 或</span><br><span class="line"># rm -rf ~/.pyenv</span><br></pre></td></tr></table></figure></p>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><ol>
+<li><p>版本管理<br><code>pyenv versions</code> 查看本机已有版本<br><code>pyenv install -l</code> 查看可安装的版本<br><code>pyenv install 2.7.3</code> 安装指定的版本<br><code>pyenv uninstall 2.7.3</code> 卸载指定的版本</p>
+</li>
+<li><p>切换版本，分为3种，按优先级排序:shell local global</p>
+</li>
+</ol>
+<p><code>pyenv shell 2.7.3</code> 设置面向 shell 的 Python 版本，通过设置当前 shell 的 PYENV_VERSION 环境变量的方式。这个版本的优先级比 local 和 global 都要高。<code>–unset</code> 参数可以用于取消当前 shell 设定的版本 <code>pyenv shell --unset</code>。<br><code>pyenv local 2.7.3</code> 设置 Python 本地版本，通过将版本号写入当前目录下的 .python-version 文件的方式。通过这种方式设置的 Python 版本优先级较 global 高。这种方式，每次进入目录，执行python命令运行脚本时，会自动使用设置的版本。而且不会影响全局环境<br><code>pyenv global 2.7.3</code>  设置全局的 Python 版本，通过将版本号写入 ~/.pyenv/version 文件的方式。这种方式会营销全局环境，要谨慎使用<br><code>pyenv rehash</code> 创建垫片路径（为所有已安装的可执行文件创建 shims，如：~/.pyenv/versions/<em>/bin/</em>，因此，每当你增删了 Python 版本或带有可执行文件的包（如 pip）以后，都应该执行一次本命令）</p>
+<ol start="3">
+<li>虚拟环境管理</li>
+</ol>
+<p><code>pyenv virtualenv 2.7.10 env-2.7.10</code> 创建虚拟环境，若不指定 python 版本，会默认使用当前环境 python 版本。如果指定 Python 版本，则一定要是已经安装过的版本，否则会出错。环境的真实目录位于 ~/.pyenv/versions 下<br><code>pyenv virtualenvs</code> 列出当前虚拟环境<br><code>pyenv activate env-name</code>   激活虚拟环境<br><code>pyenv deactivate</code> 退出虚拟环境，回到系统环境<br><code>pyenv uninstall my-virtual-env</code> 删除虚拟环境，或者直接删除目录<code>rm -rf ~/.pyenv/versions/env-name</code></p>
+<blockquote>
+<p>小技巧<br>pyenv切换版本，也可以使用虚拟环境，比如可以使用<code>pyenv local env-name</code>，来达到当前目录使用虚拟环境的目的。相比<code>pyenv activate env-name</code>更加方便，每次进入目录自动切换版本。</p>
+</blockquote>
+<h2 id="pipenv使用"><a href="#pipenv使用" class="headerlink" title="pipenv使用"></a>pipenv使用</h2><h3 id="pipenv安装"><a href="#pipenv安装" class="headerlink" title="pipenv安装"></a>pipenv安装</h3><p>使用pip安装即可<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install pipenv</span><br></pre></td></tr></table></figure></p>
+<p>想要shell 自动补齐，Linux or Mac 环境下，bash下如果能自动命令补全岂不是更好？请把如下语句追加到.bashrc或者.zshrc即可：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eval &quot;$(pipenv --completion)&quot;</span><br></pre></td></tr></table></figure></p>
+<h3 id="pipenv常用命令"><a href="#pipenv常用命令" class="headerlink" title="pipenv常用命令"></a>pipenv常用命令</h3><p><code>pipenv --python 3.6</code> 创建虚拟环境,pipenv 会自动扫描系统寻找合适的版本信息，如果找不到的话，同时又安装了 pyenv 的话，则会自动调用 pyenv 下载对应版本的 python， 否则会报错。<br><code>pipenv shell</code>      进入虚拟环境<br><code>pipenv install urllib3</code>    安装虚拟环境或者第三方库,也可以指定版本<code>pipenv install urllib3==1.22</code><br><code>pipenv uninstall urllib3</code>  卸载一个库，全部卸载使用<code>pipenv uninstall --all</code><br><code>pipenv update urllib3</code>     更新指定包，不带参数<code>pipenv update</code>会卸载当前所有的包，并安装它们的最新版本<br><code>pipenv --where</code> 查看项目根目录<br><code>pipenv --venv</code> 查看虚拟环境目录<br><code>pipenv run</code>        在虚拟环境中运行命令<br><code>pipenv check</code>      检查安全漏洞<br><code>pipenv graph</code>      显示当前依赖关系图信息<br><code>pipenv lock</code>       锁定并生成Pipfile.lock文件<br><code>pipenv open</code>       在编辑器中查看一个库</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="https://github.com/pyenv/pyenv" target="_blank" rel="noopener">https://github.com/pyenv/pyenv</a><br><a href="https://github.com/pyenv/pyenv-installer" target="_blank" rel="noopener">https://github.com/pyenv/pyenv-installer</a><br><a href="https://github.com/pypa/pipenv" target="_blank" rel="noopener">https://github.com/pypa/pipenv</a><br><a href="https://segmentfault.com/a/1190000015389565" target="_blank" rel="noopener">https://segmentfault.com/a/1190000015389565</a><br><a href="https://www.xncoding.com/2016/05/09/python/pyenv.html" target="_blank" rel="noopener">https://www.xncoding.com/2016/05/09/python/pyenv.html</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div></div>
+  <!--
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>领红包</span>
+  </button>
+  -->
+  <div id="QR" style="display: block;">
+
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/assets/images/alipay_redpack.png" alt="shooke 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"># python</a>
+          
+            <a href="/tags/pipenv/" rel="tag"># pipenv</a>
+          
+            <a href="/tags/pyenv/" rel="tag"># pyenv</a>
+          
+            <a href="/tags/pyenv-virtualenv/" rel="tag"># pyenv-virtualenv</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/06/cktnq12nb0035x0trpvvcular/" rel="next" title="ssh使用详解">
+                <i class="fa fa-chevron-left"></i> ssh使用详解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/20/cktnq12nu0043x0trlk23enrh/" rel="prev" title="vscode打造php开发环境">
+                vscode打造php开发环境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">shooke</p>
+              <p class="site-description motion-element" itemprop="description">平时写点技术文章，分享一些经验，予人玫瑰手有余香</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">111</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/shooke" title="GitHub &rarr; https://github.com/shooke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/shooke" title="Weibo &rarr; https://weibo.com/shooke" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要有版本管理"><span class="nav-number">1.</span> <span class="nav-text">为什么要有版本管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要有虚拟版本"><span class="nav-number">2.</span> <span class="nav-text">为什么要有虚拟版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关系"><span class="nav-number">3.</span> <span class="nav-text">关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用策略"><span class="nav-number">4.</span> <span class="nav-text">使用策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pyenv使用"><span class="nav-number">5.</span> <span class="nav-text">pyenv使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pyenv安装"><span class="nav-number">5.1.</span> <span class="nav-text">pyenv安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pyenv卸载"><span class="nav-number">5.2.</span> <span class="nav-text">pyenv卸载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用命令"><span class="nav-number">5.3.</span> <span class="nav-text">常用命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pipenv使用"><span class="nav-number">6.</span> <span class="nav-text">pipenv使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pipenv安装"><span class="nav-number">6.1.</span> <span class="nav-text">pipenv安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pipenv常用命令"><span class="nav-number">6.2.</span> <span class="nav-text">pipenv常用命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shooke</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.7.0</div>
+
+
+
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d6b6833304116ed43a46f8f77b49d030";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

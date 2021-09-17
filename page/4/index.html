@@ -1,0 +1,2807 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '6.7.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+<meta name="keywords" content="python,php,mysql,前端">
+<meta property="og:type" content="website">
+<meta property="og:title" content="shooke&#39;s blog">
+<meta property="og:url" content="https://www.xingjiehu.com/page/4/index.html">
+<meta property="og:site_name" content="shooke&#39;s blog">
+<meta property="og:description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="shooke&#39;s blog">
+<meta name="twitter:description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="shooke's blog" type="application/atom+xml">
+
+
+
+
+  <link rel="canonical" href="https://www.xingjiehu.com/page/4/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>shooke's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <!-- google 验证 -->
+  <meta name="google-site-verification" content="9Y6X9yptaHlOdppRk7mld_uHsSibf3lPB8c_60zPyF0">
+  <!-- baidu 验证和收录推送 -->
+  <meta name="baidu-site-verification" content="lCJxAeYryx">
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+  page-home">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">shooke's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/01/10/cktnq12my002fx0trw70exxyv/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/01/10/cktnq12my002fx0trw70exxyv/" class="post-title-link" itemprop="url">nginx配置结构说明</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-10 14:20:08" itemprop="dateCreated datePublished" datetime="2020-01-10T14:20:08+08:00">2020-01-10</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>最近做项目发现服务器上nginx的配置很混乱，主要原因就是配置的人不太了解nginx的配置。从网上查了资料之后就复制了。</p>
+<h2 id="配置结构"><a href="#配置结构" class="headerlink" title="配置结构"></a>配置结构</h2><p>nginx的配置其实很简单，总共也就分为4部分：main（全局设置）、server（主机设置）、upstream（负载均衡服务器设置）和 location（URL匹配特定位置的设置）<br>他们的关系是，server继承main，location继承server，upstream既不会继承其他设置也不会被继承。<br>所以配置的优先级就是 location &gt; server &gt; main</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/01/10/cktnq12my002fx0trw70exxyv/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/01/03/cktnq12mg001ex0trt0w1lgfk/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2020/01/03/cktnq12mg001ex0trt0w1lgfk/" class="post-title-link" itemprop="url">limits.conf配置说明</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-03 17:30:52" itemprop="dateCreated datePublished" datetime="2020-01-03T17:30:52+08:00">2020-01-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>最近发生了奇怪的事情，mysql总是会连不上，查了半天原因，最后发现进程文件没有生成。es报警“Too many open files”。搜索才发现是，打开文件太多了，超过了限制。解决方法是修改<code>/etc/security/limits.conf</code>。另外还牵扯到了另一个配置<code>file-max</code>。经过调试还是踩了不少坑的。坐下笔记，防止重复踩坑。</p>
+          <!--noindex-->
+          
+            <div class="post-button text-center">
+              <a class="btn" href="/2020/01/03/cktnq12mg001ex0trt0w1lgfk/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/28/cktnq12nc0037x0trjivj2w7r/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/28/cktnq12nc0037x0trjivj2w7r/" class="post-title-link" itemprop="url">ssh提速</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-28 17:31:20" itemprop="dateCreated datePublished" datetime="2019-12-28T17:31:20+08:00">2019-12-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>最近ssh链接超慢，但是ping发现网速还是很快的。记录一下解决方法<br>修改<code>/etc/ssh/sshd_config</code>两个参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UseDNS no</span><br><span class="line">GSSAPIAuthentication no</span><br></pre></td></tr></table></figure></p>
+<p>保存后重启ssh服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl restart sshd</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/26/cktnq12ud00e3x0trhr6jheif/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/26/cktnq12ud00e3x0trhr6jheif/" class="post-title-link" itemprop="url">9.上传到远程仓库</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-26 20:32:20" itemprop="dateCreated datePublished" datetime="2019-12-26T20:32:20+08:00">2019-12-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/一点一点了解git/" itemprop="url" rel="index"><span itemprop="name">一点一点了解git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
+<p>本故事纯属虚构，如有雷同，^0^那可太巧了</p>
+</blockquote>
+<p>这几天以来，小白学会了很多git的使用技巧。让他在应对问题的时候可以比较从容。比如需求反复修改。处理一些临时功能，后期要删除等比较繁琐的事情。</p>
+<p>今天是小白负责的第一个项目发布的日子。</p>
+<p>BOSS让小白把代码提交到远程仓库，这样负责发布的小伙伴就可以将代码进行发布了。</p>
+<p>小白询问了老鸟如何将代码上传到github。回来开始操作。</p>
+<ol>
+<li>创建线上仓库</li>
+</ol>
+<p>进入github.com登录自己的账号，点击右上角的加号，选择<code>new repository</code></p>
+<p><img src="/assets/images/posts/git_book/9-1.png" alt="new repository"></p>
+<p>填写仓库名称然后点击绿色的<code>cteate repository</code>按钮</p>
+<p><img src="/assets/images/posts/git_book/9-2.png" alt="create repository"></p>
+<p>创建成功会有如下提示</p>
+<p><img src="/assets/images/posts/git_book/9-3.png" alt="repository"></p>
+<p>这时候说明已经创建成功了。这里会显示项目的远程地址，同时介绍了两种使用情况</p>
+<ul>
+<li>没有项目时可以先创建一个目录，进行<code>git init</code>初始化，然后用<code>git remote add</code>进行关联</li>
+<li>如果已经有了本地项目直接使用<code>git remote add</code>进行关联</li>
+</ul>
+<p>小白一看我属于第二种情况。果断进入项目目录执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin https://github.com/shooke/learngit.git</span><br><span class="line">$ git push -u origin master</span><br></pre></td></tr></table></figure></p>
+<p>提示让<code>Username for &#39;https://github.com&#39;:</code>让输入git账号，小白果断输入，然后回车<br>再次提示<code>Password for &#39;https://xiaobai@163.com@github.com&#39;:</code>这里让输入密码</p>
+<p>“奇怪怎么没有显示<code>*</code>啊”小白疑惑，这时候正好老鸟走过来<br>“BOSS让你上传代码，搞定了吗”，老鸟说<br>“就差一步了，为啥没法输入密码啊”小白问<br>“傻子，git命令行工具跟windows的cmd不一样的，这里是不会有星号提示的，但其实你的密码已经输入了，不行你可以试试”老鸟回答</p>
+<p>小白重新输入密码，回车。出现了以下提示<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Counting objects: 26, done.</span><br><span class="line">Delta compression using up to 4 threads.</span><br><span class="line">Compressing objects: 100% (22/22), done.</span><br><span class="line">Writing objects: 100% (26/26), 4.36 KiB | 4.36 MiB/s, done.</span><br><span class="line">Total 26 (delta 7), reused 0 (delta 0)</span><br><span class="line">remote: Resolving deltas: 100% (7/7), done.</span><br><span class="line">To https://github.com/shooke/learngit.git</span><br><span class="line"> * [new branch]      master -&gt; master</span><br><span class="line">Branch &apos;master&apos; set up to track remote branch &apos;master&apos; from &apos;origin&apos;.</span><br></pre></td></tr></table></figure></p>
+<p>“出现<code>[new branch]      master -&gt; master</code>是不是就表示上传成功了”小白问<br>“对啊，这个提示代表你本地的master分支，上传到了远程的master分支”老鸟回答</p>
+<p>“啥事分支啊” 小白好奇的问<br>“分支啊，这可是好东西，多人协作全靠它了，我还有事明天给你讲” 老鸟回去忙自己的事了</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><code>git remote add [shortname] [url]</code>可以让本地仓库和远程仓库建立联系。<code>shortname</code>是仓库名称，方便执行命令时使用，一般情况下都用<code>origin</code>；<code>url</code>就是远程仓库的地址，比如上面例子中的<code>https://github.com/shooke/learngit.git</code></li>
+<li><code>git remote -v</code> 显示所有远程仓库</li>
+<li><code>git remote show [remote]</code> 显示某个远程仓库的信息</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/25/cktnq12u800dsx0tr5dalk978/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/25/cktnq12u800dsx0tr5dalk978/" class="post-title-link" itemprop="url">8.再遇工作区和版本库</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-25 20:32:20" itemprop="dateCreated datePublished" datetime="2019-12-25T20:32:20+08:00">2019-12-25</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/一点一点了解git/" itemprop="url" rel="index"><span itemprop="name">一点一点了解git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
+<p>本故事纯属虚构，如有雷同，^0^那可太巧了</p>
+</blockquote>
+<p>”大神我看你用使用<code>git reset</code>时使用了<code>--hard</code>参数，是不是还有其他参数啊。“小白虚心问道<br>”小伙很细心啊，不错，还有其余的2个参数，我挨个给你讲吧。刚才用过–hard，咱们从他讲起。咱们先创建个文件，加两条commit，方便讲解“老鸟说到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ echo &quot;1&quot;&gt; test.txt</span><br><span class="line">$ git add test.txt</span><br><span class="line">$ git commit -m &quot;1&quot;</span><br><span class="line">$ echo &quot;2&quot;&gt; test.txt</span><br><span class="line">$ git add test.txt</span><br><span class="line">$ git commit -m &quot;2&quot;</span><br></pre></td></tr></table></figure></p>
+<p>“咱们创建了2条commit记录了，第一条记录<code>test.txt</code>里的内容是<code>1</code>，第二条记录<code>test.txt</code>里的内容是<code>2</code>。先看一下记录” 老鸟说<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git log</span><br><span class="line">commit a609df431578e5061b5d0261bfa38cb0fa01efb1 (HEAD -&gt; master)</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Wed Mar 18 16:42:11 2020 +0800</span><br><span class="line"></span><br><span class="line">    2</span><br><span class="line"></span><br><span class="line">commit b5a6d3a6c4d4f5899645f9469f116b050c9426b5</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Wed Mar 18 16:41:55 2020 +0800</span><br><span class="line"></span><br><span class="line">    1</span><br></pre></td></tr></table></figure></p>
+<p>“接下来，咱们撤销一下看看效果”老鸟继续教导小白<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard HEAD^</span><br><span class="line">HEAD is now at b5a6d3a 1</span><br><span class="line">git log</span><br><span class="line">commit b5a6d3a6c4d4f5899645f9469f116b050c9426b5 (HEAD -&gt; master)</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Wed Mar 18 16:41:55 2020 +0800</span><br><span class="line"></span><br><span class="line">    1</span><br></pre></td></tr></table></figure></p>
+<p>”现在历史被撤回了，咱们看git的状态“ 老鸟说<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">nothing to commit, working tree clean</span><br></pre></td></tr></table></figure></p>
+<p>”你看工作区和暂存区都是空的对吧“老鸟说<br>”恩恩，文件内容应该变成1了“小白说<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat test.txt</span><br><span class="line">1</span><br></pre></td></tr></table></figure></p>
+<p>“回答正确，咱们先把历史还原，然后再来试试另一个参数”老鸟说。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard a609df431578e5061b5d0261bfa38cb0fa01efb1</span><br><span class="line">HEAD is now at a609df4 2</span><br><span class="line">$ git log</span><br><span class="line">commit a609df431578e5061b5d0261bfa38cb0fa01efb1 (HEAD -&gt; master)</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Wed Mar 18 16:42:11 2020 +0800</span><br><span class="line"></span><br><span class="line">    2</span><br><span class="line"></span><br><span class="line">commit b5a6d3a6c4d4f5899645f9469f116b050c9426b5</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Wed Mar 18 16:41:55 2020 +0800</span><br><span class="line"></span><br><span class="line">    1</span><br></pre></td></tr></table></figure></p>
+<p>“接下来试试<code>--mixed</code>,看看会是什么效果”老鸟说<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --mixed HEAD^</span><br><span class="line">Unstaged changes after reset:</span><br><span class="line">M	test.txt</span><br><span class="line">$ git log</span><br><span class="line">commit b5a6d3a6c4d4f5899645f9469f116b050c9426b5 (HEAD -&gt; master)</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Wed Mar 18 16:41:55 2020 +0800</span><br><span class="line"></span><br><span class="line">    1</span><br></pre></td></tr></table></figure></p>
+<p>“历史回退了”小白说<br>“恩，咱们看看文件状态有什么变化”老鸟说<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	modified:   test.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure></p>
+<p>“这是什么意思啊，这个提示不是文件发生修改的时候才有的吗”，小白疑惑<br>“看一下文件内容你就明白了”老鸟说到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cat test.txt </span><br><span class="line">2</span><br></pre></td></tr></table></figure></p>
+<p>”知道什么愿意你了吗“老鸟说<br>”哦，我明白了，历史回退了，按说文件的内容应该是1，但是现在内容是2，所以git以为文件发生了修改“小白说道。<br>”恭喜你答对了，<code>--mixed</code>参数会清空stage缓存区，但是不会直接修改文件的内容，如果需要将文件内容撤回，可以在执行<code>git checkout &lt;file&gt;</code>“老鸟解释道<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git checkout test.txt</span><br><span class="line">$ cat test.txt</span><br><span class="line">1</span><br></pre></td></tr></table></figure></p>
+<p>”你看内容变了吧，接下来你猜一下<code>--soft</code>参数会是什么效果“老鸟说<br>”既然<code>--hard</code>文件工作区和缓存去都清空了，<code>--mixed</code>把缓存区清空了，那<code>--soft</code>是不是会保留缓存区啊“小白说道<br>”不错嘛，这都分析到了，没错，<code>--soft</code>参数只是撤销了记录，缓存区和工作区都不做修改，咱们来看下效果“。老鸟说，”先恢复一下记录方便看效果“<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --hard a609df431578e5061b5d0261bfa38cb0fa01efb1</span><br><span class="line">HEAD is now at a609df4 2</span><br><span class="line">$ git log</span><br><span class="line">commit a609df431578e5061b5d0261bfa38cb0fa01efb1 (HEAD -&gt; master)</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Wed Mar 18 16:42:11 2020 +0800</span><br><span class="line"></span><br><span class="line">    2</span><br><span class="line"></span><br><span class="line">commit b5a6d3a6c4d4f5899645f9469f116b050c9426b5</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Wed Mar 18 16:41:55 2020 +0800</span><br><span class="line"></span><br><span class="line">    1</span><br></pre></td></tr></table></figure></p>
+<p>”历史回来了，咱们开始看下<code>--soft</code>的作用“老鸟敲下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ git reset --soft HEAD^</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">	modified:   test.txt</span><br></pre></td></tr></table></figure></p>
+<p>”你看，是不是和你想的一样啊，要想清理缓存区可以按提示执行<code>git reset HEAD &lt;file&gt;</code>，剩下的就不用我说了吧“老鸟说道<br>”恩恩，明白，文件线下的内容应该还是2吧，我清理完缓存区，然后<code>git checkout &lt;file&gt;</code>文件内容就会变回commit对应的内容，对吧“小白问道</p>
+<p>”没错，那你知道为什么会有这三种不同的参数吗“老鸟问<br>”不明白，<code>--hard</code>很方便啊，其他两种还要做其他操作才能回复文件内容，多麻烦。“小白回答</p>
+<p>”你现在只是一个文件，如果你的一个历史记录有很多文件怎么办，如果你只需要撤回其中一个文件呢，用<code>--hard</code>不是自杀吗。使用<code>--mixed</code>或<code>--soft</code>可以保证文件内容不撤销，这样你就可以用<code>git checkout</code>针对你需要撤销的文件进行撤回。多方便 “老鸟说道<br>”哦，明白了，谢谢大神“小白激动的说</p>
+<p>”走了，有问题随时问我“，老鸟再次潇洒离去，留下了激动的小白</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><code>--hard</code> 撤销commit记录，清空tage暂存区，清空工作区内容，文件内容彻底还原</li>
+<li><code>--mixed</code> 撤销commit记录，清空tage暂存区，保留工作区内容，执行<code>git checkout &lt;file&gt;</code>可撤销修改，让文件内容还原</li>
+<li><code>--soft</code> 撤销commit记录，保留stage暂存区，保留工作区内容，如果要撤回需要先执行<code>git reset HEAD &lt;file&gt;</code>撤销暂存区，然后执行<code>git checkout &lt;file&gt;</code> 撤销修改</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/24/cktnq12u600dqx0trd047zd3s/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/24/cktnq12u600dqx0trd047zd3s/" class="post-title-link" itemprop="url">7.时光倒流</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-24 20:32:20" itemprop="dateCreated datePublished" datetime="2019-12-24T20:32:20+08:00">2019-12-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/一点一点了解git/" itemprop="url" rel="index"><span itemprop="name">一点一点了解git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
+<p>本故事纯属虚构，如有雷同，^0^那可太巧了</p>
+</blockquote>
+<p>小白正在开心的写代码，刚刚完成了产品小伙伴的一个需求。还是小有成就感的，正准备起来活动活动喝杯水。谁知产品小伙伴有风风火火的跑过来。<br>“小白，小白，客户还是感觉以前的交互方式用着顺手。让把功能改回去”。产品小伙伴喊道。<br>听到这个消息，小白满脸的黑线。废了半天劲做出来的功能再改回去。这太坑了吧。<br>但是没办法，谁叫客户就是上帝呢，改吧。<br>开始撤销，<code>ctrl z</code>。。。<br>what，没法撤销了？编辑器撤销的步骤有限，这可如何是好啊，难道要手动改代码？这也太悲剧了吧。<br>“对了找大神问一下，看git有没有办法回退”小白灵光一闪想起来老鸟。</p>
+<p>老鸟一听到小白喊他“大神”，瞬间心情舒畅跑过来知道小白。</p>
+<p>“你是要回退以前的版本吗？”老鸟问道。<br>“恩恩”小白点头<br>“回退其实很简单，看我操作，要记住啊”说完，做到小白的坐位上开始了他的神操作。</p>
+<p>“首先用<code>git log</code>看一下你的提交记录”，老鸟说道<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ git log</span><br><span class="line"></span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Sat Mar 14 16:45:03 2020 +0800</span><br><span class="line"></span><br><span class="line">    &lt;E7&gt;&lt;8A&gt;&lt;B6&gt;&lt;E6&gt;&lt;80&gt;&lt;81&gt;&lt;E4&gt;&lt;BF&gt;&lt;AE&gt;&lt;E6&gt;&lt;94&gt;&lt;B9&gt;&lt;E5&gt;&lt;92&gt;&lt;8C&gt;&lt;E5&gt;&lt;AF&gt;&lt;B9&gt;&lt;E6&gt;&lt;AF&gt;&lt;94&gt;&lt;E6&gt;&lt;97&gt;&lt;B6&gt;&lt;E9&gt;&lt;97&gt;&lt;B4&gt;</span><br><span class="line"></span><br><span class="line">commit 3e14b6822063c7add663cd79756e77818e821819</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Sat Mar 14 00:30:27 2020 +0800</span><br><span class="line"></span><br><span class="line">    &lt;E5&gt;&lt;AE&gt;&lt;A1&gt;&lt;E6&gt;&lt;A0&gt;&lt;B8&gt;&lt;E7&gt;&lt;8A&gt;&lt;B6&gt;&lt;E6&gt;&lt;80&gt;&lt;81&gt;&lt;E4&gt;&lt;BF&gt;&lt;AE&gt;&lt;E6&gt;&lt;94&gt;&lt;B9&gt;</span><br></pre></td></tr></table></figure></p>
+<p>“咦，你这里git log居然乱码啊”，老鸟说道<br>“这是咋回事啊”，小白疑惑<br>“好办，编码问题解决一下就可以了”。老鸟输入了如下三条命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git config --global i18n.commitencoding utf-8</span><br><span class="line"></span><br><span class="line">git config --global i18n.logoutputencoding utf-8</span><br><span class="line"></span><br><span class="line">export LESSCHARSET=utf-8</span><br></pre></td></tr></table></figure></p>
+<p>再次执行<code>git log</code>果然好了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br><span class="line">commit 6531ff6013dd490f60bcd646ca01df61a1ecc8b1 (HEAD -&gt; dev, origin/master, origin/dev, origin/HEAD, master)</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Sat Mar 14 16:45:03 2020 +0800</span><br><span class="line"></span><br><span class="line">    状态修改和对比时间</span><br><span class="line"></span><br><span class="line">commit 3e14b6822063c7add663cd79756e77818e821819</span><br><span class="line">Author: shooke &lt;xingjiehu@163.com&gt;</span><br><span class="line">Date:   Sat Mar 14 00:30:27 2020 +0800</span><br><span class="line"></span><br><span class="line">    审核状态修改</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>“log记录有时候很多，你可以不停的按<code>j</code>和<code>k</code>来实现向下或向上查看内容，不行看了，就输入<code>:q</code>退出。就跟vim编辑器使用方式一样”老鸟说。</p>
+<p>“想要退回到那里，用<code>git reset</code>会退到对应的commit id就可以了。比如会退到<code>审核状态修改</code>。老鸟边说变执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 3e14b6822063c</span><br></pre></td></tr></table></figure></p>
+<p>打开编辑器，小白发现，代码真的回到以前了。</p>
+<p>“大神，commit id怎么输入了一部分啊，不需要全部输入吗”，小白激动说道</p>
+<p>“不需要，只要git能够确定唯一的commit就行了，一般也就输入前几位”，老鸟说。</p>
+<p>“每次都要看commit id好麻烦啊，有没有简单的方法？”小白谦虚问道</p>
+<p>“当然有啊，可以用HEAD加上<code>^</code>或者<code>～n</code>回退啊”。老鸟说</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD^</span><br></pre></td></tr></table></figure>
+<p>“这样就会回退一条commit,如果退两条，就再加一个^，退几条就加几个^”老鸟说<br>”那退20条，岂不是20个^,多麻烦啊“，小白说<br>”孺子可教啊，这要用~n了，可以这样写“，老鸟说<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard HEAD~20</span><br></pre></td></tr></table></figure></p>
+<p>“明白了，谢谢大神”小白说道。<br>”你刚才要回退到那条commit啊“老鸟问道<br>”啊，我只需要退一条就行了，咱们刚才退了这么多，怎么办啊“小白说</p>
+<p>”这怕啥，你只要知道历史中的commit id，就不用担心，及时你回退了50条，要回到第二条也没问题“老鸟边说变敲下哦了命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset --hard 3e14b6822063c7add663cd79756e77818e821819</span><br></pre></td></tr></table></figure></p>
+<p>”你看这不是回到你第二条命令时的状态了吗，只要你记得回退前的commit id，随时可以穿梭到任何commit“老鸟说道。</p>
+<p>小白豁然开朗，原来历史是可以任意切换的，并不是回退了就抹除了。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ol>
+<li>解决乱码<br><code>git config --global i18n.commitencoding utf-8</code>  该命令表示提交命令的时候使用utf-8编码集提交</li>
+</ol>
+<p><code>git config --global i18n.logoutputencoding utf-8</code> 该命令表示日志输出时使用utf-8编码集显示</p>
+<p><code>export LESSCHARSET=utf-8</code> 设置LESS字符集为utf-8，为了让配置一直有效，可以把这个设置添加到<code>~/.bashrc</code>,然后执行<code>source ~/.bashrc</code></p>
+<ol start="2">
+<li><p>查看历史<br><code>git log</code>可以查看历史。但是如果用<code>git reset</code>回退了，是看不到被退回的历史的，如果要保证历史，可以使用<code>git revert</code>，后面会讲这个命令<br><code>git log --stat</code> 显示commit历史，以及每次commit发生变更的文件<br><code>git log -S [keyword]</code> 搜索提交历史，根据关键词<br><code>git log [tag] HEAD --pretty=format:%s</code> 显示某个commit之后的所有变动，每个commit占据一行<br><code>git log [tag] HEAD --grep feature</code> 显示某个commit之后的所有变动，其”提交说明”必须符合搜索条件<br><code>git log --follow [file]</code>或<code>git whatchanged [file]</code> 显示某个文件的版本历史，包括文件改名<br><code>git log -p [file]</code> 显示指定文件相关的每一次diff<br><code>git log -5 --pretty --oneline</code> 显示过去5次提交</p>
+</li>
+<li><p>历史切换<br><code>git reset HEAD^</code>可以向前撤销一次，多个<code>^</code>可以撤销多条历史，或者使用<code>git reset HEAD~5</code>这样可以一次撤销5条历史<br><code>git reset</code>可以任意切换到某个历史，使用<code>git reset --hard commitid</code>即可，commit id不一定要全的，可以只写前几位</p>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/23/cktnq12u900dwx0trkb02nxw9/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/23/cktnq12u900dwx0trkb02nxw9/" class="post-title-link" itemprop="url">6.撤销操作</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-23 20:32:20" itemprop="dateCreated datePublished" datetime="2019-12-23T20:32:20+08:00">2019-12-23</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/一点一点了解git/" itemprop="url" rel="index"><span itemprop="name">一点一点了解git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
+<p>本故事纯属虚构，如有雷同，^0^那可太巧了</p>
+</blockquote>
+<p>”大神！你是再叫我吗“，老鸟回过头问小白。<br>“是啊大神，虽然git diff很牛，可以让我知道改过什么，但我一点点的改回去好麻烦啊，有没有别的办法？”</p>
+<p>大神，老鸟暗喜。这个大神的称号还是很少用的。老鸟摆出一副高深莫测的表情。<br>“办法当然有，既然你问了，就告诉你吧”</p>
+<p>老鸟回到小白的工位入座。拿过键盘，开始实战时光回退大法，输入 <code>git checkout package.json</code>。施展至于本着经验精神不忘问一句，“你确定这些修改不要了？”<br>“恩恩，前面的思路有问题，我想到了一个更好的办法，所以还原吧。”小白虚心的说道。<br>只见老鸟手起指落，敲击在回车上。</p>
+<p>再次查看文件，package.json文件真的恢复了。小白满眼崇拜的目光看向老鸟。<br>看到小白的表情，老鸟还是非常受用的。</p>
+<p>“既然你这么好学，老夫就再教你一招，包你从此不会写错代码。”老鸟说道<br>“恩恩，大神请将”小白谦虚道。</p>
+<p>“这个git呢要活学活用，你已经知道git分为工作区，暂存区和仓库了吧？”老鸟说道<br>“恩恩”小白道</p>
+<p>“git diff的功能你也了解了吧”，老鸟继续说<br>“恩恩”小白点头道</p>
+<p>“其实工作区，暂存区和仓库的概念是贯彻始终的，git checkout 也适用”，老鸟继续说<br>“大神的意思是说，如果我对package.json进行了 git add操作，checkout的时候就会回到add时候的代码，如果没有add过，就会回到上一次commit时候的代码？”。小白问道</p>
+<p>“恩，不错悟性很好啊，记住一点，开发一个功能要常add，完成后在用commit收尾。这样在开发过程中出错，可以及时撤销，也可以减少不必要的commit历史”。老鸟提醒小白。<br>“恩恩，谢谢大神”，小白真诚的向老鸟道谢</p>
+<p>一口一个大神，叫的老鸟飘飘然。老鸟也是非常的开心。临走不忘说一句“遇到问题尽管找我”</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><code>git checkout --filename</code> 可以撤销文件的变更。</p>
+<ul>
+<li>如果文件<code>git add</code>过，会撤回到add时的代码，即暂存区代码。</li>
+<li>如果没有<code>git add</code>过，会撤回到上次commit时的代码，也就是版本库中，最近的版本。</li>
+</ul>
+<p>关于工作区和版本库的介绍，可以看上一篇《4.工作区和版本库》</p>
+<p>如果一个功能比较复杂，可以完成一小部分执行一次add，或者是commit，这样在后续开发中发现改错了东西，可以及时撤回。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/22/cktnq12u300dgx0tr20z3sp6g/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/22/cktnq12u300dgx0tr20z3sp6g/" class="post-title-link" itemprop="url">5.对比文件变化</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-22 20:32:20" itemprop="dateCreated datePublished" datetime="2019-12-22T20:32:20+08:00">2019-12-22</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/一点一点了解git/" itemprop="url" rel="index"><span itemprop="name">一点一点了解git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
+<p>本故事纯属虚构，如有雷同，^0^那可太巧了</p>
+</blockquote>
+<p>了解了工作去和版本库的区别，小白开始自己开动脑筋举一反三。既然<code>git status</code>可以查看哪些文件发生的变化。那能不能知道具体的变化是什么呢。</p>
+<p>毕竟作为一个程序猿，临时被唐僧召唤的事情经常发生。小白正在思考着，产品经理就喊上了。有个新需求需要确认排期。小白只好怪怪的跑过去。<br>确认完排期，回到座位上，继续开发今天的功能。<code>add</code> <code>commit</code>已经熟练的飞起。貌似git也很简单嘛。</p>
+<p>中午到了，开饭。吃过午饭回到坐位的小白发现电脑关机了。据说是某个不知名的家伙不小心提到了插座。<br>好吧，重新开机就好了，打开自己熟悉的ide，一切如常。上午的功能还没有commit，看下改过哪些文件吧。<code>git status</code>发现改了十几个文件。<br>好多都已经记不清改的什么了，肿木办？先把自己记忆清除的几个add。然后commit。剩下几个实在想不起来改过什么了。ide也没法回退了，这该如何是好啊。</p>
+<p>正在小白苦恼的时候，老鸟过来了。<br>看着发呆的小白，老鸟关系的问“小猴子，今天怎么发呆了？”。<br>小白如实回答“有几个文件忘记改过什么地方了，电脑关过机，ide也没法撤销操作了”。<br>老鸟熟练的敲下了<code>git diff package.json</code>,这时候所有的改动一目了然的展现在了小白面前。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ git diff package.json</span><br><span class="line">diff --git a/package.json b/package.json</span><br><span class="line">index 00570c9..f06efde 100755</span><br><span class="line">--- a/package.json</span><br><span class="line">+++ b/package.json</span><br><span class="line">@@ -16,7 +16,6 @@</span><br><span class="line">     &quot;@vue/cli-plugin-eslint&quot;: &quot;^4.1.0&quot;,</span><br><span class="line">     &quot;@vue/cli-service&quot;: &quot;^4.1.0&quot;,</span><br><span class="line">     &quot;babel-eslint&quot;: &quot;^10.0.3&quot;,</span><br><span class="line">-    &quot;eslint&quot;: &quot;^5.16.0&quot;,</span><br><span class="line">     &quot;eslint-plugin-vue&quot;: &quot;^5.0.0&quot;,</span><br><span class="line">     &quot;vue-template-compiler&quot;: &quot;^2.6.10&quot;</span><br><span class="line">   &#125;,</span><br><span class="line">@@ -27,7 +26,7 @@</span><br><span class="line">     &#125;,</span><br><span class="line">     &quot;extends&quot;: [</span><br><span class="line">       &quot;plugin:vue/essential&quot;,</span><br><span class="line">-      &quot;eslint:recommended&quot;</span><br><span class="line">+      &quot;eslint:recommendeddd&quot;</span><br><span class="line">     ],</span><br><span class="line">     &quot;rules&quot;: &#123;</span><br><span class="line">       &quot;no-console&quot;: &quot;off&quot;</span><br></pre></td></tr></table></figure></p>
+<p>还不待老鸟解释，小白已经明白减号<code>-</code>代表的是自己删除的行<code>+</code>是产生的新行。</p>
+<p>这下好了，可以看出自己修改过的细节，就可以很清楚的解决问题了。</p>
+<p>看着小白激动的目光，老鸟挥一挥衣袖，不带走一点代码。飘然而去。</p>
+<p>望着老鸟离去的背影，小白激动的追上去，语出惊人“大神，留步！”</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><code>git diff --filename</code> 可以比较文件的变更情况。</p>
+<ul>
+<li>如果文件<code>git add</code>过，会显示工作区和暂存区的差别。</li>
+<li>如果没有<code>git add</code>过，会显示工作区和仓库历史版本的差异。</li>
+</ul>
+<p><code>git diff --cached [file]</code> 显示暂存区和上一个commit的差异</p>
+<p><code>git diff HEAD</code> 显示工作区与当前分支最新commit之间的差异</p>
+<p><code>git diff --shortstat &quot;@{0 day ago}&quot;</code> 显示今天你写了多少行代码</p>
+<p>关于工作区和版本库的介绍，可以看上一篇《4.工作区和版本库》</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/21/cktnq12u400dkx0trh6sjt9a4/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/21/cktnq12u400dkx0trh6sjt9a4/" class="post-title-link" itemprop="url">4.啥事工作区、暂存区和版本库</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-21 20:32:20" itemprop="dateCreated datePublished" datetime="2019-12-21T20:32:20+08:00">2019-12-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/一点一点了解git/" itemprop="url" rel="index"><span itemprop="name">一点一点了解git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
+<p>本故事纯属虚构，如有雷同，^0^那可太巧了</p>
+</blockquote>
+<p>回到家的小白，想着今天发生的事，为什么<code>git status</code>出来的提示信息不一样？为什么<code>git status</code>出来的提示信息不一样？为什么<code>git status</code>出来的提示信息不一样？<br>想着想着他就睡着了，梦里他遇到了linus大神，linus带他来到了一个神秘的机构。在这个房间里有2个人，还有一个大大的大屏幕。<br>每次大屏幕上显示<code>git add</code>，就会有一份文件到达一个人的手里，他会把信息进行整理。当大屏幕上显示<code>git commit</code>。第一个人就会把整理的内容放到第二个人的桌子上，然后回来继续工作。</p>
+<p>小白疑惑的看向linus大神，大神和蔼的告诉他“小白，你不是一直奇怪，为什么<code>git status</code>出来的提示信息不一样？”，这就是你要的答案。</p>
+<p>小白仔细打量着房间里的一切，第一个人的办公桌上有一个牌子，上面写着”stage”。<br>第二个人的办公桌上同样有一个牌子，上面写着”HEAD”。</p>
+<p>小明若有所思，抬起头的时候，发现linus大神已经不见了。他冲出房门，发现街上根本没有大神的踪影，只有房子上高高挂起的牌匾写着”版本库”三个打字。</p>
+<p>他大声的呼喊，这时耳边传来“叮铃铃叮铃铃”的响声。</p>
+<p>小明从梦中醒来一看，哇，还有半小时就八点60了，飞快起身，背上背包冲向公司。</p>
+<p>距离上班还有1秒钟的时候，小白打卡成功。</p>
+<p>打开电脑，想起昨天遇到的情形，好像自己明白了什么，到网上一查，原来如此。</p>
+<blockquote>
+<p>git是分为工作区和版本库的。代码发生更改后，执行<code>git add</code>代码会放到代码库的暂存区(stage),当执行<code>git commit</code>时代码会形成版本记录(HEAD)，并且删除暂存取的记录。</p>
+</blockquote>
+<p>当我们执行<code>git status</code>时，git会将工作区（当前的代码）与暂存区的记录进行比较，如果暂存区没有记录，则会跟做过记录的版本作比较。从而提示你哪个文件发生过修改。</p>
+<p>明白了这些，小白开始反思昨天看到的提示。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	我最帅.txt</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span><br></pre></td></tr></table></figure></p>
+<p><code>Untracked files</code>列出的是新建的文件，还没有被add和commit过，所以提示你<code>(use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</code>，这表示需要进行<code>git add</code>操作</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	modified:   readme.md</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure>
+<p><code>Changes not staged for commit</code>列出被修改的文件，这时候文件还没有被add和commit。这时就是比较工作区和HEAD得出的结果。<code>modified:   readme.md</code>意思是这个文件发生了更改。</p>
+<p>了解了不同提示的原因，小白果断<code>git add</code> <code>git commit</code>开始开发新功能。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>git是分为工作区和版本库的。代码发生更改后，执行<code>git add</code>代码会放到代码库的暂存区(stage),当执行<code>git commit</code>时代码会形成版本记录(HEAD)，并且删除暂存取的记录。工作区可以简单理解为项目目录，每次项目更改都会记录，这些变更记录就是版本库。</p>
+<p>下面是各种状态</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line"># 已经执行过`git add`但没有执行`git commit`</span><br><span class="line">Changes to be committed:</span><br><span class="line">  # 可执行的命令，reset会移除暂存区记录，移除后需要重新进行add</span><br><span class="line">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">	renamed:    我最帅.txt -&gt; wo.txt</span><br><span class="line"></span><br><span class="line"># 文件发生修改时提示</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  # 可以执行的命令，文件修改是可以执行add加入到暂存区，也可以checkout进行撤销</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	modified:   readme.md</span><br><span class="line"></span><br><span class="line"># 新增文件时提示</span><br><span class="line">Untracked files:</span><br><span class="line">  # 可以执行的命令，新增文件只要add到</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	我很帅.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/12/20/cktnq12u500dmx0trekfids1x/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shooke">
+      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="shooke's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/12/20/cktnq12u500dmx0trekfids1x/" class="post-title-link" itemprop="url">3.查看文件状态</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-12-20 20:32:20" itemprop="dateCreated datePublished" datetime="2019-12-20T20:32:20+08:00">2019-12-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/一点一点了解git/" itemprop="url" rel="index"><span itemprop="name">一点一点了解git</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
+<p>本故事纯属虚构，如有雷同，^0^那可太巧了</p>
+</blockquote>
+<p>第二天上班，小白开开心心的打开电脑，准备爽一把。忽然想起来，昨天好像有一个功能还没有做完，临走的时候没有执行<code>add</code>和<code>commit</code>。</p>
+<p>糟糕好像忘记修改过哪几个文件了。这可如何是好啊？</p>
+<p>一盏灯泡从小白的脑袋里亮起，好像我开始使用git了，git应该知道我昨天哪些代码没有<code>commit</code>吧。<br>小白打开百度，果然，git是可以查看文件状态的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	modified:   readme.md</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure>
+<p><code>modified:   readme.md</code>，哦，原来是<code>readme.md</code>文件昨天修改过。马上<code>git add readme.md</code> <code>git commit -m &quot;readme&quot;</code>添加到仓库。</p>
+<p>ok，继续快乐的工作。</p>
+<p>开始开发新功能，创建一个新文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch 我最帅.txt</span><br></pre></td></tr></table></figure></p>
+<p>不一会功能开发完成。脑袋好乱，刚才出去又忘记改了什么文件。还是用<code>git status</code>吧。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	&quot;\346\210\221\346\234\200\345\270\205.txt&quot;</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span><br></pre></td></tr></table></figure></p>
+<p><code>&quot;\346\210\221\346\234\200\345\270\205.txt&quot;</code>是什么鬼，我们打开万能的百度，是因为git对对0x80以上的字符进行quote，解决方法很简单</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.quotepath false</span><br></pre></td></tr></table></figure>
+<p>没有报错，应该没有问题吧，小白抱着试试看的态度敲下了<code>git status</code>命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	我最帅.txt</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span><br></pre></td></tr></table></figure></p>
+<p>果然正常了。小白那个开心啊。内心YY道：“我就说吗git这么强大，怎么可能弱鸡到中文都不能正常显示，我果然是天才，一下就找到了原因”</p>
+<p>马上开始保存到仓库，咦，不对，好像两次<code>git status</code>出现的提示不一样，这是怎么回事啊。</p>
+<p>时间在小白的思考中慢慢流失，抬头一看，哇，这不8点60了吗。赶紧回家…</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><code>git status</code>可以查看项目的变更情况<br><code>git config --global core.quotepath false</code> 可以解决，git提示信息中文乱码问题</p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>为什么小白两次<code>git status</code>出现的提示不一样呢？这就要从git的管理机制，工作区和代码库说起了</p>
+<p>预知后事如何，且看下回分解。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">shooke</p>
+              <p class="site-description motion-element" itemprop="description">平时写点技术文章，分享一些经验，予人玫瑰手有余香</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">89</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">111</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/shooke" title="GitHub &rarr; https://github.com/shooke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/shooke" title="Weibo &rarr; https://weibo.com/shooke" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">shooke</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.7.0</div>
+
+
+
+
+
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?d6b6833304116ed43a46f8f77b49d030";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
+
+
+
+
+  
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+  <script>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
