@@ -12,7 +12,7 @@ Springboot官方建议使用final来修饰成员变量，然后通过构造方�
 既然不推荐使用Autowired了，应该如何修改我们的代码呢？
 
 <!-- more -->
-
+## 原代码
 当前代码如下
 ```
 @RestController
@@ -30,6 +30,7 @@ public class TerminalLocationController {
 
 }
 ```
+## 官方推荐
 按照官方的说法我吗应该这样修改，去掉`@Autowired`，给属性添加`final`修饰符，创建构造函数
 ```
 @RestController
@@ -50,6 +51,7 @@ public class TerminalLocationController {
 
 }
 ```
+## AllArgsConstructor
 但是这样写好麻烦啊，每次添加一个依赖都要修改构造函数。好在我们有`lombok`，只需要添加一个`@AllArgsConstructor`注解，就可以帮我们生成构造函数了，代码简化为这样
 ```
 @RestController
@@ -67,6 +69,7 @@ public class TerminalLocationController {
 
 }
 ```
+## RequiredArgsConstructor
 这样虽然解决了自定生成构造函数的问题，但是，`@AllArgsConstructor`会给把所有属性都加入到构造函数中。这样就会带来一个问题，如果我们有一个属性使用了`@Value`也会被构造函数的参数覆盖。
 如何解决呢？
 通常使用`@Value`的属性我们通常是可以修改的，因此不会加上`final`修饰符
