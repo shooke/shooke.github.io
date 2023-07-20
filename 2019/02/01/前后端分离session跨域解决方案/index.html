@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="keywords" content="python,php,mysql,前端">
+  
+  
+  <title>
+    前后端分离session跨域解决方案 |
+    
+    舒克的博客
+  </title>
+  <!-- Icon -->
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-前后端分离session跨域解决方案" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h1 class="article-title" itemprop="name">
+    前后端分离session跨域解决方案
+  </h1>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/02/01/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BBsession%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="article-date">
+  <time datetime="2019-02-01T07:06:27.000Z" itemprop="datePublished">2019-02-01</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p>php的session比cookie安全，这是好多人知道的常识。session的数据是存放在服务端的，那么程序是如何取到对应的session呢？<br>那是因为每一个session都有一个身份证号，那就是session id。这个东西一般情况下，服务器会发送给客户端，客户端将它放在cookie里。<br>cookie是存在跨域问题的，什么叫跨域呢？a.domain.com下创建的cookie,在b.domain.com下是无法使用的，我们需要进行跨域设置。</p>
+<h2 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h2><p>用过vue开发前后端分离程序的人对axios相比都不陌生了，js前后端分离，如果前后端用两个域名，也存在跨域问题。</p>
+<span id="more"></span>
+<p>跨域是个老生常谈的问题了，特别是前后端分离以后。解决前后端分离其实没有想象中的那么难，主要是明白其中的道理。首先先了解介个基本知识。</p>
+<h2 id="session-1"><a href="#session-1" class="headerlink" title="session"></a>session</h2><p>php的session比cookie安全，这是好多人知道的常识。session的数据是存放在服务端的，那么程序是如何取到对应的session呢？<br>那是因为每一个session都有一个身份证号，那就是session id。这个东西一般情况下，服务器会发送给客户端，客户端将它放在cookie里。<br>cookie是存在跨域问题的，什么叫跨域呢？a.domain.com下创建的cookie,在b.domain.com下是无法使用的，我们需要进行跨域设置。</p>
+<h2 id="axios-1"><a href="#axios-1" class="headerlink" title="axios"></a>axios</h2><p>用过vue开发前后端分离程序的人对axios相比都不陌生了，js前后端分离，如果前后端用两个域名，也存在跨域问题。</p>
+<h2 id="解决跨域"><a href="#解决跨域" class="headerlink" title="解决跨域"></a>解决跨域</h2><p>前端请求后端接口跨域很容易解决，服务端设置好返回头就可以了，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">if ($request_method = &#x27;OPTIONS&#x27;) &#123;</span><br><span class="line">                    add_header &#x27;Access-Control-Allow-Origin&#x27; &#x27;$http_origin&#x27;;</span><br><span class="line">                    add_header &#x27;Access-Control-Allow-Credentials&#x27; &#x27;true&#x27;;</span><br><span class="line">                    add_header &#x27;Access-Control-Allow-Methods&#x27; &#x27;GET, POST, PUT, DELETE, OPTIONS&#x27;;</span><br><span class="line">                    add_header &#x27;Access-Control-Allow-Headers&#x27; &#x27;Origin, DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type, Accept, authKey, sessionId, business,shop&#x27;;</span><br><span class="line">                    #add_header &#x27;Access-Control-Allow-Headers&#x27; &#x27;*&#x27;;</span><br><span class="line">                    add_header &#x27;Access-Control-Max-Age&#x27; 1728000;</span><br><span class="line">                    add_header &#x27;Content-Type&#x27; &#x27;text/plain charset=UTF-8&#x27;;</span><br><span class="line">                    add_header &#x27;Content-Length&#x27; 0;</span><br><span class="line"></span><br><span class="line">                    return 204;</span><br><span class="line">                &#125;</span><br></pre></td></tr></table></figure>
+<p>发个全一点的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">                if ($request_method = &#x27;OPTIONS&#x27;) &#123;</span><br><span class="line">                    add_header &#x27;Access-Control-Allow-Origin&#x27; &#x27;$http_origin&#x27;;</span><br><span class="line">                    add_header &#x27;Access-Control-Allow-Credentials&#x27; &#x27;true&#x27;;</span><br><span class="line">                    add_header &#x27;Access-Control-Allow-Methods&#x27; &#x27;GET, POST, PUT, DELETE, OPTIONS&#x27;;</span><br><span class="line">                    add_header &#x27;Access-Control-Allow-Headers&#x27; &#x27;Origin, DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type, Accept, authKey, sessionId, business,shop&#x27;;</span><br><span class="line">                    #add_header &#x27;Access-Control-Allow-Headers&#x27; &#x27;*&#x27;;</span><br><span class="line">                    add_header &#x27;Access-Control-Max-Age&#x27; 1728000;</span><br><span class="line">                    add_header &#x27;Content-Type&#x27; &#x27;text/plain charset=UTF-8&#x27;;</span><br><span class="line">                    add_header &#x27;Content-Length&#x27; 0;</span><br><span class="line"></span><br><span class="line">                    return 204;</span><br><span class="line">                &#125;</span><br><span class="line">                if (!-e $request_filename) &#123;</span><br><span class="line">                    rewrite  ^(.*)$  /index.php?s=/$1  last;</span><br><span class="line">                    break;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                # First attempt to serve request as file, then</span><br><span class="line">                # as directory, then fall back to displaying a 404.</span><br><span class="line">                try_files $uri $uri/ =404;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这样设置后，普通的ajax跨域请求基本就可以了，当然这里的location要根据你的实际情况，也有可能是<code>location ~ \.php$ </code><br>如果这写头信息无法满足，你也可以使用php的header函数重新设置header头。<br>经过上面的配置普通的跨域请求就可以正常执行了。接下来说一下携带cookie的跨域解决。</p>
+<h2 id="session跨域"><a href="#session跨域" class="headerlink" title="session跨域"></a>session跨域</h2><p>上面说过session默认依赖cookie，所以我们创建session的时候要进行一下设置。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ini_set(&#x27;session.cookie_domain&#x27;, &#x27;.domain.com&#x27;);</span><br></pre></td></tr></table></figure>
+<p>创建session之前一定要有上面的设置，这样cookie就可以在a.domain.com和b.domain.com都有效。<br>后端支持了，还有前端，ajax请求默认不携带cookie信息，如何让它带上呢。很简单，ajax对象有一个<code>withCredentials</code>属性，将它设置为true就可以了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">var xhr = new XMLHttpRequest(); // IE8/9需用window.XDomainRequest兼容</span><br><span class="line"></span><br><span class="line">// 前端设置是否带cookie</span><br><span class="line">xhr.withCredentials = true;</span><br><span class="line"></span><br><span class="line">xhr.open(&#x27;post&#x27;, &#x27;http://a.domain.com:8080/login&#x27;, true);</span><br><span class="line">xhr.setRequestHeader(&#x27;Content-Type&#x27;, &#x27;application/x-www-form-urlencoded&#x27;);</span><br><span class="line">xhr.send(&#x27;user=admin&#x27;);</span><br><span class="line"></span><br><span class="line">xhr.onreadystatechange = function() &#123;</span><br><span class="line">    if (xhr.readyState == 4 &amp;&amp; xhr.status == 200) &#123;</span><br><span class="line">        alert(xhr.responseText);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上面是普通ajax的实例，axios可以按下面的配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">axios.defaults.withCredentials = true</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/02/01/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BBsession%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-id="clkaptz690053i8trhl7s95jt" class="article-share-link">
+        Share
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/axios/" rel="tag">axios</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/session/" rel="tag">session</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2019/02/15/%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8git%E5%88%86%E6%94%AF/" class="article-nav-link">
+    <strong class="article-nav-caption">Newer</strong>
+    <div class="article-nav-title">
+      
+      团队开发中如何使用git分支
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2019/01/29/git%E8%BF%9C%E7%A8%8B%E5%88%A0%E9%99%A4%E5%88%86%E6%94%AF%E5%90%8E%EF%BC%8C%E6%9C%AC%E5%9C%B0git-branch-a-%E4%BE%9D%E7%84%B6%E8%83%BD%E7%9C%8B%E5%88%B0%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/" class="article-nav-link">
+    <strong class="article-nav-caption">Older</strong>
+    <div class="article-nav-title">git远程删除分支后，本地git branch -a 依然能看到的解决办法</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>舒克的博客 &copy; 2023</li>
+      
+        <li>
+          
+            <a href="https://beian.miit.gov.cn/" target="_blank"></a>
+            
+        </li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+    <p><ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul></p>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="舒克的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="keywords" content="python,php,mysql,前端">
+  
+  
+  <title>
+    5.对比文件变化 |
+    
+    舒克的博客
+  </title>
+  <!-- Icon -->
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-git/5.对比文件变化" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h1 class="article-title" itemprop="name">
+    5.对比文件变化
+  </h1>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/12/22/git/5.%E5%AF%B9%E6%AF%94%E6%96%87%E4%BB%B6%E5%8F%98%E5%8C%96/" class="article-date">
+  <time datetime="2019-12-22T12:32:20.000Z" itemprop="datePublished">2019-12-22</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3git/">一点一点了解git</a>
+</div>
+
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
+<p>本故事纯属虚构，如有雷同，^0^那可太巧了</p>
+</blockquote>
+<p>了解了工作去和版本库的区别，小白开始自己开动脑筋举一反三。既然<code>git status</code>可以查看哪些文件发生的变化。那能不能知道具体的变化是什么呢。</p>
+<p>毕竟作为一个程序猿，临时被唐僧召唤的事情经常发生。小白正在思考着，产品经理就喊上了。有个新需求需要确认排期。小白只好怪怪的跑过去。<br>确认完排期，回到座位上，继续开发今天的功能。<code>add</code> <code>commit</code>已经熟练的飞起。貌似git也很简单嘛。</p>
+<p>中午到了，开饭。吃过午饭回到坐位的小白发现电脑关机了。据说是某个不知名的家伙不小心提到了插座。<br>好吧，重新开机就好了，打开自己熟悉的ide，一切如常。上午的功能还没有commit，看下改过哪些文件吧。<code>git status</code>发现改了十几个文件。<br>好多都已经记不清改的什么了，肿木办？先把自己记忆清除的几个add。然后commit。剩下几个实在想不起来改过什么了。ide也没法回退了，这该如何是好啊。</p>
+<p>正在小白苦恼的时候，老鸟过来了。<br>看着发呆的小白，老鸟关系的问“小猴子，今天怎么发呆了？”。<br>小白如实回答“有几个文件忘记改过什么地方了，电脑关过机，ide也没法撤销操作了”。<br>老鸟熟练的敲下了<code>git diff package.json</code>,这时候所有的改动一目了然的展现在了小白面前。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">$ git diff package.json</span><br><span class="line">diff --git a/package.json b/package.json</span><br><span class="line">index 00570c9..f06efde 100755</span><br><span class="line">--- a/package.json</span><br><span class="line">+++ b/package.json</span><br><span class="line">@@ -16,7 +16,6 @@</span><br><span class="line">     &quot;@vue/cli-plugin-eslint&quot;: &quot;^4.1.0&quot;,</span><br><span class="line">     &quot;@vue/cli-service&quot;: &quot;^4.1.0&quot;,</span><br><span class="line">     &quot;babel-eslint&quot;: &quot;^10.0.3&quot;,</span><br><span class="line">-    &quot;eslint&quot;: &quot;^5.16.0&quot;,</span><br><span class="line">     &quot;eslint-plugin-vue&quot;: &quot;^5.0.0&quot;,</span><br><span class="line">     &quot;vue-template-compiler&quot;: &quot;^2.6.10&quot;</span><br><span class="line">   &#125;,</span><br><span class="line">@@ -27,7 +26,7 @@</span><br><span class="line">     &#125;,</span><br><span class="line">     &quot;extends&quot;: [</span><br><span class="line">       &quot;plugin:vue/essential&quot;,</span><br><span class="line">-      &quot;eslint:recommended&quot;</span><br><span class="line">+      &quot;eslint:recommendeddd&quot;</span><br><span class="line">     ],</span><br><span class="line">     &quot;rules&quot;: &#123;</span><br><span class="line">       &quot;no-console&quot;: &quot;off&quot;</span><br></pre></td></tr></table></figure>
+<p>还不待老鸟解释，小白已经明白减号<code>-</code>代表的是自己删除的行<code>+</code>是产生的新行。</p>
+<p>这下好了，可以看出自己修改过的细节，就可以很清楚的解决问题了。</p>
+<p>看着小白激动的目光，老鸟挥一挥衣袖，不带走一点代码。飘然而去。</p>
+<p>望着老鸟离去的背影，小白激动的追上去，语出惊人“大神，留步！”</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><code>git diff --filename</code> 可以比较文件的变更情况。</p>
+<ul>
+<li>如果文件<code>git add</code>过，会显示工作区和暂存区的差别。</li>
+<li>如果没有<code>git add</code>过，会显示工作区和仓库历史版本的差异。</li>
+</ul>
+<p><code>git diff --cached [file]</code> 显示暂存区和上一个commit的差异</p>
+<p><code>git diff HEAD</code> 显示工作区与当前分支最新commit之间的差异</p>
+<p><code>git diff --shortstat &quot;@&#123;0 day ago&#125;&quot;</code> 显示今天你写了多少行代码</p>
+<p>关于工作区和版本库的介绍，可以看上一篇《4.工作区和版本库》</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/12/22/git/5.%E5%AF%B9%E6%AF%94%E6%96%87%E4%BB%B6%E5%8F%98%E5%8C%96/" data-id="clkaptz7h00dgi8tr5gqjasci" class="article-share-link">
+        Share
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2019/12/23/git/6.%E6%92%A4%E9%94%80%E4%BF%AE%E6%94%B9/" class="article-nav-link">
+    <strong class="article-nav-caption">Newer</strong>
+    <div class="article-nav-title">
+      
+      6.撤销操作
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2019/12/21/git/4.%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E7%89%88%E6%9C%AC%E5%BA%93/" class="article-nav-link">
+    <strong class="article-nav-caption">Older</strong>
+    <div class="article-nav-title">4.啥事工作区、暂存区和版本库</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>舒克的博客 &copy; 2023</li>
+      
+        <li>
+          
+            <a href="https://beian.miit.gov.cn/" target="_blank"></a>
+            
+        </li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+    <p><ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul></p>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="舒克的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

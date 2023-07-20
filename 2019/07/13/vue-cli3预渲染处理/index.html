@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="keywords" content="python,php,mysql,前端">
+  
+  
+  <title>
+    vue-cli3预渲染处理 |
+    
+    舒克的博客
+  </title>
+  <!-- Icon -->
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-vue-cli3预渲染处理" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h1 class="article-title" itemprop="name">
+    vue-cli3预渲染处理
+  </h1>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/07/13/vue-cli3%E9%A2%84%E6%B8%B2%E6%9F%93%E5%A4%84%E7%90%86/" class="article-date">
+  <time datetime="2019-07-13T02:29:01.000Z" itemprop="datePublished">2019-07-13</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>vue模块化开发很方便，但也有问题，那就是seo。解决seo问题有两种方案，一种是ssr(服务端渲染)，还有一种是预渲染，只针对部分需要seo的页面进行渲染即可。</p>
+<span id="more"></span>
+<h2 id="预渲染配置步骤"><a href="#预渲染配置步骤" class="headerlink" title="预渲染配置步骤"></a>预渲染配置步骤</h2><ol>
+<li>安装预渲染插件<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install prerender-spa-plugin --save-dev</span><br></pre></td></tr></table></figure></li>
+<li>配置vue.config.js中的webpack设置，因为预渲染就是基于webpack打包的过程中实现的。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">// 这三项一定要有，因为下面configureWebpack中用到了</span><br><span class="line">const PrerenderSPAPlugin = require(&#x27;prerender-spa-plugin&#x27;);</span><br><span class="line">const Renderer = PrerenderSPAPlugin.PuppeteerRenderer;</span><br><span class="line">const path = require(&#x27;path&#x27;);</span><br><span class="line"></span><br><span class="line">module.exports = &#123;</span><br><span class="line">  // 预渲染关键配置</span><br><span class="line">  configureWebpack: () =&gt; &#123;</span><br><span class="line">    if (process.env.NODE_ENV !== &#x27;production&#x27;) return;</span><br><span class="line">    return &#123;</span><br><span class="line">      plugins: [</span><br><span class="line">        new PrerenderSPAPlugin(&#123;</span><br><span class="line">          // 生成文件的路径，也可以与webpakc打包的一致。</span><br><span class="line">          // 下面这句话非常重要！！！</span><br><span class="line">          // 这个目录只能有一级，如果目录层次大于一级，在生成的时候不会有任何错误提示，在预渲染的时候只会卡着不动。</span><br><span class="line">          staticDir: path.join(__dirname, &#x27;dist&#x27;),</span><br><span class="line">  </span><br><span class="line">          // 对应自己的路由文件，如果有参数需要写具体参数，比如/a/:id需要写/a/123456</span><br><span class="line">          routes: [&#x27;/&#x27;, &#x27;/about&#x27;],</span><br><span class="line">  </span><br><span class="line">          // 这个很重要，如果没有配置这段，也不会进行预编译</span><br><span class="line">          renderer: new Renderer(&#123;</span><br><span class="line">            inject: &#123;</span><br><span class="line">              foo: &#x27;bar&#x27;</span><br><span class="line">            &#125;,</span><br><span class="line">            headless: false,</span><br><span class="line">            // 在 main.js 中 document.dispatchEvent(new Event(&#x27;render-event&#x27;))，两者的事件名称要对应上。</span><br><span class="line">            renderAfterDocumentEvent: &#x27;render-event&#x27;</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;)</span><br><span class="line">      ]</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>修改<code>mian.js</code>，上面配置中有个<code>renderAfterDocumentEvent</code>设置了一个事件，如果<code>main.js</code>需要在<code>mounted</code>时监听事件，否则不会执行预渲染<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">new Vue(&#123;</span><br><span class="line">  router,</span><br><span class="line">  store,</span><br><span class="line">  render: (h) =&gt; h(App),</span><br><span class="line">  // 添加mounted，不然不会执行预编译</span><br><span class="line">  mounted() &#123;</span><br><span class="line">    document.dispatchEvent(new Event(&#x27;render-event&#x27;));</span><br><span class="line">  &#125;</span><br><span class="line">&#125;).$mount(&#x27;#app&#x27;);</span><br></pre></td></tr></table></figure></li>
+<li>执行<code>npm run build</code>进行编译。在编译的过程中会弹出一个浏览器窗口对每个预编译的页面进行展示，不要关闭它，等渲染完毕，它会自动关闭的。</li>
+</ol>
+<h2 id="项目源码"><a href="#项目源码" class="headerlink" title="项目源码"></a>项目源码</h2><p><a target="_blank" rel="noopener" href="https://gitee.com/shooke/vue-demo/tree/master/vue-demo-prerender">https://gitee.com/shooke/vue-demo/tree/master/vue-demo-prerender</a></p>
+<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><p>vue-cli2预渲染请看<a target="_blank" rel="noopener" href="https://juejin.im/post/5b8ba25751882542f25a6cc8">https://juejin.im/post/5b8ba25751882542f25a6cc8</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/07/13/vue-cli3%E9%A2%84%E6%B8%B2%E6%9F%93%E5%A4%84%E7%90%86/" data-id="clkaptz61004ai8trb0b08bfw" class="article-share-link">
+        Share
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue-cli/" rel="tag">vue-cli</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" rel="tag">前端开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A2%84%E6%B8%B2%E6%9F%93/" rel="tag">预渲染</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2019/07/17/url%E6%B7%BB%E5%8A%A0%E5%8F%82%E6%95%B0/" class="article-nav-link">
+    <strong class="article-nav-caption">Newer</strong>
+    <div class="article-nav-title">
+      
+      url添加参数
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2019/07/08/vue%E4%B8%8B%E4%BD%BF%E7%94%A8ueditor%EF%BC%8C%E6%96%87%E4%BB%B6%E7%9B%B4%E4%BC%A0%E4%B8%83%E7%89%9B%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" class="article-nav-link">
+    <strong class="article-nav-caption">Older</strong>
+    <div class="article-nav-title">vue下使用ueditor，文件直传七牛踩坑记录</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>舒克的博客 &copy; 2023</li>
+      
+        <li>
+          
+            <a href="https://beian.miit.gov.cn/" target="_blank"></a>
+            
+        </li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+    <p><ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul></p>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="舒克的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

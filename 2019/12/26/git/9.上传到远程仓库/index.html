@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="keywords" content="python,php,mysql,前端">
+  
+  
+  <title>
+    9.上传到远程仓库 |
+    
+    舒克的博客
+  </title>
+  <!-- Icon -->
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-git/9.上传到远程仓库" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h1 class="article-title" itemprop="name">
+    9.上传到远程仓库
+  </h1>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/12/26/git/9.%E4%B8%8A%E4%BC%A0%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/" class="article-date">
+  <time datetime="2019-12-26T12:32:20.000Z" itemprop="datePublished">2019-12-26</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3git/">一点一点了解git</a>
+</div>
+
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
+<p>本故事纯属虚构，如有雷同，^0^那可太巧了</p>
+</blockquote>
+<p>这几天以来，小白学会了很多git的使用技巧。让他在应对问题的时候可以比较从容。比如需求反复修改。处理一些临时功能，后期要删除等比较繁琐的事情。</p>
+<p>今天是小白负责的第一个项目发布的日子。</p>
+<p>BOSS让小白把代码提交到远程仓库，这样负责发布的小伙伴就可以将代码进行发布了。</p>
+<p>小白询问了老鸟如何将代码上传到github。回来开始操作。</p>
+<ol>
+<li>创建线上仓库</li>
+</ol>
+<p>进入github.com登录自己的账号，点击右上角的加号，选择<code>new repository</code></p>
+<p><img src="/assets/images/posts/git_book/9-1.png" alt="new repository"></p>
+<p>填写仓库名称然后点击绿色的<code>cteate repository</code>按钮</p>
+<p><img src="/assets/images/posts/git_book/9-2.png" alt="create repository"></p>
+<p>创建成功会有如下提示</p>
+<p><img src="/assets/images/posts/git_book/9-3.png" alt="repository"></p>
+<p>这时候说明已经创建成功了。这里会显示项目的远程地址，同时介绍了两种使用情况</p>
+<ul>
+<li>没有项目时可以先创建一个目录，进行<code>git init</code>初始化，然后用<code>git remote add</code>进行关联</li>
+<li>如果已经有了本地项目直接使用<code>git remote add</code>进行关联</li>
+</ul>
+<p>小白一看我属于第二种情况。果断进入项目目录执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git remote add origin https://github.com/shooke/learngit.git</span><br><span class="line">$ git push -u origin master</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>提示让<code>Username for &#39;https://github.com&#39;:</code>让输入git账号，小白果断输入，然后回车<br>再次提示<code>Password for &#39;https://xiaobai@163.com@github.com&#39;:</code>这里让输入密码</p>
+<p>“奇怪怎么没有显示<code>*</code>啊”小白疑惑，这时候正好老鸟走过来<br>“BOSS让你上传代码，搞定了吗”，老鸟说<br>“就差一步了，为啥没法输入密码啊”小白问<br>“傻子，git命令行工具跟windows的cmd不一样的，这里是不会有星号提示的，但其实你的密码已经输入了，不行你可以试试”老鸟回答</p>
+<p>小白重新输入密码，回车。出现了以下提示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Counting objects: 26, done.</span><br><span class="line">Delta compression using up to 4 threads.</span><br><span class="line">Compressing objects: 100% (22/22), done.</span><br><span class="line">Writing objects: 100% (26/26), 4.36 KiB | 4.36 MiB/s, done.</span><br><span class="line">Total 26 (delta 7), reused 0 (delta 0)</span><br><span class="line">remote: Resolving deltas: 100% (7/7), done.</span><br><span class="line">To https://github.com/shooke/learngit.git</span><br><span class="line"> * [new branch]      master -&gt; master</span><br><span class="line">Branch &#x27;master&#x27; set up to track remote branch &#x27;master&#x27; from &#x27;origin&#x27;.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>“出现<code>[new branch]      master -&gt; master</code>是不是就表示上传成功了”小白问<br>“对啊，这个提示代表你本地的master分支，上传到了远程的master分支”老鸟回答</p>
+<p>“啥事分支啊” 小白好奇的问<br>“分支啊，这可是好东西，多人协作全靠它了，我还有事明天给你讲” 老鸟回去忙自己的事了</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><code>git remote add [shortname] [url]</code>可以让本地仓库和远程仓库建立联系。<code>shortname</code>是仓库名称，方便执行命令时使用，一般情况下都用<code>origin</code>；<code>url</code>就是远程仓库的地址，比如上面例子中的<code>https://github.com/shooke/learngit.git</code></li>
+<li><code>git remote -v</code> 显示所有远程仓库</li>
+<li><code>git remote show [remote]</code> 显示某个远程仓库的信息</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/12/26/git/9.%E4%B8%8A%E4%BC%A0%E5%88%B0%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/" data-id="clkaptz7j00dri8tr27tlgheq" class="article-share-link">
+        Share
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2019/12/28/ssh%E6%8F%90%E9%80%9F/" class="article-nav-link">
+    <strong class="article-nav-caption">Newer</strong>
+    <div class="article-nav-title">
+      
+      ssh提速
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2019/12/25/git/8.%E5%86%8D%E9%81%87%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E7%89%88%E6%9C%AC%E5%BA%93/" class="article-nav-link">
+    <strong class="article-nav-caption">Older</strong>
+    <div class="article-nav-title">8.再遇工作区和版本库</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>舒克的博客 &copy; 2023</li>
+      
+        <li>
+          
+            <a href="https://beian.miit.gov.cn/" target="_blank"></a>
+            
+        </li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+    <p><ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul></p>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="舒克的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

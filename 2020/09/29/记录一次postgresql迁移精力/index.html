@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="keywords" content="python,php,mysql,前端">
+  
+  
+  <title>
+    记录一次postgresql迁移经历 |
+    
+    舒克的博客
+  </title>
+  <!-- Icon -->
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-记录一次postgresql迁移精力" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h1 class="article-title" itemprop="name">
+    记录一次postgresql迁移经历
+  </h1>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/09/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1postgresql%E8%BF%81%E7%A7%BB%E7%B2%BE%E5%8A%9B/" class="article-date">
+  <time datetime="2020-09-28T16:24:15.000Z" itemprop="datePublished">2020-09-29</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>数据库服务器硬盘满了，需要将数据迁移到另一台数据库，做一下记录</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>去postgresql官网<a target="_blank" rel="noopener" href="https://www.postgresql.org/download/%EF%BC%8C%E9%80%89%E6%8B%A9%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8C%E6%88%91%E8%BF%99%E9%87%8C%E9%80%89%E6%8B%A9%E7%9A%84%E6%98%AFubuntu%E3%80%82">https://www.postgresql.org/download/，选择操作系统，我这里选择的是ubuntu。</a><br>然后根据说明进行安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Create the file repository configuration:</span><br><span class="line">sudo sh -c &#x27;echo &quot;deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&quot; &gt; /etc/apt/sources.list.d/pgdg.list&#x27;</span><br><span class="line"></span><br><span class="line"># Import the repository signing key:</span><br><span class="line">wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"># Update the package lists:</span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"># Install the latest version of PostgreSQL.</span><br><span class="line"># If you want a specific version, use &#x27;postgresql-12&#x27; or similar instead of &#x27;postgresql&#x27;:</span><br><span class="line">sudo apt-get -y install postgresql</span><br></pre></td></tr></table></figure>
+<p>值得注意的是，安装时一定要选择与老数据库相同的版本</p>
+<p>安装完成后，就可以会自动添加一个postgres的系统用户，该用户没有密码如果想要密码可以自行设置</p>
+<span id="more"></span>
+
+<h2 id="登录postgresql，配置密码"><a href="#登录postgresql，配置密码" class="headerlink" title="登录postgresql，配置密码"></a>登录postgresql，配置密码</h2><p>刚安装完，一定要使用<code>postgres</code>用户才可以登录</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ sudo su - postgres</span><br><span class="line">$ psql</span><br><span class="line">psql (9.6.19)</span><br><span class="line">SSL 连接（协议：TLSv1.2，密码：ECDHE-RSA-AES256-GCM-SHA384，密钥位：256，压缩：关闭)</span><br><span class="line">输入 &quot;help&quot; 来获取帮助信息.</span><br><span class="line"></span><br><span class="line">postgres=# </span><br></pre></td></tr></table></figure>
+<p>出现<code>postgres=#</code>标示已经登录到数据库了。非常简单。</p>
+<p><code>psql</code>命令其实是相当于<code>psql -U postgres -h localhost</code>，因为<code>psql</code>如果不指定用户会使用与系统账户相同的数据库账号。<br>一定要注意哦，系统中的<code>postgres</code>和数据库的<code>postgres</code>虽然名字一样，但不是一回事一个属于系统，一个数据数据库。<br>接下来给数据库的<code>postgres</code>账号设置密码，这样我们就可以在不切换系统<code>postgres</code>账号的情况下登录了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">postgres=# alter user postgres with password &#x27;123456&#x27;</span><br></pre></td></tr></table></figure>
+<p>这样就设置好了密码。</p>
+<h2 id="配置外网访问"><a href="#配置外网访问" class="headerlink" title="配置外网访问"></a>配置外网访问</h2><p>默认postgresql是不允许外网访问的，我们需要修改两个文件。</p>
+<ol>
+<li>pg_hba.conf：配置数据库的访问权限</li>
+<li>postgresql.conf：配置数据库服务的相关参数</li>
+</ol>
+<p>首先我们退出数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">postgres=# \q</span><br></pre></td></tr></table></figure>
+<p>然后切换回root账号</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">su - root</span><br></pre></td></tr></table></figure>
+<p>接下来修改配置文件，修改<code>pg_hba.conf</code>，增加一条<code>host  all  all  0.0.0.0/0   md5</code>规则</p>
+<p>修改<code>postgresql.conf</code> 找到<code>#listen_addresses=’localhost’</code>，修改成<code>listen_addresses=’*’</code></p>
+<p>修改完成重启服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service postgres restart</span><br></pre></td></tr></table></figure>
+
+<p>这样我们就可以在其他电脑上用<code>psql -h serverip -U postgres</code>登录数据库管理了</p>
+<h2 id="修改数据存储位置"><a href="#修改数据存储位置" class="headerlink" title="修改数据存储位置"></a>修改数据存储位置</h2><ol>
+<li><p>首先需要停止服务执行<code>service postgresql stop</code></p>
+</li>
+<li><p>将原来的数据库目录复制新目录<br>打开<code>postgresql.conf</code>文件找到<code>data_directory</code>看一下当前数据库存放目录</p>
+<p>将目录复制到想保持的地方，不可以使用cp那样会缺少属性，无法启动数据库，需要用<code>rsync</code>命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rsync -av /var/lib/postgresql/9.6/main /mnt/main</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>  <code>/var/lib/postgresql/9.6/main</code>是<code>data_directory</code>中个默认的设置，将其修改为新目录<code>/mnt/main</code><br>3. 重启服务<code>service postgresql</code></p>
+<p>这样数据存储位置就生效了</p>
+<h2 id="导入老数据"><a href="#导入老数据" class="headerlink" title="导入老数据"></a>导入老数据</h2><p>执行命令<code>psql -h localhost -U postgres 数据库名 &lt; 备份文件</code> 导入数据</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/09/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1postgresql%E8%BF%81%E7%A7%BB%E7%B2%BE%E5%8A%9B/" data-id="clkaptz7700cci8trdof3fvhs" class="article-share-link">
+        Share
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgresql/" rel="tag">postgresql</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2020/09/30/%E8%A7%A3%E5%86%B3ssh%E7%99%BB%E5%BD%95%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98/" class="article-nav-link">
+    <strong class="article-nav-caption">Newer</strong>
+    <div class="article-nav-title">
+      
+      解决ssh登录超时问题
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2020/09/23/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91unionid%E8%AF%A6%E8%A7%A3/" class="article-nav-link">
+    <strong class="article-nav-caption">Older</strong>
+    <div class="article-nav-title">微信开发unionid详解</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>舒克的博客 &copy; 2023</li>
+      
+        <li>
+          
+            <a href="https://beian.miit.gov.cn/" target="_blank"></a>
+            
+        </li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+    <p><ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul></p>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="舒克的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

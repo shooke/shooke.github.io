@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="keywords" content="python,php,mysql,前端">
+  
+  
+  <title>
+    团队开发中如何使用git分支 |
+    
+    舒克的博客
+  </title>
+  <!-- Icon -->
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-团队开发中如何使用git分支" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h1 class="article-title" itemprop="name">
+    团队开发中如何使用git分支
+  </h1>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/02/15/%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8git%E5%88%86%E6%94%AF/" class="article-date">
+  <time datetime="2019-02-15T08:57:50.000Z" itemprop="datePublished">2019-02-15</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>git已经成为团队代码管理的标配，合理的使用git分支进行开发，可以大大提高开发效率，降低管理成本。好多人听过git fllow，但都是一知半解，其实并不神秘，也很简单。这是很多研发团队总结出来的一种分支策略而已。</p>
+<span id="more"></span>
+
+<h2 id="功能分支使用策略"><a href="#功能分支使用策略" class="headerlink" title="功能分支使用策略"></a>功能分支使用策略</h2><p>首先，我们有两个环境，测试环境（dev分支）和生产环境（master分支）。<br>其次，有两个团队同时进行开发两个不同的功能模块，这两个模块是相对独立的。</p>
+<p>开发前，两个团队要在master的基础上创建不同的功能分支，团队一使用branch-1，团队二使用branch-2。</p>
+<p>当需要测试时，团队需要将功能分支合并到测试分支dev，线上构建后，开始测试。比如团队1的功能需要测试了，就将branch-1的代码合并到dev，团队二需要测试了将branch-2合并到dev，<strong>这里的合并用merge</strong>。这样两个团队都可以进行测试，互不影响。</p>
+<p>其中一个功能完成后，比如branch-1，将其合并到master**(这里合并用merge)**进行发布就可以了。</p>
+<h2 id="多人合作分支使用策略"><a href="#多人合作分支使用策略" class="headerlink" title="多人合作分支使用策略"></a>多人合作分支使用策略</h2><p>上面说道了branch-1和branch-2是功能分支，由两个团队负责，每个团队都有若干个人，这时候就需要考虑团队合作问题。<br>以团队1为例，团队中的每个人，都应该基于branch-1去checkout一个自己的个人分支，进行开发。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git checkout branch-1</span><br><span class="line">git checkout -b mybranch #创建自己的分支</span><br><span class="line">...</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;开发说明&quot;</span><br></pre></td></tr></table></figure>
+<p>当自己的开发完成后，将代码合并到功能分支，可以简单的使用下面的方式。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git checkout branch-1 # 切换到功能分支</span><br><span class="line">git pull              # 拉取最新代码</span><br><span class="line">git merge mybranch    # 合并个人代码</span><br><span class="line">git push              # 上传功能分支</span><br></pre></td></tr></table></figure>
+<p>更好的方式是利用rebase让合并历史更加清晰，方便维护，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git checkout branch-1 # 切换到功能分支</span><br><span class="line">git pull              # 拉取最新代码</span><br><span class="line">git checkout mybranch # 切换到个人分支</span><br><span class="line">git rebase branch-1   # 合并功能分支的代码，这个可以让你的分支历史更加清晰，易于管理</span><br><span class="line">git checkout branch-1 # 切换到功能分支</span><br><span class="line">git merge mybranch    # 将个人分支的修改合并进来</span><br><span class="line">git push              # 上传功能分支</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/02/15/%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8git%E5%88%86%E6%94%AF/" data-id="clkaptz690056i8tr091v7cb2" class="article-share-link">
+        Share
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E6%94%AF/" rel="tag">分支</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C/" rel="tag">多人协作</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2019/02/21/mysql%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/" class="article-nav-link">
+    <strong class="article-nav-caption">Newer</strong>
+    <div class="article-nav-title">
+      
+      mysql主从配置
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2019/02/01/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BBsession%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="article-nav-link">
+    <strong class="article-nav-caption">Older</strong>
+    <div class="article-nav-title">前后端分离session跨域解决方案</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>舒克的博客 &copy; 2023</li>
+      
+        <li>
+          
+            <a href="https://beian.miit.gov.cn/" target="_blank"></a>
+            
+        </li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+    <p><ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul></p>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="舒克的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

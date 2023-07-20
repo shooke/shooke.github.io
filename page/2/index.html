@@ -1,822 +1,238 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/css/main.css?v=6.7.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '6.7.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-<meta name="keywords" content="python,php,mysql,前端">
-<meta property="og:type" content="website">
-<meta property="og:title" content="shooke&#39;s blog">
-<meta property="og:url" content="https://www.xingjiehu.com/page/2/index.html">
-<meta property="og:site_name" content="shooke&#39;s blog">
-<meta property="og:description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-<meta property="og:locale" content="zh-CN">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shooke&#39;s blog">
-<meta name="twitter:description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-
-
-
-  <link rel="alternate" href="/atom.xml" title="shooke's blog" type="application/atom+xml">
-
-
-
-
-  <link rel="canonical" href="https://www.xingjiehu.com/page/2/">
-
-
-
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>shooke's blog</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-  <!-- google 验证 -->
-  <meta name="google-site-verification" content="9Y6X9yptaHlOdppRk7mld_uHsSibf3lPB8c_60zPyF0">
-  <!-- baidu 验证和收录推送 -->
-  <meta name="baidu-site-verification" content="lCJxAeYryx">
-</head>
-
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
-
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
+  <meta name="keywords" content="python,php,mysql,前端">
+  
+  
+  <title>
+    
+    舒克的博客
+  </title>
+  <!-- Icon -->
+  
+    <link rel="shortcut icon" href="/favicon.ico">
     
   
+<link rel="stylesheet" href="/css/style.css">
 
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <main class="content">
+    <section class="jumbotron">
+  <div class="video">
     
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">shooke's blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <div class="video-frame">
+      <img src="/images/ocean/overlay-hero.png" alt="Decorative image frame">
     </div>
     
-    
+    <div class="video-media">
+      <video playsinline="" autoplay="" loop="" muted="" data-autoplay="" poster="/images/ocean/ocean.png"
+        x5-video-player-type="h5">
+        <source src="/images/ocean/ocean.mp4" type="video/mp4">
+        <source src="/images/ocean/ocean.ogv" type="video/ogg">
+        <source src="/images/ocean/ocean.webm" type="video/webm">
+        <p>Your user agent does not support the HTML5 Video element.</p>
+      </video>
+      <div class="video-overlay"></div>
+    </div>
+    <div class="video-inner text-center text-white">
+      <h1><a href="/">舒克的博客</a></h1>
+      <p></p>
+      <div><img src="/images/hexo-inverted.svg" class="brand" alt="舒克的博客"></div>
+    </div>
+    <div class="video-learn-more">
+      <a class="anchor" href="#landingpage"><i class="fe fe-mouse"></i></a>
+    </div>
   </div>
+</section>
+<div id="landingpage">
+  <section class="outer">
+  <article class="articles">
+    
+    <h1 class="page-type-title"></h1>
+    
+    
+    <article id="post-解决ssh登录超时问题" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
 
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
   
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
-
-  </li>
-
-      
-      
-    </ul>
+  <h2 class="article-title" itemprop="name">
+    <a href="/2020/09/30/%E8%A7%A3%E5%86%B3ssh%E7%99%BB%E5%BD%95%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98/">解决ssh登录超时问题</a>
+  </h2>
+  
   
 
-  
-    
-
-  
-
-  
-</nav>
-
-
-
-  
-
-
-
-</div>
     </header>
-
     
 
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
     
+    <div class="article-meta">
+      <a href="/2020/09/30/%E8%A7%A3%E5%86%B3ssh%E7%99%BB%E5%BD%95%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2020-09-30T15:36:31.000Z" itemprop="datePublished">2020-09-30</time>
+</a>
       
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/09/30/cktnq12om005ox0tr79h7qims/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/09/30/cktnq12om005ox0tr79h7qims/" class="post-title-link" itemprop="url">解决ssh登录超时问题</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-09-30 23:36:31" itemprop="dateCreated datePublished" datetime="2020-09-30T23:36:31+08:00">2020-09-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </div>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
+    <div class="article-entry" itemprop="articleBody">
       
       
-
+        
       
-        
-          
-            <p>加上<code>-o ServerAliveInterval=60</code>参数就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -o ServerAliveInterval=60 root@192.168.1.1</span><br></pre></td></tr></table></figure></p>
-
-          
-        
+      
+        <p>加上<code>-o ServerAliveInterval=60</code>参数就可以了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -o ServerAliveInterval=60 root@192.168.1.1</span><br></pre></td></tr></table></figure>
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/09/30/%E8%A7%A3%E5%86%B3ssh%E7%99%BB%E5%BD%95%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98/" data-id="clkaptz6d005ni8tr0cgmddo5" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
-  
-  
-  
-  </article>
 
+  
 
+  
+
+</article>
     
+    <article id="post-记录一次postgresql迁移精力" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
       
-
   
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <h2 class="article-title" itemprop="name">
+    <a href="/2020/09/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1postgresql%E8%BF%81%E7%A7%BB%E7%B2%BE%E5%8A%9B/">记录一次postgresql迁移经历</a>
+  </h2>
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/09/29/cktnq12oo005vx0tr9sugmzcz/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/09/29/cktnq12oo005vx0tr9sugmzcz/" class="post-title-link" itemprop="url">记录一次postgresql迁移经历</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-09-29 00:24:15" itemprop="dateCreated datePublished" datetime="2020-09-29T00:24:15+08:00">2020-09-29</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </header>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="article-meta">
+      <a href="/2020/09/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1postgresql%E8%BF%81%E7%A7%BB%E7%B2%BE%E5%8A%9B/" class="article-date">
+  <time datetime="2020-09-28T16:24:15.000Z" itemprop="datePublished">2020-09-29</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
 
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
       
       
-
-      
         
-          <p>数据库服务器硬盘满了，需要将数据迁移到另一台数据库，做一下记录</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>去postgresql官网<a href="https://www.postgresql.org/download/，选择操作系统，我这里选择的是ubuntu。" target="_blank" rel="noopener">https://www.postgresql.org/download/，选择操作系统，我这里选择的是ubuntu。</a><br>然后根据说明进行安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Create the file repository configuration:</span><br><span class="line">sudo sh -c &apos;echo &quot;deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&quot; &gt; /etc/apt/sources.list.d/pgdg.list&apos;</span><br><span class="line"></span><br><span class="line"># Import the repository signing key:</span><br><span class="line">wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"># Update the package lists:</span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"># Install the latest version of PostgreSQL.</span><br><span class="line"># If you want a specific version, use &apos;postgresql-12&apos; or similar instead of &apos;postgresql&apos;:</span><br><span class="line">sudo apt-get -y install postgresql</span><br></pre></td></tr></table></figure></p>
+      
+      
+        <p>数据库服务器硬盘满了，需要将数据迁移到另一台数据库，做一下记录</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>去postgresql官网<a target="_blank" rel="noopener" href="https://www.postgresql.org/download/%EF%BC%8C%E9%80%89%E6%8B%A9%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8C%E6%88%91%E8%BF%99%E9%87%8C%E9%80%89%E6%8B%A9%E7%9A%84%E6%98%AFubuntu%E3%80%82">https://www.postgresql.org/download/，选择操作系统，我这里选择的是ubuntu。</a><br>然后根据说明进行安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Create the file repository configuration:</span><br><span class="line">sudo sh -c &#x27;echo &quot;deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&quot; &gt; /etc/apt/sources.list.d/pgdg.list&#x27;</span><br><span class="line"></span><br><span class="line"># Import the repository signing key:</span><br><span class="line">wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"># Update the package lists:</span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"># Install the latest version of PostgreSQL.</span><br><span class="line"># If you want a specific version, use &#x27;postgresql-12&#x27; or similar instead of &#x27;postgresql&#x27;:</span><br><span class="line">sudo apt-get -y install postgresql</span><br></pre></td></tr></table></figure>
 <p>值得注意的是，安装时一定要选择与老数据库相同的版本</p>
 <p>安装完成后，就可以会自动添加一个postgres的系统用户，该用户没有密码如果想要密码可以自行设置</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/09/29/cktnq12oo005vx0tr9sugmzcz/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+        
+          <p>
+            <a class="article-more-link" href="/2020/09/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1postgresql%E8%BF%81%E7%A7%BB%E7%B2%BE%E5%8A%9B/">
+              Read More...
+            </a>
+          </p>
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/09/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1postgresql%E8%BF%81%E7%A7%BB%E7%B2%BE%E5%8A%9B/" data-id="clkaptz7700cci8trdof3fvhs" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/postgresql/" rel="tag">postgresql</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
-  
-  
-  
-  </article>
 
+  
 
+  
+
+</article>
     
+    <article id="post-微信开发unionid详解" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
       
-
   
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <h2 class="article-title" itemprop="name">
+    <a href="/2020/09/23/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91unionid%E8%AF%A6%E8%A7%A3/">微信开发unionid详解</a>
+  </h2>
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/09/23/cktnq12oa0052x0trl5zvobv1/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/09/23/cktnq12oa0052x0trl5zvobv1/" class="post-title-link" itemprop="url">微信开发unionid详解</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-09-23 10:26:11" itemprop="dateCreated datePublished" datetime="2020-09-23T10:26:11+08:00">2020-09-23</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </header>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="article-meta">
+      <a href="/2020/09/23/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91unionid%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time datetime="2020-09-23T02:26:11.000Z" itemprop="datePublished">2020-09-23</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
 
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
       
       
-
-      
         
-          <h2 id="unionid概况"><a href="#unionid概况" class="headerlink" title="unionid概况"></a>unionid概况</h2><p>微信开发过程中，经常会遇到，一个企业有多个小程序和公众号，在不同的小程序和公众号中，会有不同的openid。如果想要确定是同一个人，就需要用到unionid机制。</p>
+      
+      
+        <h2 id="unionid概况"><a href="#unionid概况" class="headerlink" title="unionid概况"></a>unionid概况</h2><p>微信开发过程中，经常会遇到，一个企业有多个小程序和公众号，在不同的小程序和公众号中，会有不同的openid。如果想要确定是同一个人，就需要用到unionid机制。</p>
 <p>官方关于unionid的说明是这样的</p>
 <p>公众号文档的描述</p>
 <blockquote>
@@ -826,186 +242,71 @@
 <blockquote>
 <p>如果开发者拥有多个移动应用、网站应用、和公众帐号（包括小程序），可通过 UnionID 来区分用户的唯一性，因为只要是同一个微信开放平台帐号下的移动应用、网站应用和公众帐号（包括小程序），用户的 UnionID 是唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，UnionID是相同的。</p>
 </blockquote>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/09/23/cktnq12oa0052x0trl5zvobv1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+        
+          <p>
+            <a class="article-more-link" href="/2020/09/23/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91unionid%E8%AF%A6%E8%A7%A3/">
+              Read More...
+            </a>
+          </p>
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/09/23/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91unionid%E8%AF%A6%E8%A7%A3/" data-id="clkaptz6a0059i8tr6vjfeurv" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unionid/" rel="tag">unionid</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
-  
-  
-  
-  </article>
 
+  
 
+  
+
+</article>
     
+    <article id="post-聊聊kafka" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
       
-
   
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <h2 class="article-title" itemprop="name">
+    <a href="/2020/08/22/%E8%81%8A%E8%81%8Akafka/">聊聊kafka</a>
+  </h2>
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/08/22/cktnq12oj005ex0trlig3n76j/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/08/22/cktnq12oj005ex0trlig3n76j/" class="post-title-link" itemprop="url">聊聊kafka</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-08-22 15:47:12" itemprop="dateCreated datePublished" datetime="2020-08-22T15:47:12+08:00">2020-08-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </header>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="article-meta">
+      <a href="/2020/08/22/%E8%81%8A%E8%81%8Akafka/" class="article-date">
+  <time datetime="2020-08-22T07:47:12.000Z" itemprop="datePublished">2020-08-22</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
 
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
       
       
-
-      
         
-          
-            <p>为了便于理解kafka，先了解一下消息队列以及通讯模式。首先先了解两个名词</p>
+      
+      
+        <p>为了便于理解kafka，先了解一下消息队列以及通讯模式。首先先了解两个名词</p>
 <ul>
 <li>数据生产者 产生数据的程序或服务</li>
 <li>数据消费者 处理数据的程序或服务</li>
@@ -1023,7 +324,7 @@
 <h3 id="Producer"><a href="#Producer" class="headerlink" title="Producer"></a>Producer</h3><p>Producer即生产者，消息的产生者，它将消息发送到kafka中。安装包内有命令行工具，在java、python、php等语言也都有响应的sdk。使用Producer对象可以将消息发送到kafka服务。发送服务时会指定Topic。</p>
 <h3 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h3><p>消息即数据，生产者发送一次数据，会产生一条消息。</p>
 <h3 id="Topic"><a href="#Topic" class="headerlink" title="Topic"></a>Topic</h3><p>消息主题，可以理解为消息分类。比如订单业务用order，订单服务就可以只接收order topic下的消息进行处理，这是非常方便的。避免了接收无用的消息。</p>
-<h3 id="Partition"><a href="#Partition" class="headerlink" title="Partition"></a>Partition</h3><p>Topic的分区，可以理解为文件夹，当数据特别多的时候如果把数据再次进行归类存储，可以有效的提高读写效率。比如有一万个文件，放在一个文件夹中查找就比较慢，如果按照哈希分散到a-z的26个文件夹中，那每个文件夹中存储的文件数量就是1/26。当我们发现要查找的文件第一个字母是a，就直接去a文件夹下。这样就提高了查找速度。</p>
+<h3 id="Partition"><a href="#Partition" class="headerlink" title="Partition"></a>Partition</h3><p>Topic的分区，可以理解为文件夹，当数据特别多的时候如果把数据再次进行归类存储，可以有效的提高读写效率。比如有一万个文件，放在一个文件夹中查找就比较慢，如果按照哈希分散到a-z的26个文件夹中，那每个文件夹中存储的文件数量就是1&#x2F;26。当我们发现要查找的文件第一个字母是a，就直接去a文件夹下。这样就提高了查找速度。</p>
 <h3 id="Broker"><a href="#Broker" class="headerlink" title="Broker"></a>Broker</h3><p>kafka实例，可以简单理解为kafka的消息容器。每个kafka集群内的broker都有一个不重复的编号。每台服务器上可以有一到多个kafka实例，为了便于理解，我们假设一台服务器上有一个kafka实例。这样你也可以理解为一个broker等于一台服务器。</p>
 <h3 id="Replication"><a href="#Replication" class="headerlink" title="Replication"></a>Replication</h3><p>topic的副本，他存放在kafka实例（broker）上。注意一下几点</p>
 <ul>
@@ -1037,1669 +338,528 @@
 <p>生产了个order的topic，我们有系统A和系统B都会用到订单数据。</p>
 <p>系统A用 group-A消费者的数量不能超过5，如果超过了，会有一个消费这始终借不到数据。group-A中每个消费者都从各自的分区（Partition）中获取数据，他们每个人的数据是不重复的。<br>系统B如果使用group-A，那么它消费的一些数据，系统A会无法消费。因此如果想要两个系统都获得完整的数据。就需要系统B更换分组，比如使用group-B。这样两个系统互不干扰，都可以拿到消息队列中的全部数据。</p>
 
-          
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/08/22/%E8%81%8A%E8%81%8Akafka/" data-id="clkaptz6b005gi8tr30pi358x" class="article-share-link">
+        Share
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/" rel="tag">kafka</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-python捕获异常堆栈信息" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2020/08/13/python%E6%8D%95%E8%8E%B7%E5%BC%82%E5%B8%B8%E5%A0%86%E6%A0%88%E4%BF%A1%E6%81%AF/">python捕获异常堆栈信息</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/08/13/python%E6%8D%95%E8%8E%B7%E5%BC%82%E5%B8%B8%E5%A0%86%E6%A0%88%E4%BF%A1%E6%81%AF/" class="article-date">
+  <time datetime="2020-08-13T05:07:32.000Z" itemprop="datePublished">2020-08-13</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>python的异常对称相比java或php简单了很多，对象中的信息很少，只有简单的错误输出。这在开发过程中是无法满足使用需求的。我们还需要更多的错误信息，比如错误发生在哪一行，具体的错误信息是什么。这就需要获取错误堆栈信息。下面简单记录一下常用的集中异常处理。</p>
+        
+          <p>
+            <a class="article-more-link" href="/2020/08/13/python%E6%8D%95%E8%8E%B7%E5%BC%82%E5%B8%B8%E5%A0%86%E6%A0%88%E4%BF%A1%E6%81%AF/">
+              Read More...
+            </a>
+          </p>
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/08/13/python%E6%8D%95%E8%8E%B7%E5%BC%82%E5%B8%B8%E5%A0%86%E6%A0%88%E4%BF%A1%E6%81%AF/" data-id="clkaptz5k002ni8tra8if1hgp" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8/" rel="tag">异常</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
-  
-  
-  
-  </article>
 
+  
 
+  
+
+</article>
     
+    <article id="post-springboot/springboot-配置" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
       
-
   
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <h2 class="article-title" itemprop="name">
+    <a href="/2020/06/12/springboot/springboot-%E9%85%8D%E7%BD%AE/">springboot 配置</a>
+  </h2>
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/08/13/cktnq12n3002px0trfvuaw7pk/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/08/13/cktnq12n3002px0trfvuaw7pk/" class="post-title-link" itemprop="url">python捕获异常堆栈信息</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-08-13 13:07:32" itemprop="dateCreated datePublished" datetime="2020-08-13T13:07:32+08:00">2020-08-13</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </header>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+    <div class="article-meta">
+      <a href="/2020/06/12/springboot/springboot-%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2020-06-12T05:16:57.000Z" itemprop="datePublished">2020-06-12</time>
+</a>
       
-      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/springboot/">springboot</a>
+</div>
 
-      
-        
-          <p>python的异常对称相比java或php简单了很多，对象中的信息很少，只有简单的错误输出。这在开发过程中是无法满足使用需求的。我们还需要更多的错误信息，比如错误发生在哪一行，具体的错误信息是什么。这就需要获取错误堆栈信息。下面简单记录一下常用的集中异常处理。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/08/13/cktnq12n3002px0trfvuaw7pk/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
     </div>
-
-    
-
-    
-    
     
 
     
 
-    
+    <div class="article-entry" itemprop="articleBody">
       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/06/12/cktnq12ub00dzx0trjipa9rc9/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/06/12/cktnq12ub00dzx0trjipa9rc9/" class="post-title-link" itemprop="url">springboot 配置</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-06-12 13:16:57" itemprop="dateCreated datePublished" datetime="2020-06-12T13:16:57+08:00">2020-06-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/springboot/" itemprop="url" rel="index"><span itemprop="name">springboot</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
       
         
-          <h2 id="application-properties配置中文乱码问题"><a href="#application-properties配置中文乱码问题" class="headerlink" title="application.properties配置中文乱码问题"></a>application.properties配置中文乱码问题</h2><p>删除现有的文件，设置idea。setting-&gt;editor-&gt;file encodings 将<code>Global Encoding</code> <code>Project Encoding</code> <code>Default encoding for properties files</code>都设置成<code>utf-8</code>.并且勾选<code>Transparent native-to-ascii conversion</code></p>
+      
+      
+        <h2 id="application-properties配置中文乱码问题"><a href="#application-properties配置中文乱码问题" class="headerlink" title="application.properties配置中文乱码问题"></a>application.properties配置中文乱码问题</h2><p>删除现有的文件，设置idea。setting-&gt;editor-&gt;file encodings 将<code>Global Encoding</code> <code>Project Encoding</code> <code>Default encoding for properties files</code>都设置成<code>utf-8</code>.并且勾选<code>Transparent native-to-ascii conversion</code></p>
 <h2 id="多配置时spring-profiles-active-dev不生效"><a href="#多配置时spring-profiles-active-dev不生效" class="headerlink" title="多配置时spring.profiles.active=dev不生效"></a>多配置时<code>spring.profiles.active=dev</code>不生效</h2><p>如果只有<code>application.properties</code>和<code>application-dev.properties</code>这两个文件，是不行的，需要在增加一个文件比如<code>application-prod.properties</code>。<br>只有配置文件多余2个才会生效</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/06/12/cktnq12ub00dzx0trjipa9rc9/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+        
+          <p>
+            <a class="article-more-link" href="/2020/06/12/springboot/springboot-%E9%85%8D%E7%BD%AE/">
+              Read More...
+            </a>
+          </p>
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/06/12/springboot/springboot-%E9%85%8D%E7%BD%AE/" data-id="clkaptz7l00dzi8tr21h9g3mt" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot/" rel="tag">spring boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot-%E9%85%8D%E7%BD%AE/" rel="tag">spring boot 配置</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
-  
-  
-  
-  </article>
 
+  
 
+  
+
+</article>
     
+    <article id="post-nginx配置中root-alias的区别" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
       
-
   
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <h2 class="article-title" itemprop="name">
+    <a href="/2020/05/15/nginx%E9%85%8D%E7%BD%AE%E4%B8%ADroot-alias%E7%9A%84%E5%8C%BA%E5%88%AB/">nginx配置中root alias的区别</a>
+  </h2>
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/05/15/cktnq12ms001vx0trsvmeajnk/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/05/15/cktnq12ms001vx0trsvmeajnk/" class="post-title-link" itemprop="url">nginx配置中root alias的区别</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-05-15 11:03:07" itemprop="dateCreated datePublished" datetime="2020-05-15T11:03:07+08:00">2020-05-15</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </header>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="article-meta">
+      <a href="/2020/05/15/nginx%E9%85%8D%E7%BD%AE%E4%B8%ADroot-alias%E7%9A%84%E5%8C%BA%E5%88%AB/" class="article-date">
+  <time datetime="2020-05-15T03:03:07.000Z" itemprop="datePublished">2020-05-15</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
 
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
       
       
-
-      
         
-          <h2 id="alias用法"><a href="#alias用法" class="headerlink" title="alias用法"></a>alias用法</h2><ul>
+      
+      
+        <h2 id="alias用法"><a href="#alias用法" class="headerlink" title="alias用法"></a>alias用法</h2><ul>
 <li>alias只能用在location块中</li>
 <li>可以配置文件</li>
 <li>可以配置目录</li>
 </ul>
-<p>代理特定文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location = /market-api/bm/44O1jrDWhJ.txt &#123;</span><br><span class="line">                alias /var/www/wechat/44O1jrDWhJ.txt;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/05/15/cktnq12ms001vx0trsvmeajnk/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+<p>代理特定文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">location = /market-api/bm/44O1jrDWhJ.txt &#123;</span><br><span class="line">                alias /var/www/wechat/44O1jrDWhJ.txt;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+        
+          <p>
+            <a class="article-more-link" href="/2020/05/15/nginx%E9%85%8D%E7%BD%AE%E4%B8%ADroot-alias%E7%9A%84%E5%8C%BA%E5%88%AB/">
+              Read More...
+            </a>
+          </p>
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/05/15/nginx%E9%85%8D%E7%BD%AE%E4%B8%ADroot-alias%E7%9A%84%E5%8C%BA%E5%88%AB/" data-id="clkaptz5e001ui8tr7tuu9n2k" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/alias/" rel="tag">alias</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/root/" rel="tag">root</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
-  
-  
-  
-  </article>
 
+  
 
+  
+
+</article>
     
+    <article id="post-linux硬盘管理工具baobab" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
       
-
   
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <h2 class="article-title" itemprop="name">
+    <a href="/2020/05/12/linux%E7%A1%AC%E7%9B%98%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7baobab/">linux硬盘管理工具baobab</a>
+  </h2>
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/05/12/cktnq12mp001px0tr6e3u70uh/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/05/12/cktnq12mp001px0tr6e3u70uh/" class="post-title-link" itemprop="url">linux硬盘管理工具baobab</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-05-12 10:38:57" itemprop="dateCreated datePublished" datetime="2020-05-12T10:38:57+08:00">2020-05-12</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </header>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="article-meta">
+      <a href="/2020/05/12/linux%E7%A1%AC%E7%9B%98%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7baobab/" class="article-date">
+  <time datetime="2020-05-12T02:38:57.000Z" itemprop="datePublished">2020-05-12</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
 
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
       
       
-
+        
       
-        
-          
-            <p>baobab是一个非常好用的磁盘分析工具，可以可视化的呈现磁盘的使用情况</p>
-<p><img src="https://wiki.gnome.org/Apps/DiskUsageAnalyzer?action=AttachFile&amp;do=get&amp;target=screenshot.png" alt="Disk Usage Analyzer"></p>
-<p>git地址  <a href="https://gitlab.gnome.org/GNOME/baobab.git" target="_blank" rel="noopener">https://gitlab.gnome.org/GNOME/baobab.git</a></p>
+      
+        <p>baobab是一个非常好用的磁盘分析工具，可以可视化的呈现磁盘的使用情况</p>
+<p><img src="https://wiki.gnome.org/Apps/DiskUsageAnalyzer?action=AttachFile&do=get&target=screenshot.png" alt="Disk Usage Analyzer"></p>
+<p>git地址  <a target="_blank" rel="noopener" href="https://gitlab.gnome.org/GNOME/baobab.git">https://gitlab.gnome.org/GNOME/baobab.git</a></p>
 
-          
-        
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/05/12/linux%E7%A1%AC%E7%9B%98%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7baobab/" data-id="clkaptz5b001oi8trfelc40cs" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Disk-Usage-Analyzer/" rel="tag">Disk Usage Analyzer</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/baobab/" rel="tag">baobab</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%90%E7%BB%B4%E5%B7%A5%E5%85%B7/" rel="tag">运维工具</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
-  
-  
-  
-  </article>
 
+  
 
+  
+
+</article>
     
+    <article id="springboot+nginx-springboot+nginx websocket配置" class="article article-type-springboot+nginx" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
       
-
   
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <h2 class="article-title" itemprop="name">
+    <a href="/2020/05/09/springboot+nginx%20websocket%E9%85%8D%E7%BD%AE/">springboot+nginx websocket配置</a>
+  </h2>
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/05/09/cktnq12n90032x0trse1h07ko/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/05/09/cktnq12n90032x0trse1h07ko/" class="post-title-link" itemprop="url">springboot+nginx websocket配置</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-05-09 14:03:26" itemprop="dateCreated datePublished" datetime="2020-05-09T14:03:26+08:00">2020-05-09</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </header>
     
 
     
+    <div class="article-meta">
+      <a href="/2020/05/09/springboot+nginx%20websocket%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2020-05-09T06:03:26.000Z" itemprop="datePublished">2020-05-09</time>
+</a>
+      
+    </div>
     
-    
-    <div class="post-body" itemprop="articleBody">
 
+    
+
+    <div class="article-entry" itemprop="articleBody">
       
       
-
-      
         
-          
-            <p>websocket用于聊天类场景再好不过了。平时链接websocket需要指定ip和端口，但如果需要用nginx做转发，将请求发送到websocket服务，这时候就需要升级协议了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">location /member-api/websocket &#123;</span><br><span class="line">                proxy_pass http://localhost:7005;</span><br><span class="line">                proxy_http_version 1.1;</span><br><span class="line">                proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">                proxy_set_header Connection &quot;Upgrade&quot;;</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure></p>
-<p>就是这么简单，指定<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">proxy_http_version 1.1;</span><br><span class="line">proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">proxy_set_header Connection &quot;Upgrade&quot;;</span><br></pre></td></tr></table></figure></p>
+      
+      
+        <p>websocket用于聊天类场景再好不过了。平时链接websocket需要指定ip和端口，但如果需要用nginx做转发，将请求发送到websocket服务，这时候就需要升级协议了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location /member-api/websocket &#123;</span><br><span class="line">                proxy_pass http://localhost:7005;</span><br><span class="line">                proxy_http_version 1.1;</span><br><span class="line">                proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">                proxy_set_header Connection &quot;Upgrade&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>就是这么简单，指定</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">proxy_http_version 1.1;</span><br><span class="line">proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">proxy_set_header Connection &quot;Upgrade&quot;;</span><br></pre></td></tr></table></figure>
 <p>让协议升级就可以了</p>
 
-          
-        
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/05/09/springboot+nginx%20websocket%E9%85%8D%E7%BD%AE/" data-id="clkaptz5n002zi8trblscbvk9" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/websocket/" rel="tag">websocket</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
-  
-  
-  
-  </article>
 
+  
 
+  
+
+</article>
     
+    <article id="post-git/10.克隆远程仓库" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
       
-
   
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <h2 class="article-title" itemprop="name">
+    <a href="/2020/04/22/git/10.%E5%85%8B%E9%9A%86%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/">10.克隆远程仓库</a>
+  </h2>
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2020/04/22/cktnq12tx00d6x0tr4gmw4nqx/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2020/04/22/cktnq12tx00d6x0tr4gmw4nqx/" class="post-title-link" itemprop="url">10.克隆远程仓库</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2020-04-22 20:32:20" itemprop="dateCreated datePublished" datetime="2020-04-22T20:32:20+08:00">2020-04-22</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/一点一点了解git/" itemprop="url" rel="index"><span itemprop="name">一点一点了解git</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </header>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="article-meta">
+      <a href="/2020/04/22/git/10.%E5%85%8B%E9%9A%86%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/" class="article-date">
+  <time datetime="2020-04-22T12:32:20.000Z" itemprop="datePublished">2020-04-22</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3git/">一点一点了解git</a>
+</div>
 
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
       
       
-
-      
         
-          <h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
+      
+      
+        <h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
 <p>本故事纯属虚构，如有雷同，^0^那可太巧了</p>
 </blockquote>
 <p>吃过早饭，早早来到办公室。今天办公室和往常好像不一样。小白的工位旁边做了个人。好面生啊。</p>
 <p>“你好”，小白主动上前打招呼。<br>“你好，我是新来的。老大说让我跟你一组，以后我就跟你混了。”，新同事回答<br>“我叫小白，你叫什么啊？”，小白问道<br>“我叫小菜” 新同事回答<br>…<br>小白和小菜聊得很投缘。<br>上班时间到了，第一件事就是带领小菜熟悉项目。<br>“这是我u盘，把项目拷贝给我一份吧，我熟悉一下项目”，小菜说道，把u盘递给了小白</p>
 <p>“不需要拷贝，现在都用git了，直接用git clone一份就可以了”，小白说着把u盘还给小菜</p>
 <p>“这样啊，好高端”，小菜呵呵一笑</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2020/04/22/cktnq12tx00d6x0tr4gmw4nqx/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+        
+          <p>
+            <a class="article-more-link" href="/2020/04/22/git/10.%E5%85%8B%E9%9A%86%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/">
+              Read More...
+            </a>
+          </p>
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/04/22/git/10.%E5%85%8B%E9%9A%86%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/" data-id="clkaptz7e00d1i8tr8eg46uzq" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
+
   
+
   
-  
+
+</article>
+    
   </article>
-
-
-    
-  </section>
+  
 
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  <nav class="page-nav">
+    <a class="extend prev" rel="prev" href="/">Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">Next</a>
   </nav>
-
-
-
-          </div>
-          
-
-        </div>
-        
-          
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">shooke</p>
-              <p class="site-description motion-element" itemprop="description">平时写点技术文章，分享一些经验，予人玫瑰手有余香</p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">89</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">6</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">111</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/shooke" title="GitHub &rarr; https://github.com/shooke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://weibo.com/shooke" title="Weibo &rarr; https://weibo.com/shooke" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
-                </span>
-              
-            </div>
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">shooke</span>
-
-  
-
-  
+</section>
 </div>
-
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.7.0</div>
-
-
-
-
-
-    <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?d6b6833304116ed43a46f8f77b49d030";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
+    <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>舒克的博客 &copy; 2023</li>
+      
+        <li>
+          
+            <a href="https://beian.miit.gov.cn/" target="_blank"></a>
+            
+        </li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+    <p><ul class="list-inline">
+  
+  <li><i class="fe fe-bar-chart tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_site_pv"></span></li>
+  
+  <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+</ul></p>
   </div>
-
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
   
-
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="舒克的博客"></a>
+  </div>
   
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
-
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
   
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/jquery-2.0.3.min.js"></script>
 
 
-  
+<script src="/js/jquery.justifiedGallery.min.js"></script>
 
 
-  <script src="/js/src/utils.js?v=6.7.0"></script>
+<script src="/js/lazyload.min.js"></script>
 
-  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
 
 
 
-  
-  
-
-
-  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
-
-
-
-
-  
-
-  
-
-
-  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
-
-
-
-  
-
-
-
-  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
 
 
 
 
 
-  
 
-  
-
-  
-  <script>
-  (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      if (curProtocol === 'https') {
-          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-      }
-      else {
-          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-      }
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-  })();
-  </script>
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+<script src="/js/ocean.js"></script>
 
 </body>
+
 </html>

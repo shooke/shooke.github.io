@@ -1,826 +1,244 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next mist use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/css/main.css?v=6.7.0">
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Mist',
-    version: '6.7.0',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: false,
-    fastclick: false,
-    lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
-  };
-</script>
-
-
-  
-
-
-
-
-  <meta name="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-<meta name="keywords" content="python,php,mysql,前端">
-<meta property="og:type" content="website">
-<meta property="og:title" content="shooke&#39;s blog">
-<meta property="og:url" content="https://www.xingjiehu.com/page/8/index.html">
-<meta property="og:site_name" content="shooke&#39;s blog">
-<meta property="og:description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-<meta property="og:locale" content="zh-CN">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="shooke&#39;s blog">
-<meta name="twitter:description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-
-
-
-  <link rel="alternate" href="/atom.xml" title="shooke's blog" type="application/atom+xml">
-
-
-
-
-  <link rel="canonical" href="https://www.xingjiehu.com/page/8/">
-
-
-
-<script id="page.configurations">
-  CONFIG.page = {
-    sidebar: "",
-  };
-</script>
-
-  <title>shooke's blog</title>
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .motion-element,
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
-
-  .use-motion .logo,
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
-  }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-  <!-- google 验证 -->
-  <meta name="google-site-verification" content="9Y6X9yptaHlOdppRk7mld_uHsSibf3lPB8c_60zPyF0">
-  <!-- baidu 验证和收录推送 -->
-  <meta name="baidu-site-verification" content="lCJxAeYryx">
-</head>
-
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
-
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
+  <meta name="keywords" content="python,php,mysql,前端">
+  
+  
+  <title>
+    
+    舒克的博客
+  </title>
+  <!-- Icon -->
+  
+    <link rel="shortcut icon" href="/favicon.ico">
     
   
+<link rel="stylesheet" href="/css/style.css">
 
-  <div class="container sidebar-position-left 
-  page-home">
-    <div class="headband"></div>
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
 
-    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta">
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <main class="content">
+    <section class="jumbotron">
+  <div class="video">
     
-
-    <div class="custom-logo-site-title">
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">shooke's blog</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
+    <div class="video-frame">
+      <img src="/images/ocean/overlay-hero.png" alt="Decorative image frame">
     </div>
     
-    
+    <div class="video-media">
+      <video playsinline="" autoplay="" loop="" muted="" data-autoplay="" poster="/images/ocean/ocean.png"
+        x5-video-player-type="h5">
+        <source src="/images/ocean/ocean.mp4" type="video/mp4">
+        <source src="/images/ocean/ocean.ogv" type="video/ogg">
+        <source src="/images/ocean/ocean.webm" type="video/webm">
+        <p>Your user agent does not support the HTML5 Video element.</p>
+      </video>
+      <div class="video-overlay"></div>
+    </div>
+    <div class="video-inner text-center text-white">
+      <h1><a href="/">舒克的博客</a></h1>
+      <p></p>
+      <div><img src="/images/hexo-inverted.svg" class="brand" alt="舒克的博客"></div>
+    </div>
+    <div class="video-learn-more">
+      <a class="anchor" href="#landingpage"><i class="fe fe-mouse"></i></a>
+    </div>
   </div>
+</section>
+<div id="landingpage">
+  <section class="outer">
+  <article class="articles">
+    
+    <h1 class="page-type-title"></h1>
+    
+    
+    <article id="post-linux安装java环境" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
 
-  <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
-  </div>
-</div>
-
-
-
-<nav class="site-nav">
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
   
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
-
-  </li>
-
-      
-      
-    </ul>
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/04/03/linux%E5%AE%89%E8%A3%85java%E7%8E%AF%E5%A2%83/">linux安装java环境</a>
+  </h2>
+  
   
 
-  
-    
-
-  
-
-  
-</nav>
-
-
-
-  
-
-
-
-</div>
     </header>
-
     
 
-
-    <main id="main" class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
     
+    <div class="article-meta">
+      <a href="/2019/04/03/linux%E5%AE%89%E8%A3%85java%E7%8E%AF%E5%A2%83/" class="article-date">
+  <time datetime="2019-04-03T07:04:54.000Z" itemprop="datePublished">2019-04-03</time>
+</a>
       
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/03/cktnq12mr001rx0truup07w1p/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/03/cktnq12mr001rx0truup07w1p/" class="post-title-link" itemprop="url">linux安装java环境</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-03 15:04:54" itemprop="dateCreated datePublished" datetime="2019-04-03T15:04:54+08:00">2019-04-03</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </div>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
 
+    <div class="article-entry" itemprop="articleBody">
       
       
-
+        
       
-        
-          
-            <h2 id="下载jdk"><a href="#下载jdk" class="headerlink" title="下载jdk"></a>下载jdk</h2><p>可以到<a href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html下载" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html下载</a><br>JDK 8u201 是稳定版本<br>JDK 8u202 是开发版本，包含了8u21的功能和一些其他功能，有可能会有bug<br>找到<code>Java SE Development Kit 8u201</code>点击该栏目下的<code>Accept License Agreement</code>单选项<br>在下面的列表中找到需要的版本，右键复制链接，在terminal里面用<code>wget</code>命令下载，下面用的是<code>jdk-8u201-linux-x64</code>包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz?AuthParam=1554274626_8750d27ae1e72e03c48aa9f516d713c3</span><br></pre></td></tr></table></figure></p>
-<h2 id="解压程序包并移动到-opt目录"><a href="#解压程序包并移动到-opt目录" class="headerlink" title="解压程序包并移动到/opt目录"></a>解压程序包并移动到/opt目录</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 先改个名字，要不然看着别扭</span><br><span class="line">mv jdk-8u201-linux-x64.tar.gz?AuthParam=1554274626_8750d27ae1e72e03c48aa9f516d713c3 jdk-8u201-linux-x64.tar.gz</span><br><span class="line"># 解压</span><br><span class="line">tar zxvf jdk-8u201-linux-x64.tar.gz</span><br><span class="line"># 解压后会出现jdk1.8.0_201文件夹，将其移动到/opt目录</span><br><span class="line">sudo mv jdk1.8.0_201 /opt</span><br></pre></td></tr></table></figure>
-<h2 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.profile</span><br></pre></td></tr></table></figure>
-<p>在最后加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#java</span><br><span class="line">export JAVA_HOME=/opt/jdk1.8.0_201 #jdk的存放目录</span><br><span class="line">export JRE_HOME=$JAVA_HOME/jre</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br></pre></td></tr></table></figure></p>
-<p>最后让配置生效<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.profile</span><br></pre></td></tr></table></figure></p>
-<p>运行<code>java --version</code>看是否生效，如果出现java版本信息标示生效了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java version &quot;1.8.0_201&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_201-b09)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.201-b09, mixed mode)</span><br></pre></td></tr></table></figure></p>
-
-          
-        
+      
+        <h2 id="下载jdk"><a href="#下载jdk" class="headerlink" title="下载jdk"></a>下载jdk</h2><p>可以到<a target="_blank" rel="noopener" href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html%E4%B8%8B%E8%BD%BD">https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html下载</a><br>JDK 8u201 是稳定版本<br>JDK 8u202 是开发版本，包含了8u21的功能和一些其他功能，有可能会有bug<br>找到<code>Java SE Development Kit 8u201</code>点击该栏目下的<code>Accept License Agreement</code>单选项<br>在下面的列表中找到需要的版本，右键复制链接，在terminal里面用<code>wget</code>命令下载，下面用的是<code>jdk-8u201-linux-x64</code>包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz?AuthParam=1554274626_8750d27ae1e72e03c48aa9f516d713c3</span><br></pre></td></tr></table></figure>
+<h2 id="解压程序包并移动到-opt目录"><a href="#解压程序包并移动到-opt目录" class="headerlink" title="解压程序包并移动到&#x2F;opt目录"></a>解压程序包并移动到&#x2F;opt目录</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 先改个名字，要不然看着别扭</span><br><span class="line">mv jdk-8u201-linux-x64.tar.gz?AuthParam=1554274626_8750d27ae1e72e03c48aa9f516d713c3 jdk-8u201-linux-x64.tar.gz</span><br><span class="line"># 解压</span><br><span class="line">tar zxvf jdk-8u201-linux-x64.tar.gz</span><br><span class="line"># 解压后会出现jdk1.8.0_201文件夹，将其移动到/opt目录</span><br><span class="line">sudo mv jdk1.8.0_201 /opt</span><br></pre></td></tr></table></figure>
+<h2 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.profile</span><br></pre></td></tr></table></figure>
+<p>在最后加入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#java</span><br><span class="line">export JAVA_HOME=/opt/jdk1.8.0_201 #jdk的存放目录</span><br><span class="line">export JRE_HOME=$JAVA_HOME/jre</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br></pre></td></tr></table></figure>
+<p>最后让配置生效</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.profile</span><br></pre></td></tr></table></figure>
+<p>运行<code>java --version</code>看是否生效，如果出现java版本信息标示生效了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java version &quot;1.8.0_201&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_201-b09)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.201-b09, mixed mode)</span><br></pre></td></tr></table></figure>
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/04/03/linux%E5%AE%89%E8%A3%85java%E7%8E%AF%E5%A2%83/" data-id="clkaptz5b001mi8tr7r9qaxdn" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jdk/" rel="tag">jdk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
-  
-  
-  
-  </article>
 
+  
 
+  
+
+</article>
     
+    <article id="post-VirtualBox-v5-2-12-Ubuntu18-04-宿主机和虚拟主机互通，都可上网配置方式" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
       
-
   
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/04/02/VirtualBox-v5-2-12-Ubuntu18-04-%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%92%8C%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%BA%92%E9%80%9A%EF%BC%8C%E9%83%BD%E5%8F%AF%E4%B8%8A%E7%BD%91%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/">VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式</a>
+  </h2>
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/02/cktnq12lr0008x0treth5ccea/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/02/cktnq12lr0008x0treth5ccea/" class="post-title-link" itemprop="url">VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-02 13:29:28" itemprop="dateCreated datePublished" datetime="2019-04-02T13:29:28+08:00">2019-04-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </header>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="article-meta">
+      <a href="/2019/04/02/VirtualBox-v5-2-12-Ubuntu18-04-%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%92%8C%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%BA%92%E9%80%9A%EF%BC%8C%E9%83%BD%E5%8F%AF%E4%B8%8A%E7%BD%91%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/" class="article-date">
+  <time datetime="2019-04-02T05:29:28.000Z" itemprop="datePublished">2019-04-02</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
 
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
       
       
-
-      
         
-          <h2 id="全局设置"><a href="#全局设置" class="headerlink" title="全局设置"></a>全局设置</h2><p>点击管理，全局设置；<br>选择网络，里面只有 NAT 网络；<br>点击添加，列表新增 NatNetwork，点击确定。</p>
+      
+      
+        <h2 id="全局设置"><a href="#全局设置" class="headerlink" title="全局设置"></a>全局设置</h2><p>点击管理，全局设置；<br>选择网络，里面只有 NAT 网络；<br>点击添加，列表新增 NatNetwork，点击确定。</p>
 <h2 id="虚拟机配置"><a href="#虚拟机配置" class="headerlink" title="虚拟机配置"></a>虚拟机配置</h2><p>点击管理，选择主机网络管理；<br>选择创建，列表新增 vboxnet0，只要这一个就够了；<br>选中点击 vboxnet0，点击手动配置网卡；<br>点击 IPv4 地址，输入配置的网关 IP，如：192.168.56.1；<br>如果不想使用 DHCP，取消启用 DHCP，点击应用。</p>
 <h2 id="给虚拟机添加网卡"><a href="#给虚拟机添加网卡" class="headerlink" title="给虚拟机添加网卡"></a>给虚拟机添加网卡</h2><p>右键点击一个虚拟主机，选择设置；<br>选择网络；<br>选中点击网卡 1，勾选启用网络连接；<br>连接方式选择网络地址转换(NAT)，界面可以空着；<br>选中点击网卡 2，勾选启用网络连接；<br>连接方式选择仅主机(Host-Only)网络，界面名称为 vboxnet0，点击确认。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/02/cktnq12lr0008x0treth5ccea/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+        
+          <p>
+            <a class="article-more-link" href="/2019/04/02/VirtualBox-v5-2-12-Ubuntu18-04-%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%92%8C%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%BA%92%E9%80%9A%EF%BC%8C%E9%83%BD%E5%8F%AF%E4%B8%8A%E7%BD%91%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/">
+              Read More...
+            </a>
+          </p>
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/04/02/VirtualBox-v5-2-12-Ubuntu18-04-%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%92%8C%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%BA%92%E9%80%9A%EF%BC%8C%E9%83%BD%E5%8F%AF%E4%B8%8A%E7%BD%91%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/" data-id="clkaptz4t0008i8tr4yui8bk2" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VirtualBox/" rel="tag">VirtualBox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%92%E9%80%9A/" rel="tag">互通</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
-  
-  
-  
-  </article>
 
+  
 
+  
+
+</article>
     
+    <article id="post-设计模式基本原则大白话" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
       
-
   
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/04/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99%E5%A4%A7%E7%99%BD%E8%AF%9D/">设计模式基本原则大白话</a>
+  </h2>
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/04/01/cktnq12op005zx0tr3yydey9h/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/01/cktnq12op005zx0tr3yydey9h/" class="post-title-link" itemprop="url">设计模式基本原则大白话</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-04-01 22:35:47" itemprop="dateCreated datePublished" datetime="2019-04-01T22:35:47+08:00">2019-04-01</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </header>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="article-meta">
+      <a href="/2019/04/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99%E5%A4%A7%E7%99%BD%E8%AF%9D/" class="article-date">
+  <time datetime="2019-04-01T14:35:47.000Z" itemprop="datePublished">2019-04-01</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
 
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
       
       
-
-      
         
-          <h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p>   简单点说就是最小化封装，一个方法只负责一个功能，一个类只负责一类功能。如果一个功能比较复杂，那就差分成多个小功能，然后去实现。<br>   这样做的好处是</p>
+      
+      
+        <h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p>   简单点说就是最小化封装，一个方法只负责一个功能，一个类只负责一类功能。如果一个功能比较复杂，那就差分成多个小功能，然后去实现。<br>   这样做的好处是</p>
 <ul>
 <li>可以降低类的复杂度，一个类只负责一项职责，其逻辑肯定要比负责多项职责简单的多；</li>
 <li>提高类的可读性，提高系统的可维护性；</li>
@@ -841,369 +259,141 @@
 <li>使用继承时遵循里氏替换原则</li>
 </ul>
 <p>这样做可以有效解耦，功能发生改变时，只需要替换外部的依赖对象，而不必修改主体功能代码。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/04/01/cktnq12op005zx0tr3yydey9h/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+        
+          <p>
+            <a class="article-more-link" href="/2019/04/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99%E5%A4%A7%E7%99%BD%E8%AF%9D/">
+              Read More...
+            </a>
+          </p>
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/04/01/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99%E5%A4%A7%E7%99%BD%E8%AF%9D/" data-id="clkaptz7800cfi8tr36iibcx7" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99/" rel="tag">设计模式基本原则</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
-  
-  
-  
-  </article>
 
+  
 
+  
+
+</article>
     
+    <article id="post-vscode-保存自动按eslint格式化" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
       
-
   
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/03/27/vscode-%E4%BF%9D%E5%AD%98%E8%87%AA%E5%8A%A8%E6%8C%89eslint%E6%A0%BC%E5%BC%8F%E5%8C%96/">vscode 保存自动按eslint格式化</a>
+  </h2>
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/27/cktnq12nv0046x0tra3noza5n/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/27/cktnq12nv0046x0tra3noza5n/" class="post-title-link" itemprop="url">vscode 保存自动按eslint格式化</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-27 14:26:43" itemprop="dateCreated datePublished" datetime="2019-03-27T14:26:43+08:00">2019-03-27</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </header>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="article-meta">
+      <a href="/2019/03/27/vscode-%E4%BF%9D%E5%AD%98%E8%87%AA%E5%8A%A8%E6%8C%89eslint%E6%A0%BC%E5%BC%8F%E5%8C%96/" class="article-date">
+  <time datetime="2019-03-27T06:26:43.000Z" itemprop="datePublished">2019-03-27</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
 
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
       
       
-
-      
         
-          <p>三步走：</p>
+      
+      
+        <p>三步走：</p>
 <ol>
 <li>安装 vuter，eslint，Prettier-code fromatter<br>vuter 是 vue 高高亮插件，安装后 vscode 就可以识别<code>.vue</code>文件了</li>
-<li>配置 vscode 首选项<br>选择 file 》Preferences 》Settings 打开配置。然后选择 User Settings，点击右上角的<code>{}</code>按钮，进入文本编辑状态</li>
+<li>配置 vscode 首选项<br>选择 file 》Preferences 》Settings 打开配置。然后选择 User Settings，点击右上角的<code>&#123;&#125;</code>按钮，进入文本编辑状态</li>
 <li>配置内容</li>
 </ol>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/27/cktnq12nv0046x0tra3noza5n/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+        
+          <p>
+            <a class="article-more-link" href="/2019/03/27/vscode-%E4%BF%9D%E5%AD%98%E8%87%AA%E5%8A%A8%E6%8C%89eslint%E6%A0%BC%E5%BC%8F%E5%8C%96/">
+              Read More...
+            </a>
+          </p>
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/03/27/vscode-%E4%BF%9D%E5%AD%98%E8%87%AA%E5%8A%A8%E6%8C%89eslint%E6%A0%BC%E5%BC%8F%E5%8C%96/" data-id="clkaptz600043i8tranwj8gdm" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eslint/" rel="tag">eslint</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="tag">开发工具</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
-  
-  
-  
-  </article>
 
+  
 
+  
+
+</article>
     
+    <article id="post-elasticsearch学习笔记 - 集群相关术语" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
       
-
   
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/03/15/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E9%9B%86%E7%BE%A4%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/">elasticsearch学习笔记 - 集群相关术语</a>
+  </h2>
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/15/cktnq12m8000tx0tro6g2ls93/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/15/cktnq12m8000tx0tro6g2ls93/" class="post-title-link" itemprop="url">elasticsearch学习笔记 - 集群相关术语</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-15 09:33:28" itemprop="dateCreated datePublished" datetime="2019-03-15T09:33:28+08:00">2019-03-15</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/elasticsearch/" itemprop="url" rel="index"><span itemprop="name">elasticsearch</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </header>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="article-meta">
+      <a href="/2019/03/15/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E9%9B%86%E7%BE%A4%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/" class="article-date">
+  <time datetime="2019-03-15T01:33:28.000Z" itemprop="datePublished">2019-03-15</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
+</div>
 
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
       
       
-
-      
         
-          <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
+      
+      
+        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
 <li><p>Cluster：集群。<br>顾名思义就是好多es服务器，拜了把子成了兄弟，在一起搞事情，他们讲义气不背叛，一个有难八方支援。比如你有8台服务器，其中一台挂了，剩余的兄弟会立刻顶上。客户让然可以正常使用你的服务，从而实现<code>高可用性</code>。</p>
 </li>
 <li><p>Node：节点。<br>集群中的每台服务器称之为一个节点。每个节点都是一个兄弟。既然拜了把子，那就有个长幼顺序（节点类型），这个看下面的节点类型小节，先看分片。</p>
@@ -1213,185 +403,71 @@
 <li><p>Replia：副本。<br>分着吃羊肉，羊是吃完了，但每个人分到的不一样啊，有人吃羊腿，有人吃羊尾巴，显然这样长期下去也是不行的。怎么办呢，再来一只，吃羊腿的再吃羊尾巴，吃羊尾巴的再吃羊腿，这样就公平了。每个人都能说出整只羊各个部位是什么味道。<br>同样的道理，数据分片，放在了不同的节点上，如果一台服务器挂掉了，那岂不是数据就丢失了，这种事是不允许发生的，因此就有了副本。每个切片复制一份，发送给其他节点。这样保证每个节点有完整的数据。集群中有一台宕机了也不影响使用。</p>
 </li>
 </ol>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/15/cktnq12m8000tx0tro6g2ls93/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+        
+          <p>
+            <a class="article-more-link" href="/2019/03/15/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E9%9B%86%E7%BE%A4%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/">
+              Read More...
+            </a>
+          </p>
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/03/15/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E9%9B%86%E7%BE%A4%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/" data-id="clkaptz55000xi8trdzwr5wc7" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elasticsearch/" rel="tag">elasticsearch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">elasticsearch学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elasticsearch%E9%9B%86%E7%BE%A4/" rel="tag">elasticsearch集群</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es/" rel="tag">es</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
-  
-  
-  
-  </article>
 
+  
 
+  
+
+</article>
     
+    <article id="post-elasticsearch学习笔记 - 安装" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
       
-
   
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/03/14/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E5%AE%89%E8%A3%85/">elasticsearch学习笔记 - 安装</a>
+  </h2>
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/14/cktnq12m9000wx0trfmodqskx/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/14/cktnq12m9000wx0trfmodqskx/" class="post-title-link" itemprop="url">elasticsearch学习笔记 - 安装</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-14 13:30:16" itemprop="dateCreated datePublished" datetime="2019-03-14T13:30:16+08:00">2019-03-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/elasticsearch/" itemprop="url" rel="index"><span itemprop="name">elasticsearch</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </header>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="article-meta">
+      <a href="/2019/03/14/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E5%AE%89%E8%A3%85/" class="article-date">
+  <time datetime="2019-03-14T05:30:16.000Z" itemprop="datePublished">2019-03-14</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
+</div>
 
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
       
       
-
-      
         
-          <p>最近用到了es，于是从网上找资料，但是好多都过时了，比如type在elasticsearch 6.0开始已经不推荐使用了。联合查询6.x使用的是join类型的字段，也不在支持type之间的联合查询。问什么要取消type呢？官方给出的理由是</p>
+      
+      
+        <p>最近用到了es，于是从网上找资料，但是好多都过时了，比如type在elasticsearch 6.0开始已经不推荐使用了。联合查询6.x使用的是join类型的字段，也不在支持type之间的联合查询。问什么要取消type呢？官方给出的理由是</p>
 <blockquote>
 <p>①，而在我们elasticsearch中同一 Index 下，同名 Field 类型必须相同，即使不同的 Type；<br>②， 同一 Index 下，TypeA 的 Field 会占用 TypeB 的资源（互相消耗资源），会形成一种稀疏存储的情况。尤其是 doc value ，为什么这么说呢？doc value为了性能考虑会保留一部分的磁盘空间，这意味着 TypeB 可能不需要这个字段的 doc_value 而 TypeA 需要，那么 TypeB 就被白白占用了一部分没有半点用处的资源；<br>③，Score 评分机制是 index-wide 的，不同的type之间评分也会造成干扰。<br>④，索引元数据本身是放在主节点中维护的，CP 设计。意味着涉及到大量字段变更及元数据变更的操作，都会导致该 Index 被堵塞或假死。我们应该对这样的 Index 做隔离，避免影响到其他 Index 正常的增删改查。甚至当涉及到字段变更十分频繁且无法预定义 schema 的场景时，是否要使用 ES 都应该慎思熟虑了！</p>
 </blockquote>
@@ -1403,8 +479,7 @@
 <th>elasticsearch</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>database</td>
 <td>index</td>
 </tr>
@@ -1416,735 +491,281 @@
 <td>column</td>
 <td>field</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>很多学习elasticsearch的人估计都看过这个比喻，但其实这是错误的。elasticsearch是基于 Lucene开发的，而在 Lucene中是没有table概念的，有的只是文档和字段。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/14/cktnq12m9000wx0trfmodqskx/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+        
+          <p>
+            <a class="article-more-link" href="/2019/03/14/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E5%AE%89%E8%A3%85/">
+              Read More...
+            </a>
+          </p>
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/03/14/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E5%AE%89%E8%A3%85/" data-id="clkaptz50000oi8trc8s854go" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elasticsearch/" rel="tag">elasticsearch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">elasticsearch学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es/" rel="tag">es</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E8%A3%85es/" rel="tag">安装es</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
-  
-  
-  
-  </article>
 
+  
 
+  
+
+</article>
     
+    <article id="post-linux使用apt方式安装mysql5-7" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
       
-
   
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/03/13/linux%E4%BD%BF%E7%94%A8apt%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85mysql5-7/">linux使用apt方式安装mysql5.7</a>
+  </h2>
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/13/cktnq12mm001kx0trkqgzv97w/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/13/cktnq12mm001kx0trkqgzv97w/" class="post-title-link" itemprop="url">linux使用apt方式安装mysql5.7</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-13 23:13:33" itemprop="dateCreated datePublished" datetime="2019-03-13T23:13:33+08:00">2019-03-13</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </header>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="article-meta">
+      <a href="/2019/03/13/linux%E4%BD%BF%E7%94%A8apt%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85mysql5-7/" class="article-date">
+  <time datetime="2019-03-13T15:13:33.000Z" itemprop="datePublished">2019-03-13</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
 
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
       
       
-
-      
         
-          <p>安装3步曲：</p>
+      
+      
+        <p>安装3步曲：</p>
 <ol>
 <li>使用apt-get安装</li>
 <li>设置root密码和验证方式</li>
 <li>重启服务</li>
 </ol>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/13/cktnq12mm001kx0trkqgzv97w/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+        
+          <p>
+            <a class="article-more-link" href="/2019/03/13/linux%E4%BD%BF%E7%94%A8apt%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85mysql5-7/">
+              Read More...
+            </a>
+          </p>
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/03/13/linux%E4%BD%BF%E7%94%A8apt%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85mysql5-7/" data-id="clkaptz5a001ji8tragr5b7ag" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
-  
-  
-  
-  </article>
 
+  
 
+  
+
+</article>
     
+    <article id="post-python字节和字符串相互转换" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
       
-
   
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/03/06/python%E5%AD%97%E8%8A%82%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/">python字节和字符串相互转换</a>
+  </h2>
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/06/cktnq12mv0025x0tr4d7u73an/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/06/cktnq12mv0025x0tr4d7u73an/" class="post-title-link" itemprop="url">python字节和字符串相互转换</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-06 17:43:39" itemprop="dateCreated datePublished" datetime="2019-03-06T17:43:39+08:00">2019-03-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </header>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="article-meta">
+      <a href="/2019/03/06/python%E5%AD%97%E8%8A%82%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/" class="article-date">
+  <time datetime="2019-03-06T09:43:39.000Z" itemprop="datePublished">2019-03-06</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
 
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
       
       
-
-      
         
-          
-            <h2 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h2><ul>
-<li><p>byte 字符串<br>byte_str = b”byte example”</p>
+      
+      
+        <h2 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h2><ul>
+<li><p>byte 字符串<br>byte_str &#x3D; b”byte example”</p>
 </li>
-<li><p>str 字符串<br>str_str = “str example”</p>
+<li><p>str 字符串<br>str_str &#x3D; “str example”</p>
 </li>
 </ul>
-<h2 id="str-to-bytes-字符串转字节"><a href="#str-to-bytes-字符串转字节" class="headerlink" title="str to bytes 字符串转字节"></a>str to bytes 字符串转字节</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bytes(str_str, encoding=&quot;utf-8&quot;)</span><br></pre></td></tr></table></figure>
-<p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str_str.encode()</span><br></pre></td></tr></table></figure></p>
-<h2 id="bytes-to-str-字节转字符串"><a href="#bytes-to-str-字节转字符串" class="headerlink" title="bytes to str  字节转字符串"></a>bytes to str  字节转字符串</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str(byte_str, encoding=&quot;utf-8&quot;)</span><br></pre></td></tr></table></figure>
-<p>或<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">byte_str.decode()</span><br></pre></td></tr></table></figure></p>
+<h2 id="str-to-bytes-字符串转字节"><a href="#str-to-bytes-字符串转字节" class="headerlink" title="str to bytes 字符串转字节"></a>str to bytes 字符串转字节</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bytes(str_str, encoding=&quot;utf-8&quot;)</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str_str.encode()</span><br></pre></td></tr></table></figure>
 
-          
-        
+<h2 id="bytes-to-str-字节转字符串"><a href="#bytes-to-str-字节转字符串" class="headerlink" title="bytes to str  字节转字符串"></a>bytes to str  字节转字符串</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str(byte_str, encoding=&quot;utf-8&quot;)</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">byte_str.decode()</span><br></pre></td></tr></table></figure>
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/03/06/python%E5%AD%97%E8%8A%82%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/" data-id="clkaptz5j002ki8tr04xxe0lg" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">python 字符串</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
-  
-  
-  
-  </article>
 
+  
 
+  
+
+</article>
     
+    <article id="post-nohup命令说明" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
       
-
   
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/03/06/nohup%E5%91%BD%E4%BB%A4%E8%AF%B4%E6%98%8E/">nohup命令说明</a>
+  </h2>
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/06/cktnq12mu0022x0tr2kpj3xlm/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/06/cktnq12mu0022x0tr2kpj3xlm/" class="post-title-link" itemprop="url">nohup命令说明</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-06 17:21:00" itemprop="dateCreated datePublished" datetime="2019-03-06T17:21:00+08:00">2019-03-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </header>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="article-meta">
+      <a href="/2019/03/06/nohup%E5%91%BD%E4%BB%A4%E8%AF%B4%E6%98%8E/" class="article-date">
+  <time datetime="2019-03-06T09:21:00.000Z" itemprop="datePublished">2019-03-06</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
 
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
       
       
-
-      
         
-          <p>nohup是Linux的一个常用命令，当你想要在退出账户或者关闭终端后进程仍在运行时，就可以使用nohup命令。nohup就是不挂断的意思（no hang up）。</p>
-<p>nohup的一般形式为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup command &gt;&gt; file 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure></p>
+      
+      
+        <p>nohup是Linux的一个常用命令，当你想要在退出账户或者关闭终端后进程仍在运行时，就可以使用nohup命令。nohup就是不挂断的意思（no hang up）。</p>
+<p>nohup的一般形式为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup command &gt;&gt; file 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure>
 <p>如果不将 nohup 命令的输出重定向，输出将附加到当前目录的 nohup.out 文件中，否则就是自己指定的文件。</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/06/cktnq12mu0022x0tr2kpj3xlm/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+        
+          <p>
+            <a class="article-more-link" href="/2019/03/06/nohup%E5%91%BD%E4%BB%A4%E8%AF%B4%E6%98%8E/">
+              Read More...
+            </a>
+          </p>
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/03/06/nohup%E5%91%BD%E4%BB%A4%E8%AF%B4%E6%98%8E/" data-id="clkaptz5g0024i8tr9c6g1l0d" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nohup/" rel="tag">nohup</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" rel="tag">系统运维</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
-  
-  
-  
-  </article>
 
+  
 
+  
+
+</article>
     
+    <article id="post-git-reset命令详解" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
       
-
   
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/03/06/git-reset%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/">git reset命令详解</a>
+  </h2>
   
   
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.xingjiehu.com/2019/03/06/cktnq12md0016x0trfvxo224z/">
 
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shooke">
-      <meta itemprop="description" content="平时写点技术文章，分享一些经验，予人玫瑰手有余香">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="shooke's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/06/cktnq12md0016x0trfvxo224z/" class="post-title-link" itemprop="url">git reset命令详解</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2019-03-06 14:06:21" itemprop="dateCreated datePublished" datetime="2019-03-06T14:06:21+08:00">2019-03-06</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2021-09-15 16:59:28" itemprop="dateModified" datetime="2021-09-15T16:59:28+08:00">2021-09-15</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/笔记/" itemprop="url" rel="index"><span itemprop="name">笔记</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
+    </header>
     
 
     
-    
-    
-    <div class="post-body" itemprop="articleBody">
+    <div class="article-meta">
+      <a href="/2019/03/06/git-reset%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time datetime="2019-03-06T06:06:21.000Z" itemprop="datePublished">2019-03-06</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
 
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
       
       
-
-      
         
-          <p>git reset命令，非常牛的一个命令，这个命令可以让你时光穿梭回到过去。用在自己分支上很好用，但是千万不要在公共分支上使用。以免造成历史混乱，破坏历史可是重罪，别看那些穿越小说混的风生水起，那都是骗人的。</p>
+      
+      
+        <p>git reset命令，非常牛的一个命令，这个命令可以让你时光穿梭回到过去。用在自己分支上很好用，但是千万不要在公共分支上使用。以免造成历史混乱，破坏历史可是重罪，别看那些穿越小说混的风生水起，那都是骗人的。</p>
 <p>用git reset之前先要了解几个概念</p>
 <ul>
 <li><p>HEAD<br>这是当前分支版本顶端的别名，也就是在当前分支你最近的一个提交，也就是本地仓库，即你的commit记录</p>
@@ -2154,617 +775,142 @@
 <li><p>Working Copy<br>working copy代表你正在工作的那个文件</p>
 </li>
 </ul>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/03/06/cktnq12md0016x0trfvxo224z/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
+        
+          <p>
+            <a class="article-more-link" href="/2019/03/06/git-reset%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/">
+              Read More...
+            </a>
+          </p>
         
       
     </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/03/06/git-reset%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/" data-id="clkaptz54000ui8tr1cig2sy8" class="article-share-link">
+        Share
+      </a>
       
-    
-    
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git-reset/" rel="tag">git reset</a></li></ul>
 
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
     </footer>
+
   </div>
+
   
+
   
-  
+
+</article>
+    
   </article>
-
-
-    
-  </section>
+  
 
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  <nav class="page-nav">
+    <a class="extend prev" rel="prev" href="/page/7/">Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/9/">Next</a>
   </nav>
-
-
-
-          </div>
-          
-
-        </div>
-        
-          
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-            
-              <p class="site-author-name" itemprop="name">shooke</p>
-              <p class="site-description motion-element" itemprop="description">平时写点技术文章，分享一些经验，予人玫瑰手有余香</p>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">89</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  <a href="/categories/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">6</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  <a href="/tags/index.html">
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">111</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-            <div class="feed-link motion-element">
-              <a href="/atom.xml" rel="alternate">
-                <i class="fa fa-rss"></i>
-                RSS
-              </a>
-            </div>
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/shooke" title="GitHub &rarr; https://github.com/shooke" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://weibo.com/shooke" title="Weibo &rarr; https://weibo.com/shooke" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
-                </span>
-              
-            </div>
-          
-
-          
-
-          
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
-      
-
-      
-
-    </div>
-  </aside>
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">shooke</span>
-
-  
-
-  
+</section>
 </div>
-
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v6.7.0</div>
-
-
-
-
-
-    <script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?d6b6833304116ed43a46f8f77b49d030";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
+    <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>舒克的博客 &copy; 2023</li>
+      
+        <li>
+          
+            <a href="https://beian.miit.gov.cn/" target="_blank"></a>
+            
+        </li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+    <p><ul class="list-inline">
+  
+  <li><i class="fe fe-bar-chart tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_site_pv"></span></li>
+  
+  <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+</ul></p>
   </div>
-
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
   
-
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="舒克的博客"></a>
+  </div>
   
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
-
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
   
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+<script src="/js/jquery-2.0.3.min.js"></script>
 
 
-  
+<script src="/js/jquery.justifiedGallery.min.js"></script>
 
 
-  <script src="/js/src/utils.js?v=6.7.0"></script>
+<script src="/js/lazyload.min.js"></script>
 
-  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
 
 
 
-  
-  
-
-
-  <script src="/js/src/schemes/muse.js?v=6.7.0"></script>
-
-
-
-
-  
-
-  
-
-
-  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
-
-
-
-  
-
-
-
-  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
 
 
 
 
 
-  
 
-  
-
-  
-  <script>
-  (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      if (curProtocol === 'https') {
-          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-      }
-      else {
-          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-      }
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-  })();
-  </script>
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
+<script src="/js/ocean.js"></script>
 
 </body>
+
 </html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="keywords" content="python,php,mysql,前端">
+  
+  
+  <title>
+    微信开发unionid详解 |
+    
+    舒克的博客
+  </title>
+  <!-- Icon -->
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-微信开发unionid详解" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h1 class="article-title" itemprop="name">
+    微信开发unionid详解
+  </h1>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/09/23/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91unionid%E8%AF%A6%E8%A7%A3/" class="article-date">
+  <time datetime="2020-09-23T02:26:11.000Z" itemprop="datePublished">2020-09-23</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="unionid概况"><a href="#unionid概况" class="headerlink" title="unionid概况"></a>unionid概况</h2><p>微信开发过程中，经常会遇到，一个企业有多个小程序和公众号，在不同的小程序和公众号中，会有不同的openid。如果想要确定是同一个人，就需要用到unionid机制。</p>
+<p>官方关于unionid的说明是这样的</p>
+<p>公众号文档的描述</p>
+<blockquote>
+<p>开发者可通过OpenID来获取用户基本信息。特别需要注意的是，如果开发者拥有多个移动应用、网站应用和公众帐号，可通过获取用户基本信息中的unionid来区分用户的唯一性，因为只要是同一个微信开放平台帐号下的移动应用、网站应用和公众帐号，用户的unionid是唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，unionid是相同的。</p>
+</blockquote>
+<p>小程序文档的描述</p>
+<blockquote>
+<p>如果开发者拥有多个移动应用、网站应用、和公众帐号（包括小程序），可通过 UnionID 来区分用户的唯一性，因为只要是同一个微信开放平台帐号下的移动应用、网站应用和公众帐号（包括小程序），用户的 UnionID 是唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，UnionID是相同的。</p>
+</blockquote>
+<span id="more"></span>
+
+<h2 id="开放平台"><a href="#开放平台" class="headerlink" title="开放平台"></a>开放平台</h2><p>提到unionid就不得不提微信开放平台了。</p>
+<p><a target="_blank" rel="noopener" href="https://open.weixin.qq.com/">https://open.weixin.qq.com</a> 微信开放平台，刚开始是为了让开发商，可以支持很多的公众号，而产生的。原因是使用appid和appsecret的方式对于。小程序或公众号的所有者来说太危险，相当于暴露了用户名和秘密。为了安全，出现了开放平台，授权时可以灵活的控制授予哪些权限。开放平台相比appid和appsecret方式还有很多特权。对于开发者是很好的。</p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><p>官方的说明比较简单，开发过程中会遇到不少的坑。下面说一下注意事项</p>
+<ol>
+<li>公众号开发时只有用户关注了公众号，才可以获取到unionid</li>
+</ol>
+<p>如果用户不关注或取消关注公众号，是无法获取unionid的。</p>
+<ol start="2">
+<li>必须将公众号或小程序绑定到开放平台才可以获取unionid</li>
+</ol>
+<p>进入开放平台，点管理中心。可以看到移动应用、网站应用、公众账号、小程序、第三方平台这些菜单。</p>
+<p>如果要绑定公众号就，点击<code>公众账号</code>菜单，然后点击<code>绑定公众号</code>，填写公众账号、密码、验证码，点下一步，然后需要管理员扫码。之后就绑定了。</p>
+<p>小程序的流程也差不多。</p>
+<ol start="3">
+<li>一个公众号或小程序只能绑定一个开放平台</li>
+</ol>
+<p>这与unionid的生成机制有关，unionid是用户与开放平台之间的对应关系，如果绑定多个会造成混乱。</p>
+<h3 id="unionid的值为什么不同"><a href="#unionid的值为什么不同" class="headerlink" title="unionid的值为什么不同"></a>unionid的值为什么不同</h3><p>第三方开放平台，开发过程中会遇到，同一个用户，在两个公众号下，获取到的unionid不同的情况。这种情况发送的原因是，两个公众号绑定到了不同的开放平台账号造成的。</p>
+<p>不管是小程序还是公众号，一个开放平台的是有绑定限制的。比如小程序<code>相同主体：上限50个，绑定次数不限。不同主体：上限5个，本月还可以绑定5次。</code>，公众号<code>相同主体：上限50个，绑定次数不限。不同主体：上限5个，本月还可以绑定5次。</code><br>所以一般情况下，会让客户自己注册一个开放平台，然后把客户的公众号和小程序绑定上去。</p>
+<p>比如<code>客户A</code>注册开放平台是<code>平台A</code>，注册小程序是<code>小程序A</code>，注册公众号是<code>公众号A</code>；<code>客户B</code>注册开放平台是<code>平台B</code>，注册小程序是<code>小程序B</code>，注册公众号是<code>公众号B</code>。</p>
+<p>他们各自绑定各自的开放平台。<code>小程序A</code>和<code>公众号A</code>绑定<code>平台A</code>，<code>小程序B</code>和<code>公众号B</code>绑定<code>平台B</code>。</p>
+<p>开发过程中会出现同一个微信用户，在<code>公众号A</code>和<code>小程序A</code>获取到的unionid是一样的比如都是；<code>公众号B</code>和<code>小程序B</code>中获取的unionid也是一样的。但是<code>公众号A</code>和<code>公众号B</code>获取的unionid不一样。</p>
+<p>造成这样的原因是因为绑定的开放平台不用，每个unionid的产生，其实是用户跟开放平台的唯一对应关系。<code>小程序A</code>和<code>公众号A</code>绑定<code>平台A</code>因此他们的unionid一样，<code>公众号A</code>和<code>公众号B</code>绑定在不同的开放平台所以取到的unionid不一样。</p>
+<p>还有一点要注意，开发公司A的开放平台<code>公司A平台</code>，同一个平台下创建多个<code>第三方平台</code>用于开发，这些<code>第三方平台</code>也会取到相同的unionid。</p>
+<p>重要的事情说三遍<code>unionid与绑定的平台有关，unionid与绑定的平台有关，unionid与绑定的平台有关</code>，unionid其实是用户和开放平台账户的对应关系。</p>
+<blockquote>
+<p>有一点值得注意：如果有个开发公司B，在开放平台<code>公司B平台</code>，有公众号A授权的情况下，取到的unionid与<code>公司A平台</code>获取的公众号A的unionid也会一样。这其实也是为了便于微信做大数据 分析，知道一个用户所有行为。</p>
+</blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/doc/offiaccount/User_Management/Get_users_basic_information_UnionID.html#UinonId">https://developers.weixin.qq.com/doc/offiaccount/User_Management/Get_users_basic_information_UnionID.html#UinonId</a><br><a target="_blank" rel="noopener" href="https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/union-id.html">https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/union-id.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/09/23/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91unionid%E8%AF%A6%E8%A7%A3/" data-id="clkaptz6a0059i8tr6vjfeurv" class="article-share-link">
+        Share
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/unionid/" rel="tag">unionid</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1/" rel="tag">微信</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2020/09/29/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1postgresql%E8%BF%81%E7%A7%BB%E7%B2%BE%E5%8A%9B/" class="article-nav-link">
+    <strong class="article-nav-caption">Newer</strong>
+    <div class="article-nav-title">
+      
+      记录一次postgresql迁移经历
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2020/08/22/%E8%81%8A%E8%81%8Akafka/" class="article-nav-link">
+    <strong class="article-nav-caption">Older</strong>
+    <div class="article-nav-title">聊聊kafka</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>舒克的博客 &copy; 2023</li>
+      
+        <li>
+          
+            <a href="https://beian.miit.gov.cn/" target="_blank"></a>
+            
+        </li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+    <p><ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul></p>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="舒克的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

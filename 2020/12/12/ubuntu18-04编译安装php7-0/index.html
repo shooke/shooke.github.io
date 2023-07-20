@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="keywords" content="python,php,mysql,前端">
+  
+  
+  <title>
+    ubuntu18.04编译安装php7.0 |
+    
+    舒克的博客
+  </title>
+  <!-- Icon -->
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-ubuntu18-04编译安装php7-0" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h1 class="article-title" itemprop="name">
+    ubuntu18.04编译安装php7.0
+  </h1>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/12/12/ubuntu18-04%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85php7-0/" class="article-date">
+  <time datetime="2020-12-12T15:10:30.000Z" itemprop="datePublished">2020-12-12</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>虽然7.0已经停止维护了，但有些老项目也只是过度，后期直接用新项目替换，没有必要在进行升级。所以服务器还是需要用到7.0的运行环境。<br>本来想用apt简单按一下，结果发现apt里面已经没有php7.0了。只能自己源码安装。</p>
+<span id="more"></span>
+
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>在安装编译安装前，需要先准备一下编译需要的环境。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install gcc</span><br><span class="line">sudo apt install make</span><br><span class="line">sudo apt install openssl</span><br><span class="line">sudo apt install curl</span><br><span class="line">sudo apt install libbz2-dev</span><br><span class="line">sudo apt install libxml2-dev</span><br><span class="line">sudo apt install libjpeg-dev</span><br><span class="line">sudo apt install libpng-dev</span><br><span class="line">sudo apt install libfreetype6-dev</span><br><span class="line">sudo apt install libzip-dev</span><br><span class="line">sudo apt install libcurl4-openssl-dev</span><br><span class="line">sudo apt install libmcrypt-dev</span><br></pre></td></tr></table></figure>
+<p>下载源码包,为了安全起见，当然要去官网下载<code>https://www.php.net/releases/</code>这里有历史版本。<br>找到7.0系列的版本用wget下载即可，或者去php的github clone一下项目也可以</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ cd /usr/local/src</span><br><span class="line">$ wget https://www.php.net/distributions/php-7.0.32.tar.gz</span><br><span class="line"></span><br><span class="line">$ cd php-7.0.32</span><br><span class="line"></span><br><span class="line">$ ./configure --prefix=/usr/local/php7.0 --with-config-file-path=/usr/local/php7.0/etc --enable-fpm --with-fpm-user=www --with-fpm-group=www --with-mysqli --with-pdo-mysql --with-iconv-dir --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib  --enable-xml --disable-rpath --enable-bcmath --enable-shmop --enable-sysvsem --enable-inline-optimization --with-curl --enable-mbregex --enable-mbstring --enable-ftp --with-gd --with-openssl --with-mhash --enable-pcntl --enable-sockets --with-xmlrpc --enable-zip --enable-soap  --with-gettext --disable-fileinfo --enable-maintainer-zts</span><br><span class="line"></span><br><span class="line">$ make</span><br><span class="line"></span><br><span class="line">$ make install</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可以根据自己的需求进行<code>./configure</code>，上面的配置是比较全面的，几乎所有用到的扩展都安装了。如果有些扩展不需要可以使用without或disable排除，比如<code>--without-pear</code></p>
+<p>安装完成，需要做一下配置，进入php7.0的安装目录<code>/usr/local/php7.0</code>。复制一下php配置文件.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd /usr/local/php7.0</span><br><span class="line">cd  etc</span><br><span class="line">cp php-fpm.conf.default php-fpm.conf</span><br><span class="line">cp php-fpm.d/www.conf.default php-fpm.d/www.conf</span><br></pre></td></tr></table></figure>
+<p>看一下<code>php-fpm.d/www.conf</code> 里面找到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">user = www</span><br><span class="line">group = www</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>给user和group配置成现有的用户、用户组。或者根据配置创建<code>www</code>账号和用户组也可以<br>查找 <code>listen</code>如果没有<code>listen</code>配置，自己添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listen = 127.0.0.1:9000</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>然后讲php-fpm运行起来。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/php7.0/sbin/php-fpm</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置nginx"><a href="#配置nginx" class="headerlink" title="配置nginx"></a>配置nginx</h2><p>因为php listen配置的是监听9000端口，所有nginx配置要是</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">location ~ \.php &#123;</span><br><span class="line">                if ($request_method = &#x27;OPTIONS&#x27;) &#123;</span><br><span class="line">                    add_header &#x27;Access-Control-Allow-Origin&#x27; &#x27;*&#x27; always;</span><br><span class="line">                    add_header &#x27;Access-Control-Allow-Credentials&#x27; &#x27;true&#x27; always;</span><br><span class="line">                    add_header &#x27;Access-Control-Allow-Methods&#x27; &#x27;GET, POST, PUT, DELETE, OPTIONS&#x27; always;</span><br><span class="line">                    add_header &#x27;Access-Control-Allow-Headers&#x27; &#x27;Origin, DNT,X-Mx-ReqToken,Keep-Alive,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type, Accept, authKey, sessionId, business,shop&#x27;;</span><br><span class="line">                    #add_header &#x27;Access-Control-Allow-Headers&#x27; &#x27;*&#x27;;</span><br><span class="line">                    add_header &#x27;Access-Control-Max-Age&#x27; 1728000;</span><br><span class="line">                    add_header &#x27;Content-Type&#x27; &#x27;text/plain charset=UTF-8&#x27;;</span><br><span class="line">                    add_header &#x27;Content-Length&#x27; 0;</span><br><span class="line"></span><br><span class="line">                    return 204;</span><br><span class="line">                &#125;</span><br><span class="line">                include snippets/fastcgi-php.conf;</span><br><span class="line"></span><br><span class="line">                # With php7.0-cgi alone:</span><br><span class="line">                fastcgi_pass 127.0.0.1:9000;</span><br><span class="line">        #       # With php7.0-fpm:</span><br><span class="line">        #       fastcgi_pass unix:/run/php/php7.2-fpm.sock;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="安装其他插件"><a href="#安装其他插件" class="headerlink" title="安装其他插件"></a>安装其他插件</h2><h3 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h3><p>redis是常用软件，redis官方为php提供了插件。可以使用pecl安装，也可以自己编译。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/php7.0/bin/pecl install redis</span><br></pre></td></tr></table></figure>
+<p>安装完成后会有提示</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Build process completed successfully</span><br><span class="line">Installing &#x27;/usr/local/php7.0/lib/php/extensions/no-debug-zts-20151012/redis.so&#x27;</span><br><span class="line">install ok: channel://pecl.php.net/redis-5.3.2</span><br><span class="line">configuration option &quot;php_ini&quot; is not set to php.ini location</span><br><span class="line">You should add &quot;extension=redis.so&quot; to php.ini</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>这是后需要在php.ini里添加<code>extension=redis.so</code>如果没哟php.ini文件，就在php配置目录创建一个。</p>
+<p>添加配置后需要重启php-fpm，然后<code>nginx -s reload</code>，redis就生效了。</p>
+<h3 id="mcrypt"><a href="#mcrypt" class="headerlink" title="mcrypt"></a>mcrypt</h3><p>这次用编译方式，首先下载源码包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://pecl.php.net/get/mcrypt-1.0.1.tgz</span><br></pre></td></tr></table></figure>
+<p>使用phpize处理一下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tar zxvf mcrypt-1.0.1.tgz</span><br><span class="line">cd mcrypt-1.0.1</span><br><span class="line">/usr/local/php7.0/bin/phpize</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>接下来开始编译，编译需要制定php-config的路径</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure --with-php-config=/usr/local/php7.0/bin/php-config</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<p>安装完成，出现如下信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Installing shared extensions:     /usr/local/php7.0/lib/php/extensions/no-debug-zts-20151012/</span><br></pre></td></tr></table></figure>
+<p>在php.ini中加入编译的插件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">extension=mcrypt.so</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>安装完插件，重启php-fpm和nginx就可以了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/12/12/ubuntu18-04%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85php7-0/" data-id="clkaptz5x003ki8tr84q6dh7g" class="article-share-link">
+        Share
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2020/12/13/ubuntu%E5%AE%89%E8%A3%85php%E6%9C%80%E6%96%B9%E4%BE%BF%E7%9A%84%E6%96%B9%E5%BC%8F/" class="article-nav-link">
+    <strong class="article-nav-caption">Newer</strong>
+    <div class="article-nav-title">
+      
+      ubuntu安装php最方便的方式
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2020/12/07/Virtualbox%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%B4%E6%98%8E/" class="article-nav-link">
+    <strong class="article-nav-caption">Older</strong>
+    <div class="article-nav-title">VirtualBox网络模式说明</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>舒克的博客 &copy; 2023</li>
+      
+        <li>
+          
+            <a href="https://beian.miit.gov.cn/" target="_blank"></a>
+            
+        </li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+    <p><ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul></p>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="舒克的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>
