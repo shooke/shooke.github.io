@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="keywords" content="python,php,mysql,前端">
+  
+  
+  <title>
+    VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式 |
+    
+    舒克的博客
+  </title>
+  <!-- Icon -->
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-2019/VirtualBox-v5-2-12-Ubuntu18-04-宿主机和虚拟主机互通，都可上网配置方式" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h1 class="article-title" itemprop="name">
+    VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式
+  </h1>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/04/02/2019/VirtualBox-v5-2-12-Ubuntu18-04-%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%92%8C%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%BA%92%E9%80%9A%EF%BC%8C%E9%83%BD%E5%8F%AF%E4%B8%8A%E7%BD%91%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/" class="article-date">
+  <time datetime="2019-04-02T05:29:28.000Z" itemprop="datePublished">2019-04-02</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="全局设置"><a href="#全局设置" class="headerlink" title="全局设置"></a>全局设置</h2><p>点击管理，全局设置；<br>选择网络，里面只有 NAT 网络；<br>点击添加，列表新增 NatNetwork，点击确定。</p>
+<h2 id="虚拟机配置"><a href="#虚拟机配置" class="headerlink" title="虚拟机配置"></a>虚拟机配置</h2><p>点击管理，选择主机网络管理；<br>选择创建，列表新增 vboxnet0，只要这一个就够了；<br>选中点击 vboxnet0，点击手动配置网卡；<br>点击 IPv4 地址，输入配置的网关 IP，如：192.168.56.1；<br>如果不想使用 DHCP，取消启用 DHCP，点击应用。</p>
+<h2 id="给虚拟机添加网卡"><a href="#给虚拟机添加网卡" class="headerlink" title="给虚拟机添加网卡"></a>给虚拟机添加网卡</h2><p>右键点击一个虚拟主机，选择设置；<br>选择网络；<br>选中点击网卡 1，勾选启用网络连接；<br>连接方式选择网络地址转换(NAT)，界面可以空着；<br>选中点击网卡 2，勾选启用网络连接；<br>连接方式选择仅主机(Host-Only)网络，界面名称为 vboxnet0，点击确认。</p>
+<span id="more"></span>
+
+<h2 id="设置虚拟机网络"><a href="#设置虚拟机网络" class="headerlink" title="设置虚拟机网络"></a>设置虚拟机网络</h2><p>执行命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vim /etc/network/interfaces</span><br></pre></td></tr></table></figure>
+
+<p>如果第二步中启用了 DHCP，可以这样设置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">source /etc/network/interfaces.d/*</span><br><span class="line"></span><br><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line"></span><br><span class="line">auto enp0s3</span><br><span class="line">iface enp0s3 inet dhcp</span><br><span class="line"></span><br><span class="line">auto enp0s8</span><br><span class="line">iface enp0s8 inet dhcp</span><br></pre></td></tr></table></figure>
+
+<p>如果第二步中取消了 DHCP 则这样配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">source /etc/network/interfaces.d/*</span><br><span class="line"></span><br><span class="line">auto lo</span><br><span class="line">iface lo inet loopback</span><br><span class="line"></span><br><span class="line">auto enp0s3</span><br><span class="line">iface enp0s3 inet dhcp</span><br><span class="line"># 为第二块网卡配置静态ip</span><br><span class="line">auto enp0s8</span><br><span class="line">iface enp0s8 inet static</span><br><span class="line">address 192.168.56.102</span><br><span class="line">netmask 255.255.255.0</span><br></pre></td></tr></table></figure>
+
+<p>注意，有可能网卡名称不是 enp0s8，如果要查看网卡可以执行<code>ls /sys/class/net</code>进行查看</p>
+<h2 id="重启虚拟机测试"><a href="#重启虚拟机测试" class="headerlink" title="重启虚拟机测试"></a>重启虚拟机测试</h2><p>注意这里要重启虚拟主机<br>虚拟主机重启后，先执行<code>ifconfig</code>会看到如下信息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">enp0s3: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 10.0.2.15  netmask 255.255.255.0  broadcast 10.0.2.255</span><br><span class="line">        inet6 fe80::a00:27ff:fecb:1016  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        ether 08:00:27:cb:10:16  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 14  bytes 3390 (3.3 KB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 27  bytes 3372 (3.3 KB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">enp0s8: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.56.102  netmask 255.255.255.0  broadcast 192.168.56.255</span><br><span class="line">        inet6 fe80::a00:27ff:fe6f:4edf  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        ether 08:00:27:6f:4e:df  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 56  bytes 6310 (6.3 KB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 75  bytes 10073 (10.0 KB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br><span class="line">lo: flags=73&lt;UP,LOOPBACK,RUNNING&gt;  mtu 65536</span><br><span class="line">        inet 127.0.0.1  netmask 255.0.0.0</span><br><span class="line">        inet6 ::1  prefixlen 128  scopeid 0x10&lt;host&gt;</span><br><span class="line">        loop  txqueuelen 1000  (Local Loopback)</span><br><span class="line">        RX packets 88  bytes 6692 (6.6 KB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 88  bytes 6692 (6.6 KB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>这个<code>enp0s8</code>就是我们的 Host-Only 网卡，<code>inet</code>就是网卡的 ip 地址，这是显示的是<code>192.168.56.102</code>。在宿主机执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping 192.168.56.102</span><br></pre></td></tr></table></figure>
+
+<p>发现 ping 通了。<br>查看一下宿主机的 ip，在虚拟机中<code>ping</code>也可以 ping 通。这样宿主机和虚拟主机的双向通讯就没有问题了。而且宿主机和虚拟机都可以访问外网。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/04/02/2019/VirtualBox-v5-2-12-Ubuntu18-04-%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%92%8C%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%BA%92%E9%80%9A%EF%BC%8C%E9%83%BD%E5%8F%AF%E4%B8%8A%E7%BD%91%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/" data-id="clkaxzrvt0005z0tr2yv44pz7" class="article-share-link">
+        Share
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VirtualBox/" rel="tag">VirtualBox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%92%E9%80%9A/" rel="tag">互通</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2019/04/03/2019/linux%E5%AE%89%E8%A3%85java%E7%8E%AF%E5%A2%83/" class="article-nav-link">
+    <strong class="article-nav-caption">Newer</strong>
+    <div class="article-nav-title">
+      
+      linux安装java环境
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2019/04/01/2019/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99%E5%A4%A7%E7%99%BD%E8%AF%9D/" class="article-nav-link">
+    <strong class="article-nav-caption">Older</strong>
+    <div class="article-nav-title">设计模式基本原则大白话</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>舒克的博客 &copy; 2023</li>
+      
+        <li>
+          
+            <a href="https://beian.miit.gov.cn/" target="_blank"></a>
+            
+        </li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+    <p><ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul></p>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="舒克的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

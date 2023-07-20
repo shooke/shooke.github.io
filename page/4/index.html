@@ -66,7 +66,7 @@
     <h1 class="page-type-title"></h1>
     
     
-    <article id="post-shadowsocks客户端启动报错问题" class="article article-type-post" itemscope
+    <article id="post-2020/shadowsocks客户端启动报错问题" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -75,7 +75,7 @@
       
   
   <h2 class="article-title" itemprop="name">
-    <a href="/2020/02/11/shadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/">shadowsocks客户端启动报错问题</a>
+    <a href="/2020/02/11/2020/shadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/">shadowsocks客户端启动报错问题</a>
   </h2>
   
   
@@ -85,7 +85,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/02/11/shadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/" class="article-date">
+      <a href="/2020/02/11/2020/shadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/" class="article-date">
   <time datetime="2020-02-11T03:11:19.000Z" itemprop="datePublished">2020-02-11</time>
 </a>
       
@@ -109,7 +109,7 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">INFO: loading config from shadowsocks.json</span><br><span class="line">2020-02-11 10:50:45 INFO     loading libcrypto from libcrypto.so.1.1</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/usr/local/bin/sslocal&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    sys.exit(main())</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/local.py&quot;, line 39, in main</span><br><span class="line">    config = shell.get_config(True)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/shell.py&quot;, line 262, in get_config</span><br><span class="line">    check_config(config, is_local)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/shell.py&quot;, line 124, in check_config</span><br><span class="line">    encrypt.try_cipher(config[&#x27;password&#x27;], config[&#x27;method&#x27;])</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/encrypt.py&quot;, line 44, in try_cipher</span><br><span class="line">    Encryptor(key, method)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/encrypt.py&quot;, line 83, in __init__</span><br><span class="line">    random_string(self._method_info[1]))</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/encrypt.py&quot;, line 109, in get_cipher</span><br><span class="line">    return m[2](method, key, iv, op)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/rc4_md5.py&quot;, line 33, in create_cipher</span><br><span class="line">    return openssl.OpenSSLCrypto(b&#x27;rc4&#x27;, rc4_key, b&#x27;&#x27;, op)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/openssl.py&quot;, line 76, in __init__</span><br><span class="line">    load_openssl()</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/openssl.py&quot;, line 52, in load_openssl</span><br><span class="line">    libcrypto.EVP_CIPHER_CTX_cleanup.argtypes = (c_void_p,)</span><br><span class="line">  File &quot;/usr/lib/python2.7/ctypes/__init__.py&quot;, line 379, in __getattr__</span><br><span class="line">    func = self.__getitem__(name)</span><br><span class="line">  File &quot;/usr/lib/python2.7/ctypes/__init__.py&quot;, line 384, in __getitem__</span><br><span class="line">    func = self._FuncPtr((name_or_ordinal, self))</span><br><span class="line">AttributeError: /usr/lib/x86_64-linux-gnu/libcrypto.so.1.1: undefined symbol: EVP_CIPHER_CTX_cleanup</span><br><span class="line"></span><br></pre></td></tr></table></figure>
         
           <p>
-            <a class="article-more-link" href="/2020/02/11/shadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/">
+            <a class="article-more-link" href="/2020/02/11/2020/shadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/">
               Read More...
             </a>
           </p>
@@ -117,7 +117,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/02/11/shadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/" data-id="clkaq8105002yx4tr3sv06jnb" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2020/02/11/2020/shadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/" data-id="clkaxzrxg004nz0tr3cnz4g93" class="article-share-link">
         Share
       </a>
       
@@ -133,7 +133,7 @@
 
 </article>
     
-    <article id="post-nginx配置结构说明" class="article article-type-post" itemscope
+    <article id="post-2020/nginx配置结构说明" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -142,7 +142,7 @@
       
   
   <h2 class="article-title" itemprop="name">
-    <a href="/2020/01/10/nginx%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E/">nginx配置结构说明</a>
+    <a href="/2020/01/10/2020/nginx%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E/">nginx配置结构说明</a>
   </h2>
   
   
@@ -152,7 +152,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/01/10/nginx%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E/" class="article-date">
+      <a href="/2020/01/10/2020/nginx%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E/" class="article-date">
   <time datetime="2020-01-10T06:20:08.000Z" itemprop="datePublished">2020-01-10</time>
 </a>
       
@@ -175,7 +175,7 @@
 <h2 id="配置结构"><a href="#配置结构" class="headerlink" title="配置结构"></a>配置结构</h2><p>nginx的配置其实很简单，总共也就分为4部分：main（全局设置）、server（主机设置）、upstream（负载均衡服务器设置）和 location（URL匹配特定位置的设置）<br>他们的关系是，server继承main，location继承server，upstream既不会继承其他设置也不会被继承。<br>所以配置的优先级就是 location &gt; server &gt; main</p>
         
           <p>
-            <a class="article-more-link" href="/2020/01/10/nginx%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E/">
+            <a class="article-more-link" href="/2020/01/10/2020/nginx%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E/">
               Read More...
             </a>
           </p>
@@ -183,7 +183,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/01/10/nginx%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E/" data-id="clkaq80zz0023x4tr9jeg6fb7" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2020/01/10/2020/nginx%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E/" data-id="clkaxzrxd004bz0trae5z4vxn" class="article-share-link">
         Share
       </a>
       
@@ -199,7 +199,7 @@
 
 </article>
     
-    <article id="post-limits-conf配置说明" class="article article-type-post" itemscope
+    <article id="post-2020/limits-conf配置说明" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -208,7 +208,7 @@
       
   
   <h2 class="article-title" itemprop="name">
-    <a href="/2020/01/03/limits-conf%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/">limits.conf配置说明</a>
+    <a href="/2020/01/03/2020/limits-conf%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/">limits.conf配置说明</a>
   </h2>
   
   
@@ -218,7 +218,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/01/03/limits-conf%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" class="article-date">
+      <a href="/2020/01/03/2020/limits-conf%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" class="article-date">
   <time datetime="2020-01-03T09:30:52.000Z" itemprop="datePublished">2020-01-03</time>
 </a>
       
@@ -240,7 +240,7 @@
         <p>最近发生了奇怪的事情，mysql总是会连不上，查了半天原因，最后发现进程文件没有生成。es报警“Too many open files”。搜索才发现是，打开文件太多了，超过了限制。解决方法是修改<code>/etc/security/limits.conf</code>。另外还牵扯到了另一个配置<code>file-max</code>。经过调试还是踩了不少坑的。坐下笔记，防止重复踩坑。</p>
         
           <p>
-            <a class="article-more-link" href="/2020/01/03/limits-conf%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/">
+            <a class="article-more-link" href="/2020/01/03/2020/limits-conf%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/">
               Read More...
             </a>
           </p>
@@ -248,7 +248,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/01/03/limits-conf%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" data-id="clkaq80zv001nx4tr6vcng3fw" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2020/01/03/2020/limits-conf%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" data-id="clkaxzrxb003zz0tr3imjg9sl" class="article-share-link">
         Share
       </a>
       
@@ -264,7 +264,7 @@
 
 </article>
     
-    <article id="post-ssh提速" class="article article-type-post" itemscope
+    <article id="post-2019/ssh提速" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -273,7 +273,7 @@
       
   
   <h2 class="article-title" itemprop="name">
-    <a href="/2019/12/28/ssh%E6%8F%90%E9%80%9F/">ssh提速</a>
+    <a href="/2019/12/28/2019/ssh%E6%8F%90%E9%80%9F/">ssh提速</a>
   </h2>
   
   
@@ -283,7 +283,7 @@
 
     
     <div class="article-meta">
-      <a href="/2019/12/28/ssh%E6%8F%90%E9%80%9F/" class="article-date">
+      <a href="/2019/12/28/2019/ssh%E6%8F%90%E9%80%9F/" class="article-date">
   <time datetime="2019-12-28T09:31:20.000Z" itemprop="datePublished">2019-12-28</time>
 </a>
       
@@ -309,7 +309,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/12/28/ssh%E6%8F%90%E9%80%9F/" data-id="clkaq81070035x4trdivw0ota" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2019/12/28/2019/ssh%E6%8F%90%E9%80%9F/" data-id="clkaxzrwh0022z0tr8v2c6zhb" class="article-share-link">
         Share
       </a>
       

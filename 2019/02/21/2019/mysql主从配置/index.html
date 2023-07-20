@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="keywords" content="python,php,mysql,前端">
+  
+  
+  <title>
+    mysql主从配置 |
+    
+    舒克的博客
+  </title>
+  <!-- Icon -->
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-2019/mysql主从配置" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h1 class="article-title" itemprop="name">
+    mysql主从配置
+  </h1>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/02/21/2019/mysql%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2019-02-21T07:44:58.000Z" itemprop="datePublished">2019-02-21</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>本教程配置是mysql5.7 不同的版本配置方式有差异，仅供参考</p>
+<h2 id="Master的配置"><a href="#Master的配置" class="headerlink" title="Master的配置"></a>Master的配置</h2><h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>修改&#x2F;etc&#x2F;mysql&#x2F;mysql.conf.d&#x2F;mysqld.cnf（配置文件具体位置根据）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log-bin=mysql-bin</span><br><span class="line">server-id=2</span><br><span class="line">binlog-ignore-db=information_schema</span><br><span class="line">binlog-ignore-db=cluster</span><br><span class="line">binlog-ignore-db=mysql</span><br><span class="line">binlog-do-db=test</span><br></pre></td></tr></table></figure>
+<p>这里的server-id用于标识唯一的数据库，在从库必须设置为不同的值。</p>
+<p>binlog-ignore-db：表示同步的时候忽略的数据库</p>
+<p>binlog-do-db：指定需要同步的数据库</p>
+<p>配置完成后重启mysql服务</p>
+<span id="more"></span>
+
+<h3 id="增加同步用户"><a href="#增加同步用户" class="headerlink" title="增加同步用户"></a>增加同步用户</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 添加用户</span><br><span class="line">mysql&gt; create user &#x27;repl&#x27;@&#x27;172.16.99.44&#x27; identified by &#x27;RepL@)18&#x27;;</span><br><span class="line"># 给用户全局同步权限</span><br><span class="line">mysql&gt; GRANT REPLICATION SLAVE ON *.* TO &#x27;repl&#x27;@&#x27;172.16.99.44&#x27;;</span><br><span class="line"># 给用户操作主库的所有权限</span><br><span class="line">mysql&gt; GRANT ALL ON `test`.* TO `test`@`%`</span><br><span class="line"># 刷新权限，让权限生效</span><br><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure>
+<p>值得注意的一点是上面3条命令一条也不能少，如果只给了全局权限，不分配数据库权限也是无法同步的。<br>全局权限要根据实际情况给，如果你是用python，获取binlog，那还需要给定REPLICATION CLIENT才可以，否则无法链接数据库。有时候也需要file权限，否则无法读取binlog文件，从库无法同步。</p>
+<h3 id="看配置是否生效"><a href="#看配置是否生效" class="headerlink" title="看配置是否生效"></a>看配置是否生效</h3><p>重启mysql，然后登录mysql，执行如下命令看配置是否生效，如果显示了主库信息标示生效了，如果没有则表示，配置没成功。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show master status;</span><br></pre></td></tr></table></figure>
+<p>注意一下file和position，在配置从库时会用到。File是同步会使用到的binlog文件，Position是同步的时候也要用到的。</p>
+<h2 id="Slave的配置"><a href="#Slave的配置" class="headerlink" title="Slave的配置"></a>Slave的配置</h2><h3 id="修改配置-1"><a href="#修改配置-1" class="headerlink" title="修改配置"></a>修改配置</h3><p>修改&#x2F;etc&#x2F;mysql&#x2F;mysql.conf.d&#x2F;mysqld.cnf（配置文件具体位置根据）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">log-bin=mysql-bin</span><br><span class="line">server-id=3</span><br><span class="line">binlog-ignore-db=information_schema</span><br><span class="line">binlog-ignore-db=cluster</span><br><span class="line">binlog-ignore-db=mysql</span><br><span class="line">replicate-do-db=test</span><br><span class="line">replicate-ignore-db=mysql</span><br><span class="line">log-slave-updates</span><br><span class="line">slave-skip-errors=all</span><br><span class="line">slave-net-timeout=60 </span><br></pre></td></tr></table></figure>
+<p>server-id一定不要和主库相同<br>replicate-do-db是要同步的数据库，一定要设置正确</p>
+<p>配置完成，重启mysql服务</p>
+<h3 id="配置主从关联"><a href="#配置主从关联" class="headerlink" title="配置主从关联"></a>配置主从关联</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; stop slave;</span><br><span class="line">mysql&gt; change master to master_host=&#x27;192.168.0.68&#x27;,master_user=&#x27;RepL&#x27;,master_password=&#x27;RepL@)18&#x27;,master_log_file=&#x27;mysql-bin.000004&#x27;, master_log_pos=28125;</span><br><span class="line">mysql&gt; start slave;</span><br></pre></td></tr></table></figure>
+<p>注意：上面的master_log_file是在Master中show master status显示的File，</p>
+<p>而master_log_pos是在Master中show master status显示的Position。</p>
+<p>然后可以通过show slave status查看配置信息。</p>
+<p>如果没有同步成功，请查看show slave status中的position和file是否和master中的对应了。</p>
+<p>查看从库状态</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show slave status \G;</span><br></pre></td></tr></table></figure>
+<p>观察这两个值，Slave_IO_Running: Yes 和Slave_SQL_Running: Yes，如果都是yes，说明运行正常。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/02/21/2019/mysql%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/" data-id="clkaxzrw60015z0tr943g9yoc" class="article-share-link">
+        Share
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2019/03/06/2019/git%E4%BF%9D%E5%AD%98%E5%AF%86%E7%A0%81/" class="article-nav-link">
+    <strong class="article-nav-caption">Newer</strong>
+    <div class="article-nav-title">
+      
+      git保存密码
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2019/02/15/2019/%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8git%E5%88%86%E6%94%AF/" class="article-nav-link">
+    <strong class="article-nav-caption">Older</strong>
+    <div class="article-nav-title">团队开发中如何使用git分支</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>舒克的博客 &copy; 2023</li>
+      
+        <li>
+          
+            <a href="https://beian.miit.gov.cn/" target="_blank"></a>
+            
+        </li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+    <p><ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul></p>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="舒克的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="keywords" content="python,php,mysql,前端">
+  
+  
+  <title>
+    聊聊kafka |
+    
+    舒克的博客
+  </title>
+  <!-- Icon -->
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-2020/聊聊kafka" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h1 class="article-title" itemprop="name">
+    聊聊kafka
+  </h1>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/08/22/2020/%E8%81%8A%E8%81%8Akafka/" class="article-date">
+  <time datetime="2020-08-22T07:47:12.000Z" itemprop="datePublished">2020-08-22</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>为了便于理解kafka，先了解一下消息队列以及通讯模式。首先先了解两个名词</p>
+<ul>
+<li>数据生产者 产生数据的程序或服务</li>
+<li>数据消费者 处理数据的程序或服务</li>
+</ul>
+<h2 id="消息队列"><a href="#消息队列" class="headerlink" title="消息队列"></a>消息队列</h2><p>简单的说就是个数据集散地，数据生产方把数据放到消息队列，然后消费方从队列中获得数据进行处理。<br>我们把消息队列比作超市，超市的供货商就相当于数据生产者，超市顾客就是数据消费者了。</p>
+<p>使用消息队列可以让我们解决三大问题</p>
+<h3 id="解耦"><a href="#解耦" class="headerlink" title="解耦"></a>解耦</h3><p>假设没有超市，我们买菜直接从供货商手里买的话，我们如果要买不同的菜就需要联系好多的供货商。每个供货商又要给很多人供货，这是很麻烦的。超市的出现就解决了这个麻烦，所有的供货商只需要把才运送到超市这一个地方，顾客也只需要去超市这一个地方。就可以买到很多菜。<br>数据也是一样的，不同用户的数据都进入消息队列，然后服务，只需要从队里中获取数据进行处理就可以了。</p>
+<h3 id="异步"><a href="#异步" class="headerlink" title="异步"></a>异步</h3><p>没有超市的情况下，我们跟供货商买东西，要两个人都有时间才可以，供货商没时间送货，或者消费者没时间在家接货都无法达成交易。但是有了超市，供货商不用等消费者在家，消费者也不用等供货商有时间送货。大家都是随时去超市购买即可。<br>数据也一样，数据生产方随时可以产生数据，而不用担心处理数据的服务是否空闲，服务也不用立即对请求进行应答。如果服务异常退出了，等再次启动后可以消息队列中获取数据进行处理。</p>
+<h3 id="削峰"><a href="#削峰" class="headerlink" title="削峰"></a>削峰</h3><p>没有超市的情况下，如果我们买了10种菜，供货商同时到了，很有可能你拿不了。方路边？万一丢了怎么办呢。有了超市就可以一次买一点多次购买多方便。<br>数据也一样，最容易出现这种情况的就是秒杀，大量的数据同一时间汇入，这时候很容易让服务崩掉。有了消息队列，咱们就可以轻松化解了，所有的数据先进入消息队列。后台服务从队列中获取数据处理。</p>
+<h2 id="通讯模式"><a href="#通讯模式" class="headerlink" title="通讯模式"></a>通讯模式</h2><h3 id="点对点模式"><a href="#点对点模式" class="headerlink" title="点对点模式"></a>点对点模式</h3><p>前面介绍消息队列举的例子中，都是顾客主动去超市购买商品，这种方式，我们称之为点对点方式。这种模式消费者需要主动获取数据，好处是比较灵活。缺点也很明显，数据消费者或许消息不够及时。有可能你去买菜的时候，菜已经卖没了。</p>
+<h3 id="发布订阅模式"><a href="#发布订阅模式" class="headerlink" title="发布订阅模式"></a>发布订阅模式</h3><p>为了让消费者买到好的菜，超市推出了送货上面服务，供货商将菜送来的时候，超市会把菜打包好送到您手里。这样就不会买不到菜了。<br>这种主动送达的方式叫做发布订阅模式，数据发送到消息队列时。消息队列会主动把数据推送给数据消费者。</p>
+<h2 id="kafka"><a href="#kafka" class="headerlink" title="kafka"></a>kafka</h2><p>消息队列软件有很多种，kafka就是其中的一种。它是Linkedin公司开发，现在已经贡献给了apache基金会。kafka的创始人还在kafka的基础上，开发了好多周边软件，用于数据流转处理。如kafka connect等</p>
+<p>kafka启动后默认使用9092端口，想这个端口发送信息，kafka就可以收到了。为了便于操作，kafka自带有Producer和Consumer的命令行工具用于简单测试</p>
+<p>使用kafka必须先了解一下kafka的几个关键术语。</p>
+<h3 id="Producer"><a href="#Producer" class="headerlink" title="Producer"></a>Producer</h3><p>Producer即生产者，消息的产生者，它将消息发送到kafka中。安装包内有命令行工具，在java、python、php等语言也都有响应的sdk。使用Producer对象可以将消息发送到kafka服务。发送服务时会指定Topic。</p>
+<h3 id="Message"><a href="#Message" class="headerlink" title="Message"></a>Message</h3><p>消息即数据，生产者发送一次数据，会产生一条消息。</p>
+<h3 id="Topic"><a href="#Topic" class="headerlink" title="Topic"></a>Topic</h3><p>消息主题，可以理解为消息分类。比如订单业务用order，订单服务就可以只接收order topic下的消息进行处理，这是非常方便的。避免了接收无用的消息。</p>
+<h3 id="Partition"><a href="#Partition" class="headerlink" title="Partition"></a>Partition</h3><p>Topic的分区，可以理解为文件夹，当数据特别多的时候如果把数据再次进行归类存储，可以有效的提高读写效率。比如有一万个文件，放在一个文件夹中查找就比较慢，如果按照哈希分散到a-z的26个文件夹中，那每个文件夹中存储的文件数量就是1&#x2F;26。当我们发现要查找的文件第一个字母是a，就直接去a文件夹下。这样就提高了查找速度。</p>
+<h3 id="Broker"><a href="#Broker" class="headerlink" title="Broker"></a>Broker</h3><p>kafka实例，可以简单理解为kafka的消息容器。每个kafka集群内的broker都有一个不重复的编号。每台服务器上可以有一到多个kafka实例，为了便于理解，我们假设一台服务器上有一个kafka实例。这样你也可以理解为一个broker等于一台服务器。</p>
+<h3 id="Replication"><a href="#Replication" class="headerlink" title="Replication"></a>Replication</h3><p>topic的副本，他存放在kafka实例（broker）上。注意一下几点</p>
+<ul>
+<li>在kafka中默认副本的最大数量是10个</li>
+<li>副本的数量不能大于Broker的数量</li>
+<li>follower和leader绝对是在不同的机器，同一机器对同一个分区也只可能存放一个副本（包括自己）。<br>这样当主分区(Leader Partition)出现故障挂掉的时候，其中一份副本会转正为主分区，让业务可以正常使用</li>
+</ul>
+<h3 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h3><p>消费者，即消息的消费方，是消息的出口。安装包内有命令行工具，在java、python、php等语言也都有响应的sdk。使用Consumer对象可以接收或获取kafka中的数据。</p>
+<h3 id="Consumer-Group"><a href="#Consumer-Group" class="headerlink" title="Consumer Group"></a>Consumer Group</h3><p>我们可以将多个消费者组成一个消费者组，一个topic可以被多个消费组消费。但是消费组中多人同时消费一个topic时，每个分区只能有一个人消费。消费组中的消费者数量不要超过这个topic的Partition数量</p>
+<h2 id="场景举例"><a href="#场景举例" class="headerlink" title="场景举例"></a>场景举例</h2><p>咱们有5台服务器，每台服务器一个kafka实例（broker）。<br>这时候我们设置副本数量要小于5（1是主分区，剩余4个borker可用作副本），我们设置为4<br>假设咱们设置分区（Partition）数是10</p>
+<p>生产了个order的topic，我们有系统A和系统B都会用到订单数据。</p>
+<p>系统A用 group-A消费者的数量不能超过5，如果超过了，会有一个消费这始终借不到数据。group-A中每个消费者都从各自的分区（Partition）中获取数据，他们每个人的数据是不重复的。<br>系统B如果使用group-A，那么它消费的一些数据，系统A会无法消费。因此如果想要两个系统都获得完整的数据。就需要系统B更换分组，比如使用group-B。这样两个系统互不干扰，都可以拿到消息队列中的全部数据。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/08/22/2020/%E8%81%8A%E8%81%8Akafka/" data-id="clkaxzrxj0054z0trhb9sb9zx" class="article-share-link">
+        Share
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kafka/" rel="tag">kafka</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2020/09/23/2020/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91unionid%E8%AF%A6%E8%A7%A3/" class="article-nav-link">
+    <strong class="article-nav-caption">Newer</strong>
+    <div class="article-nav-title">
+      
+      微信开发unionid详解
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2020/08/13/2020/python%E6%8D%95%E8%8E%B7%E5%BC%82%E5%B8%B8%E5%A0%86%E6%A0%88%E4%BF%A1%E6%81%AF/" class="article-nav-link">
+    <strong class="article-nav-caption">Older</strong>
+    <div class="article-nav-title">python捕获异常堆栈信息</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>舒克的博客 &copy; 2023</li>
+      
+        <li>
+          
+            <a href="https://beian.miit.gov.cn/" target="_blank"></a>
+            
+        </li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+    <p><ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul></p>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="舒克的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="keywords" content="python,php,mysql,前端">
+  
+  
+  <title>
+    mysql权限说明 |
+    
+    舒克的博客
+  </title>
+  <!-- Icon -->
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-2019/mysql权限说明" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h1 class="article-title" itemprop="name">
+    mysql权限说明
+  </h1>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/03/06/2019/mysql%E6%9D%83%E9%99%90%E8%AF%B4%E6%98%8E/" class="article-date">
+  <time datetime="2019-03-06T05:23:15.000Z" itemprop="datePublished">2019-03-06</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>关于mysql的权限简单的理解就是mysql允许你做你权利以内的事情，不可以越界。比如只允许你执行select操作，那么你就不能执行update操作。只允许你从某台机器上连接mysql，那么你就不能从除那台机器以外的其他机器连接mysql。</p>
+<p>那么Mysql的权限是如何实现的呢？这就要说到mysql的两阶段验证，下面详细介绍：<br>第一阶段：服务器首先会检查你是否允许连接。因为创建用户的时候会加上主机限制，可以限制成本地、某个IP、某个IP段、以及任何地方等，只允许你从配置的指定地方登陆。<br>第二阶段：如果你能连接，Mysql会检查你发出的每个请求，看你是否有足够的权限实施它。比如你要更新某个表、或者查询某个表，Mysql会查看你对哪个表或者某个列是否有权限。再比如，你要运行某个存储过程，Mysql会检查你对存储过程是否有执行权限等。</p>
+<span id="more"></span>
+<h2 id="MySQL权限简单分类"><a href="#MySQL权限简单分类" class="headerlink" title="MySQL权限简单分类"></a>MySQL权限简单分类</h2><p>数据权限分为：库、表和字段三种级别<br>管理权限主要是管理员要使用到的权限，包括：数据库创建，临时表创建、主从部署、进程管理等<br>程序权限主要是触发器、存储过程、函数等权限。</p>
+<table>
+<thead>
+<tr>
+<th>权限分布</th>
+<th>可设置的权限</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>表权限</td>
+<td>‘Select’, ‘Insert’, ‘Update’, ‘Delete’, ‘Create’, ‘Drop’, ‘Grant’, ‘References’, ‘Index’, ‘Alter’</td>
+</tr>
+<tr>
+<td>列权限</td>
+<td>‘Select’, ‘Insert’, ‘Update’, ‘References’</td>
+</tr>
+<tr>
+<td>过程权限</td>
+<td>‘Execute’, ‘Alter Routine’, ‘Grant’</td>
+</tr>
+</tbody></table>
+<h2 id="MySQL用户权限层级"><a href="#MySQL用户权限层级" class="headerlink" title="MySQL用户权限层级"></a>MySQL用户权限层级</h2><ul>
+<li><p>全局层级：全局权限适用于一个给定MySQL Server中的所有数据库，这些权限存储在mysql.user表中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL ON *.* TO &#x27;user&#x27;@&#x27;host&#x27;;  # *.* 表示数据库库的所有库和表，对应权限存储在mysql.user表中</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数据库层级：数据库权限适用于一个给定数据库中的所有目标，这些权限存储在mysql.db表中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL ON mydb.* TO &#x27;user&#x27;@&#x27;host&#x27;;  #mydb.* 表示mysql数据库下的所有表，对应权限存储在mysql.db表中</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>表层级：表权限适用于一个给定表中的所有列，这些权限存储在mysql.tables_priv表中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL ON mydb.mytable TO &#x27;user&#x27;@&#x27;host&#x27;;  #mydb.mytable 表示mysql数据库下的mytable表，对应权限存储在mysql.tables_priv表</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列层级：列权限使用于一个给定表中的单一列，这些权限存储在mysql.columns_priv表中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT ALL (col1， col2， col3)  ON mydb.mytable TO &#x27;user&#x27;@&#x27;host&#x27;; #mydb.mytable 表示mysql数据库下的mytable表， col1, col2,  col3表示mytable表中的列名</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>子程序层级：CREATE ROUTINE、ALTER ROUTINE、EXECUTE和GRANT权限适用于已存储的子程序。这些权限可以被授予为全局层级和数据库层级。而且，除了CREATE ROUTINE外，这些权限可以被授予子程序层级，并存储在mysql.procs_priv表中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GRANT EXECUTE ON PROCEDURE mydb.myproc TO &#x27;user&#x27;@&#x27;host&#x27;; #mydb.mytable 表示mysql数据库下的mytable表，PROCEDUR表示存储过程</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="Mysql权限总览"><a href="#Mysql权限总览" class="headerlink" title="Mysql权限总览"></a>Mysql权限总览</h2><table>
+<thead>
+<tr>
+<th><strong>权限</strong></th>
+<th><strong>权限级别</strong></th>
+<th><strong>权限说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>CREATE</td>
+<td>数据库、表或索引</td>
+<td>创建数据库、表或索引权限</td>
+</tr>
+<tr>
+<td>DROP</td>
+<td>数据库或表</td>
+<td>删除数据库或表权限</td>
+</tr>
+<tr>
+<td>GRANT OPTION</td>
+<td>数据库、表或保存的程序</td>
+<td>赋予权限选项</td>
+</tr>
+<tr>
+<td>REFERENCES</td>
+<td>数据库或表</td>
+<td></td>
+</tr>
+<tr>
+<td>ALTER</td>
+<td>表</td>
+<td>更改表，比如添加字段、索引等</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td>表</td>
+<td>删除数据权限</td>
+</tr>
+<tr>
+<td>INDEX</td>
+<td>表</td>
+<td>索引权限</td>
+</tr>
+<tr>
+<td>INSERT</td>
+<td>表</td>
+<td>插入权限</td>
+</tr>
+<tr>
+<td>SELECT</td>
+<td>表</td>
+<td>查询权限</td>
+</tr>
+<tr>
+<td>UPDATE</td>
+<td>表</td>
+<td>更新权限</td>
+</tr>
+<tr>
+<td>CREATE VIEW</td>
+<td>视图</td>
+<td>创建视图权限</td>
+</tr>
+<tr>
+<td>SHOW VIEW</td>
+<td>视图</td>
+<td>查看视图权限</td>
+</tr>
+<tr>
+<td>ALTER ROUTINE</td>
+<td>存储过程</td>
+<td>更改存储过程权限</td>
+</tr>
+<tr>
+<td>CREATE ROUTINE</td>
+<td>存储过程</td>
+<td>创建存储过程权限</td>
+</tr>
+<tr>
+<td>EXECUTE</td>
+<td>存储过程</td>
+<td>执行存储过程权限</td>
+</tr>
+<tr>
+<td>FILE</td>
+<td>服务器主机上的文件访问</td>
+<td>文件访问权限</td>
+</tr>
+<tr>
+<td>CREATE TEMPORARY TABLES</td>
+<td>服务器管理</td>
+<td>创建临时表权限</td>
+</tr>
+<tr>
+<td>LOCK TABLES</td>
+<td>服务器管理</td>
+<td>锁表权限</td>
+</tr>
+<tr>
+<td>CREATE USER</td>
+<td>服务器管理</td>
+<td>创建用户权限</td>
+</tr>
+<tr>
+<td>PROCESS</td>
+<td>服务器管理</td>
+<td>查看进程权限</td>
+</tr>
+<tr>
+<td>RELOAD</td>
+<td>服务器管理</td>
+<td>执行flush-hosts, flush-logs, flush-privileges, flush-status, flush-tables, flush-threads, refresh, reload等命令的权限</td>
+</tr>
+<tr>
+<td>REPLICATION CLIENT</td>
+<td>服务器管理</td>
+<td>复制权限</td>
+</tr>
+<tr>
+<td>REPLICATION SLAVE</td>
+<td>服务器管理</td>
+<td>复制权限</td>
+</tr>
+<tr>
+<td>SHOW DATABASES</td>
+<td>服务器管理</td>
+<td>查看数据库权限</td>
+</tr>
+<tr>
+<td>SHUTDOWN</td>
+<td>服务器管理</td>
+<td>关闭数据库权限</td>
+</tr>
+<tr>
+<td>SUPER</td>
+<td>服务器管理</td>
+<td>执行kill线程权限</td>
+</tr>
+</tbody></table>
+<p>参考资料<a target="_blank" rel="noopener" href="https://yq.aliyun.com/articles/640817#">https://yq.aliyun.com/articles/640817#</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/03/06/2019/mysql%E6%9D%83%E9%99%90%E8%AF%B4%E6%98%8E/" data-id="clkaxzrw9001bz0trdu4w16e8" class="article-share-link">
+        Share
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%83%E9%99%90/" rel="tag">权限</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2019/03/06/2019/git-reset%E5%91%BD%E4%BB%A4%E8%AF%A6%E8%A7%A3/" class="article-nav-link">
+    <strong class="article-nav-caption">Newer</strong>
+    <div class="article-nav-title">
+      
+      git reset命令详解
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2019/03/06/2019/git%E4%BF%9D%E5%AD%98%E5%AF%86%E7%A0%81/" class="article-nav-link">
+    <strong class="article-nav-caption">Older</strong>
+    <div class="article-nav-title">git保存密码</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>舒克的博客 &copy; 2023</li>
+      
+        <li>
+          
+            <a href="https://beian.miit.gov.cn/" target="_blank"></a>
+            
+        </li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+    <p><ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul></p>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="舒克的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>

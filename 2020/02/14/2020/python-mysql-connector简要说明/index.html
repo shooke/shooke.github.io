@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="keywords" content="python,php,mysql,前端">
+  
+  
+  <title>
+    python mysql-connector简要说明 |
+    
+    舒克的博客
+  </title>
+  <!-- Icon -->
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-2020/python-mysql-connector简要说明" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h1 class="article-title" itemprop="name">
+    python mysql-connector简要说明
+  </h1>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/02/14/2020/python-mysql-connector%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E/" class="article-date">
+  <time datetime="2020-02-14T08:38:09.000Z" itemprop="datePublished">2020-02-14</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install mysql-connector</span><br></pre></td></tr></table></figure>
+
+<h2 id="建立链接"><a href="#建立链接" class="headerlink" title="建立链接"></a>建立链接</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import mysql.connector</span><br><span class="line"> </span><br><span class="line"># 接收参数：user, password, host, port=3306, unix_socket and database</span><br><span class="line"># 返回一个MySQLConnection Object</span><br><span class="line">config = &#123;</span><br><span class="line">    &#x27;host&#x27;: &#x27;127.0.0.1&#x27;,</span><br><span class="line">    &#x27;user&#x27;: &#x27;root&#x27;,</span><br><span class="line">    &#x27;password&#x27;: &#x27;root&#x27;,</span><br><span class="line">    &#x27;port&#x27;: 3306,</span><br><span class="line">    &#x27;database&#x27;: &#x27;test&#x27;,</span><br><span class="line">    &#x27;charset&#x27;: &#x27;utf8&#x27;</span><br><span class="line">&#125;</span><br><span class="line">try:</span><br><span class="line">    cnn = mysql.connector.connect(**config)</span><br><span class="line">except mysql.connector.Error as e:</span><br><span class="line">    print(&#x27;connect fails!&#123;&#125;&#x27;.format(e))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>conn就是mysql的链接对象，它可以提交开启事务、提交、回滚，也可以关闭来mysql断开链接</p>
+<h2 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h2><p>执行查询，需要经过以下几个过程：</p>
+<ol>
+<li>获取一个游标，数据操作都是基于游标来处理。链接的cursor方法会返回一个游标，如上面<code>conn.cursor()</code>就会返回游标。</li>
+<li>调用游标的execute方法，执行sql。</li>
+<li>获取执行结果，我们可以用fetchone()一次获取一条记录，也可以用fetchall()，一次性获取所有记录。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cursor = cnn.cursor()</span><br><span class="line">try:</span><br><span class="line">    sql_query = &#x27;select name,age from stu ;&#x27;</span><br><span class="line">    cursor.execute(sql_query)</span><br><span class="line">    for name, age in cursor:</span><br><span class="line">        print (name, age)</span><br><span class="line">except mysql.connector.Error as e:</span><br><span class="line">    print(&#x27;query error!&#123;&#125;&#x27;.format(e))</span><br><span class="line">finally:</span><br><span class="line">    cursor.close()</span><br><span class="line">    cnn.close()</span><br></pre></td></tr></table></figure></li>
+</ol>
+<span id="more"></span>
+
+<h3 id="获取全部数据"><a href="#获取全部数据" class="headerlink" title="获取全部数据"></a>获取全部数据</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">cmd = conn.cursor()</span><br><span class="line"># 执行一条原生的SQL语句，执行结果保存在cmd中，没有返回值</span><br><span class="line">cmd.execute(&quot;select id, name, age from stu&quot;)</span><br><span class="line"># 可以使用fetchall()，获取所有的查询结果集，返回值为一个tuple，每一个元素是一个list</span><br><span class="line">res = cmd.fetchall()</span><br><span class="line">print(res)</span><br><span class="line"># [(1, &#x27;LiMing&#x27;, 20), (2, &#x27;XiaoHua&#x27;, 30), (3, &#x27;LiLei&#x27;, 10)]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="获取一条数据"><a href="#获取一条数据" class="headerlink" title="获取一条数据"></a>获取一条数据</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">cmd = conn.cursor()</span><br><span class="line"> </span><br><span class="line">cmd.execute(&quot;select id, name, age from stu&quot;)</span><br><span class="line"> </span><br><span class="line"># 使用fetchone()返回一条结果集，每调用一次之后，内部指针会指向下一条结果集</span><br><span class="line">print(cmd.fetchone()) # (1, &#x27;LiMing&#x27;, 20)</span><br><span class="line">print(cmd.fetchone()) # (2, &#x27;XiaoHua&#x27;, 30)</span><br><span class="line">print(cmd.fetchone()) # (3, &#x27;LiLei&#x27;, 10)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="一次获取n条数据"><a href="#一次获取n条数据" class="headerlink" title="一次获取n条数据"></a>一次获取n条数据</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cmd = conn.cursor()</span><br><span class="line"> </span><br><span class="line">cmd.execute(&quot;select * from stu&quot;)</span><br><span class="line"> </span><br><span class="line">res = cmd.fetchmany(2)   # 指定返回2条记录</span><br><span class="line">print(res)</span><br><span class="line"># [(1, &#x27;LiMing&#x27;, 20), (2, &#x27;XiaoHua&#x27;, 30)]</span><br><span class="line"> </span><br><span class="line">res = cmd.fetchmany(1)   # 指定返回1条记录</span><br><span class="line">print(res)</span><br><span class="line"># [(3, &#x27;LiLei&#x27;, 10)]</span><br></pre></td></tr></table></figure>
+
+<h2 id="插入操作"><a href="#插入操作" class="headerlink" title="插入操作"></a>插入操作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 创建一个查询</span><br><span class="line">cmd = conn.cursor()</span><br><span class="line"> </span><br><span class="line"># 执行原生SQL语句</span><br><span class="line">cmd.execute(&quot;insert into stu (id, name, age) values (4, &#x27;LiBai&#x27;, 99)&quot;)</span><br><span class="line">print(cmd.rowcount)  # 1</span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+
+<h2 id="更新操作"><a href="#更新操作" class="headerlink" title="更新操作"></a>更新操作</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># 创建一个查询</span><br><span class="line">cmd = conn.cursor()</span><br><span class="line"> </span><br><span class="line"># 执行原生SQL语句</span><br><span class="line">cmd.execute(&quot;update stu set name=&#x27;张三&#x27;&quot;)</span><br><span class="line">print(cmd.rowcount)  # 1</span><br><span class="line"> </span><br><span class="line">cmd.execute(&quot;select * from stu&quot;)</span><br><span class="line">res = cmd.fetchall()</span><br><span class="line">print(res)</span><br><span class="line"># [(1, &#x27;LiMing&#x27;, 20), (2, &#x27;XiaoHua&#x27;, 30), (3, &#x27;LiLei&#x27;, 10), (4, &#x27;LiBai&#x27;, 99)]</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>知识点<br>fetchone() 一次获取一条数据，每执行一次游标自动移动到下一条，直到数据全部读出。<br>fetchmany(5) 一次获取5条数据，没执行一次游标向后移动，直到数据全部读出。<br>fetchall() 一次获取所有数据</p>
+</blockquote>
+<h2 id="预处理"><a href="#预处理" class="headerlink" title="预处理"></a>预处理</h2><p>前面的例子都是直接执行sql语句，这样存在一定的危险性。预处理是不错的方式。execute方法支持3个参数：</p>
+<blockquote>
+<p>第一个参数是执行的sql，sql中的参数可以使用具体内容，也可以使用占位符<br>第二个参数，是当以一个参数使用了占位符时用到的，参数类型是一个元组(tuple),元祖的元素个数，根据第一个参数中的占位符个数决定<br>第三个表示第一个参数是不是多个SQL语句，如果是的话，就传入True，否则传入False</p>
+</blockquote>
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">cmd = conn.cursor()</span><br><span class="line"> </span><br><span class="line"># 注意，在SQL中的占位符，统一写%s, 具体的类型，是在tuple中，传入的参数元素类型决定</span><br><span class="line">cmd.execute(&quot;select * from stu where id=%s and name=%s&quot;, (1, &#x27;LiMing&#x27;))</span><br><span class="line">res = cmd.fetchall()</span><br><span class="line">print(res)</span><br><span class="line"># [(1, &#x27;LiMing&#x27;, 20)]</span><br><span class="line"></span><br><span class="line"># 如果占位符只有一个，则tuple中要有一个逗号，这是tuple定义需要注意的</span><br><span class="line">cmd.execute(&quot;select * from stu where id=%s &quot;, (1,))</span><br><span class="line">res = cmd.fetchall()</span><br><span class="line">print(res)</span><br><span class="line"># [(1, &#x27;LiMing&#x27;, 20)]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="更新、删除"><a href="#更新、删除" class="headerlink" title="更新、删除"></a>更新、删除</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 删除</span><br><span class="line">cmd.execute(&quot;delete from stu  where id=%s &quot;, (2,))</span><br><span class="line"># 注意，如果是更新操作一定要执行commit，否则数据库不会更新</span><br><span class="line">cmd.execute(&quot;update stu set name=&#x27;lisi&#x27; where id=%s &quot;, (1,))</span><br><span class="line">conn.commit()</span><br><span class="line"># 如果占位符只有一个，则tuple中要有一个逗号，这是tuple定义需要注意的</span><br><span class="line">cmd.execute(&quot;select * from stu where id=%s &quot;, (1,))</span><br><span class="line">res = cmd.fetchall()</span><br><span class="line">print(res)</span><br><span class="line"># [(1, &#x27;lisi&#x27;, 20)]</span><br></pre></td></tr></table></figure>
+<p>上面的操作如果去掉conn.commit()，输出结果也会是<code>[(1, &#39;lisi&#39;, 20)]</code>，但进入数据库查看，数据库的内容并不会更新。</p>
+<blockquote>
+<p>知识点<br>预处理时，python会实时得知sql执行的最终结果。但是如果不执行<code>commit()</code>数据库内的数据不会真正更新。</p>
+</blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/-beyond/p/9798970.html">https://www.cnblogs.com/-beyond/p/9798970.html</a><br><a target="_blank" rel="noopener" href="https://www.cnblogs.com/xiaohuomiao/p/10729818.html">https://www.cnblogs.com/xiaohuomiao/p/10729818.html</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/02/14/2020/python-mysql-connector%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E/" data-id="clkaxzrxe004ez0tr6wdj24av" class="article-share-link">
+        Share
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql-connector/" rel="tag">mysql-connector</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  <a href="/2020/02/26/2020/openresty-lua-kafka%E9%83%A8%E7%BD%B2/" class="article-nav-link">
+    <strong class="article-nav-caption">Newer</strong>
+    <div class="article-nav-title">
+      
+      openresty+lua+kafka部署
+      
+    </div>
+  </a>
+  
+  
+  <a href="/2020/02/12/2020/linux-%E4%B8%BAphp7-0%E5%AE%89%E8%A3%85redis%E6%89%A9%E5%B1%95/" class="article-nav-link">
+    <strong class="article-nav-caption">Older</strong>
+    <div class="article-nav-title">linux 为php7.0安装redis扩展</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>舒克的博客 &copy; 2023</li>
+      
+        <li>
+          
+            <a href="https://beian.miit.gov.cn/" target="_blank"></a>
+            
+        </li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+    <p><ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul></p>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="舒克的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="Search">
+        <i class="fe fe-search"></i>
+        Search
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>
