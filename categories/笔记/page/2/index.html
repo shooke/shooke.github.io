@@ -58,6 +58,40 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2020/10/08/deepin%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85nginx%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/">deepin编译安装nginx问题总结.md</a>
+  </h2>
+  
+  
+
+      <a href="/2020/10/08/deepin%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85nginx%E9%97%AE%E9%A2%98%E6%80%BB%E7%BB%93/" class="archive-article-date">
+  <time datetime="2020-10-08T14:10:48.000Z" itemprop="datePublished">10/08</time>
+</a>
+    </header>
+    
+      <h2 id="c-compiler-cc-is-not-found"><a href="#c-compiler-cc-is-not-found" class="headerlink" title="c compiler cc is not found"></a>c compiler cc is not found</h2><p>检查是否一安装gcc如果没有，执行<code>apt install gcc</code>进行安装<br>如果已经安装了gcc，但还是包错误，就需要执行<code>apt install build-essential</code></p>
+    
+    
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2020/09/30/%E8%A7%A3%E5%86%B3ssh%E7%99%BB%E5%BD%95%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98/">解决ssh登录超时问题</a>
   </h2>
   
@@ -366,49 +400,6 @@
       <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ol>
 <li>使用kafka作为消息队列，将信息收集起来</li>
 <li>已有程序无需修改，改起来成本太高了<br>满足这两个条件，首先想到的就是用nginx把数据转发出去，这样程序不用改动，只改变运维环境就可以了。</li>
-</ol>
-    
-    
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2020/02/14/python-mysql-connector%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E/">python mysql-connector简要说明</a>
-  </h2>
-  
-  
-
-      <a href="/2020/02/14/python-mysql-connector%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E/" class="archive-article-date">
-  <time datetime="2020-02-14T08:38:09.000Z" itemprop="datePublished">02/14</time>
-</a>
-    </header>
-    
-      <h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -m pip install mysql-connector</span><br></pre></td></tr></table></figure>
-
-<h2 id="建立链接"><a href="#建立链接" class="headerlink" title="建立链接"></a>建立链接</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import mysql.connector</span><br><span class="line"> </span><br><span class="line"># 接收参数：user, password, host, port=3306, unix_socket and database</span><br><span class="line"># 返回一个MySQLConnection Object</span><br><span class="line">config = &#123;</span><br><span class="line">    &#x27;host&#x27;: &#x27;127.0.0.1&#x27;,</span><br><span class="line">    &#x27;user&#x27;: &#x27;root&#x27;,</span><br><span class="line">    &#x27;password&#x27;: &#x27;root&#x27;,</span><br><span class="line">    &#x27;port&#x27;: 3306,</span><br><span class="line">    &#x27;database&#x27;: &#x27;test&#x27;,</span><br><span class="line">    &#x27;charset&#x27;: &#x27;utf8&#x27;</span><br><span class="line">&#125;</span><br><span class="line">try:</span><br><span class="line">    cnn = mysql.connector.connect(**config)</span><br><span class="line">except mysql.connector.Error as e:</span><br><span class="line">    print(&#x27;connect fails!&#123;&#125;&#x27;.format(e))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>conn就是mysql的链接对象，它可以提交开启事务、提交、回滚，也可以关闭来mysql断开链接</p>
-<h2 id="查询操作"><a href="#查询操作" class="headerlink" title="查询操作"></a>查询操作</h2><p>执行查询，需要经过以下几个过程：</p>
-<ol>
-<li>获取一个游标，数据操作都是基于游标来处理。链接的cursor方法会返回一个游标，如上面<code>conn.cursor()</code>就会返回游标。</li>
-<li>调用游标的execute方法，执行sql。</li>
-<li>获取执行结果，我们可以用fetchone()一次获取一条记录，也可以用fetchall()，一次性获取所有记录。<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cursor = cnn.cursor()</span><br><span class="line">try:</span><br><span class="line">    sql_query = &#x27;select name,age from stu ;&#x27;</span><br><span class="line">    cursor.execute(sql_query)</span><br><span class="line">    for name, age in cursor:</span><br><span class="line">        print (name, age)</span><br><span class="line">except mysql.connector.Error as e:</span><br><span class="line">    print(&#x27;query error!&#123;&#125;&#x27;.format(e))</span><br><span class="line">finally:</span><br><span class="line">    cursor.close()</span><br><span class="line">    cnn.close()</span><br></pre></td></tr></table></figure></li>
 </ol>
     
     

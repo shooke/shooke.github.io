@@ -58,6 +58,36 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2020/02/11/shadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/">shadowsocks客户端启动报错问题</a>
+  </h2>
+  
+  
+
+      <a href="/2020/02/11/shadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/" class="archive-article-date">
+  <time datetime="2020-02-11T03:11:19.000Z" itemprop="datePublished">02/11</time>
+</a>
+    </header>
+    
+      <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sslocal -c shadowsocks.json</span><br></pre></td></tr></table></figure>
+<p>报如下错误</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">INFO: loading config from shadowsocks.json</span><br><span class="line">2020-02-11 10:50:45 INFO     loading libcrypto from libcrypto.so.1.1</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/usr/local/bin/sslocal&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    sys.exit(main())</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/local.py&quot;, line 39, in main</span><br><span class="line">    config = shell.get_config(True)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/shell.py&quot;, line 262, in get_config</span><br><span class="line">    check_config(config, is_local)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/shell.py&quot;, line 124, in check_config</span><br><span class="line">    encrypt.try_cipher(config[&#x27;password&#x27;], config[&#x27;method&#x27;])</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/encrypt.py&quot;, line 44, in try_cipher</span><br><span class="line">    Encryptor(key, method)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/encrypt.py&quot;, line 83, in __init__</span><br><span class="line">    random_string(self._method_info[1]))</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/encrypt.py&quot;, line 109, in get_cipher</span><br><span class="line">    return m[2](method, key, iv, op)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/rc4_md5.py&quot;, line 33, in create_cipher</span><br><span class="line">    return openssl.OpenSSLCrypto(b&#x27;rc4&#x27;, rc4_key, b&#x27;&#x27;, op)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/openssl.py&quot;, line 76, in __init__</span><br><span class="line">    load_openssl()</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/openssl.py&quot;, line 52, in load_openssl</span><br><span class="line">    libcrypto.EVP_CIPHER_CTX_cleanup.argtypes = (c_void_p,)</span><br><span class="line">  File &quot;/usr/lib/python2.7/ctypes/__init__.py&quot;, line 379, in __getattr__</span><br><span class="line">    func = self.__getitem__(name)</span><br><span class="line">  File &quot;/usr/lib/python2.7/ctypes/__init__.py&quot;, line 384, in __getitem__</span><br><span class="line">    func = self._FuncPtr((name_or_ordinal, self))</span><br><span class="line">AttributeError: /usr/lib/x86_64-linux-gnu/libcrypto.so.1.1: undefined symbol: EVP_CIPHER_CTX_cleanup</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2020/01/10/nginx%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E/">nginx配置结构说明</a>
   </h2>
   
@@ -301,34 +331,6 @@
 
       <a href="/2019/12/21/git/4.%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E7%89%88%E6%9C%AC%E5%BA%93/" class="archive-article-date">
   <time datetime="2019-12-21T12:32:20.000Z" itemprop="datePublished">12/21</time>
-</a>
-    </header>
-    
-      
-    
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/12/20/git/3.%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E7%8A%B6%E6%80%81/">3.查看文件状态</a>
-  </h2>
-  
-  
-
-      <a href="/2019/12/20/git/3.%E6%9F%A5%E7%9C%8B%E6%96%87%E4%BB%B6%E7%8A%B6%E6%80%81/" class="archive-article-date">
-  <time datetime="2019-12-20T12:32:20.000Z" itemprop="datePublished">12/20</time>
 </a>
     </header>
     

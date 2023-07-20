@@ -58,6 +58,41 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/06/24/shadowsocks-deepin-pac%E6%A8%A1%E5%BC%8F%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">shadowsocks-deepin pac模式失效问题解决方案</a>
+  </h2>
+  
+  
+
+      <a href="/2019/06/24/shadowsocks-deepin-pac%E6%A8%A1%E5%BC%8F%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="archive-article-date">
+  <time datetime="2019-06-24T02:37:50.000Z" itemprop="datePublished">06/24</time>
+</a>
+    </header>
+    
+      <p>今天发现无法访问google了，登上服务器看了下没有链接。查看了下本机shadowsocks-deepin是正常启动的。<br>再看代理模式是pac。改成全局模式居然可以正常访问google了。问题原因就发生在pac上了。<br>试着访问了一下<code>http://file.lolimay.cn/autoproxy.pac</code>果然无法访问了。<br>在网上找了一个新的pac配置修改上，真的可以了。目前有效地址<code>https://prudent-travels.000webhostapp.com/pac.php?a=SOCKS5&amp;b=127.0.0.1:1080</code>。</p>
+<p>我用的<code>deepin</code>系统其他系统的修改方式可能有差别。具体操作如下：</p>
+    
+    
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/06/20/vscode%E6%89%93%E9%80%A0php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">vscode打造php开发环境</a>
   </h2>
   
@@ -352,45 +387,6 @@
     </header>
     
       
-    
-    
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/04/25/%E7%9C%81%E7%95%A5sudo%E4%BD%BF%E7%94%A8docker/">省略sudo使用docker</a>
-  </h2>
-  
-  
-
-      <a href="/2019/04/25/%E7%9C%81%E7%95%A5sudo%E4%BD%BF%E7%94%A8docker/" class="archive-article-date">
-  <time datetime="2019-04-25T05:31:43.000Z" itemprop="datePublished">04/25</time>
-</a>
-    </header>
-    
-      <h2 id="安装-docker"><a href="#安装-docker" class="headerlink" title="安装 docker"></a>安装 docker</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- https://get.docker.com/ | sh</span><br></pre></td></tr></table></figure>
-
-<p>或</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install docker</span><br></pre></td></tr></table></figure>
-
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>为什么需要创建 docker 用户组？<br>Docker 守候进程绑定的是一个 unix socket，而不是 TCP 端口。这个套接字默认的属主是 root，其他是用户可以使用 sudo 命令来访问这个套接字文件。因为这个原因，docker 服务进程都是以 root 帐号的身份运行的。</p>
     
     
       

@@ -2734,7 +2734,7 @@ UEDITOR_HOME_URL的路径是相对于根目录的，比如上面的配置就是�
     <content><![CDATA[<h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
 <p>本故事纯属虚构，如有雷同，^0^那可太巧了</p>
 </blockquote>
-<p>吃过早饭，早早来到办公室。今天办公室和往常好像不一样。小白的工位旁边做了个人。好面生啊。</p>
+<p>吃过早饭，早早来到办公室。今天办公室和往常好像不一样。小白的工位旁边坐了个人。好面生啊。</p>
 <p>“你好”，小白主动上前打招呼。<br>“你好，我是新来的。老大说让我跟你一组，以后我就跟你混了。”，新同事回答<br>“我叫小白，你叫什么啊？”，小白问道<br>“我叫小菜” 新同事回答<br>…<br>小白和小菜聊得很投缘。<br>上班时间到了，第一件事就是带领小菜熟悉项目。<br>“这是我u盘，把项目拷贝给我一份吧，我熟悉一下项目”，小菜说道，把u盘递给了小白</p>
 <p>“不需要拷贝，现在都用git了，直接用git clone一份就可以了”，小白说着把u盘还给小菜</p>
 <p>“这样啊，好高端”，小菜呵呵一笑</p>
@@ -3102,6 +3102,31 @@ UEDITOR_HOME_URL的路径是相对于根目录的，比如上面的配置就是�
       </categories>
       <tags>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>spring官方建议不要使用@Autowired，完美解决方案</title>
+    <url>/2023/07/20/spring-autowired/</url>
+    <content><![CDATA[<p>Springboot官方建议使用final来修饰成员变量，然后通过构造方法来进行注入。原因：final修饰的成员变量是不能够被修改的，反射除外。</p>
+<p>既然不推荐使用Autowired了，应该如何修改我们的代码呢？</p>
+<span id="more"></span>
+
+<p>当前代码如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;/terminalLocation&quot;)</span><br><span class="line">public class TerminalLocationController &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private TerminalLocationService terminalLocationService;</span><br><span class="line"></span><br><span class="line">    @PostMapping(&quot;/confirm&quot;)</span><br><span class="line">    public RestResponse&lt;String&gt; confirm(@RequestParam(&quot;id&quot;) Integer id)&#123;</span><br><span class="line">        terminalLocationService.confirm(id);</span><br><span class="line">        return RestResponse.success(&quot;确认成功&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>按照官方的说法我吗应该这样修改，去掉<code>@Autowired</code>，给属性添加<code>final</code>修饰符，创建构造函数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;/terminalLocation&quot;)</span><br><span class="line">public class TerminalLocationController &#123;</span><br><span class="line">    </span><br><span class="line">    private final TerminalLocationService terminalLocationService;</span><br><span class="line"></span><br><span class="line">    public TerminalLocationController(TerminalLocationService terminalLocationService) &#123;</span><br><span class="line">        this.terminalLocationService = terminalLocationService;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @PostMapping(&quot;/confirm&quot;)</span><br><span class="line">    public RestResponse&lt;String&gt; confirm(@RequestParam(&quot;id&quot;) Integer id)&#123;</span><br><span class="line">        terminalLocationService.confirm(id);</span><br><span class="line">        return RestResponse.success(&quot;确认成功&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是这样写好麻烦啊，每次添加一个依赖都要修改构造函数。好在我们有<code>lombok</code>，只需要添加一个<code>@AllArgsConstructor</code>注解，就可以帮我们生成构造函数了，代码简化为这样</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;/terminalLocation&quot;)</span><br><span class="line">@AllArgsConstructor</span><br><span class="line">public class TerminalLocationController &#123;</span><br><span class="line"></span><br><span class="line">    private final TerminalLocationService terminalLocationService;</span><br><span class="line"></span><br><span class="line">    @PostMapping(&quot;/confirm&quot;)</span><br><span class="line">    public RestResponse&lt;String&gt; confirm(@RequestParam(&quot;id&quot;) Integer id)&#123;</span><br><span class="line">        terminalLocationService.confirm(id);</span><br><span class="line">        return RestResponse.success(&quot;确认成功&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样虽然解决了自定生成构造函数的问题，但是，<code>@AllArgsConstructor</code>会给把所有属性都加入到构造函数中。这样就会带来一个问题，如果我们有一个属性使用了<code>@Value</code>也会被构造函数的参数覆盖。<br>如何解决呢？<br>通常使用<code>@Value</code>的属性我们通常是可以修改的，因此不会加上<code>final</code>修饰符<br>我们只把加入了<code>final</code>修饰符的属性加入到构造函数中就可以了，这时候使用<code>@RequiredArgsConstructor</code>注解就可以了</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@RestController</span><br><span class="line">@RequestMapping(&quot;/terminalLocation&quot;)</span><br><span class="line">@RequiredArgsConstructor</span><br><span class="line">public class TerminalLocationController &#123;</span><br><span class="line"></span><br><span class="line">    private final TerminalLocationService terminalLocationService;</span><br><span class="line"></span><br><span class="line">    @PostMapping(&quot;/confirm&quot;)</span><br><span class="line">    public RestResponse&lt;String&gt; confirm(@RequestParam(&quot;id&quot;) Integer id)&#123;</span><br><span class="line">        terminalLocationService.confirm(id);</span><br><span class="line">        return RestResponse.success(&quot;确认成功&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>完美方案是，在类上使用<code>@RequiredArgsConstructor</code>注解，属性去掉<code>@Autowired</code>注解，添加<code>final</code>修饰符。</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>spring</tag>
       </tags>
   </entry>
 </search>
