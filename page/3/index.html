@@ -89,7 +89,7 @@
 </a>
       
 <div class="article-category">
-  <a class="article-category-link" href="/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3git/">一点一点了解git</a>
+  <a class="article-category-link" href="/categories/%E7%9C%8B%E6%95%85%E4%BA%8B%E5%AD%A6git/">看故事学git</a>
 </div>
 
     </div>
@@ -110,17 +110,33 @@
 <p>“你好”，小白主动上前打招呼。<br>“你好，我是新来的。老大说让我跟你一组，以后我就跟你混了。”，新同事回答<br>“我叫小白，你叫什么啊？”，小白问道<br>“我叫小菜” 新同事回答<br>…<br>小白和小菜聊得很投缘。<br>上班时间到了，第一件事就是带领小菜熟悉项目。<br>“这是我u盘，把项目拷贝给我一份吧，我熟悉一下项目”，小菜说道，把u盘递给了小白</p>
 <p>“不需要拷贝，现在都用git了，直接用git clone一份就可以了”，小白说着把u盘还给小菜</p>
 <p>“这样啊，好高端”，小菜呵呵一笑</p>
-        
-          <p>
-            <a class="article-more-link" href="/2020/04/22/git/10.%E5%85%8B%E9%9A%86%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/">
-              阅读全文...
-            </a>
-          </p>
-        
+<p>小白做到小菜的电脑前，打开git bash工具敲下命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/shooke/learngit.git</span><br></pre></td></tr></table></figure>
+
+<p>一会电脑上出现了 learngit的文件夹。</p>
+<p>“这样项目就下来了”小白说道，心里美滋滋的。</p>
+<p>小菜一脸崇拜的看着小白。</p>
+<p>“这是我的学习笔记，你也好好学习一下git吧。”小白发给小菜一个文档。</p>
+<p>就这样两人开始了组团升级的道路</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><ul>
+<li><code> git clone &lt;版本库的网址&gt;</code> 可以克隆项目到本地，生成一个与项目同名的文件夹，版本库网址可以是https也可以是ssh类型的，这取决于服务器支持那种协议</li>
+<li><code>git clone &lt;版本库的网址&gt; &lt;本地目录名&gt;</code> 如果想保存的时候换一个名字，可以在版本库地址后面增加一个目录名如<code>git clone https://github.com/shooke/learngit.git git_learn</code></li>
+<li>git可以支持多种协议，比如下面的协议<ul>
+<li>$ git clone http[s]:&#x2F;&#x2F;example.com&#x2F;path&#x2F;to&#x2F;repo.git&#x2F;</li>
+<li>$ git clone ssh:&#x2F;&#x2F;example.com&#x2F;path&#x2F;to&#x2F;repo.git&#x2F;</li>
+<li>$ git clone git:&#x2F;&#x2F;example.com&#x2F;path&#x2F;to&#x2F;repo.git&#x2F;</li>
+<li>$ git clone &#x2F;opt&#x2F;git&#x2F;project.git </li>
+<li>$ git clone file:&#x2F;&#x2F;&#x2F;opt&#x2F;git&#x2F;project.git</li>
+<li>$ git clone ftp[s]:&#x2F;&#x2F;example.com&#x2F;path&#x2F;to&#x2F;repo.git&#x2F;</li>
+<li>$ git clone rsync:&#x2F;&#x2F;example.com&#x2F;path&#x2F;to&#x2F;repo.git&#x2F;</li>
+</ul>
+</li>
+</ul>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/04/22/git/10.%E5%85%8B%E9%9A%86%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/" data-id="clkbywry400dn8gtrfqzr7azf" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2020/04/22/git/10.%E5%85%8B%E9%9A%86%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/" data-id="clkbzl85z006segtrc3blchei" class="article-share-link">
         分享
       </a>
       
@@ -189,7 +205,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/03/25/2020/%E8%AE%A9nginx%E6%94%AF%E6%8C%81flv%E6%96%87%E4%BB%B6%E6%92%AD%E6%94%BE/" data-id="clkbywrvl001g8gtr8aglgoh6" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2020/03/25/2020/%E8%AE%A9nginx%E6%94%AF%E6%8C%81flv%E6%96%87%E4%BB%B6%E6%92%AD%E6%94%BE/" data-id="clkbzl84e001megtr790tbwo8" class="article-share-link">
         分享
       </a>
       
@@ -254,76 +270,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/03/03/docker/2.docker%E4%BB%93%E5%BA%93/" data-id="clkbywrvp001z8gtr43ncfuci" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2020/03/03/docker/2.docker%E4%BB%93%E5%BA%93/" data-id="clkbzl85v0069egtrbo7xb6jn" class="article-share-link">
         分享
       </a>
       
 <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker-repository/" rel="tag">docker repository</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-docker/3.docker镜像" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2020/03/03/docker/3.docker%E9%95%9C%E5%83%8F/">docker镜像(Image)</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/03/docker/3.docker%E9%95%9C%E5%83%8F/" class="article-date">
-  <time datetime="2020-03-03T03:12:37.000Z" itemprop="datePublished">2020-03-03</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3docker/">一点一点了解docker</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <p>镜像在学习docker的过程中非常重要，创建出一个适用于自己的镜像，才能让业务系统准确运行。</p>
-        
-          <p>
-            <a class="article-more-link" href="/2020/03/03/docker/3.docker%E9%95%9C%E5%83%8F/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/03/03/docker/3.docker%E9%95%9C%E5%83%8F/" data-id="clkbywrvs002d8gtranpzg907" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker-image/" rel="tag">docker image</a></li></ul>
 
     </footer>
 
@@ -385,11 +336,76 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/03/03/docker/4.docker%E5%AE%B9%E5%99%A8/" data-id="clkbywrvt002g8gtrd1badz62" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2020/03/03/docker/4.docker%E5%AE%B9%E5%99%A8/" data-id="clkbzl85w006degtrh830b1yw" class="article-share-link">
         分享
       </a>
       
 <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker-Container/" rel="tag">docker Container</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-docker/3.docker镜像" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2020/03/03/docker/3.docker%E9%95%9C%E5%83%8F/">docker镜像(Image)</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/03/03/docker/3.docker%E9%95%9C%E5%83%8F/" class="article-date">
+  <time datetime="2020-03-03T03:12:37.000Z" itemprop="datePublished">2020-03-03</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E4%B8%80%E7%82%B9%E4%B8%80%E7%82%B9%E4%BA%86%E8%A7%A3docker/">一点一点了解docker</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>镜像在学习docker的过程中非常重要，创建出一个适用于自己的镜像，才能让业务系统准确运行。</p>
+        
+          <p>
+            <a class="article-more-link" href="/2020/03/03/docker/3.docker%E9%95%9C%E5%83%8F/">
+              阅读全文...
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/03/03/docker/3.docker%E9%95%9C%E5%83%8F/" data-id="clkbzl85x006gegtr2exm6f35" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker-image/" rel="tag">docker image</a></li></ul>
 
     </footer>
 
@@ -454,7 +470,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/03/03/docker/1-docker%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" data-id="clkbywrvp001w8gtr6wq2hbn2" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2020/03/03/docker/1-docker%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/" data-id="clkbzl85v0066egtr8p7eejhd" class="article-share-link">
         分享
       </a>
       
@@ -522,7 +538,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/02/26/2020/openresty-lua-kafka%E9%83%A8%E7%BD%B2/" data-id="clkbywrvd000j8gtrai79fd8j" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2020/02/26/2020/openresty-lua-kafka%E9%83%A8%E7%BD%B2/" data-id="clkbzl845000jegtr22wjdqbl" class="article-share-link">
         分享
       </a>
       
@@ -596,7 +612,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/02/14/2020/python-mysql-connector%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E/" data-id="clkbywrvd000m8gtr16az199v" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2020/02/14/2020/python-mysql-connector%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E/" data-id="clkbzl845000megtr3i3cfjak" class="article-share-link">
         分享
       </a>
       
@@ -668,7 +684,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/02/12/2020/linux-%E4%B8%BAphp7-0%E5%AE%89%E8%A3%85redis%E6%89%A9%E5%B1%95/" data-id="clkbywrv700098gtr0ks9390x" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2020/02/12/2020/linux-%E4%B8%BAphp7-0%E5%AE%89%E8%A3%85redis%E6%89%A9%E5%B1%95/" data-id="clkbzl83y0007egtr06twe63o" class="article-share-link">
         分享
       </a>
       
@@ -741,7 +757,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/02/12/2020/%E8%A7%A3%E5%86%B3%E6%B7%B1%E5%BA%A6%E7%BB%88%E7%AB%AF%E9%93%BE%E6%8E%A5%E8%BF%9C%E7%A8%8B%E5%90%8E%E5%81%87%E6%AD%BB%E9%97%AE%E9%A2%98/" data-id="clkbywrvk001a8gtr6w5gepip" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2020/02/12/2020/%E8%A7%A3%E5%86%B3%E6%B7%B1%E5%BA%A6%E7%BB%88%E7%AB%AF%E9%93%BE%E6%8E%A5%E8%BF%9C%E7%A8%8B%E5%90%8E%E5%81%87%E6%AD%BB%E9%97%AE%E9%A2%98/" data-id="clkbzl84d001fegtrchax8jgb" class="article-share-link">
         分享
       </a>
       
