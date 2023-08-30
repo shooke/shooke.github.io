@@ -65,6 +65,71 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2019/vue中使用neditor" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/09/03/2019/vue%E4%B8%AD%E4%BD%BF%E7%94%A8neditor/">vue中使用neditor</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/09/03/2019/vue%E4%B8%AD%E4%BD%BF%E7%94%A8neditor/" class="article-date">
+  <time datetime="2019-09-03T08:48:11.000Z" itemprop="datePublished">2019-09-03</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>neditor是从ueditor改写过来了，做了不少优化，我最喜欢的就是去掉了服务端附件配置请求。还有一个有点就是，可以很方便的对接七牛cdn或oss。<br>如果是简单的使用可以用<code>vue-neditor-wrap</code>,复杂场景下会有bug，所以自己写了个组件，将必要的js引入放到了index.html中。下面是使用注意事项，追后有本示例的源码。</p>
+        
+          <p>
+            <a class="article-more-link" href="/2019/09/03/2019/vue%E4%B8%AD%E4%BD%BF%E7%94%A8neditor/">
+              阅读全文...
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/09/03/2019/vue%E4%B8%AD%E4%BD%BF%E7%94%A8neditor/" data-id="clkbzl85k004tegtrb8r28upk" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/neditor/" rel="tag">neditor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ueditor/" rel="tag">ueditor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2019/使用vue-cli-3项目打包到指定目录" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -656,89 +721,12 @@
 
 </article>
     
-    <article id="post-2019/pipenv与pyenv、pyenv-virtualenv的关系和使用" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2019/06/20/2019/pipenv%E4%B8%8Epyenv%E3%80%81pyenv-virtualenv%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E4%BD%BF%E7%94%A8/">pipenv与pyenv、pyenv-virtualenv的关系和使用</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/06/20/2019/pipenv%E4%B8%8Epyenv%E3%80%81pyenv-virtualenv%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time datetime="2019-06-20T01:20:23.000Z" itemprop="datePublished">2019-06-20</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/python/">python</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h2 id="为什么要有版本管理"><a href="#为什么要有版本管理" class="headerlink" title="为什么要有版本管理"></a>为什么要有版本管理</h2><p>我们举个例子：</p>
-<ol>
-<li>项目一要求用python 2.x</li>
-<li>项目二要去python 3.x</li>
-</ol>
-<p>如果服务器上要运行这两个项目，就需要安装两个版本。如果项目更多，需要的版本也越多，我们就需要有版本管理的概念。</p>
-<h2 id="为什么要有虚拟版本"><a href="#为什么要有虚拟版本" class="headerlink" title="为什么要有虚拟版本"></a>为什么要有虚拟版本</h2><p>上面我们看到，版本管理解决了，不同项目对python版本的需求。如果我们服务器上有增加了一个项目，情况如下，如果解决呢</p>
-<ol>
-<li>项目一要求用python 2.x</li>
-<li>项目二要去python 3.x，要求导入的requests包是1.x</li>
-<li>项目三要去python 3.x，要去导入的requests包是2.x</li>
-</ol>
-<p>我们看到项目二和项目三要去的是同样的版本，但是依赖的包是不同版本的，我们无法在一个版本上，同一个包安装不同的版本。这样容易造成混乱。因此就需要虚拟环境了。虚拟环境就是在所需的版本上，创建一个副本，在副本里进行依赖包的管理，这样不同的项目用自己的副本，就不会相互干扰。</p>
-        
-          <p>
-            <a class="article-more-link" href="/2019/06/20/2019/pipenv%E4%B8%8Epyenv%E3%80%81pyenv-virtualenv%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E4%BD%BF%E7%94%A8/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/06/20/2019/pipenv%E4%B8%8Epyenv%E3%80%81pyenv-virtualenv%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E4%BD%BF%E7%94%A8/" data-id="clkbzl857003eegtr65s4a9s4" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pipenv/" rel="tag">pipenv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pyenv/" rel="tag">pyenv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pyenv-virtualenv/" rel="tag">pyenv-virtualenv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/page/5/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/5/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/7/">下一页</a>
   </nav>
   
 </section>

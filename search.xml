@@ -3126,4 +3126,21 @@ UEDITOR_HOME_URL的路径是相对于根目录的，比如上面的配置就是�
         <tag>git</tag>
       </tags>
   </entry>
+  <entry>
+    <title>mysql root用户增加超级权限，解决无法给新建用户配置权限问题</title>
+    <url>/2023/07/20/2023/mysql-root-Super_priv/</url>
+    <content><![CDATA[<p>mysql root用户通过外网登录数据库后，想要添加用户分配权限，结果发现不行。但是在服务器上通过localhost登录后可以配置。</p>
+<p>原因是新增的<code>root@%</code>没有超级权限。只有个<code>root@localhost</code>才有。</p>
+<p>解决方法是，使用<code>root@localhost</code>账户为<code>root@%</code>添加超级权限。</p>
+<p>在服务器上使用<code>mysql -u root -p</code>登录，然后执行以下命令</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">UPDATE mysql.user SET Grant_priv=&#x27;Y&#x27;, Super_priv=&#x27;Y&#x27; WHERE User=&#x27;root&#x27;;</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+<p>这是通过mysql客户端工具，使用外网链接数据库就可以设置用户权限了</p>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
 </search>

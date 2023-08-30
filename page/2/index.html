@@ -65,6 +65,76 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2020/超好用的抓包工具mitmproxy" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2020/10/22/2020/%E8%B6%85%E5%A5%BD%E7%94%A8%E7%9A%84%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7mitmproxy/">超好用的抓包工具mitmproxy</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/10/22/2020/%E8%B6%85%E5%A5%BD%E7%94%A8%E7%9A%84%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7mitmproxy/" class="article-date">
+  <time datetime="2020-10-22T10:25:31.000Z" itemprop="datePublished">2020-10-22</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>mitmproxy是一个非常好用的代理工具</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>最快速的安装莫过于执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install mitmproxy</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>由于mitmproxy是基于python开发的，所以安装mitmproxy的同时，也会自动安装上python3。</p>
+<p>如果本地已经有了python3.6以上的版本，可以用pip进行安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install mitmproxy</span><br></pre></td></tr></table></figure>
+        
+          <p>
+            <a class="article-more-link" href="/2020/10/22/2020/%E8%B6%85%E5%A5%BD%E7%94%A8%E7%9A%84%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7mitmproxy/">
+              阅读全文...
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/10/22/2020/%E8%B6%85%E5%A5%BD%E7%94%A8%E7%9A%84%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7mitmproxy/" data-id="clkbzl84g001segtr4o6v6aw3" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mitmproxy/" rel="tag">mitmproxy</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2020/deepin编译安装nginx问题总结" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -684,71 +754,12 @@
 
 </article>
     
-    <article id="springboot+nginx-2020/springboot+nginx websocket配置" class="article article-type-springboot+nginx" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2020/05/09/2020/springboot+nginx%20websocket%E9%85%8D%E7%BD%AE/">springboot+nginx websocket配置</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/05/09/2020/springboot+nginx%20websocket%E9%85%8D%E7%BD%AE/" class="article-date">
-  <time datetime="2020-05-09T06:03:26.000Z" itemprop="datePublished">2020-05-09</time>
-</a>
-      
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <p>websocket用于聊天类场景再好不过了。平时链接websocket需要指定ip和端口，但如果需要用nginx做转发，将请求发送到websocket服务，这时候就需要升级协议了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">location /member-api/websocket &#123;</span><br><span class="line">                proxy_pass http://localhost:7005;</span><br><span class="line">                proxy_http_version 1.1;</span><br><span class="line">                proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">                proxy_set_header Connection &quot;Upgrade&quot;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>就是这么简单，指定</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">proxy_http_version 1.1;</span><br><span class="line">proxy_set_header Upgrade $http_upgrade;</span><br><span class="line">proxy_set_header Connection &quot;Upgrade&quot;;</span><br></pre></td></tr></table></figure>
-<p>让协议升级就可以了</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/05/09/2020/springboot+nginx%20websocket%E9%85%8D%E7%BD%AE/" data-id="clkbzl848000regtr83dn7pmv" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/websocket/" rel="tag">websocket</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
+    <a class="extend prev" rel="prev" href="/">上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/3/">下一页</a>
   </nav>
   
 </section>

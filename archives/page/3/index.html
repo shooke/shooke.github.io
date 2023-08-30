@@ -48,6 +48,34 @@
     </div>
     <div class="archives">
       
+      <article class="archive-article archive-type-springboot+nginx">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
+    <a href="/2020/05/09/2020/springboot+nginx%20websocket%E9%85%8D%E7%BD%AE/">springboot+nginx websocket配置</a>
+  </h2>
+  
+  
+
+      <a href="/2020/05/09/2020/springboot+nginx%20websocket%E9%85%8D%E7%BD%AE/" class="archive-article-date">
+  <time datetime="2020-05-09T06:03:26.000Z" itemprop="datePublished">05/09</time>
+</a>
+    </header>
+    
+      
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
       <article class="archive-article archive-type-post">
   
   
@@ -319,42 +347,6 @@
 
 </article>
       
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2020/02/12/2020/%E8%A7%A3%E5%86%B3%E6%B7%B1%E5%BA%A6%E7%BB%88%E7%AB%AF%E9%93%BE%E6%8E%A5%E8%BF%9C%E7%A8%8B%E5%90%8E%E5%81%87%E6%AD%BB%E9%97%AE%E9%A2%98/">解决深度终端链接远程后假死问题</a>
-  </h2>
-  
-  
-
-      <a href="/2020/02/12/2020/%E8%A7%A3%E5%86%B3%E6%B7%B1%E5%BA%A6%E7%BB%88%E7%AB%AF%E9%93%BE%E6%8E%A5%E8%BF%9C%E7%A8%8B%E5%90%8E%E5%81%87%E6%AD%BB%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  <time datetime="2020-02-12T07:47:55.000Z" itemprop="datePublished">02/12</time>
-</a>
-    </header>
-    
-      <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>这是最近才出现的问题，忽然发现，深度终端链接远程服务器后，过一会就假死了。还以为是不小心安了ctrl+s，于是用ctrl+q也无法解开。依然不能输入任何内容。链接状态是保持的，但就是假死了。</p>
-<p>在网上搜索了一下找到了解决办法。</p>
-<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>可以修改配置文件, 在<code>~/.bash_profile</code> 或者<code>~/.bashrc</code>的配置文件里面加上下面的参数了：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stty -ixon</span><br></pre></td></tr></table></figure>
-<p>保持退出，执行下面的命令让配置生效</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source  .bashrc</span><br></pre></td></tr></table></figure>
-<p>这样就不会出现假死了。</p>
-<p>还有一种方式，链接ssh之前增加一个<code>-o ServerAliveInterval=60</code>参数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -o ServerAliveInterval=60 root@192.168.0.2</span><br></pre></td></tr></table></figure>
-    
-    
-    
-  </div>
-
-</article>
-      
       
     </div>
   </div>
@@ -363,7 +355,7 @@
 
   
   <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/page/2/">上一页</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/9/">9</a><a class="extend next" rel="next" href="/archives/page/4/">下一页</a>
+    <a class="extend prev" rel="prev" href="/archives/page/2/">上一页</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/10/">10</a><a class="extend next" rel="next" href="/archives/page/4/">下一页</a>
   </nav>
   
 </section>

@@ -65,6 +65,87 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-git/4.工作区和版本库" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/12/21/git/4.%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E7%89%88%E6%9C%AC%E5%BA%93/">4.啥事工作区、暂存区和版本库</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/12/21/git/4.%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E7%89%88%E6%9C%AC%E5%BA%93/" class="article-date">
+  <time datetime="2019-12-21T12:32:20.000Z" itemprop="datePublished">2019-12-21</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%9C%8B%E6%95%85%E4%BA%8B%E5%AD%A6git/">看故事学git</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
+<p>本故事纯属虚构，如有雷同，^0^那可太巧了</p>
+</blockquote>
+<p>回到家的小白，想着今天发生的事，为什么<code>git status</code>出来的提示信息不一样？为什么<code>git status</code>出来的提示信息不一样？为什么<code>git status</code>出来的提示信息不一样？<br>想着想着他就睡着了，梦里他遇到了linus大神，linus带他来到了一个神秘的机构。在这个房间里有2个人，还有一个大大的大屏幕。<br>每次大屏幕上显示<code>git add</code>，就会有一份文件到达一个人的手里，他会把信息进行整理。当大屏幕上显示<code>git commit</code>。第一个人就会把整理的内容放到第二个人的桌子上，然后回来继续工作。</p>
+<p>小白疑惑的看向linus大神，大神和蔼的告诉他“小白，你不是一直奇怪，为什么<code>git status</code>出来的提示信息不一样？”，这就是你要的答案。</p>
+<p>小白仔细打量着房间里的一切，第一个人的办公桌上有一个牌子，上面写着”stage”。<br>第二个人的办公桌上同样有一个牌子，上面写着”HEAD”。</p>
+<p>小明若有所思，抬起头的时候，发现linus大神已经不见了。他冲出房门，发现街上根本没有大神的踪影，只有房子上高高挂起的牌匾写着”版本库”三个打字。</p>
+<p>他大声的呼喊，这时耳边传来“叮铃铃叮铃铃”的响声。</p>
+<p>小明从梦中醒来一看，哇，还有半小时就八点60了，飞快起身，背上背包冲向公司。</p>
+<p>距离上班还有1秒钟的时候，小白打卡成功。</p>
+<p>打开电脑，想起昨天遇到的情形，好像自己明白了什么，到网上一查，原来如此。</p>
+<blockquote>
+<p>git是分为工作区和版本库的。代码发生更改后，执行<code>git add</code>代码会放到代码库的暂存区(stage),当执行<code>git commit</code>时代码会形成版本记录(HEAD)，并且删除暂存取的记录。</p>
+</blockquote>
+<p>当我们执行<code>git status</code>时，git会将工作区（当前的代码）与暂存区的记录进行比较，如果暂存区没有记录，则会跟做过记录的版本作比较。从而提示你哪个文件发生过修改。</p>
+<p>明白了这些，小白开始反思昨天看到的提示。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line">No commits yet</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	我最帅.txt</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</span><br></pre></td></tr></table></figure>
+<p><code>Untracked files</code>列出的是新建的文件，还没有被add和commit过，所以提示你<code>(use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</code>，这表示需要进行<code>git add</code>操作</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	modified:   readme.md</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br></pre></td></tr></table></figure>
+<p><code>Changes not staged for commit</code>列出被修改的文件，这时候文件还没有被add和commit。这时就是比较工作区和HEAD得出的结果。<code>modified:   readme.md</code>意思是这个文件发生了更改。</p>
+<p>了解了不同提示的原因，小白果断<code>git add</code> <code>git commit</code>开始开发新功能。</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>git是分为工作区和版本库的。代码发生更改后，执行<code>git add</code>代码会放到代码库的暂存区(stage),当执行<code>git commit</code>时代码会形成版本记录(HEAD)，并且删除暂存取的记录。工作区可以简单理解为项目目录，每次项目更改都会记录，这些变更记录就是版本库。</p>
+<p>下面是各种状态</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br><span class="line">On branch master</span><br><span class="line"></span><br><span class="line"># 已经执行过`git add`但没有执行`git commit`</span><br><span class="line">Changes to be committed:</span><br><span class="line">  # 可执行的命令，reset会移除暂存区记录，移除后需要重新进行add</span><br><span class="line">  (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)</span><br><span class="line"></span><br><span class="line">	renamed:    我最帅.txt -&gt; wo.txt</span><br><span class="line"></span><br><span class="line"># 文件发生修改时提示</span><br><span class="line">Changes not staged for commit:</span><br><span class="line">  # 可以执行的命令，文件修改是可以执行add加入到暂存区，也可以checkout进行撤销</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)</span><br><span class="line">  (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)</span><br><span class="line"></span><br><span class="line">	modified:   readme.md</span><br><span class="line"></span><br><span class="line"># 新增文件时提示</span><br><span class="line">Untracked files:</span><br><span class="line">  # 可以执行的命令，新增文件只要add到</span><br><span class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</span><br><span class="line"></span><br><span class="line">	我很帅.txt</span><br><span class="line"></span><br><span class="line">no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/12/21/git/4.%E5%B7%A5%E4%BD%9C%E5%8C%BA%E5%92%8C%E7%89%88%E6%9C%AC%E5%BA%93/" data-id="clkbzl87300egegtrbsr67v4w" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-git/3.查看文件状态" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -667,77 +748,12 @@
 
 </article>
     
-    <article id="post-2019/vue中使用neditor" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2019/09/03/2019/vue%E4%B8%AD%E4%BD%BF%E7%94%A8neditor/">vue中使用neditor</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/09/03/2019/vue%E4%B8%AD%E4%BD%BF%E7%94%A8neditor/" class="article-date">
-  <time datetime="2019-09-03T08:48:11.000Z" itemprop="datePublished">2019-09-03</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <p>neditor是从ueditor改写过来了，做了不少优化，我最喜欢的就是去掉了服务端附件配置请求。还有一个有点就是，可以很方便的对接七牛cdn或oss。<br>如果是简单的使用可以用<code>vue-neditor-wrap</code>,复杂场景下会有bug，所以自己写了个组件，将必要的js引入放到了index.html中。下面是使用注意事项，追后有本示例的源码。</p>
-        
-          <p>
-            <a class="article-more-link" href="/2019/09/03/2019/vue%E4%B8%AD%E4%BD%BF%E7%94%A8neditor/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/09/03/2019/vue%E4%B8%AD%E4%BD%BF%E7%94%A8neditor/" data-id="clkbzl85k004tegtrb8r28upk" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/neditor/" rel="tag">neditor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ueditor/" rel="tag">ueditor</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
   </article>
   
 
   
   <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
+    <a class="extend prev" rel="prev" href="/page/4/">上一页</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/6/">下一页</a>
   </nav>
   
 </section>

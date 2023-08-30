@@ -10,7 +10,7 @@
   
   
   <title>
-    ubuntu18.4多版本php安装 | 舒克的博客
+    mysql root用户增加超级权限，解决无法给新建用户配置权限问题 | 舒克的博客
   </title>
   <!-- Icon -->
   
@@ -32,7 +32,7 @@
 <body>
   <main class="content">
     <section class="outer">
-  <article id="post-2021/ubuntu18-4多版本php安装" class="article article-type-post" itemscope
+  <article id="post-2023/mysql-root-Super_priv" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -41,7 +41,7 @@
       
   
   <h1 class="article-title" itemprop="name">
-    ubuntu18.4多版本php安装
+    mysql root用户增加超级权限，解决无法给新建用户配置权限问题
   </h1>
   
   
@@ -51,8 +51,8 @@
 
     
     <div class="article-meta">
-      <a href="/2021/09/17/2021/ubuntu18-4%E5%A4%9A%E7%89%88%E6%9C%ACphp%E5%AE%89%E8%A3%85/" class="article-date">
-  <time datetime="2021-09-17T01:58:13.000Z" itemprop="datePublished">2021-09-17</time>
+      <a href="/2023/07/20/2023/mysql-root-Super_priv/" class="article-date">
+  <time datetime="2023-07-20T11:06:28.000Z" itemprop="datePublished">2023-07-20</time>
 </a>
       
 <div class="article-category">
@@ -64,29 +64,27 @@
 
     
     
-<div class="tocbot"></div>
-
     
 
     <div class="article-entry" itemprop="articleBody">
       
       
       
-        <h2 id="安装php-ppa源"><a href="#安装php-ppa源" class="headerlink" title="安装php ppa源"></a>安装php ppa源</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install software-properties-common</span><br><span class="line">sudo add-apt-repository ppa:ondrej/php</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>老版本的12.4之前的ubuntu用下面的命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install python-software-properties</span><br><span class="line">sudo add-apt-repository ppa:ondrej/php</span><br></pre></td></tr></table></figure>
-<h2 id="更新源"><a href="#更新源" class="headerlink" title="更新源"></a>更新源</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+        <p>mysql root用户通过外网登录数据库后，想要添加用户分配权限，结果发现不行。但是在服务器上通过localhost登录后可以配置。</p>
+<p>原因是新增的<code>root@%</code>没有超级权限。只有个<code>root@localhost</code>才有。</p>
+<p>解决方法是，使用<code>root@localhost</code>账户为<code>root@%</code>添加超级权限。</p>
+<p>在服务器上使用<code>mysql -u root -p</code>登录，然后执行以下命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">UPDATE mysql.user SET Grant_priv=&#x27;Y&#x27;, Super_priv=&#x27;Y&#x27; WHERE User=&#x27;root&#x27;;</span><br><span class="line">FLUSH PRIVILEGES;</span><br></pre></td></tr></table></figure>
+<p>这是通过mysql客户端工具，使用外网链接数据库就可以设置用户权限了</p>
 
-<h2 id="安装对应的版本"><a href="#安装对应的版本" class="headerlink" title="安装对应的版本"></a>安装对应的版本</h2><p>比如安装7.0</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install -y php7.0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2021/09/17/2021/ubuntu18-4%E5%A4%9A%E7%89%88%E6%9C%ACphp%E5%AE%89%E8%A3%85/" data-id="clkbzl85u0062egtr16bw6xug" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2023/07/20/2023/mysql-root-Super_priv/" data-id="cllx3dqdr0000wstr7qz0ecz0" class="article-share-link">
         分享
       </a>
       
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
 
     </footer>
 
@@ -96,19 +94,19 @@
   
 <nav class="article-nav">
   
-  <a href="/2023/07/20/2023/mysql-root-Super_priv/" class="article-nav-link">
+  <a href="/2023/07/20/2023/spring-autowired/" class="article-nav-link">
     <strong class="article-nav-caption">前一篇</strong>
     <div class="article-nav-title">
       
-      mysql root用户增加超级权限，解决无法给新建用户配置权限问题
+      spring官方建议不要使用@Autowired，完美解决方案
       
     </div>
   </a>
   
   
-  <a href="/2021/09/15/2021/ubuntu%2018.04%20Temporary%20failure%20in%20name%20resolution%20DNS%E8%A7%A3%E6%9E%90%E9%97%AE%E9%A2%98%EF%BC%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="article-nav-link">
+  <a href="/2021/09/17/2021/ubuntu18-4%E5%A4%9A%E7%89%88%E6%9C%ACphp%E5%AE%89%E8%A3%85/" class="article-nav-link">
     <strong class="article-nav-caption">后一篇</strong>
-    <div class="article-nav-title">ubuntu 18.04 Temporary failure in name resolution DNS解析问题，解决方法</div>
+    <div class="article-nav-title">ubuntu18.4多版本php安装</div>
   </a>
   
 </nav>

@@ -56,6 +56,34 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/09/03/2019/vue%E4%B8%AD%E4%BD%BF%E7%94%A8neditor/">vue中使用neditor</a>
+  </h2>
+  
+  
+
+      <a href="/2019/09/03/2019/vue%E4%B8%AD%E4%BD%BF%E7%94%A8neditor/" class="archive-article-date">
+  <time datetime="2019-09-03T08:48:11.000Z" itemprop="datePublished">09/03</time>
+</a>
+    </header>
+    
+      <p>neditor是从ueditor改写过来了，做了不少优化，我最喜欢的就是去掉了服务端附件配置请求。还有一个有点就是，可以很方便的对接七牛cdn或oss。<br>如果是简单的使用可以用<code>vue-neditor-wrap</code>,复杂场景下会有bug，所以自己写了个组件，将必要的js引入放到了index.html中。下面是使用注意事项，追后有本示例的源码。</p>
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/08/22/2019/%E4%BD%BF%E7%94%A8vue-cli-3%E9%A1%B9%E7%9B%AE%E6%89%93%E5%8C%85%E5%88%B0%E6%8C%87%E5%AE%9A%E7%9B%AE%E5%BD%95/">使用vue cli 3项目打包到指定目录</a>
   </h2>
   
@@ -310,46 +338,6 @@
 
 </article>
       
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/06/20/2019/pipenv%E4%B8%8Epyenv%E3%80%81pyenv-virtualenv%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E4%BD%BF%E7%94%A8/">pipenv与pyenv、pyenv-virtualenv的关系和使用</a>
-  </h2>
-  
-  
-
-      <a href="/2019/06/20/2019/pipenv%E4%B8%8Epyenv%E3%80%81pyenv-virtualenv%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-  <time datetime="2019-06-20T01:20:23.000Z" itemprop="datePublished">06/20</time>
-</a>
-    </header>
-    
-      <h2 id="为什么要有版本管理"><a href="#为什么要有版本管理" class="headerlink" title="为什么要有版本管理"></a>为什么要有版本管理</h2><p>我们举个例子：</p>
-<ol>
-<li>项目一要求用python 2.x</li>
-<li>项目二要去python 3.x</li>
-</ol>
-<p>如果服务器上要运行这两个项目，就需要安装两个版本。如果项目更多，需要的版本也越多，我们就需要有版本管理的概念。</p>
-<h2 id="为什么要有虚拟版本"><a href="#为什么要有虚拟版本" class="headerlink" title="为什么要有虚拟版本"></a>为什么要有虚拟版本</h2><p>上面我们看到，版本管理解决了，不同项目对python版本的需求。如果我们服务器上有增加了一个项目，情况如下，如果解决呢</p>
-<ol>
-<li>项目一要求用python 2.x</li>
-<li>项目二要去python 3.x，要求导入的requests包是1.x</li>
-<li>项目三要去python 3.x，要去导入的requests包是2.x</li>
-</ol>
-<p>我们看到项目二和项目三要去的是同样的版本，但是依赖的包是不同版本的，我们无法在一个版本上，同一个包安装不同的版本。这样容易造成混乱。因此就需要虚拟环境了。虚拟环境就是在所需的版本上，创建一个副本，在副本里进行依赖包的管理，这样不同的项目用自己的副本，就不会相互干扰。</p>
-    
-    
-    
-  </div>
-
-</article>
-      
       
     </div>
   </div>
@@ -358,7 +346,7 @@
 
   
   <nav class="page-nav">
-    <a class="extend prev" rel="prev" href="/archives/page/5/">上一页</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/archives/page/7/">7</a><a class="page-number" href="/archives/page/8/">8</a><a class="page-number" href="/archives/page/9/">9</a><a class="extend next" rel="next" href="/archives/page/7/">下一页</a>
+    <a class="extend prev" rel="prev" href="/archives/page/5/">上一页</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/4/">4</a><a class="page-number" href="/archives/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/archives/page/7/">7</a><a class="page-number" href="/archives/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/10/">10</a><a class="extend next" rel="next" href="/archives/page/7/">下一页</a>
   </nav>
   
 </section>
