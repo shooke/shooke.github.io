@@ -3143,4 +3143,30 @@ UEDITOR_HOME_URL的路径是相对于根目录的，比如上面的配置就是�
         <tag>git</tag>
       </tags>
   </entry>
+  <entry>
+    <title>jar包运行参数配置</title>
+    <url>/2023/08/20/2023/java-jar-run/</url>
+    <content><![CDATA[<p>三种jar包启动时传参的方式</p>
+<ol>
+<li><p>jvm传值 -Dkey_name&#x3D;value<br>这种方式已 <code>-D</code>开头，放在jar包之前</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java  -Ddatabasename=test  -jar  test.jar</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给main函数传值 key_name&#x3D;value</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java  -jar  test.jar databasename=test</span><br></pre></td></tr></table></figure>
+<p>治理要求参数放在jar包之后，main方法中可以接收参数</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">public static void main(String[] args) throws IOException &#123;</span><br><span class="line">           for(String arg : args)&#123;</span><br><span class="line">               log.info(&quot;参数：&quot; + arg);</span><br><span class="line">           &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>覆盖yaml或properties 文件参数 –key_name&#x3D;value</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">java -jar tes.jar --logName=log.txt</span><br></pre></td></tr></table></figure>
+<p>这里要求参数放在jar包之后用<code>--</code>开头,程序中可以使用<code>@Value</code>注解获取参数值</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@Value(&quot;$&#123;logName&#125;&quot;)</span><br><span class="line">private String logName; //输出：log.txt</span><br></pre></td></tr></table></figure></li>
+</ol>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+      </tags>
+  </entry>
 </search>

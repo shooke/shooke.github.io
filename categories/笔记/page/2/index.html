@@ -56,6 +56,40 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2020/12/07/2020/Virtualbox%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%B4%E6%98%8E/">VirtualBox网络模式说明</a>
+  </h2>
+  
+  
+
+      <a href="/2020/12/07/2020/Virtualbox%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%B4%E6%98%8E/" class="archive-article-date">
+  <time datetime="2020-12-07T10:21:28.000Z" itemprop="datePublished">12/07</time>
+</a>
+    </header>
+    
+      <h2 id="网络模式"><a href="#网络模式" class="headerlink" title="网络模式"></a>网络模式</h2><p>VirtualBox的提供了四种网络接入模式，它们分别是：<br>1、NAT 网络地址转换模式(NAT,Network Address Translation)<br>2、Bridged Adapter 桥接模式<br>3、Internal 内部网络模式<br>4、Host-only Adapter 主机模式 </p>
+    
+    
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2020/10/22/2020/%E8%B6%85%E5%A5%BD%E7%94%A8%E7%9A%84%E6%8A%93%E5%8C%85%E5%B7%A5%E5%85%B7mitmproxy/">超好用的抓包工具mitmproxy</a>
   </h2>
   
@@ -363,44 +397,6 @@
     </header>
     
       
-    
-    
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2020/03/25/2020/%E8%AE%A9nginx%E6%94%AF%E6%8C%81flv%E6%96%87%E4%BB%B6%E6%92%AD%E6%94%BE/">让nginx支持flv文件播放</a>
-  </h2>
-  
-  
-
-      <a href="/2020/03/25/2020/%E8%AE%A9nginx%E6%94%AF%E6%8C%81flv%E6%96%87%E4%BB%B6%E6%92%AD%E6%94%BE/" class="archive-article-date">
-  <time datetime="2020-03-25T02:51:34.000Z" itemprop="datePublished">03/25</time>
-</a>
-    </header>
-    
-      <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>最近做小程序直播，为了简单测试需要用到<code>live-player</code>播放一个flv文件。服务器上用的nginx。把flv文件放到目录下访问，居然无法播放。查看了一下配置才发现，nginx不支持flv，需要响应的插件。</p>
-<h2 id="初次安装"><a href="#初次安装" class="headerlink" title="初次安装"></a>初次安装</h2><p>如果是编译安装的非常简单，只需要在<code>configure</code>时添加<code>--with-http_flv_module</code>就可以了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ./configure  --with-http_flv_module </span><br><span class="line">$ make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-<p>专业就安装完成了。</p>
-<h2 id="对已安装的nginx，添加模块"><a href="#对已安装的nginx，添加模块" class="headerlink" title="对已安装的nginx，添加模块"></a>对已安装的nginx，添加模块</h2><p>如果已经安装过nginx，比如使用apt或yum安装过了。该怎么办呢？</p>
     
     
       

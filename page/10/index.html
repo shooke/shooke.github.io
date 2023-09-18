@@ -65,6 +65,67 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2019/elasticsearch模糊查询" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/01/23/2019/elasticsearch%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2/">elasticsearch模糊查询</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/01/23/2019/elasticsearch%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2/" class="article-date">
+  <time datetime="2019-01-23T04:15:36.000Z" itemprop="datePublished">2019-01-23</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>like %李四% 可以使用以下语法</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;match_phrase&quot;: &#123;</span><br><span class="line">        &quot;nickname&quot;: &#123;&quot;query&quot;:&quot;李明&quot;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;wildcard&quot;: &#123;</span><br><span class="line">        &quot;nickname.keyword&quot;: &quot;*李明*&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/01/23/2019/elasticsearch%E6%A8%A1%E7%B3%8A%E6%9F%A5%E8%AF%A2/" data-id="cllx3nqil000k30trcnwn5yli" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elasticsearch/" rel="tag">elasticsearch</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2019/post传输详解以及axios、php代码实例" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 

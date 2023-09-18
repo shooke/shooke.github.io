@@ -56,6 +56,39 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/04/25/2019/%E7%9C%81%E7%95%A5sudo%E4%BD%BF%E7%94%A8docker/">省略sudo使用docker</a>
+  </h2>
+  
+  
+
+      <a href="/2019/04/25/2019/%E7%9C%81%E7%95%A5sudo%E4%BD%BF%E7%94%A8docker/" class="archive-article-date">
+  <time datetime="2019-04-25T05:31:43.000Z" itemprop="datePublished">04/25</time>
+</a>
+    </header>
+    
+      <h2 id="安装-docker"><a href="#安装-docker" class="headerlink" title="安装 docker"></a>安装 docker</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- https://get.docker.com/ | sh</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install docker</span><br></pre></td></tr></table></figure>
+
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>为什么需要创建 docker 用户组？<br>Docker 守候进程绑定的是一个 unix socket，而不是 TCP 端口。这个套接字默认的属主是 root，其他是用户可以使用 sudo 命令来访问这个套接字文件。因为这个原因，docker 服务进程都是以 root 帐号的身份运行的。</p>
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/04/24/2019/su-%E4%B8%8E-su-%E7%9A%84%E5%8C%BA%E5%88%AB/">su 与 su - 的区别</a>
   </h2>
   
@@ -361,34 +394,6 @@
 <li>设置root密码和验证方式</li>
 <li>重启服务</li>
 </ol>
-    
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/03/06/2019/python%E5%AD%97%E8%8A%82%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/">python字节和字符串相互转换</a>
-  </h2>
-  
-  
-
-      <a href="/2019/03/06/2019/python%E5%AD%97%E8%8A%82%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/" class="archive-article-date">
-  <time datetime="2019-03-06T09:43:39.000Z" itemprop="datePublished">03/06</time>
-</a>
-    </header>
-    
-      
     
     
     

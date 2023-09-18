@@ -65,6 +65,76 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2019/省略sudo使用docker" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/04/25/2019/%E7%9C%81%E7%95%A5sudo%E4%BD%BF%E7%94%A8docker/">省略sudo使用docker</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/04/25/2019/%E7%9C%81%E7%95%A5sudo%E4%BD%BF%E7%94%A8docker/" class="article-date">
+  <time datetime="2019-04-25T05:31:43.000Z" itemprop="datePublished">2019-04-25</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <h2 id="安装-docker"><a href="#安装-docker" class="headerlink" title="安装 docker"></a>安装 docker</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- https://get.docker.com/ | sh</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install docker</span><br></pre></td></tr></table></figure>
+
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>为什么需要创建 docker 用户组？<br>Docker 守候进程绑定的是一个 unix socket，而不是 TCP 端口。这个套接字默认的属主是 root，其他是用户可以使用 sudo 命令来访问这个套接字文件。因为这个原因，docker 服务进程都是以 root 帐号的身份运行的。</p>
+        
+          <p>
+            <a class="article-more-link" href="/2019/04/25/2019/%E7%9C%81%E7%95%A5sudo%E4%BD%BF%E7%94%A8docker/">
+              阅读全文...
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/04/25/2019/%E7%9C%81%E7%95%A5sudo%E4%BD%BF%E7%94%A8docker/" data-id="cllx3nqjg003j30tr4wrk6mpz" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sudo/" rel="tag">sudo</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2019/su-与-su-的区别" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -709,76 +779,6 @@
       </a>
       
 <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-2019/python字节和字符串相互转换" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2019/03/06/2019/python%E5%AD%97%E8%8A%82%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/">python字节和字符串相互转换</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/03/06/2019/python%E5%AD%97%E8%8A%82%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/" class="article-date">
-  <time datetime="2019-03-06T09:43:39.000Z" itemprop="datePublished">2019-03-06</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h2 id="字符串类型"><a href="#字符串类型" class="headerlink" title="字符串类型"></a>字符串类型</h2><ul>
-<li><p>byte 字符串<br>byte_str &#x3D; b”byte example”</p>
-</li>
-<li><p>str 字符串<br>str_str &#x3D; “str example”</p>
-</li>
-</ul>
-<h2 id="str-to-bytes-字符串转字节"><a href="#str-to-bytes-字符串转字节" class="headerlink" title="str to bytes 字符串转字节"></a>str to bytes 字符串转字节</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bytes(str_str, encoding=&quot;utf-8&quot;)</span><br></pre></td></tr></table></figure>
-<p>或</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str_str.encode()</span><br></pre></td></tr></table></figure>
-
-<h2 id="bytes-to-str-字节转字符串"><a href="#bytes-to-str-字节转字符串" class="headerlink" title="bytes to str  字节转字符串"></a>bytes to str  字节转字符串</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str(byte_str, encoding=&quot;utf-8&quot;)</span><br></pre></td></tr></table></figure>
-<p>或</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">byte_str.decode()</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/03/06/2019/python%E5%AD%97%E8%8A%82%E5%92%8C%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B8%E4%BA%92%E8%BD%AC%E6%8D%A2/" data-id="cllx3nqiv001q30trdbvmh0nz" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python-%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">python 字符串</a></li></ul>
 
     </footer>
 

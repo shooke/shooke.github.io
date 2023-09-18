@@ -56,6 +56,36 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/06/20/2019/vscode%E6%89%93%E9%80%A0php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/">vscode打造php开发环境</a>
+  </h2>
+  
+  
+
+      <a href="/2019/06/20/2019/vscode%E6%89%93%E9%80%A0php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" class="archive-article-date">
+  <time datetime="2019-06-20T09:27:42.000Z" itemprop="datePublished">06/20</time>
+</a>
+    </header>
+    
+      <h2 id="文档注释"><a href="#文档注释" class="headerlink" title="文档注释"></a>文档注释</h2><p>借助于 PHP DocBlocker 插件，可以快速地在类名、变量名、方法&#x2F;函数名 上方添加注释。</p>
+<h2 id="自动补全"><a href="#自动补全" class="headerlink" title="自动补全"></a>自动补全</h2><p>借助于 PHP Intelephense 插件，可以实现代码智能提示。<br>安装后选择 file-&gt;preferences-&gt;settings 选择右上角<code>&#123;&#125;</code>进入配置模式，添加<code>&quot;php.executablePath&quot;: &quot;/usr/bin/php&quot;</code>，配置上php的路径</p>
+<h2 id="代码格式化"><a href="#代码格式化" class="headerlink" title="代码格式化"></a>代码格式化</h2><p>借助于 php-cs-fixer 插件，可以方便地按照某一规则格式化代码，让你时刻保持代码可读性和风格统一。</p>
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/06/20/2019/pipenv%E4%B8%8Epyenv%E3%80%81pyenv-virtualenv%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E4%BD%BF%E7%94%A8/">pipenv与pyenv、pyenv-virtualenv的关系和使用</a>
   </h2>
   
@@ -312,39 +342,6 @@
     </header>
     
       
-    
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/04/25/2019/%E7%9C%81%E7%95%A5sudo%E4%BD%BF%E7%94%A8docker/">省略sudo使用docker</a>
-  </h2>
-  
-  
-
-      <a href="/2019/04/25/2019/%E7%9C%81%E7%95%A5sudo%E4%BD%BF%E7%94%A8docker/" class="archive-article-date">
-  <time datetime="2019-04-25T05:31:43.000Z" itemprop="datePublished">04/25</time>
-</a>
-    </header>
-    
-      <h2 id="安装-docker"><a href="#安装-docker" class="headerlink" title="安装 docker"></a>安装 docker</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -qO- https://get.docker.com/ | sh</span><br></pre></td></tr></table></figure>
-
-<p>或</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install docker</span><br></pre></td></tr></table></figure>
-
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>为什么需要创建 docker 用户组？<br>Docker 守候进程绑定的是一个 unix socket，而不是 TCP 端口。这个套接字默认的属主是 root，其他是用户可以使用 sudo 命令来访问这个套接字文件。因为这个原因，docker 服务进程都是以 root 帐号的身份运行的。</p>
     
     
     

@@ -129,6 +129,79 @@
 
 </article>
     
+    <article id="post-2023/java-jar-run" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2023/08/20/2023/java-jar-run/">jar包运行参数配置</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2023/08/20/2023/java-jar-run/" class="article-date">
+  <time datetime="2023-08-20T11:06:28.000Z" itemprop="datePublished">2023-08-20</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>三种jar包启动时传参的方式</p>
+<ol>
+<li><p>jvm传值 -Dkey_name&#x3D;value<br>这种方式已 <code>-D</code>开头，放在jar包之前</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java  -Ddatabasename=test  -jar  test.jar</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给main函数传值 key_name&#x3D;value</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java  -jar  test.jar databasename=test</span><br></pre></td></tr></table></figure>
+<p>治理要求参数放在jar包之后，main方法中可以接收参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws IOException &#123;</span><br><span class="line">           for(String arg : args)&#123;</span><br><span class="line">               log.info(&quot;参数：&quot; + arg);</span><br><span class="line">           &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>覆盖yaml或properties 文件参数 –key_name&#x3D;value</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar tes.jar --logName=log.txt</span><br></pre></td></tr></table></figure>
+<p>这里要求参数放在jar包之后用<code>--</code>开头,程序中可以使用<code>@Value</code>注解获取参数值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Value(&quot;$&#123;logName&#125;&quot;)</span><br><span class="line">private String logName; //输出：log.txt</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2023/08/20/2023/java-jar-run/" data-id="clmoa9zee0000j8tr8rzkbdhw" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2023/spring-autowired" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -639,71 +712,6 @@
       </a>
       
 <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-2020/Virtualbox网络模式说明" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2020/12/07/2020/Virtualbox%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%B4%E6%98%8E/">VirtualBox网络模式说明</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/12/07/2020/Virtualbox%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%B4%E6%98%8E/" class="article-date">
-  <time datetime="2020-12-07T10:21:28.000Z" itemprop="datePublished">2020-12-07</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h2 id="网络模式"><a href="#网络模式" class="headerlink" title="网络模式"></a>网络模式</h2><p>VirtualBox的提供了四种网络接入模式，它们分别是：<br>1、NAT 网络地址转换模式(NAT,Network Address Translation)<br>2、Bridged Adapter 桥接模式<br>3、Internal 内部网络模式<br>4、Host-only Adapter 主机模式 </p>
-        
-          <p>
-            <a class="article-more-link" href="/2020/12/07/2020/Virtualbox%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%B4%E6%98%8E/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/12/07/2020/Virtualbox%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%BC%8F%E8%AF%B4%E6%98%8E/" data-id="cllx3nqjk004430trf02mhnpr" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VirtualBox/" rel="tag">VirtualBox</a></li></ul>
 
     </footer>
 
