@@ -65,6 +65,76 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2020/ubuntu安装php最方便的方式" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2020/12/13/2020/ubuntu%E5%AE%89%E8%A3%85php%E6%9C%80%E6%96%B9%E4%BE%BF%E7%9A%84%E6%96%B9%E5%BC%8F/">ubuntu安装php最方便的方式</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/12/13/2020/ubuntu%E5%AE%89%E8%A3%85php%E6%9C%80%E6%96%B9%E4%BE%BF%E7%9A%84%E6%96%B9%E5%BC%8F/" class="article-date">
+  <time datetime="2020-12-12T16:45:39.000Z" itemprop="datePublished">2020-12-13</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <ol>
+<li>添加ppa源</li>
+</ol>
+<p>sudo add-apt-repository ppa:ondrej&#x2F;php</p>
+<ol start="2">
+<li>升级源</li>
+</ol>
+<p>sudo apt-get update &amp;&amp; sudo apt-get upgrade</p>
+<p>接下来就可以安装各种不同版本了</p>
+<ol start="3">
+<li>sudo apt-get install php7.0 php7.0-mysql libapache2-mod-php7.0 php7.0-mcrypt php7.0-curl</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/12/13/2020/ubuntu%E5%AE%89%E8%A3%85php%E6%9C%80%E6%96%B9%E4%BE%BF%E7%9A%84%E6%96%B9%E5%BC%8F/" data-id="cllx3nqjx005j30trhtrl99ln" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2020/ubuntu18-04编译安装php7-0" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -675,72 +745,6 @@
       </a>
       
 <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%82%E5%B8%B8/" rel="tag">异常</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-springboot/springboot-配置" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2020/06/12/springboot/springboot-%E9%85%8D%E7%BD%AE/">springboot 配置</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/06/12/springboot/springboot-%E9%85%8D%E7%BD%AE/" class="article-date">
-  <time datetime="2020-06-12T05:16:57.000Z" itemprop="datePublished">2020-06-12</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/springboot/">springboot</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h2 id="application-properties配置中文乱码问题"><a href="#application-properties配置中文乱码问题" class="headerlink" title="application.properties配置中文乱码问题"></a>application.properties配置中文乱码问题</h2><p>删除现有的文件，设置idea。setting-&gt;editor-&gt;file encodings 将<code>Global Encoding</code> <code>Project Encoding</code> <code>Default encoding for properties files</code>都设置成<code>utf-8</code>.并且勾选<code>Transparent native-to-ascii conversion</code></p>
-<h2 id="多配置时spring-profiles-active-dev不生效"><a href="#多配置时spring-profiles-active-dev不生效" class="headerlink" title="多配置时spring.profiles.active=dev不生效"></a>多配置时<code>spring.profiles.active=dev</code>不生效</h2><p>如果只有<code>application.properties</code>和<code>application-dev.properties</code>这两个文件，是不行的，需要在增加一个文件比如<code>application-prod.properties</code>。<br>只有配置文件多余2个才会生效</p>
-        
-          <p>
-            <a class="article-more-link" href="/2020/06/12/springboot/springboot-%E9%85%8D%E7%BD%AE/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/06/12/springboot/springboot-%E9%85%8D%E7%BD%AE/" data-id="cllx3nqlf00e930trdjyo4etz" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot/" rel="tag">spring boot</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-boot-%E9%85%8D%E7%BD%AE/" rel="tag">spring boot 配置</a></li></ul>
 
     </footer>
 

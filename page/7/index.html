@@ -65,6 +65,73 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2019/require-context使用说明" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/07/05/2019/require-context%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">require.context使用说明</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/07/05/2019/require-context%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" class="article-date">
+  <time datetime="2019-07-05T07:21:32.000Z" itemprop="datePublished">2019-07-05</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>require.context是Webpack中用来管理依赖的一个函数，使用方式如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require.context(directory, useSubdirectories = false, regExp = /^\.\//)</span><br></pre></td></tr></table></figure>
+<p>第一个参数表示相对的文件目录，<br>第二个参数表示是否包括子目录中的文件，<br>第三个参数表示引入的文件匹配的正则表达式。</p>
+        
+          <p>
+            <a class="article-more-link" href="/2019/07/05/2019/require-context%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">
+              阅读全文...
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/07/05/2019/require-context%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" data-id="cllx3nqix001w30trgxcs0hj0" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" rel="tag">前端开发</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2019/shadowsocks-deepin-pac模式失效问题解决方案" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -669,71 +736,6 @@
       </a>
       
 <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" rel="tag">系统运维</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-2019/vue组件之插槽" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2019/05/09/2019/vue%E7%BB%84%E4%BB%B6%E4%B9%8B%E6%8F%92%E6%A7%BD/">vue组件之插槽</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/05/09/2019/vue%E7%BB%84%E4%BB%B6%E4%B9%8B%E6%8F%92%E6%A7%BD/" class="article-date">
-  <time datetime="2019-05-09T01:26:11.000Z" itemprop="datePublished">2019-05-09</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <p>这篇文章的写作时间是 vue2.6 发布后，因此适用于 2.6 以后的版本<br>插槽是 vue 组件中很重要的一环，他解决了组件内容自定义的问题。以及父子组件变量传递的问题（作用域插槽）。<br>在 2.6 以后的版本中，具名插槽和作用域插槽引入了一个新的统一的语法 (即 v-slot 指令)，它取代了 slot 和 slot-scope 。这两个老的已经进入废弃期，为了保持平滑升级，目前还可以使用，但是不推荐使用。后期会被移除。</p>
-        
-          <p>
-            <a class="article-more-link" href="/2019/05/09/2019/vue%E7%BB%84%E4%BB%B6%E4%B9%8B%E6%8F%92%E6%A7%BD/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/05/09/2019/vue%E7%BB%84%E4%BB%B6%E4%B9%8B%E6%8F%92%E6%A7%BD/" data-id="cllx3nqjb003130trbppr3d3w" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Slots/" rel="tag">Slots</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8F%92%E6%A7%BD/" rel="tag">插槽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%84%E4%BB%B6/" rel="tag">组件</a></li></ul>
 
     </footer>
 

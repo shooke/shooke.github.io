@@ -56,6 +56,34 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/05/09/2019/vue%E7%BB%84%E4%BB%B6%E4%B9%8B%E6%8F%92%E6%A7%BD/">vue组件之插槽</a>
+  </h2>
+  
+  
+
+      <a href="/2019/05/09/2019/vue%E7%BB%84%E4%BB%B6%E4%B9%8B%E6%8F%92%E6%A7%BD/" class="archive-article-date">
+  <time datetime="2019-05-09T01:26:11.000Z" itemprop="datePublished">05/09</time>
+</a>
+    </header>
+    
+      <p>这篇文章的写作时间是 vue2.6 发布后，因此适用于 2.6 以后的版本<br>插槽是 vue 组件中很重要的一环，他解决了组件内容自定义的问题。以及父子组件变量传递的问题（作用域插槽）。<br>在 2.6 以后的版本中，具名插槽和作用域插槽引入了一个新的统一的语法 (即 v-slot 指令)，它取代了 slot 和 slot-scope 。这两个老的已经进入废弃期，为了保持平滑升级，目前还可以使用，但是不推荐使用。后期会被移除。</p>
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/04/28/2019/Supervisord%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Supervisord管理进程常用命令</a>
   </h2>
   
@@ -336,59 +364,6 @@
 <li><p>Replia：副本。<br>分着吃羊肉，羊是吃完了，但每个人分到的不一样啊，有人吃羊腿，有人吃羊尾巴，显然这样长期下去也是不行的。怎么办呢，再来一只，吃羊腿的再吃羊尾巴，吃羊尾巴的再吃羊腿，这样就公平了。每个人都能说出整只羊各个部位是什么味道。<br>同样的道理，数据分片，放在了不同的节点上，如果一台服务器挂掉了，那岂不是数据就丢失了，这种事是不允许发生的，因此就有了副本。每个切片复制一份，发送给其他节点。这样保证每个节点有完整的数据。集群中有一台宕机了也不影响使用。</p>
 </li>
 </ol>
-    
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/03/14/2019/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E5%AE%89%E8%A3%85/">elasticsearch学习笔记 - 安装</a>
-  </h2>
-  
-  
-
-      <a href="/2019/03/14/2019/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E5%AE%89%E8%A3%85/" class="archive-article-date">
-  <time datetime="2019-03-14T05:30:16.000Z" itemprop="datePublished">03/14</time>
-</a>
-    </header>
-    
-      <p>最近用到了es，于是从网上找资料，但是好多都过时了，比如type在elasticsearch 6.0开始已经不推荐使用了。联合查询6.x使用的是join类型的字段，也不在支持type之间的联合查询。问什么要取消type呢？官方给出的理由是</p>
-<blockquote>
-<p>①，而在我们elasticsearch中同一 Index 下，同名 Field 类型必须相同，即使不同的 Type；<br>②， 同一 Index 下，TypeA 的 Field 会占用 TypeB 的资源（互相消耗资源），会形成一种稀疏存储的情况。尤其是 doc value ，为什么这么说呢？doc value为了性能考虑会保留一部分的磁盘空间，这意味着 TypeB 可能不需要这个字段的 doc_value 而 TypeA 需要，那么 TypeB 就被白白占用了一部分没有半点用处的资源；<br>③，Score 评分机制是 index-wide 的，不同的type之间评分也会造成干扰。<br>④，索引元数据本身是放在主节点中维护的，CP 设计。意味着涉及到大量字段变更及元数据变更的操作，都会导致该 Index 被堵塞或假死。我们应该对这样的 Index 做隔离，避免影响到其他 Index 正常的增删改查。甚至当涉及到字段变更十分频繁且无法预定义 schema 的场景时，是否要使用 ES 都应该慎思熟虑了！</p>
-</blockquote>
-<p>出现这种情况主要是在elasticsearch早期时候提出的一些概念，当时为了便于推广，跟关系型数据库作了如下比喻：</p>
-<table>
-<thead>
-<tr>
-<th>myql</th>
-<th>elasticsearch</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>database</td>
-<td>index</td>
-</tr>
-<tr>
-<td>table</td>
-<td>type</td>
-</tr>
-<tr>
-<td>column</td>
-<td>field</td>
-</tr>
-</tbody></table>
-<p>很多学习elasticsearch的人估计都看过这个比喻，但其实这是错误的。elasticsearch是基于 Lucene开发的，而在 Lucene中是没有table概念的，有的只是文档和字段。</p>
     
     
     

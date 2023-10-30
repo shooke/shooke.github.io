@@ -56,6 +56,39 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/11/15/2019/js%E5%AE%9E%E7%8E%B0%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">js实现防抖和节流</a>
+  </h2>
+  
+  
+
+      <a href="/2019/11/15/2019/js%E5%AE%9E%E7%8E%B0%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/" class="archive-article-date">
+  <time datetime="2019-11-15T02:32:50.000Z" itemprop="datePublished">11/15</time>
+</a>
+    </header>
+    
+      <p>防抖和节流是避免过度处理的有效手段。目的就是为了解决一些事件频繁的触发问题。</p>
+<h2 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h2><p>先说一下防抖，当持续触发事件时，一定时间段内没有再触发事件，事件处理函数才会执行一次，如果设定的时间到来之前，又一次触发了事件，就重新开始延时。</p>
+<blockquote>
+<p>通俗易懂点就是，领导安排任务，你得等领导全部说完了再去做，不能说一个就跑去做了，你得等领导说完。</p>
+</blockquote>
+<p>举个很典型的例子，搜索提示是个很典型的使用场景。每次输入框的内容发生更改就会发送一个请求，这其实是没有必要的。<br>理想的方式应该是当用户不在输入时，在发送请求。怎么确定用户停止输入呢？我们定义一个等待时间，比如500ms。当用户停止输入500ms后发送一个请求。<br>500ms内如果在不停的输入内容，那我们就重新重新计时。</p>
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/10/11/2019/Commit%20log%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">Commit log 使用说明</a>
   </h2>
   
@@ -299,36 +332,6 @@
     </header>
     
       <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>最近的项目中，需要一个牛X点的文本编辑器。于是选择了ueditor。百度出品，功能完善。<br>前端框架使用了d2admin,选择它的理由很简单，许多的常用工具做了封装。<br>项目要求文件上传要绕过后端程序，前端直接传文件到七牛CDN。</p>
-    
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/07/05/2019/require-context%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">require.context使用说明</a>
-  </h2>
-  
-  
-
-      <a href="/2019/07/05/2019/require-context%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" class="archive-article-date">
-  <time datetime="2019-07-05T07:21:32.000Z" itemprop="datePublished">07/05</time>
-</a>
-    </header>
-    
-      <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>require.context是Webpack中用来管理依赖的一个函数，使用方式如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">require.context(directory, useSubdirectories = false, regExp = /^\.\//)</span><br></pre></td></tr></table></figure>
-<p>第一个参数表示相对的文件目录，<br>第二个参数表示是否包括子目录中的文件，<br>第三个参数表示引入的文件匹配的正则表达式。</p>
     
     
     

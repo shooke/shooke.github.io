@@ -3204,4 +3204,9 @@ UEDITOR_HOME_URL的路径是相对于根目录的，比如上面的配置就是�
         <tag>jasypt</tag>
       </tags>
   </entry>
+  <entry>
+    <title>mysql-log-move</title>
+    <url>/2023/10/30/2023/mysql-log-move/</url>
+    <content><![CDATA[]]></content>
+  </entry>
 </search>

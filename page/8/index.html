@@ -65,6 +65,71 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2019/vue组件之插槽" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/05/09/2019/vue%E7%BB%84%E4%BB%B6%E4%B9%8B%E6%8F%92%E6%A7%BD/">vue组件之插槽</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/05/09/2019/vue%E7%BB%84%E4%BB%B6%E4%B9%8B%E6%8F%92%E6%A7%BD/" class="article-date">
+  <time datetime="2019-05-09T01:26:11.000Z" itemprop="datePublished">2019-05-09</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>这篇文章的写作时间是 vue2.6 发布后，因此适用于 2.6 以后的版本<br>插槽是 vue 组件中很重要的一环，他解决了组件内容自定义的问题。以及父子组件变量传递的问题（作用域插槽）。<br>在 2.6 以后的版本中，具名插槽和作用域插槽引入了一个新的统一的语法 (即 v-slot 指令)，它取代了 slot 和 slot-scope 。这两个老的已经进入废弃期，为了保持平滑升级，目前还可以使用，但是不推荐使用。后期会被移除。</p>
+        
+          <p>
+            <a class="article-more-link" href="/2019/05/09/2019/vue%E7%BB%84%E4%BB%B6%E4%B9%8B%E6%8F%92%E6%A7%BD/">
+              阅读全文...
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/05/09/2019/vue%E7%BB%84%E4%BB%B6%E4%B9%8B%E6%8F%92%E6%A7%BD/" data-id="cllx3nqjb003130trbppr3d3w" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Slots/" rel="tag">Slots</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8F%92%E6%A7%BD/" rel="tag">插槽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%84%E4%BB%B6/" rel="tag">组件</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2019/Supervisord管理进程常用命令" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -683,96 +748,6 @@
       </a>
       
 <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elasticsearch/" rel="tag">elasticsearch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">elasticsearch学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elasticsearch%E9%9B%86%E7%BE%A4/" rel="tag">elasticsearch集群</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es/" rel="tag">es</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-2019/elasticsearch学习笔记 - 安装" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2019/03/14/2019/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E5%AE%89%E8%A3%85/">elasticsearch学习笔记 - 安装</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/03/14/2019/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E5%AE%89%E8%A3%85/" class="article-date">
-  <time datetime="2019-03-14T05:30:16.000Z" itemprop="datePublished">2019-03-14</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <p>最近用到了es，于是从网上找资料，但是好多都过时了，比如type在elasticsearch 6.0开始已经不推荐使用了。联合查询6.x使用的是join类型的字段，也不在支持type之间的联合查询。问什么要取消type呢？官方给出的理由是</p>
-<blockquote>
-<p>①，而在我们elasticsearch中同一 Index 下，同名 Field 类型必须相同，即使不同的 Type；<br>②， 同一 Index 下，TypeA 的 Field 会占用 TypeB 的资源（互相消耗资源），会形成一种稀疏存储的情况。尤其是 doc value ，为什么这么说呢？doc value为了性能考虑会保留一部分的磁盘空间，这意味着 TypeB 可能不需要这个字段的 doc_value 而 TypeA 需要，那么 TypeB 就被白白占用了一部分没有半点用处的资源；<br>③，Score 评分机制是 index-wide 的，不同的type之间评分也会造成干扰。<br>④，索引元数据本身是放在主节点中维护的，CP 设计。意味着涉及到大量字段变更及元数据变更的操作，都会导致该 Index 被堵塞或假死。我们应该对这样的 Index 做隔离，避免影响到其他 Index 正常的增删改查。甚至当涉及到字段变更十分频繁且无法预定义 schema 的场景时，是否要使用 ES 都应该慎思熟虑了！</p>
-</blockquote>
-<p>出现这种情况主要是在elasticsearch早期时候提出的一些概念，当时为了便于推广，跟关系型数据库作了如下比喻：</p>
-<table>
-<thead>
-<tr>
-<th>myql</th>
-<th>elasticsearch</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>database</td>
-<td>index</td>
-</tr>
-<tr>
-<td>table</td>
-<td>type</td>
-</tr>
-<tr>
-<td>column</td>
-<td>field</td>
-</tr>
-</tbody></table>
-<p>很多学习elasticsearch的人估计都看过这个比喻，但其实这是错误的。elasticsearch是基于 Lucene开发的，而在 Lucene中是没有table概念的，有的只是文档和字段。</p>
-        
-          <p>
-            <a class="article-more-link" href="/2019/03/14/2019/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E5%AE%89%E8%A3%85/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/03/14/2019/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E5%AE%89%E8%A3%85/" data-id="cllx3nqii000d30tr2t4i6qum" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elasticsearch/" rel="tag">elasticsearch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">elasticsearch学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es/" rel="tag">es</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E8%A3%85es/" rel="tag">安装es</a></li></ul>
 
     </footer>
 
