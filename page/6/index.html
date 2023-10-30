@@ -65,6 +65,71 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2019/Commit log使用说明" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/10/11/2019/Commit%20log%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">Commit log 使用说明</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/10/11/2019/Commit%20log%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" class="article-date">
+  <time datetime="2019-10-11T08:20:38.000Z" itemprop="datePublished">2019-10-11</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <h2 id="什么是git-commit-log"><a href="#什么是git-commit-log" class="headerlink" title="什么是git commit log"></a>什么是git commit log</h2><p><code>git commit log</code>其实就是根据咱们提交的<code>commit message</code>信息进行提取，用来生成更新日志的功能。<br>既然是要生成，那就一定要有一个格式，否则程序很难自动化的处理。<br>目前比较常用的是<a href="http://link.zhihu.com/?target=https://github.com/angular/angular.js/blob/master/DEVELOPERS.md%23-git-commit-guidelines">Angular 团队的规范</a>,他的格式也比较简洁。</p>
+        
+          <p>
+            <a class="article-more-link" href="/2019/10/11/2019/Commit%20log%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">
+              阅读全文...
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/10/11/2019/Commit%20log%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" data-id="cllx3nqi3000130tr9rk9fah6" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/change-log/" rel="tag">change log</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git-commit/" rel="tag">git commit</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2019/解决element-ui-el-select控件多选时option设置为disabled，但可以删除标签，造成无法恢复的bug" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -643,72 +708,6 @@
       </a>
       
 <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/webpack/" rel="tag">webpack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" rel="tag">前端开发</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-2019/shadowsocks-deepin-pac模式失效问题解决方案" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2019/06/24/2019/shadowsocks-deepin-pac%E6%A8%A1%E5%BC%8F%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">shadowsocks-deepin pac模式失效问题解决方案</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/06/24/2019/shadowsocks-deepin-pac%E6%A8%A1%E5%BC%8F%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="article-date">
-  <time datetime="2019-06-24T02:37:50.000Z" itemprop="datePublished">2019-06-24</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <p>今天发现无法访问google了，登上服务器看了下没有链接。查看了下本机shadowsocks-deepin是正常启动的。<br>再看代理模式是pac。改成全局模式居然可以正常访问google了。问题原因就发生在pac上了。<br>试着访问了一下<code>http://file.lolimay.cn/autoproxy.pac</code>果然无法访问了。<br>在网上找了一个新的pac配置修改上，真的可以了。目前有效地址<code>https://prudent-travels.000webhostapp.com/pac.php?a=SOCKS5&amp;b=127.0.0.1:1080</code>。</p>
-<p>我用的<code>deepin</code>系统其他系统的修改方式可能有差别。具体操作如下：</p>
-        
-          <p>
-            <a class="article-more-link" href="/2019/06/24/2019/shadowsocks-deepin-pac%E6%A8%A1%E5%BC%8F%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/06/24/2019/shadowsocks-deepin-pac%E6%A8%A1%E5%BC%8F%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-id="cllx3nqix001t30tr5ste0dar" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pac/" rel="tag">pac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shadowsocks/" rel="tag">shadowsocks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shadowsocks-deepin/" rel="tag">shadowsocks-deepin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a></li></ul>
 
     </footer>
 

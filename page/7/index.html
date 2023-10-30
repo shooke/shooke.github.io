@@ -65,6 +65,72 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2019/shadowsocks-deepin-pac模式失效问题解决方案" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/06/24/2019/shadowsocks-deepin-pac%E6%A8%A1%E5%BC%8F%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">shadowsocks-deepin pac模式失效问题解决方案</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/06/24/2019/shadowsocks-deepin-pac%E6%A8%A1%E5%BC%8F%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="article-date">
+  <time datetime="2019-06-24T02:37:50.000Z" itemprop="datePublished">2019-06-24</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>今天发现无法访问google了，登上服务器看了下没有链接。查看了下本机shadowsocks-deepin是正常启动的。<br>再看代理模式是pac。改成全局模式居然可以正常访问google了。问题原因就发生在pac上了。<br>试着访问了一下<code>http://file.lolimay.cn/autoproxy.pac</code>果然无法访问了。<br>在网上找了一个新的pac配置修改上，真的可以了。目前有效地址<code>https://prudent-travels.000webhostapp.com/pac.php?a=SOCKS5&amp;b=127.0.0.1:1080</code>。</p>
+<p>我用的<code>deepin</code>系统其他系统的修改方式可能有差别。具体操作如下：</p>
+        
+          <p>
+            <a class="article-more-link" href="/2019/06/24/2019/shadowsocks-deepin-pac%E6%A8%A1%E5%BC%8F%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+              阅读全文...
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/06/24/2019/shadowsocks-deepin-pac%E6%A8%A1%E5%BC%8F%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-id="cllx3nqix001t30tr5ste0dar" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pac/" rel="tag">pac</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shadowsocks/" rel="tag">shadowsocks</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/shadowsocks-deepin/" rel="tag">shadowsocks-deepin</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%A7%91%E5%AD%A6%E4%B8%8A%E7%BD%91/" rel="tag">科学上网</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2019/vscode打造php开发环境" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -668,70 +734,6 @@
       </a>
       
 <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Slots/" rel="tag">Slots</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8F%92%E6%A7%BD/" rel="tag">插槽</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BB%84%E4%BB%B6/" rel="tag">组件</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-2019/Supervisord管理进程常用命令" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2019/04/28/2019/Supervisord%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Supervisord管理进程常用命令</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/04/28/2019/Supervisord%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" class="article-date">
-  <time datetime="2019-04-28T10:13:49.000Z" itemprop="datePublished">2019-04-28</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <p>Supervisord安装完成后有两个可用的命令行supervisor和supervisorctl，命令使用解释如下：</p>
-<p><strong>supervisord</strong>: 初始启动Supervisord，启动、管理配置中设置的进程。<br><strong>supervisorctl stop programxxx</strong>: 停止某一个进程(programxxx)，programxxx为[program:chatdemon]里配置的值，这个示例就是chatdemon。<br><strong>supervisorctl start programxxx</strong>: 启动某个进程<br><strong>supervisorctl restart programxxx</strong>: 重启某个进程<br><strong>supervisorctl stop groupworker</strong>: 重启所有属于名为groupworker这个分组的进程(start,restart同理)<br><strong>supervisorctl stop all</strong>: 停止全部进程，注：start、restart、stop都不会载入最新的配置文件。<br><strong>supervisorctl reload</strong>: 载入最新的配置文件，停止原有进程并按新的配置启动、管理所有进程。<br><strong>supervisorctl update</strong>: 根据最新的配置文件，启动新配置或有改动的进程，配置没有改动的进程不会受影响而重启。</p>
-<blockquote>
-<p>注意：显示用stop停止掉的进程，用reload或者update都不会自动重启。</p>
-</blockquote>
-<p>原文<a target="_blank" rel="noopener" href="https://feilong.me/2011/03/monitor-processes-with-supervisord">https://feilong.me/2011/03/monitor-processes-with-supervisord</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/04/28/2019/Supervisord%E7%AE%A1%E7%90%86%E8%BF%9B%E7%A8%8B%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/" data-id="cllx3nqie000730tr35omctbo" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/supervisord/" rel="tag">supervisord</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" rel="tag">系统运维</a></li></ul>
 
     </footer>
 

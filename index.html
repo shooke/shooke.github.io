@@ -65,6 +65,148 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2023/springboot-jasypt" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2023/09/18/2023/springboot-jasypt/">springboot整合jasypt加密数据库配置</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2023/09/18/2023/springboot-jasypt/" class="article-date">
+  <time datetime="2023-09-18T13:06:28.000Z" itemprop="datePublished">2023-09-18</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>项目中会遇到数据库名称和密码需要加密防止泄露的需求，因此引入了jasypt。下面的例子是将jasypt的加密密钥写在了配置文件中，为了安全，实际引用时，需要将配置放到服务器的启动命令中，避免在代码中暴露密钥</p>
+<p>1.引入maven依赖jasypt-spring-boot-starter</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;com.github.ulisesbocchio&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jasypt-spring-boot-starter&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.0.4&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>2.启动类添加注解@EnableEncryptableProperties</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;</span><br><span class="line">import org.springframework.boot.SpringApplication;</span><br><span class="line">import org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line">@SpringBootApplication</span><br><span class="line">@EnableEncryptableProperties</span><br><span class="line">public class AdminMain &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        SpringApplication.run(AdminMain.class, args);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
+          <p>
+            <a class="article-more-link" href="/2023/09/18/2023/springboot-jasypt/">
+              阅读全文...
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2023/09/18/2023/springboot-jasypt/" data-id="clmoleb7i00000ctr4f41es6h" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jasypt/" rel="tag">jasypt</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-2023/java-jar-run" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2023/09/18/2023/java-jar-run/">jar包运行参数配置</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2023/09/18/2023/java-jar-run/" class="article-date">
+  <time datetime="2023-09-18T12:06:28.000Z" itemprop="datePublished">2023-09-18</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>三种jar包启动时传参的方式</p>
+<ol>
+<li><p>jvm传值 -Dkey_name&#x3D;value<br>这种方式已 <code>-D</code>开头，放在jar包之前</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java  -Ddatabasename=test  -jar  test.jar</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>给main函数传值 key_name&#x3D;value</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java  -jar  test.jar databasename=test</span><br></pre></td></tr></table></figure>
+<p>治理要求参数放在jar包之后，main方法中可以接收参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws IOException &#123;</span><br><span class="line">           for(String arg : args)&#123;</span><br><span class="line">               log.info(&quot;参数：&quot; + arg);</span><br><span class="line">           &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>覆盖yaml或properties 文件参数 –key_name&#x3D;value</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar tes.jar --logName=log.txt</span><br></pre></td></tr></table></figure>
+<p>这里要求参数放在jar包之后用<code>--</code>开头,程序中可以使用<code>@Value</code>注解获取参数值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Value(&quot;$&#123;logName&#125;&quot;)</span><br><span class="line">private String logName; //输出：log.txt</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2023/09/18/2023/java-jar-run/" data-id="clmoa9zee0000j8tr8rzkbdhw" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2023/mysql-root-Super_priv" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -118,79 +260,6 @@
       </a>
       
 <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-2023/java-jar-run" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2023/08/20/2023/java-jar-run/">jar包运行参数配置</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2023/08/20/2023/java-jar-run/" class="article-date">
-  <time datetime="2023-08-20T11:06:28.000Z" itemprop="datePublished">2023-08-20</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <p>三种jar包启动时传参的方式</p>
-<ol>
-<li><p>jvm传值 -Dkey_name&#x3D;value<br>这种方式已 <code>-D</code>开头，放在jar包之前</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java  -Ddatabasename=test  -jar  test.jar</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>给main函数传值 key_name&#x3D;value</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java  -jar  test.jar databasename=test</span><br></pre></td></tr></table></figure>
-<p>治理要求参数放在jar包之后，main方法中可以接收参数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) throws IOException &#123;</span><br><span class="line">           for(String arg : args)&#123;</span><br><span class="line">               log.info(&quot;参数：&quot; + arg);</span><br><span class="line">           &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>覆盖yaml或properties 文件参数 –key_name&#x3D;value</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar tes.jar --logName=log.txt</span><br></pre></td></tr></table></figure>
-<p>这里要求参数放在jar包之后用<code>--</code>开头,程序中可以使用<code>@Value</code>注解获取参数值</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Value(&quot;$&#123;logName&#125;&quot;)</span><br><span class="line">private String logName; //输出：log.txt</span><br></pre></td></tr></table></figure></li>
-</ol>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2023/08/20/2023/java-jar-run/" data-id="clmoa9zee0000j8tr8rzkbdhw" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
 
     </footer>
 
@@ -643,71 +712,6 @@
     </div>
     <footer class="article-footer">
       <a data-url="https://www.xingjiehu.com/2020/12/13/2020/ubuntu%E5%AE%89%E8%A3%85php%E6%9C%80%E6%96%B9%E4%BE%BF%E7%9A%84%E6%96%B9%E5%BC%8F/" data-id="cllx3nqjx005j30trhtrl99ln" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-2020/ubuntu18-04编译安装php7-0" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2020/12/12/2020/ubuntu18-04%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85php7-0/">ubuntu18.04编译安装php7.0</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/12/12/2020/ubuntu18-04%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85php7-0/" class="article-date">
-  <time datetime="2020-12-12T15:10:30.000Z" itemprop="datePublished">2020-12-12</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>虽然7.0已经停止维护了，但有些老项目也只是过度，后期直接用新项目替换，没有必要在进行升级。所以服务器还是需要用到7.0的运行环境。<br>本来想用apt简单按一下，结果发现apt里面已经没有php7.0了。只能自己源码安装。</p>
-        
-          <p>
-            <a class="article-more-link" href="/2020/12/12/2020/ubuntu18-04%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85php7-0/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/12/12/2020/ubuntu18-04%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85php7-0/" data-id="cllx3nqjv005530trcel347aa" class="article-share-link">
         分享
       </a>
       

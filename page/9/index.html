@@ -65,6 +65,76 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2019/linux使用apt方式安装mysql5-7" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/03/13/2019/linux%E4%BD%BF%E7%94%A8apt%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85mysql5-7/">linux使用apt方式安装mysql5.7</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/03/13/2019/linux%E4%BD%BF%E7%94%A8apt%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85mysql5-7/" class="article-date">
+  <time datetime="2019-03-13T15:13:33.000Z" itemprop="datePublished">2019-03-13</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>安装3步曲：</p>
+<ol>
+<li>使用apt-get安装</li>
+<li>设置root密码和验证方式</li>
+<li>重启服务</li>
+</ol>
+        
+          <p>
+            <a class="article-more-link" href="/2019/03/13/2019/linux%E4%BD%BF%E7%94%A8apt%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85mysql5-7/">
+              阅读全文...
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/03/13/2019/linux%E4%BD%BF%E7%94%A8apt%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85mysql5-7/" data-id="cllx3nqip001130tr7rfqfhm2" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2019/python字节和字符串相互转换" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -664,73 +734,6 @@
       </a>
       
 <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-2019/crontab使用详解" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2019/01/24/2019/crontab%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/">crontab使用详解</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/01/24/2019/crontab%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" class="article-date">
-  <time datetime="2019-01-24T01:20:47.000Z" itemprop="datePublished">2019-01-24</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <p>网上有很多关于crontab的介绍，但是没有一份很全面的，例子也不少，但是没有详细解释具体的意义。看下面的例子：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#每隔1个小时执行一次  ls</span><br><span class="line">0 */1 * * * ls</span><br><span class="line"></span><br><span class="line">#每隔2个小时执行一次 ls</span><br><span class="line">0 */2 * * * ls</span><br><span class="line"></span><br><span class="line">#每隔3个小时执行一次 ls</span><br><span class="line">0 */3 * * * ls</span><br><span class="line"></span><br><span class="line">#每隔4个小时执行一次 ls</span><br><span class="line">0 */4 * * * ls</span><br><span class="line"></span><br><span class="line">#每隔10天执行一次 ls</span><br><span class="line">0 0 */10 * * ls</span><br><span class="line"></span><br><span class="line">#每天1点执行 ls</span><br><span class="line">0 1 * * * ls</span><br></pre></td></tr></table></figure>
-<p>接下来就详细说明一下crontab的使用，和每个参数的意义</p>
-        
-          <p>
-            <a class="article-more-link" href="/2019/01/24/2019/crontab%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/01/24/2019/crontab%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" data-id="cllx3nqif000830trf65wdcye" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/crontab/" rel="tag">crontab</a></li></ul>
 
     </footer>
 
