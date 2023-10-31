@@ -3205,8 +3205,17 @@ UEDITOR_HOME_URL的路径是相对于根目录的，比如上面的配置就是�
       </tags>
   </entry>
   <entry>
-    <title>mysql-log-move</title>
+    <title>mysql log迁移</title>
     <url>/2023/10/30/2023/mysql-log-move/</url>
-    <content><![CDATA[]]></content>
+    <content><![CDATA[<p>记录一次mysql log迁移经理</p>
+<p>系统：Ubuntu18.04.6<br>mysql版本：mysql5.7</p>
+<h2 id="停止mysql服务"><a href="#停止mysql服务" class="headerlink" title="停止mysql服务"></a>停止mysql服务</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl stop mysql.service</span><br></pre></td></tr></table></figure>
+<h2 id="复制文件到新目录"><a href="#复制文件到新目录" class="headerlink" title="复制文件到新目录"></a>复制文件到新目录</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo mkdir /data/log/mysql</span><br><span class="line">sudo chown mysql:adm /data/log/mysql</span><br><span class="line">sudo cp /var/log/mysql/* /data/log/mysql</span><br></pre></td></tr></table></figure>
+<h2 id="修改配置文件-etc-mysql-mysql-conf-d-mysqld-cnf-找到log的相关的配置修改目录"><a href="#修改配置文件-etc-mysql-mysql-conf-d-mysqld-cnf-找到log的相关的配置修改目录" class="headerlink" title="修改配置文件/etc/mysql/mysql.conf.d/mysqld.cnf,找到log的相关的配置修改目录"></a>修改配置文件<code>/etc/mysql/mysql.conf.d/mysqld.cnf</code>,找到log的相关的配置修改目录</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">log_error = /data/log/mysql/error.log</span><br><span class="line">slow_query_log_file     = /data/log/mysql/mysql-slow.log</span><br><span class="line">log_bin                 = /var/log/mysql/mysql-bin.log</span><br></pre></td></tr></table></figure>
+<h2 id="修改启动文件-etc-apparmor-d-usr-sbin-mysqld添加以下配置"><a href="#修改启动文件-etc-apparmor-d-usr-sbin-mysqld添加以下配置" class="headerlink" title="修改启动文件/etc/apparmor.d/usr.sbin.mysqld添加以下配置"></a>修改启动文件<code>/etc/apparmor.d/usr.sbin.mysqld</code>添加以下配置</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/data/log/mysql.err rw,</span><br><span class="line">/data/log/mysql.log rw,</span><br><span class="line">/data/log/mysql/ r,</span><br><span class="line">/data/log/mysql/** rw,</span><br></pre></td></tr></table></figure>
+<h2 id="重启服务"><a href="#重启服务" class="headerlink" title="重启服务"></a>重启服务</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl restart apparmor</span><br><span class="line">systemctl start mysql.service</span><br></pre></td></tr></table></figure>]]></content>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
   </entry>
 </search>
