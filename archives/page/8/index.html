@@ -56,6 +56,34 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/05/10/2019/ubuntu%E6%9B%B4%E6%96%B0php/">ubuntu更新php</a>
+  </h2>
+  
+  
+
+      <a href="/2019/05/10/2019/ubuntu%E6%9B%B4%E6%96%B0php/" class="archive-article-date">
+  <time datetime="2019-05-10T02:03:38.000Z" itemprop="datePublished">05/10</time>
+</a>
+    </header>
+    
+      
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/05/09/2019/vue%E7%BB%84%E4%BB%B6%E4%B9%8B%E6%8F%92%E6%A7%BD/">vue组件之插槽</a>
   </h2>
   
@@ -326,43 +354,6 @@
 <li>安装 vuter，eslint，Prettier-code fromatter<br>vuter 是 vue 高高亮插件，安装后 vscode 就可以识别<code>.vue</code>文件了</li>
 <li>配置 vscode 首选项<br>选择 file 》Preferences 》Settings 打开配置。然后选择 User Settings，点击右上角的<code>&#123;&#125;</code>按钮，进入文本编辑状态</li>
 <li>配置内容</li>
-</ol>
-    
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/03/15/2019/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E9%9B%86%E7%BE%A4%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/">elasticsearch学习笔记 - 集群相关术语</a>
-  </h2>
-  
-  
-
-      <a href="/2019/03/15/2019/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E9%9B%86%E7%BE%A4%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/" class="archive-article-date">
-  <time datetime="2019-03-15T01:33:28.000Z" itemprop="datePublished">03/15</time>
-</a>
-    </header>
-    
-      <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
-<li><p>Cluster：集群。<br>顾名思义就是好多es服务器，拜了把子成了兄弟，在一起搞事情，他们讲义气不背叛，一个有难八方支援。比如你有8台服务器，其中一台挂了，剩余的兄弟会立刻顶上。客户让然可以正常使用你的服务，从而实现<code>高可用性</code>。</p>
-</li>
-<li><p>Node：节点。<br>集群中的每台服务器称之为一个节点。每个节点都是一个兄弟。既然拜了把子，那就有个长幼顺序（节点类型），这个看下面的节点类型小节，先看分片。</p>
-</li>
-<li><p>Shard：分片。<br>一只烤全羊，一个人肯定吃不了，怎么办呢？大家分着吃啊。所以就有了分片，大量的数据汇聚过来，一个节点可能由于内存或磁盘处理能力不足，那就把数据切成一小块一小块的（这就是分片），好几个兄弟一起处理。每个分片放到不同的服务器上。 这样处理起来就快了。<br>有肉一起吃，敌人来了当然也要一起扛。当有查询过来的时候，ES会把查询发送给每个相关的分片，并将结果组合在一起，然后返回给用户。</p>
-</li>
-<li><p>Replia：副本。<br>分着吃羊肉，羊是吃完了，但每个人分到的不一样啊，有人吃羊腿，有人吃羊尾巴，显然这样长期下去也是不行的。怎么办呢，再来一只，吃羊腿的再吃羊尾巴，吃羊尾巴的再吃羊腿，这样就公平了。每个人都能说出整只羊各个部位是什么味道。<br>同样的道理，数据分片，放在了不同的节点上，如果一台服务器挂掉了，那岂不是数据就丢失了，这种事是不允许发生的，因此就有了副本。每个切片复制一份，发送给其他节点。这样保证每个节点有完整的数据。集群中有一台宕机了也不影响使用。</p>
-</li>
 </ol>
     
     

@@ -3218,4 +3218,30 @@ UEDITOR_HOME_URL的路径是相对于根目录的，比如上面的配置就是�
         <tag>mysql</tag>
       </tags>
   </entry>
+  <entry>
+    <title>SpringBoot注入静态属性或静态对象</title>
+    <url>/2023/11/13/2023/springboot-jasypt%20copy/</url>
+    <content><![CDATA[<p>springboot中注入对象很方便，但是如果类是个工具类，里面的静态方法，只能使用静态属性。这时候就要想办法让静态属性可以被注入。</p>
+<p>重点有两点 </p>
+<ol>
+<li>让spring接管类，可以使用@Component、@Service等注解</li>
+<li>使用setter或@PostConstruct，将属性注入</li>
+</ol>
+<span id="more"></span>
+
+<p>setter实例</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class GeoUtils &#123;</span><br><span class="line">    public static String redisKey;</span><br><span class="line">    public static RedisTemplate redisTemplate;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @Value(&quot;$&#123;redisKey&#125;&quot;)</span><br><span class="line">    public  void setRedisKey( String redisKey) &#123;</span><br><span class="line">        GeoUtils.redisKey = redisKey;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    public void setRedisTemplate(RedisTemplate redisTemplate)&#123;</span><br><span class="line">        GeoUtils.redisTemplate = redisTemplate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>PostConstruct方式实例</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@Component</span><br><span class="line">public class GeoUtils &#123;</span><br><span class="line"></span><br><span class="line">    public static RedisTemplate redisTemplateObj;</span><br><span class="line"></span><br><span class="line">    public static String redisKey;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 这里的属性名称不能变要和定义的bean名字一样，如果修改了redisTemplate会报错</span><br><span class="line">     */</span><br><span class="line">    @Autowired</span><br><span class="line">    private RedisTemplate redisTemplate;</span><br><span class="line">    @Value(&quot;$&#123;zd.agreement.recharge.url&#125;&quot;)</span><br><span class="line">    private String rediskeyValue;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    @PostConstruct</span><br><span class="line">    public void init()&#123;</span><br><span class="line">        GeoUtils.redisTemplateObj = this.redisTemplate;</span><br><span class="line">        GeoUtils.redisKey = this.rediskeyValue;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>java</tag>
+        <tag>spring</tag>
+      </tags>
+  </entry>
 </search>

@@ -56,6 +56,40 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/07/17/2019/url%E6%B7%BB%E5%8A%A0%E5%8F%82%E6%95%B0/">url添加参数</a>
+  </h2>
+  
+  
+
+      <a href="/2019/07/17/2019/url%E6%B7%BB%E5%8A%A0%E5%8F%82%E6%95%B0/" class="archive-article-date">
+  <time datetime="2019-07-17T03:16:16.000Z" itemprop="datePublished">07/17</time>
+</a>
+    </header>
+    
+      
+    
+    
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/07/13/2019/vue-cli3%E9%A2%84%E6%B8%B2%E6%9F%93%E5%A4%84%E7%90%86/">vue-cli3预渲染处理</a>
   </h2>
   
@@ -347,46 +381,6 @@
       <p>sublime相比其他编辑器最大的优点就是占用内存小。一直用idea和vscode。好久没用sublime了，今天安装了一下新版本3.2.1，想要用它开发vue。安装插件的过程中踩了几个小坑。</p>
 <h2 id="安装package-control"><a href="#安装package-control" class="headerlink" title="安装package control"></a>安装package control</h2><p>使用网上说的，控制台安装方式，按<code>ctrl + \</code> &#96;，输入下面的命令</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,os; pf = &#x27;Package Control.sublime-package&#x27;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &#x27;wb&#x27;).write(urllib.request.urlopen( &#x27;http://sublime.wbond.net/&#x27; + pf.replace(&#x27; &#x27;,&#x27;%20&#x27;)).read())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-    
-    
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/05/15/2019/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bphp%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">docker环境下php使用指南</a>
-  </h2>
-  
-  
-
-      <a href="/2019/05/15/2019/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bphp%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="archive-article-date">
-  <time datetime="2019-05-15T10:09:53.000Z" itemprop="datePublished">05/15</time>
-</a>
-    </header>
-    
-      <p>最近由于业务原因，需要将 php7.0 升级到 7.2。升级要考虑一下几点<br>要满足以下需求</p>
-<ol>
-<li>php7.0 和 7.2 要共存，以免升级 7.2 以后出现问题，及时切换回来。</li>
-<li>升级操作要简单，服务器数量比较多，原生方式安装太过复杂，操作步骤太多，就算携程 shell 脚本，维护起来也比较麻烦</li>
-<li>nginx 保持原样，只对项目相关的配置文件做简单调整即可。如果 nginx 变更日志处理等模块都收到牵连。</li>
-</ol>
-<p>考虑到上面的因素，用 docker 显然是非常符合的。于是就开启了踩坑之旅。<br>主要遇到了两个问题，一个是<code>502</code>，还有一个是<code>File not found</code>。下面进行分析</p>
     
     
       

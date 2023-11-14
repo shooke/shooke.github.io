@@ -65,6 +65,77 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2019/ubuntu更新php" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/05/10/2019/ubuntu%E6%9B%B4%E6%96%B0php/">ubuntu更新php</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/05/10/2019/ubuntu%E6%9B%B4%E6%96%B0php/" class="article-date">
+  <time datetime="2019-05-10T02:03:38.000Z" itemprop="datePublished">2019-05-10</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>服务器以前安装的 php7.0，最近开发任务中有部分插件，从 composer 安装提示需要 php7.2 的版本，才可以安装。<br>但是服务器的源里面没有 php7.2，最新的也就 7.0。添加 ppa 搞了一下。记录下步骤</p>
+<h2 id="安装-ppa-管理器"><a href="#安装-ppa-管理器" class="headerlink" title="安装 ppa 管理器"></a>安装 ppa 管理器</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install software-properties-common</span><br></pre></td></tr></table></figure>
+
+<p>如果已经安装了，可以省略这一步，如果不安装，在执行<code>add-apt-repository</code>命令时会提示<code>sudo: add-apt-repository: command not found</code></p>
+<h2 id="添加-ppa-源，并更新源"><a href="#添加-ppa-源，并更新源" class="headerlink" title="添加 ppa 源，并更新源"></a>添加 ppa 源，并更新源</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:ondrej/php</span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<h2 id="升级-php"><a href="#升级-php" class="headerlink" title="升级 php"></a>升级 php</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt remove php7.0</span><br><span class="line">sudo apt-get install php7.2</span><br></pre></td></tr></table></figure>
+<p>这样php7.2就安装上了。如果你希望保留老的版本，可以不执行<code>sudo apt remove php7.0</code>。<br>如果希望连同系统一起升级可以执行下面的命令，会连同系统和其他软件一起升级到最新版，只有php会升级到指定的7.2版本。（不建议使用下面的命令）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get upgrade php7.2</span><br></pre></td></tr></table></figure>
+
+<h2 id="扩展处理"><a href="#扩展处理" class="headerlink" title="扩展处理"></a>扩展处理</h2><p>升级了<code>php7.2</code>，还需要安装一下7.2的扩展比如mbstring，gd等执行如下命令安装就可以了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install php7.2-gd</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/05/10/2019/ubuntu%E6%9B%B4%E6%96%B0php/" data-id="cllx3nqj1002g30trf6r63wv3" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" rel="tag">系统运维</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2019/vue组件之插槽" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -674,80 +745,6 @@
       </a>
       
 <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/eslint/" rel="tag">eslint</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vscode/" rel="tag">vscode</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="tag">开发工具</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-2019/elasticsearch学习笔记 - 集群相关术语" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2019/03/15/2019/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E9%9B%86%E7%BE%A4%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/">elasticsearch学习笔记 - 集群相关术语</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/03/15/2019/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E9%9B%86%E7%BE%A4%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/" class="article-date">
-  <time datetime="2019-03-15T01:33:28.000Z" itemprop="datePublished">2019-03-15</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/elasticsearch/">elasticsearch</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h2 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h2><ol>
-<li><p>Cluster：集群。<br>顾名思义就是好多es服务器，拜了把子成了兄弟，在一起搞事情，他们讲义气不背叛，一个有难八方支援。比如你有8台服务器，其中一台挂了，剩余的兄弟会立刻顶上。客户让然可以正常使用你的服务，从而实现<code>高可用性</code>。</p>
-</li>
-<li><p>Node：节点。<br>集群中的每台服务器称之为一个节点。每个节点都是一个兄弟。既然拜了把子，那就有个长幼顺序（节点类型），这个看下面的节点类型小节，先看分片。</p>
-</li>
-<li><p>Shard：分片。<br>一只烤全羊，一个人肯定吃不了，怎么办呢？大家分着吃啊。所以就有了分片，大量的数据汇聚过来，一个节点可能由于内存或磁盘处理能力不足，那就把数据切成一小块一小块的（这就是分片），好几个兄弟一起处理。每个分片放到不同的服务器上。 这样处理起来就快了。<br>有肉一起吃，敌人来了当然也要一起扛。当有查询过来的时候，ES会把查询发送给每个相关的分片，并将结果组合在一起，然后返回给用户。</p>
-</li>
-<li><p>Replia：副本。<br>分着吃羊肉，羊是吃完了，但每个人分到的不一样啊，有人吃羊腿，有人吃羊尾巴，显然这样长期下去也是不行的。怎么办呢，再来一只，吃羊腿的再吃羊尾巴，吃羊尾巴的再吃羊腿，这样就公平了。每个人都能说出整只羊各个部位是什么味道。<br>同样的道理，数据分片，放在了不同的节点上，如果一台服务器挂掉了，那岂不是数据就丢失了，这种事是不允许发生的，因此就有了副本。每个切片复制一份，发送给其他节点。这样保证每个节点有完整的数据。集群中有一台宕机了也不影响使用。</p>
-</li>
-</ol>
-        
-          <p>
-            <a class="article-more-link" href="/2019/03/15/2019/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E9%9B%86%E7%BE%A4%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/03/15/2019/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%20-%20%E9%9B%86%E7%BE%A4%E7%9B%B8%E5%85%B3%E6%9C%AF%E8%AF%AD/" data-id="cllx3nqik000h30tr8ssxawtg" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elasticsearch/" rel="tag">elasticsearch</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elasticsearch%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">elasticsearch学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/elasticsearch%E9%9B%86%E7%BE%A4/" rel="tag">elasticsearch集群</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/es/" rel="tag">es</a></li></ul>
 
     </footer>
 

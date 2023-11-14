@@ -56,6 +56,46 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/05/15/2019/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bphp%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">docker环境下php使用指南</a>
+  </h2>
+  
+  
+
+      <a href="/2019/05/15/2019/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bphp%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="archive-article-date">
+  <time datetime="2019-05-15T10:09:53.000Z" itemprop="datePublished">05/15</time>
+</a>
+    </header>
+    
+      <p>最近由于业务原因，需要将 php7.0 升级到 7.2。升级要考虑一下几点<br>要满足以下需求</p>
+<ol>
+<li>php7.0 和 7.2 要共存，以免升级 7.2 以后出现问题，及时切换回来。</li>
+<li>升级操作要简单，服务器数量比较多，原生方式安装太过复杂，操作步骤太多，就算携程 shell 脚本，维护起来也比较麻烦</li>
+<li>nginx 保持原样，只对项目相关的配置文件做简单调整即可。如果 nginx 变更日志处理等模块都收到牵连。</li>
+</ol>
+<p>考虑到上面的因素，用 docker 显然是非常符合的。于是就开启了踩坑之旅。<br>主要遇到了两个问题，一个是<code>502</code>，还有一个是<code>File not found</code>。下面进行分析</p>
+    
+    
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/05/10/2019/ubuntu%E6%9B%B4%E6%96%B0php/">ubuntu更新php</a>
   </h2>
   
@@ -370,45 +410,6 @@
 <li>使用继承时遵循里氏替换原则</li>
 </ul>
 <p>这样做可以有效解耦，功能发生改变时，只需要替换外部的依赖对象，而不必修改主体功能代码。</p>
-    
-    
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/03/27/2019/vscode-%E4%BF%9D%E5%AD%98%E8%87%AA%E5%8A%A8%E6%8C%89eslint%E6%A0%BC%E5%BC%8F%E5%8C%96/">vscode 保存自动按eslint格式化</a>
-  </h2>
-  
-  
-
-      <a href="/2019/03/27/2019/vscode-%E4%BF%9D%E5%AD%98%E8%87%AA%E5%8A%A8%E6%8C%89eslint%E6%A0%BC%E5%BC%8F%E5%8C%96/" class="archive-article-date">
-  <time datetime="2019-03-27T06:26:43.000Z" itemprop="datePublished">03/27</time>
-</a>
-    </header>
-    
-      <p>三步走：</p>
-<ol>
-<li>安装 vuter，eslint，Prettier-code fromatter<br>vuter 是 vue 高高亮插件，安装后 vscode 就可以识别<code>.vue</code>文件了</li>
-<li>配置 vscode 首选项<br>选择 file 》Preferences 》Settings 打开配置。然后选择 User Settings，点击右上角的<code>&#123;&#125;</code>按钮，进入文本编辑状态</li>
-<li>配置内容</li>
-</ol>
     
     
       

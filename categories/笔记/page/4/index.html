@@ -56,6 +56,40 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/12/28/2019/ssh%E6%8F%90%E9%80%9F/">ssh提速</a>
+  </h2>
+  
+  
+
+      <a href="/2019/12/28/2019/ssh%E6%8F%90%E9%80%9F/" class="archive-article-date">
+  <time datetime="2019-12-28T09:31:20.000Z" itemprop="datePublished">12/28</time>
+</a>
+    </header>
+    
+      
+    
+    
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/12/17/2019/git%E4%B8%AD%E6%96%87%E6%96%87%E4%BB%B6%E5%90%8D%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">git中文文件名乱码解决方法</a>
   </h2>
   
@@ -352,40 +386,6 @@
 
 <p>子组件<code>list.vue</code>代码</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-select v-model=&quot;val&quot; v-bind=&quot;$attrs&quot; placeholder=&quot;请选择&quot;&gt;</span><br><span class="line">    &lt;el-option</span><br><span class="line">      v-for=&quot;item in list&quot;</span><br><span class="line">      :key=&quot;item.id&quot;</span><br><span class="line">      :label=&quot;item.name&quot;</span><br><span class="line">      :value=&quot;item.id&quot;&gt;</span><br><span class="line">    &lt;/el-option&gt;</span><br><span class="line">  &lt;/el-select&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; getColumnList &#125; from &#x27;@/api/column.js&#x27;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  inheritAttrs: false,</span><br><span class="line">  model: &#123;</span><br><span class="line">    prop: &#x27;value&#x27;,</span><br><span class="line">    event: &#x27;change&#x27;</span><br><span class="line">  &#125;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    value: null</span><br><span class="line">  &#125;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      list: [&#123;id:&#x27;1&#x27;,name:&#x27;张三&#x27;&#125;,&#123;id:&#x27;2&#x27;,name:&#x27;李四&#x27;&#125;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    val: &#123;</span><br><span class="line">      get () &#123;</span><br><span class="line">        return this.value</span><br><span class="line">      &#125;,</span><br><span class="line">      set (newval) &#123;</span><br><span class="line">        this.$emit(&#x27;change&#x27;, newval)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-    
-    
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/07/17/2019/url%E6%B7%BB%E5%8A%A0%E5%8F%82%E6%95%B0/">url添加参数</a>
-  </h2>
-  
-  
-
-      <a href="/2019/07/17/2019/url%E6%B7%BB%E5%8A%A0%E5%8F%82%E6%95%B0/" class="archive-article-date">
-  <time datetime="2019-07-17T03:16:16.000Z" itemprop="datePublished">07/17</time>
-</a>
-    </header>
-    
-      
     
     
       
