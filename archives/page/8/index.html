@@ -56,6 +56,70 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/05/17/2019/sublime-text-3%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6/">sublime text 3安装插件</a>
+  </h2>
+  
+  
+
+      <a href="/2019/05/17/2019/sublime-text-3%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6/" class="archive-article-date">
+  <time datetime="2019-05-17T03:26:28.000Z" itemprop="datePublished">05/17</time>
+</a>
+    </header>
+    
+      <p>sublime相比其他编辑器最大的优点就是占用内存小。一直用idea和vscode。好久没用sublime了，今天安装了一下新版本3.2.1，想要用它开发vue。安装插件的过程中踩了几个小坑。</p>
+<h2 id="安装package-control"><a href="#安装package-control" class="headerlink" title="安装package control"></a>安装package control</h2><p>使用网上说的，控制台安装方式，按<code>ctrl + \</code> &#96;，输入下面的命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,os; pf = &#x27;Package Control.sublime-package&#x27;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &#x27;wb&#x27;).write(urllib.request.urlopen( &#x27;http://sublime.wbond.net/&#x27; + pf.replace(&#x27; &#x27;,&#x27;%20&#x27;)).read())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/05/15/2019/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bphp%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">docker环境下php使用指南</a>
+  </h2>
+  
+  
+
+      <a href="/2019/05/15/2019/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bphp%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="archive-article-date">
+  <time datetime="2019-05-15T10:09:53.000Z" itemprop="datePublished">05/15</time>
+</a>
+    </header>
+    
+      <p>最近由于业务原因，需要将 php7.0 升级到 7.2。升级要考虑一下几点<br>要满足以下需求</p>
+<ol>
+<li>php7.0 和 7.2 要共存，以免升级 7.2 以后出现问题，及时切换回来。</li>
+<li>升级操作要简单，服务器数量比较多，原生方式安装太过复杂，操作步骤太多，就算携程 shell 脚本，维护起来也比较麻烦</li>
+<li>nginx 保持原样，只对项目相关的配置文件做简单调整即可。如果 nginx 变更日志处理等模块都收到牵连。</li>
+</ol>
+<p>考虑到上面的因素，用 docker 显然是非常符合的。于是就开启了踩坑之旅。<br>主要遇到了两个问题，一个是<code>502</code>，还有一个是<code>File not found</code>。下面进行分析</p>
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/05/10/2019/ubuntu%E6%9B%B4%E6%96%B0php/">ubuntu更新php</a>
   </h2>
   
@@ -281,87 +345,6 @@
 
 </article>
       
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/04/01/2019/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99%E5%A4%A7%E7%99%BD%E8%AF%9D/">设计模式基本原则大白话</a>
-  </h2>
-  
-  
-
-      <a href="/2019/04/01/2019/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99%E5%A4%A7%E7%99%BD%E8%AF%9D/" class="archive-article-date">
-  <time datetime="2019-04-01T14:35:47.000Z" itemprop="datePublished">04/01</time>
-</a>
-    </header>
-    
-      <h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p>   简单点说就是最小化封装，一个方法只负责一个功能，一个类只负责一类功能。如果一个功能比较复杂，那就差分成多个小功能，然后去实现。<br>   这样做的好处是</p>
-<ul>
-<li>可以降低类的复杂度，一个类只负责一项职责，其逻辑肯定要比负责多项职责简单的多；</li>
-<li>提高类的可读性，提高系统的可维护性；</li>
-<li>变更引起的风险降低，变更是必然的，如果单一职责原则遵守的好，当修改一个功能时，可以显著降低对其他功能的影响。</li>
-</ul>
-<h2 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h2><p>   简单点说就是子类可以扩展父类的功能，但不能改变父类原有的功能。<br>   注意一下几点即可</p>
-<ul>
-<li>子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法。</li>
-<li>子类中可以增加自己特有的方法。</li>
-<li>当子类的方法重载父类的方法时，方法的前置条件（即方法的形参）要比父类方法的输入参数更宽松。</li>
-<li>当子类的方法实现父类的抽象方法时，方法的后置条件（即方法的返回值）要比父类更严格。</li>
-</ul>
-<p>这样做可以有效避免，功能耦合度太高，改一个小功能影响到其他功能的情况</p>
-<h2 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h2><p>   依赖倒置就是控制翻转，又名 IOC，简单点说，就是将需要的外部对象，通过构造函数参数传递或属性赋值的方式，让当前对象可以使用注入的外部对象。<br>   注意一下几点即可</p>
-<ul>
-<li>低层模块尽量都要有抽象类或接口，或者两者都有。</li>
-<li>变量的声明类型尽量是抽象类或接口。</li>
-<li>使用继承时遵循里氏替换原则</li>
-</ul>
-<p>这样做可以有效解耦，功能发生改变时，只需要替换外部的依赖对象，而不必修改主体功能代码。</p>
-    
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/03/27/2019/vscode-%E4%BF%9D%E5%AD%98%E8%87%AA%E5%8A%A8%E6%8C%89eslint%E6%A0%BC%E5%BC%8F%E5%8C%96/">vscode 保存自动按eslint格式化</a>
-  </h2>
-  
-  
-
-      <a href="/2019/03/27/2019/vscode-%E4%BF%9D%E5%AD%98%E8%87%AA%E5%8A%A8%E6%8C%89eslint%E6%A0%BC%E5%BC%8F%E5%8C%96/" class="archive-article-date">
-  <time datetime="2019-03-27T06:26:43.000Z" itemprop="datePublished">03/27</time>
-</a>
-    </header>
-    
-      <p>三步走：</p>
-<ol>
-<li>安装 vuter，eslint，Prettier-code fromatter<br>vuter 是 vue 高高亮插件，安装后 vscode 就可以识别<code>.vue</code>文件了</li>
-<li>配置 vscode 首选项<br>选择 file 》Preferences 》Settings 打开配置。然后选择 User Settings，点击右上角的<code>&#123;&#125;</code>按钮，进入文本编辑状态</li>
-<li>配置内容</li>
-</ol>
-    
-    
-    
-  </div>
-
-</article>
-      
       
     </div>
   </div>
@@ -377,7 +360,7 @@
     <footer class="footer">
   <div class="outer">
     <ul class="list-inline">
-      <li>舒克的博客 &copy; 2023</li>
+      <li>舒克的博客 &copy; 2024</li>
       
         <li>
           

@@ -65,6 +65,142 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2019/mysql主从配置" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/02/21/2019/mysql%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/">mysql主从配置</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/02/21/2019/mysql%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2019-02-21T07:44:58.000Z" itemprop="datePublished">2019-02-21</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>本教程配置是mysql5.7 不同的版本配置方式有差异，仅供参考</p>
+<h2 id="Master的配置"><a href="#Master的配置" class="headerlink" title="Master的配置"></a>Master的配置</h2><h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>修改&#x2F;etc&#x2F;mysql&#x2F;mysql.conf.d&#x2F;mysqld.cnf（配置文件具体位置根据）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log-bin=mysql-bin</span><br><span class="line">server-id=2</span><br><span class="line">binlog-ignore-db=information_schema</span><br><span class="line">binlog-ignore-db=cluster</span><br><span class="line">binlog-ignore-db=mysql</span><br><span class="line">binlog-do-db=test</span><br></pre></td></tr></table></figure>
+<p>这里的server-id用于标识唯一的数据库，在从库必须设置为不同的值。</p>
+<p>binlog-ignore-db：表示同步的时候忽略的数据库</p>
+<p>binlog-do-db：指定需要同步的数据库</p>
+<p>配置完成后重启mysql服务</p>
+        
+          <p>
+            <a class="article-more-link" href="/2019/02/21/2019/mysql%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/">
+              阅读全文...
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/02/21/2019/mysql%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/" data-id="cllx3nqiq001530tra6qo6b07" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-2019/团队开发中如何使用git分支" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/02/15/2019/%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8git%E5%88%86%E6%94%AF/">团队开发中如何使用git分支</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/02/15/2019/%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8git%E5%88%86%E6%94%AF/" class="article-date">
+  <time datetime="2019-02-15T08:57:50.000Z" itemprop="datePublished">2019-02-15</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>git已经成为团队代码管理的标配，合理的使用git分支进行开发，可以大大提高开发效率，降低管理成本。好多人听过git fllow，但都是一知半解，其实并不神秘，也很简单。这是很多研发团队总结出来的一种分支策略而已。</p>
+        
+          <p>
+            <a class="article-more-link" href="/2019/02/15/2019/%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8git%E5%88%86%E6%94%AF/">
+              阅读全文...
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/02/15/2019/%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8git%E5%88%86%E6%94%AF/" data-id="cllx3nqjd003830tr42ml4wdf" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E6%94%AF/" rel="tag">分支</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%A4%9A%E4%BA%BA%E5%8D%8F%E4%BD%9C/" rel="tag">多人协作</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2019/前后端分离session跨域解决方案" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -402,7 +538,7 @@
     <footer class="footer">
   <div class="outer">
     <ul class="list-inline">
-      <li>舒克的博客 &copy; 2023</li>
+      <li>舒克的博客 &copy; 2024</li>
       
         <li>
           

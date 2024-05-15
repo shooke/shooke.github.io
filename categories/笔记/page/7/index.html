@@ -56,6 +56,96 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/04/02/2019/VirtualBox-v5-2-12-Ubuntu18-04-%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%92%8C%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%BA%92%E9%80%9A%EF%BC%8C%E9%83%BD%E5%8F%AF%E4%B8%8A%E7%BD%91%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/">VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式</a>
+  </h2>
+  
+  
+
+      <a href="/2019/04/02/2019/VirtualBox-v5-2-12-Ubuntu18-04-%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%92%8C%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%BA%92%E9%80%9A%EF%BC%8C%E9%83%BD%E5%8F%AF%E4%B8%8A%E7%BD%91%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/" class="archive-article-date">
+  <time datetime="2019-04-02T05:29:28.000Z" itemprop="datePublished">04/02</time>
+</a>
+    </header>
+    
+      <h2 id="全局设置"><a href="#全局设置" class="headerlink" title="全局设置"></a>全局设置</h2><p>点击管理，全局设置；<br>选择网络，里面只有 NAT 网络；<br>点击添加，列表新增 NatNetwork，点击确定。</p>
+<h2 id="虚拟机配置"><a href="#虚拟机配置" class="headerlink" title="虚拟机配置"></a>虚拟机配置</h2><p>点击管理，选择主机网络管理；<br>选择创建，列表新增 vboxnet0，只要这一个就够了；<br>选中点击 vboxnet0，点击手动配置网卡；<br>点击 IPv4 地址，输入配置的网关 IP，如：192.168.56.1；<br>如果不想使用 DHCP，取消启用 DHCP，点击应用。</p>
+<h2 id="给虚拟机添加网卡"><a href="#给虚拟机添加网卡" class="headerlink" title="给虚拟机添加网卡"></a>给虚拟机添加网卡</h2><p>右键点击一个虚拟主机，选择设置；<br>选择网络；<br>选中点击网卡 1，勾选启用网络连接；<br>连接方式选择网络地址转换(NAT)，界面可以空着；<br>选中点击网卡 2，勾选启用网络连接；<br>连接方式选择仅主机(Host-Only)网络，界面名称为 vboxnet0，点击确认。</p>
+    
+    
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/04/01/2019/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99%E5%A4%A7%E7%99%BD%E8%AF%9D/">设计模式基本原则大白话</a>
+  </h2>
+  
+  
+
+      <a href="/2019/04/01/2019/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99%E5%A4%A7%E7%99%BD%E8%AF%9D/" class="archive-article-date">
+  <time datetime="2019-04-01T14:35:47.000Z" itemprop="datePublished">04/01</time>
+</a>
+    </header>
+    
+      <h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p>   简单点说就是最小化封装，一个方法只负责一个功能，一个类只负责一类功能。如果一个功能比较复杂，那就差分成多个小功能，然后去实现。<br>   这样做的好处是</p>
+<ul>
+<li>可以降低类的复杂度，一个类只负责一项职责，其逻辑肯定要比负责多项职责简单的多；</li>
+<li>提高类的可读性，提高系统的可维护性；</li>
+<li>变更引起的风险降低，变更是必然的，如果单一职责原则遵守的好，当修改一个功能时，可以显著降低对其他功能的影响。</li>
+</ul>
+<h2 id="里氏替换原则"><a href="#里氏替换原则" class="headerlink" title="里氏替换原则"></a>里氏替换原则</h2><p>   简单点说就是子类可以扩展父类的功能，但不能改变父类原有的功能。<br>   注意一下几点即可</p>
+<ul>
+<li>子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法。</li>
+<li>子类中可以增加自己特有的方法。</li>
+<li>当子类的方法重载父类的方法时，方法的前置条件（即方法的形参）要比父类方法的输入参数更宽松。</li>
+<li>当子类的方法实现父类的抽象方法时，方法的后置条件（即方法的返回值）要比父类更严格。</li>
+</ul>
+<p>这样做可以有效避免，功能耦合度太高，改一个小功能影响到其他功能的情况</p>
+<h2 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h2><p>   依赖倒置就是控制翻转，又名 IOC，简单点说，就是将需要的外部对象，通过构造函数参数传递或属性赋值的方式，让当前对象可以使用注入的外部对象。<br>   注意一下几点即可</p>
+<ul>
+<li>低层模块尽量都要有抽象类或接口，或者两者都有。</li>
+<li>变量的声明类型尽量是抽象类或接口。</li>
+<li>使用继承时遵循里氏替换原则</li>
+</ul>
+<p>这样做可以有效解耦，功能发生改变时，只需要替换外部的依赖对象，而不必修改主体功能代码。</p>
+    
+    
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/03/27/2019/vscode-%E4%BF%9D%E5%AD%98%E8%87%AA%E5%8A%A8%E6%8C%89eslint%E6%A0%BC%E5%BC%8F%E5%8C%96/">vscode 保存自动按eslint格式化</a>
   </h2>
   
@@ -347,75 +437,6 @@
 
 </article>
       
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/02/15/2019/%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8git%E5%88%86%E6%94%AF/">团队开发中如何使用git分支</a>
-  </h2>
-  
-  
-
-      <a href="/2019/02/15/2019/%E5%9B%A2%E9%98%9F%E5%BC%80%E5%8F%91%E4%B8%AD%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8git%E5%88%86%E6%94%AF/" class="archive-article-date">
-  <time datetime="2019-02-15T08:57:50.000Z" itemprop="datePublished">02/15</time>
-</a>
-    </header>
-    
-      <p>git已经成为团队代码管理的标配，合理的使用git分支进行开发，可以大大提高开发效率，降低管理成本。好多人听过git fllow，但都是一知半解，其实并不神秘，也很简单。这是很多研发团队总结出来的一种分支策略而已。</p>
-    
-    
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/02/01/2019/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BBsession%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">前后端分离session跨域解决方案</a>
-  </h2>
-  
-  
-
-      <a href="/2019/02/01/2019/%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BBsession%E8%B7%A8%E5%9F%9F%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="archive-article-date">
-  <time datetime="2019-02-01T07:06:27.000Z" itemprop="datePublished">02/01</time>
-</a>
-    </header>
-    
-      <h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><p>php的session比cookie安全，这是好多人知道的常识。session的数据是存放在服务端的，那么程序是如何取到对应的session呢？<br>那是因为每一个session都有一个身份证号，那就是session id。这个东西一般情况下，服务器会发送给客户端，客户端将它放在cookie里。<br>cookie是存在跨域问题的，什么叫跨域呢？a.domain.com下创建的cookie,在b.domain.com下是无法使用的，我们需要进行跨域设置。</p>
-<h2 id="axios"><a href="#axios" class="headerlink" title="axios"></a>axios</h2><p>用过vue开发前后端分离程序的人对axios相比都不陌生了，js前后端分离，如果前后端用两个域名，也存在跨域问题。</p>
-    
-    
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    
-    
-  </div>
-
-</article>
-      
       
     </div>
   </div>
@@ -431,7 +452,7 @@
     <footer class="footer">
   <div class="outer">
     <ul class="list-inline">
-      <li>舒克的博客 &copy; 2023</li>
+      <li>舒克的博客 &copy; 2024</li>
       
         <li>
           

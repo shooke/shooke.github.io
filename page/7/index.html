@@ -65,6 +65,130 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2019/url添加参数" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/07/17/2019/url%E6%B7%BB%E5%8A%A0%E5%8F%82%E6%95%B0/">url添加参数</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/07/17/2019/url%E6%B7%BB%E5%8A%A0%E5%8F%82%E6%95%B0/" class="article-date">
+  <time datetime="2019-07-17T03:16:16.000Z" itemprop="datePublished">2019-07-17</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>微信开发过程中经常用到获取openid后地址跳转，但是要保持原地址的所有参数，再添加上openid参数。函数很简单，也很实用，记录一下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function urlAddParam($url, $params)</span><br><span class="line">    &#123;</span><br><span class="line">        $urlParse = parse_url($url);</span><br><span class="line"></span><br><span class="line">        // url协议</span><br><span class="line">        $scheme = empty($urlParse[&#x27;scheme&#x27;]) ? &#x27;&#x27; : $urlParse[&#x27;scheme&#x27;] . &#x27;://&#x27;;</span><br><span class="line">        // host</span><br><span class="line">        $host = empty($urlParse[&#x27;host&#x27;]) ? &#x27;&#x27; : $urlParse[&#x27;host&#x27;];</span><br><span class="line">        // 端口</span><br><span class="line">        $port = empty($urlParse[&#x27;port&#x27;]) ? &#x27;&#x27; : &#x27;:&#x27; . $urlParse[&#x27;port&#x27;];</span><br><span class="line">        // 执行文件</span><br><span class="line">        $path = empty($urlParse[&#x27;path&#x27;]) ? &#x27;&#x27; : $urlParse[&#x27;path&#x27;];</span><br><span class="line">        // 请求参数</span><br><span class="line">        $queryStr = $urlParse[&#x27;query&#x27;] ?? &#x27;&#x27;;</span><br><span class="line">        parse_str($queryStr, $queryArr);</span><br><span class="line">        $queryArr = array_merge($queryArr, $params);</span><br><span class="line">        $query = http_build_query($queryArr);</span><br><span class="line">        $query = empty($query) ? &#x27;&#x27; : &#x27;?&#x27; . $query;</span><br><span class="line">        // 锚点链接</span><br><span class="line">        $fragment = empty($urlParse[&#x27;fragment&#x27;]) ? &#x27;&#x27; : &#x27;#&#x27; . $urlParse[&#x27;fragment&#x27;];</span><br><span class="line"></span><br><span class="line">        return $scheme . $host . $port . $path . $query . $fragment;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    echo urlAddParam(&#x27;https://gitee.com/shooke/codes/new&#x27;, [&#x27;openid&#x27;=&gt;&#x27;sdfsdfoihnwoixchow==&#x27;]);</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/07/17/2019/url%E6%B7%BB%E5%8A%A0%E5%8F%82%E6%95%B0/" data-id="cllx3nqj0002d30tr3qbi7tma" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/url/" rel="tag">url</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E5%9D%97/" rel="tag">代码块</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
+    <article id="post-2019/vue-cli3预渲染处理" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/07/13/2019/vue-cli3%E9%A2%84%E6%B8%B2%E6%9F%93%E5%A4%84%E7%90%86/">vue-cli3预渲染处理</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/07/13/2019/vue-cli3%E9%A2%84%E6%B8%B2%E6%9F%93%E5%A4%84%E7%90%86/" class="article-date">
+  <time datetime="2019-07-13T02:29:01.000Z" itemprop="datePublished">2019-07-13</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>vue模块化开发很方便，但也有问题，那就是seo。解决seo问题有两种方案，一种是ssr(服务端渲染)，还有一种是预渲染，只针对部分需要seo的页面进行渲染即可。</p>
+        
+          <p>
+            <a class="article-more-link" href="/2019/07/13/2019/vue-cli3%E9%A2%84%E6%B8%B2%E6%9F%93%E5%A4%84%E7%90%86/">
+              阅读全文...
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/07/13/2019/vue-cli3%E9%A2%84%E6%B8%B2%E6%9F%93%E5%A4%84%E7%90%86/" data-id="cllx3nqj5002o30trbncm7576" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue/" rel="tag">vue</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vue-cli/" rel="tag">vue-cli</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" rel="tag">前端开发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%A2%84%E6%B8%B2%E6%9F%93/" rel="tag">预渲染</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2019/vue下使用ueditor，文件直传七牛踩坑记录" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -603,144 +727,6 @@
 
 </article>
     
-    <article id="post-2019/sublime-text-3安装插件" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2019/05/17/2019/sublime-text-3%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6/">sublime text 3安装插件</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/05/17/2019/sublime-text-3%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6/" class="article-date">
-  <time datetime="2019-05-17T03:26:28.000Z" itemprop="datePublished">2019-05-17</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <p>sublime相比其他编辑器最大的优点就是占用内存小。一直用idea和vscode。好久没用sublime了，今天安装了一下新版本3.2.1，想要用它开发vue。安装插件的过程中踩了几个小坑。</p>
-<h2 id="安装package-control"><a href="#安装package-control" class="headerlink" title="安装package control"></a>安装package control</h2><p>使用网上说的，控制台安装方式，按<code>ctrl + \</code> &#96;，输入下面的命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,os; pf = &#x27;Package Control.sublime-package&#x27;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &#x27;wb&#x27;).write(urllib.request.urlopen( &#x27;http://sublime.wbond.net/&#x27; + pf.replace(&#x27; &#x27;,&#x27;%20&#x27;)).read())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-        
-          <p>
-            <a class="article-more-link" href="/2019/05/17/2019/sublime-text-3%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/05/17/2019/sublime-text-3%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6/" data-id="cllx3nqiz002630trfb7rgbly" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/package-control/" rel="tag">package_control</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sublime/" rel="tag">sublime</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sublime-text-3/" rel="tag">sublime text 3</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/" rel="tag">开发工具</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-2019/docker环境下php使用指南" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2019/05/15/2019/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bphp%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">docker环境下php使用指南</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/05/15/2019/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bphp%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" class="article-date">
-  <time datetime="2019-05-15T10:09:53.000Z" itemprop="datePublished">2019-05-15</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <p>最近由于业务原因，需要将 php7.0 升级到 7.2。升级要考虑一下几点<br>要满足以下需求</p>
-<ol>
-<li>php7.0 和 7.2 要共存，以免升级 7.2 以后出现问题，及时切换回来。</li>
-<li>升级操作要简单，服务器数量比较多，原生方式安装太过复杂，操作步骤太多，就算携程 shell 脚本，维护起来也比较麻烦</li>
-<li>nginx 保持原样，只对项目相关的配置文件做简单调整即可。如果 nginx 变更日志处理等模块都收到牵连。</li>
-</ol>
-<p>考虑到上面的因素，用 docker 显然是非常符合的。于是就开启了踩坑之旅。<br>主要遇到了两个问题，一个是<code>502</code>，还有一个是<code>File not found</code>。下面进行分析</p>
-        
-          <p>
-            <a class="article-more-link" href="/2019/05/15/2019/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bphp%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/05/15/2019/docker%E7%8E%AF%E5%A2%83%E4%B8%8Bphp%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/" data-id="cllx3nqif000930tr112z8ezr" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/docker/" rel="tag">docker</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php/" rel="tag">php</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php-cli/" rel="tag">php-cli</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/php-fpm/" rel="tag">php-fpm</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
   </article>
   
 
@@ -754,7 +740,7 @@
     <footer class="footer">
   <div class="outer">
     <ul class="list-inline">
-      <li>舒克的博客 &copy; 2023</li>
+      <li>舒克的博客 &copy; 2024</li>
       
         <li>
           

@@ -56,6 +56,81 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/07/31/2019/telnet%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/">telnet使用简介</a>
+  </h2>
+  
+  
+
+      <a href="/2019/07/31/2019/telnet%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/" class="archive-article-date">
+  <time datetime="2019-07-31T14:01:23.000Z" itemprop="datePublished">07/31</time>
+</a>
+    </header>
+    
+      <h2 id="端口开通-链接正常"><a href="#端口开通-链接正常" class="headerlink" title="端口开通,链接正常"></a>端口开通,链接正常</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">telnet 192.168.1.100 62715</span><br><span class="line">Trying 192.168.1.100...</span><br><span class="line">Connected to 192.168.1.100.</span><br><span class="line">Escape character is &#x27;^]&#x27;.</span><br></pre></td></tr></table></figure>
+<p>链接成功，根据提示<code>Escape character is &#39;^]&#39;</code>.可知退出字符为<code>&#39;^]&#39;</code>（CTRL+]）。此时输入其它字符不能使其退出，CTRL+C都不行。输入CTRL+]后会自动执行，进入命令模式，屏幕上出现<code>telnet&gt;</code>字样。需要输入<code>quit</code>才可退出<br><code>Escape character</code>提示是自定义的，使用参数<code>-e</code>即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">telnet -e p 192.168.1.100 62715   #使用p字符</span><br><span class="line">Telnet escape character is &#x27;p&#x27;.</span><br><span class="line">Trying 192.168.1.100...</span><br><span class="line">Connected to 192.168.1.100.</span><br><span class="line">Escape character is &#x27;p&#x27;.</span><br></pre></td></tr></table></figure>
+<p>输入<code>p</code>,会出现<code>telnet&gt;</code>字样，输入<code>quit</code>可退出</p>
+    
+    
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/07/19/2019/vue%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6v-model%E7%BB%91%E5%AE%9A%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95/">vue自定义组件v-model绑定数据的实现方法</a>
+  </h2>
+  
+  
+
+      <a href="/2019/07/19/2019/vue%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6v-model%E7%BB%91%E5%AE%9A%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95/" class="archive-article-date">
+  <time datetime="2019-07-19T02:02:32.000Z" itemprop="datePublished">07/19</time>
+</a>
+    </header>
+    
+      <h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><p>父组件调用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;list v-model=&quot;data&quot; :multiple=&quot;true&quot;&gt;&lt;/list&gt;</span><br></pre></td></tr></table></figure>
+
+<p>子组件<code>list.vue</code>代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-select v-model=&quot;val&quot; v-bind=&quot;$attrs&quot; placeholder=&quot;请选择&quot;&gt;</span><br><span class="line">    &lt;el-option</span><br><span class="line">      v-for=&quot;item in list&quot;</span><br><span class="line">      :key=&quot;item.id&quot;</span><br><span class="line">      :label=&quot;item.name&quot;</span><br><span class="line">      :value=&quot;item.id&quot;&gt;</span><br><span class="line">    &lt;/el-option&gt;</span><br><span class="line">  &lt;/el-select&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">import &#123; getColumnList &#125; from &#x27;@/api/column.js&#x27;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">  inheritAttrs: false,</span><br><span class="line">  model: &#123;</span><br><span class="line">    prop: &#x27;value&#x27;,</span><br><span class="line">    event: &#x27;change&#x27;</span><br><span class="line">  &#125;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    value: null</span><br><span class="line">  &#125;,</span><br><span class="line">  data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      list: [&#123;id:&#x27;1&#x27;,name:&#x27;张三&#x27;&#125;,&#123;id:&#x27;2&#x27;,name:&#x27;李四&#x27;&#125;]</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    val: &#123;</span><br><span class="line">      get () &#123;</span><br><span class="line">        return this.value</span><br><span class="line">      &#125;,</span><br><span class="line">      set (newval) &#123;</span><br><span class="line">        this.$emit(&#x27;change&#x27;, newval)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+    
+    
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/07/17/2019/url%E6%B7%BB%E5%8A%A0%E5%8F%82%E6%95%B0/">url添加参数</a>
   </h2>
   
@@ -324,76 +399,6 @@
 
 </article>
       
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/05/23/2019/vuex-getters%E4%B8%8D%E6%9B%B4%E6%96%B0%E7%9A%84%E5%A5%87%E6%80%AA%E7%8E%B0%E8%B1%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">vuex getters不更新的奇怪现象解决方案</a>
-  </h2>
-  
-  
-
-      <a href="/2019/05/23/2019/vuex-getters%E4%B8%8D%E6%9B%B4%E6%96%B0%E7%9A%84%E5%A5%87%E6%80%AA%E7%8E%B0%E8%B1%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="archive-article-date">
-  <time datetime="2019-05-22T16:19:41.000Z" itemprop="datePublished">05/23</time>
-</a>
-    </header>
-    
-      <p>今天写代码的时候遇到一个很奇怪的问题，getter里面取到的值怎么都不是最新的。<br>调用setAuth清空后，从vue开发工具(vue-Devtools)中查看，<code>state.auth</code>已经正常被设置成了空值。但是<code>getters</code>或<code>mapGetters</code>取到的还是更新前的值。</p>
-    
-    
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/05/17/2019/sublime-text-3%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6/">sublime text 3安装插件</a>
-  </h2>
-  
-  
-
-      <a href="/2019/05/17/2019/sublime-text-3%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6/" class="archive-article-date">
-  <time datetime="2019-05-17T03:26:28.000Z" itemprop="datePublished">05/17</time>
-</a>
-    </header>
-    
-      <p>sublime相比其他编辑器最大的优点就是占用内存小。一直用idea和vscode。好久没用sublime了，今天安装了一下新版本3.2.1，想要用它开发vue。安装插件的过程中踩了几个小坑。</p>
-<h2 id="安装package-control"><a href="#安装package-control" class="headerlink" title="安装package control"></a>安装package control</h2><p>使用网上说的，控制台安装方式，按<code>ctrl + \</code> &#96;，输入下面的命令</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request,os; pf = &#x27;Package Control.sublime-package&#x27;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), &#x27;wb&#x27;).write(urllib.request.urlopen( &#x27;http://sublime.wbond.net/&#x27; + pf.replace(&#x27; &#x27;,&#x27;%20&#x27;)).read())</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-    
-    
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    
-    
-  </div>
-
-</article>
-      
       
     </div>
   </div>
@@ -409,7 +414,7 @@
     <footer class="footer">
   <div class="outer">
     <ul class="list-inline">
-      <li>舒克的博客 &copy; 2023</li>
+      <li>舒克的博客 &copy; 2024</li>
       
         <li>
           
