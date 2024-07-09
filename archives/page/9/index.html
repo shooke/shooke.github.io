@@ -56,6 +56,36 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/04/02/2019/VirtualBox-v5-2-12-Ubuntu18-04-%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%92%8C%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%BA%92%E9%80%9A%EF%BC%8C%E9%83%BD%E5%8F%AF%E4%B8%8A%E7%BD%91%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/">VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式</a>
+  </h2>
+  
+  
+
+      <a href="/2019/04/02/2019/VirtualBox-v5-2-12-Ubuntu18-04-%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%92%8C%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%BA%92%E9%80%9A%EF%BC%8C%E9%83%BD%E5%8F%AF%E4%B8%8A%E7%BD%91%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/" class="archive-article-date">
+  <time datetime="2019-04-02T05:29:28.000Z" itemprop="datePublished">04/02</time>
+</a>
+    </header>
+    
+      <h2 id="全局设置"><a href="#全局设置" class="headerlink" title="全局设置"></a>全局设置</h2><p>点击管理，全局设置；<br>选择网络，里面只有 NAT 网络；<br>点击添加，列表新增 NatNetwork，点击确定。</p>
+<h2 id="虚拟机配置"><a href="#虚拟机配置" class="headerlink" title="虚拟机配置"></a>虚拟机配置</h2><p>点击管理，选择主机网络管理；<br>选择创建，列表新增 vboxnet0，只要这一个就够了；<br>选中点击 vboxnet0，点击手动配置网卡；<br>点击 IPv4 地址，输入配置的网关 IP，如：192.168.56.1；<br>如果不想使用 DHCP，取消启用 DHCP，点击应用。</p>
+<h2 id="给虚拟机添加网卡"><a href="#给虚拟机添加网卡" class="headerlink" title="给虚拟机添加网卡"></a>给虚拟机添加网卡</h2><p>右键点击一个虚拟主机，选择设置；<br>选择网络；<br>选中点击网卡 1，勾选启用网络连接；<br>连接方式选择网络地址转换(NAT)，界面可以空着；<br>选中点击网卡 2，勾选启用网络连接；<br>连接方式选择仅主机(Host-Only)网络，界面名称为 vboxnet0，点击确认。</p>
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/04/01/2019/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%9F%BA%E6%9C%AC%E5%8E%9F%E5%88%99%E5%A4%A7%E7%99%BD%E8%AF%9D/">设计模式基本原则大白话</a>
   </h2>
   
@@ -368,34 +398,6 @@
     
       <p>关于mysql的权限简单的理解就是mysql允许你做你权利以内的事情，不可以越界。比如只允许你执行select操作，那么你就不能执行update操作。只允许你从某台机器上连接mysql，那么你就不能从除那台机器以外的其他机器连接mysql。</p>
 <p>那么Mysql的权限是如何实现的呢？这就要说到mysql的两阶段验证，下面详细介绍：<br>第一阶段：服务器首先会检查你是否允许连接。因为创建用户的时候会加上主机限制，可以限制成本地、某个IP、某个IP段、以及任何地方等，只允许你从配置的指定地方登陆。<br>第二阶段：如果你能连接，Mysql会检查你发出的每个请求，看你是否有足够的权限实施它。比如你要更新某个表、或者查询某个表，Mysql会查看你对哪个表或者某个列是否有权限。再比如，你要运行某个存储过程，Mysql会检查你对存储过程是否有执行权限等。</p>
-    
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/03/06/2019/git%E4%BF%9D%E5%AD%98%E5%AF%86%E7%A0%81/">git保存密码</a>
-  </h2>
-  
-  
-
-      <a href="/2019/03/06/2019/git%E4%BF%9D%E5%AD%98%E5%AF%86%E7%A0%81/" class="archive-article-date">
-  <time datetime="2019-03-06T02:29:01.000Z" itemprop="datePublished">03/06</time>
-</a>
-    </header>
-    
-      <p>git每次提交都输入密码，非常麻烦，让它记住密码就好了。一劳永逸的做法是永久保存，这样每次都不用输入密码。但是，这样会有安全问题，如果电脑忘了关机，任何人都可以对其进行操作。最好是让密码有个时效性，当超过了指定时间，密码自动失效。</p>
     
     
     

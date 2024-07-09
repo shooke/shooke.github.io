@@ -56,6 +56,34 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2021/09/15/2021/ubuntu%2018.04%20Temporary%20failure%20in%20name%20resolution%20DNS%E8%A7%A3%E6%9E%90%E9%97%AE%E9%A2%98%EF%BC%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/">ubuntu 18.04 Temporary failure in name resolution DNS解析问题，解决方法</a>
+  </h2>
+  
+  
+
+      <a href="/2021/09/15/2021/ubuntu%2018.04%20Temporary%20failure%20in%20name%20resolution%20DNS%E8%A7%A3%E6%9E%90%E9%97%AE%E9%A2%98%EF%BC%8C%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" class="archive-article-date">
+  <time datetime="2021-09-15T07:47:12.000Z" itemprop="datePublished">09/15</time>
+</a>
+    </header>
+    
+      
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2021/06/30/2021/deepin%E5%8F%8C%E5%86%85%E6%A0%B8%E7%AE%A1%E7%90%86/">deepin双内核管理</a>
   </h2>
   
@@ -309,38 +337,6 @@
     </header>
     
       
-    
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2020/09/29/2020/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1postgresql%E8%BF%81%E7%A7%BB%E7%B2%BE%E5%8A%9B/">记录一次postgresql迁移经历</a>
-  </h2>
-  
-  
-
-      <a href="/2020/09/29/2020/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1postgresql%E8%BF%81%E7%A7%BB%E7%B2%BE%E5%8A%9B/" class="archive-article-date">
-  <time datetime="2020-09-28T16:24:15.000Z" itemprop="datePublished">09/29</time>
-</a>
-    </header>
-    
-      <p>数据库服务器硬盘满了，需要将数据迁移到另一台数据库，做一下记录</p>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>去postgresql官网<a target="_blank" rel="noopener" href="https://www.postgresql.org/download/%EF%BC%8C%E9%80%89%E6%8B%A9%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8C%E6%88%91%E8%BF%99%E9%87%8C%E9%80%89%E6%8B%A9%E7%9A%84%E6%98%AFubuntu%E3%80%82">https://www.postgresql.org/download/，选择操作系统，我这里选择的是ubuntu。</a><br>然后根据说明进行安装</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Create the file repository configuration:</span><br><span class="line">sudo sh -c &#x27;echo &quot;deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&quot; &gt; /etc/apt/sources.list.d/pgdg.list&#x27;</span><br><span class="line"></span><br><span class="line"># Import the repository signing key:</span><br><span class="line">wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"># Update the package lists:</span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"># Install the latest version of PostgreSQL.</span><br><span class="line"># If you want a specific version, use &#x27;postgresql-12&#x27; or similar instead of &#x27;postgresql&#x27;:</span><br><span class="line">sudo apt-get -y install postgresql</span><br></pre></td></tr></table></figure>
-<p>值得注意的是，安装时一定要选择与老数据库相同的版本</p>
-<p>安装完成后，就可以会自动添加一个postgres的系统用户，该用户没有密码如果想要密码可以自行设置</p>
     
     
     

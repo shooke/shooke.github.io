@@ -65,6 +65,73 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2019/VirtualBox-v5-2-12-Ubuntu18-04-宿主机和虚拟主机互通，都可上网配置方式" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/04/02/2019/VirtualBox-v5-2-12-Ubuntu18-04-%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%92%8C%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%BA%92%E9%80%9A%EF%BC%8C%E9%83%BD%E5%8F%AF%E4%B8%8A%E7%BD%91%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/">VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/04/02/2019/VirtualBox-v5-2-12-Ubuntu18-04-%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%92%8C%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%BA%92%E9%80%9A%EF%BC%8C%E9%83%BD%E5%8F%AF%E4%B8%8A%E7%BD%91%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/" class="article-date">
+  <time datetime="2019-04-02T05:29:28.000Z" itemprop="datePublished">2019-04-02</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <h2 id="全局设置"><a href="#全局设置" class="headerlink" title="全局设置"></a>全局设置</h2><p>点击管理，全局设置；<br>选择网络，里面只有 NAT 网络；<br>点击添加，列表新增 NatNetwork，点击确定。</p>
+<h2 id="虚拟机配置"><a href="#虚拟机配置" class="headerlink" title="虚拟机配置"></a>虚拟机配置</h2><p>点击管理，选择主机网络管理；<br>选择创建，列表新增 vboxnet0，只要这一个就够了；<br>选中点击 vboxnet0，点击手动配置网卡；<br>点击 IPv4 地址，输入配置的网关 IP，如：192.168.56.1；<br>如果不想使用 DHCP，取消启用 DHCP，点击应用。</p>
+<h2 id="给虚拟机添加网卡"><a href="#给虚拟机添加网卡" class="headerlink" title="给虚拟机添加网卡"></a>给虚拟机添加网卡</h2><p>右键点击一个虚拟主机，选择设置；<br>选择网络；<br>选中点击网卡 1，勾选启用网络连接；<br>连接方式选择网络地址转换(NAT)，界面可以空着；<br>选中点击网卡 2，勾选启用网络连接；<br>连接方式选择仅主机(Host-Only)网络，界面名称为 vboxnet0，点击确认。</p>
+        
+          <p>
+            <a class="article-more-link" href="/2019/04/02/2019/VirtualBox-v5-2-12-Ubuntu18-04-%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%92%8C%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%BA%92%E9%80%9A%EF%BC%8C%E9%83%BD%E5%8F%AF%E4%B8%8A%E7%BD%91%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/">
+              阅读全文...
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/04/02/2019/VirtualBox-v5-2-12-Ubuntu18-04-%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%92%8C%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%BA%92%E9%80%9A%EF%BC%8C%E9%83%BD%E5%8F%AF%E4%B8%8A%E7%BD%91%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/" data-id="cllx3nqii000c30trg7n7g4gs" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/VirtualBox/" rel="tag">VirtualBox</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ubuntu/" rel="tag">ubuntu</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%BA%92%E9%80%9A/" rel="tag">互通</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2019/设计模式基本原则大白话" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -721,71 +788,6 @@
       </a>
       
 <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%83%E9%99%90/" rel="tag">权限</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-2019/git保存密码" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2019/03/06/2019/git%E4%BF%9D%E5%AD%98%E5%AF%86%E7%A0%81/">git保存密码</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/03/06/2019/git%E4%BF%9D%E5%AD%98%E5%AF%86%E7%A0%81/" class="article-date">
-  <time datetime="2019-03-06T02:29:01.000Z" itemprop="datePublished">2019-03-06</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <p>git每次提交都输入密码，非常麻烦，让它记住密码就好了。一劳永逸的做法是永久保存，这样每次都不用输入密码。但是，这样会有安全问题，如果电脑忘了关机，任何人都可以对其进行操作。最好是让密码有个时效性，当超过了指定时间，密码自动失效。</p>
-        
-          <p>
-            <a class="article-more-link" href="/2019/03/06/2019/git%E4%BF%9D%E5%AD%98%E5%AF%86%E7%A0%81/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/03/06/2019/git%E4%BF%9D%E5%AD%98%E5%AF%86%E7%A0%81/" data-id="cllx3nqio000v30trf1dl5sg5" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
 
     </footer>
 

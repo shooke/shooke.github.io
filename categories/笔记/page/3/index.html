@@ -56,6 +56,49 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2020/09/23/2020/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91unionid%E8%AF%A6%E8%A7%A3/">微信开发unionid详解</a>
+  </h2>
+  
+  
+
+      <a href="/2020/09/23/2020/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91unionid%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
+  <time datetime="2020-09-23T02:26:11.000Z" itemprop="datePublished">09/23</time>
+</a>
+    </header>
+    
+      <h2 id="unionid概况"><a href="#unionid概况" class="headerlink" title="unionid概况"></a>unionid概况</h2><p>微信开发过程中，经常会遇到，一个企业有多个小程序和公众号，在不同的小程序和公众号中，会有不同的openid。如果想要确定是同一个人，就需要用到unionid机制。</p>
+<p>官方关于unionid的说明是这样的</p>
+<p>公众号文档的描述</p>
+<blockquote>
+<p>开发者可通过OpenID来获取用户基本信息。特别需要注意的是，如果开发者拥有多个移动应用、网站应用和公众帐号，可通过获取用户基本信息中的unionid来区分用户的唯一性，因为只要是同一个微信开放平台帐号下的移动应用、网站应用和公众帐号，用户的unionid是唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，unionid是相同的。</p>
+</blockquote>
+<p>小程序文档的描述</p>
+<blockquote>
+<p>如果开发者拥有多个移动应用、网站应用、和公众帐号（包括小程序），可通过 UnionID 来区分用户的唯一性，因为只要是同一个微信开放平台帐号下的移动应用、网站应用和公众帐号（包括小程序），用户的 UnionID 是唯一的。换句话说，同一用户，对同一个微信开放平台下的不同应用，UnionID是相同的。</p>
+</blockquote>
+    
+    
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2020/08/22/2020/%E8%81%8A%E8%81%8Akafka/">聊聊kafka</a>
   </h2>
   
@@ -369,42 +412,6 @@
 <p>这样就不会出现假死了。</p>
 <p>还有一种方式，链接ssh之前增加一个<code>-o ServerAliveInterval=60</code>参数</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -o ServerAliveInterval=60 root@192.168.0.2</span><br></pre></td></tr></table></figure>
-    
-    
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2020/02/11/2020/shadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/">shadowsocks客户端启动报错问题</a>
-  </h2>
-  
-  
-
-      <a href="/2020/02/11/2020/shadowsocks%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%90%AF%E5%8A%A8%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98/" class="archive-article-date">
-  <time datetime="2020-02-11T03:11:19.000Z" itemprop="datePublished">02/11</time>
-</a>
-    </header>
-    
-      <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sslocal -c shadowsocks.json</span><br></pre></td></tr></table></figure>
-<p>报如下错误</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">INFO: loading config from shadowsocks.json</span><br><span class="line">2020-02-11 10:50:45 INFO     loading libcrypto from libcrypto.so.1.1</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/usr/local/bin/sslocal&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    sys.exit(main())</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/local.py&quot;, line 39, in main</span><br><span class="line">    config = shell.get_config(True)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/shell.py&quot;, line 262, in get_config</span><br><span class="line">    check_config(config, is_local)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/shell.py&quot;, line 124, in check_config</span><br><span class="line">    encrypt.try_cipher(config[&#x27;password&#x27;], config[&#x27;method&#x27;])</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/encrypt.py&quot;, line 44, in try_cipher</span><br><span class="line">    Encryptor(key, method)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/encrypt.py&quot;, line 83, in __init__</span><br><span class="line">    random_string(self._method_info[1]))</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/encrypt.py&quot;, line 109, in get_cipher</span><br><span class="line">    return m[2](method, key, iv, op)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/rc4_md5.py&quot;, line 33, in create_cipher</span><br><span class="line">    return openssl.OpenSSLCrypto(b&#x27;rc4&#x27;, rc4_key, b&#x27;&#x27;, op)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/openssl.py&quot;, line 76, in __init__</span><br><span class="line">    load_openssl()</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/openssl.py&quot;, line 52, in load_openssl</span><br><span class="line">    libcrypto.EVP_CIPHER_CTX_cleanup.argtypes = (c_void_p,)</span><br><span class="line">  File &quot;/usr/lib/python2.7/ctypes/__init__.py&quot;, line 379, in __getattr__</span><br><span class="line">    func = self.__getitem__(name)</span><br><span class="line">  File &quot;/usr/lib/python2.7/ctypes/__init__.py&quot;, line 384, in __getitem__</span><br><span class="line">    func = self._FuncPtr((name_or_ordinal, self))</span><br><span class="line">AttributeError: /usr/lib/x86_64-linux-gnu/libcrypto.so.1.1: undefined symbol: EVP_CIPHER_CTX_cleanup</span><br><span class="line"></span><br></pre></td></tr></table></figure>
     
     
       

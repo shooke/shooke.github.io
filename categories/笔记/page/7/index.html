@@ -56,6 +56,40 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/04/03/2019/linux%E5%AE%89%E8%A3%85java%E7%8E%AF%E5%A2%83/">linux安装java环境</a>
+  </h2>
+  
+  
+
+      <a href="/2019/04/03/2019/linux%E5%AE%89%E8%A3%85java%E7%8E%AF%E5%A2%83/" class="archive-article-date">
+  <time datetime="2019-04-03T07:04:54.000Z" itemprop="datePublished">04/03</time>
+</a>
+    </header>
+    
+      
+    
+    
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/04/02/2019/VirtualBox-v5-2-12-Ubuntu18-04-%E5%AE%BF%E4%B8%BB%E6%9C%BA%E5%92%8C%E8%99%9A%E6%8B%9F%E4%B8%BB%E6%9C%BA%E4%BA%92%E9%80%9A%EF%BC%8C%E9%83%BD%E5%8F%AF%E4%B8%8A%E7%BD%91%E9%85%8D%E7%BD%AE%E6%96%B9%E5%BC%8F/">VirtualBox v5.2.12 Ubuntu18.04 宿主机和虚拟主机互通，都可上网配置方式</a>
   </h2>
   
@@ -384,46 +418,6 @@
     </header>
     
       <p>git每次提交都输入密码，非常麻烦，让它记住密码就好了。一劳永逸的做法是永久保存，这样每次都不用输入密码。但是，这样会有安全问题，如果电脑忘了关机，任何人都可以对其进行操作。最好是让密码有个时效性，当超过了指定时间，密码自动失效。</p>
-    
-    
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/02/21/2019/mysql%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/">mysql主从配置</a>
-  </h2>
-  
-  
-
-      <a href="/2019/02/21/2019/mysql%E4%B8%BB%E4%BB%8E%E9%85%8D%E7%BD%AE/" class="archive-article-date">
-  <time datetime="2019-02-21T07:44:58.000Z" itemprop="datePublished">02/21</time>
-</a>
-    </header>
-    
-      <p>本教程配置是mysql5.7 不同的版本配置方式有差异，仅供参考</p>
-<h2 id="Master的配置"><a href="#Master的配置" class="headerlink" title="Master的配置"></a>Master的配置</h2><h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>修改&#x2F;etc&#x2F;mysql&#x2F;mysql.conf.d&#x2F;mysqld.cnf（配置文件具体位置根据）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log-bin=mysql-bin</span><br><span class="line">server-id=2</span><br><span class="line">binlog-ignore-db=information_schema</span><br><span class="line">binlog-ignore-db=cluster</span><br><span class="line">binlog-ignore-db=mysql</span><br><span class="line">binlog-do-db=test</span><br></pre></td></tr></table></figure>
-<p>这里的server-id用于标识唯一的数据库，在从库必须设置为不同的值。</p>
-<p>binlog-ignore-db：表示同步的时候忽略的数据库</p>
-<p>binlog-do-db：指定需要同步的数据库</p>
-<p>配置完成后重启mysql服务</p>
     
     
       

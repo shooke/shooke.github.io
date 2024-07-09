@@ -3219,27 +3219,6 @@ UEDITOR_HOME_URL的路径是相对于根目录的，比如上面的配置就是�
       </tags>
   </entry>
   <entry>
-    <title>ubuntu格式化硬盘并挂载</title>
-    <url>/2024/05/15/2024/ubuntu%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%A1%AC%E7%9B%98%E5%B9%B6%E6%8C%82%E8%BD%BD/</url>
-    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo fdisk -l</span><br><span class="line"></span><br><span class="line">sudo fdisk /dev/vdb</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>选择n新建分区，选择p主分区，选择1，回车确认默认起始扇区，回车确认默认结束扇区，输入+200G，回车确认格式化，输入w保存并退出。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Welcome to fdisk (util-linux 2.34).</span><br><span class="line">Changes will remain in memory only, until you decide to write them.</span><br><span class="line">Be careful before using the write command.</span><br><span class="line"></span><br><span class="line">Device does not contain a recognized partition table.</span><br><span class="line">Created a new DOS disklabel with disk identifier 0x29c5f384.</span><br><span class="line"></span><br><span class="line">Command (m for help): n</span><br><span class="line">Partition type</span><br><span class="line">   p   primary (0 primary, 0 extended, 4 free)</span><br><span class="line">   e   extended (container for logical partitions)</span><br><span class="line">Select (default p): p</span><br><span class="line">Partition number (1-4, default 1): </span><br><span class="line">First sector (2048-419430399, default 2048): </span><br><span class="line">Last sector, +/-sectors or +/-size&#123;K,M,G,T,P&#125; (2048-419430399, default 419430399): </span><br><span class="line"></span><br><span class="line">Created a new partition 1 of type &#x27;Linux&#x27; and of size 200 GiB.</span><br><span class="line"></span><br><span class="line">Command (m for help): w</span><br><span class="line">The partition table has been altered.</span><br><span class="line">Calling ioctl() to re-read partition table.</span><br><span class="line">Syncing disks.</span><br></pre></td></tr></table></figure>
-<p>将分区进行格式化</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo mkfs.ext4 /dev/vdb1</span><br></pre></td></tr></table></figure>
-<p>创建挂载目录，并将分区挂载到目录</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo mkdir /mnt/vdb</span><br><span class="line">sudo mount /dev/vdb1 /mnt/vdb</span><br></pre></td></tr></table></figure>
-<p>上面挂载是临时的，重启后会失效，需要修改fstab文件，开启自动挂载</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo &#x27;/dev/vdb1 /mnt/vdb ext4 defaults 0 0&#x27; | sudo tee -a /etc/fstab</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>笔记</category>
-      </categories>
-      <tags>
-        <tag>ubuntu</tag>
-        <tag>linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>jar包运行参数配置</title>
     <url>/2023/09/18/2023/linux%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4/</url>
     <content><![CDATA[<p>三种jar包启动时传参的方式</p>
@@ -3284,6 +3263,46 @@ UEDITOR_HOME_URL的路径是相对于根目录的，比如上面的配置就是�
       <tags>
         <tag>java</tag>
         <tag>spring</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解决maven依赖问题</title>
+    <url>/2024/07/09/2024/%E8%A7%A3%E5%86%B3maven%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>由于项目比较老，下载下来以后，发现maven依赖好多找不到了。找同事要了包，放到了对应的本地仓库目录下还是不行。<br>报错信息如下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Could not find artifact com.github.everit-org.json-schema:org.everit.json.schema:pom:1.11.1 in aliyunmaven (https://maven.aliyun.com/repository/public)</span><br></pre></td></tr></table></figure>
+
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><ol>
+<li>删除本地仓库中的包</li>
+<li>使用命令将依赖安装到本地仓库<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mvn install:install-file -Dfile=path/to/your/jar/file.jar -DgroupId=com.github.everit-org.json-schema -DartifactId=org.everit.json.schema -Dversion=1.11.1 -Dpackaging=jar</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li>打开idea刷新mavne依赖，发现已经正常了</li>
+</ol>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ubuntu格式化硬盘并挂载</title>
+    <url>/2024/05/15/2024/ubuntu%E6%A0%BC%E5%BC%8F%E5%8C%96%E7%A1%AC%E7%9B%98%E5%B9%B6%E6%8C%82%E8%BD%BD%20copy/</url>
+    <content><![CDATA[<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo fdisk -l</span><br><span class="line"></span><br><span class="line">sudo fdisk /dev/vdb</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>选择n新建分区，选择p主分区，选择1，回车确认默认起始扇区，回车确认默认结束扇区，输入+200G，回车确认格式化，输入w保存并退出。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Welcome to fdisk (util-linux 2.34).</span><br><span class="line">Changes will remain in memory only, until you decide to write them.</span><br><span class="line">Be careful before using the write command.</span><br><span class="line"></span><br><span class="line">Device does not contain a recognized partition table.</span><br><span class="line">Created a new DOS disklabel with disk identifier 0x29c5f384.</span><br><span class="line"></span><br><span class="line">Command (m for help): n</span><br><span class="line">Partition type</span><br><span class="line">   p   primary (0 primary, 0 extended, 4 free)</span><br><span class="line">   e   extended (container for logical partitions)</span><br><span class="line">Select (default p): p</span><br><span class="line">Partition number (1-4, default 1): </span><br><span class="line">First sector (2048-419430399, default 2048): </span><br><span class="line">Last sector, +/-sectors or +/-size&#123;K,M,G,T,P&#125; (2048-419430399, default 419430399): </span><br><span class="line"></span><br><span class="line">Created a new partition 1 of type &#x27;Linux&#x27; and of size 200 GiB.</span><br><span class="line"></span><br><span class="line">Command (m for help): w</span><br><span class="line">The partition table has been altered.</span><br><span class="line">Calling ioctl() to re-read partition table.</span><br><span class="line">Syncing disks.</span><br></pre></td></tr></table></figure>
+<p>将分区进行格式化</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo mkfs.ext4 /dev/vdb1</span><br></pre></td></tr></table></figure>
+<p>创建挂载目录，并将分区挂载到目录</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo mkdir /mnt/vdb</span><br><span class="line">sudo mount /dev/vdb1 /mnt/vdb</span><br></pre></td></tr></table></figure>
+<p>上面挂载是临时的，重启后会失效，需要修改fstab文件，开启自动挂载</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">echo &#x27;/dev/vdb1 /mnt/vdb ext4 defaults 0 0&#x27; | sudo tee -a /etc/fstab</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>笔记</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
+        <tag>linux</tag>
       </tags>
   </entry>
 </search>

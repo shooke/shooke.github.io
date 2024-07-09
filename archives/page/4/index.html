@@ -56,6 +56,34 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2020/03/03/docker/2.docker%E4%BB%93%E5%BA%93/">docker仓库(Repository)</a>
+  </h2>
+  
+  
+
+      <a href="/2020/03/03/docker/2.docker%E4%BB%93%E5%BA%93/" class="archive-article-date">
+  <time datetime="2020-03-03T03:12:37.000Z" itemprop="datePublished">03/03</time>
+</a>
+    </header>
+    
+      <p>仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  <a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker Hub</a>。<br>大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。</p>
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2020/03/03/docker/3.docker%E9%95%9C%E5%83%8F/">docker镜像(Image)</a>
   </h2>
   
@@ -319,34 +347,6 @@
     
       <p>最近做项目发现服务器上nginx的配置很混乱，主要原因就是配置的人不太了解nginx的配置。从网上查了资料之后就复制了。</p>
 <h2 id="配置结构"><a href="#配置结构" class="headerlink" title="配置结构"></a>配置结构</h2><p>nginx的配置其实很简单，总共也就分为4部分：main（全局设置）、server（主机设置）、upstream（负载均衡服务器设置）和 location（URL匹配特定位置的设置）<br>他们的关系是，server继承main，location继承server，upstream既不会继承其他设置也不会被继承。<br>所以配置的优先级就是 location &gt; server &gt; main</p>
-    
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2020/01/03/2020/limits-conf%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/">limits.conf配置说明</a>
-  </h2>
-  
-  
-
-      <a href="/2020/01/03/2020/limits-conf%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" class="archive-article-date">
-  <time datetime="2020-01-03T09:30:52.000Z" itemprop="datePublished">01/03</time>
-</a>
-    </header>
-    
-      <p>最近发生了奇怪的事情，mysql总是会连不上，查了半天原因，最后发现进程文件没有生成。es报警“Too many open files”。搜索才发现是，打开文件太多了，超过了限制。解决方法是修改<code>/etc/security/limits.conf</code>。另外还牵扯到了另一个配置<code>file-max</code>。经过调试还是踩了不少坑的。坐下笔记，防止重复踩坑。</p>
     
     
     

@@ -56,6 +56,38 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2020/09/29/2020/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1postgresql%E8%BF%81%E7%A7%BB%E7%B2%BE%E5%8A%9B/">记录一次postgresql迁移经历</a>
+  </h2>
+  
+  
+
+      <a href="/2020/09/29/2020/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1postgresql%E8%BF%81%E7%A7%BB%E7%B2%BE%E5%8A%9B/" class="archive-article-date">
+  <time datetime="2020-09-28T16:24:15.000Z" itemprop="datePublished">09/29</time>
+</a>
+    </header>
+    
+      <p>数据库服务器硬盘满了，需要将数据迁移到另一台数据库，做一下记录</p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>去postgresql官网<a target="_blank" rel="noopener" href="https://www.postgresql.org/download/%EF%BC%8C%E9%80%89%E6%8B%A9%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%8C%E6%88%91%E8%BF%99%E9%87%8C%E9%80%89%E6%8B%A9%E7%9A%84%E6%98%AFubuntu%E3%80%82">https://www.postgresql.org/download/，选择操作系统，我这里选择的是ubuntu。</a><br>然后根据说明进行安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># Create the file repository configuration:</span><br><span class="line">sudo sh -c &#x27;echo &quot;deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main&quot; &gt; /etc/apt/sources.list.d/pgdg.list&#x27;</span><br><span class="line"></span><br><span class="line"># Import the repository signing key:</span><br><span class="line">wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -</span><br><span class="line"></span><br><span class="line"># Update the package lists:</span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"># Install the latest version of PostgreSQL.</span><br><span class="line"># If you want a specific version, use &#x27;postgresql-12&#x27; or similar instead of &#x27;postgresql&#x27;:</span><br><span class="line">sudo apt-get -y install postgresql</span><br></pre></td></tr></table></figure>
+<p>值得注意的是，安装时一定要选择与老数据库相同的版本</p>
+<p>安装完成后，就可以会自动添加一个postgres的系统用户，该用户没有密码如果想要密码可以自行设置</p>
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2020/09/23/2020/%E5%BE%AE%E4%BF%A1%E5%BC%80%E5%8F%91unionid%E8%AF%A6%E8%A7%A3/">微信开发unionid详解</a>
   </h2>
   
@@ -311,34 +343,6 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ./configure  --with-http_flv_module </span><br><span class="line">$ make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
 <p>专业就安装完成了。</p>
 <h2 id="对已安装的nginx，添加模块"><a href="#对已安装的nginx，添加模块" class="headerlink" title="对已安装的nginx，添加模块"></a>对已安装的nginx，添加模块</h2><p>如果已经安装过nginx，比如使用apt或yum安装过了。该怎么办呢？</p>
-    
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2020/03/03/docker/2.docker%E4%BB%93%E5%BA%93/">docker仓库(Repository)</a>
-  </h2>
-  
-  
-
-      <a href="/2020/03/03/docker/2.docker%E4%BB%93%E5%BA%93/" class="archive-article-date">
-  <time datetime="2020-03-03T03:12:37.000Z" itemprop="datePublished">03/03</time>
-</a>
-    </header>
-    
-      <p>仓库(Repository)是docker的重要概念之一，它是集中存放镜像的地方。docker官方提供了镜像仓库  <a target="_blank" rel="noopener" href="https://hub.docker.com/">Docker Hub</a>。<br>大多数情况下我们可以直接下载官方的镜像，直接使用或进行二次配置。</p>
     
     
     

@@ -44,6 +44,45 @@
   
   <div class="archives-wrap">
     <div class="archive-year-wrap">
+      <a href="/archives/2020" class="archive-year">2020</a>
+    </div>
+    <div class="archives">
+      
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
+    <a href="/2020/01/03/2020/limits-conf%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/">limits.conf配置说明</a>
+  </h2>
+  
+  
+
+      <a href="/2020/01/03/2020/limits-conf%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" class="archive-article-date">
+  <time datetime="2020-01-03T09:30:52.000Z" itemprop="datePublished">01/03</time>
+</a>
+    </header>
+    
+      <p>最近发生了奇怪的事情，mysql总是会连不上，查了半天原因，最后发现进程文件没有生成。es报警“Too many open files”。搜索才发现是，打开文件太多了，超过了限制。解决方法是修改<code>/etc/security/limits.conf</code>。另外还牵扯到了另一个配置<code>file-max</code>。经过调试还是踩了不少坑的。坐下笔记，防止重复踩坑。</p>
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+  
+  </div>
+  </div>
+  
+  
+  <div class="archives-wrap">
+    <div class="archive-year-wrap">
       <a href="/archives/2019" class="archive-year">2019</a>
     </div>
     <div class="archives">
@@ -287,34 +326,6 @@
 
       <a href="/2019/12/19/git/2.%E6%8A%8A%E9%A1%B9%E7%9B%AE%E4%BA%A4%E7%BB%99git/" class="archive-article-date">
   <time datetime="2019-12-19T12:32:20.000Z" itemprop="datePublished">12/19</time>
-</a>
-    </header>
-    
-      
-    
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/12/18/git/1.%E5%95%A5%E6%98%AFgit/">1.啥是git</a>
-  </h2>
-  
-  
-
-      <a href="/2019/12/18/git/1.%E5%95%A5%E6%98%AFgit/" class="archive-article-date">
-  <time datetime="2019-12-18T12:32:20.000Z" itemprop="datePublished">12/18</time>
 </a>
     </header>
     
