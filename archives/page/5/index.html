@@ -56,6 +56,35 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2020/01/10/2020/nginx%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E/">nginx配置结构说明</a>
+  </h2>
+  
+  
+
+      <a href="/2020/01/10/2020/nginx%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E/" class="archive-article-date">
+  <time datetime="2020-01-10T06:20:08.000Z" itemprop="datePublished">01/10</time>
+</a>
+    </header>
+    
+      <p>最近做项目发现服务器上nginx的配置很混乱，主要原因就是配置的人不太了解nginx的配置。从网上查了资料之后就复制了。</p>
+<h2 id="配置结构"><a href="#配置结构" class="headerlink" title="配置结构"></a>配置结构</h2><p>nginx的配置其实很简单，总共也就分为4部分：main（全局设置）、server（主机设置）、upstream（负载均衡服务器设置）和 location（URL匹配特定位置的设置）<br>他们的关系是，server继承main，location继承server，upstream既不会继承其他设置也不会被继承。<br>所以配置的优先级就是 location &gt; server &gt; main</p>
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2020/01/03/2020/limits-conf%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/">limits.conf配置说明</a>
   </h2>
   
@@ -309,34 +338,6 @@
 
 </article>
       
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/12/19/git/2.%E6%8A%8A%E9%A1%B9%E7%9B%AE%E4%BA%A4%E7%BB%99git/">2.把项目交给git</a>
-  </h2>
-  
-  
-
-      <a href="/2019/12/19/git/2.%E6%8A%8A%E9%A1%B9%E7%9B%AE%E4%BA%A4%E7%BB%99git/" class="archive-article-date">
-  <time datetime="2019-12-19T12:32:20.000Z" itemprop="datePublished">12/19</time>
-</a>
-    </header>
-    
-      
-    
-    
-    
-  </div>
-
-</article>
-      
       
     </div>
   </div>
@@ -352,7 +353,7 @@
     <footer class="footer">
   <div class="outer">
     <ul class="list-inline">
-      <li>舒克的博客 &copy; 2024</li>
+      <li>舒克的博客 &copy; 2025</li>
       
         <li>
           

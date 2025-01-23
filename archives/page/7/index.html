@@ -56,6 +56,37 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/07/31/2019/telnet%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/">telnet使用简介</a>
+  </h2>
+  
+  
+
+      <a href="/2019/07/31/2019/telnet%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/" class="archive-article-date">
+  <time datetime="2019-07-31T14:01:23.000Z" itemprop="datePublished">07/31</time>
+</a>
+    </header>
+    
+      <h2 id="端口开通-链接正常"><a href="#端口开通-链接正常" class="headerlink" title="端口开通,链接正常"></a>端口开通,链接正常</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">telnet 192.168.1.100 62715</span><br><span class="line">Trying 192.168.1.100...</span><br><span class="line">Connected to 192.168.1.100.</span><br><span class="line">Escape character is &#x27;^]&#x27;.</span><br></pre></td></tr></table></figure>
+<p>链接成功，根据提示<code>Escape character is &#39;^]&#39;</code>.可知退出字符为<code>&#39;^]&#39;</code>（CTRL+]）。此时输入其它字符不能使其退出，CTRL+C都不行。输入CTRL+]后会自动执行，进入命令模式，屏幕上出现<code>telnet&gt;</code>字样。需要输入<code>quit</code>才可退出<br><code>Escape character</code>提示是自定义的，使用参数<code>-e</code>即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">telnet -e p 192.168.1.100 62715   #使用p字符</span><br><span class="line">Telnet escape character is &#x27;p&#x27;.</span><br><span class="line">Trying 192.168.1.100...</span><br><span class="line">Connected to 192.168.1.100.</span><br><span class="line">Escape character is &#x27;p&#x27;.</span><br></pre></td></tr></table></figure>
+<p>输入<code>p</code>,会出现<code>telnet&gt;</code>字样，输入<code>quit</code>可退出</p>
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/07/19/2019/vue%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6v-model%E7%BB%91%E5%AE%9A%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95/">vue自定义组件v-model绑定数据的实现方法</a>
   </h2>
   
@@ -319,35 +350,6 @@
 
 </article>
       
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/05/30/2019/GIT%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E6%A0%87%E7%AD%BE/">GIT批量删除远程标签</a>
-  </h2>
-  
-  
-
-      <a href="/2019/05/30/2019/GIT%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E6%A0%87%E7%AD%BE/" class="archive-article-date">
-  <time datetime="2019-05-30T08:39:29.000Z" itemprop="datePublished">05/30</time>
-</a>
-    </header>
-    
-      <h2 id="查看远程所有标签"><a href="#查看远程所有标签" class="headerlink" title="查看远程所有标签"></a>查看远程所有标签</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git ls-remote --tags</span><br><span class="line">From git@github0123:jeremy0123/fetch.git</span><br><span class="line">30f4e5cdfef2539b5e156a607f365fb457f309a4        refs/tags/v0.1</span><br><span class="line">0efbfd03ed4b09647ef8a32db9c0a075f7d7dbeb        refs/tags/v0.2</span><br><span class="line">6944954ffa18df994365e53e96d3826a3953890b        refs/tags/v0.2^&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p><code>注意：refs/tags/v0.2^&#123;&#125;表示v0.2是含附注的标签。</code><br>另外，参数–tags可以简化为-t；–heads会获取远程仓库的分支信息。如果没有任何参数，将获取所有的分支和标签信息。</p>
-    
-    
-    
-  </div>
-
-</article>
-      
       
     </div>
   </div>
@@ -363,7 +365,7 @@
     <footer class="footer">
   <div class="outer">
     <ul class="list-inline">
-      <li>舒克的博客 &copy; 2024</li>
+      <li>舒克的博客 &copy; 2025</li>
       
         <li>
           

@@ -56,6 +56,34 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/12/19/git/2.%E6%8A%8A%E9%A1%B9%E7%9B%AE%E4%BA%A4%E7%BB%99git/">2.把项目交给git</a>
+  </h2>
+  
+  
+
+      <a href="/2019/12/19/git/2.%E6%8A%8A%E9%A1%B9%E7%9B%AE%E4%BA%A4%E7%BB%99git/" class="archive-article-date">
+  <time datetime="2019-12-19T12:32:20.000Z" itemprop="datePublished">12/19</time>
+</a>
+    </header>
+    
+      
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/12/18/git/1.%E5%95%A5%E6%98%AFgit/">1.啥是git</a>
   </h2>
   
@@ -304,37 +332,6 @@
 
 </article>
       
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2019/07/31/2019/telnet%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/">telnet使用简介</a>
-  </h2>
-  
-  
-
-      <a href="/2019/07/31/2019/telnet%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/" class="archive-article-date">
-  <time datetime="2019-07-31T14:01:23.000Z" itemprop="datePublished">07/31</time>
-</a>
-    </header>
-    
-      <h2 id="端口开通-链接正常"><a href="#端口开通-链接正常" class="headerlink" title="端口开通,链接正常"></a>端口开通,链接正常</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">telnet 192.168.1.100 62715</span><br><span class="line">Trying 192.168.1.100...</span><br><span class="line">Connected to 192.168.1.100.</span><br><span class="line">Escape character is &#x27;^]&#x27;.</span><br></pre></td></tr></table></figure>
-<p>链接成功，根据提示<code>Escape character is &#39;^]&#39;</code>.可知退出字符为<code>&#39;^]&#39;</code>（CTRL+]）。此时输入其它字符不能使其退出，CTRL+C都不行。输入CTRL+]后会自动执行，进入命令模式，屏幕上出现<code>telnet&gt;</code>字样。需要输入<code>quit</code>才可退出<br><code>Escape character</code>提示是自定义的，使用参数<code>-e</code>即可</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">telnet -e p 192.168.1.100 62715   #使用p字符</span><br><span class="line">Telnet escape character is &#x27;p&#x27;.</span><br><span class="line">Trying 192.168.1.100...</span><br><span class="line">Connected to 192.168.1.100.</span><br><span class="line">Escape character is &#x27;p&#x27;.</span><br></pre></td></tr></table></figure>
-<p>输入<code>p</code>,会出现<code>telnet&gt;</code>字样，输入<code>quit</code>可退出</p>
-    
-    
-    
-  </div>
-
-</article>
-      
       
     </div>
   </div>
@@ -350,7 +347,7 @@
     <footer class="footer">
   <div class="outer">
     <ul class="list-inline">
-      <li>舒克的博客 &copy; 2024</li>
+      <li>舒克的博客 &copy; 2025</li>
       
         <li>
           

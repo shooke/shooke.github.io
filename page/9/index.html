@@ -65,6 +65,73 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2019/linux安装java环境" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/04/03/2019/linux%E5%AE%89%E8%A3%85java%E7%8E%AF%E5%A2%83/">linux安装java环境</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/04/03/2019/linux%E5%AE%89%E8%A3%85java%E7%8E%AF%E5%A2%83/" class="article-date">
+  <time datetime="2019-04-03T07:04:54.000Z" itemprop="datePublished">2019-04-03</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <h2 id="下载jdk"><a href="#下载jdk" class="headerlink" title="下载jdk"></a>下载jdk</h2><p>可以到<a target="_blank" rel="noopener" href="https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html%E4%B8%8B%E8%BD%BD">https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html下载</a><br>JDK 8u201 是稳定版本<br>JDK 8u202 是开发版本，包含了8u21的功能和一些其他功能，有可能会有bug<br>找到<code>Java SE Development Kit 8u201</code>点击该栏目下的<code>Accept License Agreement</code>单选项<br>在下面的列表中找到需要的版本，右键复制链接，在terminal里面用<code>wget</code>命令下载，下面用的是<code>jdk-8u201-linux-x64</code>包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.tar.gz?AuthParam=1554274626_8750d27ae1e72e03c48aa9f516d713c3</span><br></pre></td></tr></table></figure>
+<h2 id="解压程序包并移动到-opt目录"><a href="#解压程序包并移动到-opt目录" class="headerlink" title="解压程序包并移动到&#x2F;opt目录"></a>解压程序包并移动到&#x2F;opt目录</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 先改个名字，要不然看着别扭</span><br><span class="line">mv jdk-8u201-linux-x64.tar.gz?AuthParam=1554274626_8750d27ae1e72e03c48aa9f516d713c3 jdk-8u201-linux-x64.tar.gz</span><br><span class="line"># 解压</span><br><span class="line">tar zxvf jdk-8u201-linux-x64.tar.gz</span><br><span class="line"># 解压后会出现jdk1.8.0_201文件夹，将其移动到/opt目录</span><br><span class="line">sudo mv jdk1.8.0_201 /opt</span><br></pre></td></tr></table></figure>
+<h2 id="设置环境变量"><a href="#设置环境变量" class="headerlink" title="设置环境变量"></a>设置环境变量</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.profile</span><br></pre></td></tr></table></figure>
+<p>在最后加入</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#java</span><br><span class="line">export JAVA_HOME=/opt/jdk1.8.0_201 #jdk的存放目录</span><br><span class="line">export JRE_HOME=$JAVA_HOME/jre</span><br><span class="line">export PATH=$PATH:$JAVA_HOME/bin</span><br><span class="line">export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br></pre></td></tr></table></figure>
+<p>最后让配置生效</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">source ~/.profile</span><br></pre></td></tr></table></figure>
+<p>运行<code>java --version</code>看是否生效，如果出现java版本信息标示生效了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">java version &quot;1.8.0_201&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.8.0_201-b09)</span><br><span class="line">Java HotSpot(TM) 64-Bit Server VM (build 25.201-b09, mixed mode)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/04/03/2019/linux%E5%AE%89%E8%A3%85java%E7%8E%AF%E5%A2%83/" data-id="cllx3nqis001b30trhrv5bt01" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/jdk/" rel="tag">jdk</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/linux/" rel="tag">linux</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2019/VirtualBox-v5-2-12-Ubuntu18-04-宿主机和虚拟主机互通，都可上网配置方式" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -733,72 +800,6 @@
 
 </article>
     
-    <article id="post-2019/mysql权限说明" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2019/03/06/2019/mysql%E6%9D%83%E9%99%90%E8%AF%B4%E6%98%8E/">mysql权限说明</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/03/06/2019/mysql%E6%9D%83%E9%99%90%E8%AF%B4%E6%98%8E/" class="article-date">
-  <time datetime="2019-03-06T05:23:15.000Z" itemprop="datePublished">2019-03-06</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <p>关于mysql的权限简单的理解就是mysql允许你做你权利以内的事情，不可以越界。比如只允许你执行select操作，那么你就不能执行update操作。只允许你从某台机器上连接mysql，那么你就不能从除那台机器以外的其他机器连接mysql。</p>
-<p>那么Mysql的权限是如何实现的呢？这就要说到mysql的两阶段验证，下面详细介绍：<br>第一阶段：服务器首先会检查你是否允许连接。因为创建用户的时候会加上主机限制，可以限制成本地、某个IP、某个IP段、以及任何地方等，只允许你从配置的指定地方登陆。<br>第二阶段：如果你能连接，Mysql会检查你发出的每个请求，看你是否有足够的权限实施它。比如你要更新某个表、或者查询某个表，Mysql会查看你对哪个表或者某个列是否有权限。再比如，你要运行某个存储过程，Mysql会检查你对存储过程是否有执行权限等。</p>
-        
-          <p>
-            <a class="article-more-link" href="/2019/03/06/2019/mysql%E6%9D%83%E9%99%90%E8%AF%B4%E6%98%8E/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/03/06/2019/mysql%E6%9D%83%E9%99%90%E8%AF%B4%E6%98%8E/" data-id="cllx3nqit001i30tr7tbncryw" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9D%83%E9%99%90/" rel="tag">权限</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
   </article>
   
 
@@ -812,7 +813,7 @@
     <footer class="footer">
   <div class="outer">
     <ul class="list-inline">
-      <li>舒克的博客 &copy; 2024</li>
+      <li>舒克的博客 &copy; 2025</li>
       
         <li>
           

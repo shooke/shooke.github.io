@@ -65,6 +65,65 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2020/解决ssh登录超时问题" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2020/09/30/2020/%E8%A7%A3%E5%86%B3ssh%E7%99%BB%E5%BD%95%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98/">解决ssh登录超时问题</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2020/09/30/2020/%E8%A7%A3%E5%86%B3ssh%E7%99%BB%E5%BD%95%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2020-09-30T15:36:31.000Z" itemprop="datePublished">2020-09-30</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <p>加上<code>-o ServerAliveInterval=60</code>参数就可以了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -o ServerAliveInterval=60 root@192.168.1.1</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2020/09/30/2020/%E8%A7%A3%E5%86%B3ssh%E7%99%BB%E5%BD%95%E8%B6%85%E6%97%B6%E9%97%AE%E9%A2%98/" data-id="cllx3nqjz005o30trgzewbwxv" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2020/记录一次postgresql迁移精力" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -706,75 +765,6 @@
 
 </article>
     
-    <article id="post-2020/让nginx支持flv文件播放" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2020/03/25/2020/%E8%AE%A9nginx%E6%94%AF%E6%8C%81flv%E6%96%87%E4%BB%B6%E6%92%AD%E6%94%BE/">让nginx支持flv文件播放</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2020/03/25/2020/%E8%AE%A9nginx%E6%94%AF%E6%8C%81flv%E6%96%87%E4%BB%B6%E6%92%AD%E6%94%BE/" class="article-date">
-  <time datetime="2020-03-25T02:51:34.000Z" itemprop="datePublished">2020-03-25</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>最近做小程序直播，为了简单测试需要用到<code>live-player</code>播放一个flv文件。服务器上用的nginx。把flv文件放到目录下访问，居然无法播放。查看了一下配置才发现，nginx不支持flv，需要响应的插件。</p>
-<h2 id="初次安装"><a href="#初次安装" class="headerlink" title="初次安装"></a>初次安装</h2><p>如果是编译安装的非常简单，只需要在<code>configure</code>时添加<code>--with-http_flv_module</code>就可以了。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ./configure  --with-http_flv_module </span><br><span class="line">$ make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
-<p>专业就安装完成了。</p>
-<h2 id="对已安装的nginx，添加模块"><a href="#对已安装的nginx，添加模块" class="headerlink" title="对已安装的nginx，添加模块"></a>对已安装的nginx，添加模块</h2><p>如果已经安装过nginx，比如使用apt或yum安装过了。该怎么办呢？</p>
-        
-          <p>
-            <a class="article-more-link" href="/2020/03/25/2020/%E8%AE%A9nginx%E6%94%AF%E6%8C%81flv%E6%96%87%E4%BB%B6%E6%92%AD%E6%94%BE/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2020/03/25/2020/%E8%AE%A9nginx%E6%94%AF%E6%8C%81flv%E6%96%87%E4%BB%B6%E6%92%AD%E6%94%BE/" data-id="cllx3nqk0005t30trewozg6au" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/flv/" rel="tag">flv</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx/" rel="tag">nginx</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
   </article>
   
 
@@ -788,7 +778,7 @@
     <footer class="footer">
   <div class="outer">
     <ul class="list-inline">
-      <li>舒克的博客 &copy; 2024</li>
+      <li>舒克的博客 &copy; 2025</li>
       
         <li>
           

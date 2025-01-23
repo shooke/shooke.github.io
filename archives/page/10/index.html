@@ -56,6 +56,35 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
+    <a href="/2019/03/06/2019/mysql%E6%9D%83%E9%99%90%E8%AF%B4%E6%98%8E/">mysql权限说明</a>
+  </h2>
+  
+  
+
+      <a href="/2019/03/06/2019/mysql%E6%9D%83%E9%99%90%E8%AF%B4%E6%98%8E/" class="archive-article-date">
+  <time datetime="2019-03-06T05:23:15.000Z" itemprop="datePublished">03/06</time>
+</a>
+    </header>
+    
+      <p>关于mysql的权限简单的理解就是mysql允许你做你权利以内的事情，不可以越界。比如只允许你执行select操作，那么你就不能执行update操作。只允许你从某台机器上连接mysql，那么你就不能从除那台机器以外的其他机器连接mysql。</p>
+<p>那么Mysql的权限是如何实现的呢？这就要说到mysql的两阶段验证，下面详细介绍：<br>第一阶段：服务器首先会检查你是否允许连接。因为创建用户的时候会加上主机限制，可以限制成本地、某个IP、某个IP段、以及任何地方等，只允许你从配置的指定地方登陆。<br>第二阶段：如果你能连接，Mysql会检查你发出的每个请求，看你是否有足够的权限实施它。比如你要更新某个表、或者查询某个表，Mysql会查看你对哪个表或者某个列是否有权限。再比如，你要运行某个存储过程，Mysql会检查你对存储过程是否有执行权限等。</p>
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
     <a href="/2019/03/06/2019/git%E4%BF%9D%E5%AD%98%E5%AF%86%E7%A0%81/">git保存密码</a>
   </h2>
   
@@ -294,7 +323,7 @@
     <footer class="footer">
   <div class="outer">
     <ul class="list-inline">
-      <li>舒克的博客 &copy; 2024</li>
+      <li>舒克的博客 &copy; 2025</li>
       
         <li>
           

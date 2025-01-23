@@ -65,6 +65,82 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-git/2.把项目交给git" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/12/19/git/2.%E6%8A%8A%E9%A1%B9%E7%9B%AE%E4%BA%A4%E7%BB%99git/">2.把项目交给git</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/12/19/git/2.%E6%8A%8A%E9%A1%B9%E7%9B%AE%E4%BA%A4%E7%BB%99git/" class="article-date">
+  <time datetime="2019-12-19T12:32:20.000Z" itemprop="datePublished">2019-12-19</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%9C%8B%E6%95%85%E4%BA%8B%E5%AD%A6git/">看故事学git</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <h2 id="小白的故事"><a href="#小白的故事" class="headerlink" title="小白的故事"></a>小白的故事</h2><blockquote>
+<p>本故事纯属虚构，如有雷同，^0^那可太巧了</p>
+</blockquote>
+<p>小白接到上级指示，所有的项目代码都要用版本管理工具进行管理。本着对项目负责的态度，小白开始在网上搜索版本管理软件。<br>考察了svn和git后，最后决定使用git进行项目管理。</p>
+<p>对于刚刚不如程序猿行列的小白来说，git好神秘啊，linus大神好神秘啊。</p>
+<p>沐浴更衣，斋戒数天。开始使用git。</p>
+<p>使用git的第一步当然是安装了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt update</span><br><span class="line">$ sudo apt install git</span><br></pre></td></tr></table></figure>
+<p>ok,搞定，这样就安装完了。</p>
+<p>打开项目目录，输入神圣的git初始化命令</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br><span class="line">Initialized empty Git repository in /home/shooke/learngit/.git/</span><br></pre></td></tr></table></figure>
+<p>完成了？这么简单？没有报错？小白小激动了一下，git初始化就这么简单？检查一下便知道。查看了一下，项目下果然多了个<code>.git</code>文件夹。</p>
+<p>接下来我们把项目加入到git代码仓库</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;init&quot;</span><br></pre></td></tr></table></figure>
+<p>这样，文件就被git记录下来了。就是这么easy。</p>
+<p>不一会小白写好了一个新功能，然后<code>git add .</code> <code>git commit -m &quot;我有完成了一个牛X的功能&quot;</code>记录下自己的工作。好开心，原来git这么简单，每次做完功能先 <code>add</code>然后<code>commit</code>就好了。</p>
+<p>就这样小白开始了他的git之旅…</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p><code>git init</code>可以初始化项目<br><code>git add .</code>可以将文件加入到暂存区，<code>.</code>是当前目录的意思，可以将目录下所有文件进行暂存，如果要针对某个文件可以加上文件名如<code>git add readme.md</code><br><code>git commit -m &quot;init&quot;</code>将文件加入到git代码仓库，并生成一条<code>init</code>的log记录</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/12/19/git/2.%E6%8A%8A%E9%A1%B9%E7%9B%AE%E4%BA%A4%E7%BB%99git/" data-id="cllx3nqke006z30tr2jm376il" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-git/1.啥是git" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -639,74 +715,6 @@
 
 </article>
     
-    <article id="post-2019/telnet使用简介" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2019/07/31/2019/telnet%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/">telnet使用简介</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/07/31/2019/telnet%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/" class="article-date">
-  <time datetime="2019-07-31T14:01:23.000Z" itemprop="datePublished">2019-07-31</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h2 id="端口开通-链接正常"><a href="#端口开通-链接正常" class="headerlink" title="端口开通,链接正常"></a>端口开通,链接正常</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">telnet 192.168.1.100 62715</span><br><span class="line">Trying 192.168.1.100...</span><br><span class="line">Connected to 192.168.1.100.</span><br><span class="line">Escape character is &#x27;^]&#x27;.</span><br></pre></td></tr></table></figure>
-<p>链接成功，根据提示<code>Escape character is &#39;^]&#39;</code>.可知退出字符为<code>&#39;^]&#39;</code>（CTRL+]）。此时输入其它字符不能使其退出，CTRL+C都不行。输入CTRL+]后会自动执行，进入命令模式，屏幕上出现<code>telnet&gt;</code>字样。需要输入<code>quit</code>才可退出<br><code>Escape character</code>提示是自定义的，使用参数<code>-e</code>即可</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">telnet -e p 192.168.1.100 62715   #使用p字符</span><br><span class="line">Telnet escape character is &#x27;p&#x27;.</span><br><span class="line">Trying 192.168.1.100...</span><br><span class="line">Connected to 192.168.1.100.</span><br><span class="line">Escape character is &#x27;p&#x27;.</span><br></pre></td></tr></table></figure>
-<p>输入<code>p</code>,会出现<code>telnet&gt;</code>字样，输入<code>quit</code>可退出</p>
-        
-          <p>
-            <a class="article-more-link" href="/2019/07/31/2019/telnet%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/07/31/2019/telnet%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/" data-id="cllx3nqj0002930trbm7y4464" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/telnet/" rel="tag">telnet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" rel="tag">系统运维</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
   </article>
   
 
@@ -720,7 +728,7 @@
     <footer class="footer">
   <div class="outer">
     <ul class="list-inline">
-      <li>舒克的博客 &copy; 2024</li>
+      <li>舒克的博客 &copy; 2025</li>
       
         <li>
           

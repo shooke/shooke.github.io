@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  <meta name="keywords" content="python,php,mysql,前端">
+  
+  
+  <title>
+    logstash+doris收集springboot日志 | 舒克的博客
+  </title>
+  <!-- Icon -->
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+    
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<script src="/js/pace.min.js"></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <main class="content">
+    <section class="outer">
+  <article id="post-2024/logstash-doris收集springboot日志" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h1 class="article-title" itemprop="name">
+    logstash+doris收集springboot日志
+  </h1>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2025/01/23/2024/logstash-doris%E6%94%B6%E9%9B%86springboot%E6%97%A5%E5%BF%97/" class="article-date">
+  <time datetime="2025-01-23T10:16:04.000Z" itemprop="datePublished">2025-01-23</time>
+</a>
+      
+    </div>
+    
+
+    
+    
+<div class="tocbot"></div>
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+      
+        <p>之前做过elk收集springboot日志，但是elk太重了，现在换成轻量级的logstash+doris。</p>
+<span id="more"></span>
+
+<h2 id="1-doris创建表"><a href="#1-doris创建表" class="headerlink" title="1. doris创建表"></a>1. doris创建表</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `system_log` (</span><br><span class="line">  `create_time` datetime NULL COMMENT &#x27;创建时间&#x27;,</span><br><span class="line">  `id` BIGINT NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `appname` VARCHAR NULL COMMENT &#x27;hostname or ip&#x27;,</span><br><span class="line">  `host` VARCHAR NULL COMMENT &#x27;log file path&#x27;,</span><br><span class="line">  `level` VARCHAR NULL COMMENT &#x27;log type&#x27;,</span><br><span class="line">  `logger_name` VARCHAR NULL COMMENT &#x27;log level&#x27;,</span><br><span class="line">  `message` text NULL COMMENT &#x27;log thread&#x27;,</span><br><span class="line">  `port` INT NULL COMMENT &#x27;log code position&#x27;,</span><br><span class="line">  `thread_name` STRING NULL COMMENT &#x27;log message&#x27;,</span><br><span class="line">  INDEX idx_appname (`appname`) USING INVERTED COMMENT &#x27;&#x27;,</span><br><span class="line">  INDEX idx_host (`host`) USING INVERTED COMMENT &#x27;&#x27;,  </span><br><span class="line">  INDEX idx_level (`level`) USING INVERTED COMMENT &#x27;&#x27;,</span><br><span class="line">  INDEX idx_logger_name (`logger_name`) USING INVERTED COMMENT &#x27;&#x27;,</span><br><span class="line">  INDEX idx_port (`port`) USING INVERTED COMMENT &#x27;&#x27;,</span><br><span class="line">  INDEX idx_thread_name (`thread_name`) USING INVERTED COMMENT &#x27;&#x27;,</span><br><span class="line">  INDEX idx_message (`message`) USING INVERTED PROPERTIES(&quot;parser&quot; = &quot;unicode&quot;, &quot;support_phrase&quot; = &quot;true&quot;) COMMENT &#x27;&#x27;</span><br><span class="line">) ENGINE=OLAP</span><br><span class="line">DUPLICATE KEY(`create_time`)</span><br><span class="line">COMMENT &#x27;日志记录&#x27;</span><br><span class="line">PARTITION BY RANGE(`create_time`) ()</span><br><span class="line">DISTRIBUTED BY RANDOM BUCKETS 10</span><br><span class="line">PROPERTIES (</span><br><span class="line">&quot;replication_num&quot; = &quot;1&quot;,</span><br><span class="line">&quot;dynamic_partition.enable&quot; = &quot;true&quot;,</span><br><span class="line">&quot;dynamic_partition.time_unit&quot; = &quot;DAY&quot;,</span><br><span class="line">&quot;dynamic_partition.start&quot; = &quot;-7&quot;,</span><br><span class="line">&quot;dynamic_partition.end&quot; = &quot;1&quot;,</span><br><span class="line">&quot;dynamic_partition.prefix&quot; = &quot;p&quot;,</span><br><span class="line">&quot;dynamic_partition.buckets&quot; = &quot;10&quot;,</span><br><span class="line">&quot;dynamic_partition.create_history_partition&quot; = &quot;true&quot;,</span><br><span class="line">&quot;compaction_policy&quot; = &quot;time_series&quot;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-logstash安装配置"><a href="#2-logstash安装配置" class="headerlink" title="2. logstash安装配置"></a>2. logstash安装配置</h2><h3 id="安装logstash"><a href="#安装logstash" class="headerlink" title="安装logstash"></a>安装logstash</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 下载安装logstash</span><br><span class="line">cd /opt</span><br><span class="line">wget https://artifacts.elastic.co/downloads/logstash/logstash-8.4.3-linux-x86_64.tar.gz</span><br><span class="line">tar -zxvf logstash-8.4.3-linux-x86_64.tar.gz</span><br><span class="line">cd logstash-8.4.3</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><p>不包含依赖的安装包 <a target="_blank" rel="noopener" href="https://apache-doris-releases.oss-accelerate.aliyuncs.com/logstash-output-doris-1.0.0.gem">https://apache-doris-releases.oss-accelerate.aliyuncs.com/logstash-output-doris-1.0.0.gem</a><br>包含依赖的安装包 <a target="_blank" rel="noopener" href="https://apache-doris-releases.oss-accelerate.aliyuncs.com/logstash-output-doris-1.0.0.zip">https://apache-doris-releases.oss-accelerate.aliyuncs.com/logstash-output-doris-1.0.0.zip</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">进入 Logstash 的安装目录，运行它下面的 bin/logstash-plugin 命令安装插件</span><br><span class="line">安装成功会提示</span><br></pre></td></tr></table></figure>
+<p>wget <a target="_blank" rel="noopener" href="https://apache-doris-releases.oss-accelerate.aliyuncs.com/logstash-output-doris-1.0.0.gem">https://apache-doris-releases.oss-accelerate.aliyuncs.com/logstash-output-doris-1.0.0.gem</a><br>.&#x2F;bin&#x2F;logstash-plugin install logstash-output-doris-1.0.0.gem<br>#如果出现下面的提示说明成功了<br>Installing file: logstash-output-doris-1.0.0.zip<br>Resolving dependencies…………………….<br>Install successful</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">普通安装模式会自动安装插件依赖的 ruby 模块，对于网络不通的情况会卡住无法完成，这种情况下可以下载包含依赖的zip安装包进行完全离线安装，注意需要用 file:// 指定本地文件系统。</span><br></pre></td></tr></table></figure>
+<p>wget <a target="_blank" rel="noopener" href="https://apache-doris-releases.oss-accelerate.aliyuncs.com/logstash-output-doris-1.0.0.zip">https://apache-doris-releases.oss-accelerate.aliyuncs.com/logstash-output-doris-1.0.0.zip</a><br>.&#x2F;bin&#x2F;logstash-plugin install file:&#x2F;&#x2F;&#x2F;tmp&#x2F;logstash-output-doris-1.0.0.zip<br>#如果出现下面的提示说明成功了<br>Installing file: logstash-output-doris-1.0.0.zip<br>Resolving dependencies…………………….<br>Install successful</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">### 配置logstash</span><br><span class="line">到logstash的config目录下创建一个logstash-doris.conf文件,配置如下.</span><br><span class="line">注意插件走的是http协议，因此需要配置FE的http端口，千万不要用mysql协议端口</span><br></pre></td></tr></table></figure>
+<p>input {<br>tcp {<br>    port &#x3D;&gt; 9601<br>    codec &#x3D;&gt; json_lines<br>  }<br>}</p>
+<p>output {<br>  doris {<br>      http_hosts &#x3D;&gt; [“<a target="_blank" rel="noopener" href="http://FE-host:8080"]">http://FE-host:8080&quot;]</a><br>      user &#x3D;&gt; “user”<br>      password &#x3D;&gt; “password”<br>      db &#x3D;&gt; “run_log”<br>      table &#x3D;&gt; “system_log”<br>      headers &#x3D;&gt; {<br>          “format” &#x3D;&gt; “json”<br>          “read_json_by_line” &#x3D;&gt; “true”<br>          “load_to_single_tablet” &#x3D;&gt; “true”<br>      }<br>      # field mapping: doris fileld name &#x3D;&gt; logstash field name<br>      # %{} to get a logstash field, [] for nested field such as [host][name] for host.name<br>      mapping &#x3D;&gt; {<br>          “create_time” &#x3D;&gt; “%{@timestamp}”<br>          “appname”&#x3D;&gt; “%{appname}”<br>          “host” &#x3D;&gt; “%{host}”<br>          “level” &#x3D;&gt; “%{level}”<br>          “logger_name” &#x3D;&gt; “%{logger_name}”<br>          “message” &#x3D;&gt; “%{message}”<br>          “port” &#x3D;&gt; “%{port}”<br>          “thread_name” &#x3D;&gt; “%{thread_name}”<br>      }<br>      log_request &#x3D;&gt; true<br>      log_speed_interval &#x3D;&gt; 10<br>  }<br>}</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">### 启动logstash</span><br></pre></td></tr></table></figure>
+<p>.&#x2F;bin&#x2F;logstash -f config&#x2F;logstash-doris.conf</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 3. springboot配置</span><br><span class="line">在pom里引入依赖</span><br></pre></td></tr></table></figure>
+<dependency>
+    <groupId>net.logstash.logback</groupId>
+    <artifactId>logstash-logback-encoder</artifactId>
+    <version>4.11</version>
+</dependency>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在启动类的resources目录下创建logback-spring.xml，配置如下</span><br><span class="line">如果只有一个配置文件可以不要springProfile这一层，直接写root</span><br></pre></td></tr></table></figure>
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+    <!--引用springboot默认配置-->
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+<pre><code>&lt;appender name=&quot;LOGSTASH&quot; class=&quot;net.logstash.logback.appender.LogstashTcpSocketAppender&quot;&gt;
+    &lt;!--指定logstash ip：监听端口--&gt;
+    &lt;destination&gt;logstash服务器id:input tcp配置的端口&lt;/destination&gt;
+    &lt;encoder charset=&quot;UTF-8&quot; class=&quot;net.logstash.logback.encoder.LogstashEncoder&quot;&gt;
+        &lt;customFields&gt;&#123;&quot;appname&quot;:&quot;模块或系统名称&quot;&#125;&lt;/customFields&gt;
+    &lt;/encoder&gt;
+&lt;/appender&gt;
+
+
+
+&lt;springProfile name=&quot;配置文件，多个可以用逗号隔开，如果没有多配置&quot;&gt;
+    &lt;!-- 打印 日志级别 --&gt;
+    &lt;root level=&quot;info&quot;&gt;
+        &lt;!--使用上述订阅logstash数据tcp传输 --&gt;
+        &lt;appender-ref ref=&quot;LOGSTASH&quot; /&gt;
+        &lt;!--使用springboot默认配置 调试窗口输出--&gt;
+        &lt;appender-ref ref=&quot;CONSOLE&quot; /&gt;
+    &lt;/root&gt;
+&lt;/springProfile&gt;
+</code></pre>
+</configuration>
+
+<pre><code>启动springboot项目，日志就会自动写入到doris中了。
+
+
+
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2025/01/23/2024/logstash-doris%E6%94%B6%E9%9B%86springboot%E6%97%A5%E5%BF%97/" data-id="cm69786x40000m4tr615n1gfr" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/doris/" rel="tag">doris</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/logstash/" rel="tag">logstash</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/springboot/" rel="tag">springboot</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+  
+<nav class="article-nav">
+  
+  
+  <a href="/2024/07/09/2024/%E8%A7%A3%E5%86%B3maven%E4%BE%9D%E8%B5%96%E9%97%AE%E9%A2%98/" class="article-nav-link">
+    <strong class="article-nav-caption">后一篇</strong>
+    <div class="article-nav-title">解决maven依赖问题</div>
+  </a>
+  
+</nav>
+
+  
+
+  
+  
+  
+  
+
+</article>
+</section>
+    <footer class="footer">
+  <div class="outer">
+    <ul class="list-inline">
+      <li>舒克的博客 &copy; 2025</li>
+      
+        <li>
+          
+            <a href="https://beian.miit.gov.cn/" target="_blank"></a>
+            
+        </li>
+      
+      <li>Powered by <a href="http://hexo.io/" target="_blank">Hexo</a></li>
+      <li>theme  <a target="_blank" rel="noopener" href="https://github.com/zhwangart/hexo-theme-ocean">Ocean</a></li>
+    </ul>
+    <p><ul class="list-inline">
+  
+  <li><i class="fe fe-smile-alt tooltip" data-tooltip="UV"></i> <span id="busuanzi_value_site_uv"></span></li>
+  
+  <li><i class="fe fe-bookmark tooltip" data-tooltip="PV"></i> <span id="busuanzi_value_page_pv"></span></li>
+  
+</ul></p>
+  </div>
+</footer>
+  </main>
+  <aside class="sidebar">
+    <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/hexo.svg" alt="舒克的博客"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link nav-item-search" title="搜索">
+        <i class="fe fe-search"></i>
+        搜索
+      </a>
+    </li>
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      <div class="totop" id="totop">
+  <i class="fe fe-rocket"></i>
+</div>
+    </li>
+    <li class="nav-item">
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="fe fe-feed"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+  </aside>
+  
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/jquery.justifiedGallery.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+
+<script src="/js/tocbot.min.js"></script>
+
+
+<script>
+  // Tocbot_v4.7.0  http://tscanlin.github.io/tocbot/
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto',
+  });
+</script>
+
+
+
+<script src="/js/ocean.js"></script>
+
+</body>
+
+</html>
