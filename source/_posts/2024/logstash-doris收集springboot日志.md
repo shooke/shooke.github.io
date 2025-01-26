@@ -13,23 +13,27 @@ tags:
 
 ## 1. doris创建表
 ```
-CREATE TABLE `system_log` (
+CREATE TABLE `run_log` (
   `create_time` datetime NULL COMMENT '创建时间',
   `id` BIGINT NOT NULL AUTO_INCREMENT,
   `appname` VARCHAR NULL COMMENT 'hostname or ip',
   `host` VARCHAR NULL COMMENT 'log file path',
   `level` VARCHAR NULL COMMENT 'log type',
-  `logger_name` VARCHAR NULL COMMENT 'log level',
-  `message` text NULL COMMENT 'log thread',
+  `logger_name` VARCHAR NULL COMMENT 'log name',
+  `message` text NULL COMMENT 'log message',
+  `stack_trace` text NULL COMMENT 'log stack_trace',
   `port` INT NULL COMMENT 'log code position',
   `thread_name` STRING NULL COMMENT 'log message',
+  INDEX idx_create_time (`create_time`) USING INVERTED COMMENT '',
   INDEX idx_appname (`appname`) USING INVERTED COMMENT '',
   INDEX idx_host (`host`) USING INVERTED COMMENT '',  
   INDEX idx_level (`level`) USING INVERTED COMMENT '',
   INDEX idx_logger_name (`logger_name`) USING INVERTED COMMENT '',
   INDEX idx_port (`port`) USING INVERTED COMMENT '',
   INDEX idx_thread_name (`thread_name`) USING INVERTED COMMENT '',
-  INDEX idx_message (`message`) USING INVERTED PROPERTIES("parser" = "unicode", "support_phrase" = "true") COMMENT ''
+  INDEX idx_message (`message`) USING INVERTED PROPERTIES("parser" = "unicode", "support_phrase" = "true") COMMENT '',
+  INDEX idx_stack_trace (`stack_trace`) USING INVERTED PROPERTIES("parser" = "unicode", "support_phrase" = "true") COMMENT ''
+
 ) ENGINE=OLAP
 DUPLICATE KEY(`create_time`)
 COMMENT '日志记录'
@@ -39,7 +43,7 @@ PROPERTIES (
 "replication_num" = "1",
 "dynamic_partition.enable" = "true",
 "dynamic_partition.time_unit" = "DAY",
-"dynamic_partition.start" = "-7",
+"dynamic_partition.start" = "-15",
 "dynamic_partition.end" = "1",
 "dynamic_partition.prefix" = "p",
 "dynamic_partition.buckets" = "10",
@@ -56,14 +60,15 @@ cd /opt
 wget https://artifacts.elastic.co/downloads/logstash/logstash-8.4.3-linux-x86_64.tar.gz
 tar -zxvf logstash-8.4.3-linux-x86_64.tar.gz
 cd logstash-8.4.3
-
 ```
+
 ### 安装插件
 不包含依赖的安装包 https://apache-doris-releases.oss-accelerate.aliyuncs.com/logstash-output-doris-1.0.0.gem
 包含依赖的安装包 https://apache-doris-releases.oss-accelerate.aliyuncs.com/logstash-output-doris-1.0.0.zip
-```
+
 进入 Logstash 的安装目录，运行它下面的 bin/logstash-plugin 命令安装插件
 安装成功会提示
+
 ```
 wget https://apache-doris-releases.oss-accelerate.aliyuncs.com/logstash-output-doris-1.0.0.gem
 ./bin/logstash-plugin install logstash-output-doris-1.0.0.gem
@@ -72,7 +77,9 @@ Installing file: logstash-output-doris-1.0.0.zip
 Resolving dependencies.........................
 Install successful
 ```
+
 普通安装模式会自动安装插件依赖的 ruby 模块，对于网络不通的情况会卡住无法完成，这种情况下可以下载包含依赖的zip安装包进行完全离线安装，注意需要用 file:// 指定本地文件系统。
+
 ```
 wget https://apache-doris-releases.oss-accelerate.aliyuncs.com/logstash-output-doris-1.0.0.zip
 ./bin/logstash-plugin install file:///tmp/logstash-output-doris-1.0.0.zip
@@ -81,9 +88,11 @@ Installing file: logstash-output-doris-1.0.0.zip
 Resolving dependencies.........................
 Install successful
 ```
+
 ### 配置logstash
 到logstash的config目录下创建一个logstash-doris.conf文件,配置如下.
 注意插件走的是http协议，因此需要配置FE的http端口，千万不要用mysql协议端口
+
 ```
 input {
 tcp {
@@ -109,10 +118,11 @@ output {
       mapping => {
           "create_time" => "%{@timestamp}"
           "appname"=> "%{appname}"
-          "host" => "%{host}"   
+          "host" => "%{host}"
           "level" => "%{level}"
           "logger_name" => "%{logger_name}"
           "message" => "%{message}"
+          "stack_trace" => "%{stack_trace}"
           "port" => "%{port}"
           "thread_name" => "%{thread_name}"
       }
@@ -121,7 +131,9 @@ output {
   }
 }
 ```
+
 ### 启动logstash
+
 ```
 ./bin/logstash -f config/logstash-doris.conf
 ```
