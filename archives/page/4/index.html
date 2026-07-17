@@ -57,18 +57,21 @@
       
   
   <h2 class="archive-article-title" itemprop="name">
-    <a href="/2020/03/03/docker/4.docker%E5%AE%B9%E5%99%A8/">docker容器(Container)</a>
+    <a href="/2020/03/25/2020/%E8%AE%A9nginx%E6%94%AF%E6%8C%81flv%E6%96%87%E4%BB%B6%E6%92%AD%E6%94%BE/">让nginx支持flv文件播放</a>
   </h2>
   
   
 
-      <a href="/2020/03/03/docker/4.docker%E5%AE%B9%E5%99%A8/" class="archive-article-date">
-  <time datetime="2020-03-03T03:12:37.000Z" itemprop="datePublished">03/03</time>
+      <a href="/2020/03/25/2020/%E8%AE%A9nginx%E6%94%AF%E6%8C%81flv%E6%96%87%E4%BB%B6%E6%92%AD%E6%94%BE/" class="archive-article-date">
+  <time datetime="2020-03-25T02:51:34.000Z" itemprop="datePublished">03/25</time>
 </a>
     </header>
     
-      <p>容器就是独立运行起来的程序,一个容器就好比你在虚拟机里装好的一个系统。</p>
-<p>我们可以创建、启动、停止、删除它。同时也可以将容器需要的数据放在容器之外。比如有一个数据库容器，里面有mysql服务，但数据不能放在容器里。我们可以把数据放在主机里，通过映射的方式让容器访问。</p>
+      <h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>最近做小程序直播，为了简单测试需要用到<code>live-player</code>播放一个flv文件。服务器上用的nginx。把flv文件放到目录下访问，居然无法播放。查看了一下配置才发现，nginx不支持flv，需要响应的插件。</p>
+<h2 id="初次安装"><a href="#初次安装" class="headerlink" title="初次安装"></a>初次安装</h2><p>如果是编译安装的非常简单，只需要在<code>configure</code>时添加<code>--with-http_flv_module</code>就可以了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ ./configure  --with-http_flv_module </span><br><span class="line">$ make &amp;&amp; make install</span><br></pre></td></tr></table></figure>
+<p>专业就安装完成了。</p>
+<h2 id="对已安装的nginx，添加模块"><a href="#对已安装的nginx，添加模块" class="headerlink" title="对已安装的nginx，添加模块"></a>对已安装的nginx，添加模块</h2><p>如果已经安装过nginx，比如使用apt或yum安装过了。该怎么办呢？</p>
     
     
     
@@ -125,6 +128,35 @@
     </header>
     
       <p>镜像在学习docker的过程中非常重要，创建出一个适用于自己的镜像，才能让业务系统准确运行。</p>
+    
+    
+    
+  </div>
+
+</article>
+      
+  
+  
+      <article class="archive-article archive-type-post">
+  
+  
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      
+  
+  <h2 class="archive-article-title" itemprop="name">
+    <a href="/2020/03/03/docker/4.docker%E5%AE%B9%E5%99%A8/">docker容器(Container)</a>
+  </h2>
+  
+  
+
+      <a href="/2020/03/03/docker/4.docker%E5%AE%B9%E5%99%A8/" class="archive-article-date">
+  <time datetime="2020-03-03T03:12:37.000Z" itemprop="datePublished">03/03</time>
+</a>
+    </header>
+    
+      <p>容器就是独立运行起来的程序,一个容器就好比你在虚拟机里装好的一个系统。</p>
+<p>我们可以创建、启动、停止、删除它。同时也可以将容器需要的数据放在容器之外。比如有一个数据库容器，里面有mysql服务，但数据不能放在容器里。我们可以把数据放在主机里，通过映射的方式让容器访问。</p>
     
     
     
@@ -319,35 +351,6 @@
       <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sslocal -c shadowsocks.json</span><br></pre></td></tr></table></figure>
 <p>报如下错误</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">INFO: loading config from shadowsocks.json</span><br><span class="line">2020-02-11 10:50:45 INFO     loading libcrypto from libcrypto.so.1.1</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/usr/local/bin/sslocal&quot;, line 11, in &lt;module&gt;</span><br><span class="line">    sys.exit(main())</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/local.py&quot;, line 39, in main</span><br><span class="line">    config = shell.get_config(True)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/shell.py&quot;, line 262, in get_config</span><br><span class="line">    check_config(config, is_local)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/shell.py&quot;, line 124, in check_config</span><br><span class="line">    encrypt.try_cipher(config[&#x27;password&#x27;], config[&#x27;method&#x27;])</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/encrypt.py&quot;, line 44, in try_cipher</span><br><span class="line">    Encryptor(key, method)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/encrypt.py&quot;, line 83, in __init__</span><br><span class="line">    random_string(self._method_info[1]))</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/encrypt.py&quot;, line 109, in get_cipher</span><br><span class="line">    return m[2](method, key, iv, op)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/rc4_md5.py&quot;, line 33, in create_cipher</span><br><span class="line">    return openssl.OpenSSLCrypto(b&#x27;rc4&#x27;, rc4_key, b&#x27;&#x27;, op)</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/openssl.py&quot;, line 76, in __init__</span><br><span class="line">    load_openssl()</span><br><span class="line">  File &quot;/usr/local/lib/python2.7/dist-packages/shadowsocks/crypto/openssl.py&quot;, line 52, in load_openssl</span><br><span class="line">    libcrypto.EVP_CIPHER_CTX_cleanup.argtypes = (c_void_p,)</span><br><span class="line">  File &quot;/usr/lib/python2.7/ctypes/__init__.py&quot;, line 379, in __getattr__</span><br><span class="line">    func = self.__getitem__(name)</span><br><span class="line">  File &quot;/usr/lib/python2.7/ctypes/__init__.py&quot;, line 384, in __getitem__</span><br><span class="line">    func = self._FuncPtr((name_or_ordinal, self))</span><br><span class="line">AttributeError: /usr/lib/x86_64-linux-gnu/libcrypto.so.1.1: undefined symbol: EVP_CIPHER_CTX_cleanup</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-    
-    
-    
-  </div>
-
-</article>
-      
-  
-  
-      <article class="archive-article archive-type-post">
-  
-  
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
-  
-  <h2 class="archive-article-title" itemprop="name">
-    <a href="/2020/01/10/2020/nginx%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E/">nginx配置结构说明</a>
-  </h2>
-  
-  
-
-      <a href="/2020/01/10/2020/nginx%E9%85%8D%E7%BD%AE%E7%BB%93%E6%9E%84%E8%AF%B4%E6%98%8E/" class="archive-article-date">
-  <time datetime="2020-01-10T06:20:08.000Z" itemprop="datePublished">01/10</time>
-</a>
-    </header>
-    
-      <p>最近做项目发现服务器上nginx的配置很混乱，主要原因就是配置的人不太了解nginx的配置。从网上查了资料之后就复制了。</p>
-<h2 id="配置结构"><a href="#配置结构" class="headerlink" title="配置结构"></a>配置结构</h2><p>nginx的配置其实很简单，总共也就分为4部分：main（全局设置）、server（主机设置）、upstream（负载均衡服务器设置）和 location（URL匹配特定位置的设置）<br>他们的关系是，server继承main，location继承server，upstream既不会继承其他设置也不会被继承。<br>所以配置的优先级就是 location &gt; server &gt; main</p>
     
     
     

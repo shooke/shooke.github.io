@@ -67,6 +67,74 @@
     <h1 class="page-type-title"></h1>
     
     
+    <article id="post-2019/telnet使用简介" class="article article-type-post" itemscope
+  itemprop="blogPost" data-scroll-reveal>
+
+  <div class="article-inner">
+    
+    <header class="article-header">
+      
+  
+  <h2 class="article-title" itemprop="name">
+    <a href="/2019/07/31/2019/telnet%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/">telnet使用简介</a>
+  </h2>
+  
+  
+
+    </header>
+    
+
+    
+    <div class="article-meta">
+      <a href="/2019/07/31/2019/telnet%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/" class="article-date">
+  <time datetime="2019-07-31T14:01:23.000Z" itemprop="datePublished">2019-07-31</time>
+</a>
+      
+<div class="article-category">
+  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
+</div>
+
+    </div>
+    
+
+    
+
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+        
+      
+      
+        <h2 id="端口开通-链接正常"><a href="#端口开通-链接正常" class="headerlink" title="端口开通,链接正常"></a>端口开通,链接正常</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">telnet 192.168.1.100 62715</span><br><span class="line">Trying 192.168.1.100...</span><br><span class="line">Connected to 192.168.1.100.</span><br><span class="line">Escape character is &#x27;^]&#x27;.</span><br></pre></td></tr></table></figure>
+<p>链接成功，根据提示<code>Escape character is &#39;^]&#39;</code>.可知退出字符为<code>&#39;^]&#39;</code>（CTRL+]）。此时输入其它字符不能使其退出，CTRL+C都不行。输入CTRL+]后会自动执行，进入命令模式，屏幕上出现<code>telnet&gt;</code>字样。需要输入<code>quit</code>才可退出<br><code>Escape character</code>提示是自定义的，使用参数<code>-e</code>即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">telnet -e p 192.168.1.100 62715   #使用p字符</span><br><span class="line">Telnet escape character is &#x27;p&#x27;.</span><br><span class="line">Trying 192.168.1.100...</span><br><span class="line">Connected to 192.168.1.100.</span><br><span class="line">Escape character is &#x27;p&#x27;.</span><br></pre></td></tr></table></figure>
+<p>输入<code>p</code>,会出现<code>telnet&gt;</code>字样，输入<code>quit</code>可退出</p>
+        
+          <p>
+            <a class="article-more-link" href="/2019/07/31/2019/telnet%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/">
+              阅读全文...
+            </a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://www.xingjiehu.com/2019/07/31/2019/telnet%E4%BD%BF%E7%94%A8%E7%AE%80%E4%BB%8B/" data-id="cmron0z0q0036pgtmg5kw1qso" class="article-share-link">
+        分享
+      </a>
+      
+<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/telnet/" rel="tag">telnet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" rel="tag">系统运维</a></li></ul>
+
+    </footer>
+
+  </div>
+
+  
+
+  
+
+</article>
+    
     <article id="post-2019/vue自定义组件v-model绑定数据的实现方法" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
@@ -120,7 +188,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/07/19/2019/vue%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6v-model%E7%BB%91%E5%AE%9A%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95/" data-id="cmromyb3t007cwgtmg4sp5ii4" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2019/07/19/2019/vue%E8%87%AA%E5%AE%9A%E4%B9%89%E7%BB%84%E4%BB%B6v-model%E7%BB%91%E5%AE%9A%E6%95%B0%E6%8D%AE%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%B3%95/" data-id="cmron0z0s003vpgtmbo8shwb7" class="article-share-link">
         分享
       </a>
       
@@ -179,7 +247,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/07/17/2019/url%E6%B7%BB%E5%8A%A0%E5%8F%82%E6%95%B0/" data-id="cmromyb3n005nwgtmdm0xha2f" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2019/07/17/2019/url%E6%B7%BB%E5%8A%A0%E5%8F%82%E6%95%B0/" data-id="cmron0z0q003apgtm1qvqecrh" class="article-share-link">
         分享
       </a>
       
@@ -244,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/07/13/2019/vue-cli3%E9%A2%84%E6%B8%B2%E6%9F%93%E5%A4%84%E7%90%86/" data-id="cmromyb3p0063wgtmcwdjg3q4" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2019/07/13/2019/vue-cli3%E9%A2%84%E6%B8%B2%E6%9F%93%E5%A4%84%E7%90%86/" data-id="cmron0z0r003kpgtm3slk3bk4" class="article-share-link">
         分享
       </a>
       
@@ -309,7 +377,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/07/08/2019/vue%E4%B8%8B%E4%BD%BF%E7%94%A8ueditor%EF%BC%8C%E6%96%87%E4%BB%B6%E7%9B%B4%E4%BC%A0%E4%B8%83%E7%89%9B%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" data-id="cmromyb3o005xwgtm4je92r6l" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2019/07/08/2019/vue%E4%B8%8B%E4%BD%BF%E7%94%A8ueditor%EF%BC%8C%E6%96%87%E4%BB%B6%E7%9B%B4%E4%BC%A0%E4%B8%83%E7%89%9B%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" data-id="cmron0z0r003opgtm5xr1e6ln" class="article-share-link">
         分享
       </a>
       
@@ -376,7 +444,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/07/05/2019/require-context%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" data-id="cmromyb39001owgtm3klb3o3a" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2019/07/05/2019/require-context%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" data-id="cmron0z0n002lpgtmdfgbhjxt" class="article-share-link">
         分享
       </a>
       
@@ -442,7 +510,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/06/24/2019/shadowsocks-deepin-pac%E6%A8%A1%E5%BC%8F%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-id="cmromyb3a001vwgtmefpuhxpn" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2019/06/24/2019/shadowsocks-deepin-pac%E6%A8%A1%E5%BC%8F%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" data-id="cmron0z0o002upgtm7qaogz2r" class="article-share-link">
         分享
       </a>
       
@@ -509,7 +577,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/06/20/2019/vscode%E6%89%93%E9%80%A0php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" data-id="cmromyb3n005qwgtmali32250" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2019/06/20/2019/vscode%E6%89%93%E9%80%A0php%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" data-id="cmron0z0r003hpgtm7uexhumz" class="article-share-link">
         分享
       </a>
       
@@ -586,7 +654,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/06/20/2019/pipenv%E4%B8%8Epyenv%E3%80%81pyenv-virtualenv%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E4%BD%BF%E7%94%A8/" data-id="cmromyb38001gwgtm6tsd5553" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2019/06/20/2019/pipenv%E4%B8%8Epyenv%E3%80%81pyenv-virtualenv%E7%9A%84%E5%85%B3%E7%B3%BB%E5%92%8C%E4%BD%BF%E7%94%A8/" data-id="cmron0z0m002epgtm19ur9ccs" class="article-share-link">
         分享
       </a>
       
@@ -651,77 +719,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/06/06/2019/ssh%E4%BD%BF%E7%94%A8%E6%A6%82%E8%A6%81/" data-id="cmromyb3a001xwgtmghochdq4" class="article-share-link">
+      <a data-url="https://www.xingjiehu.com/2019/06/06/2019/ssh%E4%BD%BF%E7%94%A8%E6%A6%82%E8%A6%81/" data-id="cmron0z0o002rpgtm8y6k9e23" class="article-share-link">
         分享
       </a>
       
 <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ssh/" rel="tag">ssh</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91/" rel="tag">端口转发</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%BF%90%E7%BB%B4/" rel="tag">系统运维</a></li></ul>
-
-    </footer>
-
-  </div>
-
-  
-
-  
-
-</article>
-    
-    <article id="post-2019/GIT批量删除远程标签" class="article article-type-post" itemscope
-  itemprop="blogPost" data-scroll-reveal>
-
-  <div class="article-inner">
-    
-    <header class="article-header">
-      
-  
-  <h2 class="article-title" itemprop="name">
-    <a href="/2019/05/30/2019/GIT%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E6%A0%87%E7%AD%BE/">GIT批量删除远程标签</a>
-  </h2>
-  
-  
-
-    </header>
-    
-
-    
-    <div class="article-meta">
-      <a href="/2019/05/30/2019/GIT%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E6%A0%87%E7%AD%BE/" class="article-date">
-  <time datetime="2019-05-30T08:39:29.000Z" itemprop="datePublished">2019-05-30</time>
-</a>
-      
-<div class="article-category">
-  <a class="article-category-link" href="/categories/%E7%AC%94%E8%AE%B0/">笔记</a>
-</div>
-
-    </div>
-    
-
-    
-
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        
-      
-      
-        <h2 id="查看远程所有标签"><a href="#查看远程所有标签" class="headerlink" title="查看远程所有标签"></a>查看远程所有标签</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git ls-remote --tags</span><br><span class="line">From git@github0123:jeremy0123/fetch.git</span><br><span class="line">30f4e5cdfef2539b5e156a607f365fb457f309a4        refs/tags/v0.1</span><br><span class="line">0efbfd03ed4b09647ef8a32db9c0a075f7d7dbeb        refs/tags/v0.2</span><br><span class="line">6944954ffa18df994365e53e96d3826a3953890b        refs/tags/v0.2^&#123;&#125;</span><br></pre></td></tr></table></figure>
-<p><code>注意：refs/tags/v0.2^&#123;&#125;表示v0.2是含附注的标签。</code><br>另外，参数–tags可以简化为-t；–heads会获取远程仓库的分支信息。如果没有任何参数，将获取所有的分支和标签信息。</p>
-        
-          <p>
-            <a class="article-more-link" href="/2019/05/30/2019/GIT%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E6%A0%87%E7%AD%BE/">
-              阅读全文...
-            </a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://www.xingjiehu.com/2019/05/30/2019/GIT%E6%89%B9%E9%87%8F%E5%88%A0%E9%99%A4%E8%BF%9C%E7%A8%8B%E6%A0%87%E7%AD%BE/" data-id="cmromyb320009wgtm6eg4gb0e" class="article-share-link">
-        分享
-      </a>
-      
-<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tag/" rel="tag">tag</a></li></ul>
 
     </footer>
 
