@@ -1350,7 +1350,7 @@ img {
   overflow: hidden;
   padding: 2rem;
   color: #fff;
-  background-image: linear-gradient(120deg, rgba(3,16,33,0.82), rgba(11,63,91,0.45)), url("/images/ocean/ocean.png");
+  background-image: linear-gradient(120deg, rgba(2,14,30,0.88), rgba(9,56,82,0.6)), url("/images/hero-tech.jpg");
   background-position: center;
   background-size: cover;
 }
@@ -1462,6 +1462,8 @@ img {
   padding: 7rem 10vw;
 }
 .home-section__heading {
+  position: relative;
+  z-index: 1;
   max-width: 42rem;
   margin: 0 auto 3.75rem;
   text-align: center;
@@ -1489,10 +1491,21 @@ img {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: #143148;
-  background: #f5f9fb;
+  overflow: hidden;
+  color: #eaf7fb;
+  background: radial-gradient(circle at 15% 10%, #155a78, transparent 35%), linear-gradient(135deg, #061b2b, #0a3047);
+}
+.home-services__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+  pointer-events: none;
 }
 .home-services__grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.25rem;
@@ -1500,17 +1513,19 @@ img {
 .home-service-card {
   min-height: 17rem;
   padding: 2rem;
-  border: 1px solid #dbe9ef;
+  border: 1px solid rgba(129,219,239,0.22);
   -webkit-border-radius: 0.35rem;
   -moz-border-radius: 0.35rem;
   border-radius: 0.35rem;
-  background: #fff;
-  box-shadow: 0 1rem 2.5rem rgba(24,68,92,0.06);
+  background: rgba(5,31,48,0.48);
+  box-shadow: 0 1rem 2.5rem rgba(0,0,0,0.15);
+  backdrop-filter: blur(8px);
   transition: transform 0.25s ease;
 }
 .home-service-card:hover {
   transform: translateY(-0.45rem);
-  box-shadow: 0 1.4rem 3rem rgba(24,68,92,0.12);
+  box-shadow: 0 1.4rem 3rem rgba(0,0,0,0.28);
+  background: rgba(11,61,84,0.65);
 }
 .home-service-card__number {
   display: block;
@@ -1524,10 +1539,11 @@ img {
   margin: 0;
   font-size: 1.45rem;
   font-weight: 500;
+  color: #f4fdff;
 }
 .home-service-card p {
   margin: 1rem 0 0;
-  color: #718796;
+  color: rgba(218,241,248,0.72);
   line-height: 1.9;
 }
 .home-about {
